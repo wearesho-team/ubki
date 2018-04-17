@@ -64,7 +64,7 @@ class Config implements ConfigInterface
 
     public function getPushUrl(): string
     {
-        return $this->mode = Config::MODE_PRODUCTION
+        return $this->mode === Config::MODE_PRODUCTION
             ? Config::PRODUCTION_PUSH_URL
             : Config::TEST_PUSH_URL;
     }
