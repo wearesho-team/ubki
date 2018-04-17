@@ -13,8 +13,48 @@
 composer require wearesho-team/ubki
 ```
 
+## Конфигурация
+Для конфигурирования сервисов используется интерфейс
+[ConfigInterface](./src/ConfigInterface.php).
+Также доступны реализации:
+
+### Config
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+
+$config = new Ubki\Config(
+    'username',
+    'password',
+    $mode = Ubki\Config::MODE_TEST // по-умолчанию
+);
+$config->setMode(Ubki\Config::MODE_PRODUCTION); // Использовать продакшн адреса
+$config->setMode(Ubki\Config::MODE_TEST); // Использовать тестовые адреса
+```
+
+### EnvironmentConfig
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+
+$config = new Ubki\EnvironmentConfig("PREFIX_");
+```
+будут использованы переменные окружения:
+- **UBKI_USERNAME** - имя пользования
+- **UBKI_PASSWORD** - пароль
+- **UBKI_AUTH_URL** - URL для авторизации, по-умолчанию продакшн
+- **UBKI_PUSH_URL** - URL для передачи информации, по-умолчанию - продакшн
+- **UBKI_PULL_URL** - URL для получения информации, по-умолчанию - продакшн
+
 ## Использование
+*Рекомендуется использовать контейнер внедрения зависимостей*
+
 **Библиотека находится в разработке**
+1. Авторизация (Auth)
+2. Получение данных (Pull)
+3. Отправка данных (Push)
 
 ## Требования
 - PHP >=7.1
@@ -30,7 +70,8 @@ composer require wearesho-team/ubki
 - Для сетевых запросов необходимо использовать `guzzlehttp/guzzle`
 - Для работы со временем необходимо использовать `nesbot/carbon`
 - Все изменения затрагивающие публичные интерфейсы, 
-добавленные в новой версии должны быть занесены в [Changelog](./CHANGELOG.md)  
+добавленные в новой версии должны быть занесены в [Changelog](./CHANGELOG.md)
+- Все классы тестов должны содержать `@internal` в doc блоке  
 
 ## Автор
 - [Alexander <horat1us> Letnikow](mailto:reclamme@gmail.com)

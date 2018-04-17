@@ -3,9 +3,10 @@
   "description": "UBKI Integration for PHP",
   "type": "library",
   "require": {
-    "psr/cache": "^1.0",
     "guzzlehttp/guzzle": "^6.3",
-    "nesbot/carbon": "^1.26"
+    "horat1us/environment-config": "^1.1",
+    "nesbot/carbon": "^1.26",
+    "psr/cache": "^1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.1",
