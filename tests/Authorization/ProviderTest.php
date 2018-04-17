@@ -39,11 +39,14 @@ class ProviderTest extends TestCase
 
         $provider = new Ubki\Authorization\Provider(
             new Ubki\Config('test-provider-username', 'test-provide-password'),
-            $client
+            $client,
+            $this->logger
         );
 
+        /** @noinspection PhpUnhandledExceptionInspection */
         $response = $provider->provide();
 
+        // testing response
         $this->assertEquals(
             new Ubki\Authorization\Response(
                 'TESTSESSIONID',
@@ -62,6 +65,8 @@ class ProviderTest extends TestCase
             $response
         );
 
+
+        // testing request
         $this->assertCount(1, $container);
 
         /** @var GuzzleHttp\Psr7\Request $request */
@@ -78,5 +83,11 @@ class ProviderTest extends TestCase
             'POST',
             $request->getMethod()
         );
+
+        // testing logs
+        $this->assertTrue($this->logger->log->hasRecordsWithMessage('UBKI Authorization Request'));
+        $this->assertTrue($this->logger->log->hasRecordsWithMessage('UBKI Authorization Response'));
+        $this->assertTrue($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TEST****ONID'));
+        $this->assertFalse($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TESTSESSIONID'));
     }
 }

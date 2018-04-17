@@ -54,7 +54,15 @@ class Provider implements ProviderInterface
 
         $xml = simplexml_load_string($httpResponse->getBody()->__toString());
         $attributes = $xml->auth->attributes();
-        $attr = (array)$attributes;
+
+        $context = ((array)$attributes)["@attributes"];
+        $context['sessid'] = preg_replace(
+            '/^(.{4}).+(.{4})$/',
+            '$1****$2',
+            $context['sessid']
+        );
+
+        $this->logger->info("UBKI Authorization Response", $context);
 
         $response = new Response(
             (string)$attributes->sessid,
