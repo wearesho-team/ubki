@@ -89,4 +89,142 @@ class ProviderTest extends TestCase
         $this->assertTrue($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TEST****ONID'));
         $this->assertFalse($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TESTSESSIONID'));
     }
+
+    /**
+     * @expectedException Wearesho\Bobra\Ubki\Authorization\Exception
+     */
+    public function testProvideAuthorizationException()
+    {
+
+        $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth errtext="Some error text" errcode="error 228"/></doc>'; // phpcs:ignore
+        $container = [];
+        $history = GuzzleHttp\Middleware::history($container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(400, [], $response),
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+
+        $provider = new Ubki\Authorization\Provider(
+            new Ubki\Config('test-provider-username', 'test-provide-password'),
+            $client,
+            $this->logger
+        );
+
+        /** @noinspection Wearesho\Bobra\Ubki\Authorization\Exception */
+        $response = $provider->provide();
+
+        // testing response
+        $this->assertEquals(
+            new Ubki\Authorization\Response(
+                'TESTSESSIONID',
+                Carbon::createFromFormat('d.m.Y G:i', '25.05.2017 15:20'),
+                Carbon::createFromFormat('d.m.Y G:i', '26.05.2017 0:00'),
+                'UserLogin',
+                1,
+                'LastName',
+                'FirstName',
+                'MiddleName',
+                2,
+                'GroupName',
+                3,
+                'OrganizationName'
+            ),
+            $response
+        );
+    }
+
+    /**
+     * @expectedException GuzzleHttp\Exception\ClientException
+     */
+    public function testProvideNoAuthException()
+    {
+
+        $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc></doc>'; // phpcs:ignore
+        $container = [];
+        $history = GuzzleHttp\Middleware::history($container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(400, [], $response),
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+
+        $provider = new Ubki\Authorization\Provider(
+            new Ubki\Config('test-provider-username', 'test-provide-password'),
+            $client,
+            $this->logger
+        );
+
+        /** @noinspection GuzzleHttp\Exception\ClientException */
+        $response = $provider->provide();
+
+        // testing response
+        $this->assertEquals(
+            new Ubki\Authorization\Response(
+                'TESTSESSIONID',
+                Carbon::createFromFormat('d.m.Y G:i', '25.05.2017 15:20'),
+                Carbon::createFromFormat('d.m.Y G:i', '26.05.2017 0:00'),
+                'UserLogin',
+                1,
+                'LastName',
+                'FirstName',
+                'MiddleName',
+                2,
+                'GroupName',
+                3,
+                'OrganizationName'
+            ),
+            $response
+        );
+    }
+
+    /**
+     * @expectedException GuzzleHttp\Exception\ClientException
+     */
+    public function testProvideNoErrCodeException()
+    {
+
+        $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth/></doc>'; // phpcs:ignore
+        $container = [];
+        $history = GuzzleHttp\Middleware::history($container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(400, [], $response),
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+
+        $provider = new Ubki\Authorization\Provider(
+            new Ubki\Config('test-provider-username', 'test-provide-password'),
+            $client,
+            $this->logger
+        );
+
+        /** @noinspection GuzzleHttp\Exception\ClientException */
+        $response = $provider->provide();
+
+        // testing response
+        $this->assertEquals(
+            new Ubki\Authorization\Response(
+                'TESTSESSIONID',
+                Carbon::createFromFormat('d.m.Y G:i', '25.05.2017 15:20'),
+                Carbon::createFromFormat('d.m.Y G:i', '26.05.2017 0:00'),
+                'UserLogin',
+                1,
+                'LastName',
+                'FirstName',
+                'MiddleName',
+                2,
+                'GroupName',
+                3,
+                'OrganizationName'
+            ),
+            $response
+        );
+    }
 }
