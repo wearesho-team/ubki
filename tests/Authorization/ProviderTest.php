@@ -23,8 +23,7 @@ class ProviderTest extends TestCase
         $this->logger = new TestLogger();
     }
 
-
-    public function testProvide()
+    public function testProvide(): void
     {
         $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth sessid="TESTSESSIONID" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" userlogin="UserLogin" userid="1" userfname="FirstName" userlname="LastName" usermname="MiddleName" rolegroupid="2" rolegroupname="GroupName" agrid="3" agrname="OrganizationName" role="1"/></doc>'; // phpcs:ignore
         $container = [];
