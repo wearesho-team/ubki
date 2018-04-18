@@ -52,8 +52,11 @@ $config = new Ubki\EnvironmentConfig("PREFIX_");
 *Рекомендуется использовать контейнер внедрения зависимостей*
 
 **Библиотека находится в разработке**
-1. Авторизация (Auth)
+1. Авторизация (Authorization)
+[Документация API](https://docs.google.com/document/d/1Tp70OOEgr0UKhXndCfqrdCUhauirTRPiv2S146gTooA/edit)
+
 2. Получение данных (Pull)
+
 3. Отправка данных (Push)
 
 ## Требования
