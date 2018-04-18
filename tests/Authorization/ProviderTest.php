@@ -92,11 +92,13 @@ class ProviderTest extends TestCase
 
     /**
      * @expectedException Wearesho\Bobra\Ubki\Authorization\Exception
+     * @expectedExceptionMessage Some error text
+     * @expectedExceptionCode 228
      */
     public function testProvideAuthorizationException()
     {
 
-        $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth errtext="Some error text" errcode="error 228"/></doc>'; // phpcs:ignore
+        $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth errtext="Some error text" errcode="228"/></doc>'; // phpcs:ignore
         $container = [];
         $history = GuzzleHttp\Middleware::history($container);
         $mock = new GuzzleHttp\Handler\MockHandler([
@@ -115,25 +117,6 @@ class ProviderTest extends TestCase
 
         /** @noinspection Wearesho\Bobra\Ubki\Authorization\Exception */
         $response = $provider->provide();
-
-        // testing response
-        $this->assertEquals(
-            new Ubki\Authorization\Response(
-                'TESTSESSIONID',
-                Carbon::createFromFormat('d.m.Y G:i', '25.05.2017 15:20'),
-                Carbon::createFromFormat('d.m.Y G:i', '26.05.2017 0:00'),
-                'UserLogin',
-                1,
-                'LastName',
-                'FirstName',
-                'MiddleName',
-                2,
-                'GroupName',
-                3,
-                'OrganizationName'
-            ),
-            $response
-        );
     }
 
     /**
@@ -161,25 +144,6 @@ class ProviderTest extends TestCase
 
         /** @noinspection GuzzleHttp\Exception\ClientException */
         $response = $provider->provide();
-
-        // testing response
-        $this->assertEquals(
-            new Ubki\Authorization\Response(
-                'TESTSESSIONID',
-                Carbon::createFromFormat('d.m.Y G:i', '25.05.2017 15:20'),
-                Carbon::createFromFormat('d.m.Y G:i', '26.05.2017 0:00'),
-                'UserLogin',
-                1,
-                'LastName',
-                'FirstName',
-                'MiddleName',
-                2,
-                'GroupName',
-                3,
-                'OrganizationName'
-            ),
-            $response
-        );
     }
 
     /**
@@ -207,24 +171,5 @@ class ProviderTest extends TestCase
 
         /** @noinspection GuzzleHttp\Exception\ClientException */
         $response = $provider->provide();
-
-        // testing response
-        $this->assertEquals(
-            new Ubki\Authorization\Response(
-                'TESTSESSIONID',
-                Carbon::createFromFormat('d.m.Y G:i', '25.05.2017 15:20'),
-                Carbon::createFromFormat('d.m.Y G:i', '26.05.2017 0:00'),
-                'UserLogin',
-                1,
-                'LastName',
-                'FirstName',
-                'MiddleName',
-                2,
-                'GroupName',
-                3,
-                'OrganizationName'
-            ),
-            $response
-        );
     }
 }
