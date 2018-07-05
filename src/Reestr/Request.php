@@ -11,6 +11,9 @@ class Request implements RequestInterface
 {
     use RequestTrait;
 
+    const TYPE_BIL = 'BIL';
+    const TYPE_REP = 'REP';
+
     public function __construct(
         string $todo,
         string $indate,
