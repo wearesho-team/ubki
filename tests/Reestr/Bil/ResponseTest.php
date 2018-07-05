@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Reestr\Bil;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Reestr\Bil\Response;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class ResponseTest
@@ -15,7 +15,7 @@ class ResponseTest extends TestCase
 {
     public function testGets(): void
     {
-        $response = new Response(
+        $response = new Ubki\Reestr\Bil\Response(
             'BIL',
             \DateTime::createFromFormat('Ymd', '2018-06-06'),
             'unique_idout',
@@ -38,7 +38,7 @@ class ResponseTest extends TestCase
         $this->assertEquals('20180606', $response->getIndate()->format('Ymd'));
         $this->assertEquals('unique_idout', $response->getIdout());
         $this->assertEquals('unique_sessid', $response->getSessid());
-        $this->assertEquals(Response::STATE_SQL_ERROR, $response->getState());
+        $this->assertEquals(Ubki\Reestr\Response::STATE_SQL_ERROR, $response->getState());
         $this->assertEquals(true, $response->isStateError());
         $this->assertEquals(false, $response->isStateBlocked());
         $this->assertEquals(false, $response->isStateCreated());
