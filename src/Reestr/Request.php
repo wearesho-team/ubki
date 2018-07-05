@@ -20,6 +20,10 @@ class Request implements RequestInterface
         string $idout = "",
         string $idalien = ""
     ) {
+        if (!$this->validateIndate($indate)) {
+            throw new \InvalidArgumentException("Indate have invalid format: {$indate}");
+        }
+
         $this->todo = $todo;
         $this->indate = $indate;
         $this->idout = $idout;
