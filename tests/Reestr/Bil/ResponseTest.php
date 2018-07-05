@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Reestr\Bil;
 
+use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki;
@@ -17,7 +18,7 @@ class ResponseTest extends TestCase
     {
         $response = new Ubki\Reestr\Bil\Response(
             'BIL',
-            \DateTime::createFromFormat('Ymd', '2018-06-06'),
+             Carbon::parse('2018-09-09'),
             'unique_idout',
             'unique_idalien',
             'unique_sessid',
@@ -35,7 +36,7 @@ class ResponseTest extends TestCase
         );
 
         $this->assertEquals('BIL', $response->getTodo());
-        $this->assertEquals('20180606', $response->getIndate()->format('Ymd'));
+        $this->assertEquals('20180909', $response->getIndate()->format('Ymd'));
         $this->assertEquals('unique_idout', $response->getIdout());
         $this->assertEquals('unique_sessid', $response->getSessid());
         $this->assertEquals(Ubki\Reestr\Response::STATE_SQL_ERROR, $response->getState());
