@@ -20,13 +20,13 @@ class Request extends Reestr\Request implements RequestInterface
         string $idalien = ""
     ) {
         if (!$this->validateGroup($grp)) {
-            throw new \InvalidArgumentException("Grouping type have invalid value!");
+            throw new \InvalidArgumentException("Grouping type have invalid value: {$grp}");
         }
 
         $this->grp = $grp;
 
         if (!$this->validateIndate($indate)) {
-            throw new \InvalidArgumentException("Indate have invalid format!");
+            throw new \InvalidArgumentException("Indate have invalid format: {$indate}");
         }
 
         parent::__construct(
