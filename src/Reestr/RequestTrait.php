@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Reestr;
 
+use Carbon\Carbon;
+
 /**
  * Trait RequestTrait
  *
@@ -51,5 +53,10 @@ trait RequestTrait
     public function getIdalien(): string
     {
         return $this->idalien;
+    }
+
+    protected function validateIndate(\DateTimeInterface $indate): bool
+    {
+        return Carbon::hasFormat($indate, 'Ymd');
     }
 }

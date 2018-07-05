@@ -2,7 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Reestr\Bil;
 
-use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\Reestr;
 
 class Request extends Reestr\Request implements RequestInterface
@@ -43,10 +42,5 @@ class Request extends Reestr\Request implements RequestInterface
             $group !== static::GROUP_PACK ||
             $group !== static::GROUP_COMP ||
             $group !== static::GROUP_ITEM;
-    }
-
-    private function validateIndate(\DateTimeInterface $indate): bool
-    {
-        return Carbon::instance($indate)->notEqualTo($indate);
     }
 }
