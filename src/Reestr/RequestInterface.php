@@ -18,7 +18,7 @@ interface RequestInterface
      *
      * @return string
      */
-    public function getIndate(): string;
+    public function getIndate(): \DateTimeInterface;
 
     /**
      * Id from UBKI request

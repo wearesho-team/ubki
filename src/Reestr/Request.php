@@ -16,7 +16,7 @@ class Request implements RequestInterface
 
     public function __construct(
         string $todo,
-        string $indate,
+        \DateTimeInterface $indate,
         string $idout = "",
         string $idalien = ""
     ) {

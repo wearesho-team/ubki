@@ -12,7 +12,7 @@ trait RequestTrait
     /** @var string */
     protected $todo;
 
-    /** @var string */
+    /** @var \DateTimeInterface */
     protected $indate;
 
     /** @var string */
@@ -32,7 +32,7 @@ trait RequestTrait
     /**
      * @inheritdoc
      */
-    public function getIndate(): string
+    public function getIndate(): \DateTimeInterface
     {
         return $this->indate;
     }
