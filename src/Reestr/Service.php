@@ -69,6 +69,11 @@ class Service implements ServiceInterface
         }
 
         $xml = simplexml_load_string($responseBody);
+
+        if ($xml === false) {
+            throw new \Exception('Invalid xml format');
+        }
+
         $attributes = $xml->prot->attributes();
 
         $context = ((array)$attributes)["@attributes"];
