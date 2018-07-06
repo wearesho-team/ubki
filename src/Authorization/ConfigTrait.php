@@ -35,9 +35,9 @@ trait ConfigTrait
     public function getAuthUrl(): string
     {
         switch ($this->mode) {
-            case static::MODE_PRODUCTION:
+            case ConfigInterface::MODE_PRODUCTION:
                 return ConfigInterface::PRODUCTION_AUTH_URL;
-            case static::MODE_TEST:
+            case ConfigInterface::MODE_TEST:
                 return ConfigInterface::TEST_AUTH_URL;
             default:
                 throw new \Exception("Mode have invalid value {$this->mode}");
