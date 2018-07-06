@@ -2,7 +2,11 @@
 
 namespace Wearesho\Bobra\Ubki\Reestr;
 
-
+/**
+ * Interface RequestInterface
+ *
+ * @package Wearesho\Bobra\Ubki\Reestr
+ */
 interface RequestInterface
 {
     public const TYPE_BIL = 'BIL';
@@ -27,7 +31,7 @@ interface RequestInterface
      * Date of the operational day
      * format: Ymd
      *
-     * @return string
+     * @return \DateTimeInterface
      */
     public function getIndate(): \DateTimeInterface;
 
