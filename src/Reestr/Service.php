@@ -43,6 +43,7 @@ class Service implements ServiceInterface
      *
      * @return ResponseInterface
      * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws \Exception
      */
     public function send(RequestInterface $request): ResponseInterface
     {
@@ -58,7 +59,13 @@ class Service implements ServiceInterface
 
         if ($this->config->isProductionMode()) {
             $fileUrl = $responseBody;
-            $responseBody = $this->getFile($fileUrl)->getBody()->__toString();
+
+            try {
+                $httpResponseFile = $this->getFile($fileUrl);
+                $responseBody = $httpResponseFile->getBody()->__toString();
+            } catch (GuzzleHttp\Exception\RequestException $exception) {
+                $this->catchException($exception);
+            }
         }
 
         $xml = simplexml_load_string($responseBody);
@@ -88,6 +95,27 @@ class Service implements ServiceInterface
                 // TODO: need implement Bil request
                 break;
         }
+    }
+
+    /**
+     * @param GuzzleHttp\Exception\RequestException $exception
+     *
+     * @throws \Exception
+     */
+    protected function catchException(GuzzleHttp\Exception\RequestException $exception): void
+    {
+        $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
+
+        if ($xml === false || !isset($xml->prot)) {
+            // Not XML or invalid format XML
+            throw $exception;
+        }
+
+        throw new \Exception(
+            (string)$xml->doc,
+            Ubki\Exception::CODE_UNKNOWN_ERROR,
+            $exception
+        );
     }
 
     protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
@@ -137,7 +165,7 @@ class Service implements ServiceInterface
             $prot->appendChild($idoutAttr);
         }
 
-        $idalien = $request->getIdout();
+        $idalien = $request->getIdalien();
 
         if (!empty($idalien)) {
             $idalienAttr = $document->createAttribute(Request::ATTR_IDALIEN);
