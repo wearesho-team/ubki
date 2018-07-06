@@ -13,9 +13,6 @@ class Response extends Reestr\Response implements ResponseInterface
 {
     use ResponseTrait;
 
-    public const ERROR_CRITICAL = 'CRITICAL';
-    public const ERROR_NOTICE = 'NOTICE';
-
     public function __construct(
         string $todo,
         \DateTimeInterface $indate,
@@ -47,20 +44,5 @@ class Response extends Reestr\Response implements ResponseInterface
             $compid,
             $item
         );
-    }
-
-    public function isNoError(): bool
-    {
-        return empty($this->crytical);
-    }
-
-    public function isErrorCritical(): bool
-    {
-        return $this->crytical === static::ERROR_CRITICAL;
-    }
-
-    public function isErrorNotice(): bool
-    {
-        return $this->crytical === static::ERROR_NOTICE;
     }
 }

@@ -11,6 +11,9 @@ use Wearesho\Bobra\Ubki\Reestr;
  */
 interface ResponseInterface extends Reestr\ResponseInterface
 {
+    public const ERROR_CRITICAL = 'CRITICAL';
+    public const ERROR_NOTICE = 'NOTICE';
+
     /**
      * This method return type of reestr
      * @see https://docs.google.com/document/d/13pGJ_PUPP2QmETln280lTpG7Gz1M8la55tBI_hMdVic (ertype attribute in REP response)
@@ -40,10 +43,4 @@ interface ResponseInterface extends Reestr\ResponseInterface
      * @return string
      */
     public function getRemark(): string;
-
-    public function isNoError(): bool;
-
-    public function isErrorCritical(): bool;
-
-    public function isErrorNotice(): bool;
 }

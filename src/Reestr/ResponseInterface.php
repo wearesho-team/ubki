@@ -9,6 +9,12 @@ namespace Wearesho\Bobra\Ubki\Reestr;
  */
 interface ResponseInterface
 {
+    public const STATE_PROCESSED = 'r';
+    public const STATE_TRANSMITTED = 'n';
+    public const STATE_CREATED = 'i';
+    public const STATE_BLOCKED = 'b';
+    public const STATE_SQL_ERROR = 'e';
+
     /**
      * Type of request
      *
@@ -74,14 +80,4 @@ interface ResponseInterface
      * @return string
      */
     public function getItem(): string;
-
-    public function isStateProcessed(): bool;
-
-    public function isStateTransmitted(): bool;
-
-    public function isStateCreated(): bool;
-
-    public function isStateBlocked(): bool;
-
-    public function isStateError(): bool;
 }
