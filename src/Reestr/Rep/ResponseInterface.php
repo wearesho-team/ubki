@@ -6,13 +6,15 @@ use Wearesho\Bobra\Ubki\Reestr;
 
 /**
  * Interface ResponseInterface
+ * All attributes in response from UBKI REESTR is exist
  *
  * @package Wearesho\Bobra\Ubki\Reestr\Rep
  */
 interface ResponseInterface extends Reestr\ResponseInterface
 {
     /**
-     * Reestr type
+     * This method return type of reestr
+     * @see https://docs.google.com/document/d/13pGJ_PUPP2QmETln280lTpG7Gz1M8la55tBI_hMdVic (ertype attribute in REP response)
      *
      * @return string
      */
