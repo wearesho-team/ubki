@@ -5,6 +5,9 @@ namespace Wearesho\Bobra\Ubki\Reestr;
 
 interface RequestInterface
 {
+    const TYPE_BIL = 'BIL';
+    const TYPE_REP = 'REP';
+
     /**
      * Type of request (BIL|REP)
      *
