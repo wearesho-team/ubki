@@ -17,7 +17,7 @@ interface RequestInterface
     public const ATTR_SESSID = 'sessid';
 
     /**
-     * Type of request (BIL|REP)
+     * Type of request
      *
      * @return string
      */

@@ -10,7 +10,7 @@ namespace Wearesho\Bobra\Ubki\Reestr;
 interface ResponseInterface
 {
     /**
-     * Type of request (BIL|REP)
+     * Type of request
      *
      * @return string
      */
@@ -47,7 +47,6 @@ interface ResponseInterface
 
     /**
      * State of sent report
-     * r - обработан, n - передан, i - создан, b - забракован, e - ошибка записи в базу
      *
      * @return string
      */
@@ -71,7 +70,6 @@ interface ResponseInterface
 
     /**
      * Subcomponent
-     * (IDENT, URIDENT, LINKED, WORK, DOC, ADDR, FOTO, CRDEAL, SUSD, CONT...)
      *
      * @return string
      */

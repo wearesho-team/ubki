@@ -11,11 +11,11 @@ class Response implements ResponseInterface
 {
     use ResponseTrait;
 
-    const STATE_PROCESSED = 'r';
-    const STATE_TRANSMITTED = 'n';
-    const STATE_CREATED = 'i';
-    const STATE_BLOCKED = 'b';
-    const STATE_SQL_ERROR = 'e';
+    public const STATE_PROCESSED = 'r';
+    public const STATE_TRANSMITTED = 'n';
+    public const STATE_CREATED = 'i';
+    public const STATE_BLOCKED = 'b';
+    public const STATE_SQL_ERROR = 'e';
 
     public function __construct(
         string $todo,

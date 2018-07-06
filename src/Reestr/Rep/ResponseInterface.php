@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki\Reestr;
 
 /**
  * Interface ResponseInterface
- * All attributes in response from UBKI REESTR is exist
  *
  * @package Wearesho\Bobra\Ubki\Reestr\Rep
  */
@@ -22,7 +21,6 @@ interface ResponseInterface extends Reestr\ResponseInterface
 
     /**
      * Criticality of error
-     * variables: 'CRITICAL', 'NOTICE' or ''
      * Always exist
      *
      * @return string
