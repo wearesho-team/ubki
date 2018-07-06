@@ -17,13 +17,8 @@ class Request implements RequestInterface
         string $idout = "",
         string $idalien = ""
     ) {
-        if (!$this->validateTodo($todo)) {
-            throw new \InvalidArgumentException("Type of request have invalid value: {$todo}");
-        }
-
-        if (!$this->validateIndate($indate)) {
-            throw new \InvalidArgumentException("Indate have invalid format: {$indate}");
-        }
+        $this->validateTodo($todo);
+        $this->validateIndate($indate);
 
         $this->todo = $todo;
         $this->indate = $indate;
@@ -35,13 +30,14 @@ class Request implements RequestInterface
      * Validate type of request
      *
      * @param string $todo
-     *
-     * @return bool
      */
-    protected function validateTodo(string $todo): bool
+    protected function validateTodo(string $todo): void
     {
-        return
+        if (
             $todo !== static::TYPE_REP &&
-            $todo !== static::TYPE_BIL;
+            $todo !== static::TYPE_BIL
+        ) {
+            throw new \InvalidArgumentException("Type of request have invalid value: {$todo}");
+        }
     }
 }

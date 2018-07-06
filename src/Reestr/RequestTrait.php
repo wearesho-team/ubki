@@ -55,8 +55,10 @@ trait RequestTrait
         return $this->idalien;
     }
 
-    protected function validateIndate(\DateTimeInterface $indate): bool
+    protected function validateIndate(\DateTimeInterface $indate): void
     {
-        return Carbon::hasFormat($indate, 'Ymd');
+        if (Carbon::hasFormat($indate, 'Ymd')) {
+            throw new \InvalidArgumentException("Indate have invalid format: {$indate}");
+        }
     }
 }
