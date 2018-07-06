@@ -2,14 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Reestr;
 
-use Wearesho\Bobra\Ubki;
+use Horat1us\Environment;
 
 /**
  * Class Config
  *
  * @package Wearesho\Bobra\Ubki\Reestr
  */
-class EnvironmentConfig extends Ubki\EnvironmentConfig implements ConfigInterface
+class EnvironmentConfig extends Environment\Config implements ConfigInterface
 {
     public function getReestrUrl(): string
     {
