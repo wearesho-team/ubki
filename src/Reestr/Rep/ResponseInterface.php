@@ -43,6 +43,8 @@ interface ResponseInterface extends Reestr\ResponseInterface
      */
     public function getRemark(): string;
 
+    public function isNoError(): bool;
+
     public function isErrorCritical(): bool;
 
     public function isErrorNotice(): bool;
