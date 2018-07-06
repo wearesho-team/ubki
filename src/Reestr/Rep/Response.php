@@ -13,8 +13,9 @@ class Response extends Reestr\Response implements ResponseInterface
 {
     use ResponseTrait;
 
-    const ERROR_CRITICAL = 'CRITICAL';
-    const ERROR_NOTICE = 'NOTICE';
+    public const ERROR_EMPTY = '';
+    public const ERROR_CRITICAL = 'CRITICAL';
+    public const ERROR_NOTICE = 'NOTICE';
 
     public function __construct(
         string $todo,
