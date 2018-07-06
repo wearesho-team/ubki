@@ -28,13 +28,13 @@ class Service implements ServiceInterface
 
     public function __construct(
         ConfigInterface $config,
-        GuzzleHttp\ClientInterface $client,
         Ubki\Authorization\ProviderInterface $authProvider,
+        GuzzleHttp\ClientInterface $client,
         Log\LoggerInterface $logger = null
     ) {
         $this->config = $config;
-        $this->client = $client;
         $this->authProvider = $authProvider;
+        $this->client = $client;
         $this->logger = $logger ?? new Log\NullLogger();
     }
 
