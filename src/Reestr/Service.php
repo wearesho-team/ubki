@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki;
  */
 class Service implements ServiceInterface
 {
-    /** @var Ubki\ConfigInterface */
+    /** @var ConfigInterface */
     protected $config;
 
     /** @var GuzzleHttp\ClientInterface */
@@ -56,7 +56,7 @@ class Service implements ServiceInterface
         $httpResponse = $this->client->send($guzzleRequest);
         $responseBody = $httpResponse->getBody()->__toString();
 
-        if (!$this->config->isTestMode()) {
+        if ($this->config->isProductionMode()) {
             $fileUrl = $responseBody;
             $responseBody = $this->getFile($fileUrl)->getBody()->__toString();
         }

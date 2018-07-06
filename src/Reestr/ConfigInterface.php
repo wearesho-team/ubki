@@ -2,14 +2,12 @@
 
 namespace Wearesho\Bobra\Ubki\Reestr;
 
-use Wearesho\Bobra\Ubki;
-
 /**
  * Interface ConfigInterface
  *
  * @package Wearesho\Bobra\Ubki\Reestr
  */
-interface ConfigInterface extends Ubki\ConfigInterface
+interface ConfigInterface
 {
     public const PRODUCTION_REESTR_URL = 'https://secure.ubki.ua/upload/in/reestrs.php';
 
@@ -17,5 +15,5 @@ interface ConfigInterface extends Ubki\ConfigInterface
 
     public function getReestrUrl(): string;
 
-    public function isTestMode(): string;
+    public function isProductionMode(): bool;
 }

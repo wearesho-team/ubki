@@ -9,17 +9,15 @@ use Wearesho\Bobra\Ubki;
  *
  * @package Wearesho\Bobra\Ubki\Reestr
  */
-class Config extends Ubki\Config implements ConfigInterface
+class EnvironmentConfig extends Ubki\EnvironmentConfig implements ConfigInterface
 {
     public function getReestrUrl(): string
     {
-        return $this->mode === parent::MODE_PRODUCTION
-            ? static::PRODUCTION_REESTR_URL
-            : static::TEST_REESTR_URL;
+        return $this->getEnv('UBKI_REESTR_URL', ConfigInterface::PRODUCTION_REESTR_URL);
     }
 
     public function isProductionMode(): bool
     {
-        return $this->mode === parent::MODE_PRODUCTION;
+        return true;
     }
 }
