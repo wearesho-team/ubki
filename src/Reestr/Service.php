@@ -8,11 +8,11 @@ use Psr\Log;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Provider
+ * Class Service
  *
  * @package Wearesho\Bobra\Ubki\Reestr
  */
-class Provider implements ProviderInterface
+class Service implements ServiceInterface
 {
     /** @var Ubki\ConfigInterface */
     protected $config;
@@ -44,7 +44,7 @@ class Provider implements ProviderInterface
      * @return ResponseInterface
      * @throws GuzzleHttp\Exception\GuzzleException
      */
-    public function provide(RequestInterface $request): ResponseInterface
+    public function send(RequestInterface $request): ResponseInterface
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
 
@@ -90,20 +90,65 @@ class Provider implements ProviderInterface
         }
     }
 
-    private function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
+    protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
     {
         return new GuzzleHttp\Psr7\Request(
-            $method = 'post',
+            'post',
             $this->config->getReestrUrl(),
             [],
-            base64_encode(
-                $request->getBody(
-                    $this->authProvider
-                        ->provide()
-                        ->getSessionId()
-                )
-            )
+            base64_encode($this->getBody($request))
         );
+    }
+
+    /**
+     * Xml body for Guzzle request
+     *
+     * @param RequestInterface $request
+     *
+     * @return string
+     */
+    private function getBody(RequestInterface $request): string
+    {
+        $document = new \DOMDocument('1.0', 'utf-8');
+
+        $root = $document->createElement(Request::TAG_ROOT);
+        $root = $document->appendChild($root);
+
+        $prot = $document->createElement(Request::TAG_PROT);
+        $prot = $root->appendChild($prot);
+
+        $todoAttr = $document->createAttribute(Request::ATTR_TODO);
+        $todoAttr->value = $request->getTodo();
+        $indateAttr = $document->createAttribute(Request::ATTR_INDATE);
+        $indateAttr->value = $request->getIndate()->format('Ymd');
+        $sessidAttr = $document->createAttribute(Request::ATTR_SESSID);
+        $sessidAttr->value = $this->authProvider->provide()->getSessionId();
+
+        $prot->appendChild($todoAttr);
+        $prot->appendChild($indateAttr);
+        $prot->appendChild($sessidAttr);
+
+        $idout = $request->getIdout();
+
+        if (!empty($idout)) {
+            $idoutAttr = $document->createAttribute(Request::ATTR_IDOUT);
+            $idoutAttr->value = $idout;
+
+            $prot->appendChild($idoutAttr);
+        }
+
+        $idalien = $request->getIdout();
+
+        if (!empty($idalien)) {
+            $idalienAttr = $document->createAttribute(Request::ATTR_IDALIEN);
+            $idalienAttr->value = $idalien;
+
+            $prot->appendChild($idalienAttr);
+        }
+
+        // TODO: implement adding grp attribute for Bil Request
+
+        return $document->saveXML();
     }
 
     /**
