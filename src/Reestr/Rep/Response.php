@@ -13,7 +13,6 @@ class Response extends Reestr\Response implements ResponseInterface
 {
     use ResponseTrait;
 
-    public const ERROR_EMPTY = '';
     public const ERROR_CRITICAL = 'CRITICAL';
     public const ERROR_NOTICE = 'NOTICE';
 
@@ -50,13 +49,18 @@ class Response extends Reestr\Response implements ResponseInterface
         );
     }
 
+    public function isNoError(): bool
+    {
+        return empty($this->crytical);
+    }
+
     public function isErrorCritical(): bool
     {
-        return $this->ertype === static::ERROR_CRITICAL;
+        return $this->crytical === static::ERROR_CRITICAL;
     }
 
     public function isErrorNotice(): bool
     {
-        return $this->ertype === static::ERROR_NOTICE;
+        return $this->crytical === static::ERROR_NOTICE;
     }
 }

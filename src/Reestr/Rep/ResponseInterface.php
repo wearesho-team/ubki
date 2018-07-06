@@ -20,7 +20,8 @@ interface ResponseInterface extends Reestr\ResponseInterface
 
     /**
      * Criticality of error
-     * (CRITICAL - критичная, NOTICE - уведомление)
+     * variables: 'CRITICAL', 'NOTICE' or ''
+     * Always exist
      *
      * @return string
      */
