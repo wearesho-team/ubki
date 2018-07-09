@@ -40,7 +40,7 @@ trait ConfigTrait
             case ConfigInterface::MODE_TEST:
                 return ConfigInterface::TEST_AUTH_URL;
             default:
-                throw new \Exception("Mode have invalid value {$this->mode}");
+                throw new UnsupportedModeException($this->mode);
         }
     }
 }
