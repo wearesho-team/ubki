@@ -12,7 +12,7 @@ use Throwable;
 class UnsupportedModeException extends \Exception
 {
     /** @var int */
-    protected $mode;
+    public $mode;
 
     public function __construct(
         int $mode,
@@ -22,10 +22,5 @@ class UnsupportedModeException extends \Exception
         $this->mode = $mode;
 
         parent::__construct("Mode have invalid value {$mode}", $code, $previous);
-    }
-
-    public function getMode(): int
-    {
-        return $this->mode;
     }
 }
