@@ -1,21 +1,18 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Push\Registry;
+namespace Wearesho\Bobra\Ubki\Push;
 
 /**
  * Class Config
  *
- * @package Wearesho\Bobra\Ubki\Push\Registry
+ * @package Wearesho\Bobra\Ubki\Push
  */
 class Config implements ConfigInterface
 {
-    public const MODE_PRODUCTION = 'Production';
-    public const MODE_TEST = 'Test';
-
     /** @var string */
     protected $mode;
 
-    public function __construct(string $mode)
+    public function __construct(int $mode)
     {
         $this->validateMode($mode);
 
@@ -29,12 +26,19 @@ class Config implements ConfigInterface
             : static::TEST_REESTR_URL;
     }
 
+    public function getPushUrl(): string
+    {
+        return $this->mode === static::MODE_PRODUCTION
+            ? static::PRODUCTION_PUSH_URL
+            : static::TEST_PUSH_URL;
+    }
+
     public function isProductionMode(): bool
     {
         return $this->mode === static::MODE_PRODUCTION;
     }
 
-    private function validateMode(string $mode): void
+    private function validateMode(int $mode): void
     {
         $isInvalid =
             $mode !== static::MODE_PRODUCTION &&
