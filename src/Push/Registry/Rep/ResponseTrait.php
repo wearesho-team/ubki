@@ -24,7 +24,7 @@ trait ResponseTrait
     /**
      * @inheritdoc
      */
-    public function getErtype(): string
+    public function getRegistryType(): string
     {
         return $this->ertype;
     }
@@ -32,7 +32,7 @@ trait ResponseTrait
     /**
      * @inheritdoc
      */
-    public function getCrytical(): string
+    public function getErrorType(): string
     {
         return $this->crytical;
     }

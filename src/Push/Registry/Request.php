@@ -12,18 +12,18 @@ class Request implements RequestInterface
     use RequestTrait;
 
     public function __construct(
-        string $todo,
-        \DateTimeInterface $indate,
-        string $idout = "",
-        string $idalien = ""
+        string $type,
+        \DateTimeInterface $operationDate,
+        string $ubkiId = "",
+        string $partnerId = ""
     ) {
-        $this->validateTodo($todo);
-        $this->validateIndate($indate);
+        $this->validateTodo($type);
+        $this->validateIndate($operationDate);
 
-        $this->todo = $todo;
-        $this->indate = $indate;
-        $this->idout = $idout;
-        $this->idalien = $idalien;
+        $this->todo = $type;
+        $this->indate = $operationDate;
+        $this->idout = $ubkiId;
+        $this->idalien = $partnerId;
     }
 
     /**

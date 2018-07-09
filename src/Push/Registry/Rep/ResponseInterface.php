@@ -20,7 +20,7 @@ interface ResponseInterface extends Registry\ResponseInterface
      *
      * @return string
      */
-    public function getErtype(): string;
+    public function getRegistryType(): string;
 
     /**
      * Criticality of error
@@ -28,7 +28,7 @@ interface ResponseInterface extends Registry\ResponseInterface
      *
      * @return string
      */
-    public function getCrytical(): string;
+    public function getErrorType(): string;
 
     /**
      * Unique inn code of subject

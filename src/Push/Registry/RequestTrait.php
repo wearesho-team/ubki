@@ -26,7 +26,7 @@ trait RequestTrait
     /**
      * @inheritdoc
      */
-    public function getTodo(): string
+    public function getRegistryType(): string
     {
         return $this->todo;
     }
@@ -34,7 +34,7 @@ trait RequestTrait
     /**
      * @inheritdoc
      */
-    public function getIndate(): \DateTimeInterface
+    public function getOperationDate(): \DateTimeInterface
     {
         return $this->indate;
     }
@@ -42,7 +42,7 @@ trait RequestTrait
     /**
      * @inheritdoc
      */
-    public function getIdout(): string
+    public function getUbkiId(): string
     {
         return $this->idout;
     }
@@ -50,7 +50,7 @@ trait RequestTrait
     /**
      * @inheritdoc
      */
-    public function getIdalien(): string
+    public function getPartnerId(): string
     {
         return $this->idalien;
     }

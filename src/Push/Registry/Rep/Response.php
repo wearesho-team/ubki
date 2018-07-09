@@ -14,35 +14,35 @@ class Response extends Registry\Response implements ResponseInterface
     use ResponseTrait;
 
     public function __construct(
-        string $todo,
-        \DateTimeInterface $indate,
-        string $idout,
-        string $idalien,
-        string $sessid,
+        string $type,
+        \DateTimeInterface $operationDate,
+        string $ubkiId,
+        string $partnerId,
+        string $sessionId,
         string $state,
-        string $oper,
-        int $compid,
-        string $item,
-        string $ertype,
-        string $crytical,
+        string $transferType,
+        int $componentId,
+        string $subcomponentName,
+        string $registryType,
+        string $errorType,
         int $inn,
         string $remark
     ) {
-        $this->ertype = $ertype;
-        $this->crytical = $crytical;
+        $this->ertype = $registryType;
+        $this->crytical = $errorType;
         $this->inn = $inn;
         $this->remark = $remark;
 
         parent::__construct(
-            $todo,
-            $indate,
-            $idout,
-            $idalien,
-            $sessid,
+            $type,
+            $operationDate,
+            $ubkiId,
+            $partnerId,
+            $sessionId,
             $state,
-            $oper,
-            $compid,
-            $item
+            $transferType,
+            $componentId,
+            $subcomponentName
         );
     }
 }

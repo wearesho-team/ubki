@@ -3,8 +3,11 @@
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 use Carbon\Carbon;
+
 use GuzzleHttp;
+
 use Psr\Log;
+
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -51,6 +54,7 @@ class Service implements ServiceInterface
      *
      * @return ResponseInterface
      * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws UnsupportedRequestException
      * @throws \Exception
      */
     public function send(RequestInterface $request): ResponseInterface
@@ -85,7 +89,7 @@ class Service implements ServiceInterface
         $attributes = $xml->prot->attributes();
 
         $context = ((array)$attributes)["@attributes"];
-        $requestType = $request->getTodo();
+        $requestType = $request->getRegistryType();
 
         switch ($requestType) {
             case Type::REP:
@@ -108,6 +112,8 @@ class Service implements ServiceInterface
                 // TODO: need implement Bil request
                 break;
         }
+
+        throw new UnsupportedRequestException($request, "Unsupported request type: {$request->getRegistryType()}");
     }
 
     /**
@@ -159,9 +165,9 @@ class Service implements ServiceInterface
         $prot = $root->appendChild($prot);
 
         $todoAttr = $document->createAttribute(static::ATTR_TODO);
-        $todoAttr->value = $request->getTodo();
+        $todoAttr->value = $request->getRegistryType();
         $indateAttr = $document->createAttribute(static::ATTR_INDATE);
-        $indateAttr->value = $request->getIndate()->format('Ymd');
+        $indateAttr->value = $request->getOperationDate()->format('Ymd');
         $sessidAttr = $document->createAttribute(static::ATTR_SESSID);
         $sessidAttr->value = $this->authProvider->provide()->getSessionId();
 
@@ -169,7 +175,7 @@ class Service implements ServiceInterface
         $prot->appendChild($indateAttr);
         $prot->appendChild($sessidAttr);
 
-        $idout = $request->getIdout();
+        $idout = $request->getUbkiId();
 
         if (!empty($idout)) {
             $idoutAttr = $document->createAttribute(static::ATTR_IDOUT);
@@ -178,7 +184,7 @@ class Service implements ServiceInterface
             $prot->appendChild($idoutAttr);
         }
 
-        $idalien = $request->getIdalien();
+        $idalien = $request->getPartnerId();
 
         if (!empty($idalien)) {
             $idalienAttr = $document->createAttribute(static::ATTR_IDALIEN);

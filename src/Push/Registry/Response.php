@@ -12,24 +12,24 @@ class Response implements ResponseInterface
     use ResponseTrait;
 
     public function __construct(
-        string $todo,
-        \DateTimeInterface $indate,
-        string $idout,
-        string $idalien,
-        string $sessid,
+        string $type,
+        \DateTimeInterface $operationDate,
+        string $ubkiId,
+        string $partnerId,
+        string $sessionId,
         string $state,
-        string $oper,
-        int $compid,
-        string $item
+        string $transferType,
+        int $componentId,
+        string $subcomponentName
     ) {
-        $this->todo = $todo;
-        $this->indate = $indate;
-        $this->idout = $idout;
-        $this->idalien = $idalien;
-        $this->sessid = $sessid;
+        $this->todo = $type;
+        $this->indate = $operationDate;
+        $this->idout = $ubkiId;
+        $this->idalien = $partnerId;
+        $this->sessid = $sessionId;
         $this->state = $state;
-        $this->oper = $oper;
-        $this->compid = $compid;
-        $this->item = $item;
+        $this->oper = $transferType;
+        $this->compid = $componentId;
+        $this->item = $subcomponentName;
     }
 }

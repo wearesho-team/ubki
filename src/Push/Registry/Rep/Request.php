@@ -12,15 +12,15 @@ use Wearesho\Bobra\Ubki\Push\Registry;
 class Request extends Registry\Request
 {
     public function __construct(
-        \DateTimeInterface $indate,
-        string $idout = "",
-        string $idalien = ""
+        \DateTimeInterface $operationDate,
+        string $ubkiId = "",
+        string $partnerId = ""
     ) {
         parent::__construct(
             Registry\Type::REP,
-            $indate,
-            $idout,
-            $idalien
+            $operationDate,
+            $ubkiId,
+            $partnerId
         );
     }
 }

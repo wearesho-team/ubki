@@ -14,7 +14,7 @@ interface RequestInterface
      *
      * @return string
      */
-    public function getTodo(): string;
+    public function getRegistryType(): string;
 
     /**
      * Date of the operational day
@@ -22,19 +22,19 @@ interface RequestInterface
      *
      * @return \DateTimeInterface
      */
-    public function getIndate(): \DateTimeInterface;
+    public function getOperationDate(): \DateTimeInterface;
 
     /**
      * Id from UBKI request
      *
      * @return string
      */
-    public function getIdout(): string;
+    public function getUbkiId(): string;
 
     /**
      * Id from partner request
      *
      * @return string
      */
-    public function getIdalien(): string;
+    public function getPartnerId(): string;
 }
