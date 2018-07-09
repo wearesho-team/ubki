@@ -1,11 +1,11 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr;
+namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Interface ConfigInterface
  *
- * @package Wearesho\Bobra\Ubki\Reestr
+ * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 interface ConfigInterface
 {

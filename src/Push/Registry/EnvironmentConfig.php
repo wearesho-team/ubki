@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr;
+namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 use Horat1us\Environment;
 
 /**
  * Class Config
  *
- * @package Wearesho\Bobra\Ubki\Reestr
+ * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class EnvironmentConfig extends Environment\Config implements ConfigInterface
 {

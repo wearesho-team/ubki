@@ -1,15 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr\Rep;
+namespace Wearesho\Bobra\Ubki\Push\Registry\Rep;
 
-use Wearesho\Bobra\Ubki\Reestr;
+use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Interface ResponseInterface
  *
- * @package Wearesho\Bobra\Ubki\Reestr\Rep
+ * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
-interface ResponseInterface extends Reestr\ResponseInterface
+interface ResponseInterface extends Registry\ResponseInterface
 {
     public const ERROR_CRITICAL = 'CRITICAL';
     public const ERROR_NOTICE = 'NOTICE';

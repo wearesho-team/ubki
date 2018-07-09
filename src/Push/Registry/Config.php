@@ -1,11 +1,11 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr;
+namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class Config
  *
- * @package Wearesho\Bobra\Ubki\Reestr
+ * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class Config implements ConfigInterface
 {
@@ -17,6 +17,8 @@ class Config implements ConfigInterface
 
     public function __construct(string $mode)
     {
+        $this->validateMode($mode);
+
         $this->mode = $mode;
     }
 
@@ -30,5 +32,16 @@ class Config implements ConfigInterface
     public function isProductionMode(): bool
     {
         return $this->mode === static::MODE_PRODUCTION;
+    }
+
+    private function validateMode(string $mode): void
+    {
+        $isInvalid =
+            $mode !== static::MODE_PRODUCTION &&
+            $mode !== static::MODE_TEST;
+
+        if ($isInvalid) {
+            throw new \InvalidArgumentException("Mode have invalid value: {$mode}");
+        }
     }
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr\Rep;
+namespace Wearesho\Bobra\Ubki\Push\Registry\Rep;
 
-use Wearesho\Bobra\Ubki\Reestr;
+use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class Request
  *
- * @package Wearesho\Bobra\Ubki\Reestr\Rep
+ * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
-class Request extends Reestr\Request
+class Request extends Registry\Request
 {
     public function __construct(
         \DateTimeInterface $indate,

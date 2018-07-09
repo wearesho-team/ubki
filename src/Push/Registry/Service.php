@@ -1,6 +1,6 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr;
+namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 use Carbon\Carbon;
 use GuzzleHttp;
@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Service
  *
- * @package Wearesho\Bobra\Ubki\Reestr
+ * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class Service implements ServiceInterface
 {
@@ -49,7 +49,7 @@ class Service implements ServiceInterface
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
 
-        $this->logger->debug("UBKI Reestr request {url}", [
+        $this->logger->debug("UBKI reestr request {url}", [
             'url' => $guzzleRequest->getUri()->__toString(),
         ]);
 

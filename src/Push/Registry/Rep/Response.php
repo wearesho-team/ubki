@@ -1,15 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr\Rep;
+namespace Wearesho\Bobra\Ubki\Push\Registry\Rep;
 
-use Wearesho\Bobra\Ubki\Reestr;
+use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class Response
  *
- * @package Wearesho\Bobra\Ubki\Reestr\Rep
+ * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
-class Response extends Reestr\Response implements ResponseInterface
+class Response extends Registry\Response implements ResponseInterface
 {
     use ResponseTrait;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr;
+namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 use Carbon\Carbon;
 
 /**
  * Trait RequestTrait
  *
- * @package Wearesho\Bobra\Ubki\Reestr
+ * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 trait RequestTrait
 {

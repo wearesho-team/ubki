@@ -1,11 +1,11 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Reestr\Rep;
+namespace Wearesho\Bobra\Ubki\Push\Registry\Rep;
 
 /**
  * Trait ResponseTrait
  *
- * @package Wearesho\Bobra\Ubki\Reestr\Rep
+ * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
 trait ResponseTrait
 {
