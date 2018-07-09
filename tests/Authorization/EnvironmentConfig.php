@@ -38,10 +38,6 @@ class EnvironmentConfig extends Environment\Config implements Ubki\Authorization
                 : static::TEST_REESTR_URL;
         });
 
-        if (is_callable($url)) {
-            $url = call_user_func($url);
-        }
-
         return $url;
     }
 
@@ -52,10 +48,6 @@ class EnvironmentConfig extends Environment\Config implements Ubki\Authorization
                 ? static::PRODUCTION_PUSH_URL
                 : static::TEST_PUSH_URL;
         });
-
-        if (is_callable($url)) {
-            $url = call_user_func($url);
-        }
 
         return $url;
     }
