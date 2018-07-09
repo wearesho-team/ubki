@@ -9,7 +9,7 @@ use Throwable;
  *
  * @package Wearesho\Bobra\Ubki\Authorization
  */
-class UnsupportedModeException extends \Exception
+class UnsupportedModeException extends \InvalidArgumentException
 {
     /** @var int */
     public $mode;
