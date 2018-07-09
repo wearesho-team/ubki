@@ -12,6 +12,8 @@ use Wearesho\Bobra\Ubki;
  */
 class EnvironmentConfig extends Environment\Config implements Ubki\Authorization\ConfigInterface
 {
+    use Ubki\Authorization\ConfigTrait;
+
     public const PRODUCTION_REESTR_URL = 'https://secure.ubki.ua/upload/in/reestrs.php';
     public const PRODUCTION_PUSH_URL = 'test_url';
 
@@ -30,16 +32,13 @@ class EnvironmentConfig extends Environment\Config implements Ubki\Authorization
 
     public function getAuthUrl(): string
     {
-        $mode = (int)$this->getEnv('PUSH_MODE');
+        $url = $this->getEnv('AUTH_URL', function (): string {
+            return $this->isProductionMode()
+                ? static::PRODUCTION_AUTH_URL
+                : static::TEST_AUTH_URL;
+        });
 
-        switch ($mode) {
-            case static::MODE_PRODUCTION:
-                return static::PRODUCTION_AUTH_URL;
-            case static::MODE_TEST:
-                return static::TEST_AUTH_URL;
-            default:
-                throw new Ubki\Authorization\UnsupportedModeException($mode);
-        }
+        return $url;
     }
 
     public function getRegistryUrl()

@@ -32,29 +32,20 @@ class ProviderTest extends TestCase
         $this->config =
             new class(
                 'test-provider-username',
-                'test-provide-password',
-                Ubki\Authorization\ConfigInterface::MODE_TEST
+                'test-provide-password'
             ) implements Ubki\Authorization\ConfigInterface
             {
                 use Ubki\Authorization\ConfigTrait;
 
-                public function __construct(string $username, string $password, int $mode)
+                public function __construct(string $username, string $password)
                 {
                     $this->username = $username;
                     $this->password = $password;
-                    $this->mode = $mode;
                 }
 
-                public function getAuthUrl(): string
+                public function isProductionMode(): bool
                 {
-                    switch ($this->mode) {
-                        case static::MODE_PRODUCTION:
-                            return static::PRODUCTION_AUTH_URL;
-                        case static::MODE_TEST:
-                            return static::TEST_AUTH_URL;
-                        default:
-                            throw new Ubki\Authorization\UnsupportedModeException($this->mode);
-                    }
+                    return false;
                 }
             };
     }
@@ -237,29 +228,20 @@ class ProviderTest extends TestCase
         $config =
             new class(
                 'test-provider-username',
-                'test-provide-password',
-                3
+                'test-provide-password'
             ) implements Ubki\Authorization\ConfigInterface
             {
                 use Ubki\Authorization\ConfigTrait;
 
-                public function __construct(string $username, string $password, int $mode)
+                public function __construct(string $username, string $password)
                 {
                     $this->username = $username;
                     $this->password = $password;
-                    $this->mode = $mode;
                 }
 
-                public function getAuthUrl(): string
+                public function isProductionMode(): bool
                 {
-                    switch ($this->mode) {
-                        case static::MODE_PRODUCTION:
-                            return static::PRODUCTION_AUTH_URL;
-                        case static::MODE_TEST:
-                            return static::TEST_AUTH_URL;
-                        default:
-                            throw new Ubki\Authorization\UnsupportedModeException($this->mode);
-                    }
+                    throw new Ubki\Authorization\UnsupportedModeException(3);
                 }
             };
 
@@ -289,29 +271,20 @@ class ProviderTest extends TestCase
         $response = $provider->provide(
             new class(
                 'test-provider-username',
-                'test-provide-password',
-                Ubki\Authorization\ConfigInterface::MODE_PRODUCTION
+                'test-provide-password'
             ) implements Ubki\Authorization\ConfigInterface
             {
                 use Ubki\Authorization\ConfigTrait;
 
-                public function __construct(string $username, string $password, int $mode)
+                public function __construct(string $username, string $password)
                 {
                     $this->username = $username;
                     $this->password = $password;
-                    $this->mode = $mode;
                 }
 
-                public function getAuthUrl(): string
+                public function isProductionMode(): bool
                 {
-                    switch ($this->mode) {
-                        case static::MODE_PRODUCTION:
-                            return static::PRODUCTION_AUTH_URL;
-                        case static::MODE_TEST:
-                            return static::TEST_AUTH_URL;
-                        default:
-                            throw new Ubki\Authorization\UnsupportedModeException($this->mode);
-                    }
+                    return true;
                 }
             }
         );

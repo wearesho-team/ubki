@@ -15,9 +15,6 @@ trait ConfigTrait
     /** @var string */
     protected $password;
 
-    /** @var string */
-    protected $mode;
-
     public function getUsername(): string
     {
         return $this->username;
@@ -28,5 +25,12 @@ trait ConfigTrait
         return $this->password;
     }
 
-    public abstract function getAuthUrl(): string;
+    public function getAuthUrl(): string
+    {
+        return $this->isProductionMode()
+            ? ConfigInterface::PRODUCTION_AUTH_URL
+            : ConfigInterface::TEST_AUTH_URL;
+    }
+
+    public abstract function isProductionMode(): bool;
 }

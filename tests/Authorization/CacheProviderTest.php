@@ -46,29 +46,20 @@ class CacheProviderTest extends TestCase
         $this->config =
             new class(
                 'username',
-                'password',
-                Ubki\Authorization\ConfigInterface::MODE_TEST
+                'password'
             ) implements Ubki\Authorization\ConfigInterface
             {
                 use Ubki\Authorization\ConfigTrait;
 
-                public function __construct(string $username, string $password, string $mode)
+                public function __construct(string $username, string $password)
                 {
                     $this->username = $username;
                     $this->password = $password;
-                    $this->mode = $mode;
                 }
 
-                public function getAuthUrl(): string
+                public function isProductionMode(): bool
                 {
-                    switch ($this->mode) {
-                        case EnvironmentConfig::MODE_TEST:
-                            return EnvironmentConfig::TEST_AUTH_URL;
-                        case EnvironmentConfig::MODE_PRODUCTION:
-                            return EnvironmentConfig::PRODUCTION_AUTH_URL;
-                        default:
-                            throw new Ubki\Authorization\UnsupportedModeException($this->mode);
-                    }
+                    return false;
                 }
             };
         $this->environmentConfig = new EnvironmentConfig('UBKI_');
