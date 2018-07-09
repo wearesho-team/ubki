@@ -63,8 +63,6 @@ class EnvironmentConfigTest extends TestCase
 
     public function testGetEmptyMode(): void
     {
-        putenv('UBKI_USERNAME=username');
-        putenv('UBKI_PASSWORD=password');
         $this->expectException(MissingEnvironmentException::class);
         $this->expectExceptionMessage('Missing environment key UBKI_REGISTRY_MODE');
         $this->config->isProductionMode();
@@ -73,8 +71,6 @@ class EnvironmentConfigTest extends TestCase
     public function testGetProductionMode(): void
     {
         putenv('UBKI_REGISTRY_MODE=1');
-        putenv('UBKI_USERNAME=username');
-        putenv('UBKI_PASSWORD=password');
 
         $this->assertEquals(true, $this->config->isProductionMode());
         $this->assertEquals(EnvironmentConfig::PRODUCTION_REESTR_URL, $this->config->getRegistryUrl());
@@ -84,8 +80,6 @@ class EnvironmentConfigTest extends TestCase
     public function testGetTestMode(): void
     {
         putenv('UBKI_REGISTRY_MODE=0');
-        putenv('UBKI_USERNAME=username');
-        putenv('UBKI_PASSWORD=password');
 
         $this->assertEquals(false, $this->config->isProductionMode());
         $this->assertEquals(EnvironmentConfig::TEST_REESTR_URL, $this->config->getRegistryUrl());
@@ -95,8 +89,6 @@ class EnvironmentConfigTest extends TestCase
     public function testGetInvalidMode(): void
     {
         putenv('UBKI_REGISTRY_MODE=228');
-        putenv('UBKI_USERNAME=username');
-        putenv('UBKI_PASSWORD=password');
         $this->expectException(UnsupportedModeException::class);
         $this->expectExceptionMessage('Mode have invalid value 228');
 
