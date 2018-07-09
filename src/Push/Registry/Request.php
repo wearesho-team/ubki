@@ -34,8 +34,8 @@ class Request implements RequestInterface
     protected function validateTodo(string $todo): void
     {
         if (
-            $todo !== static::TYPE_REP &&
-            $todo !== static::TYPE_BIL
+            $todo !== Type::REP &&
+            $todo !== Type::BIL
         ) {
             throw new \InvalidArgumentException("Type of request have invalid value: {$todo}");
         }

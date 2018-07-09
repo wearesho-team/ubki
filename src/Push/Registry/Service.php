@@ -14,6 +14,14 @@ use Wearesho\Bobra\Ubki;
  */
 class Service implements ServiceInterface
 {
+    protected const TAG_ROOT = 'doc';
+    protected const TAG_PROT = 'prot';
+    protected const ATTR_TODO = 'todo';
+    protected const ATTR_INDATE = 'indate';
+    protected const ATTR_IDOUT = 'idout';
+    protected const ATTR_IDALIEN = 'idalien';
+    protected const ATTR_SESSID = 'sessid';
+
     /** @var Ubki\Push\ConfigInterface */
     protected $config;
 
@@ -80,7 +88,7 @@ class Service implements ServiceInterface
         $requestType = $request->getTodo();
 
         switch ($requestType) {
-            case Request::TYPE_REP:
+            case Type::REP:
                 return new Rep\Response(
                     $requestType,
                     Carbon::createFromFormat('Ymd', $context->indate),
@@ -96,7 +104,7 @@ class Service implements ServiceInterface
                     (int)$context->inn,
                     (string)$context->remark
                 );
-            case Request::TYPE_BIL:
+            case Type::BIL:
                 // TODO: need implement Bil request
                 break;
         }
@@ -144,17 +152,17 @@ class Service implements ServiceInterface
     {
         $document = new \DOMDocument('1.0', 'utf-8');
 
-        $root = $document->createElement(Request::TAG_ROOT);
+        $root = $document->createElement(static::TAG_ROOT);
         $root = $document->appendChild($root);
 
-        $prot = $document->createElement(Request::TAG_PROT);
+        $prot = $document->createElement(static::TAG_PROT);
         $prot = $root->appendChild($prot);
 
-        $todoAttr = $document->createAttribute(Request::ATTR_TODO);
+        $todoAttr = $document->createAttribute(static::ATTR_TODO);
         $todoAttr->value = $request->getTodo();
-        $indateAttr = $document->createAttribute(Request::ATTR_INDATE);
+        $indateAttr = $document->createAttribute(static::ATTR_INDATE);
         $indateAttr->value = $request->getIndate()->format('Ymd');
-        $sessidAttr = $document->createAttribute(Request::ATTR_SESSID);
+        $sessidAttr = $document->createAttribute(static::ATTR_SESSID);
         $sessidAttr->value = $this->authProvider->provide()->getSessionId();
 
         $prot->appendChild($todoAttr);
@@ -164,7 +172,7 @@ class Service implements ServiceInterface
         $idout = $request->getIdout();
 
         if (!empty($idout)) {
-            $idoutAttr = $document->createAttribute(Request::ATTR_IDOUT);
+            $idoutAttr = $document->createAttribute(static::ATTR_IDOUT);
             $idoutAttr->value = $idout;
 
             $prot->appendChild($idoutAttr);
@@ -173,7 +181,7 @@ class Service implements ServiceInterface
         $idalien = $request->getIdalien();
 
         if (!empty($idalien)) {
-            $idalienAttr = $document->createAttribute(Request::ATTR_IDALIEN);
+            $idalienAttr = $document->createAttribute(static::ATTR_IDALIEN);
             $idalienAttr->value = $idalien;
 
             $prot->appendChild($idalienAttr);

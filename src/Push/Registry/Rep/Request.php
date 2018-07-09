@@ -17,7 +17,7 @@ class Request extends Registry\Request
         string $idalien = ""
     ) {
         parent::__construct(
-            static::TYPE_REP,
+            Registry\Type::REP,
             $indate,
             $idout,
             $idalien
