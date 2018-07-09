@@ -127,7 +127,7 @@ class Service implements ServiceInterface
     {
         return new GuzzleHttp\Psr7\Request(
             'post',
-            $this->config->getReestrUrl(),
+            $this->config->getRegistryUrl(),
             [],
             base64_encode($this->getBody($request))
         );

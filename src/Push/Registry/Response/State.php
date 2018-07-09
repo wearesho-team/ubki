@@ -1,11 +1,11 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Push\Registry;
+namespace Wearesho\Bobra\Ubki\Push\Registry\Response;
 
 /**
  * Interface State
  *
- * @package Wearesho\Bobra\Ubki\Push\Registry
+ * @package Wearesho\Bobra\Ubki\Push\Registry\Response
  */
 interface State
 {

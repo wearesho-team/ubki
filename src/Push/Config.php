@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push;
 
+use Wearesho\Bobra\Ubki\Authorization;
+
 /**
  * Class Config
  *
@@ -9,8 +11,7 @@ namespace Wearesho\Bobra\Ubki\Push;
  */
 class Config implements ConfigInterface
 {
-    /** @var string */
-    protected $mode;
+    use Authorization\ConfigTrait;
 
     public function __construct(int $mode)
     {
@@ -19,7 +20,7 @@ class Config implements ConfigInterface
         $this->mode = $mode;
     }
 
-    public function getReestrUrl(): string
+    public function getRegistryUrl(): string
     {
         return $this->mode === static::MODE_PRODUCTION
             ? static::PRODUCTION_REESTR_URL
@@ -38,7 +39,7 @@ class Config implements ConfigInterface
         return $this->mode === static::MODE_PRODUCTION;
     }
 
-    private function validateMode(int $mode): void
+    protected function validateMode(int $mode): void
     {
         $isInvalid =
             $mode !== static::MODE_PRODUCTION &&

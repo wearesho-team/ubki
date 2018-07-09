@@ -4,6 +4,8 @@ namespace Wearesho\Bobra\Ubki\Push;
 
 use Horat1us\Environment;
 
+use Wearesho\Bobra\Ubki\Authorization;
+
 /**
  * Class EnvironmentConfig
  *
@@ -11,12 +13,12 @@ use Horat1us\Environment;
  */
 class EnvironmentConfig extends Environment\Config implements ConfigInterface
 {
-    public function getReestrUrl(): string
-    {
-        $isProductionMode = $this->isProductionMode();
+    use Authorization\ConfigTrait;
 
-        $url = $this->getEnv('UBKI_REGISTRY_URL', function () use ($isProductionMode): string {
-            return $isProductionMode
+    public function getRegistryUrl(): string
+    {
+        $url = $this->getEnv('UBKI_REGISTRY_URL', function (): string {
+            return $this->isProductionMode()
                 ? static::PRODUCTION_REESTR_URL
                 : static::TEST_REESTR_URL;
         });
@@ -26,10 +28,8 @@ class EnvironmentConfig extends Environment\Config implements ConfigInterface
 
     public function getPushUrl(): string
     {
-        $isProductionMode = $this->isProductionMode();
-
-        $url = $this->getEnv('UBKI_PUSH_URL', function () use ($isProductionMode): string {
-            return $isProductionMode
+        $url = $this->getEnv('UBKI_PUSH_URL', function (): string {
+            return $this->isProductionMode()
                 ? static::PRODUCTION_PUSH_URL
                 : static::TEST_PUSH_URL;
         });
@@ -39,7 +39,7 @@ class EnvironmentConfig extends Environment\Config implements ConfigInterface
 
     public function isProductionMode(): bool
     {
-        $environmentMode = (int)$this->getEnv('UBKI_REGISTRY_MODE', static::MODE_PRODUCTION);
+        $environmentMode = (int)$this->getEnv('UBKI_REGISTRY_MODE');
 
         return $environmentMode === static::MODE_PRODUCTION;
     }
