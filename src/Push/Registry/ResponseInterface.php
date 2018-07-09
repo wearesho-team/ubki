@@ -9,12 +9,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
  */
 interface ResponseInterface
 {
-    public const STATE_PROCESSED = 'r';
-    public const STATE_TRANSMITTED = 'n';
-    public const STATE_CREATED = 'i';
-    public const STATE_BLOCKED = 'b';
-    public const STATE_SQL_ERROR = 'e';
-
     /**
      * Type of request
      *
