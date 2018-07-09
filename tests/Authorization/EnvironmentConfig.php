@@ -22,17 +22,17 @@ class EnvironmentConfig extends Environment\Config implements Ubki\Authorization
 
     public function getUsername(): string
     {
-        return $this->getEnv('UBKI_USERNAME');
+        return $this->getEnv('USERNAME');
     }
 
     public function getPassword(): string
     {
-        return $this->getEnv('UBKI_PASSWORD');
+        return $this->getEnv('PASSWORD');
     }
 
     public function getRegistryUrl()
     {
-        $url = $this->getEnv('UBKI_REGISTRY_URL', function (): string {
+        $url = $this->getEnv('REGISTRY_URL', function (): string {
             return $this->isProductionMode()
                 ? static::PRODUCTION_REESTR_URL
                 : static::TEST_REESTR_URL;
@@ -43,7 +43,7 @@ class EnvironmentConfig extends Environment\Config implements Ubki\Authorization
 
     public function getPushUrl(): string
     {
-        $url = $this->getEnv('UBKI_PUSH_URL', function (): string {
+        $url = $this->getEnv('PUSH_URL', function (): string {
             return $this->isProductionMode()
                 ? static::PRODUCTION_PUSH_URL
                 : static::TEST_PUSH_URL;
@@ -58,7 +58,7 @@ class EnvironmentConfig extends Environment\Config implements Ubki\Authorization
      */
     public function isProductionMode(): bool
     {
-        $environmentMode = (int)$this->getEnv('UBKI_REGISTRY_MODE');
+        $environmentMode = (int)$this->getEnv('REGISTRY_MODE');
 
         switch ($environmentMode) {
             case static::MODE_PRODUCTION:

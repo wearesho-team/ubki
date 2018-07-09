@@ -21,7 +21,7 @@ class CacheProviderTest extends TestCase
     /** @var TestLogger */
     protected $logger;
 
-    /** @var Ubki\Config */
+    /** @var Ubki\Authorization\ConfigInterface */
     protected $config;
 
     /** @var array */

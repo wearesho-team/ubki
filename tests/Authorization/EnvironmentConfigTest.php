@@ -25,7 +25,7 @@ class EnvironmentConfigTest extends TestCase
     protected function setUp(): void
     {
         $this->logger = new TestLogger();
-        $this->config = new EnvironmentConfig();
+        $this->config = new EnvironmentConfig('UBKI_');
 
         parent::setUp();
     }
