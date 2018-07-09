@@ -24,6 +24,8 @@ class CacheProviderTest extends TestCase
     /** @var Ubki\Authorization\ConfigInterface */
     protected $config;
 
+    protected $environmentConfig;
+
     /** @var array */
     protected $container;
 
@@ -56,7 +58,20 @@ class CacheProviderTest extends TestCase
                     $this->password = $password;
                     $this->mode = $mode;
                 }
+
+                public function getAuthUrl(): string
+                {
+                    switch ($this->mode) {
+                        case EnvironmentConfig::MODE_TEST:
+                            return EnvironmentConfig::TEST_AUTH_URL;
+                        case EnvironmentConfig::MODE_PRODUCTION:
+                            return EnvironmentConfig::PRODUCTION_AUTH_URL;
+                        default:
+                            throw new Ubki\Authorization\UnsupportedModeException($this->mode);
+                    }
+                }
             };
+        $this->environmentConfig = new EnvironmentConfig('UBKI_');
     }
 
     public function testProvide(): void

@@ -44,6 +44,18 @@ class ProviderTest extends TestCase
                     $this->password = $password;
                     $this->mode = $mode;
                 }
+
+                public function getAuthUrl(): string
+                {
+                    switch ($this->mode) {
+                        case static::MODE_PRODUCTION:
+                            return static::PRODUCTION_AUTH_URL;
+                        case static::MODE_TEST:
+                            return static::TEST_AUTH_URL;
+                        default:
+                            throw new Ubki\Authorization\UnsupportedModeException($this->mode);
+                    }
+                }
             };
     }
 
@@ -237,6 +249,18 @@ class ProviderTest extends TestCase
                     $this->password = $password;
                     $this->mode = $mode;
                 }
+
+                public function getAuthUrl(): string
+                {
+                    switch ($this->mode) {
+                        case static::MODE_PRODUCTION:
+                            return static::PRODUCTION_AUTH_URL;
+                        case static::MODE_TEST:
+                            return static::TEST_AUTH_URL;
+                        default:
+                            throw new Ubki\Authorization\UnsupportedModeException($this->mode);
+                    }
+                }
             };
 
         /** @noinspection GuzzleHttp\Exception\ClientException */
@@ -276,6 +300,18 @@ class ProviderTest extends TestCase
                     $this->username = $username;
                     $this->password = $password;
                     $this->mode = $mode;
+                }
+
+                public function getAuthUrl(): string
+                {
+                    switch ($this->mode) {
+                        case static::MODE_PRODUCTION:
+                            return static::PRODUCTION_AUTH_URL;
+                        case static::MODE_TEST:
+                            return static::TEST_AUTH_URL;
+                        default:
+                            throw new Ubki\Authorization\UnsupportedModeException($this->mode);
+                    }
                 }
             }
         );

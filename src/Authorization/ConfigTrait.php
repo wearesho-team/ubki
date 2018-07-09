@@ -28,19 +28,5 @@ trait ConfigTrait
         return $this->password;
     }
 
-    /**
-     * @return string
-     * @throws \Exception
-     */
-    public function getAuthUrl(): string
-    {
-        switch ($this->mode) {
-            case ConfigInterface::MODE_PRODUCTION:
-                return ConfigInterface::PRODUCTION_AUTH_URL;
-            case ConfigInterface::MODE_TEST:
-                return ConfigInterface::TEST_AUTH_URL;
-            default:
-                throw new UnsupportedModeException($this->mode);
-        }
-    }
+    public abstract function getAuthUrl(): string;
 }
