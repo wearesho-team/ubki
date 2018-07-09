@@ -4,6 +4,7 @@ namespace Wearesho\Bobra\Ubki\Push\Registry\Response;
 
 /**
  * Interface State
+ * Transmission Packet Status
  *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Response
  */
