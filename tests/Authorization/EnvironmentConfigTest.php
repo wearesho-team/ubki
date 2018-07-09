@@ -3,9 +3,9 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Gamez\Psr\Log\TestLogger;
-use Horat1us\Environment\MissingEnvironmentException;
+use Horat1us\Environment;
 use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Authorization\UnsupportedModeException;
+use Wearesho\Bobra\Ubki\Authorization;
 
 /**
  * Class EnvironmentConfigTest
@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki\Authorization\UnsupportedModeException;
  */
 class EnvironmentConfigTest extends TestCase
 {
-    /** @var EnvironmentConfig */
+    /** @var Authorization\ConfigInterface */
     protected $config;
 
     /** @var TestLogger */
@@ -25,7 +25,11 @@ class EnvironmentConfigTest extends TestCase
     protected function setUp(): void
     {
         $this->logger = new TestLogger();
-        $this->config = new EnvironmentConfig('UBKI_');
+        $this->config =
+            new class('UBKI_') extends Environment\Config implements Authorization\ConfigInterface
+            {
+                use Authorization\EnvironmentConfigTrait;
+            };
 
         parent::setUp();
     }
@@ -33,7 +37,7 @@ class EnvironmentConfigTest extends TestCase
     public function testGetEmptyUsername(): void
     {
         putenv('UBKI_USERNAME');
-        $this->expectException(MissingEnvironmentException::class);
+        $this->expectException(Environment\MissingEnvironmentException::class);
         $this->expectExceptionMessage('Missing environment key UBKI_USERNAME');
 
         $this->config->getUsername();
@@ -50,7 +54,7 @@ class EnvironmentConfigTest extends TestCase
     public function testGetEmptyPassword(): void
     {
         putenv('UBKI_PASSWORD');
-        $this->expectException(MissingEnvironmentException::class);
+        $this->expectException(Environment\MissingEnvironmentException::class);
         $this->expectExceptionMessage('Missing environment key UBKI_PASSWORD');
         $this->config->getPassword();
     }
@@ -66,7 +70,7 @@ class EnvironmentConfigTest extends TestCase
     public function testGetEmptyMode(): void
     {
         putenv('UBKI_PUSH_MODE');
-        $this->expectException(MissingEnvironmentException::class);
+        $this->expectException(Environment\MissingEnvironmentException::class);
         $this->expectExceptionMessage('Missing environment key UBKI_PUSH_MODE');
         $this->config->isProductionMode();
     }
@@ -76,8 +80,6 @@ class EnvironmentConfigTest extends TestCase
         putenv('UBKI_PUSH_MODE=1');
 
         $this->assertEquals(true, $this->config->isProductionMode());
-        $this->assertEquals(EnvironmentConfig::PRODUCTION_REESTR_URL, $this->config->getRegistryUrl());
-        $this->assertEquals(EnvironmentConfig::PRODUCTION_PUSH_URL, $this->config->getPushUrl());
     }
 
     public function testGetTestMode(): void
@@ -85,48 +87,30 @@ class EnvironmentConfigTest extends TestCase
         putenv('UBKI_PUSH_MODE=0');
 
         $this->assertEquals(false, $this->config->isProductionMode());
-        $this->assertEquals(EnvironmentConfig::TEST_REESTR_URL, $this->config->getRegistryUrl());
-        $this->assertEquals(EnvironmentConfig::TEST_PUSH_URL, $this->config->getPushUrl());
     }
 
     public function testGetInvalidMode(): void
     {
         putenv('UBKI_PUSH_MODE=228');
-        $this->expectException(UnsupportedModeException::class);
+        $this->expectException(Authorization\UnsupportedModeException::class);
         $this->expectExceptionMessage('Mode have invalid value 228');
 
         $this->assertEquals(false, $this->config->isProductionMode());
     }
 
-    public function testGetTestEnvironmentPushUrl(): void
-    {
-        $mode = EnvironmentConfig::MODE_TEST;
-        putenv("UBKI_PUSH_MODE={$mode}");
-        putenv(EnvironmentConfig::TEST_PUSH_URL);
-        $this->assertEquals(EnvironmentConfig::TEST_PUSH_URL, $this->config->getPushUrl());
-    }
-
-    public function testGetProductionEnvironmentPushUrl(): void
-    {
-        $mode = EnvironmentConfig::MODE_PRODUCTION;
-        putenv("UBKI_PUSH_MODE={$mode}");
-        putenv(EnvironmentConfig::PRODUCTION_PUSH_URL);
-        $this->assertEquals(EnvironmentConfig::PRODUCTION_PUSH_URL, $this->config->getPushUrl());
-    }
-
     public function testGetTestEnvironmentAuthUrlFrom(): void
     {
-        $mode = EnvironmentConfig::MODE_TEST;
+        $mode = Authorization\ConfigInterface::MODE_TEST;
         putenv("UBKI_PUSH_MODE={$mode}");
-        putenv(EnvironmentConfig::TEST_AUTH_URL);
-        $this->assertEquals(EnvironmentConfig::TEST_AUTH_URL, $this->config->getAuthUrl());
+        putenv(Authorization\ConfigInterface::TEST_AUTH_URL);
+        $this->assertEquals(Authorization\ConfigInterface::TEST_AUTH_URL, $this->config->getAuthUrl());
     }
 
     public function testGetProductionEnvironmentAuthUrl(): void
     {
-        $mode = EnvironmentConfig::MODE_PRODUCTION;
+        $mode = Authorization\ConfigInterface::MODE_PRODUCTION;
         putenv("UBKI_PUSH_MODE={$mode}");
-        putenv(EnvironmentConfig::PRODUCTION_AUTH_URL);
-        $this->assertEquals(EnvironmentConfig::PRODUCTION_AUTH_URL, $this->config->getAuthUrl());
+        putenv(Authorization\ConfigInterface::PRODUCTION_AUTH_URL);
+        $this->assertEquals(Authorization\ConfigInterface::PRODUCTION_AUTH_URL, $this->config->getAuthUrl());
     }
 }

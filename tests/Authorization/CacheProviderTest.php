@@ -4,6 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use chillerlan\SimpleCache;
 use Gamez\Psr\Log\TestLogger;
+use Horat1us\Environment;
 use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 use GuzzleHttp;
@@ -62,7 +63,11 @@ class CacheProviderTest extends TestCase
                     return false;
                 }
             };
-        $this->environmentConfig = new EnvironmentConfig('UBKI_');
+        $this->environmentConfig =
+            new class('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface
+            {
+                use Ubki\Authorization\EnvironmentConfigTrait;
+            };
     }
 
     public function testProvide(): void
