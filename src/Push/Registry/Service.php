@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki;
  */
 class Service implements ServiceInterface
 {
-    /** @var Ubki\Push\Config */
+    /** @var Ubki\Push\ConfigInterface */
     protected $config;
 
     /** @var GuzzleHttp\ClientInterface */
@@ -27,7 +27,7 @@ class Service implements ServiceInterface
     protected $logger;
 
     public function __construct(
-        Ubki\Push\Config $config,
+        Ubki\Push\ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
         Log\LoggerInterface $logger = null
