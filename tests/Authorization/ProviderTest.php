@@ -3,13 +3,18 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Carbon\Carbon;
+
 use Gamez\Psr\Log\TestLogger;
+
 use Wearesho\Bobra\Ubki;
+
 use GuzzleHttp;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ProviderTest
+ *
  * @package Wearesho\Bobra\Ubki\Tests\Authorization
  */
 class ProviderTest extends TestCase
@@ -17,10 +22,29 @@ class ProviderTest extends TestCase
     /** @var TestLogger */
     protected $logger;
 
+    /** @var Ubki\Authorization\ConfigInterface */
+    protected $config;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->logger = new TestLogger();
+        $this->config =
+            new class(
+                'test-provider-username',
+                'test-provide-password',
+                Ubki\Authorization\ConfigInterface::MODE_TEST
+            ) implements Ubki\Authorization\ConfigInterface
+            {
+                use Ubki\Authorization\ConfigTrait;
+
+                public function __construct(string $username, string $password, string $mode)
+                {
+                    $this->username = $username;
+                    $this->password = $password;
+                    $this->mode = $mode;
+                }
+            };
     }
 
     public function testProvide(): void
@@ -37,13 +61,12 @@ class ProviderTest extends TestCase
         $client = new GuzzleHttp\Client(['handler' => $stack,]);
 
         $provider = new Ubki\Authorization\Provider(
-            new Ubki\Config('test-provider-username', 'test-provide-password'),
             $client,
             $this->logger
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $response = $provider->provide();
+        $response = $provider->provide($this->config);
 
         // testing response
         $this->assertEquals(
@@ -110,13 +133,12 @@ class ProviderTest extends TestCase
         $client = new GuzzleHttp\Client(['handler' => $stack,]);
 
         $provider = new Ubki\Authorization\Provider(
-            new Ubki\Config('test-provider-username', 'test-provide-password'),
             $client,
             $this->logger
         );
 
-        /** @noinspection Wearesho\Bobra\Ubki\Authorization\Exception */
-        $response = $provider->provide();
+        /** @noinspection Ubki\Authorization\Exception */
+        $response = $provider->provide($this->config);
     }
 
     /**
@@ -137,13 +159,12 @@ class ProviderTest extends TestCase
         $client = new GuzzleHttp\Client(['handler' => $stack,]);
 
         $provider = new Ubki\Authorization\Provider(
-            new Ubki\Config('test-provider-username', 'test-provide-password'),
             $client,
             $this->logger
         );
 
         /** @noinspection GuzzleHttp\Exception\ClientException */
-        $response = $provider->provide();
+        $response = $provider->provide($this->config);
     }
 
     /**
@@ -164,12 +185,11 @@ class ProviderTest extends TestCase
         $client = new GuzzleHttp\Client(['handler' => $stack,]);
 
         $provider = new Ubki\Authorization\Provider(
-            new Ubki\Config('test-provider-username', 'test-provide-password'),
             $client,
             $this->logger
         );
 
         /** @noinspection GuzzleHttp\Exception\ClientException */
-        $response = $provider->provide();
+        $response = $provider->provide($this->config);
     }
 }

@@ -10,6 +10,7 @@ use GuzzleHttp;
 
 /**
  * Class CacheProviderTest
+ *
  * @package Wearesho\Bobra\Ubki\Tests\Authorization
  */
 class CacheProviderTest extends TestCase
@@ -40,7 +41,22 @@ class CacheProviderTest extends TestCase
 
         $this->client = new GuzzleHttp\Client(['handler' => $stack,]);
         $this->logger = new TestLogger();
-        $this->config = new Ubki\Config('username', 'password');
+        $this->config =
+            new class(
+                'username',
+                'password',
+                Ubki\Authorization\ConfigInterface::MODE_TEST
+            ) implements Ubki\Authorization\ConfigInterface
+            {
+                use Ubki\Authorization\ConfigTrait;
+
+                public function __construct(string $username, string $password, string $mode)
+                {
+                    $this->username = $username;
+                    $this->password = $password;
+                    $this->mode = $mode;
+                }
+            };
     }
 
     public function testProvide(): void
@@ -48,15 +64,14 @@ class CacheProviderTest extends TestCase
         $cache = new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver());
         $provider = new Ubki\Authorization\CacheProvider(
             $cache,
-            $this->config,
             $this->client,
             $this->logger
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $response = $provider->provide();
+        $response = $provider->provide($this->config);
         /** @noinspection PhpUnhandledExceptionInspection */
-        $duplicatedResponse = $provider->provide();
+        $duplicatedResponse = $provider->provide($this->config);
 
         $this->assertTrue(
             $response === $duplicatedResponse,
@@ -81,13 +96,12 @@ class CacheProviderTest extends TestCase
 
         $provider = new Ubki\Authorization\CacheProvider(
             $cache,
-            $this->config,
             $this->client,
             $this->logger
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $provider->provide();
+        $provider->provide($this->config);
 
         $this->assertTrue($this->logger->log->hasRecordsWithMessage(
             "UBKI Authorization Cache Failed for key ubki.authorization.80900aeb4b6d97eeed3ee5afe434f2ddc7aa8435"
