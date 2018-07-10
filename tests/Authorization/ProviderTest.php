@@ -101,7 +101,7 @@ class ProviderTest extends TestCase
             (string)$request->getBody()
         );
         $this->assertEquals(
-            Ubki\ConfigInterface::TEST_AUTH_URL,
+            Ubki\Authorization\ConfigInterface::TEST_AUTH_URL,
             (string)$request->getUri()
         );
         $this->assertEquals(
@@ -289,7 +289,7 @@ class ProviderTest extends TestCase
         /** @var GuzzleHttp\Psr7\Request $request */
         $request = $container[0]['request'];
         $this->assertEquals(
-            Ubki\ConfigInterface::PRODUCTION_AUTH_URL,
+            Ubki\Authorization\ConfigInterface::PRODUCTION_AUTH_URL,
             (string)$request->getUri()
         );
     }
