@@ -87,26 +87,24 @@ class Service implements ServiceInterface
         }
 
         $attributes = $xml->prot->attributes();
-
-        $context = ((array)$attributes)["@attributes"];
         $requestType = $request->getRegistryType();
 
         switch ($requestType) {
             case Type::REP:
                 return new Rep\Response(
                     $requestType,
-                    Carbon::createFromFormat('Ymd', $context->indate),
-                    (string)$context->idout,
-                    (string)$context->idalien,
-                    (string)$context->sessid,
-                    (string)$context->state,
-                    (string)$context->oper,
-                    (int)$context->compid,
-                    (string)$context->item,
-                    (string)$context->ertype,
-                    (string)$context->crytical,
-                    (int)$context->inn,
-                    (string)$context->remark
+                    Carbon::createFromFormat('Ymd', $attributes->indate),
+                    (string)$attributes->idout,
+                    (string)$attributes->idalien,
+                    (string)$attributes->sessid,
+                    (string)$attributes->state,
+                    (string)$attributes->oper,
+                    (int)$attributes->compid,
+                    (string)$attributes->item,
+                    (string)$attributes->ertype,
+                    (string)$attributes->crytical,
+                    (int)$attributes->inn,
+                    (string)$attributes->remark
                 );
             case Type::BIL:
                 // TODO: need implement Bil request
@@ -167,7 +165,7 @@ class Service implements ServiceInterface
         $todoAttr = $document->createAttribute(static::ATTR_TODO);
         $todoAttr->value = $request->getRegistryType();
         $indateAttr = $document->createAttribute(static::ATTR_INDATE);
-        $indateAttr->value = $request->getOperationDate()->format('Ymd');
+        $indateAttr->value = $request->getOperationDate();
         $sessidAttr = $document->createAttribute(static::ATTR_SESSID);
         $sessidAttr->value = $this->authProvider->provide($this->config)->getSessionId();
 
