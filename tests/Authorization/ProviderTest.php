@@ -120,8 +120,6 @@ class ProviderTest extends TestCase
      * @expectedException Wearesho\Bobra\Ubki\Authorization\Exception
      * @expectedExceptionMessage Some error text
      * @expectedExceptionCode 228
-     * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws Ubki\Authorization\Exception
      */
     public function testProvideAuthorizationException(): void
     {
@@ -148,8 +146,6 @@ class ProviderTest extends TestCase
 
     /**
      * @expectedException GuzzleHttp\Exception\ClientException
-     * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws Ubki\Authorization\Exception
      */
     public function testProvideNoAuthException(): void
     {
@@ -176,8 +172,6 @@ class ProviderTest extends TestCase
 
     /**
      * @expectedException GuzzleHttp\Exception\ClientException
-     * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws Ubki\Authorization\Exception
      */
     public function testProvideNoErrCodeException(): void
     {
@@ -204,8 +198,6 @@ class ProviderTest extends TestCase
 
     /**
      * @expectedException Wearesho\Bobra\Ubki\Authorization\UnsupportedModeException
-     * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws Ubki\Authorization\Exception
      */
     public function testProvideInvalidMode(): void
     {
