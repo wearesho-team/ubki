@@ -85,7 +85,7 @@ class EnvironmentConfigTest extends TestCase
     public function testGetInvalidMode(): void
     {
         putenv('UBKI_PUSH_MODE=228');
-        $this->expectException(Ubki\Authorization\UnsupportedModeException::class);
+        $this->expectException(Ubki\UnsupportedModeException::class);
         $this->expectExceptionMessage('Mode have invalid value 228');
         $this->assertEquals(false, $this->config->isProductionMode());
     }

@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Authorization;
 
+use Wearesho\Bobra\Ubki;
+
 /**
  * Trait EnvironmentConfigTrait
  *
@@ -40,7 +42,7 @@ trait EnvironmentConfigTrait
             case static::MODE_TEST:
                 return false;
             default:
-                throw new UnsupportedModeException($environmentMode);
+                throw new Ubki\UnsupportedModeException($environmentMode);
         }
     }
 }

@@ -192,7 +192,7 @@ class ProviderTest extends TestCase
 
     public function testProvideInvalidMode(): void
     {
-        $this->expectException(Ubki\Authorization\UnsupportedModeException::class);
+        $this->expectException(Ubki\UnsupportedModeException::class);
 
         $provider = new Ubki\Authorization\Provider(
             new GuzzleHttp\Client(),
@@ -215,7 +215,7 @@ class ProviderTest extends TestCase
 
                 public function isProductionMode(): bool
                 {
-                    throw new Ubki\Authorization\UnsupportedModeException(3);
+                    throw new Ubki\UnsupportedModeException(3);
                 }
             };
 
