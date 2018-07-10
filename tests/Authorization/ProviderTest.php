@@ -116,13 +116,11 @@ class ProviderTest extends TestCase
         $this->assertFalse($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TESTSESSIONID'));
     }
 
-    /**
-     * @expectedException Wearesho\Bobra\Ubki\Authorization\Exception
-     * @expectedExceptionMessage Some error text
-     * @expectedExceptionCode 228
-     */
     public function testProvideAuthorizationException(): void
     {
+        $this->expectException(Ubki\Authorization\Exception::class);
+        $this->expectExceptionMessage('Some error text');
+        $this->expectExceptionCode(228);
 
         $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth errtext="Some error text" errcode="228"/></doc>'; // phpcs:ignore
         $container = [];
@@ -141,14 +139,12 @@ class ProviderTest extends TestCase
         );
 
         /** @noinspection Ubki\Authorization\Exception */
-        $response = $provider->provide($this->config);
+        $provider->provide($this->config);
     }
 
-    /**
-     * @expectedException GuzzleHttp\Exception\ClientException
-     */
     public function testProvideNoAuthException(): void
     {
+        $this->expectException(GuzzleHttp\Exception\ClientException::class);
 
         $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc></doc>'; // phpcs:ignore
         $container = [];
@@ -167,14 +163,12 @@ class ProviderTest extends TestCase
         );
 
         /** @noinspection GuzzleHttp\Exception\ClientException */
-        $response = $provider->provide($this->config);
+        $provider->provide($this->config);
     }
 
-    /**
-     * @expectedException GuzzleHttp\Exception\ClientException
-     */
     public function testProvideNoErrCodeException(): void
     {
+        $this->expectException(GuzzleHttp\Exception\ClientException::class);
 
         $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth/></doc>'; // phpcs:ignore
         $container = [];
@@ -193,27 +187,15 @@ class ProviderTest extends TestCase
         );
 
         /** @noinspection GuzzleHttp\Exception\ClientException */
-        $response = $provider->provide($this->config);
+        $provider->provide($this->config);
     }
 
-    /**
-     * @expectedException Wearesho\Bobra\Ubki\Authorization\UnsupportedModeException
-     */
     public function testProvideInvalidMode(): void
     {
-        $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth/></doc>'; // phpcs:ignore
-        $container = [];
-        $history = GuzzleHttp\Middleware::history($container);
-        $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(400, [], $response),
-        ]);
-        $stack = GuzzleHttp\HandlerStack::create($mock);
-        $stack->push($history);
-
-        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+        $this->expectException(Ubki\Authorization\UnsupportedModeException::class);
 
         $provider = new Ubki\Authorization\Provider(
-            $client,
+            new GuzzleHttp\Client(),
             $this->logger
         );
 
@@ -238,7 +220,7 @@ class ProviderTest extends TestCase
             };
 
         /** @noinspection GuzzleHttp\Exception\ClientException */
-        $response = $provider->provide($config);
+        $provider->provide($config);
     }
 
     public function testProvideProductionMode(): void
