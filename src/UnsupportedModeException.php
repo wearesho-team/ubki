@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Authorization;
+namespace Wearesho\Bobra\Ubki;
 
 use Throwable;
 
 /**
  * Class UnsupportedModeException
  *
- * @package Wearesho\Bobra\Ubki\Authorization
+ * @package Wearesho\Bobra\Ubki
  */
 class UnsupportedModeException extends \InvalidArgumentException
 {
