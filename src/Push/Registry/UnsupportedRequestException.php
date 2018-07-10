@@ -7,7 +7,7 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
  *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
-class UnsupportedRequestException extends \Exception
+class UnsupportedRequestException extends \InvalidArgumentException
 {
     /** @var RequestInterface */
     protected $request;
@@ -21,5 +21,10 @@ class UnsupportedRequestException extends \Exception
         $this->request = $request;
 
         parent::__construct($message, $code, $previous);
+    }
+
+    public function getRequest(): RequestInterface
+    {
+        return $this->request;
     }
 }
