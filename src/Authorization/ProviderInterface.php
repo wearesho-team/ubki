@@ -8,5 +8,5 @@ namespace Wearesho\Bobra\Ubki\Authorization;
  */
 interface ProviderInterface
 {
-    public function provide(): Response;
+    public function provide(ConfigInterface $config): Response;
 }

@@ -5,7 +5,6 @@ namespace Wearesho\Bobra\Ubki\Authorization;
 use Carbon\Carbon;
 use GuzzleHttp;
 use Psr;
-use Wearesho\Bobra\Ubki;
 
 /**
  * Class CacheProvider
@@ -18,17 +17,16 @@ class CacheProvider extends Provider implements ProviderInterface
 
     public function __construct(
         Psr\SimpleCache\CacheInterface $cache,
-        Ubki\ConfigInterface $config,
         GuzzleHttp\ClientInterface $client,
         Psr\Log\LoggerInterface $logger = null
     ) {
         $this->cache = $cache;
-        parent::__construct($config, $client, $logger);
+        parent::__construct($client, $logger);
     }
 
-    public function provide(): Response
+    public function provide(ConfigInterface $config): Response
     {
-        $cacheKey = $this->getCacheKey();
+        $cacheKey = $this->getCacheKey($config);
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $cached = $this->cache->get($cacheKey);
@@ -36,7 +34,7 @@ class CacheProvider extends Provider implements ProviderInterface
             return $cached;
         }
 
-        $response = parent::provide();
+        $response = parent::provide($config);
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $isCacheSet = $this->cache->set(
@@ -54,8 +52,8 @@ class CacheProvider extends Provider implements ProviderInterface
         return $response;
     }
 
-    protected function getCacheKey(): string
+    protected function getCacheKey(ConfigInterface $config): string
     {
-        return "ubki.authorization." . sha1($this->config->getAuthUrl() . $this->config->getUsername());
+        return "ubki.authorization." . sha1($config->getAuthUrl() . $config->getUsername());
     }
 }
