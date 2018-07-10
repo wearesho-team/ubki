@@ -169,7 +169,7 @@ class Service implements ServiceInterface
         $indateAttr = $document->createAttribute(static::ATTR_INDATE);
         $indateAttr->value = $request->getOperationDate()->format('Ymd');
         $sessidAttr = $document->createAttribute(static::ATTR_SESSID);
-        $sessidAttr->value = $this->authProvider->provide()->getSessionId();
+        $sessidAttr->value = $this->authProvider->provide($this->config)->getSessionId();
 
         $prot->appendChild($todoAttr);
         $prot->appendChild($indateAttr);
