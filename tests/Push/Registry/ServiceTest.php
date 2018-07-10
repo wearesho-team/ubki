@@ -52,8 +52,10 @@ class ServiceTest extends TestCase
         $this->responseRegistryXml = '<?xml version="1.0" encoding="utf-8"?>
             <doc>
                 <prot todo="REP" indate="20140523" idout="IN#0000018427" idalien="X000000000001"
-                      sessid="A1F593950A8F4562AE5A5DB1914D658A" state="r" oper="i" compid="1" item="IDENT" ertype="NW" crytical=""
-                      inn="2404005906" remark="OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014"/>
+                      sessid="A1F593950A8F4562AE5A5DB1914D658A" state="r" 
+                      oper="i" compid="1" item="IDENT" ertype="NW" crytical=""
+                      inn="2404005906" 
+                      remark="OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014"/>
             </doc>';
         $this->responseRegistryUrl = 'https://secure.ubki.ua/prot/files/9E24730AF30A415BAFBC435A90C53CC014740140584447';
     }
@@ -87,7 +89,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow()->format('Ymd'),
+            Carbon::getTestNow(),
             'IN#0000018427',
             'X000000000001'
         );
@@ -145,7 +147,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow()->format('Ymd'),
+            Carbon::getTestNow(),
             'IN#0000018427',
             'X000000000001'
         );
@@ -206,7 +208,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow()->format('Ymd'),
+            Carbon::getTestNow(),
             'IN#0000018427',
             'X000000000001'
         );
@@ -249,7 +251,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow()->format('Ymd'),
+            Carbon::getTestNow(),
             'IN#0000018427',
             'X000000000001'
         );
@@ -292,7 +294,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow()->format('Ymd'),
+            Carbon::getTestNow(),
             'IN#0000018427',
             'X000000000001'
         );
@@ -334,7 +336,7 @@ class ServiceTest extends TestCase
         $request =
             new class(
                 'InvalidType',
-                '2014-09-09',
+                Carbon::getTestNow(),
                 'IN#0000018427',
                 'X000000000001'
             ) implements Ubki\Push\Registry\RequestInterface
@@ -343,7 +345,7 @@ class ServiceTest extends TestCase
 
                 public function __construct(
                     string $todo,
-                    string $operationDate,
+                    \DateTimeInterface $operationDate,
                     string $ubkiId,
                     string $partnerId
                 ) {

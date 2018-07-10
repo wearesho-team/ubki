@@ -16,7 +16,8 @@ interface ResponseInterface extends Registry\ResponseInterface
 
     /**
      * This method return type of reestr
-     * @see https://docs.google.com/document/d/13pGJ_PUPP2QmETln280lTpG7Gz1M8la55tBI_hMdVic (ertype attribute in REP response)
+     * @see https://docs.google.com/document/d/13pGJ_PUPP2QmETln280lTpG7Gz1M8la55tBI_hMdVic
+     * (ertype attribute in REP response)
      *
      * @return string
      */

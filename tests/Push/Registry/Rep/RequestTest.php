@@ -20,12 +20,12 @@ class RequestTest extends TestCase
         Carbon::setTestNow(Carbon::now());
 
         $request = new Registry\Rep\Request(
-            Carbon::getTestNow()->format('Ymd'),
+            Carbon::getTestNow(),
             'qwerty'
         );
 
         $this->assertEquals(Registry\Type::REP, $request->getRegistryType());
-        $this->assertEquals(Carbon::getTestNow()->format('Ymd'), $request->getOperationDate());
+        $this->assertEquals(Carbon::getTestNow()->format('Ymd'), $request->getOperationDate()->format('Ymd'));
         $this->assertEquals('qwerty', $request->getUbkiId());
         $this->assertEmpty($request->getPartnerId());
     }
@@ -36,15 +36,5 @@ class RequestTest extends TestCase
         $this->expectExceptionMessage("Request type have invalid value: SOME");
 
         new Registry\Request('SOME', Carbon::now());
-    }
-
-    public function testSetInvalidDateFormat(): void
-    {
-        $this->expectException(Registry\InvalidOperationDateFormatException::class);
-        $this->expectExceptionMessage("Operation date have invalid format: 2018-09-09");
-
-        Carbon::setToStringFormat('Y-m-d');
-
-        new Registry\Request(Registry\Type::REP, Carbon::createFromFormat('Y-m-d', '2018-09-09'));
     }
 }

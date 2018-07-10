@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
-use Carbon\Carbon;
-
 /**
  * Trait RequestTrait
  *
@@ -14,7 +12,7 @@ trait RequestTrait
     /** @var string */
     protected $todo;
 
-    /** @var string */
+    /** @var \DateTimeInterface */
     protected $indate;
 
     /** @var string */
@@ -34,7 +32,7 @@ trait RequestTrait
     /**
      * @inheritdoc
      */
-    public function getOperationDate(): string
+    public function getOperationDate(): \DateTimeInterface
     {
         return $this->indate;
     }
@@ -53,12 +51,5 @@ trait RequestTrait
     public function getPartnerId(): string
     {
         return $this->idalien;
-    }
-
-    protected function validateIndate(string $indate): void
-    {
-        if (!Carbon::hasFormat($indate, 'Ymd')) {
-            throw new InvalidOperationDateFormatException($indate);
-        }
     }
 }

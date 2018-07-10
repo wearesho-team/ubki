@@ -20,9 +20,9 @@ interface RequestInterface
      * Date of the operational day
      * format: Ymd
      *
-     * @return string
+     * @return \DateTimeInterface
      */
-    public function getOperationDate(): string;
+    public function getOperationDate(): \DateTimeInterface;
 
     /**
      * Id from UBKI request

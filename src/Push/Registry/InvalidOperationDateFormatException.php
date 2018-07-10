@@ -15,7 +15,7 @@ class InvalidOperationDateFormatException extends \InvalidArgumentException
     protected $date;
 
     public function __construct(
-        string $date,
+        \DateTimeInterface $date,
         int $code = 0,
         \Throwable $previous = null
     ) {

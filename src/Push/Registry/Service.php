@@ -104,7 +104,10 @@ class Service implements ServiceInterface
                 );
             case Type::BIL: // TODO: need implement Bil request
             default:
-                throw new UnsupportedRequestException($request, "Unsupported request type: {$request->getRegistryType()}");
+                throw new UnsupportedRequestException(
+                    $request,
+                    "Unsupported request type: {$request->getRegistryType()}"
+                );
         }
     }
 
@@ -159,7 +162,7 @@ class Service implements ServiceInterface
         $todoAttr = $document->createAttribute(static::ATTR_TODO);
         $todoAttr->value = $request->getRegistryType();
         $indateAttr = $document->createAttribute(static::ATTR_INDATE);
-        $indateAttr->value = $request->getOperationDate();
+        $indateAttr->value = $request->getOperationDate()->format('Ymd');
         $sessidAttr = $document->createAttribute(static::ATTR_SESSID);
         $sessidAttr->value = $this->authProvider->provide($this->config)->getSessionId();
 
