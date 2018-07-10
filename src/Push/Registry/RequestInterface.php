@@ -22,7 +22,7 @@ interface RequestInterface
      *
      * @return \DateTimeInterface
      */
-    public function getOperationDate(): \DateTimeInterface;
+    public function getOperationDate(): string;
 
     /**
      * Id from UBKI request

@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
+use Carbon\Carbon;
+
 /**
  * Class Request
  *
@@ -13,7 +15,7 @@ class Request implements RequestInterface
 
     public function __construct(
         string $type,
-        \DateTimeInterface $operationDate,
+        string $operationDate,
         string $ubkiId = "",
         string $partnerId = ""
     ) {
@@ -21,7 +23,7 @@ class Request implements RequestInterface
         $this->validateIndate($operationDate);
 
         $this->todo = $type;
-        $this->indate = $operationDate;
+        $this->indate = Carbon::parse($operationDate)->format('Ymd');
         $this->idout = $ubkiId;
         $this->idalien = $partnerId;
     }
@@ -37,7 +39,7 @@ class Request implements RequestInterface
             $todo !== Type::REP &&
             $todo !== Type::BIL
         ) {
-            throw new \InvalidArgumentException("Type of request have invalid value: {$todo}");
+            throw new InvalidRequestTypeException($todo);
         }
     }
 }

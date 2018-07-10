@@ -14,7 +14,7 @@ trait RequestTrait
     /** @var string */
     protected $todo;
 
-    /** @var \DateTimeInterface */
+    /** @var string */
     protected $indate;
 
     /** @var string */
@@ -34,7 +34,7 @@ trait RequestTrait
     /**
      * @inheritdoc
      */
-    public function getOperationDate(): \DateTimeInterface
+    public function getOperationDate(): string
     {
         return $this->indate;
     }
@@ -55,10 +55,10 @@ trait RequestTrait
         return $this->idalien;
     }
 
-    protected function validateIndate(\DateTimeInterface $indate): void
+    protected function validateIndate(string $indate): void
     {
-        if (Carbon::hasFormat($indate, 'Ymd')) {
-            throw new \InvalidArgumentException("Indate have invalid format: {$indate}");
+        if (!Carbon::hasFormat($indate, 'Ymd')) {
+            throw new InvalidOperationDateFormatException($indate);
         }
     }
 }

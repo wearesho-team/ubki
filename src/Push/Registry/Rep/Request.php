@@ -12,7 +12,7 @@ use Wearesho\Bobra\Ubki\Push\Registry;
 class Request extends Registry\Request
 {
     public function __construct(
-        \DateTimeInterface $operationDate,
+        string $operationDate,
         string $ubkiId = "",
         string $partnerId = ""
     ) {
