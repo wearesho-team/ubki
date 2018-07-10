@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93ffd325df806474952a2dfc8e347e72",
+    "content-hash": "d87f6edf692ff9772f8afd86ae362fd7",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -189,16 +189,16 @@
         },
         {
             "name": "horat1us/environment-config",
-            "version": "1.1.1",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Horat1us/environment-config.git",
-                "reference": "806a2b42a367d45831d1e271561035f47c498953"
+                "reference": "1b0e74bdf2f78363b2cd511fc249d8fc86ac5149"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Horat1us/environment-config/zipball/806a2b42a367d45831d1e271561035f47c498953",
-                "reference": "806a2b42a367d45831d1e271561035f47c498953",
+                "url": "https://api.github.com/repos/Horat1us/environment-config/zipball/1b0e74bdf2f78363b2cd511fc249d8fc86ac5149",
+                "reference": "1b0e74bdf2f78363b2cd511fc249d8fc86ac5149",
                 "shasum": ""
             },
             "require": {
@@ -225,7 +225,7 @@
                 }
             ],
             "description": "Environment Config class",
-            "time": "2018-04-11T19:49:31+00:00"
+            "time": "2018-04-20T13:53:09+00:00"
         },
         {
             "name": "nesbot/carbon",
