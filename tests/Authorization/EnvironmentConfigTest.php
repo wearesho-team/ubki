@@ -93,12 +93,14 @@ class EnvironmentConfigTest extends TestCase
     public function testGetTestDefaultAuthUrl(): void
     {
         putenv('UBKI_PUSH_MODE=' . Ubki\Authorization\ConfigInterface::MODE_TEST);
+        putenv('UBKI_AUTH_URL');
         $this->assertEquals(Ubki\Authorization\ConfigInterface::TEST_AUTH_URL, $this->config->getAuthUrl());
     }
 
     public function testGetProductionDefaulttAuthUrl(): void
     {
         putenv('UBKI_PUSH_MODE=' . Ubki\Authorization\ConfigInterface::MODE_PRODUCTION);
+        putenv('UBKI_AUTH_URL');
         $this->assertEquals(Ubki\Authorization\ConfigInterface::PRODUCTION_AUTH_URL, $this->config->getAuthUrl());
     }
 
