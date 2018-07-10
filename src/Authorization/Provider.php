@@ -5,7 +5,6 @@ namespace Wearesho\Bobra\Ubki\Authorization;
 use Carbon\Carbon;
 use GuzzleHttp;
 use Psr\Log;
-use Wearesho\Bobra\Ubki;
 
 /**
  * Class Client
@@ -13,9 +12,6 @@ use Wearesho\Bobra\Ubki;
  */
 class Provider implements ProviderInterface
 {
-    /** @var Ubki\ConfigInterface */
-    protected $config;
-
     /** @var GuzzleHttp\ClientInterface */
     protected $client;
 
@@ -23,23 +19,23 @@ class Provider implements ProviderInterface
     protected $logger;
 
     public function __construct(
-        Ubki\ConfigInterface $config,
         GuzzleHttp\ClientInterface $client,
         Log\LoggerInterface $logger = null
     ) {
-        $this->config = $config;
         $this->client = $client;
         $this->logger = $logger ?? new Log\NullLogger();
     }
 
     /**
+     * @param ConfigInterface $config
+     *
      * @return Response
-     * @throws GuzzleHttp\Exception\GuzzleException
      * @throws Exception
+     * @throws GuzzleHttp\Exception\GuzzleException
      */
-    public function provide(): Response
+    public function provide(ConfigInterface $config): Response
     {
-        $request = $this->getRequest();
+        $request = $this->getRequest($config);
 
         $this->logger->debug("UBKI Authorization Request", [
             'url' => $request->getUri()->__toString(),
@@ -109,17 +105,17 @@ class Provider implements ProviderInterface
         );
     }
 
-    private function getRequest(): GuzzleHttp\Psr7\Request
+    private function getRequest(ConfigInterface $config): GuzzleHttp\Psr7\Request
     {
         return new GuzzleHttp\Psr7\Request(
             $method = 'post',
-            $this->config->getAuthUrl(),
+            $config->getAuthUrl(),
             [],
-            base64_encode($this->getBody())
+            base64_encode($this->getBody($config))
         );
     }
 
-    private function getBody(): string
+    private function getBody(ConfigInterface $config): string
     {
         $xml = new \DOMDocument('1.0', 'utf-8');
 
@@ -130,10 +126,10 @@ class Provider implements ProviderInterface
         $authElm = $xmlRoot->appendChild($authElm);
 
         $loginAttr = $xml->createAttribute('login');
-        $loginAttr->value = $this->config->getUsername();
+        $loginAttr->value = $config->getUsername();
 
         $passwordAttr = $xml->createAttribute('pass');
-        $passwordAttr->value = $this->config->getPassword();
+        $passwordAttr->value = $config->getPassword();
 
         $authElm->appendChild($loginAttr);
         $authElm->appendChild($passwordAttr);
