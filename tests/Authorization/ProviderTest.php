@@ -289,22 +289,8 @@ class ProviderTest extends TestCase
         /** @var GuzzleHttp\Psr7\Request $request */
         $request = $container[0]['request'];
         $this->assertEquals(
-            'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGRvYz48YXV0aCBsb2dpbj0idGVzdC1wcm92aWRlci11c2VybmFtZSIgcGFzcz0idGVzdC1wcm92aWRlLXBhc3N3b3JkIi8+PC9kb2M+Cg==', // phpcs:ignore
-            (string)$request->getBody()
-        );
-        $this->assertEquals(
             Ubki\ConfigInterface::PRODUCTION_AUTH_URL,
             (string)$request->getUri()
         );
-        $this->assertEquals(
-            'POST',
-            $request->getMethod()
-        );
-
-        // testing logs
-        $this->assertTrue($this->logger->log->hasRecordsWithMessage('UBKI Authorization Request'));
-        $this->assertTrue($this->logger->log->hasRecordsWithMessage('UBKI Authorization Response'));
-        $this->assertTrue($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TEST****ONID'));
-        $this->assertFalse($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TESTSESSIONID'));
     }
 }
