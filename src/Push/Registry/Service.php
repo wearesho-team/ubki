@@ -82,10 +82,6 @@ class Service implements ServiceInterface
 
         $xml = simplexml_load_string($responseBody);
 
-        if ($xml === false) {
-            throw new InvalidResponseXmlFormatException($responseBody);
-        }
-
         $attributes = $xml->prot->attributes();
         $requestType = $request->getRegistryType();
 
@@ -106,12 +102,10 @@ class Service implements ServiceInterface
                     (int)$attributes->inn,
                     (string)$attributes->remark
                 );
-            case Type::BIL:
-                // TODO: need implement Bil request
-                break;
+            case Type::BIL: // TODO: need implement Bil request
+            default:
+                throw new UnsupportedRequestException($request, "Unsupported request type: {$request->getRegistryType()}");
         }
-
-        throw new UnsupportedRequestException($request, "Unsupported request type: {$request->getRegistryType()}");
     }
 
     /**
