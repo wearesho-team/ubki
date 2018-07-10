@@ -49,7 +49,8 @@ class Config implements ConfigInterface
             $mode !== static::MODE_TEST;
 
         if ($isInvalid) {
-            throw new \InvalidArgumentException("Mode have invalid value: {$mode}");
+            // todo: remove unsupported-mode-exception to base directory
+            throw new Authorization\UnsupportedModeException($mode);
         }
     }
 }
