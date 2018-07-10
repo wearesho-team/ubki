@@ -13,14 +13,14 @@ use Wearesho\Bobra\Ubki\Authorization;
  */
 class EnvironmentConfig extends Environment\Config implements ConfigInterface
 {
-    use Authorization\ConfigTrait;
+    use Authorization\EnvironmentConfigTrait;
 
     public function getRegistryUrl(): string
     {
         $url = $this->getEnv('UBKI_REGISTRY_URL', function (): string {
             return $this->isProductionMode()
-                ? static::PRODUCTION_REESTR_URL
-                : static::TEST_REESTR_URL;
+                ? static::PRODUCTION_REGISTRY_URL
+                : static::TEST_REGISTRY_URL;
         });
 
         return $url;
@@ -35,12 +35,5 @@ class EnvironmentConfig extends Environment\Config implements ConfigInterface
         });
 
         return $url;
-    }
-
-    public function isProductionMode(): bool
-    {
-        $environmentMode = (int)$this->getEnv('UBKI_REGISTRY_MODE');
-
-        return $environmentMode === static::MODE_PRODUCTION;
     }
 }

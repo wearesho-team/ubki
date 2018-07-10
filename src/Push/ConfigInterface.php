@@ -11,15 +11,13 @@ use Wearesho\Bobra\Ubki\Authorization;
  */
 interface ConfigInterface extends Authorization\ConfigInterface
 {
-    public const PRODUCTION_REESTR_URL = 'https://secure.ubki.ua/upload/in/reestrs.php';
-    public const PRODUCTION_PUSH_URL = '';
+    public const PRODUCTION_REGISTRY_URL = 'https://secure.ubki.ua/upload/in/reestrs.php';
+    public const PRODUCTION_PUSH_URL = ''; // todo: fill in release version
 
-    public const TEST_REESTR_URL = 'https://secure.ubki.ua:4040/upload/in/reestrs.php';
-    public const TEST_PUSH_URL = '';
+    public const TEST_REGISTRY_URL = 'https://secure.ubki.ua:4040/upload/in/reestrs.php';
+    public const TEST_PUSH_URL = ''; // todo: fill in release version
 
     public function getRegistryUrl(): string;
 
     public function getPushUrl(): string;
-
-    public function isProductionMode(): bool;
 }

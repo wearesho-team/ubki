@@ -13,6 +13,9 @@ class Config implements ConfigInterface
 {
     use Authorization\ConfigTrait;
 
+    /** @var int */
+    protected $mode;
+
     public function __construct(int $mode)
     {
         $this->validateMode($mode);
@@ -22,14 +25,14 @@ class Config implements ConfigInterface
 
     public function getRegistryUrl(): string
     {
-        return $this->mode === static::MODE_PRODUCTION
-            ? static::PRODUCTION_REESTR_URL
-            : static::TEST_REESTR_URL;
+        return $this->isProductionMode()
+            ? static::PRODUCTION_REGISTRY_URL
+            : static::TEST_REGISTRY_URL;
     }
 
     public function getPushUrl(): string
     {
-        return $this->mode === static::MODE_PRODUCTION
+        return $this->isProductionMode()
             ? static::PRODUCTION_PUSH_URL
             : static::TEST_PUSH_URL;
     }
