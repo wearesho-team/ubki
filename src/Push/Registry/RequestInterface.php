@@ -20,7 +20,7 @@ interface RequestInterface
      * Date of the operational day
      * format: Ymd
      *
-     * @return \DateTimeInterface
+     * @return string
      */
     public function getOperationDate(): string;
 
