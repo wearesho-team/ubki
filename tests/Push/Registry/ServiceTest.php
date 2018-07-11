@@ -12,8 +12,6 @@ use GuzzleHttp;
 
 use PHPUnit\Framework\TestCase;
 
-use Psr\Log;
-
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -413,15 +411,6 @@ class ServiceTest extends TestCase
                 $this->logger
             ) extends Ubki\Push\Registry\Service
             {
-                public function __construct(
-                    Ubki\Push\ConfigInterface $config,
-                    Ubki\Authorization\ProviderInterface $authProvider,
-                    GuzzleHttp\ClientInterface $client,
-                    Log\LoggerInterface $logger = null
-                ) {
-                    parent::__construct($config, $authProvider, $client, $logger);
-                }
-
                 public function runConvert(Ubki\Push\Registry\Rep\Request $request): GuzzleHttp\Psr7\Request
                 {
                     return $this->convertToGuzzleRequest($request);
