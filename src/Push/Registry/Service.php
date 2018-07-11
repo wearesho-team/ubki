@@ -70,51 +70,42 @@ class Service implements ServiceInterface
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
 
-        $this->logger->debug("UBKI reestr request {url}", [
+        $this->logger->debug("UBKI registry request {url}", [
             'url' => $guzzleRequest->getUri()->__toString(),
         ]);
 
         /** @var GuzzleHttp\Psr7\Response $httpResponse */
-        $urlFileResponse = $this->client->send($guzzleRequest);
-        $urlFile = $urlFileResponse->getBody()->__toString();
+        $response = $this->client->send($guzzleRequest);
+        $urlFile = $response->getBody()->__toString();
 
         $this->validateUrl($urlFile);
 
-        try {
-            $responseBody = $this->getFile($urlFile)->getBody()->__toString();
-        } catch (GuzzleHttp\Exception\RequestException $exception) {
-            $this->catchException($exception);
-        }
-
-        $reports = $this->fetchReports($responseBody);
+        $fileContent = $this->getFileContent($urlFile);
+        $reports = $this->fetchReports($fileContent);
         $requestType = $request->getRegistryType();
 
         switch ($requestType) {
             case Type::REP:
-                return
-                    new ResponseCollection(
-                        array_map(
-                            function (\SimpleXMLElement $report): Rep\Response {
-                                $attributes = $report->attributes();
+                return new ResponseCollection(
+                    array_map(function (\SimpleXMLElement $report): Rep\Response {
+                        $attributes = $report->attributes();
 
-                                return new Rep\Response(
-                                    Carbon::createFromFormat('Ymd', (string)$attributes[static::ATTR_INDATE]),
-                                    (string)$attributes[static::ATTR_IDOUT],
-                                    (string)$attributes[static::ATTR_IDALIEN],
-                                    (string)$attributes[static::ATTR_SESSID],
-                                    (string)$attributes[static::ATTR_STATE],
-                                    (string)$attributes[static::ATTR_OPER],
-                                    (int)$attributes[static::ATTR_COMPID],
-                                    (string)$attributes[static::ATTR_ITEM],
-                                    (string)$attributes[static::ATTR_ERTYPE],
-                                    (string)$attributes[static::ATTR_CRYTICAL],
-                                    (int)$attributes[static::ATTR_INN],
-                                    (string)$attributes[static::ATTR_REMARK]
-                                );
-                            },
-                            $reports
-                        )
-                    );
+                        return new Rep\Response(
+                            Carbon::createFromFormat('Ymd', (string)$attributes[static::ATTR_INDATE]),
+                            (string)$attributes[static::ATTR_IDOUT],
+                            (string)$attributes[static::ATTR_IDALIEN],
+                            (string)$attributes[static::ATTR_SESSID],
+                            (string)$attributes[static::ATTR_STATE],
+                            (string)$attributes[static::ATTR_OPER],
+                            (int)$attributes[static::ATTR_COMPID],
+                            (string)$attributes[static::ATTR_ITEM],
+                            (string)$attributes[static::ATTR_ERTYPE],
+                            (string)$attributes[static::ATTR_CRYTICAL],
+                            (int)$attributes[static::ATTR_INN],
+                            (string)$attributes[static::ATTR_REMARK]
+                        );
+                    }, $reports)
+                );
             case Type::BIL: // TODO: need implement Bil request
             default:
                 throw new UnsupportedRequestException(
@@ -122,26 +113,6 @@ class Service implements ServiceInterface
                     "Unsupported request type: {$request->getRegistryType()}"
                 );
         }
-    }
-
-    /**
-     * @param GuzzleHttp\Exception\RequestException $exception
-     *
-     * @throws \Exception
-     */
-    protected function catchException(GuzzleHttp\Exception\RequestException $exception): void
-    {
-        $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
-
-        if ($xml === false || !isset($xml->prot)) {
-            // Not XML or invalid format XML
-            throw $exception;
-        }
-
-        throw new UnknownErrorException(
-            (string)$xml->doc,
-            $exception
-        );
     }
 
     protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
@@ -220,21 +191,35 @@ class Service implements ServiceInterface
     /**
      * @param string $url
      *
-     * @return GuzzleHttp\Psr7\Response
+     * @return string
      * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws UnknownErrorException
      */
-    private function getFile(string $url): GuzzleHttp\Psr7\Response
+    private function getFileContent(string $url): string
     {
-        /** @var GuzzleHttp\Psr7\Response $response */
-        $response = $this->client->send(
-            new GuzzleHttp\Psr7\Request(
-                $method = 'get',
-                $url,
-                []
-            )
-        );
+        try {
+            $response = $this->client->send(
+                new GuzzleHttp\Psr7\Request(
+                    $method = 'get',
+                    $url,
+                    []
+                )
+            );
+        } catch (GuzzleHttp\Exception\RequestException $exception) {
+            $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
 
-        return $response;
+            if ($xml === false || !isset($xml->prot)) {
+                // Not XML or invalid format XML
+                throw $exception;
+            }
+
+            throw new UnknownErrorException(
+                (string)$xml->doc,
+                $exception
+            );
+        }
+
+        return $response->getBody()->__toString();
     }
 
     /**

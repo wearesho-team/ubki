@@ -25,12 +25,11 @@ class Config implements ConfigInterface
 
     protected function validateMode(int $mode): void
     {
-        $isInvalid =
-            $mode !== static::MODE_PRODUCTION &&
-            $mode !== static::MODE_TEST;
+        $isValid =
+            $mode === static::MODE_PRODUCTION ||
+            $mode === static::MODE_TEST;
 
-        if ($isInvalid) {
-            // todo: remove unsupported-mode-exception to base directory
+        if (!$isValid) {
             throw new Ubki\UnsupportedModeException($mode);
         }
     }

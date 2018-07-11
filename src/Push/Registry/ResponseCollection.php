@@ -9,7 +9,7 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
  */
 class ResponseCollection extends \ArrayObject implements \JsonSerializable
 {
-    public function __construct($input = array(), int $flags = 0, string $iteratorClass = "ArrayIterator")
+    public function __construct($input = [], int $flags = 0, string $iteratorClass = "ArrayIterator")
     {
         foreach ($input as $item) {
             $this->checkItem($item);
@@ -45,6 +45,9 @@ class ResponseCollection extends \ArrayObject implements \JsonSerializable
         return (array)$this;
     }
 
+    /**
+     * @param mixed $value
+     */
     public static function checkItem($value): void
     {
         if (!$value instanceof ResponseInterface) {

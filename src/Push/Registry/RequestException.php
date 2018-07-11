@@ -10,20 +10,20 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 class RequestException extends \Exception
 {
     /** @var string */
-    protected $request;
+    protected $errors;
 
     public function __construct(
-        string $request,
+        string $errors,
         int $code = 0,
         \Throwable $previous = null
     ) {
-        $this->request = $request;
+        $this->errors = $errors;
 
-        parent::__construct('Reuest errors: ' . $request, $code, $previous);
+        parent::__construct('Request errors: ' . $errors, $code, $previous);
     }
 
     public function getRequest(): string
     {
-        return $this->request;
+        return $this->errors;
     }
 }
