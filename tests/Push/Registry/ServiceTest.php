@@ -70,6 +70,7 @@ class ServiceTest extends TestCase
         $history = GuzzleHttp\Middleware::history($container);
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, [], $this->responseAuth),
+            new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryUrl),
             new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryXml)
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);
@@ -321,6 +322,7 @@ class ServiceTest extends TestCase
         $history = GuzzleHttp\Middleware::history($container);
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, [], $this->responseAuth),
+            new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryUrl),
             new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryXml)
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);
@@ -571,5 +573,47 @@ class ServiceTest extends TestCase
             ),
             $responses
         );
+    }
+
+    public function testInvalidUrl(): void
+    {
+        $this->expectException(Ubki\Push\Registry\RequestException::class);
+
+        $responseRegistryXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc>Here is some error</doc>';
+
+        $container = [];
+        $history = GuzzleHttp\Middleware::history($container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(200, [], $this->responseAuth),
+            new GuzzleHttp\Psr7\Response(200, [], $responseRegistryXml)
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+        $config = new Ubki\Push\Config(
+            'production-provider-username',
+            'production-provide-password',
+            Ubki\Push\Config::MODE_PRODUCTION
+        );
+        $authProvider = new Ubki\Authorization\CacheProvider(
+            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            $client,
+            $this->logger
+        );
+        $this->service = new Ubki\Push\Registry\Service(
+            $config,
+            $authProvider,
+            $client,
+            $this->logger
+        );
+
+        $request = new Ubki\Push\Registry\Rep\Request(
+            $this->now,
+            'IN#0000018427',
+            'X000000000001'
+        );
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $this->service->send($request);
     }
 }
