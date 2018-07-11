@@ -29,12 +29,4 @@ class RequestTest extends TestCase
         $this->assertEquals('qwerty', $request->getUbkiId());
         $this->assertEmpty($request->getPartnerId());
     }
-
-    public function testSetInvalidRequestType(): void
-    {
-        $this->expectException(Registry\InvalidRequestTypeException::class);
-        $this->expectExceptionMessage("Request type have invalid value: SOME");
-
-        new Registry\Request('SOME', Carbon::now());
-    }
 }

@@ -12,6 +12,8 @@ use GuzzleHttp;
 
 use PHPUnit\Framework\TestCase;
 
+use Psr\Log;
+
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -36,11 +38,14 @@ class ServiceTest extends TestCase
     /** @var Ubki\Push\Registry\ServiceInterface */
     protected $service;
 
+    /** @var Carbon */
+    protected $now;
+
     public function setUp(): void
     {
         parent::setUp();
 
-        Carbon::setTestNow(new Carbon('2014-05-23'));
+        $this->now = Carbon::createFromFormat('Y-m-d', Carbon::now()->toDateString());
         $this->logger = new TestLogger();
         $this->responseAuth = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <doc>
@@ -49,14 +54,15 @@ class ServiceTest extends TestCase
                       userlname="LastName" usermname="MiddleName" rolegroupid="2"
                       rolegroupname="GroupName" agrid="3" agrname="OrganizationName" role="1"/>
             </doc>';
-        $this->responseRegistryXml = '<?xml version="1.0" encoding="utf-8"?>
+        $this->responseRegistryXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
             <doc>
-                <prot todo="REP" indate="20140523" idout="IN#0000018427" idalien="X000000000001"
-                      sessid="A1F593950A8F4562AE5A5DB1914D658A" state="r" 
-                      oper="i" compid="1" item="IDENT" ertype="NW" crytical=""
-                      inn="2404005906" 
-                      remark="OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014"/>
-            </doc>';
+                <prot todo=\"REP\" indate=\"{$this->now->format('Ymd')}\" idout=\"IN#0000018427\" 
+                      idalien=\"X000000000001\"
+                      sessid=\"A1F593950A8F4562AE5A5DB1914D658A\" state=\"r\" 
+                      oper=\"i\" compid=\"1\" item=\"IDENT\" ertype=\"NW\" crytical=\"\"
+                      inn=\"2404005906\" 
+                      remark=\"OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014\"/>
+            </doc>";
         $this->responseRegistryUrl = 'https://secure.ubki.ua/prot/files/9E24730AF30A415BAFBC435A90C53CC014740140584447';
     }
 
@@ -89,7 +95,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow(),
+            $this->now,
             'IN#0000018427',
             'X000000000001'
         );
@@ -100,7 +106,7 @@ class ServiceTest extends TestCase
         $this->assertEquals(
             new Ubki\Push\Registry\Rep\Response(
                 'REP',
-                Carbon::createFromFormat('Ymd', '20140523'),
+                $this->now,
                 'IN#0000018427',
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
@@ -147,7 +153,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow(),
+            $this->now,
             'IN#0000018427',
             'X000000000001'
         );
@@ -158,7 +164,7 @@ class ServiceTest extends TestCase
         $this->assertEquals(
             new Ubki\Push\Registry\Rep\Response(
                 'REP',
-                Carbon::createFromFormat('Ymd', '20140523'),
+                $this->now,
                 'IN#0000018427',
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
@@ -208,7 +214,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow(),
+            $this->now,
             'IN#0000018427',
             'X000000000001'
         );
@@ -251,7 +257,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow(),
+            $this->now,
             'IN#0000018427',
             'X000000000001'
         );
@@ -294,7 +300,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::getTestNow(),
+            $this->now,
             'IN#0000018427',
             'X000000000001'
         );
@@ -333,10 +339,12 @@ class ServiceTest extends TestCase
             $this->logger
         );
 
+        $now = $this->now;
+
         $request =
             new class(
                 'InvalidType',
-                Carbon::getTestNow(),
+                $now,
                 'IN#0000018427',
                 'X000000000001'
             ) implements Ubki\Push\Registry\RequestInterface
@@ -358,5 +366,72 @@ class ServiceTest extends TestCase
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $this->service->send($request);
+    }
+
+    public function testBodyRepXml(): void
+    {
+        $registryXmlBody = simplexml_load_string(
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+            <doc>
+                <prot todo=\"REP\" indate=\"{$this->now->format('Ymd')}\"
+                      sessid=\"A1F593950A8F4562AE5A5DB1914D658A\"
+                      idout=\"IN#0000018427\" idalien=\"X000000000001\"/>
+            </doc>"
+        );
+
+        $request = new Ubki\Push\Registry\Rep\Request(
+            $this->now,
+            'IN#0000018427',
+            'X000000000001'
+        );
+
+        $container = [];
+        $history = GuzzleHttp\Middleware::history($container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(200, [], $this->responseAuth),
+            new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryXml)
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+        $config = new Ubki\Push\Config(
+            'test-provider-username',
+            'test-provide-password',
+            Ubki\Push\Config::MODE_TEST
+        );
+        $authProvider = new Ubki\Authorization\CacheProvider(
+            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            $client,
+            $this->logger
+        );
+
+        $service =
+            new class(
+                $config,
+                $authProvider,
+                $client,
+                $this->logger
+            ) extends Ubki\Push\Registry\Service
+            {
+                public function __construct(
+                    Ubki\Push\ConfigInterface $config,
+                    Ubki\Authorization\ProviderInterface $authProvider,
+                    GuzzleHttp\ClientInterface $client,
+                    Log\LoggerInterface $logger = null
+                ) {
+                    parent::__construct($config, $authProvider, $client, $logger);
+                }
+
+                public function runConvert(Ubki\Push\Registry\Rep\Request $request): GuzzleHttp\Psr7\Request
+                {
+                    return $this->convertToGuzzleRequest($request);
+                }
+            };
+
+        /** @var GuzzleHttp\Psr7\Request $guzzleRequest */
+        $guzzleRequest = $service->runConvert($request);
+        $guzzleXmlBody = simplexml_load_string(base64_decode($guzzleRequest->getBody()->__toString()));
+
+        $this->assertEquals($registryXmlBody, $guzzleXmlBody);
     }
 }
