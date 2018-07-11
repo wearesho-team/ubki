@@ -75,18 +75,15 @@ class Service implements ServiceInterface
         ]);
 
         /** @var GuzzleHttp\Psr7\Response $httpResponse */
-        $httpResponse = $this->client->send($guzzleRequest);
-        $responseBody = $httpResponse->getBody()->__toString();
+        $urlFileResponse = $this->client->send($guzzleRequest);
+        $urlFile = $urlFileResponse->getBody()->__toString();
 
-        if ($this->config->isProductionMode()) {
-            $fileUrl = $responseBody;
+        $this->validateUrl($urlFile);
 
-            try {
-                $httpResponseFile = $this->getFile($fileUrl);
-                $responseBody = $httpResponseFile->getBody()->__toString();
-            } catch (GuzzleHttp\Exception\RequestException $exception) {
-                $this->catchException($exception);
-            }
+        try {
+            $responseBody = $this->getFile($urlFile)->getBody()->__toString();
+        } catch (GuzzleHttp\Exception\RequestException $exception) {
+            $this->catchException($exception);
         }
 
         $reports = $this->fetchReports($responseBody);
@@ -206,6 +203,18 @@ class Service implements ServiceInterface
         // TODO: implement adding grp attribute for Bil Request
 
         return $document->saveXML();
+    }
+
+    /**
+     * @param string $requestUrl
+     *
+     * @throws RequestException
+     */
+    private function validateUrl(string $requestUrl): void
+    {
+        if (!preg_match('/https:\/\//', $requestUrl)) {
+            throw new RequestException($requestUrl);
+        }
     }
 
     /**
