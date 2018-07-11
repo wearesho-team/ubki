@@ -9,18 +9,18 @@ use Wearesho\Bobra\Ubki\Push\Registry;
  *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
-class Request extends Registry\Request
+class Request implements Registry\RequestInterface
 {
+    use Registry\RequestTrait;
+
     public function __construct(
         \DateTimeInterface $operationDate,
         string $ubkiId = "",
         string $partnerId = ""
     ) {
-        parent::__construct(
-            Registry\Type::REP,
-            $operationDate,
-            $ubkiId,
-            $partnerId
-        );
+        $this->todo = Registry\Type::REP;
+        $this->indate = $operationDate;
+        $this->idout = $ubkiId;
+        $this->idalien = $partnerId;
     }
 }
