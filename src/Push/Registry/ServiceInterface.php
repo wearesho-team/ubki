@@ -9,5 +9,5 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
  */
 interface ServiceInterface
 {
-    public function send(RequestInterface $request): ResponseInterface;
+    public function send(RequestInterface $request): ResponseCollection;
 }

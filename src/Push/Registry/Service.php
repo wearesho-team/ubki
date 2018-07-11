@@ -25,6 +25,15 @@ class Service implements ServiceInterface
     protected const ATTR_IDALIEN = 'idalien';
     protected const ATTR_SESSID = 'sessid';
 
+    protected const ATTR_STATE = 'state';
+    protected const ATTR_OPER = 'oper';
+    protected const ATTR_COMPID = 'compid';
+    protected const ATTR_ITEM = 'item';
+    protected const ATTR_ERTYPE = 'ertype';
+    protected const ATTR_CRYTICAL = 'crytical';
+    protected const ATTR_INN = 'inn';
+    protected const ATTR_REMARK = 'remark';
+
     /** @var Ubki\Push\ConfigInterface */
     protected $config;
 
@@ -52,12 +61,12 @@ class Service implements ServiceInterface
     /**
      * @param RequestInterface $request
      *
-     * @return ResponseInterface
+     * @return ResponseCollection
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws UnsupportedRequestException
      * @throws \Exception
      */
-    public function send(RequestInterface $request): ResponseInterface
+    public function send(RequestInterface $request): ResponseCollection
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
 
@@ -80,28 +89,35 @@ class Service implements ServiceInterface
             }
         }
 
-        $xml = simplexml_load_string($responseBody);
-
-        $attributes = $xml->prot->attributes();
+        $reports = $this->fetchReports($responseBody);
         $requestType = $request->getRegistryType();
 
         switch ($requestType) {
             case Type::REP:
-                return new Rep\Response(
-                    $requestType,
-                    Carbon::createFromFormat('Ymd', $attributes->indate),
-                    (string)$attributes->idout,
-                    (string)$attributes->idalien,
-                    (string)$attributes->sessid,
-                    (string)$attributes->state,
-                    (string)$attributes->oper,
-                    (int)$attributes->compid,
-                    (string)$attributes->item,
-                    (string)$attributes->ertype,
-                    (string)$attributes->crytical,
-                    (int)$attributes->inn,
-                    (string)$attributes->remark
-                );
+                return
+                    new ResponseCollection(
+                        array_map(
+                            function (\SimpleXMLElement $report): Rep\Response {
+                                $attributes = $report->attributes();
+
+                                return new Rep\Response(
+                                    Carbon::createFromFormat('Ymd', (string)$attributes[static::ATTR_INDATE]),
+                                    (string)$attributes[static::ATTR_IDOUT],
+                                    (string)$attributes[static::ATTR_IDALIEN],
+                                    (string)$attributes[static::ATTR_SESSID],
+                                    (string)$attributes[static::ATTR_STATE],
+                                    (string)$attributes[static::ATTR_OPER],
+                                    (int)$attributes[static::ATTR_COMPID],
+                                    (string)$attributes[static::ATTR_ITEM],
+                                    (string)$attributes[static::ATTR_ERTYPE],
+                                    (string)$attributes[static::ATTR_CRYTICAL],
+                                    (int)$attributes[static::ATTR_INN],
+                                    (string)$attributes[static::ATTR_REMARK]
+                                );
+                            },
+                            $reports
+                        )
+                    );
             case Type::BIL: // TODO: need implement Bil request
             default:
                 throw new UnsupportedRequestException(
@@ -125,9 +141,8 @@ class Service implements ServiceInterface
             throw $exception;
         }
 
-        throw new \Exception(
+        throw new UnknownErrorException(
             (string)$xml->doc,
-            Ubki\Exception::CODE_UNKNOWN_ERROR,
             $exception
         );
     }
@@ -211,5 +226,23 @@ class Service implements ServiceInterface
         );
 
         return $response;
+    }
+
+    /**
+     * @param string $body
+     *
+     * @return \SimpleXMLElement[]
+     */
+    private function fetchReports(string $body): array
+    {
+        $reports = [];
+        $xml = simplexml_load_string($body);
+        $xmlReports = $xml->{static::TAG_PROT};
+
+        foreach ($xmlReports as $xmlReport) {
+            array_push($reports, $xmlReport);
+        }
+
+        return $reports;
     }
 }
