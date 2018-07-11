@@ -9,12 +9,12 @@ use Wearesho\Bobra\Ubki\Push\Registry;
  *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
-class Response extends Registry\Response implements ResponseInterface
+class Response implements ResponseInterface
 {
+    use Registry\ResponseTrait;
     use ResponseTrait;
 
     public function __construct(
-        string $type,
         \DateTimeInterface $operationDate,
         string $ubkiId,
         string $partnerId,
@@ -22,27 +22,24 @@ class Response extends Registry\Response implements ResponseInterface
         string $state,
         string $transferType,
         int $componentId,
-        string $subcomponentName,
+        string $subComponentName,
         string $registryType,
         string $errorType,
         int $inn,
         string $remark
     ) {
+        $this->todo = Registry\Type::REP;
         $this->ertype = $registryType;
         $this->crytical = $errorType;
         $this->inn = $inn;
         $this->remark = $remark;
-
-        parent::__construct(
-            $type,
-            $operationDate,
-            $ubkiId,
-            $partnerId,
-            $sessionId,
-            $state,
-            $transferType,
-            $componentId,
-            $subcomponentName
-        );
+        $this->indate = $operationDate;
+        $this->idout = $ubkiId;
+        $this->idalien = $partnerId;
+        $this->sessid = $sessionId;
+        $this->state = $state;
+        $this->oper = $transferType;
+        $this->compid = $componentId;
+        $this->item = $subComponentName;
     }
 }
