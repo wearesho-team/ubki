@@ -102,20 +102,23 @@ class ServiceTest extends TestCase
         $response = $this->service->send($request);
 
         $this->assertEquals(
-            new Ubki\Push\Registry\Rep\Response(
-                'REP',
-                $this->now,
-                'IN#0000018427',
-                'X000000000001',
-                'A1F593950A8F4562AE5A5DB1914D658A',
-                Ubki\Push\Registry\Response\State::PROCESSED,
-                Ubki\Push\Registry\Response\Oper::TRANSFERRING,
-                1,
-                'IDENT',
-                'NW',
-                '',
-                '2404005906',
-                'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
+            new Ubki\Push\Registry\ResponseCollection(
+                array(
+                    new Ubki\Push\Registry\Rep\Response(
+                        $this->now,
+                        'IN#0000018427',
+                        'X000000000001',
+                        'A1F593950A8F4562AE5A5DB1914D658A',
+                        Ubki\Push\Registry\Response\State::PROCESSED,
+                        Ubki\Push\Registry\Response\Oper::TRANSFERRING,
+                        1,
+                        'IDENT',
+                        'NW',
+                        '',
+                        '2404005906',
+                        'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
+                    )
+                )
             ),
             $response
         );
@@ -160,20 +163,23 @@ class ServiceTest extends TestCase
         $response = $this->service->send($request);
 
         $this->assertEquals(
-            new Ubki\Push\Registry\Rep\Response(
-                'REP',
-                $this->now,
-                'IN#0000018427',
-                'X000000000001',
-                'A1F593950A8F4562AE5A5DB1914D658A',
-                Ubki\Push\Registry\Response\State::PROCESSED,
-                Ubki\Push\Registry\Response\Oper::TRANSFERRING,
-                1,
-                'IDENT',
-                'NW',
-                '',
-                '2404005906',
-                'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
+            new Ubki\Push\Registry\ResponseCollection(
+                array(
+                    new Ubki\Push\Registry\Rep\Response(
+                        $this->now,
+                        'IN#0000018427',
+                        'X000000000001',
+                        'A1F593950A8F4562AE5A5DB1914D658A',
+                        Ubki\Push\Registry\Response\State::PROCESSED,
+                        Ubki\Push\Registry\Response\Oper::TRANSFERRING,
+                        1,
+                        'IDENT',
+                        'NW',
+                        '',
+                        '2404005906',
+                        'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
+                    )
+                )
             ),
             $response
         );
@@ -422,5 +428,148 @@ class ServiceTest extends TestCase
         $guzzleXmlBody = simplexml_load_string(base64_decode($guzzleRequest->getBody()->__toString()));
 
         $this->assertEquals($registryXmlBody, $guzzleXmlBody);
+    }
+
+    public function testRealRequestSimulation(): void
+    {
+        $responseRegistryXml =
+            '<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <prot todo="REP" indate="20101010" idout="IN#0000018427" idalien="X000000000001"
+          sessid="A1F593950A8F4562AE5A5DB1914D658A"
+          state="r" oper="i" compid="1" item="ADDR"
+          ertype="NW" crytical=""
+          inn="2404005906"
+          remark="OK. Язык: 1. Адрес: Україна Харьков Харьков Академика Ляпунова 10. Дата версии: 10.10.2010"/>
+    <prot todo="REP" indate="20101010"
+          idout="IN#0000018427" idalien="X000000000001"
+          sessid="A1F593950A8F4562AE5A5DB1914D658A"
+          state="r" oper="i" compid="1" item="DOC" ertype="NW" crytical=""
+          inn="2404005906"
+          remark="OK. Язык: 1. Серия док.: МТ 333333 Харьковский Украины в Харьковской обл.. Тип документа: 1."/>
+    <prot todo="REP" indate="20101010" idout="IN#0000018427" idalien="X000000000001"
+          sessid="A1F593950A8F4562AE5A5DB1914D658A" state="r" oper="i" compid="1" item="IDENT" ertype="NW" crytical=""
+          inn="2404005906" remark="OK. Язык: 1. ФИО: ИВАНОВ ИВАН ИВАНОВИЧ АЛЕКСАНДРОВИЧ. Дата версии: 10.10.2010"/>
+    <prot todo="REP" indate="20101010" idout="IN#0000018427" idalien="X000000000001"
+          sessid="A1F593950A8F4562AE5A5DB1914D658A" state="r" oper="i" compid="2" item="CRDEAL" ertype="NW" crytical=""
+          inn="2404005906" remark="OK IN. Референс договора: 111111. Месяц среза: 1. Год среза: 2010"/>
+    <prot todo="REP" indate="20101010" idout="IN#0000018427" idalien="X000000000001"
+          sessid="A1F593950A8F4562AE5A5DB1914D658A" state="r" oper="i" compid="10" item="CONT" ertype="NW" crytical=""
+          inn="2404005906" remark="OK. Тип контакта: 3. Контакт: +380998881000. Дата версии: 10.10.2009"/>
+</doc>';
+
+        $container = [];
+        $history = GuzzleHttp\Middleware::history($container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(200, [], $this->responseAuth),
+            new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryUrl),
+            new GuzzleHttp\Psr7\Response(200, [], $responseRegistryXml)
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+        $config = new Ubki\Push\Config(
+            'production-provider-username',
+            'production-provide-password',
+            Ubki\Push\Config::MODE_PRODUCTION
+        );
+        $authProvider = new Ubki\Authorization\CacheProvider(
+            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            $client,
+            $this->logger
+        );
+        $this->service = new Ubki\Push\Registry\Service(
+            $config,
+            $authProvider,
+            $client,
+            $this->logger
+        );
+
+        $request = new Ubki\Push\Registry\Rep\Request(
+            $this->now,
+            'IN#0000018427',
+            'X000000000001'
+        );
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $responses = $this->service->send($request);
+
+        $this->assertEquals(
+            new Ubki\Push\Registry\ResponseCollection(
+                array(
+                    new Ubki\Push\Registry\Rep\Response(
+                        Carbon::createFromFormat('Ymd', '20101010'),
+                        'IN#0000018427',
+                        'X000000000001',
+                        'A1F593950A8F4562AE5A5DB1914D658A',
+                        Ubki\Push\Registry\Response\State::PROCESSED,
+                        Ubki\Push\Registry\Response\Oper::TRANSFERRING,
+                        1,
+                        'ADDR',
+                        'NW',
+                        '',
+                        '2404005906',
+                        'OK. Язык: 1. Адрес: Україна Харьков Харьков Академика Ляпунова 10. Дата версии: 10.10.2010'
+                    ),
+                    new Ubki\Push\Registry\Rep\Response(
+                        Carbon::createFromFormat('Ymd', '20101010'),
+                        'IN#0000018427',
+                        'X000000000001',
+                        'A1F593950A8F4562AE5A5DB1914D658A',
+                        Ubki\Push\Registry\Response\State::PROCESSED,
+                        Ubki\Push\Registry\Response\Oper::TRANSFERRING,
+                        1,
+                        'DOC',
+                        'NW',
+                        '',
+                        '2404005906',
+                        'OK. Язык: 1. Серия док.: МТ 333333 Харьковский Украины в Харьковской обл.. Тип документа: 1.'
+                    ),
+                    new Ubki\Push\Registry\Rep\Response(
+                        Carbon::createFromFormat('Ymd', '20101010'),
+                        'IN#0000018427',
+                        'X000000000001',
+                        'A1F593950A8F4562AE5A5DB1914D658A',
+                        Ubki\Push\Registry\Response\State::PROCESSED,
+                        Ubki\Push\Registry\Response\Oper::TRANSFERRING,
+                        1,
+                        'IDENT',
+                        'NW',
+                        '',
+                        '2404005906',
+                        'OK. Язык: 1. ФИО: ИВАНОВ ИВАН ИВАНОВИЧ АЛЕКСАНДРОВИЧ. Дата версии: 10.10.2010'
+                    ),
+                    new Ubki\Push\Registry\Rep\Response(
+                        Carbon::createFromFormat('Ymd', '20101010'),
+                        'IN#0000018427',
+                        'X000000000001',
+                        'A1F593950A8F4562AE5A5DB1914D658A',
+                        Ubki\Push\Registry\Response\State::PROCESSED,
+                        Ubki\Push\Registry\Response\Oper::TRANSFERRING,
+                        2,
+                        'CRDEAL',
+                        'NW',
+                        '',
+                        '2404005906',
+                        'OK IN. Референс договора: 111111. Месяц среза: 1. Год среза: 2010'
+                    ),
+                    new Ubki\Push\Registry\Rep\Response(
+                        Carbon::createFromFormat('Ymd', '20101010'),
+                        'IN#0000018427',
+                        'X000000000001',
+                        'A1F593950A8F4562AE5A5DB1914D658A',
+                        Ubki\Push\Registry\Response\State::PROCESSED,
+                        Ubki\Push\Registry\Response\Oper::TRANSFERRING,
+                        10,
+                        'CONT',
+                        'NW',
+                        '',
+                        '2404005906',
+                        'OK. Тип контакта: 3. Контакт: +380998881000. Дата версии: 10.10.2009'
+                    ),
+                )
+            ),
+            $responses
+        );
     }
 }

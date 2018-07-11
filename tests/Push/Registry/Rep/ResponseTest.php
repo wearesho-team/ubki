@@ -18,7 +18,6 @@ class ResponseTest extends TestCase
         $indate = \DateTime::createFromFormat('Ymd', '20181212');
 
         $response = new Registry\Rep\Response(
-            Registry\Type::REP,
             $indate,
             'qweqwe',
             'asdasd',
