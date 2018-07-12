@@ -3,6 +3,11 @@
 namespace Wearesho\Bobra\Ubki\Pull;
 
 use Carbon\Carbon;
+
+use GuzzleHttp;
+
+use Psr\Log;
+
 use Wearesho\Bobra\Ubki\Authorization;
 
 /**
@@ -11,26 +16,55 @@ use Wearesho\Bobra\Ubki\Authorization;
  */
 class Service
 {
+    /** @var ConfigInterface */
+    protected $config;
+
     /** @var Authorization\Provider */
     protected $authorization;
 
-    public function __construct(Authorization\Provider $authorization)
-    {
+    /** @var GuzzleHttp\Client */
+    protected $client;
+
+    /** @var Log\LoggerInterface */
+    protected $logger;
+
+    public function __construct(
+        ConfigInterface $config,
+        Authorization\Provider $authorization,
+        GuzzleHttp\Client $client,
+        Log\LoggerInterface $logger
+    ) {
+        $this->config = $config;
         $this->authorization = $authorization;
+        $this->client = $client;
+        $this->logger = $logger ?? new Log\NullLogger();
     }
 
     /**
-     * Получение XML ответа от БКИ
-     *
      * @param Request $request
-     * @return string
+     *
+     * @return Response
+     * @throws GuzzleHttp\Exception\GuzzleException
      */
-    public function xml(Request $request): string
+    public function send(Request $request): Response
+    {
+        $guzzleRequest = $this->convertToGuzzleRequest($request);
+        $response = $this->client->send($guzzleRequest);
+    }
+
+    protected function convertToGuzzleRequest(Request $request): GuzzleHttp\Psr7\Request
     {
 
     }
 
-    private function getBody(Request $request, Authorization\Response $authorization): string
+    /**
+     * @param Request $request
+     *
+     * @return string
+     * @throws Authorization\Exception
+     * @throws GuzzleHttp\Exception\GuzzleException
+     */
+    private function getBody(Request $request): string
     {
         $xml = new \DOMDocument('1.0', 'utf-8');
 
@@ -39,7 +73,7 @@ class Service
         $xmlRoot = $xml->appendChild($xmlRoot);
 
         $ubchElm = $xml->createElement('ubki');
-        $ubchElm->setAttribute('sessid', $authorization->getSessionId());
+        $ubchElm->setAttribute('sessid', $this->authorization->provide($this->config)->getSessionId());
         $ubchElm = $xmlRoot->appendChild($ubchElm);
 
         $envelopeElm = $xml->createElement('req_envelope');
