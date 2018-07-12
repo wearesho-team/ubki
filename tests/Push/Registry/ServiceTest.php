@@ -495,12 +495,13 @@ class ServiceTest extends TestCase
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $responses = $this->service->send($request);
+        $time = Carbon::createFromFormat('Ymd', '20101010');
 
         $this->assertEquals(
             new Ubki\Push\Registry\ResponseCollection(
                 array(
                     new Ubki\Push\Registry\Rep\Response(
-                        Carbon::createFromFormat('Ymd', '20101010'),
+                        $time,
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
@@ -514,7 +515,7 @@ class ServiceTest extends TestCase
                         'OK. Язык: 1. Адрес: Україна Харьков Харьков Академика Ляпунова 10. Дата версии: 10.10.2010'
                     ),
                     new Ubki\Push\Registry\Rep\Response(
-                        Carbon::createFromFormat('Ymd', '20101010'),
+                        $time,
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
@@ -528,7 +529,7 @@ class ServiceTest extends TestCase
                         'OK. Язык: 1. Серия док.: МТ 333333 Харьковский Украины в Харьковской обл.. Тип документа: 1.'
                     ),
                     new Ubki\Push\Registry\Rep\Response(
-                        Carbon::createFromFormat('Ymd', '20101010'),
+                        $time,
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
@@ -542,7 +543,7 @@ class ServiceTest extends TestCase
                         'OK. Язык: 1. ФИО: ИВАНОВ ИВАН ИВАНОВИЧ АЛЕКСАНДРОВИЧ. Дата версии: 10.10.2010'
                     ),
                     new Ubki\Push\Registry\Rep\Response(
-                        Carbon::createFromFormat('Ymd', '20101010'),
+                        $time,
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
@@ -556,7 +557,7 @@ class ServiceTest extends TestCase
                         'OK IN. Референс договора: 111111. Месяц среза: 1. Год среза: 2010'
                     ),
                     new Ubki\Push\Registry\Rep\Response(
-                        Carbon::createFromFormat('Ymd', '20101010'),
+                        $time,
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
