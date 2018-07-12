@@ -64,4 +64,22 @@ class EnvironmentConfigTest extends TestCase
         $this->expectExceptionMessage("Mode have invalid value 3");
         new Ubki\Push\Config('username', 'password', 3);
     }
+
+    public function testGetDefaultUrls(): void
+    {
+        putenv('TEST_PREFIX_PUSH_MODE=' . Ubki\Push\EnvironmentConfig::MODE_TEST);
+        putenv('PRODUCTION_PREFIX_PUSH_MODE=' . Ubki\Push\EnvironmentConfig::MODE_PRODUCTION);
+
+        $config = new Ubki\Push\EnvironmentConfig('TEST_PREFIX_');
+        $url = $config->getRegistryUrl();
+        $this->assertEquals(Ubki\Push\ConfigInterface::TEST_REGISTRY_URL, $url);
+        $url = $config->getPushUrl();
+        $this->assertEquals(Ubki\Push\ConfigInterface::TEST_PUSH_URL, $url);
+
+        $config = new Ubki\Push\EnvironmentConfig('PRODUCTION_PREFIX_');
+        $url = $config->getRegistryUrl();
+        $this->assertEquals(Ubki\Push\ConfigInterface::PRODUCTION_REGISTRY_URL, $url);
+        $url = $config->getPushUrl();
+        $this->assertEquals(Ubki\Push\ConfigInterface::PRODUCTION_PUSH_URL, $url);
+    }
 }
