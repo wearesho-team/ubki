@@ -5,8 +5,8 @@
   "require": {
     "ext-SimpleXML": "*",
     "guzzlehttp/guzzle": "^6.3",
-    "horat1us/environment-config": "^1.1",
     "myclabs/php-enum": "^1.5",
+    "horat1us/environment-config": "^1.2",
     "nesbot/carbon": "^1.26",
     "psr/log": "^1.0",
     "psr/simple-cache": "^1.0"
