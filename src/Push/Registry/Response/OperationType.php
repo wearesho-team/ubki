@@ -3,12 +3,12 @@
 namespace Wearesho\Bobra\Ubki\Push\Registry\Response;
 
 /**
- * Interface Oper
+ * Interface OperationType
  * Transferring operation type
  *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Response
  */
-interface Oper
+interface OperationType
 {
     public const TRANSFERRING = 'i';
     public const EDITING = 'u';

@@ -86,26 +86,24 @@ class Service implements ServiceInterface
 
         switch ($requestType) {
             case Type::REP:
-                return new ResponseCollection(
-                    array_map(function (\SimpleXMLElement $report): Rep\Response {
-                        $attributes = $report->attributes();
+                return new ResponseCollection(array_map(function (\SimpleXMLElement $report): Rep\Response {
+                    $attributes = $report->attributes();
 
-                        return new Rep\Response(
-                            Carbon::createFromFormat('Ymd', (string)$attributes[static::ATTR_INDATE]),
-                            (string)$attributes[static::ATTR_IDOUT],
-                            (string)$attributes[static::ATTR_IDALIEN],
-                            (string)$attributes[static::ATTR_SESSID],
-                            (string)$attributes[static::ATTR_STATE],
-                            (string)$attributes[static::ATTR_OPER],
-                            (int)$attributes[static::ATTR_COMPID],
-                            (string)$attributes[static::ATTR_ITEM],
-                            (string)$attributes[static::ATTR_ERTYPE],
-                            (string)$attributes[static::ATTR_CRYTICAL],
-                            (int)$attributes[static::ATTR_INN],
-                            (string)$attributes[static::ATTR_REMARK]
-                        );
-                    }, $reports)
-                );
+                    return new Rep\Response(
+                        Carbon::createFromFormat('Ymd', (string)$attributes[static::ATTR_INDATE]),
+                        (string)$attributes[static::ATTR_IDOUT],
+                        (string)$attributes[static::ATTR_IDALIEN],
+                        (string)$attributes[static::ATTR_SESSID],
+                        (string)$attributes[static::ATTR_STATE],
+                        (string)$attributes[static::ATTR_OPER],
+                        (int)$attributes[static::ATTR_COMPID],
+                        (string)$attributes[static::ATTR_ITEM],
+                        (string)$attributes[static::ATTR_ERTYPE],
+                        (string)$attributes[static::ATTR_CRYTICAL],
+                        (int)$attributes[static::ATTR_INN],
+                        (string)$attributes[static::ATTR_REMARK]
+                    );
+                }, $reports));
             case Type::BIL: // TODO: need implement Bil request
             default:
                 throw new UnsupportedRequestException(

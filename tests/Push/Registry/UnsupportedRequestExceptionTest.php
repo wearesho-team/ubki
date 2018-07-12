@@ -15,16 +15,15 @@ class UnsupportedRequestExceptionTest extends TestCase
 {
     public function testGetRequest(): void
     {
-        $request =
-            new class() implements Registry\RequestInterface
-            {
-                use Registry\RequestTrait;
+        $request = new class implements Registry\RequestInterface
+        {
+            use Registry\RequestTrait;
 
-                public function __construct()
-                {
-                    $this->todo = 'SomeInvalidType';
-                }
-            };
+            public function __construct()
+            {
+                $this->todo = 'SomeInvalidType';
+            }
+        };
 
         $exception = new Registry\UnsupportedRequestException($request);
 

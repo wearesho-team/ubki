@@ -15,19 +15,19 @@ trait ConfigTrait
     public function getRegistryUrl(): string
     {
         return $this->isProductionMode()
-            ? static::PRODUCTION_REGISTRY_URL
-            : static::TEST_REGISTRY_URL;
+            ? ConfigInterface::PRODUCTION_REGISTRY_URL
+            : ConfigInterface::TEST_REGISTRY_URL;
     }
 
     public function getPushUrl(): string
     {
         return $this->isProductionMode()
-            ? static::PRODUCTION_PUSH_URL
-            : static::TEST_PUSH_URL;
+            ? ConfigInterface::PRODUCTION_PUSH_URL
+            : ConfigInterface::TEST_PUSH_URL;
     }
 
     public function isProductionMode(): bool
     {
-        return $this->mode === static::MODE_PRODUCTION;
+        return $this->mode === ConfigInterface::MODE_PRODUCTION;
     }
 }

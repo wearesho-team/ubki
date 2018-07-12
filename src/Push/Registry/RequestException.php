@@ -22,7 +22,7 @@ class RequestException extends \Exception
         parent::__construct('Request errors: ' . $errors, $code, $previous);
     }
 
-    public function getRequest(): string
+    public function getErrors(): string
     {
         return $this->errors;
     }

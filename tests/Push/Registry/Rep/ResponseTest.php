@@ -38,7 +38,7 @@ class ResponseTest extends TestCase
         $this->assertEquals('asdasd', $response->getIdalien());
         $this->assertEquals('123qwe', $response->getSessid());
         $this->assertEquals(Registry\Response\State::CREATED, $response->getState());
-        $this->assertEquals(Registry\Response\Oper::TRANSFERRING, $response->getOper());
+        $this->assertEquals(Registry\Response\OperationType::TRANSFERRING, $response->getOper());
         $this->assertEquals(1, $response->getCompid());
         $this->assertEquals('IDENT', $response->getItem());
         $this->assertEquals('NW', $response->getRegistryType());

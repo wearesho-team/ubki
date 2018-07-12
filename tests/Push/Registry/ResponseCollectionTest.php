@@ -32,7 +32,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED,
-                Registry\Response\Oper::TRANSFERRING,
+                Registry\Response\OperationType::TRANSFERRING,
                 1,
                 'ADDR',
                 'NW',
@@ -46,7 +46,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED,
-                Registry\Response\Oper::TRANSFERRING,
+                Registry\Response\OperationType::TRANSFERRING,
                 1,
                 'DOC',
                 'NW',
@@ -60,7 +60,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED,
-                Registry\Response\Oper::TRANSFERRING,
+                Registry\Response\OperationType::TRANSFERRING,
                 1,
                 'IDENT',
                 'NW',
@@ -74,7 +74,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED,
-                Registry\Response\Oper::TRANSFERRING,
+                Registry\Response\OperationType::TRANSFERRING,
                 2,
                 'CRDEAL',
                 'NW',
@@ -88,7 +88,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED,
-                Registry\Response\Oper::TRANSFERRING,
+                Registry\Response\OperationType::TRANSFERRING,
                 10,
                 'CONT',
                 'NW',
@@ -101,12 +101,6 @@ class ResponseCollectionTest extends TestCase
         $this->testResponseCollection = new Registry\ResponseCollection($this->responses);
     }
 
-    public function testInstance(): void
-    {
-        $responseCollection = new Registry\ResponseCollection($this->responses);
-        $this->assertEquals($responseCollection, $this->testResponseCollection);
-    }
-
     public function testAppend(): void
     {
         $response = new Registry\Rep\Response(
@@ -115,7 +109,7 @@ class ResponseCollectionTest extends TestCase
             'X000000000001',
             'A1F593950A8F4562AE5A5DB1914D658A',
             Registry\Response\State::PROCESSED,
-            Registry\Response\Oper::TRANSFERRING,
+            Registry\Response\OperationType::TRANSFERRING,
             10,
             'CONT',
             'NW',
