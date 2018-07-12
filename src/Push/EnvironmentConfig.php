@@ -17,7 +17,7 @@ class EnvironmentConfig extends Environment\Config implements ConfigInterface
 
     public function getRegistryUrl(): string
     {
-        $url = $this->getEnv('UBKI_REGISTRY_URL', function (): string {
+        $url = $this->getEnv('REGISTRY_URL', function (): string {
             return $this->isProductionMode()
                 ? static::PRODUCTION_REGISTRY_URL
                 : static::TEST_REGISTRY_URL;
@@ -28,7 +28,7 @@ class EnvironmentConfig extends Environment\Config implements ConfigInterface
 
     public function getPushUrl(): string
     {
-        $url = $this->getEnv('UBKI_PUSH_URL', function (): string {
+        $url = $this->getEnv('PUSH_URL', function (): string {
             return $this->isProductionMode()
                 ? static::PRODUCTION_PUSH_URL
                 : static::TEST_PUSH_URL;
