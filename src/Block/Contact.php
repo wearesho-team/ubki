@@ -12,28 +12,27 @@ class Contact
 {
     public const TAG = 'cont';
 
-    // region attributes
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
     public const CREATED_AT = 'vdate';
-    // endregion
 
     /**
      * Created date of this contact
+     * vdate attribute (required)
      * @var \DateTimeInterface
      */
     protected $createdAt;
 
     /**
      * Value of contact
-     * cval attribute
+     * cval attribute (required)
      * @var string
      */
     protected $value;
 
     /**
      * Type of contact
-     * ctype attribute
+     * ctype attribute (required)
      * @var int
      */
     protected $type;

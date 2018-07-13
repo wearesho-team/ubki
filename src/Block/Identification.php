@@ -12,7 +12,6 @@ class Identification
 {
     public const TAG = 'ident';
 
-    // region attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const INN = 'inn';
@@ -27,7 +26,6 @@ class Identification
     public const SPD_REGISTRATION = 'spd';
     public const SOCIAL_STATUS = 'sstate';
     public const CHILDREN_COUNT = 'cchild';
-    // endregion
 
     /**
      * Created date of this data
