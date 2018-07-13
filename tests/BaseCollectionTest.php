@@ -44,7 +44,7 @@ class BaseCollectionTest extends TestCase
         $elementClassName = get_class($element);
 
         $this->expectExceptionMessage(
-            "Элемент {$elementClassName} должен быть совместим с " . Ubki\Tests\Mocks\Element::class
+            "Element {$elementClassName} must be compatible with " . Ubki\Tests\Mocks\Element::class
         );
 
         new $this->collection([$element]);
@@ -70,7 +70,7 @@ class BaseCollectionTest extends TestCase
 
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            "Элемент {$elementClassName} должен быть совместим с " . Ubki\Tests\Mocks\Element::class
+            "Element {$elementClassName} must be compatible with " . Ubki\Tests\Mocks\Element::class
         );
 
         $this->collection->append($element);

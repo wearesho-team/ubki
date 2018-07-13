@@ -64,7 +64,7 @@ abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
         $objectType = get_class($object);
 
         if (!$object instanceof $needType) {
-            throw new \InvalidArgumentException("Элемент {$objectType} должен быть совместим с " . $needType);
+            throw new \InvalidArgumentException("Element {$objectType} must be compatible with " . $needType);
         }
     }
 }
