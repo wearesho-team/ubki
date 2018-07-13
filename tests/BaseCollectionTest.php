@@ -35,19 +35,11 @@ class BaseCollectionTest extends TestCase
 
     /**
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Element Exception must be instance of Wearesho\Bobra\Ubki\Tests\Mocks\Element
      */
     public function testInstanceWithInvalidArgument(): void
     {
-        $element = new class
-        {
-        };
-        $elementClassName = get_class($element);
-
-        $this->expectExceptionMessage(
-            "Element {$elementClassName} must be instance of " . Ubki\Tests\Mocks\Element::class
-        );
-
-        new $this->collection([$element]);
+        new $this->collection([new \Exception()]);
     }
 
     public function testAppends(): void
@@ -61,19 +53,13 @@ class BaseCollectionTest extends TestCase
         $this->assertEquals($this->collection->offsetGet(2)->getValue(), static::THIRD_VALUE);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Element Exception must be instance of Wearesho\Bobra\Ubki\Tests\Mocks\Element
+     */
     public function testInvalidElement(): void
     {
-        $element = new class
-        {
-        };
-        $elementClassName = get_class($element);
-
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            "Element {$elementClassName} must be instance of " . Ubki\Tests\Mocks\Element::class
-        );
-
-        $this->collection->append($element);
+        $this->collection->append(new \Exception());
     }
 
     public function testJson(): void
