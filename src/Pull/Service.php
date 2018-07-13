@@ -8,7 +8,7 @@ use GuzzleHttp;
 
 use Psr\Log;
 
-use Wearesho\Bobra\Ubki\Authorization;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Service
@@ -19,7 +19,7 @@ class Service
     /** @var ConfigInterface */
     protected $config;
 
-    /** @var Authorization\ProviderInterface */
+    /** @var Ubki\Authorization\ProviderInterface */
     protected $authorization;
 
     /** @var GuzzleHttp\ClientInterface */
@@ -30,7 +30,7 @@ class Service
 
     public function __construct(
         ConfigInterface $config,
-        Authorization\ProviderInterface $authorization,
+        Ubki\Authorization\ProviderInterface $authorization,
         GuzzleHttp\ClientInterface $client,
         Log\LoggerInterface $logger
     ) {
@@ -44,27 +44,29 @@ class Service
      * @param Request $request
      *
      * @return Response
-     * @throws Authorization\Exception
      * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws Ubki\Exception
      */
-    public function send(Request $request): Response
+    public function send(Request $request): Ubki\Pull\Response
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
-
-
-
-        return $this->client
+        $responseBody = $this->client
             ->send($guzzleRequest)
             ->getBody()
             ->__toString();
+
+        $document = new \DOMDocument('1.0', 'utf-8');
+        $document->loadXML($responseBody);
+
+        $this->checkErrors($document);
+
+        return new Ubki\Pull\Response($document);
     }
 
     /**
      * @param Request $request
      *
      * @return GuzzleHttp\Psr7\Request
-     * @throws Authorization\Exception
-     * @throws GuzzleHttp\Exception\GuzzleException
      */
     protected function convertToGuzzleRequest(Request $request): GuzzleHttp\Psr7\Request
     {
@@ -80,8 +82,6 @@ class Service
      * @param Request $request
      *
      * @return string
-     * @throws Authorization\Exception
-     * @throws GuzzleHttp\Exception\GuzzleException
      */
     private function getBody(Request $request): string
     {
@@ -131,5 +131,27 @@ class Service
             ->item(0)->textContent = base64_encode($xml->saveXML($requestElm));
 
         return $requestXML->saveXML();
+    }
+
+    /**
+     * @param \DOMDocument $document
+     *
+     * @throws Ubki\Exception
+     */
+    private function checkErrors(\DOMDocument $document): void
+    {
+        $errorTags = $document->getElementsByTagName('error');
+
+        if ($errorTags->length > 0) {
+            $error = $errorTags->item(0);
+
+            // todo: implement base exception for all response with <error> tag
+            throw new Ubki\Exception(
+                'There is an error in response: '
+                . "type: {$error->getAttribute('ertype')};"
+                . "\n"
+                . "message: {$error->getAttribute('ertext')};"
+            );
+        }
     }
 }
