@@ -19,10 +19,10 @@ class Service
     /** @var ConfigInterface */
     protected $config;
 
-    /** @var Authorization\Provider */
+    /** @var Authorization\ProviderInterface */
     protected $authorization;
 
-    /** @var GuzzleHttp\Client */
+    /** @var GuzzleHttp\ClientInterface */
     protected $client;
 
     /** @var Log\LoggerInterface */
@@ -30,8 +30,8 @@ class Service
 
     public function __construct(
         ConfigInterface $config,
-        Authorization\Provider $authorization,
-        GuzzleHttp\Client $client,
+        Authorization\ProviderInterface $authorization,
+        GuzzleHttp\ClientInterface $client,
         Log\LoggerInterface $logger
     ) {
         $this->config = $config;
@@ -44,17 +44,36 @@ class Service
      * @param Request $request
      *
      * @return Response
+     * @throws Authorization\Exception
      * @throws GuzzleHttp\Exception\GuzzleException
      */
     public function send(Request $request): Response
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
-        $response = $this->client->send($guzzleRequest);
+
+
+
+        return $this->client
+            ->send($guzzleRequest)
+            ->getBody()
+            ->__toString();
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return GuzzleHttp\Psr7\Request
+     * @throws Authorization\Exception
+     * @throws GuzzleHttp\Exception\GuzzleException
+     */
     protected function convertToGuzzleRequest(Request $request): GuzzleHttp\Psr7\Request
     {
-
+        return new GuzzleHttp\Psr7\Request(
+            'post',
+            $this->config->getPullUrl(),
+            [],
+            $this->getBody($request)
+        );
     }
 
     /**
@@ -82,7 +101,6 @@ class Service
         $requestWrapperElm = $xml->createElement('req_xml');
         $requestWrapperElm = $envelopeElm->appendChild($requestWrapperElm);
 
-
         $requestElm = $xml->createElement('request');
 
         $requestElm->setAttribute('reqtype', $request->getType());
@@ -96,7 +114,7 @@ class Service
         $identityWrapperElm = $requestElm->appendChild($identityWrapperElm);
 
         $identityElm = $xml->createElement('ident');
-        $identityElm->setAttribute('okpo', $inn);
+        $identityElm->setAttribute('okpo', $request->getInn());
         $identityWrapperElm->appendChild($identityElm);
 
         $mvdElm = $xml->createElement('mvd');
@@ -109,7 +127,8 @@ class Service
         $xml->formatOutput = true;
 
         $requestXML = clone $xml;
-        $requestXML->getElementsByTagName('req_xml')->item(0)->textContent = base64_encode($xml->saveXML($requestElm));
+        $requestXML->getElementsByTagName('req_xml')
+            ->item(0)->textContent = base64_encode($xml->saveXML($requestElm));
 
         return $requestXML->saveXML();
     }

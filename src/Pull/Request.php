@@ -10,6 +10,9 @@ use Wearesho\Bobra\Ubki;
  */
 class Request
 {
+    /** @var int */
+    protected $inn;
+
     /** @var Ubki\Language */
     protected $language;
 
@@ -23,6 +26,7 @@ class Request
     protected $date;
 
     public function __construct(
+        int $inn,
         Ubki\Language $language,
         Reason $reason,
         Type $type,
@@ -32,6 +36,11 @@ class Request
         $this->reason = $reason;
         $this->type;
         $this->date = $date;
+    }
+
+    public function getInn(): int
+    {
+        return $this->inn;
     }
 
     public function getLanguage(): Ubki\Language
