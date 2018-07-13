@@ -6,13 +6,8 @@ namespace Wearesho\Bobra\Ubki;
  * Class BaseCollection
  * @package Wearesho\Bobra\Ubki
  */
-class BaseCollection extends \ArrayObject implements \JsonSerializable
+abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
 {
-    /**
-     * Type of collection's element
-     */
-    public const ELEMENT_TYPE = null;
-
     /**
      * BaseCollection constructor.
      *
@@ -58,12 +53,14 @@ class BaseCollection extends \ArrayObject implements \JsonSerializable
         return (array)$this;
     }
 
+    public abstract function type(): string;
+
     /**
      * @param mixed $object
      */
     protected function instanceOfType($object): void
     {
-        $needType = static::ELEMENT_TYPE;
+        $needType = $this->type();
         $objectType = get_class($object);
 
         if (!$object instanceof $needType) {
