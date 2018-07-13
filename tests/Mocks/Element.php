@@ -3,11 +3,11 @@
 namespace Wearesho\Bobra\Ubki\Tests\Mocks;
 
 /**
- * Class ElementMock
+ * Class Element
  *
  * @package Wearesho\Bobra\Ubki\Tests\Mocks
  */
-class ElementMock
+class Element
 {
     /** @var int */
     protected $value;

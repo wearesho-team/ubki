@@ -53,7 +53,7 @@ abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
         return (array)$this;
     }
 
-    public abstract function type(): string;
+    abstract public function type(): string;
 
     /**
      * @param mixed $object
