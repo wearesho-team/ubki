@@ -71,4 +71,17 @@ class BaseCollectionTest extends TestCase
     {
         $this->assertEquals((array)$this->collection, $this->collection->jsonSerialize());
     }
+
+    public function testArrayObjectAccess(): void
+    {
+        $this->assertEquals(0, count($this->collection));
+
+        $this->testAppends();
+
+        $element = new Ubki\Tests\Mocks\ElementMock(static::INTEGER_228);
+        $this->collection[] = $element;
+
+        $this->assertEquals(4, count($this->collection));
+        $this->assertEquals($element, $this->collection->offsetGet(3));
+    }
 }
