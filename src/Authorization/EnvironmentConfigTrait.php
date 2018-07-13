@@ -37,9 +37,9 @@ trait EnvironmentConfigTrait
         $environmentMode = (int)$this->getEnv('PUSH_MODE');
 
         switch ($environmentMode) {
-            case static::MODE_PRODUCTION:
+            case ConfigInterface::MODE_PRODUCTION:
                 return true;
-            case static::MODE_TEST:
+            case ConfigInterface::MODE_TEST:
                 return false;
             default:
                 throw new Ubki\UnsupportedModeException($environmentMode);
