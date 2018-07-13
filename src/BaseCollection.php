@@ -3,8 +3,7 @@
 namespace Wearesho\Bobra\Ubki;
 
 /**
- * Class Validator
- *
+ * Class BaseCollection
  * @package Wearesho\Bobra\Ubki
  */
 class BaseCollection extends \ArrayObject implements \JsonSerializable
