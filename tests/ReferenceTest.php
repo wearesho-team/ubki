@@ -24,4 +24,15 @@ class ReferenceTest extends TestCase
         $this->assertEquals($description, $language->getDescription());
         $this->assertEquals($languageType, $language->getKey());
     }
+
+    /**
+     * @expectedException \BadMethodCallException
+     * @expectedExceptionMessage No static method or enum constant 'INVALID' in class
+     *                           Wearesho\Bobra\Ubki\Tests\Mocks\Language
+     */
+    public function testInvalidConst(): void
+    {
+        $invalidType = 'INVALID';
+        Ubki\Tests\Mocks\Language::{$invalidType}();
+    }
 }
