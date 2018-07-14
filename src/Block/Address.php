@@ -28,7 +28,7 @@ class Address
 
     /**
      * Created date of this contact
-     * vdate attribute (required)
+     * vdate attribute
      * @var \DateTimeInterface
      */
     protected $createdAt;
@@ -41,7 +41,6 @@ class Address
     protected $language;
 
     /**
-     * Type of this address
      * adtype attribute
      * @var int
      */
@@ -55,19 +54,19 @@ class Address
 
     /**
      * adindex attribute
-     * @var string
+     * @var string|null
      */
     protected $index;
 
     /**
      * adstate attribute
-     * @var string
+     * @var string|null
      */
     protected $state;
 
     /**
      * adarea attribute
-     * @var string
+     * @var string|null
      */
     protected $area;
 
@@ -79,7 +78,7 @@ class Address
 
     /**
      * adcitytype attribute
-     * @var int
+     * @var int|null
      */
     protected $cityType;
 
@@ -97,19 +96,19 @@ class Address
 
     /**
      * adcorp attribute
-     * @var string
+     * @var string|null
      */
     protected $corpus;
 
     /**
      * adflat attribute
-     * @var string
+     * @var string|null
      */
     protected $flat;
 
     /**
      * addrdirt attribute
-     * @var string
+     * @var string|null
      */
     protected $fullAddress;
 
@@ -120,32 +119,32 @@ class Address
      * @param int                $language
      * @param int                $type
      * @param string             $country
-     * @param string             $index
-     * @param string             $state
-     * @param string             $area
      * @param string             $city
-     * @param int                $cityType
      * @param string             $street
      * @param string             $house
-     * @param string             $corpus
-     * @param string             $flat
-     * @param string             $fullAddress
+     * @param null|string        $index
+     * @param null|string        $state
+     * @param null|string        $area
+     * @param int|null           $cityType
+     * @param null|string        $corpus
+     * @param null|string        $flat
+     * @param null|string        $fullAddress
      */
     public function __construct(
         \DateTimeInterface $createdAt,
         int $language,
         int $type,
         string $country,
-        string $index,
-        string $state,
-        string $area,
         string $city,
-        int $cityType,
         string $street,
         string $house,
-        string $corpus,
-        string $flat,
-        string $fullAddress
+        ?string $index = null,
+        ?string $state = null,
+        ?string $area = null,
+        ?int $cityType = null,
+        ?string $corpus = null,
+        ?string $flat = null,
+        ?string $fullAddress = null
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;
@@ -183,17 +182,17 @@ class Address
         return $this->country;
     }
 
-    public function getIndex(): string
+    public function getIndex(): ?string
     {
         return $this->index;
     }
 
-    public function getState(): string
+    public function getState(): ?string
     {
         return $this->state;
     }
 
-    public function getArea(): string
+    public function getArea(): ?string
     {
         return $this->area;
     }
@@ -203,7 +202,7 @@ class Address
         return $this->city;
     }
 
-    public function getCityType(): int
+    public function getCityType(): ?int
     {
         return $this->cityType;
     }
@@ -218,17 +217,17 @@ class Address
         return $this->house;
     }
 
-    public function getCorpus(): string
+    public function getCorpus(): ?string
     {
         return $this->corpus;
     }
 
-    public function getFlat(): string
+    public function getFlat(): ?string
     {
         return $this->flat;
     }
 
-    public function getFullAddress(): string
+    public function getFullAddress(): ?string
     {
         return $this->fullAddress;
     }

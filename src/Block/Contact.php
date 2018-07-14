@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\Type;
+
 /**
  * Class Contact
  * Data of one subject's contact
@@ -15,6 +17,7 @@ class Contact
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
     public const CREATED_AT = 'vdate';
+    public const INN = 'inn';
 
     /**
      * Created date of this contact
@@ -33,25 +36,34 @@ class Contact
     /**
      * Type of contact
      * ctype attribute (required)
-     * @var int
+     * @var Type\Contact
      */
     protected $type;
 
     /**
+     * inn attribute
+     * @var int|null
+     */
+    protected $inn;
+
+    /**
      * Contact constructor.
      *
+     * @param \DateTimeInterface $createdAt
      * @param string             $value
-     * @param int                $type
-     * @param \DateTimeInterface $date
+     * @param Type\Contact       $type
+     * @param int|null           $inn
      */
     public function __construct(
+        \DateTimeInterface $createdAt,
         string $value,
-        int $type,
-        \DateTimeInterface $date
+        Type\Contact $type,
+        ?int $inn = null
     ) {
+        $this->createdAt = $createdAt;
         $this->value = $value;
         $this->type = $type;
-        $this->createdAt = $date;
+        $this->inn = $inn;
     }
 
     public function getValue(): string
@@ -59,7 +71,7 @@ class Contact
         return $this->value;
     }
 
-    public function getType(): int
+    public function getType(): Type\Contact
     {
         return $this->type;
     }
@@ -67,5 +79,10 @@ class Contact
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
+    }
+
+    public function getInn(): ?int
+    {
+        return $this->inn;
     }
 }
