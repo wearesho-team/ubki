@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ProviderTest
- *
+ * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Authorization
  */
 class ProviderTest extends TestCase
