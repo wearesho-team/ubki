@@ -58,22 +58,34 @@ $config = new Ubki\Pull\Config(
 Если же они по стандарту не установлены, 
 то они будут взяты по дефолтному значению из имплементированного им интерфейса `ConfigInterface`.
 
-Основные переменные:
+Основные переменные (зависят от типа сервиса):
 
-- **UBKI_USERNAME** - имя пользования
-- **UBKI_PASSWORD** - пароль
-- **UBKI_AUTH_URL** - URL для авторизации
+Сревис экспорта
+| Environment variable | Required |       Default value in production mode      |            Default value in test mode            |         Value type        |
+|:--------------------:|:--------:|:-------------------------------------------:|:------------------------------------------------:|:-------------------------:|
+|  UBKI_PUSH_USERNAME  |    yes   |                                             |                                                  |           string          |
+|  UBKI_PUSH_PASSWORD  |    yes   |                                             |                                                  |           string          |
+|    UBKI_PUSH_MODE    |    yes   |                                             |                                                  |      integer (0...1)      |
+|  UBKI_PUSH_AUTH_URL  |    no    | https://secure.ubki.ua/b2_api_xml/ubki/auth | https://secure.ubki.ua:4040/b2_api_xml/ubki/auth |    string (url format)    |
+|     UBKI_PUSH_URL    |    no    |                                             |                                                  |    string (url format)    |
 
-Для конфига ```Push\EnvironmentConfig``` дополнительно используются переменные:
+Сервис для импорта:
+| Environment variable | Required |       Default value in production mode      |            Default value in test mode            |         Value type        |
+|:--------------------:|:--------:|:-------------------------------------------:|:------------------------------------------------:|:-------------------------:|
+|  UBKI_PULL_USERNAME  |    yes   |                                             |                                                  |           string          |
+|  UBKI_PULL_PASSWORD  |    yes   |                                             |                                                  |           string          |
+|    UBKI_PULL_MODE    |    yes   |                                             |                                                  |      integer (0...1)      |
+|  UBKI_PULL_AUTH_URL  |    no    | https://secure.ubki.ua/b2_api_xml/ubki/auth | https://secure.ubki.ua:4040/b2_api_xml/ubki/auth |    string (url format)    |
+|     UBKI_PULL_URL    |    no    |                                             |                                                  |    string (url format)    |
 
-- **UBKI_PUSH_URL** - URL для передачи информации
-- **UBKI_REGISTRY_URL** - URL для запроса статусов передачи
-
-Для конфига ```Pull\EnvironmentConfig``` дополнительно используются переменные:
-
-- **UBKI_PULL_URL** - URL для получения информации
-
-**Важно!** при отсутствии в окружении `username` или `password` сервис выдаст ошибку
+Сервис для реестра:
+|  Environment variable  | Required |       Default value in production mode       |             Default value in test mode            |         Value type        |
+|:----------------------:|:--------:|:--------------------------------------------:|:-------------------------------------------------:|:-------------------------:|
+|   UBKI_PUSH_USERNAME   |    yes   |                                              |                                                   |           string          |
+|   UBKI_PUSH_PASSWORD   |    yes   |                                              |                                                   |           string          |
+|     UBKI_PUSH_MODE     |    yes   |                                              |                                                   |      integer (0...1)      |
+|   UBKI_PUSH_AUTH_URL   |    no    |  https://secure.ubki.ua/b2_api_xml/ubki/auth |  https://secure.ubki.ua:4040/b2_api_xml/ubki/auth |    string (url format)    |
+| UBKI_PUSH_REGISTRY_URL |    no    | https://secure.ubki.ua/upload/in/reestrs.php | https://secure.ubki.ua:4040/upload/in/reestrs.php |    string (url format)    |
 
 ### Пример использования: 
 

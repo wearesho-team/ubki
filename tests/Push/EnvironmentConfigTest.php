@@ -24,14 +24,14 @@ class EnvironmentConfigTest extends TestCase
         parent::setUp();
 
         putenv('TEST_PUSH_MODE=' . Ubki\Push\EnvironmentConfig::MODE_TEST);
-        putenv('TEST_REGISTRY_URL=' . Ubki\Push\EnvironmentConfig::TEST_REGISTRY_URL);
+        putenv('TEST_PUSH_REGISTRY_URL=' . Ubki\Push\EnvironmentConfig::TEST_REGISTRY_URL);
         putenv('TEST_PUSH_URL=' . Ubki\Push\EnvironmentConfig::TEST_PUSH_URL);
-        $this->configTestMode = new Ubki\Push\EnvironmentConfig('TEST_');
+        $this->configTestMode = new Ubki\Push\EnvironmentConfig('TEST_PUSH_');
 
         putenv('PRODUCTION_PUSH_MODE=' . Ubki\Push\EnvironmentConfig::MODE_PRODUCTION);
-        putenv('PRODUCTION_REGISTRY_URL=' . Ubki\Push\EnvironmentConfig::PRODUCTION_REGISTRY_URL);
+        putenv('PRODUCTION_PUSH_REGISTRY_URL=' . Ubki\Push\EnvironmentConfig::PRODUCTION_REGISTRY_URL);
         putenv('PRODUCTION_PUSH_URL=' . Ubki\Push\EnvironmentConfig::PRODUCTION_PUSH_URL);
-        $this->configProductionMode = new Ubki\Push\EnvironmentConfig('PRODUCTION_');
+        $this->configProductionMode = new Ubki\Push\EnvironmentConfig('PRODUCTION_PUSH_');
     }
 
     public function testGetTestRegistryUrl(): void
@@ -67,8 +67,8 @@ class EnvironmentConfigTest extends TestCase
 
     public function testGetDefaultUrls(): void
     {
-        putenv('TEST_PREFIX_PUSH_MODE=' . Ubki\Push\EnvironmentConfig::MODE_TEST);
-        putenv('PRODUCTION_PREFIX_PUSH_MODE=' . Ubki\Push\EnvironmentConfig::MODE_PRODUCTION);
+        putenv('TEST_PREFIX_MODE=' . Ubki\Push\EnvironmentConfig::MODE_TEST);
+        putenv('PRODUCTION_PREFIX_MODE=' . Ubki\Push\EnvironmentConfig::MODE_PRODUCTION);
 
         $config = new Ubki\Push\EnvironmentConfig('TEST_PREFIX_');
         $url = $config->getRegistryUrl();
@@ -85,6 +85,8 @@ class EnvironmentConfigTest extends TestCase
 
     public function testDefaultPrefix(): void
     {
+        putenv('UBKI_PUSH_USERNAME=username');
+        putenv('UBKI_PUSH_PASSWORD=password');
         putenv('UBKI_PUSH_MODE=' . Ubki\Push\EnvironmentConfig::MODE_PRODUCTION);
         putenv('UBKI_REGISTRY_URL=' . Ubki\Push\EnvironmentConfig::PRODUCTION_REGISTRY_URL);
         putenv('UBKI_PUSH_URL=' . Ubki\Push\EnvironmentConfig::PRODUCTION_PUSH_URL);
@@ -98,5 +100,7 @@ class EnvironmentConfigTest extends TestCase
             Ubki\Push\EnvironmentConfig::PRODUCTION_PUSH_URL,
             $environemntConfig->getPushUrl()
         );
+        $this->assertEquals('username', $environemntConfig->getUsername());
+        $this->assertEquals('password', $environemntConfig->getPassword());
     }
 }

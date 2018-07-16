@@ -15,7 +15,7 @@ class EnvironmentConfig extends Environment\Config implements ConfigInterface
 {
     use Authorization\EnvironmentConfigTrait;
 
-    public function __construct(string $keyPrefix = 'UBKI_')
+    public function __construct(string $keyPrefix = 'UBKI_PUSH_')
     {
         parent::__construct($keyPrefix);
     }
@@ -33,7 +33,7 @@ class EnvironmentConfig extends Environment\Config implements ConfigInterface
 
     public function getPushUrl(): string
     {
-        $url = $this->getEnv('PUSH_URL', function (): string {
+        $url = $this->getEnv('URL', function (): string {
             return $this->isProductionMode()
                 ? static::PRODUCTION_PUSH_URL
                 : static::TEST_PUSH_URL;

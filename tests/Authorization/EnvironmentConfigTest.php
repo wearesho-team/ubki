@@ -24,7 +24,7 @@ class EnvironmentConfigTest extends TestCase
     {
         $this->logger = new TestLogger();
         $this->config =
-            new class('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface
+            new class('UBKI_PUSH_') extends Environment\Config implements Ubki\Authorization\ConfigInterface
             {
                 use Ubki\Authorization\EnvironmentConfigTrait;
             };
@@ -34,31 +34,31 @@ class EnvironmentConfigTest extends TestCase
 
     public function testGetEmptyUsername(): void
     {
-        putenv('UBKI_USERNAME');
+        putenv('UBKI_PUSH_USERNAME');
         $this->expectException(Environment\MissingEnvironmentException::class);
-        $this->expectExceptionMessage('Missing environment key UBKI_USERNAME');
+        $this->expectExceptionMessage('Missing environment key UBKI_PUSH_USERNAME');
         $this->config->getUsername();
     }
 
     public function testGetUsername(): void
     {
         $username = 'username';
-        putenv("UBKI_USERNAME={$username}");
+        putenv("UBKI_PUSH_USERNAME={$username}");
         $this->assertEquals($username, $this->config->getUsername());
     }
 
     public function testGetEmptyPassword(): void
     {
-        putenv('UBKI_PASSWORD');
+        putenv('UBKI_PUSH_PASSWORD');
         $this->expectException(Environment\MissingEnvironmentException::class);
-        $this->expectExceptionMessage('Missing environment key UBKI_PASSWORD');
+        $this->expectExceptionMessage('Missing environment key UBKI_PUSH_PASSWORD');
         $this->config->getPassword();
     }
 
     public function testGetPassword(): void
     {
         $password = 'password';
-        putenv("UBKI_PASSWORD={$password}");
+        putenv("UBKI_PUSH_PASSWORD={$password}");
         $this->assertEquals($password, $this->config->getPassword());
     }
 
