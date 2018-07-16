@@ -3,11 +3,14 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Carbon\Carbon;
+
 use PHPUnit\Framework\TestCase;
+
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class ResponseTest
+ * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Authorization
  */
 class ResponseTest extends TestCase
