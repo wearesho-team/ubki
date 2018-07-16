@@ -29,7 +29,7 @@ abstract class Reference extends Enum
     {
         $array = static::toArray();
         if (isset($array[$name])) {
-            return new static($array[$name], empty($arguments) ? null : array_shift($arguments));
+            return new static($array[$name], $arguments ? null : array_shift($arguments));
         }
 
         throw new \BadMethodCallException("No static method or enum constant '$name' in class " . get_called_class());
