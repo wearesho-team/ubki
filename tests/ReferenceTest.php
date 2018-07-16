@@ -16,23 +16,21 @@ class ReferenceTest extends TestCase
     public function testInstance()
     {
         $description = 'English language';
-        /** @var Ubki\Tests\Mocks\Language $language */
-        $language = Ubki\Tests\Mocks\Language::EN($description);
+        $language = Ubki\Language::EN($description);
 
-        $this->assertEquals(Ubki\Tests\Mocks\Language::EN, $language->getValue());
+        $this->assertEquals(Ubki\Language::EN, $language->getValue());
         $this->assertEquals($description, $language->getDescription());
-        $this->assertEquals(Ubki\Tests\Mocks\Language::EN()->getKey(), $language->getKey());
+        $this->assertEquals(Ubki\Language::EN()->getKey(), $language->getKey());
         $this->assertEquals('EN', $language->getKey());
     }
 
     /**
      * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage No static method or enum constant 'INVALID' in class
-     *                           Wearesho\Bobra\Ubki\Tests\Mocks\Language
+     * @expectedExceptionMessage No static method or enum constant 'BD' in class
+     *                           Wearesho\Bobra\Ubki\Tests\Mocks\Type
      */
     public function testInvalidConst(): void
     {
-        $invalidType = 'INVALID';
-        Ubki\Tests\Mocks\Language::{$invalidType}();
+        Ubki\Language::BD();
     }
 }
