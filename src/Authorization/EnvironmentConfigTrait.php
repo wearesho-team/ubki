@@ -32,7 +32,7 @@ trait EnvironmentConfigTrait
         return $url;
     }
 
-    public function isProductionMode(): bool
+    protected function isProductionMode(): bool
     {
         $environmentMode = (int)$this->getEnv('MODE');
 
