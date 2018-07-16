@@ -94,7 +94,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            $this->now,
+            Carbon::create($this->now->year, $this->now->month, $this->now->day),
             'IN#0000018427',
             'X000000000001'
         );
@@ -105,7 +105,7 @@ class ServiceTest extends TestCase
         $this->assertEquals(
             new Ubki\Push\Registry\ResponseCollection([
                     new Ubki\Push\Registry\Rep\Response(
-                        $this->now,
+                        Carbon::create($this->now->year, $this->now->month, $this->now->day),
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
@@ -154,7 +154,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            $this->now,
+            Carbon::create($this->now->year, $this->now->month, $this->now->day),
             'IN#0000018427',
             'X000000000001'
         );
