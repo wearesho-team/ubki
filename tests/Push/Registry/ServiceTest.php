@@ -33,7 +33,7 @@ class ServiceTest extends TestCase
     /** @var TestLogger */
     protected $logger;
 
-    /** @var Ubki\Push\Registry\ServiceInterface */
+    /** @var Ubki\Push\Registry\Service */
     protected $service;
 
     /** @var Carbon */
@@ -103,8 +103,7 @@ class ServiceTest extends TestCase
         $response = $this->service->send($request);
 
         $this->assertEquals(
-            new Ubki\Push\Registry\ResponseCollection(
-                array(
+            new Ubki\Push\Registry\ResponseCollection([
                     new Ubki\Push\Registry\Rep\Response(
                         $this->now,
                         'IN#0000018427',
@@ -119,7 +118,7 @@ class ServiceTest extends TestCase
                         '2404005906',
                         'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
                     )
-                )
+                ]
             ),
             $response
         );
@@ -167,7 +166,7 @@ class ServiceTest extends TestCase
             new Ubki\Push\Registry\ResponseCollection(
                 array(
                     new Ubki\Push\Registry\Rep\Response(
-                        $this->now,
+                        Carbon::create($this->now->year, $this->now->month, $this->now->day),
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
