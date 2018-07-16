@@ -25,7 +25,7 @@ class ResponseCollectionTest extends TestCase
     {
         parent::setUp();
 
-        $this->responses = array(
+        $this->responses = [
             new Registry\Rep\Response(
                 Carbon::createFromFormat('Ymd', '20101010'),
                 'IN#0000018427',
@@ -96,7 +96,7 @@ class ResponseCollectionTest extends TestCase
                 '2404005906',
                 'OK. Тип контакта: 3. Контакт: +380998881000. Дата версии: 10.10.2009'
             ),
-        );
+        ];
 
         $this->testResponseCollection = new Registry\ResponseCollection($this->responses);
     }
