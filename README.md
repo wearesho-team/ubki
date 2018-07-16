@@ -61,6 +61,7 @@ $config = new Ubki\Pull\Config(
 Основные переменные (зависят от типа сервиса):
 
 Сревис экспорта
+
 | Environment variable | Required |       Default value in production mode      |            Default value in test mode            |         Value type        |
 |:--------------------:|:--------:|:-------------------------------------------:|:------------------------------------------------:|:-------------------------:|
 |  UBKI_PUSH_USERNAME  |    yes   |                                             |                                                  |           string          |
@@ -70,6 +71,7 @@ $config = new Ubki\Pull\Config(
 |     UBKI_PUSH_URL    |    no    |                                             |                                                  |    string (url format)    |
 
 Сервис для импорта:
+
 | Environment variable | Required |       Default value in production mode      |            Default value in test mode            |         Value type        |
 |:--------------------:|:--------:|:-------------------------------------------:|:------------------------------------------------:|:-------------------------:|
 |  UBKI_PULL_USERNAME  |    yes   |                                             |                                                  |           string          |
@@ -79,6 +81,7 @@ $config = new Ubki\Pull\Config(
 |     UBKI_PULL_URL    |    no    |                                             |                                                  |    string (url format)    |
 
 Сервис для реестра:
+
 |  Environment variable  | Required |       Default value in production mode       |             Default value in test mode            |         Value type        |
 |:----------------------:|:--------:|:--------------------------------------------:|:-------------------------------------------------:|:-------------------------:|
 |   UBKI_PUSH_USERNAME   |    yes   |                                              |                                                   |           string          |
