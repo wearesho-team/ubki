@@ -15,6 +15,11 @@ class EnvironmentConfig extends Environment\Config implements ConfigInterface
 {
     use Authorization\EnvironmentConfigTrait;
 
+    public function __construct(string $keyPrefix = 'UBKI_')
+    {
+        parent::__construct($keyPrefix);
+    }
+
     public function getRegistryUrl(): string
     {
         $url = $this->getEnv('REGISTRY_URL', function (): string {
