@@ -82,4 +82,21 @@ class EnvironmentConfigTest extends TestCase
         $url = $config->getPushUrl();
         $this->assertEquals(Ubki\Push\ConfigInterface::PRODUCTION_PUSH_URL, $url);
     }
+
+    public function testDefaultPrefix(): void
+    {
+        putenv('UBKI_PUSH_MODE=' . Ubki\Push\EnvironmentConfig::MODE_PRODUCTION);
+        putenv('UBKI_REGISTRY_URL=' . Ubki\Push\EnvironmentConfig::PRODUCTION_REGISTRY_URL);
+        putenv('UBKI_PUSH_URL=' . Ubki\Push\EnvironmentConfig::PRODUCTION_PUSH_URL);
+        $environemntConfig = new Ubki\Push\EnvironmentConfig();
+
+        $this->assertEquals(
+            Ubki\Push\EnvironmentConfig::PRODUCTION_REGISTRY_URL,
+            $environemntConfig->getRegistryUrl()
+        );
+        $this->assertEquals(
+            Ubki\Push\EnvironmentConfig::PRODUCTION_PUSH_URL,
+            $environemntConfig->getPushUrl()
+        );
+    }
 }
