@@ -2,17 +2,16 @@
 
 namespace Wearesho\Bobra\Ubki\Type;
 
-use MyCLabs\Enum\Enum;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Gender
  * @package Wearesho\Bobra\Ubki\Data
  *
- * @method static Gender MAN()
- * @method static Gender WOMAN()
- * @method int getValue()
+ * @method static static MAN()
+ * @method static static WOMAN()
  */
-final class Gender extends Enum
+final class Gender extends Ubki\Reference
 {
     public const MAN = 1;
     public const WOMAN = 2;

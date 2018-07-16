@@ -8,12 +8,11 @@ use Wearesho\Bobra\Ubki;
  * Class Contact
  * @package Wearesho\Bobra\Ubki\Data
  *
- * @method static Contact HOME($description = null)
- * @method static Contact WORK()
- * @method static Contact MOBILE()
- * @method static Contact EMAIL()
- * @method static Contact FAX()
- * @method int getValue()
+ * @method static static HOME($description = null)
+ * @method static static WORK()
+ * @method static static MOBILE()
+ * @method static static EMAIL()
+ * @method static static FAX()
  */
 final class Contact extends Ubki\Reference
 {
