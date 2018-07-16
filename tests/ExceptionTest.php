@@ -3,10 +3,12 @@
 namespace Wearesho\Bobra\Ubki\Tests;
 
 use Wearesho\Bobra\Ubki;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ExceptionTest
+ * @internal
  * @package Wearesho\Bobra\Ubki\Tests
  */
 class ExceptionTest extends TestCase

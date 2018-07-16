@@ -3,13 +3,16 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Gamez\Psr\Log\TestLogger;
+
 use Horat1us\Environment;
+
 use PHPUnit\Framework\TestCase;
+
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class EnvironmentConfigTest
- *
+ * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Authorization
  */
 class EnvironmentConfigTest extends TestCase
