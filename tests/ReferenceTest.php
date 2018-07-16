@@ -26,8 +26,7 @@ class ReferenceTest extends TestCase
 
     /**
      * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage No static method or enum constant 'BD' in class
-     *                           Wearesho\Bobra\Ubki\Tests\Mocks\Type
+     * @expectedExceptionMessage No static method or enum constant 'BD' in class Wearesho\Bobra\Ubki\Language
      */
     public function testInvalidConst(): void
     {
