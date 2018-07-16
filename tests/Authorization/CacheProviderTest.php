@@ -3,15 +3,20 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use chillerlan\SimpleCache;
+
 use Gamez\Psr\Log\TestLogger;
+
 use GuzzleHttp;
+
 use Horat1us\Environment;
+
 use PHPUnit\Framework\TestCase;
+
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class CacheProviderTest
- *
+ * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Authorization
  */
 class CacheProviderTest extends TestCase
