@@ -16,13 +16,13 @@ class ReferenceTest extends TestCase
     public function testInstance()
     {
         $description = 'English language';
-        $languageType = 'EN';
         /** @var Ubki\Tests\Mocks\Language $language */
-        $language = Ubki\Tests\Mocks\Language::{$languageType}($description);
+        $language = Ubki\Tests\Mocks\Language::EN($description);
 
         $this->assertEquals(Ubki\Tests\Mocks\Language::EN, $language->getValue());
         $this->assertEquals($description, $language->getDescription());
-        $this->assertEquals($languageType, $language->getKey());
+        $this->assertEquals(Ubki\Tests\Mocks\Language::EN()->getKey(), $language->getKey());
+        $this->assertEquals('EN', $language->getKey());
     }
 
     /**
