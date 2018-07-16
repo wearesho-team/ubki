@@ -90,7 +90,7 @@ class Service implements ServiceInterface
                     $attributes = $report->attributes();
 
                     return new Rep\Response(
-                        Carbon::createFromFormat('Ymd', (string)$attributes[static::ATTR_INDATE]),
+                        Carbon::parse((string)$attributes[static::ATTR_INDATE]),
                         (string)$attributes[static::ATTR_IDOUT],
                         (string)$attributes[static::ATTR_IDALIEN],
                         (string)$attributes[static::ATTR_SESSID],
