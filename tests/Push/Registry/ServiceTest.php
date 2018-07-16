@@ -44,7 +44,7 @@ class ServiceTest extends TestCase
         parent::setUp();
 
         $this->now = Carbon::createFromFormat('Y-m-d', Carbon::now()->toDateString());
-        $date = Carbon::create($this->now->year, $this->now->month, $this->now->day, 0,0,0)->format('Ymd');
+        $date = Carbon::create($this->now->year, $this->now->month, $this->now->day, 0, 0, 0)->format('Ymd');
         $this->logger = new TestLogger();
         $this->responseAuth = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <doc>
@@ -95,7 +95,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::create($this->now->year, $this->now->month, $this->now->day, 0,0,0),
+            Carbon::create($this->now->year, $this->now->month, $this->now->day, 0, 0, 0),
             'IN#0000018427',
             'X000000000001'
         );
@@ -106,7 +106,7 @@ class ServiceTest extends TestCase
         $this->assertEquals(
             new Ubki\Push\Registry\ResponseCollection([
                     new Ubki\Push\Registry\Rep\Response(
-                        Carbon::create($this->now->year, $this->now->month, $this->now->day, 0,0,0),
+                        Carbon::create($this->now->year, $this->now->month, $this->now->day, 0, 0, 0),
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
@@ -119,8 +119,7 @@ class ServiceTest extends TestCase
                         '2404005906',
                         'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
                     )
-                ]
-            ),
+                ]),
             $response
         );
     }
@@ -155,7 +154,7 @@ class ServiceTest extends TestCase
         );
 
         $request = new Ubki\Push\Registry\Rep\Request(
-            Carbon::create($this->now->year, $this->now->month, $this->now->day, 0,0,0),
+            Carbon::create($this->now->year, $this->now->month, $this->now->day, 0, 0, 0),
             'IN#0000018427',
             'X000000000001'
         );
@@ -167,7 +166,7 @@ class ServiceTest extends TestCase
             new Ubki\Push\Registry\ResponseCollection(
                 array(
                     new Ubki\Push\Registry\Rep\Response(
-                        Carbon::create($this->now->year, $this->now->month, $this->now->day, 0,0,0),
+                        Carbon::create($this->now->year, $this->now->month, $this->now->day, 0, 0, 0),
                         'IN#0000018427',
                         'X000000000001',
                         'A1F593950A8F4562AE5A5DB1914D658A',
