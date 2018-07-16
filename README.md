@@ -67,7 +67,7 @@ $config = new Ubki\Pull\Config(
 |  UBKI_PUSH_USERNAME  |    yes   |                                             |                                                  |           string          |
 |  UBKI_PUSH_PASSWORD  |    yes   |                                             |                                                  |           string          |
 |    UBKI_PUSH_MODE    |    yes   |                                             |                                                  |      integer (0...1)      |
-|  UBKI_PUSH_AUTH_URL  |    no    | https://secure.ubki.ua/b2_api_xml/ubki/auth | https://secure.ubki.ua:4040/b2_api_xml/ubki/auth |    string (url format)    |
+|  UBKI_PUSH_AUTH_URL  |    no    | [Auth production url](https://secure.ubki.ua/b2_api_xml/ubki/auth) | [Auth test url](https://secure.ubki.ua:4040/b2_api_xml/ubki/auth) |    string (url format)    |
 |     UBKI_PUSH_URL    |    no    |                                             |                                                  |    string (url format)    |
 
 Сервис для импорта:
@@ -77,7 +77,7 @@ $config = new Ubki\Pull\Config(
 |  UBKI_PULL_USERNAME  |    yes   |                                             |                                                  |           string          |
 |  UBKI_PULL_PASSWORD  |    yes   |                                             |                                                  |           string          |
 |    UBKI_PULL_MODE    |    yes   |                                             |                                                  |      integer (0...1)      |
-|  UBKI_PULL_AUTH_URL  |    no    | https://secure.ubki.ua/b2_api_xml/ubki/auth | https://secure.ubki.ua:4040/b2_api_xml/ubki/auth |    string (url format)    |
+|  UBKI_PULL_AUTH_URL  |    no    | [Auth production url](https://secure.ubki.ua/b2_api_xml/ubki/auth) | [Auth test url](https://secure.ubki.ua:4040/b2_api_xml/ubki/auth) |    string (url format)    |
 |     UBKI_PULL_URL    |    no    |                                             |                                                  |    string (url format)    |
 
 Сервис для реестра:
@@ -87,8 +87,8 @@ $config = new Ubki\Pull\Config(
 |   UBKI_PUSH_USERNAME   |    yes   |                                              |                                                   |           string          |
 |   UBKI_PUSH_PASSWORD   |    yes   |                                              |                                                   |           string          |
 |     UBKI_PUSH_MODE     |    yes   |                                              |                                                   |      integer (0...1)      |
-|   UBKI_PUSH_AUTH_URL   |    no    |  https://secure.ubki.ua/b2_api_xml/ubki/auth |  https://secure.ubki.ua:4040/b2_api_xml/ubki/auth |    string (url format)    |
-| UBKI_PUSH_REGISTRY_URL |    no    | https://secure.ubki.ua/upload/in/reestrs.php | https://secure.ubki.ua:4040/upload/in/reestrs.php |    string (url format)    |
+|   UBKI_PUSH_AUTH_URL   |    no    |  [Auth production url](https://secure.ubki.ua/b2_api_xml/ubki/auth) |  [Auth test url](https://secure.ubki.ua:4040/b2_api_xml/ubki/auth) |    string (url format)    |
+| UBKI_PUSH_REGISTRY_URL |    no    | [Registry production url](https://secure.ubki.ua/upload/in/reestrs.php) | [Registry test url](https://secure.ubki.ua:4040/upload/in/reestrs.php) |    string (url format)    |
 
 ### Пример использования: 
 
