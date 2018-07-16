@@ -3,14 +3,16 @@
 namespace Wearesho\Bobra\Ubki;
 
 /**
- * Interface Language
- * Доступные языки для передачи и получения данных
- *
+ * Class Language
  * @package Wearesho\Bobra\Ubki
+ *
+ * @method static static RU(string $description = null)
+ * @method static static UA(string $description = null)
+ * @method static static EN(string $description = null)
  */
-interface Language
+class Language extends Reference
 {
-    public const RU = 'RU';
-    public const UA = 'UA';
-    public const EN = 'EN';
+    public const RU = 1;
+    public const UA = 2;
+    public const EN = 4;
 }
