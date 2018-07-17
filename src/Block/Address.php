@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\Type;
+
 /**
  * Class Address
  * <addr> tag
@@ -34,9 +36,9 @@ class Address
     protected $createdAt;
 
     /**
-     * Language of this block
+     * Block representation language
      * lng attribute
-     * @var int
+     * @var Type\Language
      */
     protected $language;
 
@@ -116,7 +118,7 @@ class Address
      * Address constructor.
      *
      * @param \DateTimeInterface $createdAt
-     * @param int                $language
+     * @param Type\Language      $language
      * @param int                $type
      * @param string             $country
      * @param string             $city
@@ -132,7 +134,7 @@ class Address
      */
     public function __construct(
         \DateTimeInterface $createdAt,
-        int $language,
+        Type\Language $language,
         int $type,
         string $country,
         string $city,
@@ -167,7 +169,7 @@ class Address
         return $this->createdAt;
     }
 
-    public function getLanguage(): int
+    public function getLanguage(): Type\Language
     {
         return $this->language;
     }

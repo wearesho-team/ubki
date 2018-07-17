@@ -8,8 +8,8 @@ use Wearesho\Bobra\Ubki;
  * Class Gender
  * @package Wearesho\Bobra\Ubki\Data
  *
- * @method static static MAN()
- * @method static static WOMAN()
+ * @method static static MAN(string $description = null)
+ * @method static static WOMAN(string $description = null)
  */
 final class Gender extends Ubki\Reference
 {

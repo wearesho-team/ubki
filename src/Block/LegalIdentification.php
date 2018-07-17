@@ -73,7 +73,7 @@ class LegalIdentification
      * urdatregnal attribute
      * @var \DateTimeInterface|null
      */
-    protected $tacRegistrationDate;
+    protected $taxRegistrationDate;
 
     /**
      * LegalIdentification constructor.
@@ -86,7 +86,7 @@ class LegalIdentification
      * @param null|string             $economyBranch
      * @param null|string             $activityType
      * @param \DateTimeInterface|null $edrRegistrationDate
-     * @param \DateTimeInterface|null $tacRegistrationDate
+     * @param \DateTimeInterface|null $taxRegistrationDate
      */
     public function __construct(
         \DateTimeInterface $createdAt,
@@ -97,7 +97,7 @@ class LegalIdentification
         ?string $economyBranch = null,
         ?string $activityType = null,
         ?\DateTimeInterface $edrRegistrationDate = null,
-        ?\DateTimeInterface $tacRegistrationDate = null
+        ?\DateTimeInterface $taxRegistrationDate = null
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;
@@ -107,7 +107,7 @@ class LegalIdentification
         $this->economyBranch = $economyBranch;
         $this->activityType = $activityType;
         $this->edrRegistrationDate = $edrRegistrationDate;
-        $this->tacRegistrationDate = $tacRegistrationDate;
+        $this->taxRegistrationDate = $taxRegistrationDate;
     }
 
 
@@ -151,8 +151,8 @@ class LegalIdentification
         return $this->edrRegistrationDate;
     }
 
-    public function getTacRegistrationDate(): ?\DateTimeInterface
+    public function getTaxRegistrationDate(): ?\DateTimeInterface
     {
-        return $this->tacRegistrationDate;
+        return $this->taxRegistrationDate;
     }
 }

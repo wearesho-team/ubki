@@ -8,9 +8,9 @@ use Wearesho\Bobra\Ubki;
  * Class Language
  * @package Wearesho\Bobra\Ubki\Data
  *
- * @method static static RU()
- * @method static static UA()
- * @method static static EN()
+ * @method static static RU(string $description = null)
+ * @method static static UA(string $description = null)
+ * @method static static EN(string $description = null)
  */
 final class Language extends Ubki\Reference
 {
