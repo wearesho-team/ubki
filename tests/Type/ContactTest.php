@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ContactTest extends TestCase
 {
-    public function testMOBILE(): void
+    public function testMobile(): void
     {
         $description = 'Мобильный телефон';
         $contact = Contact::MOBILE($description);
@@ -21,7 +21,7 @@ class ContactTest extends TestCase
         $this->assertEquals($description, $contact->getDescription());
     }
 
-    public function testWORK(): void
+    public function testWork(): void
     {
         $description = 'Рабочий телефон';
         $contact = Contact::WORK($description);
@@ -30,7 +30,7 @@ class ContactTest extends TestCase
         $this->assertEquals($description, $contact->getDescription());
     }
 
-    public function testHOME(): void
+    public function testHome(): void
     {
         $description = 'Домашний телефон телефон';
         $contact = Contact::HOME($description);
@@ -39,7 +39,7 @@ class ContactTest extends TestCase
         $this->assertEquals($description, $contact->getDescription());
     }
 
-    public function testFAX(): void
+    public function testFax(): void
     {
         $description = 'Факс';
         $contact = Contact::FAX($description);
@@ -48,7 +48,7 @@ class ContactTest extends TestCase
         $this->assertEquals($description, $contact->getDescription());
     }
 
-    public function testEMAIL(): void
+    public function testEmail(): void
     {
         $description = 'Почта';
         $contact = Contact::EMAIL($description);
