@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki;
 
 /**
- * Class Component
+ * Class Block
  * <comp> tag
  * @package Wearesho\Bobra\Ubki
  */

@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Component;
+namespace Wearesho\Bobra\Ubki\Block;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Identifying
- * @package Wearesho\Bobra\Ubki\Component
+ * @package Wearesho\Bobra\Ubki\Block
  */
 class Identifying extends Ubki\Block
 {

@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Tests\Component;
 
 use Wearesho\Bobra\Ubki\Block;
-use Wearesho\Bobra\Ubki\Component;
 
 use PHPUnit\Framework\TestCase;
 
@@ -13,13 +12,13 @@ use PHPUnit\Framework\TestCase;
  */
 class IdentifyingTest extends TestCase
 {
-    /** @var Component\Identifying */
+    /** @var Block\Identifying */
     protected $identifyingComponent;
 
     protected function setUp(): void
     {
         // todo: change string attribute to Credential object
-        $this->identifyingComponent = new Component\Identifying('Some credential');
+        $this->identifyingComponent = new Block\Identifying('Some credential');
     }
 
     public function testType(): void
