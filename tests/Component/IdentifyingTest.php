@@ -23,7 +23,7 @@ class IdentifyingTest extends TestCase
 
     public function testType(): void
     {
-        $this->assertEquals(Block::IDENTIFYING, $this->identifyingComponent->type());
+        $this->assertEquals(Block\Identifying::ID, $this->identifyingComponent->getId());
     }
 
     public function testGetCredential(): void

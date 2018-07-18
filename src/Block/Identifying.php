@@ -8,9 +8,9 @@ use Wearesho\Bobra\Ubki;
  * Class Identifying
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Identifying implements Ubki\Block
+class Identifying extends Ubki\Block
 {
-    protected const ID = 1;
+    public const ID = 1;
 
     protected $credential;
 
