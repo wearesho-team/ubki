@@ -12,28 +12,48 @@ use PHPUnit\Framework\TestCase;
  */
 class ContactTest extends TestCase
 {
-    public function testMOBILE()
+    public function testMOBILE(): void
     {
-        $this->assertEquals(Contact::MOBILE, Contact::MOBILE()->getValue());
+        $description = 'Мобильный телефон';
+        $contact = Contact::MOBILE($description);
+        $this->assertEquals(Contact::MOBILE, $contact->getValue());
+        $this->assertEquals('MOBILE', $contact->getKey());
+        $this->assertEquals($description, $contact->getDescription());
     }
 
-    public function testWORK()
+    public function testWORK(): void
     {
-        $this->assertEquals(Contact::WORK, Contact::WORK()->getValue());
+        $description = 'Рабочий телефон';
+        $contact = Contact::WORK($description);
+        $this->assertEquals(Contact::WORK, $contact->getValue());
+        $this->assertEquals('WORK', $contact->getKey());
+        $this->assertEquals($description, $contact->getDescription());
     }
 
-    public function testHOME()
+    public function testHOME(): void
     {
-        $this->assertEquals(Contact::HOME, Contact::HOME()->getValue());
+        $description = 'Домашний телефон телефон';
+        $contact = Contact::HOME($description);
+        $this->assertEquals(Contact::HOME, $contact->getValue());
+        $this->assertEquals('HOME', $contact->getKey());
+        $this->assertEquals($description, $contact->getDescription());
     }
 
-    public function testFAX()
+    public function testFAX(): void
     {
-        $this->assertEquals(Contact::FAX, Contact::FAX()->getValue());
+        $description = 'Факс';
+        $contact = Contact::FAX($description);
+        $this->assertEquals(Contact::FAX, $contact->getValue());
+        $this->assertEquals('FAX', $contact->getKey());
+        $this->assertEquals($description, $contact->getDescription());
     }
 
-    public function testEMAIL()
+    public function testEMAIL(): void
     {
-        $this->assertEquals(Contact::EMAIL, Contact::EMAIL()->getValue());
+        $description = 'Почта';
+        $contact = Contact::EMAIL($description);
+        $this->assertEquals(Contact::EMAIL, $contact->getValue());
+        $this->assertEquals('EMAIL', $contact->getKey());
+        $this->assertEquals($description, $contact->getDescription());
     }
 }
