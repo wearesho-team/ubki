@@ -1,6 +1,6 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Component;
+namespace Wearesho\Bobra\Ubki\Tests\Block;
 
 use Wearesho\Bobra\Ubki\Block;
 
