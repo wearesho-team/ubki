@@ -13,6 +13,8 @@ use Wearesho\Bobra\Ubki;
  */
 class AddressTest extends Ubki\Tests\Extend\ElementTestCase
 {
+    public const TAG = 'addr';
+
     /** @var Ubki\Element\Address block */
     protected $block;
 
