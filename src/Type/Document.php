@@ -28,21 +28,21 @@ use Wearesho\Bobra\Ubki;
  */
 final class Document extends Ubki\Reference
 {
-    const PASSPORT = 1;
-    const DRIVER = 2;
-    const INTERNATIONAL = 3;
-    const BIRTH = 4;
-    const SEAMAN = 5;
-    const MILITARY = 6;
-    const TEMP_CARD = 7;
-    const DIPLOMA = 8;
-    const ATTESTAT = 9;
-    const CITIZEN = 10;
-    const STATE_REGISTRATION = 11;
-    const EXTRACT_FROM_EGR = 12;
-    const ORDERING_FROM_EGR = 13;
-    const CERTIFICATE_TAXPAYERS = 14;
-    const INFORMATION_TAXPAYER = 15;
-    const RESIDENCE = 16;
-    const UKRAINE_CARD = 17;
+    public const PASSPORT = 1;
+    public const DRIVER = 2;
+    public const INTERNATIONAL = 3;
+    public const BIRTH = 4;
+    public const SEAMAN = 5;
+    public const MILITARY = 6;
+    public const TEMP_CARD = 7;
+    public const DIPLOMA = 8;
+    public const ATTESTAT = 9;
+    public const CITIZEN = 10;
+    public const STATE_REGISTRATION = 11;
+    public const EXTRACT_FROM_EGR = 12;
+    public const ORDERING_FROM_EGR = 13;
+    public const CERTIFICATE_TAXPAYERS = 14;
+    public const INFORMATION_TAXPAYER = 15;
+    public const RESIDENCE = 16;
+    public const UKRAINE_CARD = 17;
 }
