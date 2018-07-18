@@ -31,10 +31,6 @@
     {
       "name": "Alexander Letnikow",
       "email": "reclamme@gmail.com"
-    },
-    {
-      "name": "Roman Varkuta",
-      "email": "roman.varkuta@gmail.com"
     }
   ],
   "minimum-stability": "stable",
