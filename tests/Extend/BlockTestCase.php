@@ -18,5 +18,5 @@ abstract class BlockTestCase extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->tag(), $this->block ? $this->block->tag() : null);
     }
 
-    abstract function tag(): string;
+    abstract public function tag(): string;
 }
