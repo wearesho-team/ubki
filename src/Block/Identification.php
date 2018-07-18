@@ -5,7 +5,6 @@ namespace Wearesho\Bobra\Ubki\Block;
 /**
  * Class Identification
  * Identification data of subject
- * <ident> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Identification

@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Block;
 
 /**
  * Class Photo
- * <foto> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Photo

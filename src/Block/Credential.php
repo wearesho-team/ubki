@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki\Collection;
 
 /**
  * Class Credential
- * <cki> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Credential

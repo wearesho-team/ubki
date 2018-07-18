@@ -5,7 +5,6 @@ namespace Wearesho\Bobra\Ubki\Block;
 /**
  * Class Work
  * Data about subject's work
- * <work> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Work

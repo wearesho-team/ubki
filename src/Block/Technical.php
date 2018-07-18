@@ -3,15 +3,15 @@
 namespace Wearesho\Bobra\Ubki\Block;
 
 use Wearesho\Bobra\Ubki\Collection;
-use Wearesho\Bobra\Ubki\Type\Language;
 
 /**
  * Class Technical
- * <tech> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Technical
 {
+    public const TAG = 'tech';
+
     /** @var Collection\Step */
     protected $steps;
 
@@ -22,7 +22,7 @@ class Technical
      */
     protected $requestId;
 
-    /**  @var Balance */
+    /** @var Balance */
     protected $balance;
 
     /**

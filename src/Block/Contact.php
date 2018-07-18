@@ -5,7 +5,6 @@ namespace Wearesho\Bobra\Ubki\Block;
 /**
  * Class Contact
  * Data of one subject's contact
- * <cont> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Contact
@@ -49,7 +48,7 @@ class Contact
      *
      * @param \DateTimeInterface $createdAt
      * @param string             $value
-     * @param int       $type
+     * @param int                $type
      * @param int|null           $inn
      */
     public function __construct(

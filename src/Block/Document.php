@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Block;
 
 /**
  * Class Document
- * <doc> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Document

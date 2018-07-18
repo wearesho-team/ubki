@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Block;
 
 /**
  * Class Step
- * <step> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Step

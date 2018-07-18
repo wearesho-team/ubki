@@ -2,17 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
-use Wearesho\Bobra\Ubki\Type;
-
 /**
  * Class Address
- * <addr> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class Address
 {
     public const TAG = 'addr';
 
+    // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const TYPE = 'adtype';
@@ -28,113 +26,51 @@ class Address
     public const FLAT = 'flat';
     public const FULL_ADDRESS = 'addrdirt';
 
-    /**
-     * Created date of this contact
-     * vdate attribute
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /**
-     * Block representation language
-     * lng attribute
-     * @var Type\Language
-     */
+    /** @var int */
     protected $language;
 
-    /**
-     * adtype attribute
-     * @var int
-     */
+    /** @var int */
     protected $type;
 
-    /**
-     * adcountry attribute
-     * @var string
-     */
+    /** @var string */
     protected $country;
 
-    /**
-     * adindex attribute
-     * @var string|null
-     */
+    /** @var null|string */
     protected $index;
 
-    /**
-     * adstate attribute
-     * @var string|null
-     */
+    /** @var null|string */
     protected $state;
 
-    /**
-     * adarea attribute
-     * @var string|null
-     */
+    /** @var null|string */
     protected $area;
 
-    /**
-     * adcity attribute
-     * @var string
-     */
+    /** @var string */
     protected $city;
 
-    /**
-     * adcitytype attribute
-     * @var int|null
-     */
+    /** @var int|null */
     protected $cityType;
 
-    /**
-     * adstreet attribute
-     * @var string
-     */
+    /** @var string */
     protected $street;
 
-    /**
-     * adhome attribute
-     * @var string
-     */
+    /** @var string */
     protected $house;
 
-    /**
-     * adcorp attribute
-     * @var string|null
-     */
+    /** @var null|string */
     protected $corpus;
 
-    /**
-     * adflat attribute
-     * @var string|null
-     */
+     /** @var null|string */
     protected $flat;
 
-    /**
-     * addrdirt attribute
-     * @var string|null
-     */
+    /** @var null|string */
     protected $fullAddress;
 
-    /**
-     * Address constructor.
-     *
-     * @param \DateTimeInterface $createdAt
-     * @param Type\Language      $language
-     * @param int                $type
-     * @param string             $country
-     * @param string             $city
-     * @param string             $street
-     * @param string             $house
-     * @param null|string        $index
-     * @param null|string        $state
-     * @param null|string        $area
-     * @param int|null           $cityType
-     * @param null|string        $corpus
-     * @param null|string        $flat
-     * @param null|string        $fullAddress
-     */
     public function __construct(
         \DateTimeInterface $createdAt,
-        Type\Language $language,
+        int $language,
         int $type,
         string $country,
         string $city,
@@ -169,7 +105,7 @@ class Address
         return $this->createdAt;
     }
 
-    public function getLanguage(): Type\Language
+    public function getLanguage(): int
     {
         return $this->language;
     }

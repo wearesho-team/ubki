@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki\Collection;
 
 /**
  * Class CreditDeal
- * <crdeal> TAG
  * @package Wearesho\Bobra\Ubki\Block
  */
 class CreditDeal

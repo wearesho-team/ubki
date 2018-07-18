@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Block;
 
 /**
  * Class LegalIdentification
- * <urident> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
 class LegalIdentification
