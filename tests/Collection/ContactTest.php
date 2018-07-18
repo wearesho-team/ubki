@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Collection;
 
-use Wearesho\Bobra\Ubki\Collection\Contact;
+use Wearesho\Bobra\Ubki;
 
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +15,6 @@ class ContactTest extends TestCase
 {
     public function testType()
     {
-        $this->assertEquals(\Wearesho\Bobra\Ubki\Block\Contact::class, (new Contact())->type());
+        $this->assertEquals(Ubki\Block\Contact::class, (new Ubki\Collection\Contact())->type());
     }
 }
