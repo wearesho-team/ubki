@@ -2,16 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
-use Wearesho\Bobra\Ubki\Collection;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class CreditDeal
  * @package Wearesho\Bobra\Ubki\Block
  */
-class CreditDeal
+class CreditDeal extends Ubki\BaseBlock
 {
-    public const TAG = 'crdeal';
-
+    // attributes
     public const IDENTIFIER = 'dlref';
     public const LANGUAGE = 'lng';
     public const INN = 'inn';
@@ -28,129 +27,65 @@ class CreditDeal
     public const ROLE = 'dlrolesub';
     public const COLLATERAL_COST = 'dlamtobes';
 
-    /**
-     * Unique identifier of this deal
-     * dlref attribute
-     * @var string
-     */
+    /** @var string */
     protected $identifier;
 
-    /**
-     * lng attribute
-     * @var string
-     */
+    /** @var string */
     protected $language;
 
-    /**
-     * inn attribute
-     * @var int
-     */
+    /** @var int|null */
     protected $inn;
 
-    /**
-     * fname attribute
-     * @var string
-     */
+    /** @var string */
     protected $firstName;
 
-    /**
-     * mname attribute
-     * @var string
-     */
+    /** @var string|null */
     protected $middleName;
 
-    /**
-     * lname attribute
-     * @var string
-     */
+    /** @var string */
     protected $lastName;
 
-    /**
-     * bdate attribute
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /**
-     * dlcelcred attribute
-     * @var int
-     */
+    /** @var int */
     protected $type;
 
-    /**
-     * dlvidobes attribute
-     * @var int
-     */
+    /** @var int */
     protected $collateralType;
 
-    /**
-     * dlporpog attribute
-     * @var int
-     */
+    /** @var int */
     protected $repaymentProcedure;
 
-    /**
-     * dlcurr attribute
-     * @var int
-     */
+    /** @var int */
     protected $currency;
 
-    /**
-     * Amount (initial) of this deal
-     * dlamt attribute
-     * @var float
-     */
+    /** @var float */
     protected $initSum;
 
     /**
      * Spurce Information
-     * dldonor attribute
      * @var string
      */
     protected $donor;
 
-    /**
-     * dlrolesub attribute
-     * @var int
-     */
+    /** @var int */
     protected $role;
 
     /**
      * Cost of collateral in base currency
-     * dlamtobes attribute
      * @var float
      */
     protected $collateralCost;
 
-    /** @var Collection\DealLife */
+    /** @var Ubki\Collection\DealLife */
     protected $dealLifes;
 
-    /**
-     * CreditDeal constructor.
-     *
-     * @param string              $identifier
-     * @param string              $language
-     * @param int                 $inn
-     * @param string              $firstName
-     * @param string              $middleName
-     * @param string              $lastName
-     * @param \DateTimeInterface  $birthDate
-     * @param int                 $type
-     * @param int                 $collateralType
-     * @param int                 $repaymentProcedure
-     * @param int                 $currency
-     * @param float               $initSum
-     * @param string              $donor
-     * @param int                 $role
-     * @param float               $collateralCost
-     * @param Collection\DealLife $dealLifes
-     */
     public function __construct(
+        Ubki\Collection\DealLife $dealLifes,
         string $identifier,
         string $language,
-        int $inn,
         string $firstName,
-        string $middleName,
         string $lastName,
         \DateTimeInterface $birthDate,
         int $type,
@@ -161,7 +96,8 @@ class CreditDeal
         string $donor,
         int $role,
         float $collateralCost,
-        Collection\DealLife $dealLifes
+        ?int $inn = null,
+        ?string $middleName = null
     ) {
         $this->identifier = $identifier;
         $this->language = $language;
@@ -181,6 +117,11 @@ class CreditDeal
         $this->dealLifes = $dealLifes;
     }
 
+    public function tag(): string
+    {
+        return 'crdeal';
+    }
+
     public function getIdentifier(): string
     {
         return $this->identifier;
@@ -191,7 +132,7 @@ class CreditDeal
         return $this->language;
     }
 
-    public function getInn(): int
+    public function getInn(): ?int
     {
         return $this->inn;
     }
@@ -201,7 +142,7 @@ class CreditDeal
         return $this->firstName;
     }
 
-    public function getMiddleName(): string
+    public function getMiddleName(): ?string
     {
         return $this->middleName;
     }
@@ -256,7 +197,7 @@ class CreditDeal
         return $this->collateralCost;
     }
 
-    public function getDealLifes(): Collection\DealLife
+    public function getDealLifes(): Ubki\Collection\DealLife
     {
         return $this->dealLifes;
     }

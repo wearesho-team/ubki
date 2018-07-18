@@ -2,45 +2,28 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\BaseBlock;
+
 /**
  * Class Step
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Step
+class Step extends BaseBlock
 {
-    public const TAG = 'step';
-
+    // attributes
     public const NAME = 'name';
     public const START_TIME = 'stm';
     public const END_TIME = 'ftm';
 
-    /**
-     * name attribute
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * stm attribute
-     * format: Y-m-d H:i:s.u
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $startTime;
 
-    /**
-     * stm attribute
-     * format: Y-m-d H:i:s.u
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $endTime;
 
-    /**
-     * Step constructor.
-     *
-     * @param string             $name
-     * @param \DateTimeInterface $startTime
-     * @param \DateTimeInterface $endTime
-     */
     public function __construct(
         string $name,
         \DateTimeInterface $startTime,
@@ -49,6 +32,11 @@ class Step
         $this->name = $name;
         $this->startTime = $startTime;
         $this->endTime = $endTime;
+    }
+
+    public function tag(): string
+    {
+        return 'step';
     }
 
     public function getName(): string

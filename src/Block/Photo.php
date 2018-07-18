@@ -2,54 +2,44 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\BaseBlock;
+
 /**
  * Class Photo
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Photo
+class Photo extends BaseBlock
 {
-    public const TAG = 'foto';
-
+    // attributes
     public const CREATED_AT = 'vdate';
     public const INN = 'inn';
     public const FOTO = 'foto';
 
-    /**
-     * Created date of this block
-     * vdate attribute
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /**
-     * Subject's INN
-     * inn attribute
-     * @var int
-     */
+    /** @var int|null */
     protected $inn;
 
     /**
      * Subject's photo (converted with base64 method)
-     * foto tag
      * @var string
      */
     protected $foto;
 
-    /**
-     * Photo constructor.
-     *
-     * @param \DateTimeInterface $createdAt
-     * @param int                $inn
-     * @param string             $foto
-     */
     public function __construct(
         \DateTimeInterface $createdAt,
-        int $inn,
-        string $foto
+        string $foto,
+        ?int $inn = null
     ) {
         $this->createdAt = $createdAt;
         $this->inn = $inn;
         $this->foto = $foto;
+    }
+
+    public function tag(): string
+    {
+        return 'foto';
     }
 
     public function getCreatedAt(): \DateTimeInterface
@@ -57,7 +47,7 @@ class Photo
         return $this->createdAt;
     }
 
-    public function getInn(): int
+    public function getInn(): ?int
     {
         return $this->inn;
     }

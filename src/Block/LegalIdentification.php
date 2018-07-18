@@ -2,14 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\BaseBlock;
+
 /**
  * Class LegalIdentification
  * @package Wearesho\Bobra\Ubki\Block
  */
-class LegalIdentification
+class LegalIdentification extends BaseBlock
 {
-    public const TAG = 'urident';
-
+    // attributes
     public const ERGPOU = 'okpo';
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
@@ -20,73 +21,33 @@ class LegalIdentification
     public const EDR_REGISTRATION_DATE = 'urdatreg';
     public const TAX_REGISTRATION_DATE = 'urdatregnal';
 
-    /**
-     * Created date of this block
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /**
-     * lng attribute
-     * @var int
-     */
+    /** @var int */
     protected $language;
 
-    /**
-     * urname attribute
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * okpo attribute
-     * @var int|null
-     */
+    /** @var int|null */
     protected $ergpou;
 
-    /**
-     * urfrms attribute
-     * @var int|null
-     */
+    /** @var int|null */
     protected $form;
 
-    /**
-     * ureconom attribute
-     * @var string|null
-     */
+    /** @var null|string */
     protected $economyBranch;
 
-    /**
-     * urvide attribute
-     * @var string|null
-     */
+    /** @var null|string */
     protected $activityType;
 
-    /**
-     * urdatreg attribute
-     * @var \DateTimeInterface|null
-     */
+    /** @var \DateTimeInterface|null */
     protected $edrRegistrationDate;
 
-    /**
-     * urdatregnal attribute
-     * @var \DateTimeInterface|null
-     */
+    /** @var \DateTimeInterface|null */
     protected $taxRegistrationDate;
 
-    /**
-     * LegalIdentification constructor.
-     *
-     * @param \DateTimeInterface      $createdAt
-     * @param int                     $language
-     * @param string                  $name
-     * @param int|null                $ergpou
-     * @param int|null                $form
-     * @param null|string             $economyBranch
-     * @param null|string             $activityType
-     * @param \DateTimeInterface|null $edrRegistrationDate
-     * @param \DateTimeInterface|null $taxRegistrationDate
-     */
     public function __construct(
         \DateTimeInterface $createdAt,
         int $language,
@@ -109,6 +70,10 @@ class LegalIdentification
         $this->taxRegistrationDate = $taxRegistrationDate;
     }
 
+    public function tag(): string
+    {
+        return 'urident';
+    }
 
     public function getCreatedAt(): \DateTimeInterface
     {

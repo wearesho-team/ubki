@@ -2,15 +2,16 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\BaseBlock;
+
 /**
  * Class Balance
  * <billing><balance /><billing/> tag
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Balance
+class Balance extends BaseBlock
 {
-    public const TAG = 'balance';
-
+    // attributes
     public const VALUE = 'value';
     public const DATE = 'date';
     public const TIME = 'time';
@@ -48,6 +49,11 @@ class Balance
         $this->value = $value;
         $this->date = $date;
         $this->time = $time;
+    }
+
+    public function tag(): string
+    {
+        return 'balance';
     }
 
     public function getValue(): float

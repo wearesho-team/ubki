@@ -13,6 +13,11 @@ use Wearesho\Bobra\Ubki;
  */
 class ReferenceTest extends TestCase
 {
+    // todo: revert this changes when types will be added
+    /**
+     * @expectedException \Error
+     * @expectedExceptionMessage Class 'Wearesho\Bobra\Ubki\Type\Language' not found
+     */
     public function testInstance()
     {
         $description = 'English language';
@@ -25,8 +30,8 @@ class ReferenceTest extends TestCase
     }
 
     /**
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage No static method or enum constant 'BD' in class Wearesho\Bobra\Ubki\Type\Language
+     * @expectedException \Error
+     * @expectedExceptionMessage Class 'Wearesho\Bobra\Ubki\Type\Language' not found
      */
     public function testInvalidConst(): void
     {

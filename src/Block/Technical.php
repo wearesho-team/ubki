@@ -2,22 +2,22 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
-use Wearesho\Bobra\Ubki\Collection;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Technical
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Technical
+class Technical extends Ubki\BaseBlock
 {
-    public const TAG = 'tech';
+    // attribute
+    public const REQUEST_ID = 'reqid';
 
-    /** @var Collection\Step */
+    /** @var Ubki\Collection\Step */
     protected $steps;
 
     /**
      * Out UBKI's id
-     * reqid attribute
      * @var string
      */
     protected $requestId;
@@ -25,15 +25,8 @@ class Technical
     /** @var Balance */
     protected $balance;
 
-    /**
-     * Technical constructor.
-     *
-     * @param Collection\Step $steps
-     * @param string          $requestId
-     * @param Balance         $balance
-     */
     public function __construct(
-        Collection\Step $steps,
+        Ubki\Collection\Step $steps,
         string $requestId,
         Balance $balance
     ) {
@@ -42,7 +35,12 @@ class Technical
         $this->balance = $balance;
     }
 
-    public function getSteps(): Collection\Step
+    public function tag(): string
+    {
+        return 'tech';
+    }
+
+    public function getSteps(): Ubki\Collection\Step
     {
         return $this->steps;
     }

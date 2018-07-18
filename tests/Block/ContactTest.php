@@ -6,23 +6,21 @@ use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * Class ContactTest
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Block
  */
-class ContactTest extends TestCase
+class ContactTest extends Ubki\Tests\Extend\BlockTestCase
 {
     /** @var Ubki\Block\Contact */
-    protected $contact;
+    protected $block;
 
     protected function setUp(): void
     {
         Carbon::setTestNow(Carbon::now());
 
-        $this->contact = new Ubki\Block\Contact(
+        $this->block = new Ubki\Block\Contact(
             Carbon::getTestNow(),
             '+380930439475',
             1
@@ -33,7 +31,7 @@ class ContactTest extends TestCase
     {
         $this->assertEquals(
             1,
-            $this->contact->getType()
+            $this->block->getType()
         );
     }
 
@@ -42,7 +40,7 @@ class ContactTest extends TestCase
         $this->assertEquals(
             Carbon::getTestNow()
                 ->toDateTimeString(),
-            Carbon::instance($this->contact->getCreatedAt())
+            Carbon::instance($this->block->getCreatedAt())
                 ->toDateTimeString()
         );
     }
@@ -51,14 +49,19 @@ class ContactTest extends TestCase
     {
         $this->assertEquals(
             '+380930439475',
-            $this->contact->getValue()
+            $this->block->getValue()
         );
     }
 
     public function testGetInn(): void
     {
         $this->assertNull(
-            $this->contact->getInn()
+            $this->block->getInn()
         );
+    }
+
+    public function tag(): string
+    {
+        return 'cont';
     }
 }

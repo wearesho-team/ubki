@@ -2,14 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\BaseBlock;
+
 /**
  * Class Document
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Document
+class Document extends BaseBlock
 {
-    public const TAG = 'doc';
-
+    // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const TYPE = 'dtype';
@@ -19,92 +20,56 @@ class Document
     public const ISSUE = 'dwho';
     public const ISSUE_DATE = 'dwdt';
 
-    /**
-     * Created date of this block
-     * vdate attribute
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /**
-     * Language of this block
-     * lng attribute
-     * @var int
-     */
+    /** @var int */
     protected $language;
 
-    /**
-     * Type of this document
-     * dtype attribute
-     * @var int
-     */
+    /** @var int */
     protected $type;
 
-    /**
-     * Serial code of this document
-     * dser attribute
-     * @var string
-     */
+    /** @var string */
     protected $serial;
 
-    /**
-     * Number of this document
-     * dnom attribute
-     * @var string
-     */
+    /** @var string */
     protected $number;
 
     /**
-     * Validity period
-     * dterm attribute
-     * @var \DateTimeInterface
+     * Important! => Required for Card id
+     * @var \DateTimeInterface|null
      */
     protected $termin;
 
-    /**
-     * By whom the document was issued
-     * dwho attribute
-     * @var string
-     */
+    /** @var string */
     protected $issue;
 
-    /**
-     * When the document was issued
-     * dwdt attribute
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $issueDate;
 
-    /**
-     * Document constructor.
-     *
-     * @param \DateTimeInterface $createdAt
-     * @param int                $language
-     * @param int                $type
-     * @param string             $serial
-     * @param string             $number
-     * @param \DateTimeInterface $termin
-     * @param string             $issue
-     * @param \DateTimeInterface $issueDate
-     */
     public function __construct(
         \DateTimeInterface $createdAt,
         int $language,
         int $type,
         string $serial,
         string $number,
-        \DateTimeInterface $termin,
         string $issue,
-        \DateTimeInterface $issueDate
+        \DateTimeInterface $issueDate,
+        ?\DateTimeInterface $termin = null
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;
         $this->type = $type;
         $this->serial = $serial;
         $this->number = $number;
-        $this->termin = $termin;
         $this->issue = $issue;
         $this->issueDate = $issueDate;
+        $this->termin = $termin;
+    }
+
+    public function tag(): string
+    {
+        return 'doc';
     }
 
     public function getCreatedAt(): \DateTimeInterface
@@ -132,7 +97,7 @@ class Document
         return $this->number;
     }
 
-    public function getTermin(): \DateTimeInterface
+    public function getTermin(): ?\DateTimeInterface
     {
         return $this->termin;
     }

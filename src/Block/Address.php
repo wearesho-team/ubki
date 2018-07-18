@@ -2,14 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\BaseBlock;
+
 /**
  * Class Address
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Address
+class Address extends BaseBlock
 {
-    public const TAG = 'addr';
-
     // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
@@ -98,6 +98,11 @@ class Address
         $this->corpus = $corpus;
         $this->flat = $flat;
         $this->fullAddress = $fullAddress;
+    }
+
+    public function tag(): string
+    {
+        return 'addr';
     }
 
     public function getCreatedAt(): \DateTimeInterface

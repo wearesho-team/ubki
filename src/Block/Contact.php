@@ -2,55 +2,33 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\BaseBlock;
+
 /**
  * Class Contact
  * Data of one subject's contact
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Contact
+class Contact extends BaseBlock
 {
-    public const TAG = 'cont';
-
+    // attributes
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
     public const CREATED_AT = 'vdate';
     public const INN = 'inn';
 
-    /**
-     * Created date of this contact
-     * vdate attribute (required)
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /**
-     * Value of contact
-     * cval attribute (required)
-     * @var string
-     */
+    /** @var string */
     protected $value;
 
-    /**
-     * Type of contact
-     * ctype attribute (required)
-     * @var int
-     */
+    /** @var int */
     protected $type;
 
-    /**
-     * inn attribute
-     * @var int|null
-     */
+    /** @var int|null */
     protected $inn;
 
-    /**
-     * Contact constructor.
-     *
-     * @param \DateTimeInterface $createdAt
-     * @param string             $value
-     * @param int                $type
-     * @param int|null           $inn
-     */
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
@@ -61,6 +39,11 @@ class Contact
         $this->value = $value;
         $this->type = $type;
         $this->inn = $inn;
+    }
+
+    public function tag(): string
+    {
+        return 'cont';
     }
 
     public function getValue(): string

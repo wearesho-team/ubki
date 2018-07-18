@@ -2,15 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
+use Wearesho\Bobra\Ubki\BaseBlock;
+
 /**
  * Class Work
- * Data about subject's work
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Work
+class Work extends BaseBlock
 {
-    public const TAG = 'work';
-
+    // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const RANK = 'cdolgn';
@@ -19,53 +19,28 @@ class Work
     public const EXPERIENCE = 'wstag';
     public const INCOME = 'wdohod';
 
-    /**
-     * Created date of this work
-     * vdate attribute (required)
-     * @var \DateTimeInterface
-     */
+    /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /**
-     * Language of this block
-     * lng attribute (required)
-     * @var int
-     */
+    /** @var int */
     protected $language;
 
-    /**
-     * Official position at work
-     * cdolgn attribute (not required)
-     * @var int
-     */
+    /** @var int|null */
     protected $rank;
 
     /**
      * Place of work from the Unified State Register of Enterprises and Organizations of Ukraine
-     * wokpo attribute (required)
      * @var int
      */
     protected $wokpo;
 
-    /**
-     * Name of subject's workplace
-     * wname attribute (required)
-     * @var string
-     */
+    /** @var string */
     protected $workName;
 
-    /**
-     * Experience of subject on this workplace
-     * wstag attribute (not required)
-     * @var int
-     */
+    /** @var int|null */
     protected $experience;
 
-    /**
-     * Monthly customer income
-     * wdohod attribute
-     * @var float
-     */
+    /** @var float|null */
     protected $income;
 
     public function __construct(
@@ -73,9 +48,9 @@ class Work
         int $language,
         int $wokpo,
         string $workName,
-        int $rank = null,
-        int $experience = null,
-        float $income = null
+        ?int $rank = null,
+        ?int $experience = null,
+        ?float $income = null
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;
@@ -84,6 +59,11 @@ class Work
         $this->rank = $rank;
         $this->experience = $experience;
         $this->income = $income;
+    }
+
+    public function tag(): string
+    {
+        return 'work';
     }
 
     public function getCreatedAt(): \DateTimeInterface
@@ -96,7 +76,7 @@ class Work
         return $this->language;
     }
 
-    public function getRank(): int
+    public function getRank(): ?int
     {
         return $this->rank;
     }
@@ -111,12 +91,12 @@ class Work
         return $this->workName;
     }
 
-    public function getExperience(): int
+    public function getExperience(): ?int
     {
         return $this->experience;
     }
 
-    public function getIncome(): float
+    public function getIncome(): ?float
     {
         return $this->income;
     }
