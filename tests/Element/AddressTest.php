@@ -97,7 +97,7 @@ class AddressTest extends Ubki\Tests\Extend\ElementTestCase
         $this->assertEquals('24', $this->block->getFlat());
     }
 
-    public function test__construct(): void
+    public function testInstance(): void
     {
         $this->assertNotEmpty($this->block);
         $this->assertEquals(
