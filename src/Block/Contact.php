@@ -2,14 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
-use Wearesho\Bobra\Ubki\BaseBlock;
+use Wearesho\Bobra\Ubki\Block;
 
 /**
  * Class Contact
  * Data of one subject's contact
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Contact extends BaseBlock
+class Contact extends Block
 {
     // attributes
     public const VALUE = 'cval';

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Extend;
 
-use Wearesho\Bobra\Ubki\BaseBlock;
+use Wearesho\Bobra\Ubki\Block;
 
 /**
  * Class BlockTestCase
@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki\BaseBlock;
  */
 abstract class BlockTestCase extends \PHPUnit\Framework\TestCase
 {
-    /** @var BaseBlock */
+    /** @var Block */
     protected $block;
 
     public function testTag(): void
