@@ -1,15 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Block;
+namespace Wearesho\Bobra\Ubki\Element;
 
-use Wearesho\Bobra\Ubki\Block;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Contact
  * Data of one subject's contact
- * @package Wearesho\Bobra\Ubki\Block
+ * @package Wearesho\Bobra\Ubki\Element
  */
-class Contact extends Block
+class Contact extends Ubki\Element
 {
     // attributes
     public const VALUE = 'cval';

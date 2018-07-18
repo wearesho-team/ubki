@@ -15,6 +15,6 @@ class ContactTest extends TestCase
 {
     public function testType()
     {
-        $this->assertEquals(\Wearesho\Bobra\Ubki\Block\Contact::class, (new Contact())->type());
+        $this->assertEquals(\Wearesho\Bobra\Ubki\Element\Contact::class, (new Contact())->type());
     }
 }

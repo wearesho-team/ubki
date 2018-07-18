@@ -12,6 +12,6 @@ class Contact extends Ubki\BaseCollection
 {
     public function type(): string
     {
-        return Ubki\Block\Contact::class;
+        return Ubki\Element\Contact::class;
     }
 }

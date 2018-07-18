@@ -9,18 +9,18 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class ContactTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Block
+ * @package Wearesho\Bobra\Ubki\Tests\Element
  */
 class ContactTest extends Ubki\Tests\Extend\BlockTestCase
 {
-    /** @var Ubki\Block\Contact */
+    /** @var Ubki\Element\Contact */
     protected $block;
 
     protected function setUp(): void
     {
         Carbon::setTestNow(Carbon::now());
 
-        $this->block = new Ubki\Block\Contact(
+        $this->block = new Ubki\Element\Contact(
             Carbon::getTestNow(),
             '+380930439475',
             1

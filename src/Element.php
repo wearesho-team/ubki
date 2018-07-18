@@ -3,10 +3,10 @@
 namespace Wearesho\Bobra\Ubki;
 
 /**
- * Class Block
+ * Class Element
  * @package Wearesho\Bobra\Ubki
  */
-abstract class Block
+abstract class Element
 {
     abstract public function tag(): string;
 }

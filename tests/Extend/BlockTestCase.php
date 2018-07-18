@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Extend;
 
-use Wearesho\Bobra\Ubki\Block;
+use Wearesho\Bobra\Ubki\Element;
 
 /**
  * Class BlockTestCase
