@@ -10,13 +10,13 @@ use Wearesho\Bobra\Ubki\Element;
  */
 abstract class BlockTestCase extends \PHPUnit\Framework\TestCase
 {
-    /** @var Block */
+    protected const TAG = null;
+
+    /** @var Element */
     protected $block;
 
     public function testTag(): void
     {
-        $this->assertEquals($this->tag(), $this->block ? $this->block->tag() : null);
+        $this->assertEquals(static::TAG, $this->block ? $this->block->tag() : null);
     }
-
-    abstract public function tag(): string;
 }

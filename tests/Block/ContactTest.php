@@ -13,6 +13,8 @@ use Wearesho\Bobra\Ubki;
  */
 class ContactTest extends Ubki\Tests\Extend\BlockTestCase
 {
+    protected const TAG = 'cont';
+
     /** @var Ubki\Element\Contact */
     protected $block;
 
@@ -58,10 +60,5 @@ class ContactTest extends Ubki\Tests\Extend\BlockTestCase
         $this->assertNull(
             $this->block->getInn()
         );
-    }
-
-    public function tag(): string
-    {
-        return 'cont';
     }
 }
