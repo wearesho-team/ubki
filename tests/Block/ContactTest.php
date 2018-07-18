@@ -13,15 +13,20 @@ use Wearesho\Bobra\Ubki;
  */
 class ContactTest extends Ubki\Tests\Extend\BlockTestCase
 {
+    public const TAG = 'cont';
+
     /** @var Ubki\Block\Contact */
     protected $block;
 
+    /** @var Carbon */
+    protected $now;
+
     protected function setUp(): void
     {
-        Carbon::setTestNow(Carbon::now());
+        $this->now = Carbon::now();
 
         $this->block = new Ubki\Block\Contact(
-            Carbon::getTestNow(),
+            $this->now,
             '+380930439475',
             1
         );
@@ -38,7 +43,7 @@ class ContactTest extends Ubki\Tests\Extend\BlockTestCase
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(
-            Carbon::getTestNow()
+            $this->now
                 ->toDateTimeString(),
             Carbon::instance($this->block->getCreatedAt())
                 ->toDateTimeString()
@@ -58,10 +63,5 @@ class ContactTest extends Ubki\Tests\Extend\BlockTestCase
         $this->assertNull(
             $this->block->getInn()
         );
-    }
-
-    public function tag(): string
-    {
-        return 'cont';
     }
 }
