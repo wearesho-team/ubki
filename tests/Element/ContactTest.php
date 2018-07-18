@@ -1,6 +1,6 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Block;
+namespace Wearesho\Bobra\Ubki\Tests\Element;
 
 use Carbon\Carbon;
 
@@ -18,12 +18,15 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     /** @var Ubki\Element\Contact */
     protected $block;
 
+    /** @var Carbon */
+    protected $now;
+
     protected function setUp(): void
     {
-        Carbon::setTestNow(Carbon::now());
+        $this->now = Carbon::now();
 
         $this->block = new Ubki\Element\Contact(
-            Carbon::getTestNow(),
+            $this->now,
             '+380930439475',
             1
         );
@@ -40,7 +43,7 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(
-            Carbon::getTestNow()
+            $this->now
                 ->toDateTimeString(),
             Carbon::instance($this->block->getCreatedAt())
                 ->toDateTimeString()
