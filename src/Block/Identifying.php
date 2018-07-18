@@ -8,18 +8,16 @@ use Wearesho\Bobra\Ubki;
  * Class Identifying
  * @package Wearesho\Bobra\Ubki\Block
  */
-class Identifying extends Ubki\Block
+class Identifying implements Ubki\Block
 {
+    protected const ID = 1;
+
     protected $credential;
-    
+
+    // todo: refactor after implementation of Credential element
     public function __construct($credential)
     {
         $this->credential = $credential;
-    }
-
-    public function type(): int
-    {
-        return static::IDENTIFYING;
     }
 
     public function getCredential()

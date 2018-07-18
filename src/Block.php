@@ -3,16 +3,13 @@
 namespace Wearesho\Bobra\Ubki;
 
 /**
- * Class Block
- * <comp> tag
+ * Interface Block
  * @package Wearesho\Bobra\Ubki
  */
-abstract class Block
+interface Block
 {
     public const TAG = 'comp';
     public const ATTR_ID = 'id';
 
-    public const IDENTIFYING = 1;
-
-    abstract public function type(): int;
+    public const ID = null;
 }
