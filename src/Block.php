@@ -7,7 +7,7 @@ namespace Wearesho\Bobra\Ubki;
  * <comp> tag
  * @package Wearesho\Bobra\Ubki
  */
-abstract class BaseComponent
+abstract class Block
 {
     public const TAG = 'comp';
     public const ATTR_ID = 'id';

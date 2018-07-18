@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Component;
 
-use Wearesho\Bobra\Ubki\BaseComponent;
+use Wearesho\Bobra\Ubki\Block;
 use Wearesho\Bobra\Ubki\Component;
 
 use PHPUnit\Framework\TestCase;
@@ -24,7 +24,7 @@ class IdentifyingTest extends TestCase
 
     public function testType(): void
     {
-        $this->assertEquals(BaseComponent::IDENTIFYING, $this->identifyingComponent->type());
+        $this->assertEquals(Block::IDENTIFYING, $this->identifyingComponent->type());
     }
 
     public function testGetCredential(): void

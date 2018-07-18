@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Identifying
  * @package Wearesho\Bobra\Ubki\Component
  */
-class Identifying extends Ubki\BaseComponent
+class Identifying extends Ubki\Block
 {
     protected $credential;
     
