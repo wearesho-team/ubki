@@ -25,17 +25,15 @@ class ContactTest extends TestCase
         $this->contact = new Ubki\Block\Contact(
             Carbon::getTestNow(),
             '+380930439475',
-            Ubki\Type\Contact::HOME('Домашний телефон')
+            1
         );
     }
 
     public function testGetType(): void
     {
         $this->assertEquals(
-            Ubki\Type\Contact::HOME,
-            $this->contact
-                ->getType()
-                ->getValue()
+            1,
+            $this->contact->getType()
         );
     }
 

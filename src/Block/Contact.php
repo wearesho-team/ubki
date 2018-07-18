@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Block;
 
-use Wearesho\Bobra\Ubki\Type;
-
 /**
  * Class Contact
  * Data of one subject's contact
@@ -36,7 +34,7 @@ class Contact
     /**
      * Type of contact
      * ctype attribute (required)
-     * @var Type\Contact
+     * @var int
      */
     protected $type;
 
@@ -51,13 +49,13 @@ class Contact
      *
      * @param \DateTimeInterface $createdAt
      * @param string             $value
-     * @param Type\Contact       $type
+     * @param int       $type
      * @param int|null           $inn
      */
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
-        Type\Contact $type,
+        int $type,
         ?int $inn = null
     ) {
         $this->createdAt = $createdAt;
@@ -71,7 +69,7 @@ class Contact
         return $this->value;
     }
 
-    public function getType(): Type\Contact
+    public function getType(): int
     {
         return $this->type;
     }
