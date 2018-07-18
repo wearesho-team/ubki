@@ -5,10 +5,10 @@ namespace Wearesho\Bobra\Ubki\Tests\Extend;
 use Wearesho\Bobra\Ubki\Element;
 
 /**
- * Class BlockTestCase
+ * Class ElementTestCase
  * @package Wearesho\Bobra\Ubki\Tests\Extend
  */
-abstract class BlockTestCase extends \PHPUnit\Framework\TestCase
+abstract class ElementTestCase extends \PHPUnit\Framework\TestCase
 {
     protected const TAG = null;
 

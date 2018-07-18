@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki;
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Element
  */
-class ContactTest extends Ubki\Tests\Extend\BlockTestCase
+class ContactTest extends Ubki\Tests\Extend\ElementTestCase
 {
     protected const TAG = 'cont';
 
