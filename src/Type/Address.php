@@ -7,6 +7,13 @@ use Wearesho\Bobra\Ubki\Reference;
 /**
  * Class Address
  * @package Wearesho\Bobra\Ubki\Type
+ * 
+ * @method static static HOME(string $description = null)
+ * @method static static REGISTRATION(string $description = null)
+ * @method static static ACTUAL(string $description = null)
+ * @method static static LEGAL(string $description = null)
+ * @method static static MAILING(string $description = null)
+ * @method static static WORK(string $description = null)
  */
 class Address extends Reference
 {
@@ -16,34 +23,4 @@ class Address extends Reference
     public const LEGAL = 4;
     public const MAILING = 5;
     public const WORK = 6;
-
-    public static function HOME(string $description = null): Address
-    {
-        return new Address(static::HOME, $description);
-    }
-
-    public static function REGISTRATION(string $description = null): Address
-    {
-        return new Address(static::REGISTRATION, $description);
-    }
-
-    public static function ACTUAL(string $description = null): Address
-    {
-        return new Address(static::ACTUAL, $description);
-    }
-
-    public static function LEGAL(string $description = null): Address
-    {
-        return new Address(static::LEGAL, $description);
-    }
-
-    public static function MAILING(string $description = null): Address
-    {
-        return new Address(static::MAILING, $description);
-    }
-
-    public static function WORK(string $description = null): Address
-    {
-        return new Address(static::WORK, $description);
-    }
 }
