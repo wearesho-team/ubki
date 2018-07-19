@@ -7,7 +7,7 @@ use Wearesho\Bobra\Ubki\Reference;
 /**
  * Class Address
  * @package Wearesho\Bobra\Ubki\Type
- * 
+ *
  * @method static static HOME(string $description = null)
  * @method static static REGISTRATION(string $description = null)
  * @method static static ACTUAL(string $description = null)
