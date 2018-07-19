@@ -7,6 +7,12 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Contact
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static static HOME(string $description = null)
+ * @method static static WORK(string $description = null)
+ * @method static static MOBILE(string $description = null)
+ * @method static static EMAIL(string $description = null)
+ * @method static static FAX(string $description = null)
  */
 final class Contact extends Ubki\Reference
 {
