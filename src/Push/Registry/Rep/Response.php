@@ -25,7 +25,7 @@ class Response implements ResponseInterface
         string $subComponentName,
         string $registryType,
         string $errorType,
-        int $inn,
+        string $inn,
         string $remark
     ) {
         $this->todo = Registry\Type::REP;

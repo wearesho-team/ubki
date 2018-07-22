@@ -116,7 +116,7 @@ class ServiceTest extends TestCase
                         'IDENT',
                         'NW',
                         '',
-                        '2404005906',
+                        '2147483647',
                         'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
                     )
                 ]),
@@ -176,7 +176,7 @@ class ServiceTest extends TestCase
                         'IDENT',
                         'NW',
                         '',
-                        '2404005906',
+                        '2147483647',
                         'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
                     )
                 )
@@ -510,7 +510,7 @@ class ServiceTest extends TestCase
                         'ADDR',
                         'NW',
                         '',
-                        '2404005906',
+                        '2147483647',
                         'OK. Язык: 1. Адрес: Україна Харьков Харьков Академика Ляпунова 10. Дата версии: 10.10.2010'
                     ),
                     new Ubki\Push\Registry\Rep\Response(
@@ -524,7 +524,7 @@ class ServiceTest extends TestCase
                         'DOC',
                         'NW',
                         '',
-                        '2404005906',
+                        '2147483647',
                         'OK. Язык: 1. Серия док.: МТ 333333 Харьковский Украины в Харьковской обл.. Тип документа: 1.'
                     ),
                     new Ubki\Push\Registry\Rep\Response(
@@ -538,7 +538,7 @@ class ServiceTest extends TestCase
                         'IDENT',
                         'NW',
                         '',
-                        '2404005906',
+                        '2147483647',
                         'OK. Язык: 1. ФИО: ИВАНОВ ИВАН ИВАНОВИЧ АЛЕКСАНДРОВИЧ. Дата версии: 10.10.2010'
                     ),
                     new Ubki\Push\Registry\Rep\Response(
@@ -552,7 +552,7 @@ class ServiceTest extends TestCase
                         'CRDEAL',
                         'NW',
                         '',
-                        '2404005906',
+                        '2147483647',
                         'OK IN. Референс договора: 111111. Месяц среза: 1. Год среза: 2010'
                     ),
                     new Ubki\Push\Registry\Rep\Response(
@@ -566,7 +566,7 @@ class ServiceTest extends TestCase
                         'CONT',
                         'NW',
                         '',
-                        '2404005906',
+                        '2147483647',
                         'OK. Тип контакта: 3. Контакт: +380998881000. Дата версии: 10.10.2009'
                     ),
                 )

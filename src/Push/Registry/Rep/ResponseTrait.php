@@ -15,7 +15,7 @@ trait ResponseTrait
     /** @var string */
     protected $crytical;
 
-    /** @var int */
+    /** @var string */
     protected $inn;
 
     /** @var string */
@@ -40,7 +40,7 @@ trait ResponseTrait
     /**
      * @inheritdoc
      */
-    public function getInn(): int
+    public function getInn(): string
     {
         return $this->inn;
     }
