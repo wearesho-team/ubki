@@ -32,14 +32,4 @@ class ReferenceTest extends TestCase
     {
         Ubki\Language::BD();
     }
-
-    public function testLong(): void
-    {
-
-    }
-
-    public function some($var): void
-    {
-
-    }
 }
