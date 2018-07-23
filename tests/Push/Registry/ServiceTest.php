@@ -101,11 +101,12 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
+        /** @var Ubki\Push\Registry\RequestResponsePair $response */
         $response = $this->service->send($request);
 
         $this->assertEquals(
             (new Ubki\Push\Registry\ResponseCollection($this->responseRegistryXml))->offsetGet(0),
-            (new Ubki\Push\Registry\ResponseCollection($response))->offsetGet(0)
+            (new Ubki\Push\Registry\ResponseCollection($response->getResponse()))->offsetGet(0)
         );
     }
 
@@ -145,11 +146,12 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
+        /** @var Ubki\Push\Registry\RequestResponsePair $response */
         $response = $this->service->send($request);
 
         $this->assertEquals(
             (new Ubki\Push\Registry\ResponseCollection($this->responseRegistryXml))->offsetGet(0),
-            (new Ubki\Push\Registry\ResponseCollection($response))->offsetGet(0)
+            (new Ubki\Push\Registry\ResponseCollection($response->getResponse()))->offsetGet(0)
         );
     }
 
@@ -461,9 +463,10 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
+        /** @var Ubki\Push\Registry\RequestResponsePair $response */
         $response = $this->service->send($request);
 
-        $reportCollection = new Ubki\Push\Registry\ResponseCollection($response);
+        $reportCollection = new Ubki\Push\Registry\ResponseCollection($response->getResponse());
 
         $this->assertEquals(
             new Ubki\Push\Registry\ResponseCollection($responseRegistryXml),
@@ -522,6 +525,8 @@ class ServiceTest extends TestCase
             'OK. Тип контакта: 3. Контакт: +380998881000. Дата версии: 10.10.2009',
             $fifthReport->getRemark()
         );
+
+        $this->assertNotEmpty($response->getRequest());
     }
 
     public function testInvalidUrl(): void

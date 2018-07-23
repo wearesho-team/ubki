@@ -42,12 +42,12 @@ class Service implements ServiceInterface
     /**
      * @param RequestInterface $request
      *
-     * @return string
+     * @return RequestResponsePair
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws RequestException
      * @throws UnknownErrorException
      */
-    public function send(RequestInterface $request): string
+    public function send(RequestInterface $request): RequestResponsePair
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
 
@@ -63,7 +63,10 @@ class Service implements ServiceInterface
 
         $this->validateUrl($urlFile);
 
-        return $this->getFileContent($urlFile);
+        return new RequestResponsePair(
+            $guzzleRequest->getBody()->__toString(),
+            $this->getFileContent($urlFile)
+        );
     }
 
     protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
