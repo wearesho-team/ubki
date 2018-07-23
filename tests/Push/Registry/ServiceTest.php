@@ -594,14 +594,17 @@ class ServiceTest extends TestCase
 
     public function testNullResponse(): void
     {
-        $this->expectException(Ubki\NullResponseException::class);
+        $this->expectException(GuzzleHttp\Exception\RequestException::class);
 
         $container = [];
         $history = GuzzleHttp\Middleware::history($container);
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, [], $this->responseAuth),
             new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryUrl),
-            new GuzzleHttp\Exception\RequestException('', new GuzzleHttp\Psr7\Request('get', ''))
+            new GuzzleHttp\Exception\RequestException(
+                'Some client error error',
+                new GuzzleHttp\Psr7\Request('get', '')
+            )
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);
         $stack->push($history);

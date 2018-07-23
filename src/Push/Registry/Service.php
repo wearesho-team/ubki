@@ -179,7 +179,7 @@ class Service implements ServiceInterface
             );
         } catch (GuzzleHttp\Exception\RequestException $exception) {
             if (is_null($exception->getResponse())) {
-                throw new Ubki\NullResponseException();
+                throw $exception;
             }
 
             $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
