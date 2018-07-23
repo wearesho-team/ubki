@@ -76,11 +76,13 @@ class ParserTest extends TestCase
     public function testEmptyDocument(): void
     {
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("String have invalid content. Count of reports < 1");
-
         $registryXmlBody = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
             <doc>
             </doc>";
+        $this->expectExceptionMessage(
+            "String have invalid content. Count of reports < 1;\nresponse body: " . $registryXmlBody
+        );
+
         $parser = new Ubki\Push\Registry\Parser();
 
         /** @noinspection PhpUnhandledExceptionInspection */

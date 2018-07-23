@@ -21,7 +21,9 @@ class Parser
         $reports = $this->fetchReports($response);
 
         if (count($reports) < 1) {
-            throw new \Exception('String have invalid content. Count of reports < 1');
+            throw new \InvalidArgumentException(
+                "String have invalid content. Count of reports < 1;\nresponse body: {$response}"
+            );
         }
 
         $responseType = $reports[0]->attributes()[Rep\Attribute::TYPE];
