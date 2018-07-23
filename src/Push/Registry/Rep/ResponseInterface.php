@@ -34,9 +34,9 @@ interface ResponseInterface extends Registry\ResponseInterface
     /**
      * Unique inn code of subject
      *
-     * @return int
+     * @return string
      */
-    public function getInn(): int;
+    public function getInn(): string;
 
     /**
      * Note text

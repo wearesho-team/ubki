@@ -19,27 +19,27 @@ class Response implements ResponseInterface
         string $ubkiId,
         string $partnerId,
         string $sessionId,
-        string $state,
-        string $transferType,
+        Registry\Response\State $state,
+        Registry\Response\OperationType $transferType,
         int $componentId,
         string $subComponentName,
         string $registryType,
         string $errorType,
-        int $inn,
+        string $inn,
         string $remark
     ) {
-        $this->todo = Registry\Type::REP;
+        $this->type = Registry\Type::REP;
         $this->ertype = $registryType;
-        $this->crytical = $errorType;
+        $this->errorType = $errorType;
         $this->inn = $inn;
         $this->remark = $remark;
-        $this->indate = $operationDate;
-        $this->idout = $ubkiId;
-        $this->idalien = $partnerId;
-        $this->sessid = $sessionId;
+        $this->exportDate = $operationDate;
+        $this->ubkiId = $ubkiId;
+        $this->partnerId = $partnerId;
+        $this->sessionId = $sessionId;
         $this->state = $state;
-        $this->oper = $transferType;
-        $this->compid = $componentId;
+        $this->operationType = $transferType;
+        $this->blockId = $componentId;
         $this->item = $subComponentName;
     }
 }

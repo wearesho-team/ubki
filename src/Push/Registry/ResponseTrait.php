@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
+use Wearesho\Bobra\Ubki\Push\Registry\Response;
+
 /**
  * Trait ResponseTrait
  *
@@ -10,28 +12,28 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 trait ResponseTrait
 {
     /** @var string */
-    protected $todo;
+    protected $type;
 
     /** @var \DateTimeInterface */
-    protected $indate;
+    protected $exportDate;
 
     /** @var string */
-    protected $idout;
+    protected $ubkiId;
 
     /** @var string */
-    protected $idalien;
+    protected $partnerId;
 
     /** @var string */
-    protected $sessid;
+    protected $sessionId;
 
-    /** @var string */
+    /** @var Response\State */
     protected $state;
 
-    /** @var string */
-    protected $oper;
+    /** @var Response\OperationType */
+    protected $operationType;
 
     /** @var int */
-    protected $compid;
+    protected $blockId;
 
     /** @var string */
     protected $item;
@@ -39,47 +41,47 @@ trait ResponseTrait
     /**
      * @inheritdoc
      */
-    public function getTodo(): string
+    public function getType(): string
     {
-        return $this->todo;
+        return $this->type;
     }
 
     /**
      * @inheritdoc
      */
-    public function getIndate(): \DateTimeInterface
+    public function getExportDate(): \DateTimeInterface
     {
-        return $this->indate;
+        return $this->exportDate;
     }
 
     /**
      * @inheritdoc
      */
-    public function getIdout(): string
+    public function getUbkiId(): string
     {
-        return $this->idout;
+        return $this->ubkiId;
     }
 
     /**
      * @inheritdoc
      */
-    public function getIdalien(): string
+    public function getPartnerId(): string
     {
-        return $this->idalien;
+        return $this->partnerId;
     }
 
     /**
      * @inheritdoc
      */
-    public function getSessid(): string
+    public function getSessionId(): string
     {
-        return $this->sessid;
+        return $this->sessionId;
     }
 
     /**
      * @inheritdoc
      */
-    public function getState(): string
+    public function getState(): Response\State
     {
         return $this->state;
     }
@@ -87,17 +89,17 @@ trait ResponseTrait
     /**
      * @inheritdoc
      */
-    public function getOper(): string
+    public function getOperationType(): Response\OperationType
     {
-        return $this->oper;
+        return $this->operationType;
     }
 
     /**
      * @inheritdoc
      */
-    public function getCompid(): int
+    public function getBlockId(): int
     {
-        return $this->compid;
+        return $this->blockId;
     }
 
     /**

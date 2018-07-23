@@ -13,9 +13,9 @@ trait ResponseTrait
     protected $ertype;
 
     /** @var string */
-    protected $crytical;
+    protected $errorType;
 
-    /** @var int */
+    /** @var string */
     protected $inn;
 
     /** @var string */
@@ -34,13 +34,13 @@ trait ResponseTrait
      */
     public function getErrorType(): string
     {
-        return $this->crytical;
+        return $this->errorType;
     }
 
     /**
      * @inheritdoc
      */
-    public function getInn(): int
+    public function getInn(): string
     {
         return $this->inn;
     }

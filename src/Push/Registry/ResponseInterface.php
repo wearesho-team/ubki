@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
+use Wearesho\Bobra\Ubki\Push\Registry\Response;
+
 /**
  * Interface ResponseInterface
  *
@@ -14,7 +16,7 @@ interface ResponseInterface
      *
      * @return string
      */
-    public function getTodo(): string;
+    public function getType(): string;
 
     /**
      * Date of the operational day
@@ -22,43 +24,43 @@ interface ResponseInterface
      *
      * @return \DateTimeInterface
      */
-    public function getIndate(): \DateTimeInterface;
+    public function getExportDate(): \DateTimeInterface;
 
     /**
      * Id from UBKI request
      *
      * @return string
      */
-    public function getIdout(): string;
+    public function getUbkiId(): string;
 
     /**
      * Id from partner request
      *
      * @return string
      */
-    public function getIdalien(): string;
+    public function getPartnerId(): string;
 
     /**
      * Authorization session key
      *
      * @return string
      */
-    public function getSessid(): string;
+    public function getSessionId(): string;
 
     /**
      * State of sent report
      *
-     * @return string
+     * @return Response\State
      */
-    public function getState(): string;
+    public function getState(): Response\State;
 
     /**
      * Transmission operation type
      * Is specified when the request tag is passed in the reqtype attribute of the request
      *
-     * @return string
+     * @return Response\OperationType
      */
-    public function getOper(): string;
+    public function getOperationType(): Response\OperationType;
 
     /**
      * Id of component
@@ -66,7 +68,7 @@ interface ResponseInterface
      *
      * @return int
      */
-    public function getCompid(): int;
+    public function getBlockId(): int;
 
     /**
      * Subcomponent

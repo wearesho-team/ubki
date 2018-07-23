@@ -22,8 +22,8 @@ class ResponseTest extends TestCase
             'qweqwe',
             'asdasd',
             '123qwe',
-            'i',
-            'i',
+            Registry\Response\State::CREATED(),
+            Registry\Response\OperationType::TRANSFERRING(),
             1,
             'IDENT',
             'NW',
@@ -32,14 +32,14 @@ class ResponseTest extends TestCase
             'Some description'
         );
 
-        $this->assertEquals(Registry\Type::REP, $response->getTodo());
-        $this->assertEquals($indate, $response->getIndate());
-        $this->assertEquals('qweqwe', $response->getIdout());
-        $this->assertEquals('asdasd', $response->getIdalien());
-        $this->assertEquals('123qwe', $response->getSessid());
-        $this->assertEquals(Registry\Response\State::CREATED, $response->getState());
-        $this->assertEquals(Registry\Response\OperationType::TRANSFERRING, $response->getOper());
-        $this->assertEquals(1, $response->getCompid());
+        $this->assertEquals(Registry\Type::REP, $response->getType());
+        $this->assertEquals($indate, $response->getExportDate());
+        $this->assertEquals('qweqwe', $response->getUbkiId());
+        $this->assertEquals('asdasd', $response->getPartnerId());
+        $this->assertEquals('123qwe', $response->getSessionId());
+        $this->assertEquals(Registry\Response\State::CREATED(), $response->getState());
+        $this->assertEquals(Registry\Response\OperationType::TRANSFERRING(), $response->getOperationType());
+        $this->assertEquals(1, $response->getBlockId());
         $this->assertEquals('IDENT', $response->getItem());
         $this->assertEquals('NW', $response->getRegistryType());
         $this->assertEmpty($response->getErrorType());

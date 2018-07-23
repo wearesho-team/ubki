@@ -104,23 +104,8 @@ class ServiceTest extends TestCase
         $response = $this->service->send($request);
 
         $this->assertEquals(
-            new Ubki\Push\Registry\ResponseCollection([
-                    new Ubki\Push\Registry\Rep\Response(
-                        Carbon::create($this->now->year, $this->now->month, $this->now->day, 0, 0, 0),
-                        'IN#0000018427',
-                        'X000000000001',
-                        'A1F593950A8F4562AE5A5DB1914D658A',
-                        Ubki\Push\Registry\Response\State::PROCESSED,
-                        Ubki\Push\Registry\Response\OperationType::TRANSFERRING,
-                        1,
-                        'IDENT',
-                        'NW',
-                        '',
-                        '2404005906',
-                        'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
-                    )
-                ]),
-            $response
+            (new Ubki\Push\Registry\ResponseCollection($this->responseRegistryXml))->offsetGet(0),
+            (new Ubki\Push\Registry\ResponseCollection($response))->offsetGet(0)
         );
     }
 
@@ -163,25 +148,8 @@ class ServiceTest extends TestCase
         $response = $this->service->send($request);
 
         $this->assertEquals(
-            new Ubki\Push\Registry\ResponseCollection(
-                array(
-                    new Ubki\Push\Registry\Rep\Response(
-                        Carbon::create($this->now->year, $this->now->month, $this->now->day, 0, 0, 0),
-                        'IN#0000018427',
-                        'X000000000001',
-                        'A1F593950A8F4562AE5A5DB1914D658A',
-                        Ubki\Push\Registry\Response\State::PROCESSED,
-                        Ubki\Push\Registry\Response\OperationType::TRANSFERRING,
-                        1,
-                        'IDENT',
-                        'NW',
-                        '',
-                        '2404005906',
-                        'OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014'
-                    )
-                )
-            ),
-            $response
+            (new Ubki\Push\Registry\ResponseCollection($this->responseRegistryXml))->offsetGet(0),
+            (new Ubki\Push\Registry\ResponseCollection($response))->offsetGet(0)
         );
     }
 
@@ -493,85 +461,66 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $responses = $this->service->send($request);
-        $time = Carbon::parse('20101010');
+        $response = $this->service->send($request);
+
+        $reportCollection = new Ubki\Push\Registry\ResponseCollection($response);
 
         $this->assertEquals(
-            new Ubki\Push\Registry\ResponseCollection(
-                array(
-                    new Ubki\Push\Registry\Rep\Response(
-                        Carbon::parse($time),
-                        'IN#0000018427',
-                        'X000000000001',
-                        'A1F593950A8F4562AE5A5DB1914D658A',
-                        Ubki\Push\Registry\Response\State::PROCESSED,
-                        Ubki\Push\Registry\Response\OperationType::TRANSFERRING,
-                        1,
-                        'ADDR',
-                        'NW',
-                        '',
-                        '2404005906',
-                        'OK. Язык: 1. Адрес: Україна Харьков Харьков Академика Ляпунова 10. Дата версии: 10.10.2010'
-                    ),
-                    new Ubki\Push\Registry\Rep\Response(
-                        Carbon::parse($time),
-                        'IN#0000018427',
-                        'X000000000001',
-                        'A1F593950A8F4562AE5A5DB1914D658A',
-                        Ubki\Push\Registry\Response\State::PROCESSED,
-                        Ubki\Push\Registry\Response\OperationType::TRANSFERRING,
-                        1,
-                        'DOC',
-                        'NW',
-                        '',
-                        '2404005906',
-                        'OK. Язык: 1. Серия док.: МТ 333333 Харьковский Украины в Харьковской обл.. Тип документа: 1.'
-                    ),
-                    new Ubki\Push\Registry\Rep\Response(
-                        Carbon::parse($time),
-                        'IN#0000018427',
-                        'X000000000001',
-                        'A1F593950A8F4562AE5A5DB1914D658A',
-                        Ubki\Push\Registry\Response\State::PROCESSED,
-                        Ubki\Push\Registry\Response\OperationType::TRANSFERRING,
-                        1,
-                        'IDENT',
-                        'NW',
-                        '',
-                        '2404005906',
-                        'OK. Язык: 1. ФИО: ИВАНОВ ИВАН ИВАНОВИЧ АЛЕКСАНДРОВИЧ. Дата версии: 10.10.2010'
-                    ),
-                    new Ubki\Push\Registry\Rep\Response(
-                        Carbon::parse($time),
-                        'IN#0000018427',
-                        'X000000000001',
-                        'A1F593950A8F4562AE5A5DB1914D658A',
-                        Ubki\Push\Registry\Response\State::PROCESSED,
-                        Ubki\Push\Registry\Response\OperationType::TRANSFERRING,
-                        2,
-                        'CRDEAL',
-                        'NW',
-                        '',
-                        '2404005906',
-                        'OK IN. Референс договора: 111111. Месяц среза: 1. Год среза: 2010'
-                    ),
-                    new Ubki\Push\Registry\Rep\Response(
-                        Carbon::parse($time),
-                        'IN#0000018427',
-                        'X000000000001',
-                        'A1F593950A8F4562AE5A5DB1914D658A',
-                        Ubki\Push\Registry\Response\State::PROCESSED,
-                        Ubki\Push\Registry\Response\OperationType::TRANSFERRING,
-                        10,
-                        'CONT',
-                        'NW',
-                        '',
-                        '2404005906',
-                        'OK. Тип контакта: 3. Контакт: +380998881000. Дата версии: 10.10.2009'
-                    ),
-                )
-            ),
-            $responses
+            new Ubki\Push\Registry\ResponseCollection($responseRegistryXml),
+            $reportCollection
+        );
+
+        /** @var Ubki\Push\Registry\Rep\Response $report */
+        foreach ($reportCollection as $report) {
+            $this->assertEquals(Ubki\Push\Registry\Response\State::PROCESSED(), $report->getState());
+            $this->assertEquals(Ubki\Push\Registry\Type::REP, $report->getType());
+            $this->assertEquals(Carbon::parse('20101010'), $report->getExportDate());
+            $this->assertEquals('A1F593950A8F4562AE5A5DB1914D658A', $report->getSessionId());
+            $this->assertEquals('NW', $report->getRegistryType());
+            $this->assertEmpty($report->getErrorType());
+            $this->assertEquals('2404005906', $report->getInn());
+        }
+
+        /** @var Ubki\Push\Registry\Rep\Response $firstReport */
+        $firstReport = $reportCollection->offsetGet(0);
+        $secondReport = $reportCollection->offsetGet(1);
+        $thirdReport = $reportCollection->offsetGet(2);
+        $fourthReport = $reportCollection->offsetGet(3);
+        $fifthReport = $reportCollection->offsetGet(4);
+
+        $this->assertEquals('ADDR', $firstReport->getItem());
+        $this->assertEquals(1, $firstReport->getBlockId());
+        $this->assertEquals(
+            'OK. Язык: 1. Адрес: Україна Харьков Харьков Академика Ляпунова 10. Дата версии: 10.10.2010',
+            $firstReport->getRemark()
+        );
+
+        $this->assertEquals('DOC', $secondReport->getItem());
+        $this->assertEquals(1, $secondReport->getBlockId());
+        $this->assertEquals(
+            'OK. Язык: 1. Серия док.: МТ 333333 Харьковский Украины в Харьковской обл.. Тип документа: 1.',
+            $secondReport->getRemark()
+        );
+
+        $this->assertEquals('IDENT', $thirdReport->getItem());
+        $this->assertEquals(1, $thirdReport->getBlockId());
+        $this->assertEquals(
+            'OK. Язык: 1. ФИО: ИВАНОВ ИВАН ИВАНОВИЧ АЛЕКСАНДРОВИЧ. Дата версии: 10.10.2010',
+            $thirdReport->getRemark()
+        );
+
+        $this->assertEquals('CRDEAL', $fourthReport->getItem());
+        $this->assertEquals(2, $fourthReport->getBlockId());
+        $this->assertEquals(
+            'OK IN. Референс договора: 111111. Месяц среза: 1. Год среза: 2010',
+            $fourthReport->getRemark()
+        );
+
+        $this->assertEquals('CONT', $fifthReport->getItem());
+        $this->assertEquals(10, $fifthReport->getBlockId());
+        $this->assertEquals(
+            'OK. Тип контакта: 3. Контакт: +380998881000. Дата версии: 10.10.2009',
+            $fifthReport->getRemark()
         );
     }
 
