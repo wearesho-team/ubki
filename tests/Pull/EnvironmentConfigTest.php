@@ -44,8 +44,8 @@ class EnvironmentConfigTest extends TestCase
 
     public function testGetDefaultUrls(): void
     {
-        putenv('TEST_PREFIX_PULL_MODE=' . Ubki\Pull\EnvironmentConfig::MODE_TEST);
-        putenv('PRODUCTION_PREFIX_PULL_MODE=' . Ubki\Pull\EnvironmentConfig::MODE_PRODUCTION);
+        putenv('TEST_PREFIX_MODE=' . Ubki\Pull\EnvironmentConfig::MODE_TEST);
+        putenv('PRODUCTION_PREFIX_MODE=' . Ubki\Pull\EnvironmentConfig::MODE_PRODUCTION);
 
         $config = new Ubki\Pull\EnvironmentConfig('TEST_PREFIX_');
         $url = $config->getPullUrl();
