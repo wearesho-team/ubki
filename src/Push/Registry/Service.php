@@ -45,6 +45,7 @@ class Service implements ServiceInterface
      * @return RequestResponsePair
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws RequestException
+     * @throws Ubki\NullResponseException
      * @throws UnknownErrorException
      */
     public function send(RequestInterface $request): RequestResponsePair
