@@ -34,7 +34,7 @@ trait EnvironmentConfigTrait
 
     public function isProductionMode(): bool
     {
-        $environmentMode = (int)$this->getEnv('PUSH_MODE');
+        $environmentMode = (int)$this->getEnv('MODE');
 
         switch ($environmentMode) {
             case ConfigInterface::MODE_PRODUCTION:
