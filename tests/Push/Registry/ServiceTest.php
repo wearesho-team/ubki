@@ -103,10 +103,11 @@ class ServiceTest extends TestCase
         /** @noinspection PhpUnhandledExceptionInspection */
         /** @var Ubki\Push\Registry\RequestResponsePair $response */
         $response = $this->service->send($request);
+        $parser = new Ubki\Push\Registry\Parser();
 
         $this->assertEquals(
-            (new Ubki\Push\Registry\ResponseCollection($this->responseRegistryXml))->offsetGet(0),
-            (new Ubki\Push\Registry\ResponseCollection($response->getResponse()))->offsetGet(0)
+            $parser->fetchResponses($this->responseRegistryXml)->offsetGet(0),
+            $parser->fetchResponses($response->getResponse())->offsetGet(0)
         );
     }
 
@@ -148,10 +149,11 @@ class ServiceTest extends TestCase
         /** @noinspection PhpUnhandledExceptionInspection */
         /** @var Ubki\Push\Registry\RequestResponsePair $response */
         $response = $this->service->send($request);
+        $parser = new Ubki\Push\Registry\Parser();
 
         $this->assertEquals(
-            (new Ubki\Push\Registry\ResponseCollection($this->responseRegistryXml))->offsetGet(0),
-            (new Ubki\Push\Registry\ResponseCollection($response->getResponse()))->offsetGet(0)
+            $parser->fetchResponses($this->responseRegistryXml)->offsetGet(0),
+            $parser->fetchResponses($response->getResponse())->offsetGet(0)
         );
     }
 
@@ -465,11 +467,11 @@ class ServiceTest extends TestCase
         /** @noinspection PhpUnhandledExceptionInspection */
         /** @var Ubki\Push\Registry\RequestResponsePair $response */
         $response = $this->service->send($request);
-
-        $reportCollection = new Ubki\Push\Registry\ResponseCollection($response->getResponse());
+        $parser = new Ubki\Push\Registry\Parser();
+        $reportCollection = $parser->fetchResponses($response->getResponse());
 
         $this->assertEquals(
-            new Ubki\Push\Registry\ResponseCollection($responseRegistryXml),
+            $parser->fetchResponses($responseRegistryXml),
             $reportCollection
         );
 

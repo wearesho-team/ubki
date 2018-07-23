@@ -41,18 +41,6 @@ class StateTest extends TestCase
         $this->assertEquals('SQL_ERROR', $state->getKey());
     }
 
-    public function testInstanceByValue(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $this->assertEquals(State::BLOCKED(), State::instanceByValue(State::BLOCKED));
-        $this->assertEquals(State::SQL_ERROR(), State::instanceByValue(State::SQL_ERROR));
-        $this->assertEquals(State::CREATED(), State::instanceByValue(State::CREATED));
-        $this->assertEquals(State::PROCESSED(), State::instanceByValue(State::PROCESSED));
-        $this->assertEquals(State::TRANSMITTED(), State::instanceByValue(State::TRANSMITTED));
-        State::instanceByValue('INVALID');
-    }
-
     public function testBlocked(): void
     {
         $state = State::BLOCKED();

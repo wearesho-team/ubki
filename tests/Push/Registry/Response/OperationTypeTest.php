@@ -12,16 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 class OperationTypeTest extends TestCase
 {
-    public function testInstanceByValue(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $this->assertEquals(OperationType::DELETING, OperationType::instanceByValue(OperationType::DELETING));
-        $this->assertEquals(OperationType::TRANSFERRING, OperationType::instanceByValue(OperationType::TRANSFERRING));
-        $this->assertEquals(OperationType::EDITING, OperationType::instanceByValue(OperationType::EDITING));
-        OperationType::instanceByValue('INVALID');
-    }
-
     public function testEditing(): void
     {
         $state = OperationType::EDITING();

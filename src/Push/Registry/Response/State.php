@@ -23,28 +23,4 @@ class State extends Enum
     public const CREATED = 'i';
     public const BLOCKED = 'b';
     public const SQL_ERROR = 'e';
-
-    /**
-     * @param string $state
-     *
-     * @return State
-     * @throws \InvalidArgumentException
-     */
-    public static function instanceByValue(string $state): State
-    {
-        switch ($state) {
-            case static::PROCESSED:
-                return State::PROCESSED();
-            case static::TRANSMITTED:
-                return State::TRANSMITTED();
-            case static::CREATED:
-                return State::CREATED();
-            case static::BLOCKED:
-                return State::BLOCKED();
-            case static::SQL_ERROR:
-                return State::SQL_ERROR();
-            default:
-                throw new \InvalidArgumentException('Invalid state: ' . $state);
-        }
-    }
 }

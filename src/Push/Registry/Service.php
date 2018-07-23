@@ -163,6 +163,7 @@ class Service implements ServiceInterface
      *
      * @return string
      * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws Ubki\NullResponseException
      * @throws UnknownErrorException
      */
     private function getFileContent(string $url): string
@@ -176,6 +177,10 @@ class Service implements ServiceInterface
                 )
             );
         } catch (GuzzleHttp\Exception\RequestException $exception) {
+            if (is_null($exception->getResponse())) {
+                throw new Ubki\NullResponseException();
+            }
+
             $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
 
             if ($xml === false || !isset($xml->prot)) {
