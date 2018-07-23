@@ -27,12 +27,14 @@ class ParserTest extends TestCase
                       remark=\"OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014\"/>
             </doc>";
         $parser = new Ubki\Push\Registry\Parser();
-        $responses = $parser->fetchResponses($registryXmlBody);
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $responses = $parser->parseResponses($registryXmlBody);
 
         $this->assertEquals(
             new Ubki\Push\Registry\ResponseCollection([
                 new Ubki\Push\Registry\Rep\Response(
-                    Carbon::parse('20101010'),
+                    Carbon::create(2010, 10, 10, 0, 0, 0),
                     'IN#0000018427',
                     'X000000000001',
                     'A1F593950A8F4562AE5A5DB1914D658A',
@@ -66,6 +68,22 @@ class ParserTest extends TestCase
                       remark=\"OK. Язык: 1. ФИО: Зарінчук Любов Ярославівна. Дата версии: 23.05.2014\"/>
             </doc>";
         $parser = new Ubki\Push\Registry\Parser();
-        $parser->fetchResponses($registryXmlBody);
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $parser->parseResponses($registryXmlBody);
+    }
+
+    public function testEmptyDocument(): void
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("String have invalid content. Count of reports < 1");
+
+        $registryXmlBody = "<?xml version=\"1.0\" encoding=\"utf-8\"?>
+            <doc>
+            </doc>";
+        $parser = new Ubki\Push\Registry\Parser();
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $parser->parseResponses($registryXmlBody);
     }
 }

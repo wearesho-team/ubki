@@ -10,9 +10,20 @@ use Carbon\Carbon;
  */
 class Parser
 {
-    public function fetchResponses(string $response): ResponseCollection
+    /**
+     * @param string $response
+     *
+     * @return ResponseCollection
+     * @throws \Exception
+     */
+    public function parseResponses(string $response): ResponseCollection
     {
         $reports = $this->fetchReports($response);
+
+        if (count($reports) < 1) {
+            throw new \Exception('String have invalid content. Count of reports < 1');
+        }
+
         $responseType = $reports[0]->attributes()[Rep\Attribute::TYPE];
 
         switch ($responseType) {

@@ -164,7 +164,6 @@ class Service implements ServiceInterface
      *
      * @return string
      * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws Ubki\NullResponseException
      * @throws UnknownErrorException
      */
     private function getFileContent(string $url): string

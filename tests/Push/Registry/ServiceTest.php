@@ -106,8 +106,8 @@ class ServiceTest extends TestCase
         $parser = new Ubki\Push\Registry\Parser();
 
         $this->assertEquals(
-            $parser->fetchResponses($this->responseRegistryXml)->offsetGet(0),
-            $parser->fetchResponses($response->getResponse())->offsetGet(0)
+            $parser->parseResponses($this->responseRegistryXml)->offsetGet(0),
+            $parser->parseResponses($response->getResponse())->offsetGet(0)
         );
     }
 
@@ -152,8 +152,8 @@ class ServiceTest extends TestCase
         $parser = new Ubki\Push\Registry\Parser();
 
         $this->assertEquals(
-            $parser->fetchResponses($this->responseRegistryXml)->offsetGet(0),
-            $parser->fetchResponses($response->getResponse())->offsetGet(0)
+            $parser->parseResponses($this->responseRegistryXml)->offsetGet(0),
+            $parser->parseResponses($response->getResponse())->offsetGet(0)
         );
     }
 
@@ -468,10 +468,12 @@ class ServiceTest extends TestCase
         /** @var Ubki\Push\Registry\RequestResponsePair $response */
         $response = $this->service->send($request);
         $parser = new Ubki\Push\Registry\Parser();
-        $reportCollection = $parser->fetchResponses($response->getResponse());
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $reportCollection = $parser->parseResponses($response->getResponse());
 
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->assertEquals(
-            $parser->fetchResponses($responseRegistryXml),
+            $parser->parseResponses($responseRegistryXml),
             $reportCollection
         );
 
