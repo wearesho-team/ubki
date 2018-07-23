@@ -570,4 +570,23 @@ class ServiceTest extends TestCase
         /** @noinspection PhpUnhandledExceptionInspection */
         $this->service->send($request);
     }
+
+    public function testGetConfig(): void
+    {
+        $config = new Ubki\Push\EnvironmentConfig();
+        $client = new GuzzleHttp\Client();
+        $authProvider = new Ubki\Authorization\CacheProvider(
+            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            $client,
+            $this->logger
+        );
+        $this->service = new Ubki\Push\Registry\Service(
+            $config,
+            $authProvider,
+            $client,
+            $this->logger
+        );
+
+        $this->assertEquals($config, $this->service->config());
+    }
 }
