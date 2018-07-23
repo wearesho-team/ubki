@@ -69,6 +69,11 @@ class Service implements ServiceInterface
         );
     }
 
+    public function config(): Ubki\Push\ConfigInterface
+    {
+        return $this->config;
+    }
+
     protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
     {
         return new GuzzleHttp\Psr7\Request(
