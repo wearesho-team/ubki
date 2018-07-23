@@ -27,7 +27,7 @@ class EnvironmentConfigTest extends TestCase
     {
         $this->logger = new TestLogger();
         $this->config =
-            new class('UBKI_PUSH_') extends Environment\Config implements Ubki\Authorization\ConfigInterface
+            new class('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface
             {
                 use Ubki\Authorization\EnvironmentConfigTrait;
             };
@@ -37,37 +37,38 @@ class EnvironmentConfigTest extends TestCase
 
     public function testGetEmptyUsername(): void
     {
-        putenv('UBKI_PUSH_USERNAME');
+        putenv('UBKI_USERNAME');
         $this->expectException(Environment\MissingEnvironmentException::class);
-        $this->expectExceptionMessage('Missing environment key UBKI_PUSH_USERNAME');
+        $this->expectExceptionMessage('Missing environment key UBKI_USERNAME');
         $this->config->getUsername();
     }
 
     public function testGetUsername(): void
     {
         $username = 'username';
-        putenv("UBKI_PUSH_USERNAME={$username}");
+        putenv("UBKI_USERNAME={$username}");
         $this->assertEquals($username, $this->config->getUsername());
     }
 
     public function testGetEmptyPassword(): void
     {
-        putenv('UBKI_PUSH_PASSWORD');
+        putenv('UBKI_PASSWORD');
         $this->expectException(Environment\MissingEnvironmentException::class);
-        $this->expectExceptionMessage('Missing environment key UBKI_PUSH_PASSWORD');
+        $this->expectExceptionMessage('Missing environment key UBKI_PASSWORD');
         $this->config->getPassword();
     }
 
     public function testGetPassword(): void
     {
         $password = 'password';
-        putenv("UBKI_PUSH_PASSWORD={$password}");
+        putenv("UBKI_PASSWORD={$password}");
         $this->assertEquals($password, $this->config->getPassword());
     }
 
     public function testGetInvalidMode(): void
     {
-        putenv('UBKI_PUSH_MODE=228');
+        putenv('UBKI_MODE=228');
+        putenv('UBKI_AUTH_URL');
         $this->expectException(Ubki\UnsupportedModeException::class);
         $this->expectExceptionMessage('Mode have invalid value 228');
         $this->assertEquals(false, $this->config->getAuthUrl());
@@ -75,14 +76,14 @@ class EnvironmentConfigTest extends TestCase
 
     public function testGetTestDefaultAuthUrl(): void
     {
-        putenv('UBKI_PUSH_MODE=' . Ubki\Authorization\ConfigInterface::MODE_TEST);
+        putenv('UBKI_MODE=' . Ubki\Authorization\ConfigInterface::MODE_TEST);
         putenv('UBKI_AUTH_URL');
         $this->assertEquals(Ubki\Authorization\ConfigInterface::TEST_AUTH_URL, $this->config->getAuthUrl());
     }
 
     public function testGetProductionDefaulttAuthUrl(): void
     {
-        putenv('UBKI_PUSH_MODE=' . Ubki\Authorization\ConfigInterface::MODE_PRODUCTION);
+        putenv('UBKI_MODE=' . Ubki\Authorization\ConfigInterface::MODE_PRODUCTION);
         putenv('UBKI_AUTH_URL');
         $this->assertEquals(Ubki\Authorization\ConfigInterface::PRODUCTION_AUTH_URL, $this->config->getAuthUrl());
     }
