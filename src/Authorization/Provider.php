@@ -85,6 +85,10 @@ class Provider implements ProviderInterface
      */
     protected function catchException(GuzzleHttp\Exception\RequestException $exception): void
     {
+        if (is_null($exception->getResponse())) {
+            throw $exception;
+        }
+
         $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
         if ($xml === false || !isset($xml->auth)) {
             // Not XML or invalid format XML
