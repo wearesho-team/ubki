@@ -14,6 +14,7 @@ class SearchPassportMia extends Ubki\Block
 
     protected $search;
 
+    // todo: refactor after implementation MVD element
     public function __construct($search)
     {
         $this->search = $search;
