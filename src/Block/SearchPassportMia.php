@@ -16,7 +16,7 @@ class SearchPassportMia extends Ubki\Block
 
     public function __construct($search)
     {
-        $this->search;
+        $this->search = $search;
     }
 
     public function getSearch()
