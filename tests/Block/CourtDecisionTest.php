@@ -22,6 +22,11 @@ class CourtDecisionTest extends TestCase
         $this->courtDecisionsComponent = new Block\CourtDecision('Some decisions');
     }
 
+    public function testType(): void
+    {
+        $this->assertEquals(Block\CourtDecision::ID, $this->courtDecisionsComponent->getId());
+    }
+
     public function testGetDecisions(): void
     {
         $this->assertEquals('Some decisions', $this->courtDecisionsComponent->getDecisions());
