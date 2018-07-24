@@ -294,6 +294,9 @@ class ProviderTest extends TestCase
         );
     }
 
+    /**
+     * @expectedException GuzzleHttp\Exception\RequestException
+     */
     public function testNullResponse(): void
     {
         $mock = new GuzzleHttp\Handler\MockHandler([
@@ -311,7 +314,6 @@ class ProviderTest extends TestCase
             $this->logger
         );
 
-        $this->expectException(GuzzleHttp\Exception\RequestException::class);
         /** @noinspection PhpUnhandledExceptionInspection */
         $provider->provide(new class(
             'test-provider-username',
