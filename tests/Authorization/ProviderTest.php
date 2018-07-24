@@ -296,10 +296,6 @@ class ProviderTest extends TestCase
 
     public function testNullResponse(): void
     {
-        $this->expectException(GuzzleHttp\Exception\RequestException::class);
-
-        $container = [];
-        $history = GuzzleHttp\Middleware::history($container);
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Exception\RequestException(
                 'Null response',
@@ -307,7 +303,6 @@ class ProviderTest extends TestCase
             )
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);
-        $stack->push($history);
 
         $client = new GuzzleHttp\Client(['handler' => $stack,]);
 
@@ -316,6 +311,7 @@ class ProviderTest extends TestCase
             $this->logger
         );
 
+        $this->expectException(GuzzleHttp\Exception\RequestException::class);
         /** @noinspection PhpUnhandledExceptionInspection */
         $provider->provide(new class(
             'test-provider-username',
