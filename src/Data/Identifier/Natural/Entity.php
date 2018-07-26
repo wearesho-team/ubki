@@ -22,7 +22,7 @@ class Entity extends Data\Identifier\Entity
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var int */
+    /** @var Data\Gender */
     protected $gender;
 
     /** @var int|null */
@@ -49,7 +49,7 @@ class Entity extends Data\Identifier\Entity
         string $name,
         string $lastName,
         \DateTimeInterface $birthDate,
-        int $gender,
+        Data\Gender $gender,
         ?string $inn = null,
         ?string $middleName = null,
         ?int $familyStatus = null,
@@ -99,7 +99,7 @@ class Entity extends Data\Identifier\Entity
         return $this->middleName;
     }
 
-    public function getGender(): int
+    public function getGender(): Data\Gender
     {
         return $this->gender;
     }
