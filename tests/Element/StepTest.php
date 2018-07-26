@@ -1,0 +1,58 @@
+<?php
+
+namespace Wearesho\Bobra\Ubki\Tests\Element;
+
+use Carbon\Carbon;
+
+use Wearesho\Bobra\Ubki;
+
+/**
+ * Class StepTest
+ * @internal
+ * @package Wearesho\Bobra\Ubki\Tests\Element
+ */
+class StepTest extends Ubki\Tests\Extend\ElementTestCase
+{
+    protected const TAG = 'step';
+
+    /** @var Ubki\Element\Step */
+    protected $element;
+
+    /** @var Carbon */
+    protected $start;
+
+    /** @var Carbon */
+    protected $end;
+
+    public function testGetEnd(): void
+    {
+        $this->assertEquals($this->end, $this->element->getEnd());
+        $this->assertTrue(
+            Carbon::instance($this->element->getStart())
+                ->lessThanOrEqualTo(Carbon::instance($this->element->getEnd()))
+        );
+    }
+
+    public function testGetStart(): void
+    {
+        $this->assertEquals($this->start, $this->element->getStart());
+        $this->assertTrue(
+            Carbon::instance($this->element->getEnd())
+                ->greaterThanOrEqualTo(Carbon::instance($this->element->getStart()))
+        );
+    }
+
+    public function testGetName(): void
+    {
+        $this->assertEquals('build report', $this->element->getName());
+    }
+
+    protected function setUp(): void
+    {
+        $this->start = Carbon::now();
+        $this->end = clone $this->start;
+        $this->end->addMinute();
+
+        $this->element = new Ubki\Element\Step('build report', $this->start, $this->end);
+    }
+}
