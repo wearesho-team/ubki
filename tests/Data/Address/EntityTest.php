@@ -1,29 +1,29 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Block;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Address;
 
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class AddressTest
+ * Class EntityTest
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Block
  */
-class AddressTest extends Ubki\Tests\Extend\ElementTestCase
+class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 {
     public const TAG = 'addr';
 
-    /** @var Ubki\Element\Address element */
+    /** @var Ubki\Data\Address\Entity element */
     protected $element;
 
     protected function setUp(): void
     {
-        $this->element = new Ubki\Element\Address(
+        $this->element = new Ubki\Data\Address\Entity(
             Carbon::parse('2018-09-09'),
             1,
-            2,
+            Ubki\Data\Address\Type::REGISTRATION(),
             'Украина',
             'Харьков',
             'Научная',
@@ -101,10 +101,10 @@ class AddressTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->assertNotEmpty($this->element);
         $this->assertEquals(
-            new Ubki\Element\Address(
+            new Ubki\Data\Address\Entity(
                 Carbon::parse('2018-09-09'),
                 1,
-                2,
+                Ubki\Data\Address\Type::REGISTRATION(),
                 'Украина',
                 'Харьков',
                 'Научная',
@@ -127,11 +127,6 @@ class AddressTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetType(): void
     {
-        $this->assertEquals(2, $this->element->getType());
-    }
-
-    public function tag(): string
-    {
-        return 'addr';
+        $this->assertEquals(Ubki\Data\Address\Type::REGISTRATION(), $this->element->getType());
     }
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Element;
+namespace Wearesho\Bobra\Ubki\Data\Address;
 
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Address
- * @package Wearesho\Bobra\Ubki\Eleme
+ * Class Entity
+ * @package Wearesho\Bobra\Ubki\Data\Address
  */
-class Address extends Ubki\Element
+class Entity extends Ubki\Element
 {
     // attributes
     public const CREATED_AT = 'vdate';
@@ -32,7 +32,7 @@ class Address extends Ubki\Element
     /** @var int */
     protected $language;
 
-    /** @var int */
+    /** @var Type */
     protected $type;
 
     /** @var string */
@@ -62,7 +62,7 @@ class Address extends Ubki\Element
     /** @var null|string */
     protected $corpus;
 
-     /** @var null|string */
+    /** @var null|string */
     protected $flat;
 
     /** @var null|string */
@@ -71,7 +71,7 @@ class Address extends Ubki\Element
     public function __construct(
         \DateTimeInterface $createdAt,
         int $language,
-        int $type,
+        Type $type,
         string $country,
         string $city,
         string $street,
@@ -115,7 +115,7 @@ class Address extends Ubki\Element
         return $this->language;
     }
 
-    public function getType(): int
+    public function getType(): Type
     {
         return $this->type;
     }
