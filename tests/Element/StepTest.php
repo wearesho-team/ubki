@@ -47,9 +47,12 @@ class StepTest extends Ubki\Tests\Extend\ElementTestCase
         $this->assertEquals('build report', $this->element->getName());
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage End date must be greater than start date!
+     */
     public function testInvalidDate(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
         $this->start->addMinutes(10);
         $this->element = new Ubki\Element\Step('test', $this->start, $this->end);
     }
