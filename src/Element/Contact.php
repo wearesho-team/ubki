@@ -23,7 +23,7 @@ class Contact extends Ubki\Element
     /** @var string */
     protected $value;
 
-    /** @var int */
+    /** @var Ubki\Type\Contact */
     protected $type;
 
     /** @var string|null */
@@ -32,7 +32,7 @@ class Contact extends Ubki\Element
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
-        int $type,
+        Ubki\Type\Contact $type,
         ?string $inn = null
     ) {
         $this->createdAt = $createdAt;
@@ -51,7 +51,7 @@ class Contact extends Ubki\Element
         return $this->value;
     }
 
-    public function getType(): int
+    public function getType(): Ubki\Type\Contact
     {
         return $this->type;
     }

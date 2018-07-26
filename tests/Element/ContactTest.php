@@ -28,7 +28,7 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
         $this->block = new Ubki\Element\Contact(
             $this->now,
             '+380930439475',
-            1,
+            Ubki\Type\Contact::HOME(),
             '1231231230'
         );
     }
@@ -36,8 +36,8 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     public function testGetType(): void
     {
         $this->assertEquals(
-            1,
-            $this->block->getType()
+            Ubki\Type\Contact::HOME,
+            $this->block->getType()->getValue()
         );
     }
 

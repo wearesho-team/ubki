@@ -26,12 +26,21 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
     /** @var string[] */
     protected $fakeInns;
 
+    /** @var array */
+    protected $types = [
+        Ubki\Type\Contact::HOME,
+        Ubki\Type\Contact::WORK,
+        Ubki\Type\Contact::MOBILE,
+        Ubki\Type\Contact::EMAIL,
+        Ubki\Type\Contact::FAX,
+    ];
+
     protected function setUp(): void
     {
         for ($i = 0; $i < rand(1, 20); $i++) {
             $this->fakePhoneNumbers[] = [
                 // todo: implement Type\Contact::...
-                rand(1, 5),
+                $this->types[rand(0, 4)],
                 '+' . rand(100000, 999999) . rand(100000, 999999)
             ];
 
@@ -53,7 +62,7 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
             $this->collection->append(new Ubki\Element\Contact(
                 $this->fakeDates[$index],
                 $number[1],
-                $number[0],
+                new Ubki\Type\Contact($number[0]),
                 $this->fakeInns[$index]
             ));
         }
@@ -66,12 +75,14 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
 
     public function testOffsetGet(): void
     {
-        foreach ($this->fakePhoneNumbers as $index => $number) {
-            /** @var Ubki\Element\Contact $element */
-            $element = $this->collection->offsetGet($index);
-            $this->assertEquals($number[1], $element->getValue());
-            $this->assertEquals($this->fakeDates[$index], $element->getCreatedAt());
-            $this->assertEquals($this->fakeInns[$index], $element->getInn());
+        /**
+         * @var int $index
+         * @var Ubki\Element\Contact $contact
+         */
+        foreach ($this->collection as $index => $contact) {
+            $this->assertEquals($this->fakePhoneNumbers[$index][1], $contact->getValue());
+            $this->assertEquals($this->fakeDates[$index], $contact->getCreatedAt());
+            $this->assertEquals($this->fakeInns[$index], $contact->getInn());
         }
     }
 
