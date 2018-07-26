@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Type;
+namespace Wearesho\Bobra\Ubki\Data;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class SocialStatus
- * @package Wearesho\Bobra\Ubki\Type
+ * @package Wearesho\Bobra\Ubki\Data
  *
  * @method static static FULL_TIME(string $description = null)
  * @method static static TERM_TIME(string $description = null)
