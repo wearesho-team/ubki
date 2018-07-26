@@ -10,6 +10,24 @@ use Wearesho\Bobra\Ubki;
  */
 class Entity extends Ubki\Element
 {
+    /** @var string|null */
+    protected $inn;
+
+    /** @var Ubki\Data\Language */
+    protected $language;
+
+    /** @var string */
+    protected $firstName;
+
+    /** @var string */
+    protected $middleName;
+
+    /** @var string */
+    protected $lastName;
+
+    /** @var \DateTimeInterface */
+    protected $birthDate;
+    
     /** @var Ubki\Data\Identifier\Collection */
     protected $identifiers;
 
@@ -26,15 +44,27 @@ class Entity extends Ubki\Element
     protected $photos;
 
     public function __construct(
+        Ubki\Data\Language $language,
+        string $firstName,
+        string $middleName,
+        string $lastName,
+        \DateTimeInterface $birthDate,
         Ubki\Data\Identifier\Collection $identifiers,
         array $documents,
         Ubki\Data\Address\Collection $addresses,
+        ?string $inn = null,
         ?array $works = null,
         ?array $photos = null
     ) {
+        $this->language = $language;
+        $this->firstName = $firstName;
+        $this->middleName = $middleName;
+        $this->lastName = $lastName;
+        $this->birthDate = $birthDate;
         $this->identifiers = $identifiers;
         $this->works = $works;
         $this->documents = $documents;
+        $this->inn = $inn;
         $this->addresses = $addresses;
         $this->photos = $photos;
     }
@@ -42,6 +72,36 @@ class Entity extends Ubki\Element
     public function tag(): string
     {
         return 'cki';
+    }
+
+    public function getInn(): ?string
+    {
+        return $this->inn;
+    }
+
+    public function getLanguage(): Ubki\Data\Language
+    {
+        return $this->language;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getMiddleName(): string
+    {
+        return $this->middleName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function getBirthDate(): \DateTimeInterface
+    {
+        return $this->birthDate;
     }
 
     public function getIdentifiers(): Ubki\Data\Identifier\Collection
