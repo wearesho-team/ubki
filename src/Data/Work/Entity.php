@@ -16,7 +16,7 @@ class Entity extends Ubki\Element
     /** @var Ubki\Data\Language */
     protected $language;
 
-    /** @var int */
+    /** @var Ubki\Data\Rank|null */
     protected $rank;
 
     /** @var string */
@@ -25,20 +25,20 @@ class Entity extends Ubki\Element
     /** @var string */
     protected $name;
 
-    /** @var int */
+    /** @var int|null */
     protected $experience;
 
-    /** @var float */
+    /** @var float|null */
     protected $income;
 
     public function __construct(
         \DateTimeInterface $createdAt,
         Ubki\Data\Language $language,
-        int $rank,
         string $ergpou,
         string $name,
-        int $experience,
-        float $income
+        ?Ubki\Data\Rank $rank = null,
+        ?int $experience = null,
+        ?float $income = null
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;
@@ -64,7 +64,7 @@ class Entity extends Ubki\Element
         return $this->language;
     }
 
-    public function getRank(): int
+    public function getRank(): ?Ubki\Data\Rank
     {
         return $this->rank;
     }
@@ -79,12 +79,12 @@ class Entity extends Ubki\Element
         return $this->name;
     }
 
-    public function getExperience(): int
+    public function getExperience(): ?int
     {
         return $this->experience;
     }
 
-    public function getIncome(): float
+    public function getIncome(): ?float
     {
         return $this->income;
     }
