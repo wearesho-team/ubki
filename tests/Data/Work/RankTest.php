@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Type\Rank;
+use Wearesho\Bobra\Ubki\Data\Rank;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * class RankTest
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class RankTest extends TestCase
 {
