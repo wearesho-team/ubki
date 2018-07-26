@@ -34,7 +34,7 @@ class Entity extends Data\Identifier\Entity
     /** @var Data\Nationality|null */
     protected $nationality;
 
-    /** @var int|null */
+    /** @var Data\RegistrationSpd|null */
     protected $registrationSpd;
 
     /** @var int|null */
@@ -55,7 +55,7 @@ class Entity extends Data\Identifier\Entity
         ?Data\FamilyStatus $familyStatus = null,
         ?Data\Education $education = null,
         ?Data\Nationality $nationality = null,
-        ?int $registrationSpd = null,
+        ?Data\RegistrationSpd $registrationSpd = null,
         ?int $socialStatus = null,
         ?int $childrenCount = null
     ) {
@@ -119,7 +119,7 @@ class Entity extends Data\Identifier\Entity
         return $this->nationality;
     }
 
-    public function getRegistrationSpd(): ?int
+    public function getRegistrationSpd(): ?Data\RegistrationSpd
     {
         return $this->registrationSpd;
     }
