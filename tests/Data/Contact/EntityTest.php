@@ -1,22 +1,23 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Element;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Contact;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Tests;
 
 /**
- * Class ContactTest
+ * Class EntityTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Element
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Contact
  */
-class ContactTest extends Ubki\Tests\Extend\ElementTestCase
+class EntityTest extends Tests\Extend\ElementTestCase
 {
     protected const TAG = 'cont';
 
-    /** @var Ubki\Element\Contact */
-    protected $block;
+    /** @var Data\Contact\Entity */
+    protected $element;
 
     /** @var Carbon */
     protected $now;
@@ -25,10 +26,10 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->now = Carbon::now();
 
-        $this->block = new Ubki\Element\Contact(
+        $this->element = new Data\Contact\Entity(
             $this->now,
             '+380930439475',
-            1,
+            Data\Contact\Type::HOME(),
             '1231231230'
         );
     }
@@ -36,8 +37,8 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     public function testGetType(): void
     {
         $this->assertEquals(
-            1,
-            $this->block->getType()
+            Data\Contact\Type::HOME,
+            $this->element->getType()->getValue()
         );
     }
 
@@ -45,7 +46,7 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             $this->now,
-            $this->block->getCreatedAt()
+            $this->element->getCreatedAt()
         );
     }
 
@@ -53,12 +54,12 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             '+380930439475',
-            $this->block->getValue()
+            $this->element->getValue()
         );
     }
 
     public function testGetInn(): void
     {
-        $this->assertEquals('1231231230', $this->block->getInn());
+        $this->assertEquals('1231231230', $this->element->getInn());
     }
 }

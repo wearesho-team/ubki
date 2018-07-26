@@ -1,17 +1,17 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Element;
+namespace Wearesho\Bobra\Ubki\Data\Contact;
 
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Contact
+ * Class Entity
  * Data of one subject's contact
- * @package Wearesho\Bobra\Ubki\Element
+ * @package Wearesho\Bobra\Ubki\Data\Contact
  */
-class Contact extends Ubki\Element
+class Entity extends Ubki\Element
 {
-    // attributes
+// attributes
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
     public const CREATED_AT = 'vdate';
@@ -23,7 +23,7 @@ class Contact extends Ubki\Element
     /** @var string */
     protected $value;
 
-    /** @var int */
+    /** @var Type */
     protected $type;
 
     /** @var string|null */
@@ -32,7 +32,7 @@ class Contact extends Ubki\Element
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
-        int $type,
+        Type $type,
         ?string $inn = null
     ) {
         $this->createdAt = $createdAt;
@@ -51,7 +51,7 @@ class Contact extends Ubki\Element
         return $this->value;
     }
 
-    public function getType(): int
+    public function getType(): Type
     {
         return $this->type;
     }

@@ -1,20 +1,21 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Collection;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Contact;
 
 use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class ContactTest
+ * Class CollectionTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Collection
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Contact
  */
-class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
+class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
 {
-    protected const TYPE = Ubki\Element\Contact::class;
+    protected const TYPE = Ubki\Data\Contact\Entity::class;
 
-    /** @var Ubki\Collection\Contact collection */
+    /** @var Ubki\Data\Contact\Collection collection */
     protected $collection;
 
     /** @var array[] */
@@ -26,12 +27,21 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
     /** @var string[] */
     protected $fakeInns;
 
+    /** @var array */
+    protected $types = [
+        Ubki\Data\Contact\Type::HOME,
+        Ubki\Data\Contact\Type::WORK,
+        Ubki\Data\Contact\Type::MOBILE,
+        Ubki\Data\Contact\Type::EMAIL,
+        Ubki\Data\Contact\Type::FAX,
+    ];
+
     protected function setUp(): void
     {
         for ($i = 0; $i < rand(1, 20); $i++) {
             $this->fakePhoneNumbers[] = [
                 // todo: implement Type\Contact::...
-                rand(1, 5),
+                $this->types[rand(0, 4)],
                 '+' . rand(100000, 999999) . rand(100000, 999999)
             ];
 
@@ -47,13 +57,13 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
             $this->fakeInns[] = rand(0, 1) ? rand(10000, 99999) . rand(10000, 99999) : null;
         }
 
-        $this->collection = new Ubki\Collection\Contact();
+        $this->collection = new Ubki\Data\Contact\Collection();
 
         foreach ($this->fakePhoneNumbers as $index => $number) {
-            $this->collection->append(new Ubki\Element\Contact(
+            $this->collection->append(new Ubki\Data\Contact\Entity(
                 $this->fakeDates[$index],
                 $number[1],
-                $number[0],
+                new Ubki\Data\Contact\Type($number[0]),
                 $this->fakeInns[$index]
             ));
         }
@@ -66,12 +76,14 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
 
     public function testOffsetGet(): void
     {
-        foreach ($this->fakePhoneNumbers as $index => $number) {
-            /** @var Ubki\Element\Contact $element */
-            $element = $this->collection->offsetGet($index);
-            $this->assertEquals($number[1], $element->getValue());
-            $this->assertEquals($this->fakeDates[$index], $element->getCreatedAt());
-            $this->assertEquals($this->fakeInns[$index], $element->getInn());
+        /**
+         * @var int $index
+         * @var Ubki\Data\Contact\Entity $contact
+         */
+        foreach ($this->collection as $index => $contact) {
+            $this->assertEquals($this->fakePhoneNumbers[$index][1], $contact->getValue());
+            $this->assertEquals($this->fakeDates[$index], $contact->getCreatedAt());
+            $this->assertEquals($this->fakeInns[$index], $contact->getInn());
         }
     }
 
