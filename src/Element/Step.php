@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Element;
 
-use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -26,7 +24,7 @@ class Step extends Ubki\Element
         \DateTimeInterface $start,
         \DateTimeInterface $end
     ) {
-        if (Carbon::parse($start)->greaterThanOrEqualTo(Carbon::parse($end))) {
+        if ($start >= $end) {
             throw new \InvalidArgumentException('End date must be greater than start date!');
         }
 
