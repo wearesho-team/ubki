@@ -61,8 +61,7 @@ class StepTest extends Ubki\Tests\Extend\CollectionTestCase
                 rand(1, 60)
             );
 
-            $this->fakeEnds[] = $this->fakeStarts[$i];
-            $this->fakeEnds[$i]->addMinutes(rand(1, 60));
+            $this->fakeEnds[] = Carbon::instance($this->fakeStarts[$i])->addMinutes(rand(1, 10));
         }
 
         $this->collection = new Ubki\Collection\Step();

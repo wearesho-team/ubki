@@ -47,12 +47,17 @@ class StepTest extends Ubki\Tests\Extend\ElementTestCase
         $this->assertEquals('build report', $this->element->getName());
     }
 
+    public function testInvalidDate(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->start->addMinutes(10);
+        $this->element = new Ubki\Element\Step('test', $this->start, $this->end);
+    }
+
     protected function setUp(): void
     {
         $this->start = Carbon::now();
-        $this->end = clone $this->start;
-        $this->end->addMinute();
-
+        $this->end = Carbon::instance($this->start)->addMinute();
         $this->element = new Ubki\Element\Step('build report', $this->start, $this->end);
     }
 }
