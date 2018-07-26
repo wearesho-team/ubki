@@ -15,12 +15,12 @@ class AddressTest extends Ubki\Tests\Extend\ElementTestCase
 {
     public const TAG = 'addr';
 
-    /** @var Ubki\Element\Address block */
-    protected $block;
+    /** @var Ubki\Element\Address element */
+    protected $element;
 
     protected function setUp(): void
     {
-        $this->block = new Ubki\Element\Address(
+        $this->element = new Ubki\Element\Address(
             Carbon::parse('2018-09-09'),
             1,
             2,
@@ -39,67 +39,67 @@ class AddressTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetState(): void
     {
-        $this->assertEquals('Харьковская', $this->block->getState());
+        $this->assertEquals('Харьковская', $this->element->getState());
     }
 
     public function testGetStreet(): void
     {
-        $this->assertEquals('Научная', $this->block->getStreet());
+        $this->assertEquals('Научная', $this->element->getStreet());
     }
 
     public function testGetFullAddress(): void
     {
-        $this->assertNull($this->block->getFullAddress());
+        $this->assertNull($this->element->getFullAddress());
     }
 
     public function testGetCityType(): void
     {
-        $this->assertEquals(2, $this->block->getCityType());
+        $this->assertEquals(2, $this->element->getCityType());
     }
 
     public function testGetCreatedAt(): void
     {
-        $this->assertEquals(Carbon::parse('2018-09-09'), $this->block->getCreatedAt());
+        $this->assertEquals(Carbon::parse('2018-09-09'), $this->element->getCreatedAt());
     }
 
     public function testGetHouse(): void
     {
-        $this->assertEquals('25', $this->block->getHouse());
+        $this->assertEquals('25', $this->element->getHouse());
     }
 
     public function testGetCity(): void
     {
-        $this->assertEquals('Харьков', $this->block->getCity());
+        $this->assertEquals('Харьков', $this->element->getCity());
     }
 
     public function testGetLanguage(): void
     {
-        $this->assertEquals(1, $this->block->getLanguage());
+        $this->assertEquals(1, $this->element->getLanguage());
     }
 
     public function testGetCountry(): void
     {
-        $this->assertEquals('Украина', $this->block->getCountry());
+        $this->assertEquals('Украина', $this->element->getCountry());
     }
 
     public function testGetCorpus(): void
     {
-        $this->assertEquals('2', $this->block->getCorpus());
+        $this->assertEquals('2', $this->element->getCorpus());
     }
 
     public function testGetArea(): void
     {
-        $this->assertEquals('Шевченковский', $this->block->getArea());
+        $this->assertEquals('Шевченковский', $this->element->getArea());
     }
 
     public function testGetFlat(): void
     {
-        $this->assertEquals('24', $this->block->getFlat());
+        $this->assertEquals('24', $this->element->getFlat());
     }
 
     public function testInstance(): void
     {
-        $this->assertNotEmpty($this->block);
+        $this->assertNotEmpty($this->element);
         $this->assertEquals(
             new Ubki\Element\Address(
                 Carbon::parse('2018-09-09'),
@@ -116,18 +116,18 @@ class AddressTest extends Ubki\Tests\Extend\ElementTestCase
                 '2',
                 '24'
             ),
-            $this->block
+            $this->element
         );
     }
 
     public function testGetIndex(): void
     {
-        $this->assertEquals(25054, $this->block->getIndex());
+        $this->assertEquals(25054, $this->element->getIndex());
     }
 
     public function testGetType(): void
     {
-        $this->assertEquals(2, $this->block->getType());
+        $this->assertEquals(2, $this->element->getType());
     }
 
     public function tag(): string
