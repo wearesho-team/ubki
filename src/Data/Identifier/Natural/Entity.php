@@ -28,7 +28,7 @@ class Entity extends Data\Identifier\Entity
     /** @var Data\FamilyStatus|null */
     protected $familyStatus;
 
-    /** @var int|null */
+    /** @var Data\Education|null */
     protected $education;
 
     /** @var int|null */
@@ -53,7 +53,7 @@ class Entity extends Data\Identifier\Entity
         ?string $inn = null,
         ?string $middleName = null,
         ?Data\FamilyStatus $familyStatus = null,
-        ?int $education = null,
+        ?Data\Education $education = null,
         ?int $nationality = null,
         ?int $registrationSpd = null,
         ?int $socialStatus = null,
@@ -109,7 +109,7 @@ class Entity extends Data\Identifier\Entity
         return $this->familyStatus;
     }
 
-    public function getEducation(): ?int
+    public function getEducation(): ?Data\Education
     {
         return $this->education;
     }

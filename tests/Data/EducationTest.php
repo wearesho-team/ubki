@@ -1,8 +1,9 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Type\Education;
+use Wearesho\Bobra\Ubki\Data\Education;
+
 use PHPUnit\Framework\TestCase;
 
 /**
