@@ -10,6 +10,19 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class Entity extends Data\Identifier\Entity
 {
+    public const INN = 'inn';
+    public const NAME = 'fname';
+    public const MIDDLE_NAME = 'mname';
+    public const LAST_NAME = 'lname';
+    public const BIRTH_DATE = 'bdate';
+    public const GENDER = 'csex';
+    public const FAMILY_STATUS = 'family';
+    public const EDUCATION = 'ceduc';
+    public const NATIONALITY = 'cgrag';
+    public const REGISTRATION_SPD = 'spd';
+    public const SOCIAL_STATUS = 'sstate';
+    public const CHILDREN_COUNT = 'cchild';
+
     /** @var string|null */
     protected $inn;
 
@@ -72,6 +85,11 @@ class Entity extends Data\Identifier\Entity
         $this->childrenCount = $childrenCount;
 
         parent::__construct($createdAt, $language, $name);
+    }
+
+    public function tag(): string
+    {
+        return 'ident';
     }
 
     public function getInn(): ?string

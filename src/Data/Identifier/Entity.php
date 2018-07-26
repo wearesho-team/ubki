@@ -8,8 +8,13 @@ use Wearesho\Bobra\Ubki;
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Identifier
  */
-abstract class Entity implements Person
+abstract class Entity extends Ubki\Element implements Person
 {
+    // attributes
+    public const CREATED_AT = 'vdate';
+    public const LANGUAGE = 'lng';
+    public const NAME = null;
+    
     /** @var \DateTimeInterface */
     protected $createdAt;
 
