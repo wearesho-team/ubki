@@ -1,23 +1,23 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Contact;
 
-use Wearesho\Bobra\Ubki\Type\Contact;
+use Wearesho\Bobra\Ubki\Data\Contact;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ContactTest
+ * Class TypeTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Contact
  */
-class ContactTest extends TestCase
+class TypeTest extends TestCase
 {
     public function testMobile(): void
     {
         $description = 'Мобильный телефон';
-        $contact = Contact::MOBILE($description);
-        $this->assertEquals(Contact::MOBILE, $contact->getValue());
+        $contact = Contact\Type::MOBILE($description);
+        $this->assertEquals(Contact\Type::MOBILE, $contact->getValue());
         $this->assertEquals('MOBILE', $contact->getKey());
         $this->assertEquals($description, $contact->getDescription());
     }
@@ -25,8 +25,8 @@ class ContactTest extends TestCase
     public function testWork(): void
     {
         $description = 'Рабочий телефон';
-        $contact = Contact::WORK($description);
-        $this->assertEquals(Contact::WORK, $contact->getValue());
+        $contact = Contact\Type::WORK($description);
+        $this->assertEquals(Contact\Type::WORK, $contact->getValue());
         $this->assertEquals('WORK', $contact->getKey());
         $this->assertEquals($description, $contact->getDescription());
     }
@@ -34,8 +34,8 @@ class ContactTest extends TestCase
     public function testHome(): void
     {
         $description = 'Домашний телефон телефон';
-        $contact = Contact::HOME($description);
-        $this->assertEquals(Contact::HOME, $contact->getValue());
+        $contact = Contact\Type::HOME($description);
+        $this->assertEquals(Contact\Type::HOME, $contact->getValue());
         $this->assertEquals('HOME', $contact->getKey());
         $this->assertEquals($description, $contact->getDescription());
     }
@@ -43,8 +43,8 @@ class ContactTest extends TestCase
     public function testFax(): void
     {
         $description = 'Факс';
-        $contact = Contact::FAX($description);
-        $this->assertEquals(Contact::FAX, $contact->getValue());
+        $contact = Contact\Type::FAX($description);
+        $this->assertEquals(Contact\Type::FAX, $contact->getValue());
         $this->assertEquals('FAX', $contact->getKey());
         $this->assertEquals($description, $contact->getDescription());
     }
@@ -52,8 +52,8 @@ class ContactTest extends TestCase
     public function testEmail(): void
     {
         $description = 'Почта';
-        $contact = Contact::EMAIL($description);
-        $this->assertEquals(Contact::EMAIL, $contact->getValue());
+        $contact = Contact\Type::EMAIL($description);
+        $this->assertEquals(Contact\Type::EMAIL, $contact->getValue());
         $this->assertEquals('EMAIL', $contact->getKey());
         $this->assertEquals($description, $contact->getDescription());
     }
