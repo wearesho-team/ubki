@@ -31,7 +31,7 @@ class Entity extends Ubki\Element
     /** @var Ubki\Data\Identifier\Collection */
     protected $identifiers;
 
-    /** @var array|null */
+    /** @var Ubki\Data\Work\Collection|null */
     protected $works;
 
     /** @var array */
@@ -53,7 +53,7 @@ class Entity extends Ubki\Element
         array $documents,
         Ubki\Data\Address\Collection $addresses,
         ?string $inn = null,
-        ?array $works = null,
+        ?Ubki\Data\Work\Collection $works = null,
         ?array $photos = null
     ) {
         $this->language = $language;
@@ -109,7 +109,7 @@ class Entity extends Ubki\Element
         return $this->identifiers;
     }
 
-    public function getWorks(): ?array
+    public function getWorks(): ?Ubki\Data\Work\Collection
     {
         return $this->works;
     }
