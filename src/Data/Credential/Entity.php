@@ -10,11 +10,8 @@ use Wearesho\Bobra\Ubki;
  */
 class Entity extends Ubki\Element
 {
-    /** @var array */
+    /** @var Ubki\Data\Identifier\Collection */
     protected $identifiers;
-
-    /** @var array|null */
-    protected $legalIdentifiers;
 
     /** @var array|null */
     protected $works;
@@ -22,22 +19,20 @@ class Entity extends Ubki\Element
     /** @var array */
     protected $documents;
 
-    /** @var array */
+    /** @var Ubki\Data\Address\Collection */
     protected $addresses;
 
     /** @var array|null */
     protected $photos;
 
     public function __construct(
-        array $identifiers,
+        Ubki\Data\Identifier\Collection $identifiers,
         array $documents,
-        array $addresses,
+        Ubki\Data\Address\Collection $addresses,
         ?array $works = null,
-        ?array $legalIdentifiers = null,
         ?array $photos = null
     ) {
         $this->identifiers = $identifiers;
-        $this->legalIdentifiers = $legalIdentifiers;
         $this->works = $works;
         $this->documents = $documents;
         $this->addresses = $addresses;
@@ -49,14 +44,9 @@ class Entity extends Ubki\Element
         return 'cki';
     }
 
-    public function getIdentifiers(): array
+    public function getIdentifiers(): Ubki\Data\Identifier\Collection
     {
         return $this->identifiers;
-    }
-
-    public function getLegalIdentifiers(): ?array
-    {
-        return $this->legalIdentifiers;
     }
 
     public function getWorks(): ?array
@@ -69,7 +59,7 @@ class Entity extends Ubki\Element
         return $this->documents;
     }
 
-    public function getAddresses(): array
+    public function getAddresses(): Ubki\Data\Address\Collection
     {
         return $this->addresses;
     }
