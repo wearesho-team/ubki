@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+namespace Wearesho\Bobra\Ubki\Data\Work;
 
 use Wearesho\Bobra\Ubki\Reference;
 
 /**
  * Class Rank
- * @package Wearesho\Bobra\Ubki\Data
+ * @package Wearesho\Bobra\Ubki\Data\Work
  *
  * @method static static DIRECTOR(string $description = null)
  * @method static static MANAGER(string $description = null)
