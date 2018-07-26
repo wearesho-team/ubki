@@ -16,7 +16,7 @@ class Entity extends Ubki\Element
     /** @var Ubki\Data\Language */
     protected $language;
 
-    /** @var Ubki\Data\Rank|null */
+    /** @var Ubki\Data\Work\Rank|null */
     protected $rank;
 
     /** @var string */
@@ -36,7 +36,7 @@ class Entity extends Ubki\Element
         Ubki\Data\Language $language,
         string $ergpou,
         string $name,
-        ?Ubki\Data\Rank $rank = null,
+        ?Ubki\Data\Work\Rank $rank = null,
         ?int $experience = null,
         ?float $income = null
     ) {
@@ -64,7 +64,7 @@ class Entity extends Ubki\Element
         return $this->language;
     }
 
-    public function getRank(): ?Ubki\Data\Rank
+    public function getRank(): ?Ubki\Data\Work\Rank
     {
         return $this->rank;
     }
