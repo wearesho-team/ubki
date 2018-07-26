@@ -16,7 +16,7 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     protected const TAG = 'cont';
 
     /** @var Ubki\Element\Contact */
-    protected $block;
+    protected $element;
 
     /** @var Carbon */
     protected $now;
@@ -25,7 +25,7 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->now = Carbon::now();
 
-        $this->block = new Ubki\Element\Contact(
+        $this->element = new Ubki\Element\Contact(
             $this->now,
             '+380930439475',
             1,
@@ -37,7 +37,7 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             1,
-            $this->block->getType()
+            $this->element->getType()
         );
     }
 
@@ -45,7 +45,7 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             $this->now,
-            $this->block->getCreatedAt()
+            $this->element->getCreatedAt()
         );
     }
 
@@ -53,12 +53,12 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             '+380930439475',
-            $this->block->getValue()
+            $this->element->getValue()
         );
     }
 
     public function testGetInn(): void
     {
-        $this->assertEquals('1231231230', $this->block->getInn());
+        $this->assertEquals('1231231230', $this->element->getInn());
     }
 }
