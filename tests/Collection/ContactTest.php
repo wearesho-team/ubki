@@ -17,10 +17,13 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
     /** @var Ubki\Collection\Contact collection */
     protected $collection;
 
+    /** @var array[] */
     protected $fakePhoneNumbers;
 
+    /** @var Carbon[] */
     protected $fakeDates;
 
+    /** @var string[] */
     protected $fakeInns;
 
     protected function setUp(): void

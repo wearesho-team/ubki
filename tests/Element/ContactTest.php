@@ -44,10 +44,8 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(
-            $this->now
-                ->toDateTimeString(),
-            Carbon::instance($this->block->getCreatedAt())
-                ->toDateTimeString()
+            $this->now,
+            $this->block->getCreatedAt()
         );
     }
 
