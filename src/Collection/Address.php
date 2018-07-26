@@ -5,13 +5,13 @@ namespace Wearesho\Bobra\Ubki\Collection;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Contact
+ * Class Address
  * @package Wearesho\Bobra\Ubki\Collection
  */
-class Contact extends Ubki\BaseCollection
+class Address extends Ubki\BaseCollection
 {
     public function type(): string
     {
-        return Ubki\Element\Contact::class;
+        return Ubki\Element\Address::class;
     }
 }
