@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Type;
 
 use Wearesho\Bobra\Ubki\Type\Contact;
+
 use PHPUnit\Framework\TestCase;
 
 /**
