@@ -23,10 +23,10 @@ class Entity extends Ubki\Element
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var int */
+    /** @var Ubki\Data\Language */
     protected $language;
 
-    /** @var int */
+    /** @var Type */
     protected $type;
 
     /** @var string */
@@ -49,8 +49,8 @@ class Entity extends Ubki\Element
 
     public function __construct(
         \DateTimeInterface $createdAt,
-        int $language,
-        int $type,
+        Ubki\Data\Language $language,
+        Type $type,
         string $serial,
         string $number,
         string $issue,
@@ -77,12 +77,12 @@ class Entity extends Ubki\Element
         return $this->createdAt;
     }
 
-    public function getLanguage(): int
+    public function getLanguage(): Ubki\Data\Language
     {
         return $this->language;
     }
 
-    public function getType(): int
+    public function getType(): Type
     {
         return $this->type;
     }
