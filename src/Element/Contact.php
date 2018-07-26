@@ -26,14 +26,14 @@ class Contact extends Ubki\Element
     /** @var int */
     protected $type;
 
-    /** @var int|null */
+    /** @var string|null */
     protected $inn;
 
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
         int $type,
-        ?int $inn = null
+        ?string $inn = null
     ) {
         $this->createdAt = $createdAt;
         $this->value = $value;
@@ -61,7 +61,7 @@ class Contact extends Ubki\Element
         return $this->createdAt;
     }
 
-    public function getInn(): ?int
+    public function getInn(): ?string
     {
         return $this->inn;
     }

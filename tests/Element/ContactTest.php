@@ -28,7 +28,8 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
         $this->block = new Ubki\Element\Contact(
             $this->now,
             '+380930439475',
-            1
+            1,
+            '1231231230'
         );
     }
 
@@ -60,8 +61,6 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetInn(): void
     {
-        $this->assertNull(
-            $this->block->getInn()
-        );
+        $this->assertEquals('1231231230', $this->block->getInn());
     }
 }
