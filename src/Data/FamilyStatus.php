@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Type;
+namespace Wearesho\Bobra\Ubki\Data;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class FamilyStatus
- * @package Wearesho\Bobra\Ubki\Type
+ * @package Wearesho\Bobra\Ubki\Data
  *
  * @method static static SINGLE(string $description = null)
  * @method static static MARRIED(string $description = null)
