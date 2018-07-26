@@ -34,7 +34,7 @@ class Entity extends Ubki\Element
     /** @var Ubki\Data\Work\Collection|null */
     protected $works;
 
-    /** @var array */
+    /** @var Ubki\Data\Document\Collection */
     protected $documents;
 
     /** @var Ubki\Data\Address\Collection */
@@ -50,7 +50,7 @@ class Entity extends Ubki\Element
         string $lastName,
         \DateTimeInterface $birthDate,
         Ubki\Data\Identifier\Collection $identifiers,
-        array $documents,
+        Ubki\Data\Document\Collection $documents,
         Ubki\Data\Address\Collection $addresses,
         ?string $inn = null,
         ?Ubki\Data\Work\Collection $works = null,
@@ -114,7 +114,7 @@ class Entity extends Ubki\Element
         return $this->works;
     }
 
-    public function getDocuments(): array
+    public function getDocuments(): Ubki\Data\Document\Collection
     {
         return $this->documents;
     }
