@@ -5,8 +5,8 @@ namespace Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Reference;
 
 /**
- * Class Type
- * @package Wearesho\Bobra\Ubki\Data\Language
+ * Class Language
+ * @package Wearesho\Bobra\Ubki\Data
  *
  * Use iso 639-3 standard
  * @see https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4%D1%8B_%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2
