@@ -31,7 +31,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
             25054,
             'Харьковская',
             'Шевченковский',
-            2,
+            Ubki\Data\CityType::SETTLEMENT(),
             '2',
             '24'
         );
@@ -54,7 +54,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetCityType(): void
     {
-        $this->assertEquals(2, $this->element->getCityType());
+        $this->assertEquals(Ubki\Data\CityType::SETTLEMENT(), $this->element->getCityType());
     }
 
     public function testGetCreatedAt(): void
@@ -112,7 +112,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
                 25054,
                 'Харьковская',
                 'Шевченковский',
-                2,
+                Ubki\Data\CityType::SETTLEMENT(),
                 '2',
                 '24'
             ),

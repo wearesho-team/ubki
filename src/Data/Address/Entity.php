@@ -50,7 +50,7 @@ class Entity extends Ubki\Element
     /** @var string */
     protected $city;
 
-    /** @var int|null */
+    /** @var Ubki\Data\CityType|null */
     protected $cityType;
 
     /** @var string */
@@ -79,7 +79,7 @@ class Entity extends Ubki\Element
         ?string $index = null,
         ?string $state = null,
         ?string $area = null,
-        ?int $cityType = null,
+        ?Ubki\Data\CityType $cityType = null,
         ?string $corpus = null,
         ?string $flat = null,
         ?string $fullAddress = null
@@ -145,7 +145,7 @@ class Entity extends Ubki\Element
         return $this->city;
     }
 
-    public function getCityType(): ?int
+    public function getCityType(): ?Ubki\Data\CityType
     {
         return $this->cityType;
     }

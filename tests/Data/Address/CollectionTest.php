@@ -45,7 +45,7 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
     /** @var string[]|null */
     protected $areas;
 
-    /** @var int[]|null */
+    /** @var Ubki\Data\CityType[]|null */
     protected $cityTypes;
 
     /** @var string[]|null */
@@ -71,6 +71,9 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
         $addressTypes = Ubki\Data\Address\Type::toArray();
         $addressTypesKeys = array_keys($addressTypes);
         $addressTypesValues = array_values($addressTypes);
+        $cityTypes = Ubki\Data\CityType::toArray();
+        $cityTypesKeys = array_keys($cityTypes);
+        $cityTypesValues = array_values($cityTypes);
 
         for ($i = 0; $i < rand(1, 100); $i++) {
             $this->languages[] = [
@@ -88,7 +91,10 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
             $this->indexes[] = rand(0, 1) ? random_bytes(rand(5, 15)) : null;
             $this->states[] = rand(0, 1) ? random_bytes(rand(5, 15)) : null;
             $this->areas[] = rand(0, 1) ? random_bytes(rand(5, 15)) : null;
-            $this->cityTypes[] = rand(0, 1) ? rand(1, 10) : null; // todo: implement city type
+            $this->cityTypes[] =
+                rand(0, 1)
+                    ? [$cityTypesKeys[rand(0, 3)], $cityTypesValues[rand(0, 3)],]
+                    : null;
             $this->corpuses[] = rand(0, 1) ? random_bytes(rand(5, 15)) : null;
             $this->flats[] = rand(0, 1) ? random_bytes(rand(5, 15)) : null;
             $this->fullAddresses[] =
@@ -116,7 +122,7 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
                 $this->indexes[$index],
                 $this->states[$index],
                 $this->areas[$index],
-                $this->cityTypes[$index],
+                $this->cityTypes[$index][1] ? new Ubki\Data\CityType($this->cityTypes[$index][1]) : null,
                 $this->corpuses[$index],
                 $this->flats[$index],
                 $this->fullAddresses[$index]
@@ -142,7 +148,10 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
             $this->assertEquals($this->indexes[$index], $address->getIndex());
             $this->assertEquals($this->states[$index], $address->getState());
             $this->assertEquals($this->areas[$index], $address->getArea());
-            $this->assertEquals($this->cityTypes[$index], $address->getCityType());
+            $this->assertEquals(
+                $this->cityTypes[$index][1] ? new Ubki\Data\CityType($this->cityTypes[$index][1]) : null,
+                $address->getCityType()
+            );
             $this->assertEquals($this->corpuses[$index], $address->getCorpus());
             $this->assertEquals($this->fullAddresses[$index], $address->getFullAddress());
         }
