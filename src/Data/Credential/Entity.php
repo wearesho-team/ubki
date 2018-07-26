@@ -43,6 +43,9 @@ class Entity extends Ubki\Element
     /** @var array|null */
     protected $photos;
 
+    /** @var array|null */
+    protected $linkedPersons;
+
     public function __construct(
         Ubki\Data\Language $language,
         string $firstName,
@@ -54,7 +57,8 @@ class Entity extends Ubki\Element
         Ubki\Data\Address\Collection $addresses,
         ?string $inn = null,
         ?Ubki\Data\Work\Collection $works = null,
-        ?array $photos = null
+        ?array $photos = null,
+        ?array $linkedPersons = null
     ) {
         $this->language = $language;
         $this->firstName = $firstName;
@@ -127,5 +131,10 @@ class Entity extends Ubki\Element
     public function getPhotos(): ?array
     {
         return $this->photos;
+    }
+
+    public function getLinkedPersons(): ?array
+    {
+        return $this->linkedPersons;
     }
 }
