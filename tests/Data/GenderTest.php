@@ -1,15 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Type\Gender;
+use Wearesho\Bobra\Ubki\Data\Gender;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class GenderTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class GenderTest extends TestCase
 {
