@@ -23,11 +23,6 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
 
     protected $fakeInns;
 
-    public function __construct(?string $name = null, array $data = [], string $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-    }
-
     protected function setUp(): void
     {
         for ($i = 0; $i < rand(1, 20); $i++) {
