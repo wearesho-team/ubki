@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Reference;
  * @method static static SPECIALIST(string $description = null)
  * @method static static FREELANCER(string $description = null)
  */
-class Rank extends Reference
+final class Rank extends Reference
 {
     public const DIRECTOR = 1;
     public const MANAGER = 2;
