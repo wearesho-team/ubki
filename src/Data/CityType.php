@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Reference;
  * @method static static URBAN_VILLAGE(string $description = null)
  * @method static static TOWN(string $description = null)
  */
-class CityType extends Reference
+final class CityType extends Reference
 {
     public const VILLAGE = 1;
     public const SETTLEMENT = 2;
