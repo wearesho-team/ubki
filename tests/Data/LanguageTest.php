@@ -2,7 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Type;
 
-use Wearesho\Bobra\Ubki\Type\Language;
+use Wearesho\Bobra\Ubki\Data\Language;
+
 use PHPUnit\Framework\TestCase;
 
 /**

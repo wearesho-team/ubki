@@ -1,14 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Type;
+namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Reference;
 
 /**
- * Class Language
+ * Class Type
+ * @package Wearesho\Bobra\Ubki\Data\Language
+ *
  * Use iso 639-3 standard
  * @see https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4%D1%8B_%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2
- * @package Wearesho\Bobra\Ubki\Data
  *
  * @method static static RUS(string $description = null)
  * @method static static UKR(string $description = null)
@@ -19,7 +20,7 @@ use Wearesho\Bobra\Ubki;
  * @method static static ZHO(string $description = null)
  * @method static static KAZ(string $description = null)
  */
-final class Language extends Ubki\Reference
+final class Language extends Reference
 {
     /** @var int Russian */
     public const RUS = 1;

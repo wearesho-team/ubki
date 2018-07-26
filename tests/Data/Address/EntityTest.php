@@ -22,7 +22,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->element = new Ubki\Data\Address\Entity(
             Carbon::parse('2018-09-09'),
-            1,
+            Ubki\Data\Language::RUS(),
             Ubki\Data\Address\Type::REGISTRATION(),
             'Украина',
             'Харьков',
@@ -74,7 +74,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetLanguage(): void
     {
-        $this->assertEquals(1, $this->element->getLanguage());
+        $this->assertEquals(Ubki\Data\Language::RUS(), $this->element->getLanguage());
     }
 
     public function testGetCountry(): void
@@ -103,7 +103,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
         $this->assertEquals(
             new Ubki\Data\Address\Entity(
                 Carbon::parse('2018-09-09'),
-                1,
+                Ubki\Data\Language::RUS(),
                 Ubki\Data\Address\Type::REGISTRATION(),
                 'Украина',
                 'Харьков',

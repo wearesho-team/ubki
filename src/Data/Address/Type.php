@@ -15,7 +15,7 @@ use Wearesho\Bobra\Ubki;
  * @method static static MAILING(string $description = null)
  * @method static static WORK(string $description = null)
  */
-class Type extends Ubki\Reference
+final class Type extends Ubki\Reference
 {
     public const HOME = 1;
     public const REGISTRATION = 2;
