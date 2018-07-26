@@ -23,11 +23,25 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function setUp(): void
     {
         $this->element = new Data\Identifier\Natural\Entity(
-            Carbon::create(2010, 10, 10 , 10, 10, 10),
+            Carbon::create(
+                2010,
+                10,
+                10,
+                10,
+                10,
+                10
+            ),
             Data\Language::ENG(),
             'Roman',
             'Varkuta',
-            Carbon::create(2010, 10, 10 , 10, 10, 10),
+            Carbon::create(
+                2010,
+                10,
+                10,
+                10,
+                10,
+                10
+            ),
             Data\Gender::MAN(),
             '1234567890',
             'Andreevich',
@@ -63,7 +77,14 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetBirthDate(): void
     {
         $this->assertEquals(
-            Carbon::create(2010, 10, 10 , 10, 10, 10),
+            Carbon::create(
+                2010,
+                10,
+                10,
+                10,
+                10,
+                10
+            ),
             $this->element->getBirthDate()
         );
     }
