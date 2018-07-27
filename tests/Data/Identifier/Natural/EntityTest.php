@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Tests;
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Identifier\Natural
  */
-class EntityTest extends Tests\Extend\ElementTestCase
+class EntityTest extends Tests\Data\Identifier\EntityTestCase
 {
     protected const TAG = 'ident';
 
@@ -24,15 +24,15 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->element = new Data\Identifier\Natural\Entity(
             Carbon::create(
-                2010,
+                2020,
+                3,
+                12,
                 10,
-                10,
-                10,
-                10,
-                10
+                5,
+                7
             ),
             Data\Language::ENG(),
-            'Roman',
+            'name',
             'Varkuta',
             Carbon::create(
                 2010,
