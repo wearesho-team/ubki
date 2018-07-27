@@ -12,7 +12,7 @@ use Wearesho\Bobra\Ubki;
  * Class EntityTestCase
  * @package Wearesho\Bobra\Ubki\Tests\Data\Identifier
  */
-abstract class EntityTestCase extends TestCase
+abstract class EntityTestCase extends Ubki\Tests\Extend\ElementTestCase
 {
     /** @var Ubki\Data\Identifier\Entity */
     protected $element;
