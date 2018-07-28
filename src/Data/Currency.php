@@ -9,6 +9,8 @@ use Wearesho\Bobra\Ubki\Reference;
  * Used iso-4217 standard
  * @package Wearesho\Bobra\Ubki\Data
  *
+ * @see https://docs.google.com/document/d/12yD1_bopAlZVAe-jFCKtGkOd15VJC4mPag_wH3gvChg/edit#
+ *
  * @method static static BYN(string $description = null)
  * @method static static CHF(string $description = null)
  * @method static static EUR(string $description = null)
@@ -21,7 +23,7 @@ use Wearesho\Bobra\Ubki\Reference;
  * @method static static XAG(string $description = null)
  * @method static static XAU(string $description = null)
  */
-class Currency extends Reference
+final class Currency extends Reference
 {
     /** @var int The Belarusian Ruble */
     public const BYN = 974;
