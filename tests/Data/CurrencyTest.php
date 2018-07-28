@@ -1,13 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Type\Currency;
+use Wearesho\Bobra\Ubki\Data\Currency;
+
 use PHPUnit\Framework\TestCase;
 
 /**
- * class CurrencyTest
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * Class CurrencyTest
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class CurrencyTest extends TestCase
 {

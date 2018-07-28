@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Type;
+namespace Wearesho\Bobra\Ubki\Data;
 
 use Wearesho\Bobra\Ubki\Reference;
 
 /**
  * Class Currency
  * Used iso-4217 standard
- * @package Wearesho\Bobra\Ubki\Type
+ * @package Wearesho\Bobra\Ubki\Data
  *
  * @method static static BYN(string $description = null)
  * @method static static CHF(string $description = null)
