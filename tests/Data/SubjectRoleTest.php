@@ -1,13 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Type\SubjectRole;
+use Wearesho\Bobra\Ubki\Data\SubjectRole;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * class SubjectRoleTest
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class SubjectRoleTest extends TestCase
 {
