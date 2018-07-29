@@ -85,6 +85,7 @@ class Entity extends Element
         float $initialAmount,
         Data\SubjectRole $subjectRole,
         float $collateralCost,
+        Data\CreditDeal\DealLife\Collection $dealLifes,
         ?string $inn = null,
         ?string $middleName = null
     ) {
@@ -101,6 +102,7 @@ class Entity extends Element
         $this->initialAmount = $initialAmount;
         $this->subjectRole = $subjectRole;
         $this->collateralCost = $collateralCost;
+        $this->dealLifes = $dealLifes;
         $this->inn = $inn;
     }
 
