@@ -2,21 +2,21 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Data\CreditDeal;
 
-use Wearesho\Bobra\Ubki\Data\CreditDeal\DealStatus;
+use Wearesho\Bobra\Ubki\Data\CreditDeal\Status;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * class DealStatusTest
+ * class StatusTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\CreditDeal
  */
-class DealStatusTest extends TestCase
+class StatusTest extends TestCase
 {
     public function testProlonged(): void
     {
         $description = 'пролонгирвоана';
-        $dealStatus = DealStatus::PROLONGED($description);
-        $this->assertEquals(DealStatus::PROLONGED, $dealStatus->getValue());
+        $dealStatus = Status::PROLONGED($description);
+        $this->assertEquals(Status::PROLONGED, $dealStatus->getValue());
         $this->assertEquals('PROLONGED', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -24,8 +24,8 @@ class DealStatusTest extends TestCase
     public function testTermination(): void
     {
         $description = 'расторжение договора с бюро кредитных историй';
-        $dealStatus = DealStatus::TERMINATION($description);
-        $this->assertEquals(DealStatus::TERMINATION, $dealStatus->getValue());
+        $dealStatus = Status::TERMINATION($description);
+        $this->assertEquals(Status::TERMINATION, $dealStatus->getValue());
         $this->assertEquals('TERMINATION', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -33,8 +33,8 @@ class DealStatusTest extends TestCase
     public function testClose(): void
     {
         $description = 'закрыта';
-        $dealStatus = DealStatus::CLOSE($description);
-        $this->assertEquals(DealStatus::CLOSE, $dealStatus->getValue());
+        $dealStatus = Status::CLOSE($description);
+        $this->assertEquals(Status::CLOSE, $dealStatus->getValue());
         $this->assertEquals('CLOSE', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -42,8 +42,8 @@ class DealStatusTest extends TestCase
     public function testReplacement(): void
     {
         $description = 'замена заемщика, перевод долга';
-        $dealStatus = DealStatus::REPLACEMENT($description);
-        $this->assertEquals(DealStatus::REPLACEMENT, $dealStatus->getValue());
+        $dealStatus = Status::REPLACEMENT($description);
+        $this->assertEquals(Status::REPLACEMENT, $dealStatus->getValue());
         $this->assertEquals('REPLACEMENT', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -51,8 +51,8 @@ class DealStatusTest extends TestCase
     public function testOpen(): void
     {
         $description = 'открыта';
-        $dealStatus = DealStatus::OPEN($description);
-        $this->assertEquals(DealStatus::OPEN, $dealStatus->getValue());
+        $dealStatus = Status::OPEN($description);
+        $this->assertEquals(Status::OPEN, $dealStatus->getValue());
         $this->assertEquals('OPEN', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -60,8 +60,8 @@ class DealStatusTest extends TestCase
     public function testRestructured(): void
     {
         $description = 'реструктуризирована';
-        $dealStatus = DealStatus::RESTRUCTURED($description);
-        $this->assertEquals(DealStatus::RESTRUCTURED, $dealStatus->getValue());
+        $dealStatus = Status::RESTRUCTURED($description);
+        $this->assertEquals(Status::RESTRUCTURED, $dealStatus->getValue());
         $this->assertEquals('RESTRUCTURED', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -69,8 +69,8 @@ class DealStatusTest extends TestCase
     public function testSold(): void
     {
         $description = 'продана';
-        $dealStatus = DealStatus::SOLD($description);
-        $this->assertEquals(DealStatus::SOLD, $dealStatus->getValue());
+        $dealStatus = Status::SOLD($description);
+        $this->assertEquals(Status::SOLD, $dealStatus->getValue());
         $this->assertEquals('SOLD', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -78,8 +78,8 @@ class DealStatusTest extends TestCase
     public function testAnnulled(): void
     {
         $description = 'аннулирвоана';
-        $dealStatus = DealStatus::ANNULLED($description);
-        $this->assertEquals(DealStatus::ANNULLED, $dealStatus->getValue());
+        $dealStatus = Status::ANNULLED($description);
+        $this->assertEquals(Status::ANNULLED, $dealStatus->getValue());
         $this->assertEquals('ANNULLED', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -87,8 +87,8 @@ class DealStatusTest extends TestCase
     public function testLiquidation(): void
     {
         $description = 'ликвидация финансового учреждения';
-        $dealStatus = DealStatus::LIQUIDATION($description);
-        $this->assertEquals(DealStatus::LIQUIDATION, $dealStatus->getValue());
+        $dealStatus = Status::LIQUIDATION($description);
+        $this->assertEquals(Status::LIQUIDATION, $dealStatus->getValue());
         $this->assertEquals('LIQUIDATION', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
@@ -96,8 +96,8 @@ class DealStatusTest extends TestCase
     public function testWriteOff(): void
     {
         $description = 'списана';
-        $dealStatus = DealStatus::WRITE_OFF($description);
-        $this->assertEquals(DealStatus::WRITE_OFF, $dealStatus->getValue());
+        $dealStatus = Status::WRITE_OFF($description);
+        $this->assertEquals(Status::WRITE_OFF, $dealStatus->getValue());
         $this->assertEquals('WRITE_OFF', $dealStatus->getKey());
         $this->assertEquals($description, $dealStatus->getDescription());
     }
