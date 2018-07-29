@@ -1,13 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data\CreditDeal;
 
-use Wearesho\Bobra\Ubki\Type\DealStatus;
+use Wearesho\Bobra\Ubki\Data\CreditDeal\DealStatus;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * class DealStatusTest
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data\CreditDeal
  */
 class DealStatusTest extends TestCase
 {

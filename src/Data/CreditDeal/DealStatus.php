@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Type;
+namespace Wearesho\Bobra\Ubki\Data\CreditDeal;
 
 use Wearesho\Bobra\Ubki\Reference;
 
 /**
  * Class TransactionStatus
- * @package Wearesho\Bobra\Ubki\Type
+ * @package Wearesho\Bobra\Ubki\Data\CreditDeal
  *
  * @method static static OPEN(string $description = null)
  * @method static static CLOSE(string $description = null)
@@ -19,7 +19,7 @@ use Wearesho\Bobra\Ubki\Reference;
  * @method static static TERMINATION(string $description = null)
  * @method static static REPLACEMENT(string $description = null)
  */
-class DealStatus extends Reference
+final class DealStatus extends Reference
 {
     public const OPEN = 1;
     public const CLOSE = 2;
