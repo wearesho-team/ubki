@@ -28,7 +28,7 @@ class Entity extends Ubki\Element
     /** @var \DateTimeInterface|null */
     protected $actualEndDate;
 
-    /** @var int */
+    /** @var Ubki\Data\CreditDeal\Status */
     protected $status;
 
     /** @var float */
@@ -64,7 +64,7 @@ class Entity extends Ubki\Element
         int $periodYear,
         \DateTimeInterface $issueDate,
         \DateTimeInterface $endDate,
-        int $status,
+        Ubki\Data\CreditDeal\Status $status,
         float $limit,
         float $mandatoryPayment,
         float $currentDebt,
@@ -124,7 +124,7 @@ class Entity extends Ubki\Element
         return $this->actualEndDate;
     }
 
-    public function getStatus(): int
+    public function getStatus(): Ubki\Data\CreditDeal\Status
     {
         return $this->status;
     }
