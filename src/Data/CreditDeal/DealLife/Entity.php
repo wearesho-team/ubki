@@ -46,13 +46,13 @@ class Entity extends Ubki\Element
     /** @var int */
     protected $overdueTime;
 
-    /** @var int */
+    /** @var Ubki\Data\Flag */
     protected $paymentIndication;
 
-    /** @var int */
+    /** @var Ubki\Data\Flag */
     protected $delayIndication;
 
-    /** @var int */
+    /** @var Ubki\Data\Flag */
     protected $creditTrancheIndication;
 
     /** @var \DateTimeInterface */
