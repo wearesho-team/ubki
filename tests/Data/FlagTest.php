@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Type\Flag;
+use Wearesho\Bobra\Ubki\Data\Flag;
 use PHPUnit\Framework\TestCase;
 
 /**
  * class FlagTest
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class FlagTest extends TestCase
 {
