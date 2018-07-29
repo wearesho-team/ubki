@@ -19,7 +19,7 @@ use Wearesho\Bobra\Ubki\Reference;
  * @method static static TERMINATION(string $description = null)
  * @method static static REPLACEMENT(string $description = null)
  */
-final class DealStatus extends Reference
+final class Status extends Reference
 {
     public const OPEN = 1;
     public const CLOSE = 2;
