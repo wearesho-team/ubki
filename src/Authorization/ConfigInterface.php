@@ -20,6 +20,4 @@ interface ConfigInterface
     public function getPassword(): string;
 
     public function getAuthUrl(): string;
-
-    public function isProductionMode(): bool;
 }
