@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Element;
+namespace Wearesho\Bobra\Ubki\Data\Step;
 
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Step
- * @package Wearesho\Bobra\Ubki\Element
+ * Class Entity
+ * @package Wearesho\Bobra\Ubki\Data\Step
  */
-class Step extends Ubki\Element
+class Entity extends Ubki\Element
 {
     /** @var string */
     protected $name;

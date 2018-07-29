@@ -77,13 +77,13 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Element Wearesho\Bobra\Ubki\Element\Step must be instance of
-     *                           Wearesho\Bobra\Ubki\Element\Contact
+     * @expectedExceptionMessage Element Wearesho\Bobra\Ubki\Data\Step\Entity must be instance of
+     *                           Wearesho\Bobra\Element\Step\Contact
      */
     public function testAppendInvalid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->collection->append(new Ubki\Element\Step(
+        $this->collection->append(new Ubki\Data\Step\Entity(
             'build',
             Carbon::now(),
             Carbon::now()->addMinute()

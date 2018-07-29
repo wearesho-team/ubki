@@ -1,21 +1,21 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Collection;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Step;
 
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class StepTest
+ * Class EntityTest
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Collection
  */
-class StepTest extends Ubki\Tests\Extend\CollectionTestCase
+class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
 {
-    protected const TYPE = Ubki\Element\Step::class;
+    protected const TYPE = Ubki\Data\Step\Entity::class;
 
-    /** @var Ubki\Collection\Step */
+    /** @var Ubki\Data\Step\Collection */
     protected $collection;
 
     /** @var string[] */
@@ -36,7 +36,7 @@ class StepTest extends Ubki\Tests\Extend\CollectionTestCase
 
     public function testGet(): void
     {
-        /** @var Ubki\Element\Step $step */
+        /** @var Ubki\Data\Step\Entity $step */
         foreach ($this->collection as $index => $step) {
             $this->assertEquals($this->fakeNames[$index], $step->getName());
             $this->assertEquals($this->fakeStarts[$index], $step->getStart());
@@ -64,10 +64,10 @@ class StepTest extends Ubki\Tests\Extend\CollectionTestCase
             $this->fakeEnds[] = Carbon::instance($this->fakeStarts[$i])->addMinutes(rand(1, 10));
         }
 
-        $this->collection = new Ubki\Collection\Step();
+        $this->collection = new Ubki\Data\Step\Collection();
 
         foreach ($this->fakeNames as $index => $name) {
-            $this->collection->append(new Ubki\Element\Step(
+            $this->collection->append(new Ubki\Data\Step\Entity(
                 $name,
                 $this->fakeStarts[$index],
                 $this->fakeEnds[$index]
