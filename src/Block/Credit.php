@@ -12,15 +12,15 @@ class Credit extends Ubki\Block
 {
     public const ID = 2;
 
+    /** @var Ubki\Data\CreditDeal\Collection */
     protected $deals;
 
-    // todo: refactor after CreditDeal entity implementation
-    public function __construct($deals)
+    public function __construct(Ubki\Data\CreditDeal\Collection $deals)
     {
         $this->deals = $deals;
     }
 
-    public function getDeals()
+    public function getDeals(): Ubki\Data\CreditDeal\Collection
     {
         return $this->deals;
     }
