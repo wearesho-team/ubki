@@ -16,20 +16,20 @@ class ReferenceTest extends TestCase
     public function testInstance()
     {
         $description = 'English language';
-        $language = Ubki\Language::EN($description);
+        $language = Ubki\Data\Language::ENG($description);
 
-        $this->assertEquals(Ubki\Language::EN, $language->getValue());
+        $this->assertEquals(Ubki\Data\Language::ENG, $language->getValue());
         $this->assertEquals($description, $language->getDescription());
-        $this->assertEquals(Ubki\Language::EN()->getKey(), $language->getKey());
-        $this->assertEquals('EN', $language->getKey());
+        $this->assertEquals(Ubki\Data\Language::ENG()->getKey(), $language->getKey());
+        $this->assertEquals('ENG', $language->getKey());
     }
 
     /**
      * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage No static method or enum constant 'BD' in class Wearesho\Bobra\Ubki\Language
+     * @expectedExceptionMessage No static method or enum constant 'BD' in class Wearesho\Bobra\Ubki\Data\Language
      */
     public function testInvalidConst(): void
     {
-        Ubki\Language::BD();
+        Ubki\Data\Language::BD();
     }
 }

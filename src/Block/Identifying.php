@@ -12,15 +12,15 @@ class Identifying extends Ubki\Block
 {
     public const ID = 1;
 
+    /** @var Ubki\Data\Credential\Entity */
     protected $credential;
 
-    // todo: refactor after implementation of Credential element
-    public function __construct($credential)
+    public function __construct(Ubki\Data\Credential\Entity $credential)
     {
         $this->credential = $credential;
     }
 
-    public function getCredential()
+    public function getCredential(): Ubki\Data\Credential\Entity
     {
         return $this->credential;
     }
