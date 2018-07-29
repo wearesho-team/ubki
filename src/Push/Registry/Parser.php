@@ -46,7 +46,7 @@ class Parser
                         (string)$attributes[Rep\Attribute::ITEM],
                         (string)$attributes[Rep\Attribute::REGISTRY_TYPE],
                         (string)$attributes[Rep\Attribute::ERROR],
-                        (int)$attributes[Rep\Attribute::INN],
+                        (string)$attributes[Rep\Attribute::INN],
                         (string)$attributes[Rep\Attribute::REMARK]
                     );
                 }, $reports));
