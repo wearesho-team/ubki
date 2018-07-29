@@ -10,6 +10,13 @@ use Wearesho\Bobra\Ubki;
  */
 class Entity extends Ubki\Element
 {
+    public const PARENT_TAG = 'trace';
+    public const TAG = 'step';
+
+    public const NAME = 'name';
+    public const START = 'stm';
+    public const END = 'ftm';
+
     /** @var string */
     protected $name;
 
