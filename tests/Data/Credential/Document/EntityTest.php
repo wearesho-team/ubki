@@ -1,29 +1,30 @@
 <?php
 
-
-namespace Wearesho\Bobra\Ubki\Tests\Data\Document;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Document;
 
 use Carbon\Carbon;
-use Wearesho\Bobra\Ubki;
+
+use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class EntityTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Data\Document
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Document
  */
-class EntityTest extends Ubki\Tests\Extend\ElementTestCase
+class EntityTest extends Tests\Extend\ElementTestCase
 {
     protected const TAG = 'doc';
 
-    /** @var Ubki\Data\Document\Entity */
+    /** @var Data\Credential\Document\Entity */
     protected $element;
 
     protected function setUp(): void
     {
-        $this->element = new Ubki\Data\Document\Entity(
+        $this->element = new Data\Credential\Document\Entity(
             Carbon::create(2020, 3, 12, 10, 5, 7),
-            Ubki\Data\Language::ENG('английский'),
-            Ubki\Data\Document\Type::PASSPORT(),
+            Data\Language::ENG('английский'),
+            Data\Credential\Document\Type::PASSPORT(),
             'AS',
             '321654',
             'Someone',
@@ -33,7 +34,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetType(): void
     {
-        $this->assertEquals(Ubki\Data\Document\Type::PASSPORT(), $this->element->getType());
+        $this->assertEquals(Data\Credential\Document\Type::PASSPORT(), $this->element->getType());
     }
 
     public function testGetCreatedAt(): void
@@ -56,7 +57,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetLanguage(): void
     {
-        $this->assertEquals(Ubki\Data\Language::ENG('английский'), $this->element->getLanguage());
+        $this->assertEquals(Data\Language::ENG('английский'), $this->element->getLanguage());
     }
 
     public function testGetSerial(): void

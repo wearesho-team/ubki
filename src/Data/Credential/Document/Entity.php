@@ -1,15 +1,17 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Document;
+namespace Wearesho\Bobra\Ubki\Data\Credential\Document;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Entity
- * @package Wearesho\Bobra\Ubki\Data\Document
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Document
  */
 class Entity extends Ubki\Element
 {
+    public const TAG = 'doc';
+
     // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
@@ -65,11 +67,6 @@ class Entity extends Ubki\Element
         $this->issue = $issue;
         $this->issueDate = $issueDate;
         $this->termin = $termin;
-    }
-
-    public function tag(): string
-    {
-        return 'doc';
     }
 
     public function getCreatedAt(): \DateTimeInterface
