@@ -1,16 +1,18 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Element;
+namespace Wearesho\Bobra\Ubki\Data\Contact;
 
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Contact
+ * Class Entity
  * Data of one subject's contact
- * @package Wearesho\Bobra\Ubki\Element
+ * @package Wearesho\Bobra\Ubki\Data\Contact
  */
-class Contact extends Ubki\Element
+class Entity extends Ubki\Element
 {
+
+
     // attributes
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
