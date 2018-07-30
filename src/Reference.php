@@ -7,6 +7,8 @@ use MyCLabs\Enum\Enum;
 /**
  * Class Reference
  * @package Wearesho\Bobra\Ubki
+ *
+ * @method int getValue()
  */
 abstract class Reference extends Enum
 {
@@ -33,10 +35,5 @@ abstract class Reference extends Enum
         }
 
         throw new \BadMethodCallException("No static method or enum constant '$name' in class " . get_called_class());
-    }
-
-    public function getValue(): int
-    {
-        return parent::getValue();
     }
 }
