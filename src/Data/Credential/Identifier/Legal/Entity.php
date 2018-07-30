@@ -10,6 +10,9 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class Entity extends Data\Credential\Identifier\Entity
 {
+    public const TAG = 'urident';
+
+    // attributes
     public const ERGPOU = 'okpo';
     public const NAME = 'urname';
     public const FORM = 'urfrms';
@@ -55,11 +58,6 @@ class Entity extends Data\Credential\Identifier\Entity
         $this->taxRegistrationDate = $taxRegistrationDate;
 
         parent::__construct($createdAt, $language, $name);
-    }
-
-    public function tag(): string
-    {
-        return 'urident';
     }
 
     public function getActivityType(): ?string
