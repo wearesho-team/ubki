@@ -21,6 +21,10 @@ class UnsupportedModeException extends \InvalidArgumentException
     ) {
         $this->mode = $mode;
 
-        parent::__construct("Mode have invalid value {$mode}", $code, $previous);
+        parent::__construct(
+            'Mode have invalid value ' . $mode,
+            $code,
+            $previous
+        );
     }
 }
