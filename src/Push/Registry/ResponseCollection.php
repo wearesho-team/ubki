@@ -8,8 +8,9 @@ use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class ResponseCollection
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
+ *
+ * @method Registry\Rep\Response offsetGet($index)
  */
 class ResponseCollection extends \ArrayObject implements \JsonSerializable
 {
