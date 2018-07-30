@@ -10,6 +10,8 @@ use Wearesho\Bobra\Ubki;
  */
 class Entity extends Ubki\Element
 {
+    public const TAG = 'addr';
+
     // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
@@ -98,11 +100,6 @@ class Entity extends Ubki\Element
         $this->corpus = $corpus;
         $this->flat = $flat;
         $this->fullAddress = $fullAddress;
-    }
-
-    public function tag(): string
-    {
-        return 'addr';
     }
 
     public function getCreatedAt(): \DateTimeInterface
