@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\LinkedPerson;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Data\Credential;
 use Wearesho\Bobra\Ubki\Tests;
 
 /**
@@ -16,14 +16,14 @@ class EntityTest extends Tests\Extend\ElementTestCase
 {
     protected const TAG = 'linked';
 
-    /** @var Data\Credential\LinkedPerson\Entity */
+    /** @var Credential\LinkedPerson\Entity */
     protected $element;
 
     protected function setUp(): void
     {
-        $this->element = new Data\Credential\LinkedPerson\Entity(
+        $this->element = new Credential\LinkedPerson\Entity(
             'name',
-            1,
+            Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
             Carbon::create(2018, 9, 30, 12, 24, 25),
             '123123123'
         );
@@ -49,6 +49,9 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetRole(): void
     {
-        $this->assertEquals(1, $this->element->getRole());
+        $this->assertEquals(
+            Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+            $this->element->getRole()
+        );
     }
 }

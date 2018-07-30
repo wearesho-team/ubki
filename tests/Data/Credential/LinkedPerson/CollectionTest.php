@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\LinkedPerson;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Data\Credential;
 use Wearesho\Bobra\Ubki\Tests;
 
 /**
@@ -14,23 +14,23 @@ use Wearesho\Bobra\Ubki\Tests;
  */
 class CollectionTest extends Tests\Extend\CollectionTestCase
 {
-    protected const TYPE = Data\Credential\LinkedPerson\Entity::class;
+    protected const TYPE = Credential\LinkedPerson\Entity::class;
 
-    /** @var Data\Credential\LinkedPerson\Collection */
+    /** @var Credential\LinkedPerson\Collection */
     protected $collection;
 
     protected function setUp(): void
     {
-        $this->collection = new Data\Credential\LinkedPerson\Collection([
-            new Data\Credential\LinkedPerson\Entity(
+        $this->collection = new Credential\LinkedPerson\Collection([
+            new Credential\LinkedPerson\Entity(
                 'name',
-                1,
+                Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
                 Carbon::create(2018, 9, 30, 12, 24, 25),
                 '123123123'
             ),
-            new Data\Credential\LinkedPerson\Entity(
+            new Credential\LinkedPerson\Entity(
                 'second name',
-                2,
+                Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
                 Carbon::create(2019, 7, 25, 3, 4, 22),
                 '321654987'
             )
@@ -40,16 +40,16 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
     public function testInstance(): void
     {
         $this->assertEquals(
-            new Data\Credential\LinkedPerson\Collection([
-                new Data\Credential\LinkedPerson\Entity(
+            new Credential\LinkedPerson\Collection([
+                new Credential\LinkedPerson\Entity(
                     'name',
-                    1,
+                    Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
                     Carbon::create(2018, 9, 30, 12, 24, 25),
                     '123123123'
                 ),
-                new Data\Credential\LinkedPerson\Entity(
+                new Credential\LinkedPerson\Entity(
                     'second name',
-                    2,
+                    Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
                     Carbon::create(2019, 7, 25, 3, 4, 22),
                     '321654987'
                 )

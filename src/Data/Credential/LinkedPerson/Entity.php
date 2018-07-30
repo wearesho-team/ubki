@@ -24,7 +24,7 @@ class Entity extends Ubki\Element
     /** @var string */
     protected $name;
 
-    /** @var int */
+    /** @var Role */
     protected $role;
     
     /** @var \DateTimeInterface */
@@ -32,7 +32,7 @@ class Entity extends Ubki\Element
 
     public function __construct(
         string $name,
-        int $role,
+        Role $role,
         \DateTimeInterface $issueDate,
         ?string $ergpou = null
     ) {
@@ -52,7 +52,7 @@ class Entity extends Ubki\Element
         return $this->name;
     }
 
-    public function getRole(): int
+    public function getRole(): Role
     {
         return $this->role;
     }
