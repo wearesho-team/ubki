@@ -81,11 +81,9 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
     public function testAppendInvalid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->collection->append(new class extends Element {
-            public function tag(): string
-            {
-                return 'test';
-            }
+        $this->collection->append(new class extends Element
+        {
+            public const TAG = 'test';
         });
     }
 }

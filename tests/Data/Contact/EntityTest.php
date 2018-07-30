@@ -17,7 +17,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected const TAG = 'cont';
 
     /** @var Data\Contact\Entity */
-    protected $block;
+    protected $element;
 
     /** @var Carbon */
     protected $now;
@@ -26,7 +26,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->now = Carbon::now();
 
-        $this->block = new Data\Contact\Entity(
+        $this->element = new Data\Contact\Entity(
             $this->now,
             '+380930439475',
             1,
@@ -38,7 +38,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             1,
-            $this->block->getType()
+            $this->element->getType()
         );
     }
 
@@ -46,7 +46,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             $this->now,
-            $this->block->getCreatedAt()
+            $this->element->getCreatedAt()
         );
     }
 
@@ -54,12 +54,12 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             '+380930439475',
-            $this->block->getValue()
+            $this->element->getValue()
         );
     }
 
     public function testGetInn(): void
     {
-        $this->assertEquals('1231231230', $this->block->getInn());
+        $this->assertEquals('1231231230', $this->element->getInn());
     }
 }

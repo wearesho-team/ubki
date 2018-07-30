@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki;
  */
 class Entity extends Ubki\Element
 {
-
+    public const TAG = 'cont';
 
     // attributes
     public const VALUE = 'cval';
@@ -41,11 +41,6 @@ class Entity extends Ubki\Element
         $this->value = $value;
         $this->type = $type;
         $this->inn = $inn;
-    }
-
-    public function tag(): string
-    {
-        return 'cont';
     }
 
     public function getValue(): string
