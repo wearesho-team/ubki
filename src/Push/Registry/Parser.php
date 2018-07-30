@@ -4,6 +4,8 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 use Carbon\Carbon;
 
+use Wearesho\Bobra\Ubki\Push\Registry\Rep;
+
 /**
  * Class Parser
  * @package Wearesho\Bobra\Ubki\Push\Registry
@@ -13,7 +15,7 @@ class Parser
     /**
      * @param string $response
      *
-     * @return ResponseCollection
+     * @return ResponseCollection|Rep\Response[]
      * @throws \Exception
      */
     public function parseResponses(string $response): ResponseCollection
