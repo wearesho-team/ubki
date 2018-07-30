@@ -2,18 +2,19 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Element;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential
  */
-class Entity extends Ubki\Element
+class Entity extends Element
 {
     /** @var string|null */
     protected $inn;
 
-    /** @var Ubki\Data\Language */
+    /** @var Data\Language */
     protected $language;
 
     /** @var string */
@@ -28,16 +29,16 @@ class Entity extends Ubki\Element
     /** @var \DateTimeInterface */
     protected $birthDate;
     
-    /** @var Ubki\Data\Identifier\Collection */
+    /** @var Identifier\Collection */
     protected $identifiers;
 
-    /** @var Ubki\Data\Work\Collection|null */
+    /** @var Work\Collection|null */
     protected $works;
 
-    /** @var Ubki\Data\Document\Collection */
+    /** @var Document\Collection */
     protected $documents;
 
-    /** @var Ubki\Data\Address\Collection */
+    /** @var Address\Collection */
     protected $addresses;
 
     /** @var array|null */
@@ -47,16 +48,16 @@ class Entity extends Ubki\Element
     protected $linkedPersons;
 
     public function __construct(
-        Ubki\Data\Language $language,
+        Data\Language $language,
         string $firstName,
         string $middleName,
         string $lastName,
         \DateTimeInterface $birthDate,
-        Ubki\Data\Identifier\Collection $identifiers,
-        Ubki\Data\Document\Collection $documents,
-        Ubki\Data\Address\Collection $addresses,
+        Identifier\Collection $identifiers,
+        Document\Collection $documents,
+        Address\Collection $addresses,
         ?string $inn = null,
-        ?Ubki\Data\Work\Collection $works = null,
+        ?Work\Collection $works = null,
         ?array $photos = null,
         ?array $linkedPersons = null
     ) {
@@ -83,7 +84,7 @@ class Entity extends Ubki\Element
         return $this->inn;
     }
 
-    public function getLanguage(): Ubki\Data\Language
+    public function getLanguage(): Data\Language
     {
         return $this->language;
     }
@@ -108,22 +109,22 @@ class Entity extends Ubki\Element
         return $this->birthDate;
     }
 
-    public function getIdentifiers(): Ubki\Data\Identifier\Collection
+    public function getIdentifiers(): Identifier\Collection
     {
         return $this->identifiers;
     }
 
-    public function getWorks(): ?Ubki\Data\Work\Collection
+    public function getWorks(): ?Work\Collection
     {
         return $this->works;
     }
 
-    public function getDocuments(): Ubki\Data\Document\Collection
+    public function getDocuments(): Document\Collection
     {
         return $this->documents;
     }
 
-    public function getAddresses(): Ubki\Data\Address\Collection
+    public function getAddresses(): Address\Collection
     {
         return $this->addresses;
     }

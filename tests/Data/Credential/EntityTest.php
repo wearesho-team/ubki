@@ -4,6 +4,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Data\Credential;
 
 use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Tests;
 
@@ -27,8 +28,8 @@ class EntityTest extends Tests\Extend\ElementTestCase
             'Andreevich',
             'Varkuta',
             Carbon::create(2010, 10, 10, 10),
-            new Data\Identifier\Collection([
-                new Data\Identifier\Natural\Entity(
+            new Data\Credential\Identifier\Collection([
+                new Data\Credential\Identifier\Natural\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
                     'Roman',
@@ -45,22 +46,22 @@ class EntityTest extends Tests\Extend\ElementTestCase
                     0
                 )
             ]),
-            new Data\Document\Collection([
-                new Data\Document\Entity(
+            new Data\Credential\Document\Collection([
+                new Data\Credential\Document\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
-                    Data\Document\Type::PASSPORT('пасспорт'),
+                    Data\Credential\Document\Type::PASSPORT('пасспорт'),
                     'УМ',
                     '123123',
                     'Issue by someone',
                     Carbon::create(2014, 3, 12)
                 )
             ]),
-            new Data\Address\Collection([
-                new Data\Address\Entity(
+            new Data\Credential\Address\Collection([
+                new Data\Credential\Address\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
-                    Data\Address\Type::HOME('домашний'),
+                    Data\Credential\Address\Type::HOME('домашний'),
                     'Ukraine',
                     'Kharkov',
                     'Lyapunova',
@@ -74,13 +75,13 @@ class EntityTest extends Tests\Extend\ElementTestCase
                 )
             ]),
             '1234567890',
-            new Data\Work\Collection([
-                new Data\Work\Entity(
+            new Data\Credential\Work\Collection([
+                new Data\Credential\Work\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
                     'some ergpou',
                     'SHO',
-                    Data\Work\Rank::SPECIALIST(),
+                    Data\Credential\Work\Rank::SPECIALIST(),
                     1,
                     10000.00
                 )
@@ -91,8 +92,8 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetIdentifiers(): void
     {
         $this->assertEquals(
-            new Data\Identifier\Collection([
-                new Data\Identifier\Natural\Entity(
+            new Data\Credential\Identifier\Collection([
+                new Data\Credential\Identifier\Natural\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
                     'Roman',
@@ -160,13 +161,13 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetWorks(): void
     {
         $this->assertEquals(
-            new Data\Work\Collection([
-                new Data\Work\Entity(
+            new Data\Credential\Work\Collection([
+                new Data\Credential\Work\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
                     'some ergpou',
                     'SHO',
-                    Data\Work\Rank::SPECIALIST(),
+                    Data\Credential\Work\Rank::SPECIALIST(),
                     1,
                     10000.00
                 )
@@ -178,11 +179,11 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetAddresses(): void
     {
         $this->assertEquals(
-            new Data\Address\Collection([
-                new Data\Address\Entity(
+            new Data\Credential\Address\Collection([
+                new Data\Credential\Address\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
-                    Data\Address\Type::HOME('домашний'),
+                    Data\Credential\Address\Type::HOME('домашний'),
                     'Ukraine',
                     'Kharkov',
                     'Lyapunova',
@@ -207,11 +208,11 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetDocuments(): void
     {
         $this->assertEquals(
-            new Data\Document\Collection([
-                new Data\Document\Entity(
+            new Data\Credential\Document\Collection([
+                new Data\Credential\Document\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
-                    Data\Document\Type::PASSPORT('пасспорт'),
+                    Data\Credential\Document\Type::PASSPORT('пасспорт'),
                     'УМ',
                     '123123',
                     'Issue by someone',

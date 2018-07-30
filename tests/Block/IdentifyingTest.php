@@ -10,8 +10,9 @@ use Wearesho\Bobra\Ubki\Block;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
- * class IdentifyingTest
- * @package Wearesho\Bobra\Ubki\Tests\Component
+ * Class IdentifyingTest
+ * @internal
+ * @package Wearesho\Bobra\Ubki\Tests\Block
  */
 class IdentifyingTest extends TestCase
 {
@@ -47,8 +48,8 @@ class IdentifyingTest extends TestCase
                 'Andreevich',
                 'Varkuta',
                 static::$birthDate,
-                new Data\Identifier\Collection([
-                    new Data\Identifier\Natural\Entity(
+                new Data\Credential\Identifier\Collection([
+                    new Data\Credential\Identifier\Natural\Entity(
                         static::$informationDate,
                         static::$language,
                         'Roman',
@@ -65,22 +66,22 @@ class IdentifyingTest extends TestCase
                         0
                     )
                 ]),
-                new Data\Document\Collection([
-                    new Data\Document\Entity(
+                new Data\Credential\Document\Collection([
+                    new Data\Credential\Document\Entity(
                         static::$informationDate,
                         static::$language,
-                        Data\Document\Type::PASSPORT('пасспорт'),
+                        Data\Credential\Document\Type::PASSPORT('пасспорт'),
                         'УМ',
                         '123123',
                         'Issue by someone',
                         Carbon::create(2014, 3, 12)
                     )
                 ]),
-                new Data\Address\Collection([
-                    new Data\Address\Entity(
+                new Data\Credential\Address\Collection([
+                    new Data\Credential\Address\Entity(
                         static::$informationDate,
                         static::$language,
-                        Data\Address\Type::HOME('домашний'),
+                        Data\Credential\Address\Type::HOME('домашний'),
                         'Ukraine',
                         'Kharkov',
                         'Lyapunova',
@@ -94,13 +95,13 @@ class IdentifyingTest extends TestCase
                     )
                 ]),
                 static::$inn,
-                new Data\Work\Collection([
-                    new Data\Work\Entity(
+                new Data\Credential\Work\Collection([
+                    new Data\Credential\Work\Entity(
                         static::$informationDate,
                         static::$language,
                         'some ergpou',
                         'SHO',
-                        Data\Work\Rank::SPECIALIST(),
+                        Data\Credential\Work\Rank::SPECIALIST(),
                         1,
                         10000.00
                     )
@@ -123,8 +124,8 @@ class IdentifyingTest extends TestCase
                 'Andreevich',
                 'Varkuta',
                 static::$birthDate,
-                new Data\Identifier\Collection([
-                    new Data\Identifier\Natural\Entity(
+                new Data\Credential\Identifier\Collection([
+                    new Data\Credential\Identifier\Natural\Entity(
                         static::$informationDate,
                         static::$language,
                         'Roman',
@@ -141,22 +142,22 @@ class IdentifyingTest extends TestCase
                         0
                     )
                 ]),
-                new Data\Document\Collection([
-                    new Data\Document\Entity(
+                new Data\Credential\Document\Collection([
+                    new Data\Credential\Document\Entity(
                         static::$informationDate,
                         static::$language,
-                        Data\Document\Type::PASSPORT('пасспорт'),
+                        Data\Credential\Document\Type::PASSPORT('пасспорт'),
                         'УМ',
                         '123123',
                         'Issue by someone',
                         Carbon::create(2014, 3, 12)
                     )
                 ]),
-                new Data\Address\Collection([
-                    new Data\Address\Entity(
+                new Data\Credential\Address\Collection([
+                    new Data\Credential\Address\Entity(
                         static::$informationDate,
                         static::$language,
-                        Data\Address\Type::HOME('домашний'),
+                        Data\Credential\Address\Type::HOME('домашний'),
                         'Ukraine',
                         'Kharkov',
                         'Lyapunova',
@@ -170,13 +171,13 @@ class IdentifyingTest extends TestCase
                     )
                 ]),
                 static::$inn,
-                new Data\Work\Collection([
-                    new Data\Work\Entity(
+                new Data\Credential\Work\Collection([
+                    new Data\Credential\Work\Entity(
                         static::$informationDate,
                         static::$language,
                         'some ergpou',
                         'SHO',
-                        Data\Work\Rank::SPECIALIST(),
+                        Data\Credential\Work\Rank::SPECIALIST(),
                         1,
                         10000.00
                     )
