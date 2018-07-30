@@ -1,9 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-
-=======
->>>>>>> feature/element-document
 namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Document;
 
 use Carbon\Carbon;
@@ -14,11 +10,7 @@ use Wearesho\Bobra\Ubki\Tests;
 /**
  * Class CollectionTest
  * @internal
-<<<<<<< HEAD
- * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Document
-=======
  * @package Wearesho\Bobra\Ubki\Tests\Data\Document
->>>>>>> feature/element-document
  */
 class CollectionTest extends Tests\Extend\CollectionTestCase
 {
