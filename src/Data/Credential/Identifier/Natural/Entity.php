@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Identifier\Natural;
+namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural;
 
 use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class Entity
- * @package Wearesho\Bobra\Ubki\Data\Identifier\Natural
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural
  */
-class Entity extends Data\Identifier\Entity
+class Entity extends Data\Credential\Identifier\Entity
 {
     public const INN = 'inn';
     public const NAME = 'fname';

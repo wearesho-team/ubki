@@ -1,10 +1,8 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Identifier;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Identifier;
 
 use Carbon\Carbon;
-
-use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki;
 
@@ -14,7 +12,7 @@ use Wearesho\Bobra\Ubki;
  */
 abstract class EntityTestCase extends Ubki\Tests\Extend\ElementTestCase
 {
-    /** @var Ubki\Data\Identifier\Entity */
+    /** @var Ubki\Data\Credential\Identifier\Entity */
     protected $element;
 
     public function testGetCreatedAt(): void

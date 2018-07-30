@@ -47,8 +47,8 @@ class IdentifyingTest extends TestCase
                 'Andreevich',
                 'Varkuta',
                 static::$birthDate,
-                new Data\Identifier\Collection([
-                    new Data\Identifier\Natural\Entity(
+                new Data\Credential\Identifier\Collection([
+                    new Data\Credential\Identifier\Natural\Entity(
                         static::$informationDate,
                         static::$language,
                         'Roman',
@@ -123,8 +123,8 @@ class IdentifyingTest extends TestCase
                 'Andreevich',
                 'Varkuta',
                 static::$birthDate,
-                new Data\Identifier\Collection([
-                    new Data\Identifier\Natural\Entity(
+                new Data\Credential\Identifier\Collection([
+                    new Data\Credential\Identifier\Natural\Entity(
                         static::$informationDate,
                         static::$language,
                         'Roman',

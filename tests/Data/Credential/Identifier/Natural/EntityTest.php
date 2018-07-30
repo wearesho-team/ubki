@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Identifier\Natural;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Identifier\Natural;
 
 use Carbon\Carbon;
 
@@ -13,16 +13,16 @@ use Wearesho\Bobra\Ubki\Tests;
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Identifier\Natural
  */
-class EntityTest extends Tests\Data\Identifier\EntityTestCase
+class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
 {
     protected const TAG = 'ident';
 
-    /** @var Data\Identifier\Natural\Entity */
+    /** @var Data\Credential\Identifier\Natural\Entity */
     protected $element;
 
     public function setUp(): void
     {
-        $this->element = new Data\Identifier\Natural\Entity(
+        $this->element = new Data\Credential\Identifier\Natural\Entity(
             Carbon::create(
                 2020,
                 3,

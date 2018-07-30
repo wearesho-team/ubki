@@ -27,8 +27,8 @@ class EntityTest extends Tests\Extend\ElementTestCase
             'Andreevich',
             'Varkuta',
             Carbon::create(2010, 10, 10, 10),
-            new Data\Identifier\Collection([
-                new Data\Identifier\Natural\Entity(
+            new Data\Credential\Identifier\Collection([
+                new Data\Credential\Identifier\Natural\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
                     'Roman',
@@ -91,8 +91,8 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetIdentifiers(): void
     {
         $this->assertEquals(
-            new Data\Identifier\Collection([
-                new Data\Identifier\Natural\Entity(
+            new Data\Credential\Identifier\Collection([
+                new Data\Credential\Identifier\Natural\Entity(
                     Carbon::create(2010, 10, 10, 10),
                     Data\Language::ENG(),
                     'Roman',

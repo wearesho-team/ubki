@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Identifier\Legal;
+namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal;
 
 use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class Entity
- * @package Wearesho\Bobra\Ubki\Data\Identifier\Legal
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal
  */
-class Entity extends Data\Identifier\Entity
+class Entity extends Data\Credential\Identifier\Entity
 {
     public const ERGPOU = 'okpo';
     public const NAME = 'urname';

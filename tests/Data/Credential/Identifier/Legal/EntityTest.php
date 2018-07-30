@@ -17,12 +17,12 @@ class EntityTest extends Tests\Extend\ElementTestCase
 {
     protected const TAG = 'urident';
 
-    /** @var Data\Identifier\Legal\Entity */
+    /** @var Data\Credential\Identifier\Legal\Entity */
     protected $element;
 
     protected function setUp(): void
     {
-        $this->element = new Data\Identifier\Legal\Entity(
+        $this->element = new Data\Credential\Identifier\Legal\Entity(
             Carbon::create(2020, 3, 12, 10, 5, 7),
             Data\Language::ENG(),
             'name',

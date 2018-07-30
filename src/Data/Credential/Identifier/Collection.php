@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Identifier;
+namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Collection
- * @package Wearesho\Bobra\Ubki\Data\Identifier
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier
  */
 class Collection extends Ubki\BaseCollection
 {

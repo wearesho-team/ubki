@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Identifier;
+namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Interface Entity
- * @package Wearesho\Bobra\Ubki\Data\Identifier
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier
  */
 interface Person
 {

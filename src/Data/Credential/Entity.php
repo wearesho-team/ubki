@@ -28,7 +28,7 @@ class Entity extends Ubki\Element
     /** @var \DateTimeInterface */
     protected $birthDate;
     
-    /** @var Ubki\Data\Identifier\Collection */
+    /** @var Ubki\Data\Credential\Identifier\Collection */
     protected $identifiers;
 
     /** @var Ubki\Data\Work\Collection|null */
@@ -52,7 +52,7 @@ class Entity extends Ubki\Element
         string $middleName,
         string $lastName,
         \DateTimeInterface $birthDate,
-        Ubki\Data\Identifier\Collection $identifiers,
+        Ubki\Data\Credential\Identifier\Collection $identifiers,
         Ubki\Data\Document\Collection $documents,
         Ubki\Data\Address\Collection $addresses,
         ?string $inn = null,
@@ -108,7 +108,7 @@ class Entity extends Ubki\Element
         return $this->birthDate;
     }
 
-    public function getIdentifiers(): Ubki\Data\Identifier\Collection
+    public function getIdentifiers(): Ubki\Data\Credential\Identifier\Collection
     {
         return $this->identifiers;
     }
