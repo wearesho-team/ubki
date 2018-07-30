@@ -10,6 +10,8 @@ use Wearesho\Bobra\Ubki;
  */
 class Entity extends Ubki\Element
 {
+    public const TAG = 'cki';
+
     /** @var string|null */
     protected $inn;
 
@@ -71,11 +73,6 @@ class Entity extends Ubki\Element
         $this->inn = $inn;
         $this->addresses = $addresses;
         $this->photos = $photos;
-    }
-
-    public function tag(): string
-    {
-        return 'cki';
     }
 
     public function getInn(): ?string

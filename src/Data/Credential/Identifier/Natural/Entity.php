@@ -10,6 +10,9 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class Entity extends Data\Credential\Identifier\Entity
 {
+    public const TAG = 'ident';
+
+    // attributes
     public const INN = 'inn';
     public const NAME = 'fname';
     public const MIDDLE_NAME = 'mname';
@@ -85,11 +88,6 @@ class Entity extends Data\Credential\Identifier\Entity
         $this->childrenCount = $childrenCount;
 
         parent::__construct($createdAt, $language, $name);
-    }
-
-    public function tag(): string
-    {
-        return 'ident';
     }
 
     public function getInn(): ?string
