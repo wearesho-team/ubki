@@ -85,6 +85,17 @@ class EntityTest extends Tests\Extend\ElementTestCase
                     1,
                     10000.00
                 )
+            ]),
+            new Data\Credential\Photo\Collection([
+                new Data\Credential\Photo\Entity(
+                    Carbon::create(2017, 3, 12, 5, 34, 26),
+                    'first photo'
+                ),
+                new Data\Credential\Photo\Entity(
+                    Carbon::create(2018, 4, 5, 2, 17, 55),
+                    'second photo',
+                    '1234567890'
+                )
             ])
         );
     }
@@ -202,7 +213,20 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetPhotos(): void
     {
-        $this->assertNull($this->element->getPhotos());
+        $this->assertEquals(
+            new Data\Credential\Photo\Collection([
+                new Data\Credential\Photo\Entity(
+                    Carbon::create(2017, 3, 12, 5, 34, 26),
+                    'first photo'
+                ),
+                new Data\Credential\Photo\Entity(
+                    Carbon::create(2018, 4, 5, 2, 17, 55),
+                    'second photo',
+                    '1234567890'
+                )
+            ]),
+            $this->element->getPhotos()
+        );
     }
 
     public function testGetDocuments(): void

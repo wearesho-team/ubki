@@ -48,7 +48,7 @@ class Entity extends Element
     /** @var Address\Collection */
     protected $addresses;
 
-    /** @var array|null */
+    /** @var Photo\Collection|null */
     protected $photos;
 
     /** @var array|null */
@@ -65,7 +65,7 @@ class Entity extends Element
         Address\Collection $addresses,
         ?string $inn = null,
         ?Work\Collection $works = null,
-        ?array $photos = null,
+        ?Photo\Collection $photos = null,
         ?array $linkedPersons = null
     ) {
         $this->language = $language;
@@ -131,7 +131,7 @@ class Entity extends Element
         return $this->addresses;
     }
 
-    public function getPhotos(): ?array
+    public function getPhotos(): ?Photo\Collection
     {
         return $this->photos;
     }
