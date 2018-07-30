@@ -1,14 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\CreditRegistry;
 
-use Wearesho\Bobra\Ubki\Type\Decision;
 use PHPUnit\Framework\TestCase;
+
+use Wearesho\Bobra\Ubki\CreditRegistry\Decision;
 
 /**
  * Class DecisionTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\CreditRegistry
  */
 class DecisionTest extends TestCase
 {
