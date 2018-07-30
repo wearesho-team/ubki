@@ -1,6 +1,7 @@
 <?php
 
 namespace Wearesho\Bobra\Ubki\Tests\Data;
+
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Nationality;
