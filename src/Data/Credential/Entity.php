@@ -51,7 +51,7 @@ class Entity extends Element
     /** @var Photo\Collection|null */
     protected $photos;
 
-    /** @var array|null */
+    /** @var LinkedPerson\Collection|null */
     protected $linkedPersons;
 
     public function __construct(
@@ -66,7 +66,7 @@ class Entity extends Element
         ?string $inn = null,
         ?Work\Collection $works = null,
         ?Photo\Collection $photos = null,
-        ?array $linkedPersons = null
+        ?LinkedPerson\Collection $linkedPersons = null
     ) {
         $this->language = $language;
         $this->firstName = $firstName;
@@ -79,6 +79,7 @@ class Entity extends Element
         $this->inn = $inn;
         $this->addresses = $addresses;
         $this->photos = $photos;
+        $this->linkedPersons = $linkedPersons;
     }
 
     public function getInn(): ?string
@@ -136,7 +137,7 @@ class Entity extends Element
         return $this->photos;
     }
 
-    public function getLinkedPersons(): ?array
+    public function getLinkedPersons(): ?LinkedPerson\Collection
     {
         return $this->linkedPersons;
     }

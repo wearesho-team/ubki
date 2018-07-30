@@ -96,6 +96,20 @@ class EntityTest extends Tests\Extend\ElementTestCase
                     'second photo',
                     '1234567890'
                 )
+            ]),
+            new Data\Credential\LinkedPerson\Collection([
+                new Data\Credential\LinkedPerson\Entity(
+                    'name',
+                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+                    Carbon::create(2018, 9, 30, 12, 24, 25),
+                    '123123123'
+                ),
+                new Data\Credential\LinkedPerson\Entity(
+                    'second name',
+                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+                    Carbon::create(2019, 7, 25, 3, 4, 22),
+                    '321654987'
+                )
             ])
         );
     }
@@ -166,7 +180,23 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetLinkedPersons(): void
     {
-        $this->assertNull($this->element->getLinkedPersons());
+        $this->assertEquals(
+            new Data\Credential\LinkedPerson\Collection([
+                new Data\Credential\LinkedPerson\Entity(
+                    'name',
+                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+                    Carbon::create(2018, 9, 30, 12, 24, 25),
+                    '123123123'
+                ),
+                new Data\Credential\LinkedPerson\Entity(
+                    'second name',
+                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+                    Carbon::create(2019, 7, 25, 3, 4, 22),
+                    '321654987'
+                )
+            ]),
+            $this->element->getLinkedPersons()
+        );
     }
 
     public function testGetWorks(): void
