@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Type;
+namespace Wearesho\Bobra\Ubki\Data;
 
 use Wearesho\Bobra\Ubki\Reference;
 
 /**
  * Class RequestInitiator
- * @package Wearesho\Bobra\Ubki\Type
+ * @package Wearesho\Bobra\Ubki\Data
  *
  * @method static static PARTNER(string $description = null)
  * @method static static SKI(string $description = null)
