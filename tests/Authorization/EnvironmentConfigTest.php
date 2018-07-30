@@ -67,27 +67,27 @@ class EnvironmentConfigTest extends TestCase
 
     public function testGetEmptyMode(): void
     {
-        putenv('UBKI_PUSH_MODE');
+        putenv('UBKI_MODE');
         $this->expectException(Environment\MissingEnvironmentException::class);
-        $this->expectExceptionMessage('Missing environment key UBKI_PUSH_MODE');
+        $this->expectExceptionMessage('Missing environment key UBKI_MODE');
         $this->config->isProductionMode();
     }
 
     public function testGetProductionMode(): void
     {
-        putenv('UBKI_PUSH_MODE=1');
+        putenv('UBKI_MODE=1');
         $this->assertEquals(true, $this->config->isProductionMode());
     }
 
     public function testGetTestMode(): void
     {
-        putenv('UBKI_PUSH_MODE=0');
+        putenv('UBKI_MODE=0');
         $this->assertEquals(false, $this->config->isProductionMode());
     }
 
     public function testGetInvalidMode(): void
     {
-        putenv('UBKI_PUSH_MODE=228');
+        putenv('UBKI_MODE=228');
         $this->expectException(Ubki\UnsupportedModeException::class);
         $this->expectExceptionMessage('Mode have invalid value 228');
         $this->assertEquals(false, $this->config->isProductionMode());
@@ -95,14 +95,14 @@ class EnvironmentConfigTest extends TestCase
 
     public function testGetTestDefaultAuthUrl(): void
     {
-        putenv('UBKI_PUSH_MODE=' . Ubki\Authorization\ConfigInterface::MODE_TEST);
+        putenv('UBKI_MODE=' . Ubki\Authorization\ConfigInterface::MODE_TEST);
         putenv('UBKI_AUTH_URL');
         $this->assertEquals(Ubki\Authorization\ConfigInterface::TEST_AUTH_URL, $this->config->getAuthUrl());
     }
 
     public function testGetProductionDefaulttAuthUrl(): void
     {
-        putenv('UBKI_PUSH_MODE=' . Ubki\Authorization\ConfigInterface::MODE_PRODUCTION);
+        putenv('UBKI_MODE=' . Ubki\Authorization\ConfigInterface::MODE_PRODUCTION);
         putenv('UBKI_AUTH_URL');
         $this->assertEquals(Ubki\Authorization\ConfigInterface::PRODUCTION_AUTH_URL, $this->config->getAuthUrl());
     }
