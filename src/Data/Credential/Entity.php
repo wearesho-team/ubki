@@ -11,6 +11,13 @@ use Wearesho\Bobra\Ubki\Element;
  */
 class Entity extends Element
 {
+    public const TAG = 'cki';
+    
+    public const INN = 'inn';
+    public const LAST_NAME = 'lname';
+    public const FIRST_NAME = 'fname';
+    public const MIDDLE_NAME = 'mname';
+    
     /** @var string|null */
     protected $inn;
 
@@ -72,11 +79,6 @@ class Entity extends Element
         $this->inn = $inn;
         $this->addresses = $addresses;
         $this->photos = $photos;
-    }
-
-    public function tag(): string
-    {
-        return 'cki';
     }
 
     public function getInn(): ?string

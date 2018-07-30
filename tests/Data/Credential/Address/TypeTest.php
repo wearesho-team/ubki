@@ -1,23 +1,23 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Address;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Address;
+
+use Wearesho\Bobra\Ubki\Data\Credential\Address\Type;
 
 use PHPUnit\Framework\TestCase;
-
-use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class TypeTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Address
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Address
  */
 class TypeTest extends TestCase
 {
     public function testHome(): void
     {
         $description = 'адрес проживания';
-        $address = Data\Credential\Address\Type::HOME($description);
-        $this->assertEquals(Data\Credential\Address\Type::HOME, $address->getValue());
+        $address = Type::HOME($description);
+        $this->assertEquals(Type::HOME, $address->getValue());
         $this->assertEquals('HOME', $address->getKey());
         $this->assertEquals($description, $address->getDescription());
     }
@@ -25,8 +25,8 @@ class TypeTest extends TestCase
     public function testWork(): void
     {
         $description = 'рабочий адрес';
-        $address = Data\Credential\Address\Type::WORK($description);
-        $this->assertEquals(Data\Credential\Address\Type::WORK, $address->getValue());
+        $address = Type::WORK($description);
+        $this->assertEquals(Type::WORK, $address->getValue());
         $this->assertEquals('WORK', $address->getKey());
         $this->assertEquals($description, $address->getDescription());
     }
@@ -34,8 +34,8 @@ class TypeTest extends TestCase
     public function testLegal(): void
     {
         $description = 'юридический адрес';
-        $address = Data\Credential\Address\Type::LEGAL($description);
-        $this->assertEquals(Data\Credential\Address\Type::LEGAL, $address->getValue());
+        $address = Type::LEGAL($description);
+        $this->assertEquals(Type::LEGAL, $address->getValue());
         $this->assertEquals('LEGAL', $address->getKey());
         $this->assertEquals($description, $address->getDescription());
     }
@@ -43,8 +43,8 @@ class TypeTest extends TestCase
     public function testActual(): void
     {
         $description = 'фактический адрес';
-        $address = Data\Credential\Address\Type::ACTUAL($description);
-        $this->assertEquals(Data\Credential\Address\Type::ACTUAL, $address->getValue());
+        $address = Type::ACTUAL($description);
+        $this->assertEquals(Type::ACTUAL, $address->getValue());
         $this->assertEquals('ACTUAL', $address->getKey());
         $this->assertEquals($description, $address->getDescription());
     }
@@ -52,8 +52,8 @@ class TypeTest extends TestCase
     public function testMailing(): void
     {
         $description = 'почтовый адрес';
-        $address = Data\Credential\Address\Type::MAILING($description);
-        $this->assertEquals(Data\Credential\Address\Type::MAILING, $address->getValue());
+        $address = Type::MAILING($description);
+        $this->assertEquals(Type::MAILING, $address->getValue());
         $this->assertEquals('MAILING', $address->getKey());
         $this->assertEquals($description, $address->getDescription());
     }
@@ -61,8 +61,8 @@ class TypeTest extends TestCase
     public function testRegistration(): void
     {
         $description = 'адрес регистрации';
-        $address = Data\Credential\Address\Type::REGISTRATION($description);
-        $this->assertEquals(Data\Credential\Address\Type::REGISTRATION, $address->getValue());
+        $address = Type::REGISTRATION($description);
+        $this->assertEquals(Type::REGISTRATION, $address->getValue());
         $this->assertEquals('REGISTRATION', $address->getKey());
         $this->assertEquals($description, $address->getDescription());
     }
