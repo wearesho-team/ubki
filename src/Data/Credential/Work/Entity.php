@@ -1,22 +1,33 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Work;
+namespace Wearesho\Bobra\Ubki\Data\Credential\Work;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Entity
- * @package Wearesho\Bobra\Ubki\Data\Work
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Work
  */
 class Entity extends Ubki\Element
 {
+    public const TAG = 'work';
+
+    // attributes
+    public const CREATED_AT = 'vdate';
+    public const LANGUAGE = 'lng';
+    public const RANK = 'cdolgn';
+    public const ERGPOU = 'wokpo';
+    public const NAME = 'wname';
+    public const EXPERIENCE = 'wstag';
+    public const INCOME = 'wdohod';
+    
     /** @var \DateTimeInterface */
     protected $createdAt;
 
     /** @var Ubki\Data\Language */
     protected $language;
 
-    /** @var Ubki\Data\Work\Rank|null */
+    /** @var Rank|null */
     protected $rank;
 
     /** @var string */
@@ -36,7 +47,7 @@ class Entity extends Ubki\Element
         Ubki\Data\Language $language,
         string $ergpou,
         string $name,
-        ?Ubki\Data\Work\Rank $rank = null,
+        ?Rank $rank = null,
         ?int $experience = null,
         ?float $income = null
     ) {
@@ -49,11 +60,6 @@ class Entity extends Ubki\Element
         $this->income = $income;
     }
 
-    public function tag(): string
-    {
-        return 'work';
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
@@ -64,7 +70,7 @@ class Entity extends Ubki\Element
         return $this->language;
     }
 
-    public function getRank(): ?Ubki\Data\Work\Rank
+    public function getRank(): ?Rank
     {
         return $this->rank;
     }
