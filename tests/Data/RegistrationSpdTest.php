@@ -2,14 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Data\RegistrationSpd;
-
 use PHPUnit\Framework\TestCase;
+
+use Wearesho\Bobra\Ubki\Data\RegistrationSpd;
 
 /**
  * Class RegistrationSpdTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class RegistrationSpdTest extends TestCase
 {

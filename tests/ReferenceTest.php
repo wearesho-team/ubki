@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Data\Language;
 
 /**
  * Class ReferenceTest
@@ -16,11 +16,11 @@ class ReferenceTest extends TestCase
     public function testInstance()
     {
         $description = 'English language';
-        $language = Ubki\Data\Language::ENG($description);
+        $language = Language::ENG($description);
 
-        $this->assertEquals(Ubki\Data\Language::ENG, $language->getValue());
+        $this->assertEquals(Language::ENG, $language->getValue());
         $this->assertEquals($description, $language->getDescription());
-        $this->assertEquals(Ubki\Data\Language::ENG()->getKey(), $language->getKey());
+        $this->assertEquals(Language::ENG()->getKey(), $language->getKey());
         $this->assertEquals('ENG', $language->getKey());
     }
 
@@ -30,6 +30,6 @@ class ReferenceTest extends TestCase
      */
     public function testInvalidConst(): void
     {
-        Ubki\Data\Language::BD();
+        Language::BD();
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Data\FamilyStatus;
 use PHPUnit\Framework\TestCase;
+
+use Wearesho\Bobra\Ubki\Data\FamilyStatus;
 
 /**
  * Class FamilyStatusTest
