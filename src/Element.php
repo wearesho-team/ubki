@@ -11,7 +11,7 @@ abstract class Element
     public const PARENT_TAG = null;
     public const TAG = null;
 
-    public function tag(): string
+    final public function tag(): string
     {
         return static::TAG;
     }
