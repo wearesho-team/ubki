@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\CreditRegistry;
+namespace Wearesho\Bobra\Ubki\Data\CreditRegistry;
 
 use Wearesho\Bobra\Ubki\Reference;
 
 /**
  * Class Decision
- * @package Wearesho\Bobra\Ubki\CreditRegistry
+ * @package Wearesho\Bobra\Ubki\Data\CreditRegistry
  *
  * @method static static POSITIVE(string $description = null)
  * @method static static NEGATIVE(string $description = null)

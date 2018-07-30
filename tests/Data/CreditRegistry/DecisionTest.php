@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\CreditRegistry;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\CreditRegistry\Decision;
+use Wearesho\Bobra\Ubki\Data\CreditRegistry\Decision;
 
 /**
  * Class DecisionTest
