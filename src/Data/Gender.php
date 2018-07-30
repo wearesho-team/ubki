@@ -7,6 +7,7 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Gender
  * @package Wearesho\Bobra\Ubki\Data
+ *
  * @method static static MAN(string $description = null)
  * @method static static WOMAN(string $description = null)
  */
