@@ -5,8 +5,8 @@ namespace Wearesho\Bobra\Ubki\Data\Credential\Document;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Type
- * @package Wearesho\Bobra\Ubki\Data\Credential\Type
+ * Class Document
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Document
  *
  * @method static static PASSPORT(string $description = null)
  * @method static static DRIVER(string $description = null)

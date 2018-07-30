@@ -2,12 +2,12 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Document;
 
-use Wearesho\Bobra\Ubki\Data\Credential\Document\Type;
-
 use PHPUnit\Framework\TestCase;
 
+use Wearesho\Bobra\Ubki\Data\Credential\Document\Type;
+
 /**
- * Class TypeTest
+ * Class DocumentTest
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Document
  */

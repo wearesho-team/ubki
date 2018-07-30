@@ -11,6 +11,8 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class Entity extends Element
 {
+    public const TAG = 'doc';
+
     // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
@@ -66,11 +68,6 @@ class Entity extends Element
         $this->issue = $issue;
         $this->issueDate = $issueDate;
         $this->termin = $termin;
-    }
-
-    public function tag(): string
-    {
-        return 'doc';
     }
 
     public function getCreatedAt(): \DateTimeInterface
