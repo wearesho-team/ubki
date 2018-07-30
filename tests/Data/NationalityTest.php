@@ -1,14 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Type\Nationality;
 use PHPUnit\Framework\TestCase;
+
+use Wearesho\Bobra\Ubki\Data\Nationality;
 
 /**
  * Class NationalityTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class NationalityTest extends TestCase
 {
