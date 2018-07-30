@@ -1,11 +1,10 @@
 <?php
 
-
 namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Document;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\data;
+use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Tests;
 
 /**
