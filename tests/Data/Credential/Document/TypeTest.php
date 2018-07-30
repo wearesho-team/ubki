@@ -1,15 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Document;
-
-use Wearesho\Bobra\Ubki\Data\Document\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Document;
 
 use PHPUnit\Framework\TestCase;
 
+use Wearesho\Bobra\Ubki\Data\Credential\Document\Type;
+
 /**
- * Class TypeTest
+ * Class DocumentTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Data\Document
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Document
  */
 class TypeTest extends TestCase
 {
