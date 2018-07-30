@@ -1,29 +1,30 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Address;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Address;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class EntityTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Block
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Address
  */
-class EntityTest extends Ubki\Tests\Extend\ElementTestCase
+class EntityTest extends Tests\Extend\ElementTestCase
 {
     public const TAG = 'addr';
 
-    /** @var Ubki\Data\Address\Entity element */
+    /** @var Data\Credential\Address\Entity element */
     protected $element;
 
     protected function setUp(): void
     {
-        $this->element = new Ubki\Data\Address\Entity(
+        $this->element = new Data\Credential\Address\Entity(
             Carbon::parse('2018-09-09'),
-            Ubki\Data\Language::RUS(),
-            Ubki\Data\Address\Type::REGISTRATION(),
+            Data\Language::RUS(),
+            Data\Credential\Address\Type::REGISTRATION(),
             'Украина',
             'Харьков',
             'Научная',
@@ -31,7 +32,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
             25054,
             'Харьковская',
             'Шевченковский',
-            Ubki\Data\CityType::SETTLEMENT(),
+            Data\CityType::SETTLEMENT(),
             '2',
             '24'
         );
@@ -54,7 +55,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetCityType(): void
     {
-        $this->assertEquals(Ubki\Data\CityType::SETTLEMENT(), $this->element->getCityType());
+        $this->assertEquals(Data\CityType::SETTLEMENT(), $this->element->getCityType());
     }
 
     public function testGetCreatedAt(): void
@@ -74,7 +75,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetLanguage(): void
     {
-        $this->assertEquals(Ubki\Data\Language::RUS(), $this->element->getLanguage());
+        $this->assertEquals(Data\Language::RUS(), $this->element->getLanguage());
     }
 
     public function testGetCountry(): void
@@ -101,10 +102,10 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
     {
         $this->assertNotEmpty($this->element);
         $this->assertEquals(
-            new Ubki\Data\Address\Entity(
+            new Data\Credential\Address\Entity(
                 Carbon::parse('2018-09-09'),
-                Ubki\Data\Language::RUS(),
-                Ubki\Data\Address\Type::REGISTRATION(),
+                Data\Language::RUS(),
+                Data\Credential\Address\Type::REGISTRATION(),
                 'Украина',
                 'Харьков',
                 'Научная',
@@ -112,7 +113,7 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
                 25054,
                 'Харьковская',
                 'Шевченковский',
-                Ubki\Data\CityType::SETTLEMENT(),
+                Data\CityType::SETTLEMENT(),
                 '2',
                 '24'
             ),
@@ -127,6 +128,6 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testGetType(): void
     {
-        $this->assertEquals(Ubki\Data\Address\Type::REGISTRATION(), $this->element->getType());
+        $this->assertEquals(Data\Credential\Address\Type::REGISTRATION(), $this->element->getType());
     }
 }

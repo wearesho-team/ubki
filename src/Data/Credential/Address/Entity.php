@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Address;
+namespace Wearesho\Bobra\Ubki\Data\Credential\Address;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Entity
- * @package Wearesho\Bobra\Ubki\Data\Address
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Address
  */
 class Entity extends Ubki\Element
 {

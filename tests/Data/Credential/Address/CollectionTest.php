@@ -1,21 +1,22 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Address;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Address;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Tests;
 
 /**
- * Class EntityTest
+ * Class CollectionTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Collection
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Address
  */
-class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
+class CollectionTest extends Tests\Extend\CollectionTestCase
 {
-    protected const TYPE = Ubki\Data\Address\Entity::class;
+    protected const TYPE = Data\Credential\Address\Entity::class;
 
-    /** @var Ubki\Data\Address\Collection */
+    /** @var Data\Credential\Address\Collection */
     protected $elements;
 
     /** @var array */
@@ -45,7 +46,7 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
     /** @var string[]|null */
     protected $areas;
 
-    /** @var Ubki\Data\CityType[]|null */
+    /** @var Data\CityType[]|null */
     protected $cityTypes;
 
     /** @var string[]|null */
@@ -64,14 +65,14 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
 
     protected function setUp(): void
     {
-        $this->collection = new Ubki\Data\Address\Collection();
-        $languages = Ubki\Data\Language::toArray();
+        $this->collection = new Data\Credential\Address\Collection();
+        $languages = Data\Language::toArray();
         $languageKeys = array_keys($languages);
         $languageValues = array_values($languages);
-        $addressTypes = Ubki\Data\Address\Type::toArray();
+        $addressTypes = Data\Credential\Address\Type::toArray();
         $addressTypesKeys = array_keys($addressTypes);
         $addressTypesValues = array_values($addressTypes);
-        $cityTypes = Ubki\Data\CityType::toArray();
+        $cityTypes = Data\CityType::toArray();
         $cityTypesKeys = array_keys($cityTypes);
         $cityTypesValues = array_values($cityTypes);
 
@@ -111,10 +112,10 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
         }
 
         foreach ($this->countries as $index => $country) {
-            $this->collection->append(new Ubki\Data\Address\Entity(
+            $this->collection->append(new Data\Credential\Address\Entity(
                 Carbon::getTestNow(),
-                new Ubki\Data\Language($this->languages[$index][1]),
-                new Ubki\Data\Address\Type($this->types[$index][1]),
+                new Data\Language($this->languages[$index][1]),
+                new Data\Credential\Address\Type($this->types[$index][1]),
                 $country,
                 $this->cities[$index],
                 $this->streets[$index],
@@ -122,7 +123,7 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
                 $this->indexes[$index],
                 $this->states[$index],
                 $this->areas[$index],
-                $this->cityTypes[$index][1] ? new Ubki\Data\CityType($this->cityTypes[$index][1]) : null,
+                $this->cityTypes[$index][1] ? new Data\CityType($this->cityTypes[$index][1]) : null,
                 $this->corpuses[$index],
                 $this->flats[$index],
                 $this->fullAddresses[$index]
@@ -136,12 +137,12 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
 
         /**
          * @var int $index
-         * @var Ubki\Data\Address\Entity $address
+         * @var Data\Credential\Address\Entity $address
          */
         foreach ($this->collection as $index => $address) {
             $this->assertEquals($time, $address->getCreatedAt());
-            $this->assertEquals(new Ubki\Data\Language($this->languages[$index][1]), $address->getLanguage());
-            $this->assertEquals(new Ubki\Data\Address\Type($this->types[$index][1]), $address->getType());
+            $this->assertEquals(new Data\Language($this->languages[$index][1]), $address->getLanguage());
+            $this->assertEquals(new Data\Credential\Address\Type($this->types[$index][1]), $address->getType());
             $this->assertEquals($this->countries[$index], $address->getCountry());
             $this->assertEquals($this->cities[$index], $address->getCity());
             $this->assertEquals($this->houses[$index], $address->getHouse());
@@ -149,7 +150,7 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
             $this->assertEquals($this->states[$index], $address->getState());
             $this->assertEquals($this->areas[$index], $address->getArea());
             $this->assertEquals(
-                $this->cityTypes[$index][1] ? new Ubki\Data\CityType($this->cityTypes[$index][1]) : null,
+                $this->cityTypes[$index][1] ? new Data\CityType($this->cityTypes[$index][1]) : null,
                 $address->getCityType()
             );
             $this->assertEquals($this->corpuses[$index], $address->getCorpus());

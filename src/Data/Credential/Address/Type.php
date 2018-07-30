@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Address;
+namespace Wearesho\Bobra\Ubki\Data\Credential\Address;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Type
- * @package Wearesho\Bobra\Ubki\Data\Address
+ * @package Wearesho\Bobra\Ubki\Data\Credential\Address
  *
  * @method static static HOME(string $description = null)
  * @method static static REGISTRATION(string $description = null)
