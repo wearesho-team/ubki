@@ -11,13 +11,24 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class Entity extends Element
 {
+    public const TAG = 'work';
+
+    // attributes
+    public const CREATED_AT = 'vdate';
+    public const LANGUAGE = 'lng';
+    public const RANK = 'cdolgn';
+    public const ERGPOU = 'wokpo';
+    public const NAME = 'wname';
+    public const EXPERIENCE = 'wstag';
+    public const INCOME = 'wdohod';
+    
     /** @var \DateTimeInterface */
     protected $createdAt;
 
     /** @var Data\Language */
     protected $language;
 
-    /** @var Data\Credential\Work\Rank|null */
+    /** @var Rank|null */
     protected $rank;
 
     /** @var string */
@@ -37,7 +48,7 @@ class Entity extends Element
         Data\Language $language,
         string $ergpou,
         string $name,
-        ?Data\Credential\Work\Rank $rank = null,
+        ?Rank $rank = null,
         ?int $experience = null,
         ?float $income = null
     ) {
@@ -50,11 +61,6 @@ class Entity extends Element
         $this->income = $income;
     }
 
-    public function tag(): string
-    {
-        return 'work';
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
@@ -65,7 +71,7 @@ class Entity extends Element
         return $this->language;
     }
 
-    public function getRank(): ?Data\Credential\Work\Rank
+    public function getRank(): ?Rank
     {
         return $this->rank;
     }
