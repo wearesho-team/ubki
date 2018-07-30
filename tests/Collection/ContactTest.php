@@ -80,10 +80,7 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->collection->append(new class extends Ubki\Element
         {
-            public function tag(): string
-            {
-                return 'test';
-            }
+            public const TAG = 'test';
         });
     }
 }
