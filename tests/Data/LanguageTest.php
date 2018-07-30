@@ -1,14 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Type;
+namespace Wearesho\Bobra\Ubki\Tests\Data;
 
-use Wearesho\Bobra\Ubki\Type\Language;
 use PHPUnit\Framework\TestCase;
+
+use Wearesho\Bobra\Ubki\Data\Language;
 
 /**
  * Class LanguageTest
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Type
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class LanguageTest extends TestCase
 {
