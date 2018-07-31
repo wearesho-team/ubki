@@ -26,7 +26,7 @@ class ContactTest extends TestCase
                 new Data\Contact\Entity(
                     Carbon::create(2018, 10, 10, 10, 10, 10),
                     '+380930439475',
-                    1
+                    Data\Contact\Type::MOBILE()
                 )
             ])
         );
@@ -39,6 +39,15 @@ class ContactTest extends TestCase
 
     public function testGetContacts(): void
     {
-        $this->assertEquals('Some contacts', $this->contacts->getContacts());
+        $this->assertEquals(
+            new Data\Contact\Collection([
+                new Data\Contact\Entity(
+                    Carbon::create(2018, 10, 10, 10, 10, 10),
+                    '+380930439475',
+                    Data\Contact\Type::MOBILE()
+                )
+            ]),
+            $this->contacts->getContacts()
+        );
     }
 }
