@@ -2,9 +2,12 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Block;
 
-use Wearesho\Bobra\Ubki\Block;
 
+use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
+
+use Wearesho\Bobra\Ubki\Block;
+use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class ContactTest
@@ -18,8 +21,15 @@ class ContactTest extends TestCase
 
     protected function setUp(): void
     {
-        // todo: change string attribute to Contact Collection object
-        $this->contacts = new Block\Contact('Some contacts');
+        $this->contacts = new Block\Contact(
+            new Data\Contact\Collection([
+                new Data\Contact\Entity(
+                    Carbon::create(2018, 10, 10, 10, 10, 10),
+                    '+380930439475',
+                    1
+                )
+            ])
+        );
     }
 
     public function testType(): void

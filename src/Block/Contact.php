@@ -12,15 +12,15 @@ class Contact extends Ubki\Block
 {
     public const ID = 10;
 
+    /** @var Ubki\Data\Contact\Collection */
     protected $contacts;
 
-    // todo: refactor after Contact collection and Contact Entity implementation
-    public function __construct($contacts)
+    public function __construct(Ubki\Data\Contact\Collection $contacts)
     {
         $this->contacts = $contacts;
     }
 
-    public function getContacts()
+    public function getContacts(): Ubki\Data\Contact\Collection
     {
         return $this->contacts;
     }
