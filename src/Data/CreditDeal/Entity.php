@@ -11,6 +11,8 @@ use Wearesho\Bobra\Ubki\Element;
  */
 class Entity extends Element
 {
+    public const TAG = 'crdeal';
+
     // attributes
     public const ID = 'dlfer';
     public const LANGUAGE = 'lng';
@@ -104,11 +106,6 @@ class Entity extends Element
         $this->collateralCost = $collateralCost;
         $this->dealLifes = $dealLifes;
         $this->inn = $inn;
-    }
-
-    public function tag(): string
-    {
-        return 'crdeal';
     }
 
     public function getId(): string

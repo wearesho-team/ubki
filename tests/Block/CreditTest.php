@@ -47,9 +47,9 @@ class CreditTest extends TestCase
                             2400,
                             2400,
                             20,
-                            1,
-                            1,
-                            1,
+                            Ubki\Data\Flag::YES(),
+                            Ubki\Data\Flag::YES(),
+                            Ubki\Data\Flag::YES(),
                             Carbon::parse('2018-04-29'),
                             Carbon::parse('2018-04-29')
                         )
@@ -91,9 +91,9 @@ class CreditTest extends TestCase
                             2400,
                             2400,
                             20,
-                            1,
-                            1,
-                            1,
+                            Ubki\Data\Flag::YES(),
+                            Ubki\Data\Flag::YES(),
+                            Ubki\Data\Flag::YES(),
                             Carbon::parse('2018-04-29'),
                             Carbon::parse('2018-04-29')
                         )

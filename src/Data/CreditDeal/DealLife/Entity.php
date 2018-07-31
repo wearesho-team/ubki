@@ -2,14 +2,17 @@
 
 namespace Wearesho\Bobra\Ubki\Data\CreditDeal\DealLife;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Element;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\CreditDeal\DealLife
  */
-class Entity extends Ubki\Element
+class Entity extends Element
 {
+    public const TAG = 'deallife';
+
     /** @var string */
     protected $id;
 
@@ -28,7 +31,7 @@ class Entity extends Ubki\Element
     /** @var \DateTimeInterface|null */
     protected $actualEndDate;
 
-    /** @var Ubki\Data\CreditDeal\Status */
+    /** @var Data\CreditDeal\Status */
     protected $status;
 
     /** @var float */
@@ -46,13 +49,13 @@ class Entity extends Ubki\Element
     /** @var int */
     protected $overdueTime;
 
-    /** @var Ubki\Data\Flag */
+    /** @var Data\Flag */
     protected $paymentIndication;
 
-    /** @var Ubki\Data\Flag */
+    /** @var Data\Flag */
     protected $delayIndication;
 
-    /** @var Ubki\Data\Flag */
+    /** @var Data\Flag */
     protected $creditTrancheIndication;
 
     /** @var \DateTimeInterface */
@@ -64,15 +67,15 @@ class Entity extends Ubki\Element
         int $periodYear,
         \DateTimeInterface $issueDate,
         \DateTimeInterface $endDate,
-        Ubki\Data\CreditDeal\Status $status,
+        Data\CreditDeal\Status $status,
         float $limit,
         float $mandatoryPayment,
         float $currentDebt,
         float $currentOverdueDebt,
         int $overdueTime,
-        int $paymentIndication,
-        int $delayIndication,
-        int $creditTrancheIndication,
+        Data\Flag $paymentIndication,
+        Data\Flag $delayIndication,
+        Data\Flag $creditTrancheIndication,
         \DateTimeInterface $paymentDate,
         ?\DateTimeInterface $actualEndDate = null
     ) {
@@ -124,7 +127,7 @@ class Entity extends Ubki\Element
         return $this->actualEndDate;
     }
 
-    public function getStatus(): Ubki\Data\CreditDeal\Status
+    public function getStatus(): Data\CreditDeal\Status
     {
         return $this->status;
     }
@@ -154,17 +157,17 @@ class Entity extends Ubki\Element
         return $this->overdueTime;
     }
 
-    public function getPaymentIndication(): int
+    public function getPaymentIndication(): Data\Flag
     {
         return $this->paymentIndication;
     }
 
-    public function getDelayIndication(): int
+    public function getDelayIndication(): Data\Flag
     {
         return $this->delayIndication;
     }
 
-    public function getCreditTrancheIndication(): int
+    public function getCreditTrancheIndication(): Data\Flag
     {
         return $this->creditTrancheIndication;
     }
@@ -172,10 +175,5 @@ class Entity extends Ubki\Element
     public function getPaymentDate(): \DateTimeInterface
     {
         return $this->paymentDate;
-    }
-
-    public function tag(): string
-    {
-        return 'deallife';
     }
 }
