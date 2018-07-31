@@ -25,7 +25,7 @@ class Entity extends Ubki\Element
     /** @var string */
     protected $value;
 
-    /** @var int */
+    /** @var Type */
     protected $type;
 
     /** @var string|null */
@@ -34,7 +34,7 @@ class Entity extends Ubki\Element
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
-        int $type,
+        Type $type,
         ?string $inn = null
     ) {
         $this->createdAt = $createdAt;
@@ -48,7 +48,7 @@ class Entity extends Ubki\Element
         return $this->value;
     }
 
-    public function getType(): int
+    public function getType(): Type
     {
         return $this->type;
     }

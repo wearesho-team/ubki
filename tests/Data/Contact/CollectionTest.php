@@ -34,7 +34,7 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
         for ($i = 0; $i < rand(1, 20); $i++) {
             $this->fakePhoneNumbers[] = [
                 // todo: implement Type\Contact::...
-                rand(1, 5),
+                new Data\Contact\Type(rand(1, 5)),
                 '+' . rand(100000, 999999) . rand(100000, 999999)
             ];
 
