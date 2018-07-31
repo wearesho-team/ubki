@@ -8,5 +8,11 @@ namespace Wearesho\Bobra\Ubki;
  */
 abstract class Element
 {
-    abstract public function tag(): string;
+    public const PARENT_TAG = null;
+    public const TAG = null;
+
+    final public function tag(): string
+    {
+        return static::TAG;
+    }
 }
