@@ -29,7 +29,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
         $this->element = new Data\Contact\Entity(
             $this->now,
             '+380930439475',
-            1,
+            Data\Contact\Type::MOBILE(),
             '1231231230'
         );
     }
@@ -37,7 +37,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetType(): void
     {
         $this->assertEquals(
-            1,
+            Data\Contact\Type::MOBILE(),
             $this->element->getType()
         );
     }
