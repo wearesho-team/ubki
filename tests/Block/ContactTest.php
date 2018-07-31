@@ -2,8 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Block;
 
-
 use Carbon\Carbon;
+
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Block;
