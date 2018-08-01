@@ -2,8 +2,10 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Push\Registry\Rep;
 
+use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
+use Wearesho\Bobra\Ubki\Block\Identifying;
 use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
@@ -13,37 +15,147 @@ use Wearesho\Bobra\Ubki\Push\Registry;
  */
 class ResponseTest extends TestCase
 {
-    public function testResponse(): void
-    {
-        $indate = \DateTime::createFromFormat('Ymd', '20181212');
+    /** @var Registry\Rep\Response */
+    protected $response;
 
-        $response = new Registry\Rep\Response(
-            $indate,
-            'qweqwe',
-            'asdasd',
-            '123qwe',
+    protected function setUp(): void
+    {
+        $this->response = new Registry\Rep\Response(
+            Carbon::create(2018, 12, 12),
+            'IN#0000018427',
+            'X000000000001',
+            'A1F593950A8F4562AE5A5DB1914D658A',
             Registry\Response\State::CREATED(),
             Registry\Response\OperationType::TRANSFERRING(),
-            1,
+            Identifying::ID,
             'IDENT',
             'NW',
             '',
-            '123123123',
-            'Some description'
+            '1234567890',
+            'Simple description of this status'
         );
+    }
 
-        $this->assertEquals(Registry\Type::REP, $response->getType());
-        $this->assertEquals($indate, $response->getExportDate());
-        $this->assertEquals('qweqwe', $response->getUbkiId());
-        $this->assertEquals('asdasd', $response->getPartnerId());
-        $this->assertEquals('123qwe', $response->getSessionId());
-        $this->assertEquals(Registry\Response\State::CREATED(), $response->getState());
-        $this->assertEquals(Registry\Response\OperationType::TRANSFERRING(), $response->getOperationType());
-        $this->assertEquals(1, $response->getBlockId());
-        $this->assertEquals('IDENT', $response->getItem());
-        $this->assertEquals('NW', $response->getRegistryType());
-        $this->assertEmpty($response->getErrorType());
-        $this->assertEquals('123123123', $response->getInn());
-        $this->assertEquals('Some description', $response->getRemark());
+    public function testGetExportDate(): void
+    {
+        $this->assertEquals(
+            Carbon::create(2018, 12, 12),
+            Carbon::instance($this->response->getExportDate())
+        );
+        $this->assertEquals(
+            '2018-12-12',
+            Carbon::instance($this->response->getExportDate())->toDateString()
+        );
+    }
+
+    public function testGetUbkiId(): void
+    {
+        $this->assertEquals(
+            'IN#0000018427',
+            $this->response->getUbkiId()
+        );
+    }
+
+    public function testGetPartnerId(): void
+    {
+        $this->assertEquals(
+            'X000000000001',
+            $this->response->getPartnerId()
+        );
+    }
+
+    public function testGetSessionId(): void
+    {
+        $this->assertEquals(
+            'A1F593950A8F4562AE5A5DB1914D658A',
+            $this->response->getSessionId()
+        );
+    }
+
+    public function testGetState(): void
+    {
+        $this->assertTrue(
+            Registry\Response\State::CREATED()
+                ->equals($this->response->getState())
+        );
+    }
+
+    public function testGetOperationType(): void
+    {
+        $this->assertTrue(
+            Registry\Response\OperationType::TRANSFERRING()
+                ->equals($this->response->getOperationType())
+        );
+    }
+
+    public function testGetBlockId(): void
+    {
+        $this->assertEquals(
+            Identifying::ID,
+            $this->response->getBlockId()
+        );
+    }
+
+    public function testGetItem(): void
+    {
+        $this->assertEquals(
+            'IDENT',
+            $this->response->getItem()
+        );
+    }
+
+    public function testGetType(): void
+    {
+        $this->assertEquals(
+            Registry\Type::REP,
+            $this->response->getType()
+        );
+    }
+
+    public function testGetError(): void
+    {
+        $error = $this->response->getErrorType();
+
+        $this->assertTrue(
+            empty($error)
+            || is_null($error)
+        );
+    }
+
+    public function testGetInn(): void
+    {
+        $this->assertEquals(
+            '1234567890',
+            $this->response->getInn()
+        );
+    }
+
+    public function testGetRemark(): void
+    {
+        $this->assertEquals(
+            'Simple description of this status',
+            $this->response->getRemark()
+        );
+    }
+
+    public function testGetJson(): void
+    {
+        $this->assertEquals(
+            [
+                'exportDate' => '2018-12-12',
+                'ubkiId' => 'IN#0000018427',
+                'partnerId' => 'X000000000001',
+                'sessionId' => 'A1F593950A8F4562AE5A5DB1914D658A',
+                'state' => 'CREATED',
+                'operation' => 'TRANSFERRING',
+                'blockId' => 1,
+                'item' => 'IDENT',
+                'registry' => 'NW',
+                'error' => '',
+                'inn' => '1234567890',
+                'remark' => 'Simple description of this status'
+            ],
+            $this->response->jsonSerialize()
+        );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry\Rep;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
@@ -9,37 +10,55 @@ use Wearesho\Bobra\Ubki\Push\Registry;
  *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
-class Response implements ResponseInterface
+class Response implements ResponseInterface, \JsonSerializable
 {
     use Registry\ResponseTrait;
     use ResponseTrait;
 
     public function __construct(
-        \DateTimeInterface $operationDate,
+        \DateTimeInterface $exportDate,
         string $ubkiId,
         string $partnerId,
         string $sessionId,
         Registry\Response\State $state,
-        Registry\Response\OperationType $transferType,
-        int $componentId,
-        string $subComponentName,
+        Registry\Response\OperationType $operationType,
+        int $blockId,
+        string $item,
         string $registryType,
         string $errorType,
         string $inn,
         string $remark
     ) {
         $this->type = Registry\Type::REP;
-        $this->ertype = $registryType;
+        $this->registryType = $registryType;
         $this->errorType = $errorType;
         $this->inn = $inn;
         $this->remark = $remark;
-        $this->exportDate = $operationDate;
+        $this->exportDate = $exportDate;
         $this->ubkiId = $ubkiId;
         $this->partnerId = $partnerId;
         $this->sessionId = $sessionId;
         $this->state = $state;
-        $this->operationType = $transferType;
-        $this->blockId = $componentId;
-        $this->item = $subComponentName;
+        $this->operationType = $operationType;
+        $this->blockId = $blockId;
+        $this->item = $item;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'exportDate' => Carbon::instance($this->exportDate)->toDateString(),
+            'ubkiId' => $this->ubkiId,
+            'partnerId' => $this->partnerId,
+            'sessionId' => $this->sessionId,
+            'state' => $this->state->getKey(),
+            'operation' => $this->operationType->getKey(),
+            'blockId' => $this->blockId,
+            'item' => $this->item,
+            'registry' => $this->registryType,
+            'error' => $this->errorType,
+            'inn' => $this->inn,
+            'remark' => $this->remark
+        ];
     }
 }

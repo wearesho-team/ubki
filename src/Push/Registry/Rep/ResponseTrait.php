@@ -10,7 +10,7 @@ namespace Wearesho\Bobra\Ubki\Push\Registry\Rep;
 trait ResponseTrait
 {
     /** @var string */
-    protected $ertype;
+    protected $registryType;
 
     /** @var string */
     protected $errorType;
@@ -26,7 +26,7 @@ trait ResponseTrait
      */
     public function getRegistryType(): string
     {
-        return $this->ertype;
+        return $this->registryType;
     }
 
     /**
