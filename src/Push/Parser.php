@@ -34,6 +34,11 @@ class Parser
         ));
     }
 
+    /**
+     * @param string $body
+     *
+     * @return \SimpleXMLElement[]
+     */
     private function fetchItems(string $body): array
     {
         $items = [];

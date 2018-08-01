@@ -35,7 +35,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             10,
-            $this->block->getPassedStrings()
+            $this->block->getPassedStringsCount()
         );
     }
 
@@ -59,7 +59,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             10,
-            $this->block->getErrorStrings()
+            $this->block->getErrorStringsCount()
         );
     }
 

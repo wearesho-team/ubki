@@ -38,10 +38,10 @@ class Entity extends Element implements \JsonSerializable
     protected $message;
 
     /** @var int|null */
-    protected $passedStrings;
+    protected $passedStringsCount;
 
     /** @var int|null */
-    protected $errorStrings;
+    protected $errorStringsCount;
 
     public function __construct(
         int $blockId,
@@ -57,8 +57,8 @@ class Entity extends Element implements \JsonSerializable
         $this->attribute = $attribute;
         $this->type = $type;
         $this->message = $message;
-        $this->passedStrings = $passedStrings;
-        $this->errorStrings = $errorStrings;
+        $this->passedStringsCount = $passedStrings;
+        $this->errorStringsCount = $errorStrings;
     }
 
     public function getBlockId(): int
@@ -86,14 +86,14 @@ class Entity extends Element implements \JsonSerializable
         return $this->message;
     }
 
-    public function getPassedStrings(): ?int
+    public function getPassedStringsCount(): ?int
     {
-        return $this->passedStrings;
+        return $this->passedStringsCount;
     }
 
-    public function getErrorStrings(): ?int
+    public function getErrorStringsCount(): ?int
     {
-        return $this->errorStrings;
+        return $this->errorStringsCount;
     }
 
     public function jsonSerialize(): array
@@ -104,8 +104,8 @@ class Entity extends Element implements \JsonSerializable
             'attribute' => $this->getAttribute(),
             'type' => $this->getType(),
             'message' => $this->getMessage(),
-            'passedStrings' => $this->getPassedStrings(),
-            'errorString' => $this->getErrorStrings()
+            'passedStrings' => $this->getPassedStringsCount(),
+            'errorString' => $this->getErrorStringsCount()
         ];
     }
 }
