@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential\Address;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Address
  */
-class Entity extends Ubki\Element
+class Entity extends Ubki\Element implements \JsonSerializable
 {
     public const TAG = 'addr';
 
@@ -170,5 +171,29 @@ class Entity extends Ubki\Element
     public function getFullAddress(): ?string
     {
         return $this->fullAddress;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $language = $this->getLanguage();
+        $type = $this->getType();
+        $cityType = $this->getCityType();
+
+        return [
+            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateTimeString(),
+            'language' => $language->getDescription() ?? $language->getKey(),
+            'type' => $type->getDescription() ?? $type->getKey(),
+            'country' => $this->getCountry(),
+            'city' => $this->getCity(),
+            'street' => $this->getStreet(),
+            'house' => $this->getHouse(),
+            'index' => $this->getIndex(),
+            'state' => $this->getState(),
+            'area' => $this->getArea(),
+            'cityType' => $cityType->getDescription() ?? $cityType->getKey(),
+            'corpus' => $this->getCorpus(),
+            'flat' => $this->getFlat(),
+            'fullAddress' => $this->getFullAddress()
+        ];
     }
 }

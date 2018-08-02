@@ -32,7 +32,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
             25054,
             'Харьковская',
             'Шевченковский',
-            Data\CityType::SETTLEMENT(),
+            Data\CityType::SETTLEMENT('описание'),
             '2',
             '24'
         );
@@ -55,7 +55,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetCityType(): void
     {
-        $this->assertEquals(Data\CityType::SETTLEMENT(), $this->element->getCityType());
+        $this->assertEquals(Data\CityType::SETTLEMENT('описание'), $this->element->getCityType());
     }
 
     public function testGetCreatedAt(): void
@@ -113,7 +113,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
                 25054,
                 'Харьковская',
                 'Шевченковский',
-                Data\CityType::SETTLEMENT(),
+                Data\CityType::SETTLEMENT('описание'),
                 '2',
                 '24'
             ),
@@ -129,5 +129,28 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetType(): void
     {
         $this->assertEquals(Data\Credential\Address\Type::REGISTRATION(), $this->element->getType());
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => Carbon::parse('2018-09-09')->toDateTimeString(),
+                'language' => Data\Language::RUS()->getKey(),
+                'type' => Data\Credential\Address\Type::REGISTRATION()->getKey(),
+                'country' => 'Украина',
+                'city' => 'Харьков',
+                'street' => 'Научная',
+                'house' => '25',
+                'index' => '25054',
+                'state' => 'Харьковская',
+                'area' => 'Шевченковский',
+                'cityType' => Data\CityType::SETTLEMENT('описание')->getDescription(),
+                'corpus' => '2',
+                'flat' => '24',
+                'fullAddress' => null
+            ],
+            $this->element->jsonSerialize()
+        );
     }
 }
