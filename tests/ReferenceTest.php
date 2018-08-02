@@ -2,7 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Tests;
 
-use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Language;
@@ -16,11 +15,11 @@ class ReferenceTest extends TestCase
 {
     public function testToString(): void
     {
-        $language = Ubki\Language::EN();
+        $language = Language::ENG();
 
-        $this->assertEquals('EN', (string)$language);
+        $this->assertEquals('ENG', (string)$language);
 
-        $language = Ubki\Language::EN('english');
+        $language = Language::ENG('english');
 
         $this->assertEquals('english', (string)$language);
     }
