@@ -121,4 +121,27 @@ class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
             $this->element->getFamilyStatus()
         );
     }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => '2020-03-12',
+                'language' => 'ENG',
+                'name' => 'name',
+                'lastName' => 'Varkuta',
+                'birthDate' => '2010-10-10',
+                'gender' => 'MAN',
+                'inn' => '1234567890',
+                'middleName' => 'Andreevich',
+                'familyStatus' => 'не женат/не замужем',
+                'education' => 'SECONDARY_TECH',
+                'nationality' => 'UKRAINE',
+                'registrationSpd' => 'PHYSICAL',
+                'socialStatus' => 'FULL_TIME',
+                'childrenCount' => 0
+            ],
+            $this->element->jsonSerialize()
+        );
+    }
 }

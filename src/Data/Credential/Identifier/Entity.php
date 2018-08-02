@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier
  */
-abstract class Entity extends Ubki\Element implements Person
+abstract class Entity extends Ubki\Element implements Person, \JsonSerializable
 {
     // attributes
     public const CREATED_AT = 'vdate';
@@ -47,5 +48,16 @@ abstract class Entity extends Ubki\Element implements Person
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $language = $this->getLanguage();
+
+        return [
+            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
+            'language' => $language->getDescription() ?? $language->getKey(),
+            'name' => $this->getName(),
+        ];
     }
 }

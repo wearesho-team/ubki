@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural
  */
-class Entity extends Data\Credential\Identifier\Entity
+class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializable
 {
     public const TAG = 'ident';
 
@@ -143,5 +144,32 @@ class Entity extends Data\Credential\Identifier\Entity
     public function getSocialStatus(): ?Data\SocialStatus
     {
         return $this->socialStatus;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $gender = $this->getGender();
+        $familyStatus = $this->getFamilyStatus();
+        $education = $this->getEducation();
+        $nationality = $this->getNationality();
+        $registrationSpd = $this->getRegistrationSpd();
+        $socialStatus = $this->getSocialStatus();
+
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'lastName' => $this->getLastName(),
+                'birthDate' => Carbon::instance($this->getBirthDate())->toDateString(),
+                'gender' => $gender->getDescription() ?? $gender->getKey(),
+                'inn' => $this->getInn(),
+                'middleName' => $this->getMiddleName(),
+                'familyStatus' => $familyStatus->getDescription() ?? $familyStatus->getKey(),
+                'education' => $education->getDescription() ?? $education->getKey(),
+                'nationality' => $nationality->getDescription() ?? $nationality->getKey(),
+                'registrationSpd' => $registrationSpd->getDescription() ?? $registrationSpd->getKey(),
+                'socialStatus' => $socialStatus->getDescription() ?? $socialStatus->getKey(),
+                'childrenCount' => $this->getChildrenCount(),
+            ]
+        );
     }
 }
