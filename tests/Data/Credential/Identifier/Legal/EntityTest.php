@@ -70,4 +70,22 @@ class EntityTest extends Tests\Extend\ElementTestCase
             $this->element->getTaxRegistrationDate()
         );
     }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => '2020-03-12',
+                'language' => 'ENG',
+                'name' => 'name',
+                'ergpou' => 'ergpou',
+                'form' => 1,
+                'economyBranch' => '1',
+                'activityType' => '1',
+                'edrRegistrationDate' => '2020-03-12',
+                'taxRegistrationDate' => '2020-03-12'
+            ],
+            $this->element->jsonSerialize()
+        );
+    }
 }

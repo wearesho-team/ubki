@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal
  */
-class Entity extends Data\Credential\Identifier\Entity
+class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializable
 {
     public const TAG = 'urident';
 
@@ -88,5 +89,20 @@ class Entity extends Data\Credential\Identifier\Entity
     public function getTaxRegistrationDate(): ?\DateTimeInterface
     {
         return $this->taxRegistrationDate;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'ergpou' => $this->getErgpou(),
+                'form' => $this->getForm(),
+                'economyBranch' => $this->getEconomyBranch(),
+                'activityType' => $this->getActivityType(),
+                'edrRegistrationDate' => Carbon::instance($this->getEdrRegistrationDate())->toDateString(),
+                'taxRegistrationDate' => Carbon::instance($this->getTaxRegistrationDate())->toDateString()
+            ]
+        );
     }
 }
