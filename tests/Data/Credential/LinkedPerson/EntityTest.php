@@ -31,7 +31,10 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetErgpou(): void
     {
-        $this->assertEquals('123123123', $this->element->getErgpou());
+        $this->assertEquals(
+            '123123123',
+            $this->element->getErgpou()
+        );
     }
 
     public function testGetIssueDate(): void
@@ -44,7 +47,10 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetName(): void
     {
-        $this->assertEquals('name', $this->element->getName());
+        $this->assertEquals(
+            'name',
+            $this->element->getName()
+        );
     }
 
     public function testGetRole(): void
@@ -52,6 +58,19 @@ class EntityTest extends Tests\Extend\ElementTestCase
         $this->assertEquals(
             Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
             $this->element->getRole()
+        );
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'name' => 'name',
+                'role' => 'Учредитель',
+                'issueDate' => '2018-09-30',
+                'ergpou' => '123123123'
+            ],
+            $this->element->jsonSerialize()
         );
     }
 }
