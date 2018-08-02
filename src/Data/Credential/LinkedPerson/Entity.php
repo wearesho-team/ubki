@@ -2,13 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential\LinkedPerson;
 
+use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\LinkedPerson
  */
-class Entity extends Ubki\Element
+class Entity extends Ubki\Element implements \JsonSerializable
 {
     public const TAG = 'linked';
 
@@ -60,5 +62,15 @@ class Entity extends Ubki\Element
     public function getIssueDate(): \DateTimeInterface
     {
         return $this->issueDate;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->getName(),
+            'role' => (string)$this->getRole(),
+            'issueDate' => Carbon::instance($this->getIssueDate())->toDateString(),
+            'ergpou' => $this->getErgpou()
+        ];
     }
 }
