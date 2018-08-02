@@ -31,12 +31,18 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetInn(): void
     {
-        $this->assertEquals('1234567890', $this->element->getInn());
+        $this->assertEquals(
+            '1234567890',
+            $this->element->getInn()
+        );
     }
 
     public function testGetPhoto(): void
     {
-        $this->assertEquals('some photo', base64_decode($this->element->getPhoto()));
+        $this->assertEquals(
+            'some photo',
+            base64_decode($this->element->getPhoto())
+        );
     }
 
     public function testGetCreatedAt(): void
@@ -44,6 +50,18 @@ class EntityTest extends Tests\Extend\ElementTestCase
         $this->assertEquals(
             Carbon::create(2018, 12, 3, 4, 5, 6),
             $this->element->getCreatedAt()
+        );
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => '2018-12-03',
+                'inn' => '1234567890',
+                'photo' => 'some photo'
+            ],
+            $this->element->jsonSerialize()
         );
     }
 }
