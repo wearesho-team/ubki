@@ -65,18 +65,16 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testJsonSerialize(): void
     {
-        $this->assertEquals(
-            [
-                'blockId' => Block\Identifying::ID,
-                'tag' => 'ADDR',
-                'attribute' => 'lng',
-                'type' => 'CRITICAL',
-                'message' => 'Some message',
-                'passedStrings' => 10,
-                'errorString' => 10
-            ],
-            $this->block->jsonSerialize()
-        );
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $this->assertJsonSerialize([
+            'blockId' => Block\Identifying::ID,
+            'tag' => 'ADDR',
+            'attribute' => 'lng',
+            'type' => 'CRITICAL',
+            'message' => 'Some message',
+            'passedStrings' => 10,
+            'errorString' => 10
+        ]);
     }
 
     public function testGetAttribute(): void
