@@ -2,13 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Data\CourtDecision;
 
+use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Element;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\CourtDecision
  */
-class Entity extends Element
+class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'susd';
 
@@ -144,5 +146,26 @@ class Entity extends Element
     public function getAreaReference(): ?string
     {
         return $this->areaReference;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $createdAt = $this->getCreatedAt();
+
+        return [
+            'id' => $this->getId(),
+            'inn' => $this->getInn(),
+            'date' => Carbon::instance($this->getDate())->toDateString(),
+            'subjectStatus' => $this->getSubjectStatus(),
+            'courtDealType' => $this->getCourtDealType(),
+            'courtName' => $this->getCourtName(),
+            'documentType' => $this->getDocumentType(),
+            'documentTypeReference' => $this->getDocumentTypeReference(),
+            'legalFact' => $this->getLegalFact(),
+            'legalFactReference' => $this->getLegalFactReference(),
+            'createdAt' => !is_null($createdAt) ? Carbon::instance($createdAt)->toDateString() : null,
+            'area' => $this->getArea(),
+            'areaReference' => $this->getAreaReference()
+        ];
     }
 }

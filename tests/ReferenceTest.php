@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests;
 
+use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki;

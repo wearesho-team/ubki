@@ -16,11 +16,11 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected const TAG = 'susd';
 
     /** @var Data\CourtDecision\Entity */
-    protected $block;
+    protected $element;
 
     protected function setUp(): void
     {
-        $this->block = new Data\CourtDecision\Entity(
+        $this->element = new Data\CourtDecision\Entity(
             123456,
             '1234567890',
             Carbon::create(2018, 12, 3),
@@ -41,7 +41,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'name',
-            $this->block->getCourtName()
+            $this->element->getCourtName()
         );
     }
 
@@ -49,7 +49,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'area',
-            $this->block->getArea()
+            $this->element->getArea()
         );
     }
 
@@ -57,7 +57,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             '1234567890',
-            $this->block->getInn()
+            $this->element->getInn()
         );
     }
 
@@ -65,7 +65,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'document_type',
-            $this->block->getDocumentType()
+            $this->element->getDocumentType()
         );
     }
 
@@ -73,7 +73,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'document_type_reference',
-            $this->block->getDocumentTypeReference()
+            $this->element->getDocumentTypeReference()
         );
     }
 
@@ -81,7 +81,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             1,
-            $this->block->getSubjectStatus()
+            $this->element->getSubjectStatus()
         );
     }
 
@@ -89,13 +89,13 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             123456,
-            $this->block->getId()
+            $this->element->getId()
         );
     }
 
     public function testGetDate(): void
     {
-        $date = Carbon::instance($this->block->getDate());
+        $date = Carbon::instance($this->element->getDate());
 
         $this->assertEquals(
             Carbon::create(2018, 12, 3),
@@ -111,7 +111,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'legal_fact_reference',
-            $this->block->getLegalFactReference()
+            $this->element->getLegalFactReference()
         );
     }
 
@@ -119,7 +119,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'area_reference',
-            $this->block->getAreaReference()
+            $this->element->getAreaReference()
         );
     }
 
@@ -127,7 +127,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'legal_fact',
-            $this->block->getLegalFact()
+            $this->element->getLegalFact()
         );
     }
 
@@ -135,13 +135,13 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             1,
-            $this->block->getCourtDealType()
+            $this->element->getCourtDealType()
         );
     }
 
     public function testGetCreatedAt(): void
     {
-        $createdAt = Carbon::instance($this->block->getCreatedAt());
+        $createdAt = Carbon::instance($this->element->getCreatedAt());
 
         $this->assertEquals(
             Carbon::create(2018, 3, 12),
@@ -150,6 +150,28 @@ class EntityTest extends Tests\Extend\ElementTestCase
         $this->assertEquals(
             '2018-03-12',
             $createdAt->toDateString()
+        );
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'id' => '123456',
+                'inn' => '1234567890',
+                'date' => '2018-12-03',
+                'subjectStatus' => 1,
+                'courtDealType' => 1,
+                'courtName' => 'name',
+                'documentType' => 'document_type',
+                'documentTypeReference' => 'document_type_reference',
+                'legalFact' => 'legal_fact',
+                'legalFactReference' => 'legal_fact_reference',
+                'createdAt' => '2018-03-12',
+                'area' => 'area',
+                'areaReference' => 'area_reference'
+            ],
+            $this->element->jsonSerialize()
         );
     }
 }
