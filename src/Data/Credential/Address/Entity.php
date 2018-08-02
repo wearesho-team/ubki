@@ -177,14 +177,10 @@ class Entity extends Element implements \JsonSerializable
 
     public function jsonSerialize(): array
     {
-        $language = $this->getLanguage();
-        $type = $this->getType();
-        $cityType = $this->getCityType();
-
         return [
-            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateTimeString(),
-            'language' => $language->getDescription() ?? $language->getKey(),
-            'type' => $type->getDescription() ?? $type->getKey(),
+            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
+            'language' => (string)$this->getLanguage(),
+            'type' => (string)$this->getType(),
             'country' => $this->getCountry(),
             'city' => $this->getCity(),
             'street' => $this->getStreet(),
@@ -192,7 +188,7 @@ class Entity extends Element implements \JsonSerializable
             'index' => $this->getIndex(),
             'state' => $this->getState(),
             'area' => $this->getArea(),
-            'cityType' => $cityType->getDescription() ?? $cityType->getKey(),
+            'cityType' => (string)$this->getCityType(),
             'corpus' => $this->getCorpus(),
             'flat' => $this->getFlat(),
             'fullAddress' => $this->getFullAddress()
