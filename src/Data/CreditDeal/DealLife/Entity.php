@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Data\CreditDeal\DealLife;
 
+use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Element;
 
@@ -9,7 +11,7 @@ use Wearesho\Bobra\Ubki\Element;
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\CreditDeal\DealLife
  */
-class Entity extends Element
+class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'deallife';
 
@@ -175,5 +177,27 @@ class Entity extends Element
     public function getPaymentDate(): \DateTimeInterface
     {
         return $this->paymentDate;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'periodMonth' => $this->getPeriodMonth(),
+            'periodYear' => $this->getPeriodYear(),
+            'issueDate' => Carbon::instance($this->getIssueDate())->toDateString(),
+            'endDate' => Carbon::instance($this->getEndDate())->toDateString(),
+            'status' => (string)$this->getStatus(),
+            'limit' => $this->getLimit(),
+            'mandatoryPayment' => $this->getMandatoryPayment(),
+            'currentDebt' => $this->getCurrentDebt(),
+            'currentOverdueDebt' => $this->getCurrentOverdueDebt(),
+            'overdueTime' => $this->getOverdueTime(),
+            'paymentIndication' => (string)$this->getPaymentIndication(),
+            'delayIndication' => (string)$this->getDelayIndication(),
+            'creditTrancheIndication' => (string)$this->getCreditTrancheIndication(),
+            'paymentDate' => Carbon::instance($this->getPaymentDate())->toDateString(),
+            'actualEndDate' => Carbon::instance($this->getActualEndDate())->toDateString(),
+        ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\CreditDeal;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Element;
 
@@ -9,7 +10,7 @@ use Wearesho\Bobra\Ubki\Element;
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\CreditDeal
  */
-class Entity extends Element
+class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'crdeal';
 
@@ -181,5 +182,28 @@ class Entity extends Element
     public function getDealLifes(): DealLife\Collection
     {
         return $this->dealLifes;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'language' => (string)$this->getLanguage(),
+            'name' => $this->getName(),
+            'lastName' => $this->getLastName(),
+            'birthDate' => Carbon::instance($this->getBirthDate())->toDateString(),
+            'type' => (string)$this->getType(),
+            'collateral' => (string)$this->getCollateral(),
+            'repaymentProcedure' => (string)$this->getRepaymentProcedure(),
+            'currency' => (string)$this->getCurrency(),
+            'initialAmount' => $this->getInitialAmount(),
+            'subjectRole' => (string)$this->getSubjectRole(),
+            'collateralCost' => $this->getCollateralCost(),
+            'dealLifes' => array_map(function (DealLife\Entity $dealLife): array {
+                return $dealLife->jsonSerialize();
+            }, $this->getDealLifes()->jsonSerialize()),
+            'inn' => $this->getInn(),
+            'middleName' => $this->getMiddleName()
+        ];
     }
 }

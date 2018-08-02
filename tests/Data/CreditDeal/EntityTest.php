@@ -19,46 +19,6 @@ class EntityTest extends Tests\Extend\ElementTestCase
     /** @var Data\CreditDeal\Entity */
     protected $element;
 
-    protected function setUp(): void
-    {
-        $this->element = new Data\CreditDeal\Entity(
-            'identificator',
-            Data\Language::ENG(),
-            'name',
-            'last name',
-            Carbon::parse('1998-03-12'),
-            Data\CreditDeal\Type::REPLENISHMENT_WORKING_CAPITAL(),
-            Data\CreditDeal\Collateral::BANK_METALS(),
-            Data\CreditDeal\RepaymentProcedure::PAYMENTS_INDIVIDUAL(),
-            Data\Currency::EUR(),
-            2400.00,
-            Data\SubjectRole::BORROWER(),
-            2400,
-            new Data\CreditDeal\DealLife\Collection([
-                new Data\CreditDeal\DealLife\Entity(
-                    'identificator',
-                    4,
-                    2018,
-                    Carbon::parse('2018-04-09'),
-                    Carbon::parse('2018-05-09'),
-                    Data\CreditDeal\Status::OPEN(),
-                    10000.00,
-                    2400,
-                    2400,
-                    2400,
-                    20,
-                    Data\Flag::YES(),
-                    Data\Flag::YES(),
-                    Data\Flag::YES(),
-                    Carbon::parse('2018-04-29'),
-                    Carbon::parse('2018-04-29')
-                )
-            ]),
-            '1234567890',
-            'middle name'
-        );
-    }
-
     public function testGetName(): void
     {
         $this->assertEquals(
@@ -195,6 +155,89 @@ class EntityTest extends Tests\Extend\ElementTestCase
         $this->assertEquals(
             '1234567890',
             $this->element->getInn()
+        );
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'id' => 'identificator',
+                'language' => 'ENG',
+                'name' => 'name',
+                'lastName' => 'last name',
+                'birthDate' => '1998-03-12',
+                'type' => 'REPLENISHMENT_WORKING_CAPITAL',
+                'collateral' => 'BANK_METALS',
+                'repaymentProcedure' => 'PAYMENTS_INDIVIDUAL',
+                'currency' => 'EUR',
+                'initialAmount' => 2400.00,
+                'subjectRole' => 'BORROWER',
+                'collateralCost' => 2400.00,
+                'dealLifes' => [
+                    [
+                        'id' => 'identificator',
+                        'periodMonth' => 4,
+                        'periodYear' => 2018,
+                        'issueDate' => '2018-04-09',
+                        'endDate' => '2018-05-09',
+                        'status' => 'OPEN',
+                        'limit' => 10000.00,
+                        'mandatoryPayment' => 2400,
+                        'currentDebt' => 2400,
+                        'currentOverdueDebt' => 2400,
+                        'overdueTime' => 20,
+                        'paymentIndication' => 'YES',
+                        'delayIndication' => 'YES',
+                        'creditTrancheIndication' => 'YES',
+                        'paymentDate' => '2018-04-29',
+                        'actualEndDate' => '2018-04-29',
+                    ]
+                ],
+                'inn' => '1234567890',
+                'middleName' => 'middle name'
+            ],
+            $this->element->jsonSerialize()
+        );
+    }
+
+    protected function setUp(): void
+    {
+        $this->element = new Data\CreditDeal\Entity(
+            'identificator',
+            Data\Language::ENG(),
+            'name',
+            'last name',
+            Carbon::parse('1998-03-12'),
+            Data\CreditDeal\Type::REPLENISHMENT_WORKING_CAPITAL(),
+            Data\CreditDeal\Collateral::BANK_METALS(),
+            Data\CreditDeal\RepaymentProcedure::PAYMENTS_INDIVIDUAL(),
+            Data\Currency::EUR(),
+            2400.00,
+            Data\SubjectRole::BORROWER(),
+            2400,
+            new Data\CreditDeal\DealLife\Collection([
+                new Data\CreditDeal\DealLife\Entity(
+                    'identificator',
+                    4,
+                    2018,
+                    Carbon::parse('2018-04-09'),
+                    Carbon::parse('2018-05-09'),
+                    Data\CreditDeal\Status::OPEN(),
+                    10000.00,
+                    2400,
+                    2400,
+                    2400,
+                    20,
+                    Data\Flag::YES(),
+                    Data\Flag::YES(),
+                    Data\Flag::YES(),
+                    Carbon::parse('2018-04-29'),
+                    Carbon::parse('2018-04-29')
+                )
+            ]),
+            '1234567890',
+            'middle name'
         );
     }
 }
