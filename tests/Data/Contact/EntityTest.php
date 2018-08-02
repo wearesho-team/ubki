@@ -62,4 +62,17 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals('1231231230', $this->element->getInn());
     }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => $this->now->toDateString(),
+                'value' => '+380930439475',
+                'type' => 'MOBILE',
+                'inn' => '1231231230'
+            ],
+            $this->element->jsonSerialize()
+        );
+    }
 }
