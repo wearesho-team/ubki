@@ -52,11 +52,9 @@ abstract class Entity extends Ubki\Element implements Person, \JsonSerializable
 
     public function jsonSerialize(): array
     {
-        $language = $this->getLanguage();
-
         return [
             'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
-            'language' => $language->getDescription() ?? $language->getKey(),
+            'language' => (string)$this->getLanguage(),
             'name' => $this->getName(),
         ];
     }
