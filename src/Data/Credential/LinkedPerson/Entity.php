@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Data\Credential\LinkedPerson;
 
 use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki;
 
 /**
