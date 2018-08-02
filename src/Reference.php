@@ -25,6 +25,11 @@ abstract class Reference extends Enum
         return $this->description;
     }
 
+    final public function __toString(): string
+    {
+        return (string)($this->description ?? $this->getKey());
+    }
+
     public static function __callStatic($name, $arguments)
     {
         $array = static::toArray();
