@@ -148,26 +148,19 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
 
     public function jsonSerialize(): array
     {
-        $gender = $this->getGender();
-        $familyStatus = $this->getFamilyStatus();
-        $education = $this->getEducation();
-        $nationality = $this->getNationality();
-        $registrationSpd = $this->getRegistrationSpd();
-        $socialStatus = $this->getSocialStatus();
-
         return array_merge(
             parent::jsonSerialize(),
             [
                 'lastName' => $this->getLastName(),
                 'birthDate' => Carbon::instance($this->getBirthDate())->toDateString(),
-                'gender' => $gender->getDescription() ?? $gender->getKey(),
+                'gender' => (string)$this->getGender(),
                 'inn' => $this->getInn(),
                 'middleName' => $this->getMiddleName(),
-                'familyStatus' => $familyStatus->getDescription() ?? $familyStatus->getKey(),
-                'education' => $education->getDescription() ?? $education->getKey(),
-                'nationality' => $nationality->getDescription() ?? $nationality->getKey(),
-                'registrationSpd' => $registrationSpd->getDescription() ?? $registrationSpd->getKey(),
-                'socialStatus' => $socialStatus->getDescription() ?? $socialStatus->getKey(),
+                'familyStatus' => (string)$this->getFamilyStatus(),
+                'education' => (string)$this->getEducation(),
+                'nationality' => (string)$this->getNationality(),
+                'registrationSpd' => (string)$this->getRegistrationSpd(),
+                'socialStatus' => (string)$this->getSocialStatus(),
                 'childrenCount' => $this->getChildrenCount(),
             ]
         );
