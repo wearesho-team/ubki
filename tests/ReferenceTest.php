@@ -13,6 +13,17 @@ use Wearesho\Bobra\Ubki;
  */
 class ReferenceTest extends TestCase
 {
+    public function testToString()
+    {
+        $language = Ubki\Language::EN();
+
+        $this->assertEquals('EN', (string)$language);
+
+        $language = Ubki\Language::EN('english');
+
+        $this->assertEquals('english', (string)$language);
+    }
+
     public function testInstance()
     {
         $description = 'English language';
