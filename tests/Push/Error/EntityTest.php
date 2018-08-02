@@ -16,11 +16,11 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected const TAG = 'item';
 
     /** @var Push\Error\Entity */
-    protected $block;
+    protected $element;
 
     protected function setUp(): void
     {
-        $this->block = new Push\Error\Entity(
+        $this->element = new Push\Error\Entity(
             Block\Identifying::ID,
             'ADDR',
             'lng',
@@ -35,7 +35,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             10,
-            $this->block->getPassedStringsCount()
+            $this->element->getPassedStringsCount()
         );
     }
 
@@ -43,7 +43,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             Block\Identifying::ID,
-            $this->block->getBlockId()
+            $this->element->getBlockId()
         );
     }
 
@@ -51,7 +51,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'ADDR',
-            $this->block->getTag()
+            $this->element->getTag()
         );
     }
 
@@ -59,7 +59,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             10,
-            $this->block->getErrorStringsCount()
+            $this->element->getErrorStringsCount()
         );
     }
 
@@ -75,7 +75,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
                 'passedStrings' => 10,
                 'errorString' => 10
             ],
-            $this->block->jsonSerialize()
+            $this->element->jsonSerialize()
         );
     }
 
@@ -83,7 +83,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'lng',
-            $this->block->getAttribute()
+            $this->element->getAttribute()
         );
     }
 
@@ -91,7 +91,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'CRITICAL',
-            $this->block->getType()
+            $this->element->getType()
         );
     }
 
@@ -99,7 +99,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             'Some message',
-            $this->block->getMessage()
+            $this->element->getMessage()
         );
     }
 }
