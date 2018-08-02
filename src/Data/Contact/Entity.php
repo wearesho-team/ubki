@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Contact;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -9,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * Data of one subject's contact
  * @package Wearesho\Bobra\Ubki\Data\Contact
  */
-class Entity extends Ubki\Element
+class Entity extends Ubki\Element implements \JsonSerializable
 {
     public const TAG = 'cont';
 
@@ -61,5 +62,15 @@ class Entity extends Ubki\Element
     public function getInn(): ?string
     {
         return $this->inn;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
+            'value' => $this->getValue(),
+            'type' => (string)$this->getType(),
+            'inn' => $this->getInn()
+        ];
     }
 }
