@@ -19,22 +19,12 @@ class EntityTest extends Tests\Extend\ElementTestCase
     /** @var Data\Credential\Document\Entity */
     protected $element;
 
-    protected function setUp(): void
-    {
-        $this->element = new Data\Credential\Document\Entity(
-            Carbon::create(2020, 3, 12, 10, 5, 7),
-            Data\Language::ENG('английский'),
-            Data\Credential\Document\Type::PASSPORT(),
-            'AS',
-            '321654',
-            'Someone',
-            Carbon::create(2016, 3, 12)
-        );
-    }
-
     public function testGetType(): void
     {
-        $this->assertEquals(Data\Credential\Document\Type::PASSPORT(), $this->element->getType());
+        $this->assertEquals(
+            Data\Credential\Document\Type::PASSPORT(),
+            $this->element->getType()
+        );
     }
 
     public function testGetCreatedAt(): void
@@ -47,31 +37,76 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetIssue(): void
     {
-        $this->assertEquals('Someone', $this->element->getIssue());
+        $this->assertEquals(
+            'Someone',
+            $this->element->getIssue()
+        );
     }
 
     public function testGetIssueDate(): void
     {
-        $this->assertEquals(Carbon::create(2016, 3, 12), $this->element->getIssueDate());
+        $this->assertEquals(
+            Carbon::create(2016, 3, 12),
+            $this->element->getIssueDate()
+        );
     }
 
     public function testGetLanguage(): void
     {
-        $this->assertEquals(Data\Language::ENG('английский'), $this->element->getLanguage());
+        $this->assertEquals(
+            Data\Language::ENG('английский'),
+            $this->element->getLanguage()
+        );
     }
 
     public function testGetSerial(): void
     {
-        $this->assertEquals('AS', $this->element->getSerial());
+        $this->assertEquals(
+            'AS',
+            $this->element->getSerial()
+        );
     }
 
     public function testGetNumber(): void
     {
-        $this->assertEquals('321654', $this->element->getNumber());
+        $this->assertEquals(
+            '321654',
+            $this->element->getNumber()
+        );
     }
 
     public function testGetTermin(): void
     {
         $this->assertNull($this->element->getTermin());
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => '2020-03-12',
+                'language' => 'английский',
+                'type' => 'PASSPORT',
+                'serial' => 'AS',
+                'number' => '321654',
+                'issue' => 'Someone',
+                'issueDate' => '2016-03-12',
+                'termin' => null,
+            ],
+            $this->element->jsonSerialize()
+        );
+    }
+
+    protected function setUp(): void
+    {
+        $this->element = new Data\Credential\Document\Entity(
+            Carbon::create(2020, 3, 12, 10, 5, 7),
+            Data\Language::ENG('английский'),
+            Data\Credential\Document\Type::PASSPORT(),
+            'AS',
+            '321654',
+            'Someone',
+            Carbon::create(2016, 3, 12)
+        );
     }
 }
