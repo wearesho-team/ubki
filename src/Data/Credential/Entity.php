@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential;
 
+use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Element;
 
@@ -9,15 +11,16 @@ use Wearesho\Bobra\Ubki\Element;
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential
  */
-class Entity extends Element
+class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'cki';
-    
+
+    // attributes
     public const INN = 'inn';
     public const LAST_NAME = 'lname';
     public const FIRST_NAME = 'fname';
     public const MIDDLE_NAME = 'mname';
-    
+
     /** @var string|null */
     protected $inn;
 
@@ -35,7 +38,7 @@ class Entity extends Element
 
     /** @var \DateTimeInterface */
     protected $birthDate;
-    
+
     /** @var Identifier\Collection */
     protected $identifiers;
 
@@ -140,5 +143,41 @@ class Entity extends Element
     public function getLinkedPersons(): ?LinkedPerson\Collection
     {
         return $this->linkedPersons;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'language' => (string)$this->getLanguage(),
+            'firstName' => $this->getFirstName(),
+            'middleName' => $this->getMiddleName(),
+            'lastName' => $this->getLastName(),
+            'birthDate' => Carbon::instance($this->getBirthDate())->toDateString(),
+            'identifiers' => array_map(function (Identifier\Entity $identifier): array {
+                return $identifier->jsonSerialize();
+            }, $this->getIdentifiers()->jsonSerialize()),
+            'documents' => array_map(function (Document\Entity $document): array {
+                return $document->jsonSerialize();
+            }, $this->getDocuments()->jsonSerialize()),
+            'addresses' => array_map(function (Address\Entity $address): array {
+                return $address->jsonSerialize();
+            }, $this->getAddresses()->jsonSerialize()),
+            'inn' => $this->getInn(),
+            'works' => !is_null($this->getWorks())
+                ? array_map(function (Work\Entity $work): array {
+                    return $work->jsonSerialize();
+                }, $this->getWorks()->jsonSerialize())
+                : null,
+            'photos' => !is_null($this->getPhotos())
+                ? array_map(function (Photo\Entity $photo): array {
+                    return $photo->jsonSerialize();
+                }, $this->getPhotos()->jsonSerialize())
+                : null,
+            'linkedPersons' => !is_null($this->getLinkedPersons())
+                ? array_map(function (LinkedPerson\Entity $person): array {
+                    return $person->jsonSerialize();
+                }, $this->getLinkedPersons()->jsonSerialize())
+                : null,
+        ];
     }
 }

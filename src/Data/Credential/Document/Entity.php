@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential\Document;
 
+use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Element;
 use Wearesho\Bobra\Ubki\Data;
 
@@ -9,7 +11,7 @@ use Wearesho\Bobra\Ubki\Data;
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Document
  */
-class Entity extends Element
+class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'doc';
 
@@ -108,5 +110,21 @@ class Entity extends Element
     public function getIssueDate(): \DateTimeInterface
     {
         return $this->issueDate;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $termin = $this->getTermin();
+
+        return [
+            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
+            'language' => (string)$this->getLanguage(),
+            'type' => (string)$this->getType(),
+            'serial' => $this->getSerial(),
+            'number' => $this->getNumber(),
+            'issue' => $this->getIssue(),
+            'issueDate' => Carbon::instance($this->getIssueDate())->toDateString(),
+            'termin' => !is_null($termin) ? Carbon::instance($termin)->toDateString() : null,
+        ];
     }
 }
