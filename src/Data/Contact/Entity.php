@@ -1,15 +1,16 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Element;
+namespace Wearesho\Bobra\Ubki\Data\Contact;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Contact
+ * Class Entity
  * Data of one subject's contact
- * @package Wearesho\Bobra\Ubki\Element
+ * @package Wearesho\Bobra\Ubki\Data\Contact
  */
-class Contact extends Ubki\Element
+class Entity extends Ubki\Element implements \JsonSerializable
 {
     public const TAG = 'cont';
 
@@ -25,7 +26,7 @@ class Contact extends Ubki\Element
     /** @var string */
     protected $value;
 
-    /** @var int */
+    /** @var Type */
     protected $type;
 
     /** @var string|null */
@@ -34,7 +35,7 @@ class Contact extends Ubki\Element
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
-        int $type,
+        Type $type,
         ?string $inn = null
     ) {
         $this->createdAt = $createdAt;
@@ -48,7 +49,7 @@ class Contact extends Ubki\Element
         return $this->value;
     }
 
-    public function getType(): int
+    public function getType(): Type
     {
         return $this->type;
     }
@@ -61,5 +62,15 @@ class Contact extends Ubki\Element
     public function getInn(): ?string
     {
         return $this->inn;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
+            'value' => $this->getValue(),
+            'type' => (string)$this->getType(),
+            'inn' => $this->getInn()
+        ];
     }
 }

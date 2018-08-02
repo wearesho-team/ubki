@@ -1,20 +1,23 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Collection;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Contact;
 
 use Carbon\Carbon;
-use Wearesho\Bobra\Ubki;
+
+use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Element;
+use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class ContactTest
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Collection
  */
-class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
+class CollectionTest extends Tests\Extend\CollectionTestCase
 {
-    protected const TYPE = Ubki\Element\Contact::class;
+    protected const TYPE = Data\Contact\Entity::class;
 
-    /** @var Ubki\Collection\Contact collection */
+    /** @var Data\Contact\Collection collection */
     protected $collection;
 
     /** @var array[] */
@@ -31,7 +34,7 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
         for ($i = 0; $i < rand(1, 20); $i++) {
             $this->fakePhoneNumbers[] = [
                 // todo: implement Type\Contact::...
-                rand(1, 5),
+                new Data\Contact\Type(rand(1, 5)),
                 '+' . rand(100000, 999999) . rand(100000, 999999)
             ];
 
@@ -47,10 +50,10 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
             $this->fakeInns[] = rand(0, 1) ? rand(10000, 99999) . rand(10000, 99999) : null;
         }
 
-        $this->collection = new Ubki\Collection\Contact();
+        $this->collection = new Data\Contact\Collection();
 
         foreach ($this->fakePhoneNumbers as $index => $number) {
-            $this->collection->append(new Ubki\Element\Contact(
+            $this->collection->append(new Data\Contact\Entity(
                 $this->fakeDates[$index],
                 $number[1],
                 $number[0],
@@ -67,7 +70,7 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
     public function testOffsetGet(): void
     {
         foreach ($this->fakePhoneNumbers as $index => $number) {
-            /** @var Ubki\Element\Contact $element */
+            /** @var Data\Contact\Entity $element */
             $element = $this->collection->offsetGet($index);
             $this->assertEquals($number[1], $element->getValue());
             $this->assertEquals($this->fakeDates[$index], $element->getCreatedAt());
@@ -78,7 +81,7 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
     public function testAppendInvalid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->collection->append(new class extends Ubki\Element
+        $this->collection->append(new class extends Element
         {
             public const TAG = 'test';
         });
