@@ -18,19 +18,6 @@ class EntityTest extends Tests\Extend\ElementTestCase
     /** @var Data\Credential\Work\Entity */
     protected $element;
 
-    public function setUp(): void
-    {
-        $this->element = new Data\Credential\Work\Entity(
-            Carbon::create(2020, 10, 5, 5, 6, 0),
-            Data\Language::RUS('русский'),
-            'ergpou',
-            'name',
-            Data\Credential\Work\Rank::SPECIALIST(),
-            1,
-            200.00
-        );
-    }
-
     public function testGetExperience(): void
     {
         $this->assertEquals(1, $this->element->getExperience());
@@ -66,6 +53,35 @@ class EntityTest extends Tests\Extend\ElementTestCase
         $this->assertEquals(
             Carbon::create(2020, 10, 5, 5, 6, 0),
             $this->element->getCreatedAt()
+        );
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => '2020-10-05',
+                'language' => 'русский',
+                'ergpou' => 'ergpou',
+                'name' => 'name',
+                'rank' => 'SPECIALIST',
+                'experience' => 1,
+                'income' => 200.00
+            ],
+            $this->element->jsonSerialize()
+        );
+    }
+
+    protected function setUp(): void
+    {
+        $this->element = new Data\Credential\Work\Entity(
+            Carbon::create(2020, 10, 5, 5, 6, 0),
+            Data\Language::RUS('русский'),
+            'ergpou',
+            'name',
+            Data\Credential\Work\Rank::SPECIALIST(),
+            1,
+            200.00
         );
     }
 }

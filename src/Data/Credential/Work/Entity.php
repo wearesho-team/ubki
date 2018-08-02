@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Credential\Work;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Work
  */
-class Entity extends Ubki\Element
+class Entity extends Ubki\Element implements \JsonSerializable
 {
     public const TAG = 'work';
 
@@ -93,5 +94,18 @@ class Entity extends Ubki\Element
     public function getIncome(): ?float
     {
         return $this->income;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
+            'language' => (string)$this->getLanguage(),
+            'ergpou' => $this->getErgpou(),
+            'name' => $this->getName(),
+            'rank' => (string)$this->getRank(),
+            'experience' => $this->getExperience(),
+            'income' => $this->getIncome()
+        ];
     }
 }
