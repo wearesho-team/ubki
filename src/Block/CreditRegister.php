@@ -12,19 +12,21 @@ class CreditRegister extends Ubki\Block
 {
     public const ID = 4;
 
+    /** @var Ubki\Data\CreditRegister\Collection */
     protected $creditRequests;
 
     protected $registryTrim;
 
-    // todo: refactor after implementing Credres element
     // todo: refactor after implementing Reestrtrim element
-    public function __construct($creditRequests, $registryTrim)
-    {
+    public function __construct(
+        Ubki\Data\CreditRegister\Collection $creditRequests,
+        $registryTrim
+    ) {
         $this->creditRequests = $creditRequests;
         $this->registryTrim = $registryTrim;
     }
 
-    public function getCreditRequests()
+    public function getCreditRequests(): Ubki\Data\CreditRegister\Collection
     {
         return $this->creditRequests;
     }
