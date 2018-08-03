@@ -74,7 +74,7 @@ class IdentifyingTest extends TestCase
                         'УМ',
                         '123123',
                         'Issue by someone',
-                        Carbon::create(2014, 3, 12)
+                        Carbon::parse('2014-03-12')
                     )
                 ]),
                 new Data\Credential\Address\Collection([
@@ -112,81 +112,82 @@ class IdentifyingTest extends TestCase
 
     public function testType(): void
     {
-        $this->assertEquals(Block\Identifying::ID, $this->identifyingComponent->getId());
+        $this->assertEquals(
+            Block\Identifying::ID,
+            $this->identifyingComponent->getId()
+        );
     }
 
     public function testGetCredential(): void
     {
-        $ident = new Block\Identifying(
-            new Data\Credential\Entity(
-                static::$language,
-                'Roman',
-                'Andreevich',
-                'Varkuta',
-                static::$birthDate,
-                new Data\Credential\Identifier\Collection([
-                    new Data\Credential\Identifier\Natural\Entity(
-                        static::$informationDate,
-                        static::$language,
-                        'Roman',
-                        'Varkuta',
-                        static::$birthDate,
-                        Data\Gender::MAN(),
-                        static::$inn,
-                        'Andreevich',
-                        Data\FamilyStatus::SINGLE('не женат/не замужем'),
-                        Data\Education::SECONDARY_TECH(),
-                        Data\Nationality::UKRAINE(),
-                        Data\RegistrationSpd::PHYSICAL(),
-                        Data\SocialStatus::FULL_TIME(),
-                        0
-                    )
-                ]),
-                new Data\Credential\Document\Collection([
-                    new Data\Credential\Document\Entity(
-                        static::$informationDate,
-                        static::$language,
-                        Data\Credential\Document\Type::PASSPORT('пасспорт'),
-                        'УМ',
-                        '123123',
-                        'Issue by someone',
-                        Carbon::create(2014, 3, 12)
-                    )
-                ]),
-                new Data\Credential\Address\Collection([
-                    new Data\Credential\Address\Entity(
-                        static::$informationDate,
-                        static::$language,
-                        Data\Credential\Address\Type::HOME('домашний'),
-                        'Ukraine',
-                        'Kharkov',
-                        'Lyapunova',
-                        '12',
-                        '61100',
-                        'Shevchenkivska',
-                        'Kharkivska',
-                        Data\CityType::TOWN(),
-                        null,
-                        '24'
-                    )
-                ]),
-                static::$inn,
-                new Data\Credential\Work\Collection([
-                    new Data\Credential\Work\Entity(
-                        static::$informationDate,
-                        static::$language,
-                        'some ergpou',
-                        'SHO',
-                        Data\Credential\Work\Rank::SPECIALIST(),
-                        1,
-                        10000.00
-                    )
-                ])
-            )
-        );
-
         $this->assertEquals(
-            $ident->getCredential(),
+            (new Block\Identifying(
+                new Data\Credential\Entity(
+                    static::$language,
+                    'Roman',
+                    'Andreevich',
+                    'Varkuta',
+                    static::$birthDate,
+                    new Data\Credential\Identifier\Collection([
+                        new Data\Credential\Identifier\Natural\Entity(
+                            static::$informationDate,
+                            static::$language,
+                            'Roman',
+                            'Varkuta',
+                            static::$birthDate,
+                            Data\Gender::MAN(),
+                            static::$inn,
+                            'Andreevich',
+                            Data\FamilyStatus::SINGLE('не женат/не замужем'),
+                            Data\Education::SECONDARY_TECH(),
+                            Data\Nationality::UKRAINE(),
+                            Data\RegistrationSpd::PHYSICAL(),
+                            Data\SocialStatus::FULL_TIME(),
+                            0
+                        )
+                    ]),
+                    new Data\Credential\Document\Collection([
+                        new Data\Credential\Document\Entity(
+                            static::$informationDate,
+                            static::$language,
+                            Data\Credential\Document\Type::PASSPORT('пасспорт'),
+                            'УМ',
+                            '123123',
+                            'Issue by someone',
+                            Carbon::parse('2014-03-12')
+                        )
+                    ]),
+                    new Data\Credential\Address\Collection([
+                        new Data\Credential\Address\Entity(
+                            static::$informationDate,
+                            static::$language,
+                            Data\Credential\Address\Type::HOME('домашний'),
+                            'Ukraine',
+                            'Kharkov',
+                            'Lyapunova',
+                            '12',
+                            '61100',
+                            'Shevchenkivska',
+                            'Kharkivska',
+                            Data\CityType::TOWN(),
+                            null,
+                            '24'
+                        )
+                    ]),
+                    static::$inn,
+                    new Data\Credential\Work\Collection([
+                        new Data\Credential\Work\Entity(
+                            static::$informationDate,
+                            static::$language,
+                            'some ergpou',
+                            'SHO',
+                            Data\Credential\Work\Rank::SPECIALIST(),
+                            1,
+                            10000.00
+                        )
+                    ])
+                )
+            ))->getCredential(),
             $this->identifyingComponent->getCredential()
         );
     }
