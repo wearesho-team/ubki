@@ -19,4 +19,21 @@ abstract class ElementTestCase extends \PHPUnit\Framework\TestCase
     {
         $this->assertEquals(static::TAG, $this->block ? $this->block->tag() : null);
     }
+
+    /**
+     * @param array $expectedJson
+     *
+     * @throws \Exception
+     */
+    public function assertJsonSerialize(array $expectedJson): void
+    {
+        if (!$this->block instanceof \JsonSerializable) {
+            throw new \Exception('Element must implement jsonserialize interface');
+        }
+
+        $this->assertEquals(
+            $expectedJson,
+            $this->block->jsonSerialize()
+        );
+    }
 }
