@@ -8,8 +8,9 @@ use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class EntityTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Push\Error
+ *
+ * @internal
  */
 class EntityTest extends Tests\Extend\ElementTestCase
 {

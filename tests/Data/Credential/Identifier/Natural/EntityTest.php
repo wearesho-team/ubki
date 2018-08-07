@@ -56,70 +56,64 @@ class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
 
     public function testGetChildrenCount(): void
     {
-        $this->assertEquals(0, $this->element->getChildrenCount());
+        $this->assertEquals(0, $this->element->childrenCount);
     }
 
     public function testGetRegistrationSpd(): void
     {
-        $this->assertEquals(Data\RegistrationSpd::PHYSICAL(), $this->element->getRegistrationSpd());
+        $this->assertEquals(Data\RegistrationSpd::PHYSICAL(), $this->element->registrationSpd);
     }
 
     public function testGetInn(): void
     {
-        $this->assertEquals('1234567890', $this->element->getInn());
+        $this->assertEquals('1234567890', $this->element->inn);
     }
 
     public function testGetMiddleName(): void
     {
-        $this->assertEquals('Andreevich', $this->element->getMiddleName());
+        $this->assertEquals('Andreevich', $this->element->middleName);
     }
 
     public function testGetBirthDate(): void
     {
         $this->assertEquals(
-            Carbon::create(
-                2010,
-                10,
-                10,
-                10,
-                10,
-                10
-            ),
-            $this->element->getBirthDate()
+            Carbon::create(2010, 10, 10, 10, 10, 10),
+            Carbon::instance($this->element->birthDate)
+        );
+        $this->assertEquals(
+            '2010-10-10 10:10:10',
+            Carbon::instance($this->element->birthDate)->toDateTimeString()
         );
     }
 
     public function testGetGender(): void
     {
-        $this->assertEquals(Data\Gender::MAN(), $this->element->getGender());
+        $this->assertEquals(Data\Gender::MAN(), $this->element->gender);
     }
 
     public function testGetSocialStatus(): void
     {
-        $this->assertEquals(Data\SocialStatus::FULL_TIME(), $this->element->getSocialStatus());
+        $this->assertEquals(Data\SocialStatus::FULL_TIME(), $this->element->socialStatus);
     }
 
     public function testGetEducation(): void
     {
-        $this->assertEquals(Data\Education::SECONDARY_TECH(), $this->element->getEducation());
+        $this->assertEquals(Data\Education::SECONDARY_TECH(), $this->element->education);
     }
 
     public function testGetNationality(): void
     {
-        $this->assertEquals(Data\Nationality::UKRAINE(), $this->element->getNationality());
+        $this->assertEquals(Data\Nationality::UKRAINE(), $this->element->nationality);
     }
 
     public function testGetLastName(): void
     {
-        $this->assertEquals('Varkuta', $this->element->getLastName());
+        $this->assertEquals('Varkuta', $this->element->lastName);
     }
 
     public function testGetFamilyStatus(): void
     {
-        $this->assertEquals(
-            Data\FamilyStatus::SINGLE('не женат/не замужем'),
-            $this->element->getFamilyStatus()
-        );
+        $this->assertEquals(Data\FamilyStatus::SINGLE('не женат/не замужем'), $this->element->familyStatus);
     }
 
     public function testJsonSerialize(): void

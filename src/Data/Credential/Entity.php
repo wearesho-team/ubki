@@ -10,12 +10,19 @@ use Wearesho\Bobra\Ubki\Element;
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential
+ *
+ * @property-read string|null $inn
+ * @property-read Data\Language $language
+ * @property-read string $firstName
+ * @property-read string $middleName
+ * @property-read \DateTimeInterface $birthDate
+ * @property-read Identifier\Collection|Identifier\Entity[] $identifiers
+ * @property-read
  */
 class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'cki';
 
-    // attributes
     public const INN = 'inn';
     public const LAST_NAME = 'lname';
     public const FIRST_NAME = 'fname';
@@ -71,18 +78,20 @@ class Entity extends Element implements \JsonSerializable
         ?Photo\Collection $photos = null,
         ?LinkedPerson\Collection $linkedPersons = null
     ) {
-        $this->language = $language;
-        $this->firstName = $firstName;
-        $this->middleName = $middleName;
-        $this->lastName = $lastName;
-        $this->birthDate = $birthDate;
-        $this->identifiers = $identifiers;
-        $this->works = $works;
-        $this->documents = $documents;
-        $this->inn = $inn;
-        $this->addresses = $addresses;
-        $this->photos = $photos;
-        $this->linkedPersons = $linkedPersons;
+        parent::__construct([
+            'language' => $language,
+            'firstName' => $firstName,
+            'middleName' => $middleName,
+            'lastName' => $lastName,
+            'birthDate' => $birthDate,
+            'identifiers' => $identifiers,
+            'works' => $works,
+            'documents' => $documents,
+            'inn' => $inn,
+            'addresses' => $addresses,
+            'photos' => $photos,
+            'linkedPersons' => $linkedPersons
+        ]);
     }
 
     public function getInn(): ?string

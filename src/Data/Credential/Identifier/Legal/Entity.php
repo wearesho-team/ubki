@@ -3,17 +3,24 @@
 namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal;
 
 use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal
+ *
+ * @property-read string|null             $ergpou
+ * @property-read int|null                $form
+ * @property-read string|null             $economyBranch
+ * @property-read string|null             $activityType
+ * @property-read \DateTimeInterface|null $edrRegistrationDate
+ * @property-read \DateTimeInterface|null $taxRegistrationDate
  */
 class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializable
 {
     public const TAG = 'urident';
 
-    // attributes
     public const ERGPOU = 'okpo';
     public const NAME = 'urname';
     public const FORM = 'urfrms';
@@ -21,24 +28,6 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
     public const ACTIVITY_TYPE = 'urvide';
     public const EDR_REGISTRATION_DATE = 'urdatreg';
     public const TAX_REGISTRATION_DATE = 'urdatregnal';
-
-    /** @var string|null */
-    protected $ergpou;
-
-    /** @var int|null */
-    protected $form;
-
-    /** @var null|string */
-    protected $economyBranch;
-
-    /** @var null|string */
-    protected $activityType;
-
-    /** @var \DateTimeInterface|null */
-    protected $edrRegistrationDate;
-
-    /** @var \DateTimeInterface|null */
-    protected $taxRegistrationDate;
 
     public function __construct(
         \DateTimeInterface $createdAt,
@@ -51,44 +40,14 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         ?\DateTimeInterface $edrRegistrationDate = null,
         ?\DateTimeInterface $taxRegistrationDate = null
     ) {
-        $this->ergpou = $ergpou;
-        $this->form = $form;
-        $this->economyBranch = $economyBranch;
-        $this->activityType = $activityType;
-        $this->edrRegistrationDate = $edrRegistrationDate;
-        $this->taxRegistrationDate = $taxRegistrationDate;
-
-        parent::__construct($createdAt, $language, $name);
-    }
-
-    public function getActivityType(): ?string
-    {
-        return $this->activityType;
-    }
-
-    public function getErgpou(): ?string
-    {
-        return $this->ergpou;
-    }
-
-    public function getForm(): ?int
-    {
-        return $this->form;
-    }
-
-    public function getEconomyBranch(): ?string
-    {
-        return $this->economyBranch;
-    }
-
-    public function getEdrRegistrationDate(): ?\DateTimeInterface
-    {
-        return $this->edrRegistrationDate;
-    }
-
-    public function getTaxRegistrationDate(): ?\DateTimeInterface
-    {
-        return $this->taxRegistrationDate;
+        parent::__construct($createdAt, $language, $name, [
+            'ergpou' => $ergpou,
+            'form' => $form,
+            'economyBranch' => $economyBranch,
+            'activityType' => $activityType,
+            'edrRegistrationDate' => $edrRegistrationDate,
+            'taxRegistrationDate' => $taxRegistrationDate
+        ]);
     }
 
     public function jsonSerialize(): array
@@ -96,12 +55,12 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         return array_merge(
             parent::jsonSerialize(),
             [
-                'ergpou' => $this->getErgpou(),
-                'form' => $this->getForm(),
-                'economyBranch' => $this->getEconomyBranch(),
-                'activityType' => $this->getActivityType(),
-                'edrRegistrationDate' => Carbon::instance($this->getEdrRegistrationDate())->toDateString(),
-                'taxRegistrationDate' => Carbon::instance($this->getTaxRegistrationDate())->toDateString()
+                'ergpou' => $this->ergpou,
+                'form' => $this->form,
+                'economyBranch' => $this->economyBranch,
+                'activityType' => $this->activityType,
+                'edrRegistrationDate' => Carbon::instance($this->edrRegistrationDate)->toDateString(),
+                'taxRegistrationDate' => Carbon::instance($this->taxRegistrationDate)->toDateString()
             ]
         );
     }
