@@ -8,8 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class TypeTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Address
+ *
+ * @internal
  */
 class TypeTest extends TestCase
 {

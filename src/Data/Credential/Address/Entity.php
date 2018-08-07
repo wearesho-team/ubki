@@ -10,12 +10,26 @@ use Wearesho\Bobra\Ubki\Data;
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Address
+ *
+ * @property-read \DateTimeInterface $createdAt
+ * @property-read Data\Language      $language
+ * @property-read Type               $type
+ * @property-read string             $country
+ * @property-read string             $city
+ * @property-read string             $street
+ * @property-read string             $house
+ * @property-read string|null        $index
+ * @property-read string|null        $state
+ * @property-read string|null        $area
+ * @property-read null|string        $corpus
+ * @property-read null|string        $flat
+ * @property-read null|string        $fullAddress
+ * @property-read Data\CityType|null $cityType
  */
 class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'addr';
 
-    // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const TYPE = 'adtype';
@@ -30,48 +44,6 @@ class Entity extends Element implements \JsonSerializable
     public const CORPUS = 'adcorp';
     public const FLAT = 'flat';
     public const FULL_ADDRESS = 'addrdirt';
-
-    /** @var \DateTimeInterface */
-    protected $createdAt;
-
-    /** @var Data\Language */
-    protected $language;
-
-    /** @var Type */
-    protected $type;
-
-    /** @var string */
-    protected $country;
-
-    /** @var null|string */
-    protected $index;
-
-    /** @var null|string */
-    protected $state;
-
-    /** @var null|string */
-    protected $area;
-
-    /** @var string */
-    protected $city;
-
-    /** @var Data\CityType|null */
-    protected $cityType;
-
-    /** @var string */
-    protected $street;
-
-    /** @var string */
-    protected $house;
-
-    /** @var null|string */
-    protected $corpus;
-
-    /** @var null|string */
-    protected $flat;
-
-    /** @var null|string */
-    protected $fullAddress;
 
     public function __construct(
         \DateTimeInterface $createdAt,
@@ -89,109 +61,41 @@ class Entity extends Element implements \JsonSerializable
         ?string $flat = null,
         ?string $fullAddress = null
     ) {
-        $this->createdAt = $createdAt;
-        $this->language = $language;
-        $this->type = $type;
-        $this->country = $country;
-        $this->index = $index;
-        $this->state = $state;
-        $this->area = $area;
-        $this->city = $city;
-        $this->cityType = $cityType;
-        $this->street = $street;
-        $this->house = $house;
-        $this->corpus = $corpus;
-        $this->flat = $flat;
-        $this->fullAddress = $fullAddress;
-    }
-
-    public function getCreatedAt(): \DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function getLanguage(): Data\Language
-    {
-        return $this->language;
-    }
-
-    public function getType(): Type
-    {
-        return $this->type;
-    }
-
-    public function getCountry(): string
-    {
-        return $this->country;
-    }
-
-    public function getIndex(): ?string
-    {
-        return $this->index;
-    }
-
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function getArea(): ?string
-    {
-        return $this->area;
-    }
-
-    public function getCity(): string
-    {
-        return $this->city;
-    }
-
-    public function getCityType(): ?Data\CityType
-    {
-        return $this->cityType;
-    }
-
-    public function getStreet(): string
-    {
-        return $this->street;
-    }
-
-    public function getHouse(): string
-    {
-        return $this->house;
-    }
-
-    public function getCorpus(): ?string
-    {
-        return $this->corpus;
-    }
-
-    public function getFlat(): ?string
-    {
-        return $this->flat;
-    }
-
-    public function getFullAddress(): ?string
-    {
-        return $this->fullAddress;
+        parent::__construct([
+            'createdAt' => $createdAt,
+            'language' => $language,
+            'type' => $type,
+            'country' => $country,
+            'city' => $city,
+            'street' => $street,
+            'house' => $house,
+            'index' => $index,
+            'state' => $state,
+            'area' => $area,
+            'cityType' => $cityType,
+            'corpus' => $corpus,
+            'flat' => $flat,
+            'fullAddress' => $fullAddress
+        ]);
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
-            'language' => (string)$this->getLanguage(),
-            'type' => (string)$this->getType(),
-            'country' => $this->getCountry(),
-            'city' => $this->getCity(),
-            'street' => $this->getStreet(),
-            'house' => $this->getHouse(),
-            'index' => $this->getIndex(),
-            'state' => $this->getState(),
-            'area' => $this->getArea(),
-            'cityType' => (string)$this->getCityType(),
-            'corpus' => $this->getCorpus(),
-            'flat' => $this->getFlat(),
-            'fullAddress' => $this->getFullAddress()
+            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
+            'language' => (string)$this->language,
+            'type' => (string)$this->type,
+            'country' => $this->country,
+            'city' => $this->city,
+            'street' => $this->street,
+            'house' => $this->house,
+            'index' => $this->index,
+            'state' => $this->state,
+            'area' => $this->area,
+            'cityType' => (string)$this->cityType,
+            'corpus' => $this->corpus,
+            'flat' => $this->flat,
+            'fullAddress' => $this->fullAddress
         ];
     }
 }

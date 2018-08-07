@@ -9,8 +9,9 @@ use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class CollectionTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Address
+ *
+ * @internal
  */
 class CollectionTest extends Tests\Extend\CollectionTestCase
 {
@@ -140,21 +141,21 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
          * @var Data\Credential\Address\Entity $address
          */
         foreach ($this->collection as $index => $address) {
-            $this->assertEquals($time, $address->getCreatedAt());
-            $this->assertEquals(new Data\Language($this->languages[$index][1]), $address->getLanguage());
-            $this->assertEquals(new Data\Credential\Address\Type($this->types[$index][1]), $address->getType());
-            $this->assertEquals($this->countries[$index], $address->getCountry());
-            $this->assertEquals($this->cities[$index], $address->getCity());
-            $this->assertEquals($this->houses[$index], $address->getHouse());
-            $this->assertEquals($this->indexes[$index], $address->getIndex());
-            $this->assertEquals($this->states[$index], $address->getState());
-            $this->assertEquals($this->areas[$index], $address->getArea());
+            $this->assertEquals($time, $address->createdAt);
+            $this->assertEquals(new Data\Language($this->languages[$index][1]), $address->language);
+            $this->assertEquals(new Data\Credential\Address\Type($this->types[$index][1]), $address->type);
+            $this->assertEquals($this->countries[$index], $address->country);
+            $this->assertEquals($this->cities[$index], $address->city);
+            $this->assertEquals($this->houses[$index], $address->house);
+            $this->assertEquals($this->indexes[$index], $address->index);
+            $this->assertEquals($this->states[$index], $address->state);
+            $this->assertEquals($this->areas[$index], $address->area);
             $this->assertEquals(
                 $this->cityTypes[$index][1] ? new Data\CityType($this->cityTypes[$index][1]) : null,
-                $address->getCityType()
+                $address->cityType
             );
-            $this->assertEquals($this->corpuses[$index], $address->getCorpus());
-            $this->assertEquals($this->fullAddresses[$index], $address->getFullAddress());
+            $this->assertEquals($this->corpuses[$index], $address->corpus);
+            $this->assertEquals($this->fullAddresses[$index], $address->fullAddress);
         }
     }
 }
