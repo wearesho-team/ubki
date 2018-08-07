@@ -9,8 +9,9 @@ use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class CollectionTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Address
+ *
+ * @internal
  */
 class CollectionTest extends Tests\Extend\CollectionTestCase
 {

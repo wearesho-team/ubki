@@ -45,48 +45,6 @@ class Entity extends Element implements \JsonSerializable
     public const FLAT = 'flat';
     public const FULL_ADDRESS = 'addrdirt';
 
-    /** @var \DateTimeInterface */
-    protected $createdAt;
-
-    /** @var Data\Language */
-    protected $language;
-
-    /** @var Type */
-    protected $type;
-
-    /** @var string */
-    protected $country;
-
-    /** @var null|string */
-    protected $index;
-
-    /** @var null|string */
-    protected $state;
-
-    /** @var null|string */
-    protected $area;
-
-    /** @var string */
-    protected $city;
-
-    /** @var Data\CityType|null */
-    protected $cityType;
-
-    /** @var string */
-    protected $street;
-
-    /** @var string */
-    protected $house;
-
-    /** @var null|string */
-    protected $corpus;
-
-    /** @var null|string */
-    protected $flat;
-
-    /** @var null|string */
-    protected $fullAddress;
-
     public function __construct(
         \DateTimeInterface $createdAt,
         Data\Language $language,
@@ -103,20 +61,22 @@ class Entity extends Element implements \JsonSerializable
         ?string $flat = null,
         ?string $fullAddress = null
     ) {
-        $this->createdAt = $createdAt;
-        $this->language = $language;
-        $this->type = $type;
-        $this->country = $country;
-        $this->index = $index;
-        $this->state = $state;
-        $this->area = $area;
-        $this->city = $city;
-        $this->cityType = $cityType;
-        $this->street = $street;
-        $this->house = $house;
-        $this->corpus = $corpus;
-        $this->flat = $flat;
-        $this->fullAddress = $fullAddress;
+        parent::__construct([
+            'createdAt' => $createdAt,
+            'language' => $language,
+            'type' => $type,
+            'country' => $country,
+            'city' => $city,
+            'street' => $street,
+            'house' => $house,
+            'index' => $index,
+            'state' => $state,
+            'area' => $area,
+            'cityType' => $cityType,
+            'corpus' => $corpus,
+            'flat' => $flat,
+            'fullAddress' => $fullAddress
+        ]);
     }
 
     public function jsonSerialize(): array
