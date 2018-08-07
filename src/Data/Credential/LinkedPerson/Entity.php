@@ -23,18 +23,6 @@ class Entity extends Element implements \JsonSerializable
     public const NAME = 'okpo2_name';
     public const ROLE = 'linkrole';
     public const ISSUE_DATE = 'rdate';
-    
-    /** @var string|null */
-    protected $ergpou;
-
-    /** @var string */
-    protected $name;
-
-    /** @var Role */
-    protected $role;
-    
-    /** @var \DateTimeInterface */
-    protected $issueDate;
 
     public function __construct(
         string $name,
@@ -42,10 +30,12 @@ class Entity extends Element implements \JsonSerializable
         \DateTimeInterface $issueDate,
         ?string $ergpou = null
     ) {
-        $this->ergpou = $ergpou;
-        $this->name = $name;
-        $this->role = $role;
-        $this->issueDate = $issueDate;
+        parent::__construct([
+            'ergpou' => $ergpou,
+            'name' => $name,
+            'role' => $role,
+            'issueDate' => $issueDate
+        ]);
     }
 
     public function jsonSerialize(): array
