@@ -9,6 +9,20 @@ use Wearesho\Bobra\Ubki\Element;
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\CourtDecision
+ *
+ * @property-read string                  $id
+ * @property-read string                  $inn
+ * @property-read \DateTimeInterface      $date
+ * @property-read int                     $subjectStatus
+ * @property-read int                     $courtDealType
+ * @property-read string                  $courtName
+ * @property-read string|null             $legalFact
+ * @property-read string|null             $legalFactReference
+ * @property-read \DateTimeInterface|null $createdAt
+ * @property-read string                  $documentType
+ * @property-read string                  $documentTypeReference
+ * @property-read string|null             $area
+ * @property-read string|null             $areaReference
  */
 class Entity extends Element implements \JsonSerializable
 {
@@ -44,7 +58,7 @@ class Entity extends Element implements \JsonSerializable
     /** @var string */
     protected $documentType;
 
-    /** @var string  */
+    /** @var string */
     protected $documentTypeReference;
 
     /** @var string|null */
@@ -83,89 +97,22 @@ class Entity extends Element implements \JsonSerializable
         $this->areaReference = $areaReference;
     }
 
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getInn(): string
-    {
-        return $this->inn;
-    }
-
-    public function getDate(): \DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function getSubjectStatus(): int
-    {
-        return $this->subjectStatus;
-    }
-
-    public function getCourtDealType(): int
-    {
-        return $this->courtDealType;
-    }
-
-    public function getCourtName(): string
-    {
-        return $this->courtName;
-    }
-
-    public function getLegalFact(): ?string
-    {
-        return $this->legalFact;
-    }
-
-    public function getLegalFactReference(): ?string
-    {
-        return $this->legalFactReference;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function getDocumentType(): string
-    {
-        return $this->documentType;
-    }
-
-    public function getDocumentTypeReference(): string
-    {
-        return $this->documentTypeReference;
-    }
-
-    public function getArea(): ?string
-    {
-        return $this->area;
-    }
-
-    public function getAreaReference(): ?string
-    {
-        return $this->areaReference;
-    }
-
     public function jsonSerialize(): array
     {
-        $createdAt = $this->getCreatedAt();
-
         return [
-            'id' => $this->getId(),
-            'inn' => $this->getInn(),
-            'date' => Carbon::instance($this->getDate())->toDateString(),
-            'subjectStatus' => $this->getSubjectStatus(),
-            'courtDealType' => $this->getCourtDealType(),
-            'courtName' => $this->getCourtName(),
-            'documentType' => $this->getDocumentType(),
-            'documentTypeReference' => $this->getDocumentTypeReference(),
-            'legalFact' => $this->getLegalFact(),
-            'legalFactReference' => $this->getLegalFactReference(),
-            'createdAt' => !is_null($createdAt) ? Carbon::instance($createdAt)->toDateString() : null,
-            'area' => $this->getArea(),
-            'areaReference' => $this->getAreaReference()
+            'id' => $this->id,
+            'inn' => $this->inn,
+            'date' => Carbon::instance($this->date)->toDateString(),
+            'subjectStatus' => $this->subjectStatus,
+            'courtDealType' => $this->courtDealType,
+            'courtName' => $this->courtName,
+            'documentType' => $this->documentType,
+            'documentTypeReference' => $this->documentTypeReference,
+            'legalFact' => $this->legalFact,
+            'legalFactReference' => $this->legalFactReference,
+            'createdAt' => !is_null($this->createdAt) ? Carbon::instance($this->createdAt)->toDateString() : null,
+            'area' => $this->area,
+            'areaReference' => $this->areaReference
         ];
     }
 }

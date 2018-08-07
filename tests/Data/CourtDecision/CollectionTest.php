@@ -9,8 +9,9 @@ use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class CollectionTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\CourtDecision
+ *
+ * @internal
  */
 class CollectionTest extends Tests\Extend\CollectionTestCase
 {
@@ -114,69 +115,24 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
          * @var Data\CourtDecision\Entity $item
          */
         foreach ($this->collection as $index => $item) {
-            $date = Carbon::instance($item->getDate());
-            $createdAt = Carbon::instance($item->getCreatedAt());
+            $date = Carbon::instance($item->date);
+            $createdAt = Carbon::instance($item->createdAt);
 
-            $this->assertEquals(
-                $this->fakeIds[$index],
-                $item->getId()
-            );
-            $this->assertEquals(
-                $this->fakeInns[$index],
-                $item->getInn()
-            );
-            $this->assertEquals(
-                $this->fakeDates[$index],
-                $date
-            );
-            $this->assertEquals(
-                $this->fakeDatesString[$index],
-                $date->toDateString()
-            );
-            $this->assertEquals(
-                $this->fakeSubjectStatuses[$index],
-                $item->getSubjectStatus()
-            );
-            $this->assertEquals(
-                $this->fakeCourtDealTypes[$index],
-                $item->getCourtDealType()
-            );
-            $this->assertEquals(
-                $this->fakeCourtNames[$index],
-                $item->getCourtName()
-            );
-            $this->assertEquals(
-                $this->fakeDocumentTypes[$index],
-                $item->getDocumentType()
-            );
-            $this->assertEquals(
-                $this->fakeDocumentTypeReferences[$index],
-                $item->getDocumentTypeReference()
-            );
-            $this->assertEquals(
-                $this->fakeLegalFacts[$index],
-                $item->getLegalFact()
-            );
-            $this->assertEquals(
-                $this->fakeLegalFactReferences[$index],
-                $item->getLegalFactReference()
-            );
-            $this->assertEquals(
-                Carbon::instance($this->fakeCreatedAts[$index]),
-                $createdAt
-            );
-            $this->assertEquals(
-                $this->fakeCreatedAtsString[$index],
-                $createdAt->toDateString()
-            );
-            $this->assertEquals(
-                $this->fakeAreas[$index],
-                $item->getArea()
-            );
-            $this->assertEquals(
-                $this->fakeAreaReferences[$index],
-                $item->getAreaReference()
-            );
+            $this->assertEquals($this->fakeIds[$index], $item->id);
+            $this->assertEquals($this->fakeInns[$index], $item->inn);
+            $this->assertEquals($this->fakeDates[$index], $date);
+            $this->assertEquals($this->fakeDatesString[$index], $date->toDateString());
+            $this->assertEquals($this->fakeSubjectStatuses[$index], $item->subjectStatus);
+            $this->assertEquals($this->fakeCourtDealTypes[$index], $item->courtDealType);
+            $this->assertEquals($this->fakeCourtNames[$index], $item->courtName);
+            $this->assertEquals($this->fakeDocumentTypes[$index], $item->documentType);
+            $this->assertEquals($this->fakeDocumentTypeReferences[$index], $item->documentTypeReference);
+            $this->assertEquals($this->fakeLegalFacts[$index], $item->legalFact);
+            $this->assertEquals($this->fakeLegalFactReferences[$index], $item->legalFactReference);
+            $this->assertEquals(Carbon::instance($this->fakeCreatedAts[$index]), $createdAt);
+            $this->assertEquals($this->fakeCreatedAtsString[$index], $createdAt->toDateString());
+            $this->assertEquals($this->fakeAreas[$index], $item->area);
+            $this->assertEquals($this->fakeAreaReferences[$index], $item->areaReference);
         }
     }
 }

@@ -3,13 +3,15 @@
 namespace Wearesho\Bobra\Ubki\Tests\Data\CourtDecision;
 
 use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class EntityTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\CourtDecision
+ *
+ * @internal
  */
 class EntityTest extends Tests\Extend\ElementTestCase
 {
@@ -23,7 +25,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
         $this->element = new Data\CourtDecision\Entity(
             123456,
             '1234567890',
-            Carbon::create(2018, 12, 3),
+            Carbon::parse('2018-12-03'),
             1,
             1,
             'name',
@@ -31,126 +33,30 @@ class EntityTest extends Tests\Extend\ElementTestCase
             'document_type_reference',
             'legal_fact',
             'legal_fact_reference',
-            Carbon::create(2018, 3, 12),
+            Carbon::parse('2018-03-12'),
             'area',
             'area_reference'
         );
     }
 
-    public function testGetCourtName(): void
+    public function testGetters(): void
     {
-        $this->assertEquals(
-            'name',
-            $this->element->getCourtName()
-        );
-    }
-
-    public function testGetArea(): void
-    {
-        $this->assertEquals(
-            'area',
-            $this->element->getArea()
-        );
-    }
-
-    public function testGetInn(): void
-    {
-        $this->assertEquals(
-            '1234567890',
-            $this->element->getInn()
-        );
-    }
-
-    public function testGetDocumentType(): void
-    {
-        $this->assertEquals(
-            'document_type',
-            $this->element->getDocumentType()
-        );
-    }
-
-    public function testGetDocumentTypeReference(): void
-    {
-        $this->assertEquals(
-            'document_type_reference',
-            $this->element->getDocumentTypeReference()
-        );
-    }
-
-    public function testGetSubjectStatus(): void
-    {
-        $this->assertEquals(
-            1,
-            $this->element->getSubjectStatus()
-        );
-    }
-
-    public function testGetId(): void
-    {
-        $this->assertEquals(
-            123456,
-            $this->element->getId()
-        );
-    }
-
-    public function testGetDate(): void
-    {
-        $date = Carbon::instance($this->element->getDate());
-
-        $this->assertEquals(
-            Carbon::create(2018, 12, 3),
-            $date
-        );
-        $this->assertEquals(
-            '2018-12-03',
-            $date->toDateString()
-        );
-    }
-
-    public function testGetLegalFactReference(): void
-    {
-        $this->assertEquals(
-            'legal_fact_reference',
-            $this->element->getLegalFactReference()
-        );
-    }
-
-    public function testGetAreaReference(): void
-    {
-        $this->assertEquals(
-            'area_reference',
-            $this->element->getAreaReference()
-        );
-    }
-
-    public function testGetLegalFact(): void
-    {
-        $this->assertEquals(
-            'legal_fact',
-            $this->element->getLegalFact()
-        );
-    }
-
-    public function testGetCourtDealType(): void
-    {
-        $this->assertEquals(
-            1,
-            $this->element->getCourtDealType()
-        );
-    }
-
-    public function testGetCreatedAt(): void
-    {
-        $createdAt = Carbon::instance($this->element->getCreatedAt());
-
-        $this->assertEquals(
-            Carbon::create(2018, 3, 12),
-            $createdAt
-        );
-        $this->assertEquals(
-            '2018-03-12',
-            $createdAt->toDateString()
-        );
+        $this->assertEquals('name', $this->element->courtName);
+        $this->assertEquals('area', $this->element->area);
+        $this->assertEquals('1234567890', $this->element->inn);
+        $this->assertEquals('document_type', $this->element->documentType);
+        $this->assertEquals('document_type_reference', $this->element->documentTypeReference);
+        $this->assertEquals(1, $this->element->subjectStatus);
+        $this->assertEquals(123456, $this->element->id);
+        $this->assertEquals('123456', $this->element->id);
+        $this->assertEquals(Carbon::parse('2018-12-03'), Carbon::instance($this->element->date));
+        $this->assertEquals('2018-12-03', Carbon::instance($this->element->date)->toDateString());
+        $this->assertEquals('legal_fact_reference', $this->element->legalFactReference);
+        $this->assertEquals('area_reference', $this->element->areaReference);
+        $this->assertEquals('legal_fact', $this->element->legalFact);
+        $this->assertEquals(1, $this->element->courtDealType);
+        $this->assertEquals(Carbon::parse('2018-03-12'), Carbon::instance($this->element->createdAt));
+        $this->assertEquals('2018-03-12', Carbon::instance($this->element->createdAt)->toDateString());
     }
 
     public function testJsonSerialize(): void
