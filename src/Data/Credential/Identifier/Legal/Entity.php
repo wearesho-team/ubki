@@ -10,10 +10,10 @@ use Wearesho\Bobra\Ubki\Data;
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal
  *
- * @property-read string|null $ergpou
- * @property-read int|null $form
- * @property-read string|null $economyBranch
- * @property-read string|null $activityType
+ * @property-read string|null             $ergpou
+ * @property-read int|null                $form
+ * @property-read string|null             $economyBranch
+ * @property-read string|null             $activityType
  * @property-read \DateTimeInterface|null $edrRegistrationDate
  * @property-read \DateTimeInterface|null $taxRegistrationDate
  */
@@ -29,24 +29,6 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
     public const EDR_REGISTRATION_DATE = 'urdatreg';
     public const TAX_REGISTRATION_DATE = 'urdatregnal';
 
-    /** @var string|null */
-    protected $ergpou;
-
-    /** @var int|null */
-    protected $form;
-
-    /** @var null|string */
-    protected $economyBranch;
-
-    /** @var null|string */
-    protected $activityType;
-
-    /** @var \DateTimeInterface|null */
-    protected $edrRegistrationDate;
-
-    /** @var \DateTimeInterface|null */
-    protected $taxRegistrationDate;
-
     public function __construct(
         \DateTimeInterface $createdAt,
         Data\Language $language,
@@ -58,14 +40,14 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         ?\DateTimeInterface $edrRegistrationDate = null,
         ?\DateTimeInterface $taxRegistrationDate = null
     ) {
-        $this->ergpou = $ergpou;
-        $this->form = $form;
-        $this->economyBranch = $economyBranch;
-        $this->activityType = $activityType;
-        $this->edrRegistrationDate = $edrRegistrationDate;
-        $this->taxRegistrationDate = $taxRegistrationDate;
-
-        parent::__construct($createdAt, $language, $name);
+        parent::__construct($createdAt, $language, $name, [
+            'ergpou' => $ergpou,
+            'form' => $form,
+            'economyBranch' => $economyBranch,
+            'activityType' => $activityType,
+            'edrRegistrationDate' => $edrRegistrationDate,
+            'taxRegistrationDate' => $taxRegistrationDate
+        ]);
     }
 
     public function jsonSerialize(): array

@@ -39,39 +39,6 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
     public const SOCIAL_STATUS = 'sstate';
     public const CHILDREN_COUNT = 'cchild';
 
-    /** @var string|null */
-    protected $inn;
-
-    /** @var string|null */
-    protected $middleName;
-
-    /** @var string */
-    protected $lastName;
-
-    /** @var \DateTimeInterface */
-    protected $birthDate;
-
-    /** @var Data\Gender */
-    protected $gender;
-
-    /** @var Data\FamilyStatus|null */
-    protected $familyStatus;
-
-    /** @var Data\Education|null */
-    protected $education;
-
-    /** @var Data\Nationality|null */
-    protected $nationality;
-
-    /** @var Data\RegistrationSpd|null */
-    protected $registrationSpd;
-
-    /** @var Data\SocialStatus|null */
-    protected $socialStatus;
-
-    /** @var int|null */
-    protected $childrenCount;
-
     public function __construct(
         \DateTimeInterface $createdAt,
         Data\Language $language,
@@ -88,19 +55,19 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         ?Data\SocialStatus $socialStatus = null,
         ?int $childrenCount = null
     ) {
-        $this->lastName = $lastName;
-        $this->birthDate = $birthDate;
-        $this->gender = $gender;
-        $this->inn = $inn;
-        $this->middleName = $middleName;
-        $this->familyStatus = $familyStatus;
-        $this->education = $education;
-        $this->nationality = $nationality;
-        $this->registrationSpd = $registrationSpd;
-        $this->socialStatus = $socialStatus;
-        $this->childrenCount = $childrenCount;
-
-        parent::__construct($createdAt, $language, $name);
+        parent::__construct($createdAt, $language, $name, [
+            'lastName' => $lastName,
+            'birthDate' => $birthDate,
+            'gender' => $gender,
+            'inn' => $inn,
+            'middleName' => $middleName,
+            'familyStatus' => $familyStatus,
+            'education' => $education,
+            'nationality' => $nationality,
+            'registrationSpd' => $registrationSpd,
+            'socialStatus' => $socialStatus,
+            'childrenCount' => $childrenCount,
+        ]);
     }
 
     public function jsonSerialize(): array
