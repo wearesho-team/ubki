@@ -3,17 +3,24 @@
 namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal;
 
 use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal
+ *
+ * @property-read string|null $ergpou
+ * @property-read int|null $form
+ * @property-read string|null $economyBranch
+ * @property-read string|null $activityType
+ * @property-read \DateTimeInterface|null $edrRegistrationDate
+ * @property-read \DateTimeInterface|null $taxRegistrationDate
  */
 class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializable
 {
     public const TAG = 'urident';
 
-    // attributes
     public const ERGPOU = 'okpo';
     public const NAME = 'urname';
     public const FORM = 'urfrms';
@@ -61,47 +68,17 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         parent::__construct($createdAt, $language, $name);
     }
 
-    public function getActivityType(): ?string
-    {
-        return $this->activityType;
-    }
-
-    public function getErgpou(): ?string
-    {
-        return $this->ergpou;
-    }
-
-    public function getForm(): ?int
-    {
-        return $this->form;
-    }
-
-    public function getEconomyBranch(): ?string
-    {
-        return $this->economyBranch;
-    }
-
-    public function getEdrRegistrationDate(): ?\DateTimeInterface
-    {
-        return $this->edrRegistrationDate;
-    }
-
-    public function getTaxRegistrationDate(): ?\DateTimeInterface
-    {
-        return $this->taxRegistrationDate;
-    }
-
     public function jsonSerialize(): array
     {
         return array_merge(
             parent::jsonSerialize(),
             [
-                'ergpou' => $this->getErgpou(),
-                'form' => $this->getForm(),
-                'economyBranch' => $this->getEconomyBranch(),
-                'activityType' => $this->getActivityType(),
-                'edrRegistrationDate' => Carbon::instance($this->getEdrRegistrationDate())->toDateString(),
-                'taxRegistrationDate' => Carbon::instance($this->getTaxRegistrationDate())->toDateString()
+                'ergpou' => $this->ergpou,
+                'form' => $this->form,
+                'economyBranch' => $this->economyBranch,
+                'activityType' => $this->activityType,
+                'edrRegistrationDate' => Carbon::instance($this->edrRegistrationDate)->toDateString(),
+                'taxRegistrationDate' => Carbon::instance($this->taxRegistrationDate)->toDateString()
             ]
         );
     }

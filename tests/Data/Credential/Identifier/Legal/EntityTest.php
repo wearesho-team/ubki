@@ -10,8 +10,9 @@ use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class EntityTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Identifier\Legal
+ *
+ * @internal
  */
 class EntityTest extends Tests\Extend\ElementTestCase
 {
@@ -39,35 +40,39 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             Carbon::create(2020, 3, 12, 10, 5, 7),
-            $this->element->getEdrRegistrationDate()
+            $this->element->edrRegistrationDate
         );
     }
 
     public function testGetActivityType(): void
     {
-        $this->assertEquals('1', $this->element->getActivityType());
+        $this->assertEquals('1', $this->element->activityType);
     }
 
     public function testGetErgpou(): void
     {
-        $this->assertEquals('ergpou', $this->element->getErgpou());
+        $this->assertEquals('ergpou', $this->element->ergpou);
     }
 
     public function testGetForm(): void
     {
-        $this->assertEquals(1, $this->element->getForm());
+        $this->assertEquals(1, $this->element->form);
     }
 
     public function testGetEconomyBranch(): void
     {
-        $this->assertEquals('1', $this->element->getEconomyBranch());
+        $this->assertEquals('1', $this->element->economyBranch);
     }
 
     public function testGetTaxRegistrationDate(): void
     {
         $this->assertEquals(
             Carbon::create(2020, 3, 12, 10, 5, 7),
-            $this->element->getTaxRegistrationDate()
+            Carbon::instance($this->element->taxRegistrationDate)
+        );
+        $this->assertEquals(
+            '2020-03-12 10:05:07',
+            Carbon::instance($this->element->taxRegistrationDate)->toDateTimeString()
         );
     }
 

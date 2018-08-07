@@ -3,17 +3,29 @@
 namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural;
 
 use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural
+ *
+ * @property-read string|null               $inn
+ * @property-read string|null               $middleName
+ * @property-read string                    $lastName
+ * @property-read \DateTimeInterface        $birthDate
+ * @property-read Data\Gender               $gender
+ * @property-read Data\FamilyStatus|null    $familyStatus
+ * @property-read Data\Education            $education
+ * @property-read Data\Nationality|null     $nationality
+ * @property-read Data\RegistrationSpd|null $registrationSpd
+ * @property-read Data\SocialStatus|null    $socialStatus
+ * @property-read int|null                  $childrenCount
  */
 class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializable
 {
     public const TAG = 'ident';
 
-    // attributes
     public const INN = 'inn';
     public const NAME = 'fname';
     public const MIDDLE_NAME = 'mname';
@@ -91,77 +103,22 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         parent::__construct($createdAt, $language, $name);
     }
 
-    public function getInn(): ?string
-    {
-        return $this->inn;
-    }
-
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    public function getBirthDate(): \DateTimeInterface
-    {
-        return $this->birthDate;
-    }
-
-    public function getChildrenCount(): ?int
-    {
-        return $this->childrenCount;
-    }
-
-    public function getMiddleName(): ?string
-    {
-        return $this->middleName;
-    }
-
-    public function getGender(): Data\Gender
-    {
-        return $this->gender;
-    }
-
-    public function getFamilyStatus(): ?Data\FamilyStatus
-    {
-        return $this->familyStatus;
-    }
-
-    public function getEducation(): ?Data\Education
-    {
-        return $this->education;
-    }
-
-    public function getNationality(): ?Data\Nationality
-    {
-        return $this->nationality;
-    }
-
-    public function getRegistrationSpd(): ?Data\RegistrationSpd
-    {
-        return $this->registrationSpd;
-    }
-
-    public function getSocialStatus(): ?Data\SocialStatus
-    {
-        return $this->socialStatus;
-    }
-
     public function jsonSerialize(): array
     {
         return array_merge(
             parent::jsonSerialize(),
             [
-                'lastName' => $this->getLastName(),
-                'birthDate' => Carbon::instance($this->getBirthDate())->toDateString(),
-                'gender' => (string)$this->getGender(),
-                'inn' => $this->getInn(),
-                'middleName' => $this->getMiddleName(),
-                'familyStatus' => (string)$this->getFamilyStatus(),
-                'education' => (string)$this->getEducation(),
-                'nationality' => (string)$this->getNationality(),
-                'registrationSpd' => (string)$this->getRegistrationSpd(),
-                'socialStatus' => (string)$this->getSocialStatus(),
-                'childrenCount' => $this->getChildrenCount(),
+                'lastName' => $this->lastName,
+                'birthDate' => Carbon::instance($this->birthDate)->toDateString(),
+                'gender' => (string)$this->gender,
+                'inn' => $this->inn,
+                'middleName' => $this->middleName,
+                'familyStatus' => (string)$this->familyStatus,
+                'education' => (string)$this->education,
+                'nationality' => (string)$this->nationality,
+                'registrationSpd' => (string)$this->registrationSpd,
+                'socialStatus' => (string)$this->socialStatus,
+                'childrenCount' => $this->childrenCount,
             ]
         );
     }
