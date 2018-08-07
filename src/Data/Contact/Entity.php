@@ -26,28 +26,18 @@ class Entity extends Element implements \JsonSerializable
     public const CREATED_AT = 'vdate';
     public const INN = 'inn';
 
-    /** @var \DateTimeInterface */
-    protected $createdAt;
-
-    /** @var string */
-    protected $value;
-
-    /** @var Type */
-    protected $type;
-
-    /** @var string|null */
-    protected $inn;
-
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
         Type $type,
         ?string $inn = null
     ) {
-        $this->createdAt = $createdAt;
-        $this->value = $value;
-        $this->type = $type;
-        $this->inn = $inn;
+        parent::__construct([
+            'createdAt' => $createdAt,
+            'value' => $value,
+            'type' => $type,
+            'inn' => $inn
+        ]);
     }
 
     public function jsonSerialize(): array
