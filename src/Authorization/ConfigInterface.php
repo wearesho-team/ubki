@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Authorization;
 
 /**
  * Interface ConfigInterface
- *
  * @package Wearesho\Bobra\Ubki\Authorization
  */
 interface ConfigInterface

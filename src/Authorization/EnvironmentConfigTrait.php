@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki;
 
 /**
  * Trait EnvironmentConfigTrait
- *
  * @package Wearesho\Bobra\Ubki\Authorization
  */
 trait EnvironmentConfigTrait
