@@ -15,4 +15,21 @@ abstract class Element
     {
         return static::TAG;
     }
+
+    /**
+     * @param string $key
+     *
+     * @return mixed
+     * @throws \InvalidArgumentException
+     */
+    public function __get($key)
+    {
+        $properties = get_object_vars($this);
+
+        if (array_key_exists($key, $properties)) {
+            return $this->{$key};
+        }
+
+        throw new \InvalidArgumentException('Property with this name does not exist!');
+    }
 }
