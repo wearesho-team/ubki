@@ -14,11 +14,10 @@ class Element extends Ubki\Element
 {
     public const TAG = 'mock';
 
-    /** @var int */
-    protected $value;
-
     public function __construct(int $value)
     {
-        $this->value = $value;
+        parent::__construct([
+            'value' => $value
+        ]);
     }
 }
