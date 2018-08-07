@@ -10,8 +10,9 @@ use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class ContactTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Collection
+ *
+ * @internal
  */
 class CollectionTest extends Tests\Extend\CollectionTestCase
 {
@@ -72,9 +73,9 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
         foreach ($this->fakePhoneNumbers as $index => $number) {
             /** @var Data\Contact\Entity $element */
             $element = $this->collection->offsetGet($index);
-            $this->assertEquals($number[1], $element->getValue());
-            $this->assertEquals($this->fakeDates[$index], $element->getCreatedAt());
-            $this->assertEquals($this->fakeInns[$index], $element->getInn());
+            $this->assertEquals($number[1], $element->value);
+            $this->assertEquals($this->fakeDates[$index], $element->createdAt);
+            $this->assertEquals($this->fakeInns[$index], $element->inn);
         }
     }
 

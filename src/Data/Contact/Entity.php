@@ -3,18 +3,24 @@
 namespace Wearesho\Bobra\Ubki\Data\Contact;
 
 use Carbon\Carbon;
-use Wearesho\Bobra\Ubki;
+
+use Wearesho\Bobra\Ubki\Element;
 
 /**
- * Class Entity
  * Data of one subject's contact
+ *
+ * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Contact
+ *
+ * @property-read \DateTimeInterface $createdAt
+ * @property-read string $value
+ * @property-read Type $type
+ * @property-read string|null inn
  */
-class Entity extends Ubki\Element implements \JsonSerializable
+class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'cont';
 
-    // attributes
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
     public const CREATED_AT = 'vdate';
@@ -44,33 +50,13 @@ class Entity extends Ubki\Element implements \JsonSerializable
         $this->inn = $inn;
     }
 
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
-    public function getType(): Type
-    {
-        return $this->type;
-    }
-
-    public function getCreatedAt(): \DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function getInn(): ?string
-    {
-        return $this->inn;
-    }
-
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
-            'value' => $this->getValue(),
-            'type' => (string)$this->getType(),
-            'inn' => $this->getInn()
+            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
+            'value' => $this->value,
+            'type' => (string)$this->type,
+            'inn' => $this->inn
         ];
     }
 }

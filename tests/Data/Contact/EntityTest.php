@@ -9,8 +9,9 @@ use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class EntityTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Contact
+ *
+ * @internal
  */
 class EntityTest extends Tests\Extend\ElementTestCase
 {
@@ -36,31 +37,22 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetType(): void
     {
-        $this->assertEquals(
-            Data\Contact\Type::MOBILE(),
-            $this->element->getType()
-        );
+        $this->assertEquals(Data\Contact\Type::MOBILE(), $this->element->type);
     }
 
     public function testGetCreatedAt(): void
     {
-        $this->assertEquals(
-            $this->now,
-            $this->element->getCreatedAt()
-        );
+        $this->assertEquals($this->now, Carbon::instance($this->element->createdAt));
     }
 
     public function testGetValue(): void
     {
-        $this->assertEquals(
-            '+380930439475',
-            $this->element->getValue()
-        );
+        $this->assertEquals('+380930439475', $this->element->value);
     }
 
     public function testGetInn(): void
     {
-        $this->assertEquals('1231231230', $this->element->getInn());
+        $this->assertEquals('1231231230', $this->element->inn);
     }
 
     public function testJsonSerialize(): void
