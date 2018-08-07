@@ -44,13 +44,23 @@ class BaseCollectionTest extends TestCase
 
     public function testAppends(): void
     {
-        $this->collection->append(new Ubki\Tests\Mocks\Element(BaseCollectionTest::FIRST_VALUE));
-        $this->collection->append(new Ubki\Tests\Mocks\Element(BaseCollectionTest::SECOND_VALUE));
-        $this->collection->append(new Ubki\Tests\Mocks\Element(BaseCollectionTest::THIRD_VALUE));
+        $values = [
+            mt_rand(),
+            mt_rand(),
+            mt_rand(),
+        ];
 
-        $this->assertEquals($this->collection->offsetGet(0)->getValue(), static::FIRST_VALUE);
-        $this->assertEquals($this->collection->offsetGet(1)->getValue(), static::SECOND_VALUE);
-        $this->assertEquals($this->collection->offsetGet(2)->getValue(), static::THIRD_VALUE);
+        foreach ($values as $value) {
+            $this->collection->append(new Ubki\Tests\Mocks\Element($value));
+        }
+
+        /**
+         * @var int $index
+         * @var Ubki\Tests\Mocks\Element $item
+         */
+        foreach ($this->collection as $index => $item) {
+            $this->assertEquals($values[$index], $item->value);
+        }
     }
 
     /**
