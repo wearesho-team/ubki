@@ -3,17 +3,33 @@
 namespace Wearesho\Bobra\Ubki\Data\Credential\Address;
 
 use Carbon\Carbon;
-use Wearesho\Bobra\Ubki;
+
+use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Element;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Address
+ *
+ * @property-read \DateTimeInterface $createdAt
+ * @property-read Data\Language      $language
+ * @property-read Type               $type
+ * @property-read string             $country
+ * @property-read string             $city
+ * @property-read string             $street
+ * @property-read string             $house
+ * @property-read string|null        $index
+ * @property-read string|null        $state
+ * @property-read string|null        $area
+ * @property-read null|string        $corpus
+ * @property-read null|string        $flat
+ * @property-read null|string        $fullAddress
+ * @property-read Data\CityType|null $cityType
  */
-class Entity extends Ubki\Element implements \JsonSerializable
+class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'addr';
 
-    // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const TYPE = 'adtype';
@@ -32,7 +48,7 @@ class Entity extends Ubki\Element implements \JsonSerializable
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var Ubki\Data\Language */
+    /** @var Data\Language */
     protected $language;
 
     /** @var Type */
@@ -53,7 +69,7 @@ class Entity extends Ubki\Element implements \JsonSerializable
     /** @var string */
     protected $city;
 
-    /** @var Ubki\Data\CityType|null */
+    /** @var Data\CityType|null */
     protected $cityType;
 
     /** @var string */
@@ -73,7 +89,7 @@ class Entity extends Ubki\Element implements \JsonSerializable
 
     public function __construct(
         \DateTimeInterface $createdAt,
-        Ubki\Data\Language $language,
+        Data\Language $language,
         Type $type,
         string $country,
         string $city,
@@ -82,7 +98,7 @@ class Entity extends Ubki\Element implements \JsonSerializable
         ?string $index = null,
         ?string $state = null,
         ?string $area = null,
-        ?Ubki\Data\CityType $cityType = null,
+        ?Data\CityType $cityType = null,
         ?string $corpus = null,
         ?string $flat = null,
         ?string $fullAddress = null
@@ -103,93 +119,23 @@ class Entity extends Ubki\Element implements \JsonSerializable
         $this->fullAddress = $fullAddress;
     }
 
-    public function getCreatedAt(): \DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function getLanguage(): Ubki\Data\Language
-    {
-        return $this->language;
-    }
-
-    public function getType(): Type
-    {
-        return $this->type;
-    }
-
-    public function getCountry(): string
-    {
-        return $this->country;
-    }
-
-    public function getIndex(): ?string
-    {
-        return $this->index;
-    }
-
-    public function getState(): ?string
-    {
-        return $this->state;
-    }
-
-    public function getArea(): ?string
-    {
-        return $this->area;
-    }
-
-    public function getCity(): string
-    {
-        return $this->city;
-    }
-
-    public function getCityType(): ?Ubki\Data\CityType
-    {
-        return $this->cityType;
-    }
-
-    public function getStreet(): string
-    {
-        return $this->street;
-    }
-
-    public function getHouse(): string
-    {
-        return $this->house;
-    }
-
-    public function getCorpus(): ?string
-    {
-        return $this->corpus;
-    }
-
-    public function getFlat(): ?string
-    {
-        return $this->flat;
-    }
-
-    public function getFullAddress(): ?string
-    {
-        return $this->fullAddress;
-    }
-
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
-            'language' => (string)$this->getLanguage(),
-            'type' => (string)$this->getType(),
-            'country' => $this->getCountry(),
-            'city' => $this->getCity(),
-            'street' => $this->getStreet(),
-            'house' => $this->getHouse(),
-            'index' => $this->getIndex(),
-            'state' => $this->getState(),
-            'area' => $this->getArea(),
-            'cityType' => (string)$this->getCityType(),
-            'corpus' => $this->getCorpus(),
-            'flat' => $this->getFlat(),
-            'fullAddress' => $this->getFullAddress()
+            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
+            'language' => (string)$this->language,
+            'type' => (string)$this->type,
+            'country' => $this->country,
+            'city' => $this->city,
+            'street' => $this->street,
+            'house' => $this->house,
+            'index' => $this->index,
+            'state' => $this->state,
+            'area' => $this->area,
+            'cityType' => (string)$this->cityType,
+            'corpus' => $this->corpus,
+            'flat' => $this->flat,
+            'fullAddress' => $this->fullAddress
         ];
     }
 }

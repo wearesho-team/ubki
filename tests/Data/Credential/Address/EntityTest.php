@@ -40,97 +40,63 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetState(): void
     {
-        $this->assertEquals(
-            'Харьковская',
-            $this->element->getState()
-        );
+        $this->assertEquals('Харьковская', $this->element->state);
     }
 
     public function testGetStreet(): void
     {
-        $this->assertEquals(
-            'Научная',
-            $this->element->getStreet()
-        );
+        $this->assertEquals('Научная', $this->element->street);
     }
 
     public function testGetFullAddress(): void
     {
-        $this->assertNull(
-            $this->element->getFullAddress()
-        );
+        $this->assertNull($this->element->fullAddress);
     }
 
     public function testGetCityType(): void
     {
-        $this->assertEquals(
-            Data\CityType::SETTLEMENT('описание'),
-            $this->element->getCityType()
-        );
+        $this->assertEquals(Data\CityType::SETTLEMENT('описание'), $this->element->cityType);
     }
 
     public function testGetCreatedAt(): void
     {
-        $this->assertEquals(
-            Carbon::parse('2018-09-09'),
-            $this->element->getCreatedAt()
-        );
+        $this->assertEquals(Carbon::parse('2018-09-09'), Carbon::instance($this->element->createdAt));
+        $this->assertEquals('2018-09-09', Carbon::instance($this->element->createdAt)->toDateString());
     }
 
     public function testGetHouse(): void
     {
-        $this->assertEquals(
-            '25',
-            $this->element->getHouse()
-        );
+        $this->assertEquals('25', $this->element->house);
     }
 
     public function testGetCity(): void
     {
-        $this->assertEquals(
-            'Харьков',
-            $this->element->getCity()
-        );
+        $this->assertEquals('Харьков', $this->element->city);
     }
 
     public function testGetLanguage(): void
     {
-        $this->assertEquals(
-            Data\Language::RUS(),
-            $this->element->getLanguage()
-        );
+        $this->assertEquals(Data\Language::RUS(), $this->element->language);
     }
 
     public function testGetCountry(): void
     {
-        $this->assertEquals(
-            'Украина',
-            $this->element->getCountry()
-        );
+        $this->assertEquals('Украина', $this->element->country);
     }
 
     public function testGetCorpus(): void
     {
-        $this->assertEquals(
-            '2',
-            $this->element->getCorpus()
-        );
+        $this->assertEquals('2', $this->element->corpus);
     }
 
     public function testGetArea(): void
     {
-        $this->assertEquals(
-            'Шевченковский',
-            $this->element->getArea()
-        );
+        $this->assertEquals('Шевченковский', $this->element->area);
     }
 
     public function testGetFlat(): void
     {
-        $this->assertEquals(
-            '24',
-            $this->element->getFlat()
-        );
+        $this->assertEquals('24', $this->element->flat);
     }
 
     public function testInstance(): void
@@ -158,18 +124,13 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetIndex(): void
     {
-        $this->assertEquals(
-            25054,
-            $this->element->getIndex()
-        );
+        $this->assertEquals(25054, $this->element->index);
+        $this->assertEquals('25054', $this->element->index);
     }
 
     public function testGetType(): void
     {
-        $this->assertEquals(
-            Data\Credential\Address\Type::REGISTRATION(),
-            $this->element->getType()
-        );
+        $this->assertEquals(Data\Credential\Address\Type::REGISTRATION(), $this->element->type);
     }
 
     public function testJsonSerialize(): void
