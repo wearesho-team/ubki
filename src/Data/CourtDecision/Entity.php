@@ -28,45 +28,20 @@ class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'susd';
 
-    /** @var string */
-    protected $id;
-
-    /** @var string */
-    protected $inn;
-
-    /** @var \DateTimeInterface */
-    protected $date;
-
-    /** @var int */
-    protected $subjectStatus;
-
-    /** @var int */
-    protected $courtDealType;
-
-    /** @var string */
-    protected $courtName;
-
-    /** @var string|null */
-    protected $legalFact;
-
-    /** @var string|null */
-    protected $legalFactReference;
-
-    /** @var \DateTimeInterface|null */
-    protected $createdAt;
-
-    /** @var string */
-    protected $documentType;
-
-    /** @var string */
-    protected $documentTypeReference;
-
-    /** @var string|null */
-    protected $area;
-
-    /** @var string|null */
-    protected $areaReference;
-
+    public const ID = 'voteid';
+    public const INN = 'inn';
+    public const DATE = 'votedate';
+    public const SUBJECT_STATUS = 'voteusrst';
+    public const COURT_DEAL_TYPE = 'votetype';
+    public const COURT_NAME = 'votesudname';
+    public const LEGAL_FACT = 'voteurfact';
+    public const LEGAL_FACT_REFERENCE = 'voteurfactref';
+    public const CREATED_AT = 'vdate';
+    public const DOCUMENT_TYPE = 'votedoctype';
+    public const DOCUMENT_TYPE_REFERENCE = 'votedoctyperef';
+    public const AREA = 'votesudregion';
+    public const AREA_REFERENCE = 'votesudregionref';
+    
     public function __construct(
         string $id,
         string $inn,
@@ -82,19 +57,21 @@ class Entity extends Element implements \JsonSerializable
         ?string $area = null,
         ?string $areaReference = null
     ) {
-        $this->id = $id;
-        $this->inn = $inn;
-        $this->date = $date;
-        $this->subjectStatus = $subjectStatus;
-        $this->courtDealType = $courtDealType;
-        $this->courtName = $courtName;
-        $this->legalFact = $legalFact;
-        $this->legalFactReference = $legalFactReference;
-        $this->createdAt = $createdAt;
-        $this->documentType = $documentType;
-        $this->documentTypeReference = $documentTypeReference;
-        $this->area = $area;
-        $this->areaReference = $areaReference;
+        parent::__construct([
+            'id' => $id,
+            'inn' => $inn,
+            'date' => $date,
+            'subjectStatus' => $subjectStatus,
+            'courtDealType' => $courtDealType,
+            'courtName' => $courtName,
+            'legalFact' => $legalFact,
+            'legalFactReference' => $legalFactReference,
+            'createdAt' => $createdAt,
+            'documentType' => $documentType,
+            'documentTypeReference' => $documentTypeReference,
+            'area' => $area,
+            'areaReference' => $areaReference,
+        ]);
     }
 
     public function jsonSerialize(): array
