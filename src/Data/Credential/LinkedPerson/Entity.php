@@ -4,17 +4,21 @@ namespace Wearesho\Bobra\Ubki\Data\Credential\LinkedPerson;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Element;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\LinkedPerson
+ *
+ * @property-read string|null $ergpou
+ * @property-read string $name
+ * @property-read Role $role
+ * @property-read \DateTimeInterface $issueDate
  */
-class Entity extends Ubki\Element implements \JsonSerializable
+class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'linked';
 
-    // attributes
     public const ERGPOU = 'okpo2';
     public const NAME = 'okpo2_name';
     public const ROLE = 'linkrole';
@@ -44,33 +48,13 @@ class Entity extends Ubki\Element implements \JsonSerializable
         $this->issueDate = $issueDate;
     }
 
-    public function getErgpou(): ?string
-    {
-        return $this->ergpou;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getRole(): Role
-    {
-        return $this->role;
-    }
-
-    public function getIssueDate(): \DateTimeInterface
-    {
-        return $this->issueDate;
-    }
-
     public function jsonSerialize(): array
     {
         return [
-            'name' => $this->getName(),
-            'role' => (string)$this->getRole(),
-            'issueDate' => Carbon::instance($this->getIssueDate())->toDateString(),
-            'ergpou' => $this->getErgpou()
+            'name' => $this->name,
+            'role' => (string)$this->role,
+            'issueDate' => Carbon::instance($this->issueDate)->toDateString(),
+            'ergpou' => $this->ergpou
         ];
     }
 }
