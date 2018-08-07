@@ -5,15 +5,20 @@ namespace Wearesho\Bobra\Ubki\Element;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Contact
  * Data of one subject's contact
+ *
+ * Class Contact
  * @package Wearesho\Bobra\Ubki\Element
+ *
+ * @property-read \DateTimeInterface $createdAt
+ * @property-read string $value
+ * @property-read int $type,
+ * @property-read string|null $inn
  */
 class Contact extends Ubki\Element
 {
     public const TAG = 'cont';
 
-    // attributes
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
     public const CREATED_AT = 'vdate';
@@ -37,29 +42,11 @@ class Contact extends Ubki\Element
         int $type,
         ?string $inn = null
     ) {
-        $this->createdAt = $createdAt;
-        $this->value = $value;
-        $this->type = $type;
-        $this->inn = $inn;
-    }
-
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
-    public function getType(): int
-    {
-        return $this->type;
-    }
-
-    public function getCreatedAt(): \DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function getInn(): ?string
-    {
-        return $this->inn;
+        parent::__construct([
+            'createdAt' => $createdAt,
+            'value' => $value,
+            'type' => $type,
+            'inn' => $inn
+        ]);
     }
 }

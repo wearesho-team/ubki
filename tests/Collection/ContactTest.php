@@ -69,16 +69,16 @@ class ContactTest extends Ubki\Tests\Extend\CollectionTestCase
         foreach ($this->fakePhoneNumbers as $index => $number) {
             /** @var Ubki\Element\Contact $element */
             $element = $this->collection->offsetGet($index);
-            $this->assertEquals($number[1], $element->getValue());
-            $this->assertEquals($this->fakeDates[$index], $element->getCreatedAt());
-            $this->assertEquals($this->fakeInns[$index], $element->getInn());
+            $this->assertEquals($number[1], $element->value);
+            $this->assertEquals($this->fakeDates[$index], $element->createdAt);
+            $this->assertEquals($this->fakeInns[$index], $element->inn);
         }
     }
 
     public function testAppendInvalid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->collection->append(new class extends Ubki\Element
+        $this->collection->append(new class(['id' => mt_rand()]) extends Ubki\Element
         {
             public const TAG = 'test';
         });
