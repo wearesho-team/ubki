@@ -13,11 +13,11 @@ abstract class ElementTestCase extends \PHPUnit\Framework\TestCase
     protected const TAG = null;
 
     /** @var Element */
-    protected $block;
+    protected $element;
 
     public function testTag(): void
     {
-        $this->assertEquals(static::TAG, $this->block ? $this->block->tag() : null);
+        $this->assertEquals(static::TAG, $this->element ? $this->element->tag() : null);
     }
 
     /**
@@ -27,13 +27,13 @@ abstract class ElementTestCase extends \PHPUnit\Framework\TestCase
      */
     public function assertJsonSerialize(array $expectedJson): void
     {
-        if (!$this->block instanceof \JsonSerializable) {
+        if (!$this->element instanceof \JsonSerializable) {
             throw new \Exception('Element must implement jsonserialize interface');
         }
 
         $this->assertEquals(
             $expectedJson,
-            $this->block->jsonSerialize()
+            $this->element->jsonSerialize()
         );
     }
 }

@@ -17,60 +17,29 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected const TAG = 'credres';
 
     /** @var Data\CreditRegister\Entity */
-    protected $block;
+    protected $element;
 
-    public function testGetDate(): void
+    protected function setUp(): void
     {
-        $date = Carbon::instance($this->block->getDate());
-
-        $this->assertEquals(
+        $this->element = new Data\CreditRegister\Entity(
             Carbon::parse('2018-03-12'),
-            $date
-        );
-        $this->assertEquals(
-            '2018-03-12',
-            $date->toDateString()
-        );
-    }
-
-    public function testGetId(): void
-    {
-        $this->assertEquals(
-            'identificator',
-            $this->block->getId()
-        );
-    }
-
-    public function testGetInn(): void
-    {
-        $this->assertEquals(
             '1234567890',
-            $this->block->getInn()
-        );
-    }
-
-    public function testGetDecision(): void
-    {
-        $this->assertEquals(
+            'identificator',
             Data\CreditRegister\Decision::POSITIVE(),
-            $this->block->getDecision()
-        );
-    }
-
-    public function testGetReason(): void
-    {
-        $this->assertEquals(
             1,
-            $this->block->getReason()
+            'BNK'
         );
     }
 
-    public function testGetOrganization(): void
+    public function testGetters(): void
     {
-        $this->assertEquals(
-            'BNK',
-            $this->block->getOrganization()
-        );
+        $this->assertEquals(Carbon::parse('2018-03-12'), Carbon::instance($this->element->date));
+        $this->assertEquals('2018-03-12', Carbon::instance($this->element->date)->toDateString());
+        $this->assertEquals('identificator', $this->element->id);
+        $this->assertEquals('1234567890', $this->element->inn);
+        $this->assertEquals(Data\CreditRegister\Decision::POSITIVE(), $this->element->decision);
+        $this->assertEquals(1, $this->element->reason);
+        $this->assertEquals('BNK', $this->element->organization);
     }
 
     public function testJsonSerialize(): void
@@ -84,17 +53,5 @@ class EntityTest extends Tests\Extend\ElementTestCase
             'reason' => 1,
             'organization' => 'BNK'
         ]);
-    }
-
-    protected function setUp(): void
-    {
-        $this->block = new Data\CreditRegister\Entity(
-            Carbon::parse('2018-03-12'),
-            '1234567890',
-            'identificator',
-            Data\CreditRegister\Decision::POSITIVE(),
-            1,
-            'BNK'
-        );
     }
 }
