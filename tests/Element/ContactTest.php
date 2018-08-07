@@ -33,32 +33,11 @@ class ContactTest extends Ubki\Tests\Extend\ElementTestCase
         );
     }
 
-    public function testGetType(): void
+    public function testGetters(): void
     {
-        $this->assertEquals(
-            1,
-            $this->block->getType()
-        );
-    }
-
-    public function testGetCreatedAt(): void
-    {
-        $this->assertEquals(
-            $this->now,
-            $this->block->getCreatedAt()
-        );
-    }
-
-    public function testGetValue(): void
-    {
-        $this->assertEquals(
-            '+380930439475',
-            $this->block->getValue()
-        );
-    }
-
-    public function testGetInn(): void
-    {
-        $this->assertEquals('1231231230', $this->block->getInn());
+        $this->assertEquals(1, $this->block->type);
+        $this->assertEquals($this->now, $this->block->createdAt);
+        $this->assertEquals('+380930439475', $this->block->value);
+        $this->assertEquals('1231231230', $this->block->inn);
     }
 }
