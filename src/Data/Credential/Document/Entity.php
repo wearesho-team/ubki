@@ -9,12 +9,20 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\Credential\Document
+ *
+ * @property-read \DateTimeInterface $createdAt
+ * @property-read Ubki\Data\Language $language
+ * @property-read Type $type
+ * @property-read string $serial
+ * @property-read string $number
+ * @property-read string $issue
+ * @property-read \DateTimeInterface $issueDate
+ * @property-read \DateTimeInterface|null $termin
  */
 class Entity extends Ubki\Element implements \JsonSerializable
 {
     public const TAG = 'doc';
 
-    // attributes
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const TYPE = 'dtype';
@@ -23,33 +31,6 @@ class Entity extends Ubki\Element implements \JsonSerializable
     public const TERMIN = 'dterm';
     public const ISSUE = 'dwho';
     public const ISSUE_DATE = 'dwdt';
-
-    /** @var \DateTimeInterface */
-    protected $createdAt;
-
-    /** @var Ubki\Data\Language */
-    protected $language;
-
-    /** @var Type */
-    protected $type;
-
-    /** @var string */
-    protected $serial;
-
-    /** @var string */
-    protected $number;
-
-    /**
-     * Important! => Required for Card id
-     * @var \DateTimeInterface|null
-     */
-    protected $termin;
-
-    /** @var string */
-    protected $issue;
-
-    /** @var \DateTimeInterface */
-    protected $issueDate;
 
     public function __construct(
         \DateTimeInterface $createdAt,
@@ -61,69 +42,29 @@ class Entity extends Ubki\Element implements \JsonSerializable
         \DateTimeInterface $issueDate,
         ?\DateTimeInterface $termin = null
     ) {
-        $this->createdAt = $createdAt;
-        $this->language = $language;
-        $this->type = $type;
-        $this->serial = $serial;
-        $this->number = $number;
-        $this->issue = $issue;
-        $this->issueDate = $issueDate;
-        $this->termin = $termin;
-    }
-
-    public function getCreatedAt(): \DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function getLanguage(): Ubki\Data\Language
-    {
-        return $this->language;
-    }
-
-    public function getType(): Type
-    {
-        return $this->type;
-    }
-
-    public function getSerial(): string
-    {
-        return $this->serial;
-    }
-
-    public function getNumber(): string
-    {
-        return $this->number;
-    }
-
-    public function getTermin(): ?\DateTimeInterface
-    {
-        return $this->termin;
-    }
-
-    public function getIssue(): string
-    {
-        return $this->issue;
-    }
-
-    public function getIssueDate(): \DateTimeInterface
-    {
-        return $this->issueDate;
+        parent::__construct([
+            'createdAt' => $createdAt,
+            'language' => $language,
+            'type' => $type,
+            'serial' => $serial,
+            'number' => $number,
+            'issue' => $issue,
+            'issueDate' => $issueDate,
+            'termin' => $termin
+        ]);
     }
 
     public function jsonSerialize(): array
     {
-        $termin = $this->getTermin();
-
         return [
-            'createdAt' => Carbon::instance($this->getCreatedAt())->toDateString(),
-            'language' => (string)$this->getLanguage(),
-            'type' => (string)$this->getType(),
-            'serial' => $this->getSerial(),
-            'number' => $this->getNumber(),
-            'issue' => $this->getIssue(),
-            'issueDate' => Carbon::instance($this->getIssueDate())->toDateString(),
-            'termin' => !is_null($termin) ? Carbon::instance($termin)->toDateString() : null,
+            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
+            'language' => (string)$this->language,
+            'type' => (string)$this->type,
+            'serial' => $this->serial,
+            'number' => $this->number,
+            'issue' => $this->issue,
+            'issueDate' => Carbon::instance($this->issueDate)->toDateString(),
+            'termin' => !is_null($this->termin) ? Carbon::instance($this->termin)->toDateString() : null,
         ];
     }
 }
