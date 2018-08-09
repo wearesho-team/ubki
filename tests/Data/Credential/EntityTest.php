@@ -22,14 +22,43 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetIdentifiers(): void
     {
+
+    }
+
+    public function testGetters(): void
+    {
+        $this->assertEquals('Varkuta', $this->element->lastName);
+        $this->assertEquals(Carbon::parse('2010-10-10'), Carbon::instance($this->element->birthDate));
+        $this->assertEquals('2010-10-10', Carbon::instance($this->element->birthDate)->toDateString());
+        $this->assertEquals(Data\Language::ENG(), $this->element->language);
+        $this->assertEquals('1234567890', $this->element->inn);
+        $this->assertEquals('Roman', $this->element->firstName);
+        $this->assertEquals('Andreevich', $this->element->middleName);
+        $this->assertEquals(
+            new Data\Credential\LinkedPerson\Collection([
+                new Data\Credential\LinkedPerson\Entity(
+                    'name',
+                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+                    Carbon::parse('2018-09-30'),
+                    '123123123'
+                ),
+                new Data\Credential\LinkedPerson\Entity(
+                    'second name',
+                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+                    Carbon::create(2019, 7, 25, 3, 4, 22),
+                    '321654987'
+                )
+            ]),
+            $this->element->linkedPersons
+        );
         $this->assertEquals(
             new Data\Credential\Identifier\Collection([
                 new Data\Credential\Identifier\Natural\Entity(
-                    Carbon::create(2010, 10, 10, 10),
+                    Carbon::parse('2010-10-10'),
                     Data\Language::ENG(),
                     'Roman',
                     'Varkuta',
-                    Carbon::create(2010, 10, 10, 10),
+                    Carbon::parse('2010-10-10'),
                     Data\Gender::MAN(),
                     '1234567890',
                     'Andreevich',
@@ -41,77 +70,13 @@ class EntityTest extends Tests\Extend\ElementTestCase
                     0
                 )
             ]),
-            $this->element->getIdentifiers()
-        );
-    }
-
-    public function testGetLastName(): void
-    {
-        $this->assertEquals(
-            'Varkuta',
-            $this->element->getLastName()
-        );
-    }
-
-    public function testGetBirthDate()
-    {
-        $this->assertEquals(
-            Carbon::create(2010, 10, 10, 10),
-            $this->element->getBirthDate()
-        );
-    }
-
-    public function testGetLanguage(): void
-    {
-        $this->assertEquals(
-            Data\Language::ENG(),
-            $this->element->getLanguage()
-        );
-    }
-
-    public function testGetInn(): void
-    {
-        $this->assertEquals(
-            '1234567890',
-            $this->element->getInn()
-        );
-    }
-
-    public function testGetFirstName(): void
-    {
-        $this->assertEquals(
-            'Roman',
-            $this->element->getFirstName()
-        );
-    }
-
-    public function testGetMiddleName(): void
-    {
-        $this->assertEquals(
-            'Andreevich',
-            $this->element->getMiddleName()
+            $this->element->identifiers
         );
     }
 
     public function testGetLinkedPersons(): void
     {
-        $this->assertEquals(
-            new Data\Credential\LinkedPerson\Collection([
-                new Data\Credential\LinkedPerson\Entity(
-                    'name',
-                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
-                    Carbon::create(2018, 9, 30, 12, 24, 25),
-                    '123123123'
-                ),
-                new Data\Credential\LinkedPerson\Entity(
-                    'second name',
-                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
-                    Carbon::create(2019, 7, 25, 3, 4, 22),
-                    '321654987'
-                )
-            ]),
-            $this->element->getLinkedPersons()
-        );
+
     }
 
     public function testGetWorks(): void
