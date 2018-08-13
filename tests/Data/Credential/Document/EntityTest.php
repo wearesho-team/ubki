@@ -19,65 +19,31 @@ class EntityTest extends Tests\Extend\ElementTestCase
     /** @var Data\Credential\Document\Entity */
     protected $element;
 
-    public function testGetType(): void
+    protected function setUp(): void
     {
-        $this->assertEquals(
-            Data\Credential\Document\Type::PASSPORT(),
-            $this->element->getType()
-        );
-    }
-
-    public function testGetCreatedAt(): void
-    {
-        $this->assertEquals(
-            Carbon::create(2020, 3, 12, 10, 5, 7),
-            $this->element->getCreatedAt()
-        );
-    }
-
-    public function testGetIssue(): void
-    {
-        $this->assertEquals(
-            'Someone',
-            $this->element->getIssue()
-        );
-    }
-
-    public function testGetIssueDate(): void
-    {
-        $this->assertEquals(
-            Carbon::create(2016, 3, 12),
-            $this->element->getIssueDate()
-        );
-    }
-
-    public function testGetLanguage(): void
-    {
-        $this->assertEquals(
+        $this->element = new Data\Credential\Document\Entity(
+            Carbon::parse('2020-03-12'),
             Data\Language::ENG('английский'),
-            $this->element->getLanguage()
-        );
-    }
-
-    public function testGetSerial(): void
-    {
-        $this->assertEquals(
+            Data\Credential\Document\Type::PASSPORT(),
             'AS',
-            $this->element->getSerial()
-        );
-    }
-
-    public function testGetNumber(): void
-    {
-        $this->assertEquals(
             '321654',
-            $this->element->getNumber()
+            'Someone',
+            Carbon::parse('2016-03-12')
         );
     }
 
-    public function testGetTermin(): void
+    public function testGetters(): void
     {
-        $this->assertNull($this->element->getTermin());
+        $this->assertEquals(Data\Credential\Document\Type::PASSPORT(), $this->element->type);
+        $this->assertEquals(Carbon::parse('2020-03-12'), Carbon::instance($this->element->createdAt));
+        $this->assertEquals('2020-03-12', Carbon::instance($this->element->createdAt)->toDateString());
+        $this->assertEquals('Someone', $this->element->issue);
+        $this->assertEquals(Carbon::parse('2016-03-12'), Carbon::instance($this->element->issueDate));
+        $this->assertEquals('2016-03-12', Carbon::instance($this->element->issueDate)->toDateString());
+        $this->assertEquals(Data\Language::ENG('английский'), $this->element->language);
+        $this->assertEquals('AS', $this->element->serial);
+        $this->assertEquals('321654', $this->element->number);
+        $this->assertNull($this->element->termin);
     }
 
     public function testJsonSerialize(): void
@@ -94,19 +60,6 @@ class EntityTest extends Tests\Extend\ElementTestCase
                 'termin' => null,
             ],
             $this->element->jsonSerialize()
-        );
-    }
-
-    protected function setUp(): void
-    {
-        $this->element = new Data\Credential\Document\Entity(
-            Carbon::create(2020, 3, 12, 10, 5, 7),
-            Data\Language::ENG('английский'),
-            Data\Credential\Document\Type::PASSPORT(),
-            'AS',
-            '321654',
-            'Someone',
-            Carbon::create(2016, 3, 12)
         );
     }
 }
