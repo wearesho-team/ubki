@@ -10,8 +10,9 @@ use Wearesho\Bobra\Ubki\Tests;
 
 /**
  * Class EntityTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Photo
+ *
+ * @internal
  */
 class EntityTest extends Tests\Extend\ElementTestCase
 {
@@ -23,43 +24,27 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected function setUp(): void
     {
         $this->element = new Data\Credential\Photo\Entity(
-            Carbon::create(2018, 12, 3, 4, 5, 6),
+            Carbon::parse('2018-12-06'),
             base64_encode('some photo'),
             '1234567890'
         );
     }
 
-    public function testGetInn(): void
+    public function testGetters(): void
     {
-        $this->assertEquals(
-            '1234567890',
-            $this->element->getInn()
-        );
-    }
-
-    public function testGetPhoto(): void
-    {
-        $this->assertEquals(
-            'some photo',
-            base64_decode($this->element->getPhoto())
-        );
-    }
-
-    public function testGetCreatedAt(): void
-    {
-        $this->assertEquals(
-            Carbon::create(2018, 12, 3, 4, 5, 6),
-            $this->element->getCreatedAt()
-        );
+        $this->assertEquals('1234567890', $this->element->inn);
+        $this->assertEquals('some photo', base64_decode($this->element->photo));
+        $this->assertEquals(Carbon::parse('2018-12-06'), Carbon::instance($this->element->createdAt));
+        $this->assertEquals('2018-12-06', Carbon::instance($this->element->createdAt)->toDateString());
     }
 
     public function testJsonSerialize(): void
     {
         $this->assertEquals(
             [
-                'createdAt' => '2018-12-03',
+                'createdAt' => '2018-12-06',
                 'inn' => '1234567890',
-                'photo' => 'some photo'
+                'photo' => base64_encode('some photo')
             ],
             $this->element->jsonSerialize()
         );
