@@ -4,8 +4,8 @@ namespace Wearesho\Bobra\Ubki\Data\Credential\Address;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\Element;
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Element;
 
 /**
  * Class Entity
@@ -32,13 +32,16 @@ class Entity extends Element implements \JsonSerializable
 
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
+    public const LANGUAGE_REF = 'lngref';
     public const TYPE = 'adtype';
+    public const TYPE_REF = 'adtyperef';
     public const COUNTRY = 'adcountry';
     public const INDEX = 'adindex';
     public const STATE = 'adstate';
     public const AREA = 'adarea';
     public const CITY = 'adcity';
     public const CITY_TYPE = 'adcitytype';
+    public const CITY_TYPE_REF = 'adcitytyperef';
     public const STREET = 'adstreet';
     public const HOUSE = 'adhome';
     public const CORPUS = 'adcorp';
