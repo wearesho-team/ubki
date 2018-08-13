@@ -10,21 +10,22 @@ use Wearesho\Bobra\Ubki\Element;
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\CreditDeal
  *
- * @property-read string                              $id
- * @property-read Data\Language                       $language
- * @property-read string|null                         $inn
- * @property-read string                              $name
- * @property-read string|null                         $patronymic
- * @property-read string                              $surname
- * @property-read \DateTimeInterface                  $birthDate
- * @property-read Type                                $type
- * @property-read Collateral                          $collateral
- * @property-read RepaymentProcedure                  $repaymentProcedure
- * @property-read Data\Currency                       $currency
- * @property-read float                               $initialAmount
- * @property-read Data\SubjectRole                    $subjectRole
- * @property-read float                               $collateralCost
- * @property-read Data\CreditDeal\DealLife\Collection $dealLifes
+ * @property-read string              $id
+ * @property-read Data\Language       $language
+ * @property-read string|null         $inn
+ * @property-read string              $name
+ * @property-read string|null         $patronymic
+ * @property-read string              $surname
+ * @property-read \DateTimeInterface  $birthDate
+ * @property-read Type                $type
+ * @property-read Collateral          $collateral
+ * @property-read RepaymentProcedure  $repaymentProcedure
+ * @property-read Data\Currency       $currency
+ * @property-read float               $initialAmount
+ * @property-read Data\SubjectRole    $subjectRole
+ * @property-read float               $collateralCost
+ * @property-read DealLife\Collection $dealLifes
+ * @property-read string|null         $source
  */
 class Entity extends Element implements \JsonSerializable
 {
@@ -36,14 +37,20 @@ class Entity extends Element implements \JsonSerializable
     public const INN = 'inn';
     public const LAST_NAME = 'lname';
     public const FIRST_NAME = 'fname';
-    public const MIDDLE_NAME = 'fname';
+    public const MIDDLE_NAME = 'mname';
     public const BIRTH_DATE = 'bdate';
     public const TYPE = 'dlcelcred';
+    public const TYPE_REF = 'dlcelcredref';
     public const COLLATERAL = 'dlvidobes';
+    public const COLLATERAL_REF = 'dlvidobesref';
     public const REPAYMENT_PROCEDURE = 'dlporpog';
+    public const REPAYMENT_PROCEDURE_REF = 'dlporpogref';
     public const CURRENCY = 'dlcurr';
+    public const CURRENCY_REF = 'dlcurrref';
     public const INITIAL_AMOUNT = 'dlamt';
+    public const SOURCE = 'dldonor';
     public const SUBJECT_ROLE = 'dlrolesub';
+    public const SUBJECT_ROLE_REF = 'dlrolesubref';
     public const COLLATERAL_COST = 'dlamtobes';
 
     public function __construct(
@@ -59,9 +66,10 @@ class Entity extends Element implements \JsonSerializable
         float $initialAmount,
         Data\SubjectRole $subjectRole,
         float $collateralCost,
-        Data\CreditDeal\DealLife\Collection $dealLifes,
+        DealLife\Collection $dealLifes,
         ?string $inn = null,
-        ?string $patronymic = null
+        ?string $patronymic = null,
+        ?string $source = null
     ) {
         parent::__construct([
             'id' => $id,
@@ -79,6 +87,7 @@ class Entity extends Element implements \JsonSerializable
             'subjectRole' => $subjectRole,
             'collateralCost' => $collateralCost,
             'dealLifes' => $dealLifes,
+            'source' => $source
         ]);
     }
 
@@ -102,6 +111,87 @@ class Entity extends Element implements \JsonSerializable
             'dealLifes' => array_map(function (DealLife\Entity $dealLife): array {
                 return $dealLife->jsonSerialize();
             }, $this->dealLifes->jsonSerialize()),
+            'source' => $this->source
         ];
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getLanguage(): Data\Language
+    {
+        return $this->language;
+    }
+
+    public function getInn(): ?string
+    {
+        return $this->inn;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getPatronymic(): ?string
+    {
+        return $this->patronymic;
+    }
+
+    public function getSurname(): string
+    {
+        return $this->surname;
+    }
+
+    public function getBirthDate(): \DateTimeInterface
+    {
+        return $this->birthDate;
+    }
+
+    public function getType(): Type
+    {
+        return $this->type;
+    }
+
+    public function getCollateral(): Collateral
+    {
+        return $this->collateral;
+    }
+
+    public function getRepaymentProcedure(): RepaymentProcedure
+    {
+        return $this->repaymentProcedure;
+    }
+
+    public function getCurrency(): Data\Currency
+    {
+        return $this->currency;
+    }
+
+    public function getInitialAmount(): float
+    {
+        return $this->initialAmount;
+    }
+
+    public function getSubjectRole(): Data\SubjectRole
+    {
+        return $this->subjectRole;
+    }
+
+    public function getCollateralCost(): float
+    {
+        return $this->collateralCost;
+    }
+
+    public function getDealLifes(): DealLife\Collection
+    {
+        return $this->dealLifes;
+    }
+
+    public function getSource(): ?string
+    {
+        return $this->source;
     }
 }

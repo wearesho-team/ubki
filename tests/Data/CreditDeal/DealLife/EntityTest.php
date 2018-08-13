@@ -41,28 +41,116 @@ class EntityTest extends Tests\Extend\ElementTestCase
         );
     }
 
-    public function testGetters(): void
+    public function testGetCurrentOverdueDebt(): void
     {
-        $this->assertEquals(2400, $this->element->currentOverdueDebt);
-        $this->assertEquals(Data\CreditDeal\Status::OPEN(), $this->element->status);
-        $this->assertEquals(20, $this->element->overdueTime);
-        $this->assertEquals(4, $this->element->periodMonth);
-        $this->assertEquals(Carbon::parse('2018-05-09'), Carbon::instance($this->element->endDate));
-        $this->assertEquals('2018-05-09', Carbon::instance($this->element->endDate)->toDateString());
-        $this->assertEquals(Carbon::parse('2018-04-29'), Carbon::instance($this->element->actualEndDate));
-        $this->assertEquals('2018-04-29', Carbon::instance($this->element->actualEndDate)->toDateString());
-        $this->assertEquals('identificator', $this->element->id);
-        $this->assertEquals(2018, $this->element->periodYear);
-        $this->assertEquals(Data\Flag::YES(), $this->element->creditTrancheIndication);
-        $this->assertEquals(Carbon::parse('2018-04-29'), Carbon::instance($this->element->paymentDate));
-        $this->assertEquals('2018-04-29', Carbon::instance($this->element->paymentDate)->toDateString());
-        $this->assertEquals(10000.00, $this->element->limit);
-        $this->assertEquals(2400, $this->element->mandatoryPayment);
-        $this->assertEquals(2400, $this->element->currentDebt);
-        $this->assertEquals(Data\Flag::YES(), $this->element->delayIndication);
-        $this->assertEquals(Carbon::parse('2018-04-09'), Carbon::instance($this->element->issueDate));
-        $this->assertEquals('2018-04-09', Carbon::instance($this->element->issueDate)->toDateString());
-        $this->assertEquals(Data\Flag::YES(), $this->element->paymentIndication);
+        $expected = 2400;
+        $this->assertEquals($expected, $this->element->currentOverdueDebt);
+        $this->assertEquals($expected, $this->element->getCurrentOverdueDebt());
+    }
+
+    public function testGetStatus(): void
+    {
+        $expected = Data\CreditDeal\Status::OPEN();
+        $this->assertEquals($expected, $this->element->status);
+        $this->assertEquals($expected, $this->element->getStatus());
+    }
+
+    public function testGetOverdueTime(): void
+    {
+        $expected = 20;
+        $this->assertEquals($expected, $this->element->overdueTime);
+        $this->assertEquals($expected, $this->element->getOverdueTime());
+    }
+
+    public function testGetPeriodMonth(): void
+    {
+        $expected = 4;
+        $this->assertEquals($expected, $this->element->periodMonth);
+        $this->assertEquals($expected, $this->element->getPeriodMonth());
+    }
+
+    public function testGetEndDate(): void
+    {
+        $expected = Carbon::parse('2018-05-09');
+        $this->assertEquals($expected, Carbon::instance($this->element->endDate));
+        $this->assertEquals($expected, Carbon::instance($this->element->getEndDate()));
+    }
+
+    public function testGetActualEndDate(): void
+    {
+        $expected = Carbon::parse('2018-04-29');
+        $this->assertEquals($expected, Carbon::instance($this->element->actualEndDate));
+        $this->assertEquals($expected, Carbon::instance($this->element->getActualEndDate()));
+    }
+
+    public function testGetId(): void
+    {
+        $expected = 'identificator';
+        $this->assertEquals($expected, $this->element->id);
+        $this->assertEquals($expected, $this->element->getId());
+    }
+
+    public function testGetPeriodYear(): void
+    {
+        $expected = 2018;
+        $this->assertEquals($expected, $this->element->periodYear);
+        $this->assertEquals($expected, $this->element->getPeriodYear());
+    }
+
+    public function testGetCreditTrancheIndication(): void
+    {
+        $expected = Data\Flag::YES();
+        $this->assertEquals($expected, $this->element->creditTrancheIndication);
+        $this->assertEquals($expected, $this->element->getCreditTrancheIndication());
+    }
+
+    public function testGetPaymentDate(): void
+    {
+        $expected = Carbon::parse('2018-04-29');
+        $this->assertEquals($expected, Carbon::instance($this->element->paymentDate));
+        $this->assertEquals($expected, Carbon::instance($this->element->getPaymentDate()));
+    }
+
+    public function testGetLimit(): void
+    {
+        $expected = 10000.00;
+        $this->assertEquals($expected, $this->element->limit);
+        $this->assertEquals($expected, $this->element->getLimit());
+    }
+
+    public function testGetMandatoryPayment(): void
+    {
+        $expected = 2400;
+        $this->assertEquals($expected, $this->element->mandatoryPayment);
+        $this->assertEquals($expected, $this->element->getMandatoryPayment());
+    }
+
+    public function testGetCurrentDebt(): void
+    {
+        $expected = 2400;
+        $this->assertEquals($expected, $this->element->currentDebt);
+        $this->assertEquals($expected, $this->element->getCurrentDebt());
+    }
+
+    public function testGetDelayIndication(): void
+    {
+        $expected = Data\Flag::YES();
+        $this->assertEquals($expected, $this->element->delayIndication);
+        $this->assertEquals($expected, $this->element->getDelayIndication());
+    }
+
+    public function testGetIssueDate(): void
+    {
+        $expected = Carbon::parse('2018-04-09');
+        $this->assertEquals($expected, Carbon::instance($this->element->issueDate));
+        $this->assertEquals($expected, Carbon::instance($this->element->getIssueDate()));
+    }
+
+    public function testGetPaymentIndication(): void
+    {
+        $expected = Data\Flag::YES();
+        $this->assertEquals($expected, $this->element->paymentIndication);
+        $this->assertEquals($expected, $this->element->getPaymentIndication());
     }
 
     public function testJsonSerialize(): void

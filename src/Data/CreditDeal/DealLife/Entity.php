@@ -112,4 +112,84 @@ class Entity extends Element implements \JsonSerializable
             'actualEndDate' => Carbon::instance($this->actualEndDate)->toDateString(),
         ];
     }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getPeriodMonth(): int
+    {
+        return $this->periodMonth;
+    }
+
+    public function getPeriodYear(): int
+    {
+        return $this->periodYear;
+    }
+
+    public function getIssueDate(): \DateTimeInterface
+    {
+        return $this->issueDate;
+    }
+
+    public function getEndDate(): \DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function getActualEndDate(): \DateTimeInterface
+    {
+        return $this->actualEndDate;
+    }
+
+    public function getStatus(): Data\CreditDeal\Status
+    {
+        return $this->status;
+    }
+
+    public function getLimit(): float
+    {
+        return $this->limit;
+    }
+
+    public function getMandatoryPayment(): float
+    {
+        return $this->mandatoryPayment;
+    }
+
+    public function getCurrentDebt(): float
+    {
+        return $this->currentDebt;
+    }
+
+    public function getCurrentOverdueDebt(): float
+    {
+        return $this->currentOverdueDebt;
+    }
+
+    public function getOverdueTime(): int
+    {
+        return $this->overdueTime;
+    }
+
+    public function getPaymentIndication(): Data\Flag
+    {
+        return $this->paymentIndication;
+    }
+
+    public function getDelayIndication(): Data\Flag
+    {
+        return $this->delayIndication;
+    }
+
+    public function getCreditTrancheIndication(): Data\Flag
+    {
+        return $this->creditTrancheIndication;
+    }
+
+    public function getPaymentDate(): \DateTimeInterface
+    {
+        return $this->paymentDate;
+    }
 }
