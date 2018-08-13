@@ -9,14 +9,30 @@ use Wearesho\Bobra\Ubki\Element;
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\CreditDeal
+ *
+ * @property-read string                              $id
+ * @property-read Data\Language                       $language
+ * @property-read string|null                         $inn
+ * @property-read string                              $name
+ * @property-read string|null                         $patronymic
+ * @property-read string                              $surname
+ * @property-read \DateTimeInterface                  $birthDate
+ * @property-read Type                                $type
+ * @property-read Collateral                          $collateral
+ * @property-read RepaymentProcedure                  $repaymentProcedure
+ * @property-read Data\Currency                       $currency
+ * @property-read float                               $initialAmount
+ * @property-read Data\SubjectRole                    $subjectRole
+ * @property-read float                               $collateralCost
+ * @property-read Data\CreditDeal\DealLife\Collection $dealLifes
  */
 class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'crdeal';
 
-    // attributes
     public const ID = 'dlfer';
     public const LANGUAGE = 'lng';
+    public const LANGUAGE_REF = 'lngref';
     public const INN = 'inn';
     public const LAST_NAME = 'lname';
     public const FIRST_NAME = 'fname';
@@ -30,56 +46,11 @@ class Entity extends Element implements \JsonSerializable
     public const SUBJECT_ROLE = 'dlrolesub';
     public const COLLATERAL_COST = 'dlamtobes';
 
-    /** @var string */
-    protected $id;
-
-    /** @var Data\Language */
-    protected $language;
-
-    /** @var string|null */
-    protected $inn;
-
-    /** @var string */
-    protected $name;
-
-    /** @var string|null */
-    protected $middleName;
-
-    /** @var string */
-    protected $lastName;
-
-    /** @var \DateTimeInterface */
-    protected $birthDate;
-
-    /** @var Type */
-    protected $type;
-
-    /** @var Collateral */
-    protected $collateral;
-
-    /** @var RepaymentProcedure */
-    protected $repaymentProcedure;
-
-    /** @var Data\Currency */
-    protected $currency;
-
-    /** @var float */
-    protected $initialAmount;
-
-    /** @var Data\SubjectRole */
-    protected $subjectRole;
-
-    /** @var float */
-    protected $collateralCost;
-
-    /** @var Data\CreditDeal\DealLife\Collection */
-    protected $dealLifes;
-
     public function __construct(
         string $id,
         Data\Language $language,
         string $name,
-        string $lastName,
+        string $surname,
         \DateTimeInterface $birthDate,
         Type $type,
         Collateral $collateral,
@@ -90,120 +61,47 @@ class Entity extends Element implements \JsonSerializable
         float $collateralCost,
         Data\CreditDeal\DealLife\Collection $dealLifes,
         ?string $inn = null,
-        ?string $middleName = null
+        ?string $patronymic = null
     ) {
-        $this->id = $id;
-        $this->language = $language;
-        $this->name = $name;
-        $this->middleName = $middleName;
-        $this->lastName = $lastName;
-        $this->birthDate = $birthDate;
-        $this->type = $type;
-        $this->collateral = $collateral;
-        $this->repaymentProcedure = $repaymentProcedure;
-        $this->currency = $currency;
-        $this->initialAmount = $initialAmount;
-        $this->subjectRole = $subjectRole;
-        $this->collateralCost = $collateralCost;
-        $this->dealLifes = $dealLifes;
-        $this->inn = $inn;
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getLanguage(): Data\Language
-    {
-        return $this->language;
-    }
-
-    public function getInn(): ?string
-    {
-        return $this->inn;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getMiddleName(): ?string
-    {
-        return $this->middleName;
-    }
-
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    public function getBirthDate(): \DateTimeInterface
-    {
-        return $this->birthDate;
-    }
-
-    public function getType(): Type
-    {
-        return $this->type;
-    }
-
-    public function getCollateral(): Collateral
-    {
-        return $this->collateral;
-    }
-
-    public function getRepaymentProcedure(): RepaymentProcedure
-    {
-        return $this->repaymentProcedure;
-    }
-
-    public function getCurrency(): Data\Currency
-    {
-        return $this->currency;
-    }
-
-    public function getInitialAmount(): float
-    {
-        return $this->initialAmount;
-    }
-
-    public function getSubjectRole(): Data\SubjectRole
-    {
-        return $this->subjectRole;
-    }
-
-    public function getCollateralCost(): float
-    {
-        return $this->collateralCost;
-    }
-
-    public function getDealLifes(): DealLife\Collection
-    {
-        return $this->dealLifes;
+        parent::__construct([
+            'id' => $id,
+            'language' => $language,
+            'name' => $name,
+            'inn' => $inn,
+            'patronymic' => $patronymic,
+            'surname' => $surname,
+            'birthDate' => $birthDate,
+            'type' => $type,
+            'collateral' => $collateral,
+            'repaymentProcedure' => $repaymentProcedure,
+            'currency' => $currency,
+            'initialAmount' => $initialAmount,
+            'subjectRole' => $subjectRole,
+            'collateralCost' => $collateralCost,
+            'dealLifes' => $dealLifes,
+        ]);
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->getId(),
-            'language' => (string)$this->getLanguage(),
-            'name' => $this->getName(),
-            'lastName' => $this->getLastName(),
-            'birthDate' => Carbon::instance($this->getBirthDate())->toDateString(),
-            'type' => (string)$this->getType(),
-            'collateral' => (string)$this->getCollateral(),
-            'repaymentProcedure' => (string)$this->getRepaymentProcedure(),
-            'currency' => (string)$this->getCurrency(),
-            'initialAmount' => $this->getInitialAmount(),
-            'subjectRole' => (string)$this->getSubjectRole(),
-            'collateralCost' => $this->getCollateralCost(),
+            'id' => $this->id,
+            'inn' => $this->inn,
+            'language' => (string)$this->language,
+            'name' => $this->name,
+            'surname' => $this->surname,
+            'patronymic' => $this->patronymic,
+            'birthDate' => Carbon::instance($this->birthDate)->toDateString(),
+            'type' => (string)$this->type,
+            'collateral' => (string)$this->collateral,
+            'repaymentProcedure' => (string)$this->repaymentProcedure,
+            'currency' => (string)$this->currency,
+            'initialAmount' => $this->initialAmount,
+            'subjectRole' => (string)$this->subjectRole,
+            'collateralCost' => $this->collateralCost,
             'dealLifes' => array_map(function (DealLife\Entity $dealLife): array {
                 return $dealLife->jsonSerialize();
-            }, $this->getDealLifes()->jsonSerialize()),
-            'inn' => $this->getInn(),
-            'middleName' => $this->getMiddleName()
+            }, $this->dealLifes->jsonSerialize()),
         ];
     }
 }
