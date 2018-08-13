@@ -2,23 +2,22 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Mocks;
 
+use Wearesho\Bobra\Ubki;
+
 /**
  * Class Element
- *
  * @package Wearesho\Bobra\Ubki\Tests\Mocks
+ *
+ * @property-read int $value
  */
-class Element
+class Element extends Ubki\Element
 {
-    /** @var int */
-    protected $value;
+    public const TAG = 'mock';
 
     public function __construct(int $value)
     {
-        $this->value = $value;
-    }
-
-    public function getValue(): int
-    {
-        return $this->value;
+        parent::__construct([
+            'value' => $value
+        ]);
     }
 }
