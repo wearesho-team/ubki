@@ -298,12 +298,12 @@ class EntityTest extends Tests\Extend\ElementTestCase
                     [
                         'createdAt' => '2017-03-12',
                         'inn' => null,
-                        'photo' => 'first photo',
+                        'photo' => 'Zmlyc3QgcGhvdG8=',
                     ],
                     [
                         'createdAt' => '2018-04-05',
                         'inn' => '1234567890',
-                        'photo' => 'second photo',
+                        'photo' => 'c2Vjb25kIHBob3Rv',
                     ],
                 ],
                 'linkedPersons' => [
