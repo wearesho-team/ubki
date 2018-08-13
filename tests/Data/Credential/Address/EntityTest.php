@@ -62,29 +62,109 @@ class EntityTest extends Tests\Extend\ElementTestCase
         );
     }
 
-    public function testGetters(): void
+    public function testGetState(): void
     {
-        $this->assertEquals('Харьковская', $this->element->state);
-        $this->assertEquals('Научная', $this->element->street);
+        $expected = 'Харьковская';
+        $this->assertEquals($expected, $this->element->state);
+        $this->assertEquals($expected, $this->element->getState());
+    }
+
+    public function testGetStreet(): void
+    {
+        $expected = 'Научная';
+        $this->assertEquals($expected, $this->element->street);
+        $this->assertEquals($expected, $this->element->getStreet());
+    }
+
+    public function testGetFullAddress(): void
+    {
         $this->assertNull($this->element->fullAddress);
-        $this->assertEquals(Data\CityType::SETTLEMENT('описание'), $this->element->cityType);
-        $this->assertEquals(Carbon::parse('2018-09-09'), Carbon::instance($this->element->createdAt));
-        $this->assertEquals('2018-09-09', Carbon::instance($this->element->createdAt)->toDateString());
-        $this->assertEquals('Харьков', $this->element->city);
-        $this->assertEquals('25', $this->element->house);
-        $this->assertEquals(Data\Language::RUS(), $this->element->language);
-        $this->assertEquals('Украина', $this->element->country);
-        $this->assertEquals('2', $this->element->corpus);
-        $this->assertEquals('Шевченковский', $this->element->area);
-        $this->assertEquals('24', $this->element->flat);
-        $this->assertEquals(25054, $this->element->index);
-        $this->assertEquals('25054', $this->element->index);
-        $this->assertEquals(Data\Credential\Address\Type::REGISTRATION(), $this->element->type);
+        $this->assertNull($this->element->getFullAddress());
+    }
+
+    public function testGetCityType(): void
+    {
+        $expected = Data\CityType::SETTLEMENT('описание');
+        $this->assertEquals($expected, $this->element->cityType);
+        $this->assertEquals($expected, $this->element->getCityType());
+    }
+
+    public function testGetCreatedAt(): void
+    {
+        $expected = Carbon::parse('2018-09-09');
+        $this->assertEquals($expected, Carbon::instance($this->element->createdAt));
+        $this->assertEquals($expected, Carbon::instance($this->element->getCreatedAt()));
+    }
+
+    public function testGetCity(): void
+    {
+        $expected = 'Харьков';
+        $this->assertEquals($expected, $this->element->city);
+        $this->assertEquals($expected, $this->element->getCity());
+    }
+
+    public function testGetHouse(): void
+    {
+        $expected = '25';
+        $this->assertEquals($expected, $this->element->house);
+        $this->assertEquals($expected, $this->element->getHouse());
+    }
+
+    public function testGetLanguage(): void
+    {
+        $expected = Data\Language::RUS();
+        $this->assertEquals($expected, $this->element->language);
+        $this->assertEquals($expected, $this->element->getLanguage());
+    }
+
+    public function testGetCountry(): void
+    {
+        $expected = 'Украина';
+        $this->assertEquals($expected, $this->element->country);
+        $this->assertEquals($expected, $this->element->getCountry());
+    }
+
+    public function testGetCorpus(): void
+    {
+        $expected = '2';
+        $this->assertEquals($expected, $this->element->corpus);
+        $this->assertEquals($expected, $this->element->getCorpus());
+    }
+
+    public function testGetArea(): void
+    {
+        $expected = 'Шевченковский';
+        $this->assertEquals($expected, $this->element->area);
+        $this->assertEquals($expected, $this->element->getArea());
+    }
+
+    public function testGetFlat(): void
+    {
+        $expected = '24';
+        $this->assertEquals($expected, $this->element->flat);
+        $this->assertEquals($expected, $this->element->getFlat());
+    }
+
+    public function testGetIndex(): void
+    {
+        $expected = 25054;
+        $this->assertEquals($expected, $this->element->index);
+        $this->assertEquals($expected, $this->element->getIndex());
+        $expected = '25054';
+        $this->assertEquals($expected, $this->element->index);
+        $this->assertEquals($expected, $this->element->getIndex());
+    }
+
+    public function testGetType(): void
+    {
+        $expected = Data\Credential\Address\Type::REGISTRATION();
+        $this->assertEquals($expected, $this->element->type);
+        $this->assertEquals($expected, $this->element->getType());
     }
 
     public function testJsonSerialize(): void
     {
-        $this->assertEquals(
+        $this->assertArraySubset(
             [
                 'createdAt' => '2018-09-09',
                 'language' => 'RUS',

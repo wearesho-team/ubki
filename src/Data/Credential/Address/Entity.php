@@ -101,4 +101,74 @@ class Entity extends Element implements \JsonSerializable
             'fullAddress' => $this->fullAddress
         ];
     }
+
+    public function getCreatedAt (): \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function getLanguage (): Data\Language
+    {
+        return $this->language;
+    }
+
+    public function getType (): Type
+    {
+        return $this->type;
+    }
+
+    public function getCountry (): string
+    {
+        return $this->country;
+    }
+
+    public function getCity (): string
+    {
+        return $this->city;
+    }
+
+    public function getStreet (): string
+    {
+        return $this->street;
+    }
+
+    public function getHouse (): string
+    {
+        return $this->house;
+    }
+
+    public function getIndex (): ?string
+    {
+        return $this->index;
+    }
+
+    public function getState (): ?string
+    {
+        return $this->state;
+    }
+
+    public function getArea (): ?string
+    {
+        return $this->area;
+    }
+
+    public function getCorpus (): ?string
+    {
+        return $this->corpus;
+    }
+
+    public function getFlat (): ?string
+    {
+        return $this->flat;
+    }
+
+    public function getFullAddress (): ?string
+    {
+        return $this->fullAddress;
+    }
+
+    public function getCityType (): ?Data\CityType
+    {
+        return $this->cityType;
+    }
 }
