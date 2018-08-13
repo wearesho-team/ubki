@@ -41,8 +41,7 @@ class Entity extends Element implements \JsonSerializable
         ?Rank $rank = null,
         ?int $experience = null,
         ?float $income = null
-    )
-    {
+    ) {
         parent::__construct([
             'createdAt' => $createdAt,
             'language' => $language,
