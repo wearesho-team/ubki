@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki\Tests;
  *
  * @internal
  */
-class EntityTest extends Tests\Extend\ElementTestCase
+class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
 {
     protected const TAG = 'urident';
 
@@ -24,56 +24,29 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected function setUp(): void
     {
         $this->element = new Data\Credential\Identifier\Legal\Entity(
-            Carbon::create(2020, 3, 12, 10, 5, 7),
+            Carbon::parse('2020-03-12'),
             Data\Language::ENG(),
             'name',
             'ergpou',
             1,
             '1',
             '1',
-            Carbon::create(2020, 3, 12, 10, 5, 7),
-            Carbon::create(2020, 3, 12, 10, 5, 7)
+            Carbon::parse('2020-03-12'),
+            Carbon::parse('2020-03-12')
         );
     }
 
-    public function testGetEdrRegistrationDate(): void
+    public function testGetters(): void
     {
-        $this->assertEquals(
-            Carbon::create(2020, 3, 12, 10, 5, 7),
-            $this->element->edrRegistrationDate
-        );
-    }
+        parent::testGetters();
 
-    public function testGetActivityType(): void
-    {
+        $this->assertEquals(Carbon::parse('2020-03-12'), Carbon::instance($this->element->edrRegistrationDate));
         $this->assertEquals('1', $this->element->activityType);
-    }
-
-    public function testGetErgpou(): void
-    {
         $this->assertEquals('ergpou', $this->element->ergpou);
-    }
-
-    public function testGetForm(): void
-    {
         $this->assertEquals(1, $this->element->form);
-    }
-
-    public function testGetEconomyBranch(): void
-    {
         $this->assertEquals('1', $this->element->economyBranch);
-    }
-
-    public function testGetTaxRegistrationDate(): void
-    {
-        $this->assertEquals(
-            Carbon::create(2020, 3, 12, 10, 5, 7),
-            Carbon::instance($this->element->taxRegistrationDate)
-        );
-        $this->assertEquals(
-            '2020-03-12 10:05:07',
-            Carbon::instance($this->element->taxRegistrationDate)->toDateTimeString()
-        );
+        $this->assertEquals(Carbon::parse('2020-03-12'), Carbon::instance($this->element->taxRegistrationDate));
+        $this->assertEquals('2020-03-12', Carbon::instance($this->element->taxRegistrationDate)->toDateString());
     }
 
     public function testJsonSerialize(): void

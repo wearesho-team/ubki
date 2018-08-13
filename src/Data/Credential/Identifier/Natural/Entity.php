@@ -11,8 +11,8 @@ use Wearesho\Bobra\Ubki\Data;
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural
  *
  * @property-read string|null               $inn
- * @property-read string|null               $middleName
- * @property-read string                    $lastName
+ * @property-read string|null               $patronymic
+ * @property-read string                    $surname
  * @property-read \DateTimeInterface        $birthDate
  * @property-read Data\Gender               $gender
  * @property-read Data\FamilyStatus|null    $familyStatus
@@ -43,11 +43,11 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         \DateTimeInterface $createdAt,
         Data\Language $language,
         string $name,
-        string $lastName,
+        string $surname,
         \DateTimeInterface $birthDate,
         Data\Gender $gender,
         ?string $inn = null,
-        ?string $middleName = null,
+        ?string $patronymic = null,
         ?Data\FamilyStatus $familyStatus = null,
         ?Data\Education $education = null,
         ?Data\Nationality $nationality = null,
@@ -56,11 +56,11 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         ?int $childrenCount = null
     ) {
         parent::__construct($createdAt, $language, $name, [
-            'lastName' => $lastName,
+            'surname' => $surname,
             'birthDate' => $birthDate,
             'gender' => $gender,
             'inn' => $inn,
-            'middleName' => $middleName,
+            'patronymic' => $patronymic,
             'familyStatus' => $familyStatus,
             'education' => $education,
             'nationality' => $nationality,
@@ -75,11 +75,11 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
         return array_merge(
             parent::jsonSerialize(),
             [
-                'lastName' => $this->lastName,
+                'surname' => $this->surname,
                 'birthDate' => Carbon::instance($this->birthDate)->toDateString(),
                 'gender' => (string)$this->gender,
                 'inn' => $this->inn,
-                'middleName' => $this->middleName,
+                'patronymic' => $this->patronymic,
                 'familyStatus' => (string)$this->familyStatus,
                 'education' => (string)$this->education,
                 'nationality' => (string)$this->nationality,

@@ -16,21 +16,11 @@ abstract class EntityTestCase extends Tests\Extend\ElementTestCase
     /** @var Data\Credential\Identifier\Entity */
     protected $element;
 
-    public function testGetCreatedAt(): void
+    public function testGetters(): void
     {
-        $this->assertEquals(
-            Carbon::create(2020, 3, 12, 10, 5, 7),
-            $this->element->createdAt
-        );
-    }
-
-    public function testGetName(): void
-    {
+        $this->assertEquals(Carbon::parse('2020-03-12'), Carbon::instance($this->element->createdAt));
+        $this->assertEquals('2020-03-12', Carbon::instance($this->element->createdAt)->toDateString());
         $this->assertEquals('name', $this->element->name);
-    }
-
-    public function testGetLanguage(): void
-    {
         $this->assertEquals(Data\Language::ENG(), $this->element->language);
     }
 }
