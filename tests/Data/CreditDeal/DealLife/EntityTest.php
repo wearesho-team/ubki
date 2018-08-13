@@ -19,159 +19,6 @@ class EntityTest extends Tests\Extend\ElementTestCase
     /** @var Data\CreditDeal\DealLife\Entity */
     protected $element;
 
-    public function testGetCurrentOverdueDebt(): void
-    {
-        $this->assertEquals(
-            2400,
-            $this->element->getCurrentOverdueDebt()
-        );
-    }
-
-    public function testGetStatus(): void
-    {
-        $this->assertEquals(
-            Data\CreditDeal\Status::OPEN(),
-            $this->element->getStatus()
-        );
-    }
-
-    public function testGetOverdueTime(): void
-    {
-        $this->assertEquals(
-            20,
-            $this->element->getOverdueTime()
-        );
-    }
-
-    public function testGetPeriodMonth(): void
-    {
-        $this->assertEquals(
-            4,
-            $this->element->getPeriodMonth()
-        );
-    }
-
-    public function testGetEndDate(): void
-    {
-        $this->assertEquals(
-            Carbon::parse('2018-05-09'),
-            Carbon::instance($this->element->getEndDate())
-        );
-    }
-
-    public function testGetActualEndDate(): void
-    {
-        $this->assertEquals(
-            Carbon::parse('2018-04-29'),
-            Carbon::instance($this->element->getActualEndDate())
-        );
-    }
-
-    public function testGetId(): void
-    {
-        $this->assertEquals(
-            'identificator',
-            $this->element->getId()
-        );
-    }
-
-    public function testGetPeriodYear(): void
-    {
-        $this->assertEquals(
-            2018,
-            $this->element->getPeriodYear()
-        );
-    }
-
-    public function testGetCreditTrancheIndication(): void
-    {
-        $this->assertEquals(
-            Data\Flag::YES(),
-            $this->element->getCreditTrancheIndication()
-        );
-    }
-
-    public function testGetPaymentDate(): void
-    {
-        $this->assertEquals(
-            Carbon::parse('2018-04-29'),
-            Carbon::instance($this->element->getPaymentDate())
-        );
-    }
-
-    public function testGetLimit(): void
-    {
-        $this->assertEquals(
-            10000.00,
-            $this->element->getLimit()
-        );
-    }
-
-    public function testGetMandatoryPayment(): void
-    {
-        $this->assertEquals(
-            2400,
-            $this->element->getMandatoryPayment()
-        );
-    }
-
-    public function testGetCurrentDebt(): void
-    {
-        $this->assertEquals(
-            2400,
-            $this->element->getCurrentDebt()
-        );
-    }
-
-    public function testGetDelayIndication(): void
-    {
-        $this->assertEquals(
-            Data\Flag::YES(),
-            $this->element->getDelayIndication()
-        );
-    }
-
-    public function testGetIssueDate(): void
-    {
-        $this->assertEquals(
-            Carbon::parse('2018-04-09'),
-            Carbon::instance($this->element->getIssueDate())
-        );
-    }
-
-    public function testGetPaymentIndication(): void
-    {
-        $this->assertEquals(
-            Data\Flag::YES(),
-            $this->element->getPaymentIndication()
-        );
-    }
-
-    public function testJsonSerialize(): void
-    {
-        $this->assertEquals(
-            [
-                'id' => 'identificator',
-                'periodMonth' => 4,
-                'periodYear' => 2018,
-                'issueDate' => '2018-04-09',
-                'endDate' => '2018-05-09',
-                'status' => 'OPEN',
-                'limit' => 10000.00,
-                'mandatoryPayment' => 2400,
-                'currentDebt' => 2400,
-                'currentOverdueDebt' => 2400,
-                'overdueTime' => 20,
-                'paymentIndication' => 'YES',
-                'delayIndication' => 'YES',
-                'creditTrancheIndication' => 'YES',
-                'paymentDate' => '2018-04-29',
-                'actualEndDate' => '2018-04-29',
-            ],
-            $this->element->jsonSerialize()
-        );
-    }
-
     protected function setUp(): void
     {
         $this->element = new Data\CreditDeal\DealLife\Entity(
@@ -191,6 +38,55 @@ class EntityTest extends Tests\Extend\ElementTestCase
             Data\Flag::YES(),
             Carbon::parse('2018-04-29'),
             Carbon::parse('2018-04-29')
+        );
+    }
+
+    public function testGetters(): void
+    {
+        $this->assertEquals(2400, $this->element->currentOverdueDebt);
+        $this->assertEquals(Data\CreditDeal\Status::OPEN(), $this->element->status);
+        $this->assertEquals(20, $this->element->overdueTime);
+        $this->assertEquals(4, $this->element->periodMonth);
+        $this->assertEquals(Carbon::parse('2018-05-09'), Carbon::instance($this->element->endDate));
+        $this->assertEquals('2018-05-09', Carbon::instance($this->element->endDate)->toDateString());
+        $this->assertEquals(Carbon::parse('2018-04-29'), Carbon::instance($this->element->actualEndDate));
+        $this->assertEquals('2018-04-29', Carbon::instance($this->element->actualEndDate)->toDateString());
+        $this->assertEquals('identificator', $this->element->id);
+        $this->assertEquals(2018, $this->element->periodYear);
+        $this->assertEquals(Data\Flag::YES(), $this->element->creditTrancheIndication);
+        $this->assertEquals(Carbon::parse('2018-04-29'), Carbon::instance($this->element->paymentDate));
+        $this->assertEquals('2018-04-29', Carbon::instance($this->element->paymentDate)->toDateString());
+        $this->assertEquals(10000.00, $this->element->limit);
+        $this->assertEquals(2400, $this->element->mandatoryPayment);
+        $this->assertEquals(2400, $this->element->currentDebt);
+        $this->assertEquals(Data\Flag::YES(), $this->element->delayIndication);
+        $this->assertEquals(Carbon::parse('2018-04-09'), Carbon::instance($this->element->issueDate));
+        $this->assertEquals('2018-04-09', Carbon::instance($this->element->issueDate)->toDateString());
+        $this->assertEquals(Data\Flag::YES(), $this->element->paymentIndication);
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'id' => 'identificator',
+                'periodMonth' => 4,
+                'periodYear' => 2018,
+                'issueDate' => '2018-04-09',
+                'endDate' => '2018-05-09',
+                'status' => 'OPEN',
+                'limit' => 10000.00,
+                'mandatoryPayment' => 2400,
+                'currentDebt' => 2400,
+                'currentOverdueDebt' => 2400,
+                'overdueTime' => 20,
+                'paymentIndication' => 'YES',
+                'delayIndication' => 'YES',
+                'creditTrancheIndication' => 'YES',
+                'paymentDate' => '2018-04-29',
+                'actualEndDate' => '2018-04-29',
+            ],
+            $this->element->jsonSerialize()
         );
     }
 }

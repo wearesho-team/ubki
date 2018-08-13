@@ -10,58 +10,27 @@ use Wearesho\Bobra\Ubki\Element;
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Data\CreditDeal\DealLife
+ *
+ * @property-read string                 $id
+ * @property-read int                    $periodMonth
+ * @property-read int                    $periodYear
+ * @property-read \DateTimeInterface     $issueDate
+ * @property-read \DateTimeInterface     $endDate
+ * @property-read \DateTimeInterface     $actualEndDate
+ * @property-read Data\CreditDeal\Status $status
+ * @property-read float                  $limit
+ * @property-read float                  $mandatoryPayment
+ * @property-read float                  $currentDebt
+ * @property-read float                  $currentOverdueDebt
+ * @property-read int                    $overdueTime
+ * @property-read Data\Flag              $paymentIndication
+ * @property-read Data\Flag              $delayIndication
+ * @property-read Data\Flag              $creditTrancheIndication
+ * @property-read \DateTimeInterface     $paymentDate
  */
 class Entity extends Element implements \JsonSerializable
 {
     public const TAG = 'deallife';
-
-    /** @var string */
-    protected $id;
-
-    /** @var int */
-    protected $periodMonth;
-
-    /** @var int */
-    protected $periodYear;
-
-    /** @var \DateTimeInterface */
-    protected $issueDate;
-
-    /** @var \DateTimeInterface */
-    protected $endDate;
-
-    /** @var \DateTimeInterface|null */
-    protected $actualEndDate;
-
-    /** @var Data\CreditDeal\Status */
-    protected $status;
-
-    /** @var float */
-    protected $limit;
-
-    /** @var float */
-    protected $mandatoryPayment;
-
-    /** @var float */
-    protected $currentDebt;
-
-    /** @var float */
-    protected $currentOverdueDebt;
-
-    /** @var int */
-    protected $overdueTime;
-
-    /** @var Data\Flag */
-    protected $paymentIndication;
-
-    /** @var Data\Flag */
-    protected $delayIndication;
-
-    /** @var Data\Flag */
-    protected $creditTrancheIndication;
-
-    /** @var \DateTimeInterface */
-    protected $paymentDate;
 
     public function __construct(
         string $id,
@@ -81,123 +50,45 @@ class Entity extends Element implements \JsonSerializable
         \DateTimeInterface $paymentDate,
         ?\DateTimeInterface $actualEndDate = null
     ) {
-        $this->id = $id;
-        $this->periodMonth = $periodMonth;
-        $this->periodYear = $periodYear;
-        $this->issueDate = $issueDate;
-        $this->endDate = $endDate;
-        $this->actualEndDate = $actualEndDate;
-        $this->status = $status;
-        $this->limit = $limit;
-        $this->mandatoryPayment = $mandatoryPayment;
-        $this->currentDebt = $currentDebt;
-        $this->currentOverdueDebt = $currentOverdueDebt;
-        $this->overdueTime = $overdueTime;
-        $this->paymentIndication = $paymentIndication;
-        $this->delayIndication = $delayIndication;
-        $this->creditTrancheIndication = $creditTrancheIndication;
-        $this->paymentDate = $paymentDate;
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getPeriodMonth(): int
-    {
-        return $this->periodMonth;
-    }
-
-    public function getPeriodYear(): int
-    {
-        return $this->periodYear;
-    }
-
-    public function getIssueDate(): \DateTimeInterface
-    {
-        return $this->issueDate;
-    }
-
-    public function getEndDate(): \DateTimeInterface
-    {
-        return $this->endDate;
-    }
-
-    public function getActualEndDate(): ?\DateTimeInterface
-    {
-        return $this->actualEndDate;
-    }
-
-    public function getStatus(): Data\CreditDeal\Status
-    {
-        return $this->status;
-    }
-
-    public function getLimit(): float
-    {
-        return $this->limit;
-    }
-
-    public function getMandatoryPayment(): float
-    {
-        return $this->mandatoryPayment;
-    }
-
-    public function getCurrentDebt(): float
-    {
-        return $this->currentDebt;
-    }
-
-    public function getCurrentOverdueDebt(): float
-    {
-        return $this->currentOverdueDebt;
-    }
-
-    public function getOverdueTime(): int
-    {
-        return $this->overdueTime;
-    }
-
-    public function getPaymentIndication(): Data\Flag
-    {
-        return $this->paymentIndication;
-    }
-
-    public function getDelayIndication(): Data\Flag
-    {
-        return $this->delayIndication;
-    }
-
-    public function getCreditTrancheIndication(): Data\Flag
-    {
-        return $this->creditTrancheIndication;
-    }
-
-    public function getPaymentDate(): \DateTimeInterface
-    {
-        return $this->paymentDate;
+        parent::__construct([
+            'id' => $id,
+            'periodMonth' => $periodMonth,
+            'periodYear' => $periodYear,
+            'issueDate' => $issueDate,
+            'endDate' => $endDate,
+            'actualEndDate' => $actualEndDate,
+            'status' => $status,
+            'limit' => $limit,
+            'mandatoryPayment' => $mandatoryPayment,
+            'currentDebt' => $currentDebt,
+            'currentOverdueDebt' => $currentOverdueDebt,
+            'overdueTime' => $overdueTime,
+            'paymentIndication' => $paymentIndication,
+            'delayIndication' => $delayIndication,
+            'creditTrancheIndication' => $creditTrancheIndication,
+            'paymentDate' => $paymentDate,
+        ]);
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->getId(),
-            'periodMonth' => $this->getPeriodMonth(),
-            'periodYear' => $this->getPeriodYear(),
-            'issueDate' => Carbon::instance($this->getIssueDate())->toDateString(),
-            'endDate' => Carbon::instance($this->getEndDate())->toDateString(),
-            'status' => (string)$this->getStatus(),
-            'limit' => $this->getLimit(),
-            'mandatoryPayment' => $this->getMandatoryPayment(),
-            'currentDebt' => $this->getCurrentDebt(),
-            'currentOverdueDebt' => $this->getCurrentOverdueDebt(),
-            'overdueTime' => $this->getOverdueTime(),
-            'paymentIndication' => (string)$this->getPaymentIndication(),
-            'delayIndication' => (string)$this->getDelayIndication(),
-            'creditTrancheIndication' => (string)$this->getCreditTrancheIndication(),
-            'paymentDate' => Carbon::instance($this->getPaymentDate())->toDateString(),
-            'actualEndDate' => Carbon::instance($this->getActualEndDate())->toDateString(),
+            'id' => $this->id,
+            'periodMonth' => $this->periodMonth,
+            'periodYear' => $this->periodYear,
+            'issueDate' => Carbon::instance($this->issueDate)->toDateString(),
+            'endDate' => Carbon::instance($this->endDate)->toDateString(),
+            'status' => (string)$this->status,
+            'limit' => $this->limit,
+            'mandatoryPayment' => $this->mandatoryPayment,
+            'currentDebt' => $this->currentDebt,
+            'currentOverdueDebt' => $this->currentOverdueDebt,
+            'overdueTime' => $this->overdueTime,
+            'paymentIndication' => (string)$this->paymentIndication,
+            'delayIndication' => (string)$this->delayIndication,
+            'creditTrancheIndication' => (string)$this->creditTrancheIndication,
+            'paymentDate' => Carbon::instance($this->paymentDate)->toDateString(),
+            'actualEndDate' => Carbon::instance($this->actualEndDate)->toDateString(),
         ];
     }
 }
