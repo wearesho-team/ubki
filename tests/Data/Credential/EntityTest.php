@@ -20,9 +20,98 @@ class EntityTest extends Tests\Extend\ElementTestCase
     /** @var Data\Credential\Entity */
     protected $element;
 
-    public function testGetIdentifiers(): void
+    protected function setUp(): void
     {
-
+        $this->element = new Data\Credential\Entity(
+            Data\Language::ENG(),
+            'Roman',
+            'Andreevich',
+            'Varkuta',
+            Carbon::parse('2010-10-10'),
+            new Data\Credential\Identifier\Collection([
+                new Data\Credential\Identifier\Natural\Entity(
+                    Carbon::parse('2010-10-10'),
+                    Data\Language::ENG(),
+                    'Roman',
+                    'Varkuta',
+                    Carbon::parse('2010-10-10'),
+                    Data\Gender::MAN(),
+                    '1234567890',
+                    'Andreevich',
+                    Data\FamilyStatus::SINGLE('не женат/не замужем'),
+                    Data\Education::SECONDARY_TECH(),
+                    Data\Nationality::UKRAINE(),
+                    Data\RegistrationSpd::PHYSICAL(),
+                    Data\SocialStatus::FULL_TIME(),
+                    0
+                )
+            ]),
+            new Data\Credential\Document\Collection([
+                new Data\Credential\Document\Entity(
+                    Carbon::parse('2010-10-10'),
+                    Data\Language::ENG(),
+                    Data\Credential\Document\Type::PASSPORT('пасспорт'),
+                    'УМ',
+                    '123123',
+                    'Issue by someone',
+                    Carbon::parse('2014-03-12')
+                )
+            ]),
+            new Data\Credential\Address\Collection([
+                new Data\Credential\Address\Entity(
+                    Carbon::parse('2010-10-10'),
+                    Data\Language::ENG(),
+                    Data\Credential\Address\Type::HOME('домашний'),
+                    'Ukraine',
+                    'Kharkov',
+                    'Lyapunova',
+                    '12',
+                    '61100',
+                    'Shevchenkivska',
+                    'Kharkivska',
+                    Data\CityType::TOWN(),
+                    null,
+                    '24'
+                )
+            ]),
+            '1234567890',
+            new Data\Credential\Work\Collection([
+                new Data\Credential\Work\Entity(
+                    Carbon::parse('2010-10-10'),
+                    Data\Language::ENG(),
+                    'some ergpou',
+                    'SHO',
+                    Data\Credential\Work\Rank::SPECIALIST(),
+                    1,
+                    10000.00
+                )
+            ]),
+            new Data\Credential\Photo\Collection([
+                new Data\Credential\Photo\Entity(
+                    Carbon::parse('2017-03-12'),
+                    base64_encode('first photo')
+                ),
+                new Data\Credential\Photo\Entity(
+                    Carbon::parse('2018-04-05'),
+                    base64_encode('second photo'),
+                    '1234567890'
+                )
+            ]),
+            new Data\Credential\LinkedPerson\Collection([
+                new Data\Credential\LinkedPerson\Entity(
+                    'name',
+                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+                    Carbon::parse('2018-09-30'),
+                    '123123123'
+                ),
+                new Data\Credential\LinkedPerson\Entity(
+                    'second name',
+                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
+                    Carbon::parse('2019-07-25'),
+                    '321654987'
+                )
+            ])
+        );
     }
 
     public function testGetters(): void
@@ -45,7 +134,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
                 new Data\Credential\LinkedPerson\Entity(
                     'second name',
                     Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
-                    Carbon::create(2019, 7, 25, 3, 4, 22),
+                    Carbon::parse('2019-07-25'),
                     '321654987'
                 )
             ]),
@@ -72,19 +161,10 @@ class EntityTest extends Tests\Extend\ElementTestCase
             ]),
             $this->element->identifiers
         );
-    }
-
-    public function testGetLinkedPersons(): void
-    {
-
-    }
-
-    public function testGetWorks(): void
-    {
         $this->assertEquals(
             new Data\Credential\Work\Collection([
                 new Data\Credential\Work\Entity(
-                    Carbon::create(2010, 10, 10, 10),
+                    Carbon::parse('2010-10-10'),
                     Data\Language::ENG(),
                     'some ergpou',
                     'SHO',
@@ -93,16 +173,12 @@ class EntityTest extends Tests\Extend\ElementTestCase
                     10000.00
                 )
             ]),
-            $this->element->getWorks()
+            $this->element->works
         );
-    }
-
-    public function testGetAddresses(): void
-    {
         $this->assertEquals(
             new Data\Credential\Address\Collection([
                 new Data\Credential\Address\Entity(
-                    Carbon::create(2010, 10, 10, 10),
+                    Carbon::parse('2010-10-10'),
                     Data\Language::ENG(),
                     Data\Credential\Address\Type::HOME('домашний'),
                     'Ukraine',
@@ -117,49 +193,41 @@ class EntityTest extends Tests\Extend\ElementTestCase
                     '24'
                 )
             ]),
-            $this->element->getAddresses()
+            $this->element->addresses
         );
-    }
-
-    public function testGetPhotos(): void
-    {
         $this->assertEquals(
             new Data\Credential\Photo\Collection([
                 new Data\Credential\Photo\Entity(
-                    Carbon::create(2017, 3, 12, 5, 34, 26),
+                    Carbon::parse('2017-03-12'),
                     base64_encode('first photo')
                 ),
                 new Data\Credential\Photo\Entity(
-                    Carbon::create(2018, 4, 5, 2, 17, 55),
+                    Carbon::parse('2018-04-05'),
                     base64_encode('second photo'),
                     '1234567890'
                 )
             ]),
-            $this->element->getPhotos()
+            $this->element->photos
         );
-    }
-
-    public function testGetDocuments(): void
-    {
         $this->assertEquals(
             new Data\Credential\Document\Collection([
                 new Data\Credential\Document\Entity(
-                    Carbon::create(2010, 10, 10, 10),
+                    Carbon::parse('2010-10-10'),
                     Data\Language::ENG(),
                     Data\Credential\Document\Type::PASSPORT('пасспорт'),
                     'УМ',
                     '123123',
                     'Issue by someone',
-                    Carbon::create(2014, 3, 12)
+                    Carbon::parse('2014-03-12')
                 )
             ]),
-            $this->element->getDocuments()
+            $this->element->documents
         );
     }
 
     public function testJsonSerialize(): void
     {
-        $this->assertEquals(
+        $this->assertArraySubset(
             [
                 'language' => 'ENG',
                 'firstName' => 'Roman',
@@ -254,100 +322,6 @@ class EntityTest extends Tests\Extend\ElementTestCase
                 ],
             ],
             $this->element->jsonSerialize()
-        );
-    }
-
-    protected function setUp(): void
-    {
-        $this->element = new Data\Credential\Entity(
-            Data\Language::ENG(),
-            'Roman',
-            'Andreevich',
-            'Varkuta',
-            Carbon::create(2010, 10, 10, 10),
-            new Data\Credential\Identifier\Collection([
-                new Data\Credential\Identifier\Natural\Entity(
-                    Carbon::create(2010, 10, 10, 10),
-                    Data\Language::ENG(),
-                    'Roman',
-                    'Varkuta',
-                    Carbon::create(2010, 10, 10, 10),
-                    Data\Gender::MAN(),
-                    '1234567890',
-                    'Andreevich',
-                    Data\FamilyStatus::SINGLE('не женат/не замужем'),
-                    Data\Education::SECONDARY_TECH(),
-                    Data\Nationality::UKRAINE(),
-                    Data\RegistrationSpd::PHYSICAL(),
-                    Data\SocialStatus::FULL_TIME(),
-                    0
-                )
-            ]),
-            new Data\Credential\Document\Collection([
-                new Data\Credential\Document\Entity(
-                    Carbon::create(2010, 10, 10, 10),
-                    Data\Language::ENG(),
-                    Data\Credential\Document\Type::PASSPORT('пасспорт'),
-                    'УМ',
-                    '123123',
-                    'Issue by someone',
-                    Carbon::create(2014, 3, 12)
-                )
-            ]),
-            new Data\Credential\Address\Collection([
-                new Data\Credential\Address\Entity(
-                    Carbon::create(2010, 10, 10, 10),
-                    Data\Language::ENG(),
-                    Data\Credential\Address\Type::HOME('домашний'),
-                    'Ukraine',
-                    'Kharkov',
-                    'Lyapunova',
-                    '12',
-                    '61100',
-                    'Shevchenkivska',
-                    'Kharkivska',
-                    Data\CityType::TOWN(),
-                    null,
-                    '24'
-                )
-            ]),
-            '1234567890',
-            new Data\Credential\Work\Collection([
-                new Data\Credential\Work\Entity(
-                    Carbon::create(2010, 10, 10, 10),
-                    Data\Language::ENG(),
-                    'some ergpou',
-                    'SHO',
-                    Data\Credential\Work\Rank::SPECIALIST(),
-                    1,
-                    10000.00
-                )
-            ]),
-            new Data\Credential\Photo\Collection([
-                new Data\Credential\Photo\Entity(
-                    Carbon::create(2017, 3, 12, 5, 34, 26),
-                    base64_encode('first photo')
-                ),
-                new Data\Credential\Photo\Entity(
-                    Carbon::create(2018, 4, 5, 2, 17, 55),
-                    base64_encode('second photo'),
-                    '1234567890'
-                )
-            ]),
-            new Data\Credential\LinkedPerson\Collection([
-                new Data\Credential\LinkedPerson\Entity(
-                    'name',
-                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
-                    Carbon::create(2018, 9, 30, 12, 24, 25),
-                    '123123123'
-                ),
-                new Data\Credential\LinkedPerson\Entity(
-                    'second name',
-                    Data\Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
-                    Carbon::create(2019, 7, 25, 3, 4, 22),
-                    '321654987'
-                )
-            ])
         );
     }
 }
