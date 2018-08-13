@@ -38,4 +38,13 @@ abstract class Element
 
         throw new \InvalidArgumentException('Property with this name does not exist!');
     }
+
+    public function __set($key, $value)
+    {
+        if (array_key_exists($key, $this->properties)) {
+            throw new \InvalidArgumentException('Property is in only-read mode');
+        }
+
+        throw new \InvalidArgumentException('This entity is dynamically unchangeable');
+    }
 }
