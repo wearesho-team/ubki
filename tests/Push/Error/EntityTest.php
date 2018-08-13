@@ -16,11 +16,11 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected const TAG = 'item';
 
     /** @var Push\Error\Entity */
-    protected $block;
+    protected $element;
 
     protected function setUp(): void
     {
-        $this->block = new Push\Error\Entity(
+        $this->element = new Push\Error\Entity(
             Block\Identifying::ID,
             'ADDR',
             'lng',
@@ -31,36 +31,15 @@ class EntityTest extends Tests\Extend\ElementTestCase
         );
     }
 
-    public function testGetPassedStrings(): void
+    public function testGetters(): void
     {
-        $this->assertEquals(
-            10,
-            $this->block->getPassedStringsCount()
-        );
-    }
-
-    public function testGetBlockId(): void
-    {
-        $this->assertEquals(
-            Block\Identifying::ID,
-            $this->block->getBlockId()
-        );
-    }
-
-    public function testGetTag(): void
-    {
-        $this->assertEquals(
-            'ADDR',
-            $this->block->getTag()
-        );
-    }
-
-    public function testGetErrorStrings(): void
-    {
-        $this->assertEquals(
-            10,
-            $this->block->getErrorStringsCount()
-        );
+        $this->assertEquals(10, $this->element->passedStringsCount);
+        $this->assertEquals(Block\Identifying::ID, $this->element->blockId);
+        $this->assertEquals('ADDR', $this->element->tag);
+        $this->assertEquals(10, $this->element->errorStringsCount);
+        $this->assertEquals('lng', $this->element->attribute);
+        $this->assertEquals('CRITICAL', $this->element->type);
+        $this->assertEquals('Some message', $this->element->message);
     }
 
     public function testJsonSerialize(): void
@@ -75,31 +54,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
                 'passedStrings' => 10,
                 'errorString' => 10
             ],
-            $this->block->jsonSerialize()
-        );
-    }
-
-    public function testGetAttribute(): void
-    {
-        $this->assertEquals(
-            'lng',
-            $this->block->getAttribute()
-        );
-    }
-
-    public function testGetType(): void
-    {
-        $this->assertEquals(
-            'CRITICAL',
-            $this->block->getType()
-        );
-    }
-
-    public function testGetMessage(): void
-    {
-        $this->assertEquals(
-            'Some message',
-            $this->block->getMessage()
+            $this->element->jsonSerialize()
         );
     }
 }
