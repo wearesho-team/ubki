@@ -23,7 +23,9 @@ class Entity extends Ubki\Element implements \JsonSerializable
 
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
+    public const LANGUAGE_REF = 'lngref';
     public const RANK = 'cdolgn';
+    public const RANK_REF = 'cdolgnref';
     public const ERGPOU = 'wokpo';
     public const NAME = 'wname';
     public const EXPERIENCE = 'wstag';
