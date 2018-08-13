@@ -25,7 +25,9 @@ class Entity extends Ubki\Element implements \JsonSerializable
 
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
+    public const LANGUAGE_REF = 'lngref';
     public const TYPE = 'dtype';
+    public const TYPE_REF = 'dtyperef';
     public const SERIAL = 'dser';
     public const NUMBER = 'dnom';
     public const TERMIN = 'dterm';
