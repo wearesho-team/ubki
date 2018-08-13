@@ -8,8 +8,9 @@ use Wearesho\Bobra\Ubki;
 
 /**
  * Class EntityTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Data\Step
+ *
+ * @internal
  */
 class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 {
@@ -24,36 +25,31 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
     /** @var Carbon */
     protected $end;
 
-    public function testGetEnd(): void
+    protected function setUp(): void
     {
-        $this->assertEquals(
-            $this->end,
-            $this->element->getEnd()
-        );
-        $this->assertTrue(
-            Carbon::instance($this->element->getStart())
-                ->lessThanOrEqualTo(Carbon::instance($this->element->getEnd()))
-        );
-    }
+        $this->start = Carbon::now();
+        $this->end = Carbon::instance($this->start)->addMinute();
 
-    public function testGetStart(): void
-    {
-        $this->assertEquals(
-            $this->start,
-            $this->element->getStart()
-        );
-        $this->assertTrue(
-            Carbon::instance($this->element->getEnd())
-                ->greaterThanOrEqualTo(Carbon::instance($this->element->getStart()))
-        );
-    }
-
-    public function testGetName(): void
-    {
-        $this->assertEquals(
+        $this->element = new Ubki\Data\Step\Entity(
             'build report',
-            $this->element->getName()
+            $this->start,
+            $this->end
         );
+    }
+
+    public function testGetters(): void
+    {
+        $this->assertEquals($this->end, $this->element->end);
+        $this->assertTrue(
+            Carbon::instance($this->element->start)
+                ->lessThanOrEqualTo(Carbon::instance($this->element->end))
+        );
+        $this->assertEquals($this->start, $this->element->start);
+        $this->assertTrue(
+            Carbon::instance($this->element->end)
+                ->greaterThanOrEqualTo(Carbon::instance($this->element->start))
+        );
+        $this->assertEquals('build report', $this->element->name);
     }
 
     /**
@@ -73,25 +69,13 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
 
     public function testJsonSerialize(): void
     {
-        $this->assertEquals(
+        $this->assertArraySubset(
             [
                 'name' => 'build report',
                 'start' => $this->start->toDateTimeString(),
                 'end' => $this->end->toDateTimeString()
             ],
             $this->element->jsonSerialize()
-        );
-    }
-
-    protected function setUp(): void
-    {
-        $this->start = Carbon::now();
-        $this->end = Carbon::instance($this->start)->addMinute();
-
-        $this->element = new Ubki\Data\Step\Entity(
-            'build report',
-            $this->start,
-            $this->end
         );
     }
 }

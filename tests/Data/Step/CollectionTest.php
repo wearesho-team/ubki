@@ -38,13 +38,13 @@ class CollectionTest extends Ubki\Tests\Extend\CollectionTestCase
     {
         /** @var Ubki\Data\Step\Entity $step */
         foreach ($this->collection as $index => $step) {
-            $this->assertEquals($this->fakeNames[$index], $step->getName());
-            $this->assertEquals($this->fakeStarts[$index], $step->getStart());
-            $this->assertEquals($this->fakeEnds[$index], $step->getEnd());
-            $this->assertTrue(Carbon::instance($step->getStart())->lessThanOrEqualTo($this->fakeEnds[$index]));
-            $this->assertTrue(Carbon::instance($step->getEnd())->greaterThanOrEqualTo($this->fakeStarts[$index]));
-            $this->assertTrue(Carbon::instance($step->getStart())->lessThanOrEqualTo($this->fakeStarts[$index]));
-            $this->assertTrue(Carbon::instance($step->getEnd())->greaterThanOrEqualTo($this->fakeEnds[$index]));
+            $this->assertEquals($this->fakeNames[$index], $step->name);
+            $this->assertEquals($this->fakeStarts[$index], $step->start);
+            $this->assertEquals($this->fakeEnds[$index], $step->end);
+            $this->assertTrue(Carbon::instance($step->start)->lessThanOrEqualTo($this->fakeEnds[$index]));
+            $this->assertTrue(Carbon::instance($step->end)->greaterThanOrEqualTo($this->fakeStarts[$index]));
+            $this->assertTrue(Carbon::instance($step->start)->lessThanOrEqualTo($this->fakeStarts[$index]));
+            $this->assertTrue(Carbon::instance($step->end)->greaterThanOrEqualTo($this->fakeEnds[$index]));
         }
     }
 
