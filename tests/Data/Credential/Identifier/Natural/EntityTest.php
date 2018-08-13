@@ -23,25 +23,11 @@ class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
     public function setUp(): void
     {
         $this->element = new Data\Credential\Identifier\Natural\Entity(
-            Carbon::create(
-                2020,
-                3,
-                12,
-                10,
-                5,
-                7
-            ),
+            Carbon::parse('2020-03-12'),
             Data\Language::ENG(),
             'name',
             'Varkuta',
-            Carbon::create(
-                2010,
-                10,
-                10,
-                10,
-                10,
-                10
-            ),
+            Carbon::parse('2010-10-10'),
             Data\Gender::MAN(),
             '1234567890',
             'Andreevich',
@@ -54,65 +40,21 @@ class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
         );
     }
 
-    public function testGetChildrenCount(): void
+    public function testGetters(): void
     {
+        parent::testGetters();
+
         $this->assertEquals(0, $this->element->childrenCount);
-    }
-
-    public function testGetRegistrationSpd(): void
-    {
         $this->assertEquals(Data\RegistrationSpd::PHYSICAL(), $this->element->registrationSpd);
-    }
-
-    public function testGetInn(): void
-    {
         $this->assertEquals('1234567890', $this->element->inn);
-    }
-
-    public function testGetMiddleName(): void
-    {
-        $this->assertEquals('Andreevich', $this->element->middleName);
-    }
-
-    public function testGetBirthDate(): void
-    {
-        $this->assertEquals(
-            Carbon::create(2010, 10, 10, 10, 10, 10),
-            Carbon::instance($this->element->birthDate)
-        );
-        $this->assertEquals(
-            '2010-10-10 10:10:10',
-            Carbon::instance($this->element->birthDate)->toDateTimeString()
-        );
-    }
-
-    public function testGetGender(): void
-    {
+        $this->assertEquals('Andreevich', $this->element->patronymic);
+        $this->assertEquals(Carbon::parse('2010-10-10'), Carbon::instance($this->element->birthDate));
+        $this->assertEquals('2010-10-10', Carbon::instance($this->element->birthDate)->toDateString());
         $this->assertEquals(Data\Gender::MAN(), $this->element->gender);
-    }
-
-    public function testGetSocialStatus(): void
-    {
         $this->assertEquals(Data\SocialStatus::FULL_TIME(), $this->element->socialStatus);
-    }
-
-    public function testGetEducation(): void
-    {
         $this->assertEquals(Data\Education::SECONDARY_TECH(), $this->element->education);
-    }
-
-    public function testGetNationality(): void
-    {
         $this->assertEquals(Data\Nationality::UKRAINE(), $this->element->nationality);
-    }
-
-    public function testGetLastName(): void
-    {
-        $this->assertEquals('Varkuta', $this->element->lastName);
-    }
-
-    public function testGetFamilyStatus(): void
-    {
+        $this->assertEquals('Varkuta', $this->element->surname);
         $this->assertEquals(Data\FamilyStatus::SINGLE('не женат/не замужем'), $this->element->familyStatus);
     }
 
@@ -123,11 +65,11 @@ class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
                 'createdAt' => '2020-03-12',
                 'language' => 'ENG',
                 'name' => 'name',
-                'lastName' => 'Varkuta',
+                'surname' => 'Varkuta',
                 'birthDate' => '2010-10-10',
                 'gender' => 'MAN',
                 'inn' => '1234567890',
-                'middleName' => 'Andreevich',
+                'patronymic' => 'Andreevich',
                 'familyStatus' => 'не женат/не замужем',
                 'education' => 'SECONDARY_TECH',
                 'nationality' => 'UKRAINE',

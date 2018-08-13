@@ -17,6 +17,7 @@ abstract class Entity extends Ubki\Element implements \JsonSerializable
 {
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
+    public const LANGUAGE_REF = 'lngref';
     public const NAME = null;
 
     public function __construct(
