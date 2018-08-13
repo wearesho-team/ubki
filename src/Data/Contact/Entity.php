@@ -23,6 +23,7 @@ class Entity extends Element implements \JsonSerializable
 
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
+    public const TYPE_REF = 'typeref';
     public const CREATED_AT = 'vdate';
     public const INN = 'inn';
 
