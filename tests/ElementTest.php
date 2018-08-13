@@ -35,6 +35,27 @@ class ElementTest extends TestCase
      */
     public function testMagicGetInvalid(): void
     {
+        /** @noinspection PhpUndefinedFieldInspection */
         static::$element->invalidProperty;
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Property is in only-read mode
+     */
+    public function testResetValue(): void
+    {
+        $property = 'value';
+        static::$element->$property = 10;
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage This entity is dynamically unchangeable
+     */
+    public function testSetNotRelatedProperty(): void
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        static::$element->notRelatedProperty = 10;
     }
 }
