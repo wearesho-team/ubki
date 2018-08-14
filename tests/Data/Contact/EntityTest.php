@@ -37,22 +37,30 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetType(): void
     {
-        $this->assertEquals(Data\Contact\Type::MOBILE(), $this->element->type);
+        $expected = Data\Contact\Type::MOBILE();
+        $this->assertEquals($expected, $this->element->type);
+        $this->assertEquals($expected, $this->element->getType());
     }
 
     public function testGetCreatedAt(): void
     {
-        $this->assertEquals($this->now, Carbon::instance($this->element->createdAt));
+        $expected = $this->now;
+        $this->assertEquals($expected, Carbon::instance($this->element->createdAt));
+        $this->assertEquals($expected, Carbon::instance($this->element->getCreatedAt()));
     }
 
     public function testGetValue(): void
     {
-        $this->assertEquals('+380930439475', $this->element->value);
+        $expected = '+380930439475';
+        $this->assertEquals($expected, $this->element->value);
+        $this->assertEquals($expected, $this->element->getValue());
     }
 
     public function testGetInn(): void
     {
-        $this->assertEquals('1231231230', $this->element->inn);
+        $expected = '1231231230';
+        $this->assertEquals($expected, $this->element->inn);
+        $this->assertEquals($expected, $this->element->getInn());
     }
 
     public function testJsonSerialize(): void

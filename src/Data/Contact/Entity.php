@@ -13,9 +13,9 @@ use Wearesho\Bobra\Ubki\Element;
  * @package Wearesho\Bobra\Ubki\Data\Contact
  *
  * @property-read \DateTimeInterface $createdAt
- * @property-read string $value
- * @property-read Type $type
- * @property-read string|null inn
+ * @property-read string             $value
+ * @property-read Type               $type
+ * @property-read string|null        inn
  */
 class Entity extends Element implements \JsonSerializable
 {
@@ -49,5 +49,25 @@ class Entity extends Element implements \JsonSerializable
             'type' => (string)$this->type,
             'inn' => $this->inn
         ];
+    }
+
+    public function getCreatedAt(): \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
+    public function getType(): Type
+    {
+        return $this->type;
+    }
+
+    public function getInn(): ?string
+    {
+        return $this->inn;
     }
 }
