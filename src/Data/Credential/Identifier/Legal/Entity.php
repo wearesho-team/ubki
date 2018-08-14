@@ -67,4 +67,34 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
             ]
         );
     }
+
+    public function getActivityType(): ?string
+    {
+        return $this->activityType;
+    }
+
+    public function getErgpou(): ?string
+    {
+        return $this->ergpou;
+    }
+
+    public function getForm(): ?int
+    {
+        return $this->form;
+    }
+
+    public function getEconomyBranch(): ?string
+    {
+        return $this->economyBranch;
+    }
+
+    public function getEdrRegistrationDate(): ?\DateTimeInterface
+    {
+        return $this->edrRegistrationDate;
+    }
+
+    public function getTaxRegistrationDate(): ?\DateTimeInterface
+    {
+        return $this->taxRegistrationDate;
+    }
 }

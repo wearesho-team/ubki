@@ -41,4 +41,19 @@ abstract class Entity extends Ubki\Element implements \JsonSerializable
             'name' => $this->name,
         ];
     }
+
+    public function getCreatedAt(): \DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function getLanguage(): Ubki\Data\Language
+    {
+        return $this->language;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }

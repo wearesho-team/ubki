@@ -15,11 +15,24 @@ abstract class EntityTestCase extends Ubki\Tests\Extend\ElementTestCase
     /** @var Ubki\Data\Credential\Identifier\Entity */
     protected $element;
 
-    public function testGetters(): void
+    public function testGetCreatedAt(): void
     {
-        $this->assertEquals(Carbon::parse('2020-03-12'), Carbon::instance($this->element->createdAt));
-        $this->assertEquals('2020-03-12', Carbon::instance($this->element->createdAt)->toDateString());
-        $this->assertEquals('name', $this->element->name);
-        $this->assertEquals(Ubki\Data\Language::ENG(), $this->element->language);
+        $expected = Carbon::parse('2020-03-12');
+        $this->assertEquals($expected, Carbon::instance($this->element->createdAt));
+        $this->assertEquals($expected, Carbon::instance($this->element->getCreatedAt()));
+    }
+
+    public function testGetName(): void
+    {
+        $expected = 'name';
+        $this->assertEquals($expected, $this->element->name);
+        $this->assertEquals($expected, $this->element->getName());
+    }
+
+    public function testGetLanguage(): void
+    {
+        $expected = Ubki\Data\Language::ENG();
+        $this->assertEquals($expected, $this->element->language);
+        $this->assertEquals($expected, $this->element->getLanguage());
     }
 }

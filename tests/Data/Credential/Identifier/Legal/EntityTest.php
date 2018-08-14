@@ -36,17 +36,46 @@ class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
         );
     }
 
-    public function testGetters(): void
+    public function testGetEdrRegistrationDate(): void
     {
-        parent::testGetters();
+        $expected = Carbon::parse('2020-03-12');
+        $this->assertEquals($expected, Carbon::instance($this->element->edrRegistrationDate));
+        $this->assertEquals($expected, Carbon::instance($this->element->getEdrRegistrationDate()));
+    }
 
-        $this->assertEquals(Carbon::parse('2020-03-12'), Carbon::instance($this->element->edrRegistrationDate));
-        $this->assertEquals('1', $this->element->activityType);
-        $this->assertEquals('ergpou', $this->element->ergpou);
-        $this->assertEquals(1, $this->element->form);
-        $this->assertEquals('1', $this->element->economyBranch);
-        $this->assertEquals(Carbon::parse('2020-03-12'), Carbon::instance($this->element->taxRegistrationDate));
-        $this->assertEquals('2020-03-12', Carbon::instance($this->element->taxRegistrationDate)->toDateString());
+    public function testGetActivityType(): void
+    {
+        $expected = '1';
+        $this->assertEquals($expected, $this->element->activityType);
+        $this->assertEquals($expected, $this->element->getActivityType());
+    }
+
+    public function testGetErgpou(): void
+    {
+        $expected = 'ergpou';
+        $this->assertEquals($expected, $this->element->ergpou);
+        $this->assertEquals($expected, $this->element->getErgpou());
+    }
+
+    public function testGetForm(): void
+    {
+        $expected = 1;
+        $this->assertEquals($expected, $this->element->form);
+        $this->assertEquals($expected, $this->element->getForm());
+    }
+
+    public function testGetTaxRegistrationDate(): void
+    {
+        $expected = Carbon::parse('2020-03-12');
+        $this->assertEquals($expected, Carbon::instance($this->element->taxRegistrationDate));
+        $this->assertEquals($expected, Carbon::instance($this->element->getTaxRegistrationDate()));
+    }
+
+    public function testGetEconomyBranch(): void
+    {
+        $expected = '1';
+        $this->assertEquals($expected, $this->element->economyBranch);
+        $this->assertEquals($expected, $this->element->getEconomyBranch());
     }
 
     public function testJsonSerialize(): void

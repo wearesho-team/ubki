@@ -89,4 +89,59 @@ class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializa
             ]
         );
     }
+
+    public function getInn(): ?string
+    {
+        return $this->inn;
+    }
+
+    public function getPatronymic(): ?string
+    {
+        return $this->patronymic;
+    }
+
+    public function getSurname(): string
+    {
+        return $this->surname;
+    }
+
+    public function getBirthDate(): \DateTimeInterface
+    {
+        return $this->birthDate;
+    }
+
+    public function getChildrenCount(): ?int
+    {
+        return $this->childrenCount;
+    }
+
+    public function getGender(): Data\Gender
+    {
+        return $this->gender;
+    }
+
+    public function getFamilyStatus(): ?Data\FamilyStatus
+    {
+        return $this->familyStatus;
+    }
+
+    public function getEducation(): Data\Education
+    {
+        return $this->education;
+    }
+
+    public function getNationality(): ?Data\Nationality
+    {
+        return $this->nationality;
+    }
+
+    public function getRegistrationSpd(): ?Data\RegistrationSpd
+    {
+        return $this->registrationSpd;
+    }
+
+    public function getSocialStatus(): ?Data\SocialStatus
+    {
+        return $this->socialStatus;
+    }
 }
