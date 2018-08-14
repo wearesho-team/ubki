@@ -22,6 +22,7 @@ class Entity extends Element implements \JsonSerializable
     public const ERGPOU = 'okpo2';
     public const NAME = 'okpo2_name';
     public const ROLE = 'linkrole';
+    public const ROLE_REF = 'linkroleref';
     public const ISSUE_DATE = 'rdate';
 
     public function __construct(
@@ -46,5 +47,25 @@ class Entity extends Element implements \JsonSerializable
             'issueDate' => Carbon::instance($this->issueDate)->toDateString(),
             'ergpou' => $this->ergpou
         ];
+    }
+
+    public function getErgpou(): ?string
+    {
+        return $this->ergpou;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getRole(): Role
+    {
+        return $this->role;
+    }
+
+    public function getIssueDate(): \DateTimeInterface
+    {
+        return $this->issueDate;
     }
 }

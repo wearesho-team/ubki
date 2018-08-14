@@ -25,41 +25,42 @@ class EntityTest extends Tests\Extend\ElementTestCase
         $this->element = new Credential\LinkedPerson\Entity(
             'name',
             Credential\LinkedPerson\Role::FOUNDER('Учредитель'),
-            Carbon::create(2018, 9, 30, 12, 24, 25),
+            Carbon::parse('2018-09-30'),
             '123123123'
         );
     }
 
     public function testGetErgpou(): void
     {
-        $this->assertEquals('123123123', $this->element->ergpou);
+        $expected = '123123123';
+        $this->assertEquals($expected, $this->element->ergpou);
+        $this->assertEquals($expected, $this->element->getErgpou());
     }
 
     public function testGetIssueDate(): void
     {
-        $this->assertEquals(
-            Carbon::create(2018, 9, 30, 12, 24, 25),
-            Carbon::instance($this->element->issueDate)
-        );
-        $this->assertEquals(
-            '2018-09-30 12:24:25',
-            Carbon::instance($this->element->issueDate)->toDateTimeString()
-        );
+        $expected = Carbon::parse('2018-09-30');
+        $this->assertEquals($expected, Carbon::instance($this->element->issueDate));
+        $this->assertEquals($expected, Carbon::instance($this->element->getIssueDate()));
     }
 
     public function testGetName(): void
     {
-        $this->assertEquals('name', $this->element->name);
+        $expected = 'name';
+        $this->assertEquals($expected, $this->element->name);
+        $this->assertEquals($expected, $this->element->getName());
     }
 
     public function testGetRole(): void
     {
-        $this->assertEquals(Credential\LinkedPerson\Role::FOUNDER('Учредитель'), $this->element->role);
+        $expected = Credential\LinkedPerson\Role::FOUNDER('Учредитель');
+        $this->assertEquals($expected, $this->element->role);
+        $this->assertEquals($expected, $this->element->getRole());
     }
 
     public function testJsonSerialize(): void
     {
-        $this->assertEquals(
+        $this->assertArraySubset(
             [
                 'name' => 'name',
                 'role' => 'Учредитель',
