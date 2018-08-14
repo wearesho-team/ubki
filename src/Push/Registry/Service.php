@@ -103,7 +103,7 @@ class Service implements ServiceInterface
      *
      * @return string
      */
-    private function getBody(RequestInterface $request): string
+    public function getBody(RequestInterface $request): string
     {
         $document = new \DOMDocument('1.0', 'utf-8');
 
