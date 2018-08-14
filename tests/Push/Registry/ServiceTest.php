@@ -201,8 +201,6 @@ class ServiceTest extends TestCase
 
     public function testInvalidXmlProductionMode(): void
     {
-        $this->expectException(GuzzleHttp\Exception\RequestException::class);
-
         $responseRegistryXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc></doc>';
 
         $container = [];
@@ -210,7 +208,7 @@ class ServiceTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, [], $this->responseAuth),
             new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryUrl),
-            new GuzzleHttp\Psr7\Response(400, [], $responseRegistryXml)
+            new GuzzleHttp\Psr7\Response(200, [], $responseRegistryXml)
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);
         $stack->push($history);
@@ -238,6 +236,9 @@ class ServiceTest extends TestCase
             'X000000000001'
         );
 
+        $this->expectException(Ubki\Push\Registry\UnknownErrorException::class);
+        $this->expectExceptionCode(-1);
+
         /** @noinspection PhpUnhandledExceptionInspection */
         $this->service->send($request);
     }
@@ -246,7 +247,7 @@ class ServiceTest extends TestCase
     {
         $this->expectException(\Exception::class);
 
-        $responseRegistryXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><prot /></doc>';
+        $responseRegistryXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><prot></prot></doc>';
 
         $container = [];
         $history = GuzzleHttp\Middleware::history($container);

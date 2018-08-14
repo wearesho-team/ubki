@@ -181,17 +181,16 @@ class Service implements ServiceInterface
                 throw $exception;
             }
 
-            $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
-
-            if ($xml === false || !isset($xml->prot)) {
-                // Not XML or invalid format XML
-                throw $exception;
-            }
-
             throw new UnknownErrorException(
-                (string)$xml->doc,
+                (string)(simplexml_load_string($exception->getResponse()->getBody()->__toString()))->doc,
                 $exception
             );
+        }
+
+        $xml = simplexml_load_string($response->getBody()->__toString());
+
+        if ($xml === false || !isset($xml->prot)) {
+            throw new UnknownErrorException((string)$xml->doc);
         }
 
         return $response->getBody()->__toString();
