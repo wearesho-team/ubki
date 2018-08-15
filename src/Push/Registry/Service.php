@@ -27,6 +27,9 @@ class Service implements ServiceInterface
     /** @var Log\LoggerInterface */
     protected $logger;
 
+    /** @var RequestInterface */
+    private $request;
+
     public function __construct(
         Ubki\Push\ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
@@ -45,18 +48,18 @@ class Service implements ServiceInterface
      * @return RequestResponsePair
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws RequestException
-     * @throws Ubki\NullResponseException
      * @throws UnknownErrorException
      */
     public function send(RequestInterface $request): RequestResponsePair
     {
-        $guzzleRequest = $this->convertToGuzzleRequest($request);
+        $this->request = $request;
+        $guzzleRequest = $this->convertToGuzzleRequest($this->request);
 
         $this->logger->debug("UBKI registry request {url}", [
             'url' => $guzzleRequest->getUri()->__toString(),
         ]);
 
-        $this->validateRequestType($request);
+        $this->validateRequestType($this->request);
 
         /** @var GuzzleHttp\Psr7\Response $httpResponse */
         $response = $this->client->send($guzzleRequest);
@@ -66,7 +69,7 @@ class Service implements ServiceInterface
 
         return new RequestResponsePair(
             $guzzleRequest->getBody()->__toString(),
-            $this->getFileContent($urlFile)
+            $fileContent = $this->getFileContent($urlFile)
         );
     }
 
@@ -103,7 +106,7 @@ class Service implements ServiceInterface
      *
      * @return string
      */
-    public function getBody(RequestInterface $request): string
+    private function getBody(RequestInterface $request): string
     {
         $document = new \DOMDocument('1.0', 'utf-8');
 
@@ -163,7 +166,6 @@ class Service implements ServiceInterface
      * @param string $url
      *
      * @return string
-     * @throws EmptyResponseDocException
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws UnknownErrorException
      */
@@ -186,12 +188,6 @@ class Service implements ServiceInterface
                 (string)(simplexml_load_string($exception->getResponse()->getBody()->__toString())),
                 $exception
             );
-        }
-
-        $xml = simplexml_load_string($response->getBody()->__toString());
-
-        if ($xml === false || !isset($xml->prot)) {
-            throw new EmptyResponseDocException((string)$xml, 'Xml document is empty');
         }
 
         return $response->getBody()->__toString();
