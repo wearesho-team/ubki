@@ -236,7 +236,8 @@ class ServiceTest extends TestCase
             'X000000000001'
         );
 
-        $this->expectException(Ubki\Push\Registry\UnknownErrorException::class);
+        $this->expectException(Ubki\Push\Registry\EmptyResponseDocException::class);
+        $this->expectExceptionMessage('Xml document is empty');
         $this->expectExceptionCode(-1);
 
         /** @noinspection PhpUnhandledExceptionInspection */

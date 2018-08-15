@@ -163,6 +163,7 @@ class Service implements ServiceInterface
      * @param string $url
      *
      * @return string
+     * @throws EmptyResponseDocException
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws UnknownErrorException
      */
@@ -182,7 +183,7 @@ class Service implements ServiceInterface
             }
 
             throw new UnknownErrorException(
-                (string)(simplexml_load_string($exception->getResponse()->getBody()->__toString()))->doc,
+                (string)(simplexml_load_string($exception->getResponse()->getBody()->__toString())),
                 $exception
             );
         }
@@ -190,7 +191,7 @@ class Service implements ServiceInterface
         $xml = simplexml_load_string($response->getBody()->__toString());
 
         if ($xml === false || !isset($xml->prot)) {
-            throw new UnknownErrorException((string)$xml->doc);
+            throw new EmptyResponseDocException((string)$xml, 'Xml document is empty');
         }
 
         return $response->getBody()->__toString();
