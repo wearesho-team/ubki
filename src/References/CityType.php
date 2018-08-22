@@ -1,6 +1,6 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+namespace Wearesho\Bobra\Ubki\References;
 
 use Wearesho\Bobra\Ubki\Reference;
 

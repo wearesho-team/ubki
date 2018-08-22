@@ -4,58 +4,34 @@ namespace Wearesho\Bobra\Ubki\Tests;
 
 use PHPUnit\Framework\TestCase;
 
+use Wearesho\Bobra\Ubki\Element;
+
 /**
  * Class ElementTest
  * @package Wearesho\Bobra\Ubki\Tests
- *
+ * @coversDefaultClass Element
  * @internal
  */
 class ElementTest extends TestCase
 {
-    /** @var Mocks\Element */
-    protected static $element;
+    protected const TAG = 'test';
 
-    /** @var int */
-    protected static $fakeValue;
+    /** @var Element */
+    protected $fakeElement;
 
-    public static function setUpBeforeClass(): void
+    protected function setUp(): void
     {
-        static::$fakeValue = mt_rand();
-        static::$element = new Mocks\Element(static::$fakeValue);
+        $this->fakeElement = new class extends Element
+        {
+            public const TAG = 'test';
+        };
     }
 
-    public function testMagicGetSuccess(): void
+    public function testTag(): void
     {
-        $this->assertEquals(static::$fakeValue, static::$element->value);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Property with this name does not exist!
-     */
-    public function testMagicGetInvalid(): void
-    {
-        /** @noinspection PhpUndefinedFieldInspection */
-        static::$element->invalidProperty;
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Property is in only-read mode
-     */
-    public function testResetValue(): void
-    {
-        $property = 'value';
-        static::$element->$property = 10;
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage This entity is dynamically unchangeable
-     */
-    public function testSetNotRelatedProperty(): void
-    {
-        /** @noinspection PhpUndefinedFieldInspection */
-        static::$element->notRelatedProperty = 10;
+        $this->assertEquals(
+            static::TAG,
+            $this->fakeElement->tag()
+        );
     }
 }
