@@ -4,32 +4,44 @@ namespace Wearesho\Bobra\Ubki\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\References\Language;
 
 /**
  * Class ReferenceTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Reference
+ * @internal
  */
 class ReferenceTest extends TestCase
 {
-    public function testInstance()
+    public function testToString(): void
+    {
+        $language = Language::ENG();
+
+        $this->assertEquals('ENG', (string)$language);
+
+        $language = Language::ENG('english');
+
+        $this->assertEquals('english', (string)$language);
+    }
+
+    public function testInstance(): void
     {
         $description = 'English language';
-        $language = Ubki\Language::EN($description);
+        $language = Language::ENG($description);
 
-        $this->assertEquals(Ubki\Language::EN, $language->getValue());
+        $this->assertEquals(Language::ENG, $language->getValue());
         $this->assertEquals($description, $language->getDescription());
-        $this->assertEquals(Ubki\Language::EN()->getKey(), $language->getKey());
-        $this->assertEquals('EN', $language->getKey());
+        $this->assertEquals(Language::ENG()->getKey(), $language->getKey());
+        $this->assertEquals('ENG', $language->getKey());
     }
 
     /**
      * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage No static method or enum constant 'BD' in class Wearesho\Bobra\Ubki\Language
+     * @expectedExceptionMessage No static method or enum constant 'BD' in class Wearesho\Bobra\Ubki\References\Language
      */
     public function testInvalidConst(): void
     {
-        Ubki\Language::BD();
+        Language::BD();
     }
 }

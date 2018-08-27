@@ -14,7 +14,7 @@ class Identifying extends Ubki\Block
 
     protected $credential;
 
-    // todo: refactor after implementation of Credential element
+    // todo: refactor after implementing Credential element
     public function __construct($credential)
     {
         $this->credential = $credential;

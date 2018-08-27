@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Push\Error;
+namespace Wearesho\Bobra\Ubki\Push;
 
 use Wearesho\Bobra\Ubki\Element;
 
 /**
- * Class Entity
- * @package Wearesho\Bobra\Ubki\Push\Error
+ * Class Error
+ * @package Wearesho\Bobra\Ubki\Push
  */
-class Entity extends Element implements \JsonSerializable
+class Error extends Element implements \JsonSerializable
 {
     public const ROOT = 'tech';
     public const PARENT_TAG = 'sentdatainfo';
@@ -49,16 +49,29 @@ class Entity extends Element implements \JsonSerializable
         string $attribute,
         string $type,
         string $message,
-        ?int $passedStrings = null,
-        ?int $errorStrings = null
+        ?int $passedStringsCount,
+        ?int $errorStringsCount
     ) {
         $this->blockId = $blockId;
         $this->tag = $tag;
         $this->attribute = $attribute;
         $this->type = $type;
         $this->message = $message;
-        $this->passedStringsCount = $passedStrings;
-        $this->errorStringsCount = $errorStrings;
+        $this->passedStringsCount = $passedStringsCount;
+        $this->errorStringsCount = $errorStringsCount;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'blockId' => $this->blockId,
+            'tag' => $this->tag,
+            'attribute' => $this->attribute,
+            'type' => $this->type,
+            'message' => $this->message,
+            'passedStrings' => $this->passedStringsCount,
+            'errorString' => $this->errorStringsCount
+        ];
     }
 
     public function getBlockId(): int
@@ -94,18 +107,5 @@ class Entity extends Element implements \JsonSerializable
     public function getErrorStringsCount(): ?int
     {
         return $this->errorStringsCount;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'blockId' => $this->getBlockId(),
-            'tag' => $this->getTag(),
-            'attribute' => $this->getAttribute(),
-            'type' => $this->getType(),
-            'message' => $this->getMessage(),
-            'passedStrings' => $this->getPassedStringsCount(),
-            'errorString' => $this->getErrorStringsCount()
-        ];
     }
 }
