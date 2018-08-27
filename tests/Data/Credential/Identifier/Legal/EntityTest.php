@@ -18,12 +18,12 @@ class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
 {
     protected const TAG = 'urident';
 
-    /** @var Data\Credential\Identifier\Legal\Entity */
+    /** @var Data\Credential\Identifier\Legal\LegalIdentifier */
     protected $element;
 
     protected function setUp(): void
     {
-        $this->element = new Data\Credential\Identifier\Legal\Entity(
+        $this->element = new Data\Credential\Identifier\Legal\LegalIdentifier(
             Carbon::parse('2020-03-12'),
             Data\Language::ENG(),
             'name',

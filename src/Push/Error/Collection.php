@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Push\Error;
 use Wearesho\Bobra\Ubki\BaseCollection;
 
 /**
- * Class Collection
+ * Class Identifiers
  * @package Wearesho\Bobra\Ubki\Push\Error
  */
 class Collection extends BaseCollection

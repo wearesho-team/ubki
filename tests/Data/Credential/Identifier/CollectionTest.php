@@ -15,20 +15,20 @@ use Wearesho\Bobra\Ubki\Tests;
  */
 class CollectionTest extends Tests\Extend\CollectionTestCase
 {
-    protected const TYPE = Data\Credential\Identifier\Entity::class;
+    protected const TYPE = Data\Credential\Identifier\Identifier::class;
 
-    /** @var Data\Credential\Identifier\Collection */
+    /** @var Data\Credential\Identifier\Identifiers */
     protected $collection;
 
     protected function setUp(): void
     {
-        $this->collection = new Data\Credential\Identifier\Collection();
+        $this->collection = new Data\Credential\Identifier\Identifiers();
     }
 
     public function testAppend(): void
     {
         $this->collection->append(
-            new Data\Credential\Identifier\Natural\Entity(
+            new Data\Credential\Identifier\Natural\NaturalIdentifier(
                 Carbon::create(2020, 10, 10, 10, 10),
                 Data\Language::ENG(),
                 'Roman',
@@ -47,7 +47,7 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
         );
 
         $this->collection->append(
-            new Data\Credential\Identifier\Legal\Entity(
+            new Data\Credential\Identifier\Legal\LegalIdentifier(
                 Carbon::create(2020, 10, 10, 10, 10),
                 Data\Language::ENG(),
                 'name',
@@ -61,7 +61,7 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
         );
 
         $this->assertEquals(
-            new Data\Credential\Identifier\Natural\Entity(
+            new Data\Credential\Identifier\Natural\NaturalIdentifier(
                 Carbon::create(2020, 10, 10, 10, 10),
                 Data\Language::ENG(),
                 'Roman',
@@ -80,7 +80,7 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
             $this->collection->offsetGet(0)
         );
         $this->assertEquals(
-            new Data\Credential\Identifier\Legal\Entity(
+            new Data\Credential\Identifier\Legal\LegalIdentifier(
                 Carbon::create(2020, 10, 10, 10, 10),
                 Data\Language::ENG(),
                 'name',

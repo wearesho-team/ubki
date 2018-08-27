@@ -17,12 +17,12 @@ class EntityTest extends Tests\Data\Credential\Identifier\EntityTestCase
 {
     protected const TAG = 'ident';
 
-    /** @var Data\Credential\Identifier\Natural\Entity */
+    /** @var Data\Credential\Identifier\Natural\NaturalIdentifier */
     protected $element;
 
     public function setUp(): void
     {
-        $this->element = new Data\Credential\Identifier\Natural\Entity(
+        $this->element = new Data\Credential\Identifier\Natural\NaturalIdentifier(
             Carbon::parse('2020-03-12'),
             Data\Language::ENG(),
             'name',

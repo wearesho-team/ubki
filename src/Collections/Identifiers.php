@@ -5,13 +5,13 @@ namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Collection
+ * Class Identifiers
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier
  */
-class Collection extends Ubki\BaseCollection
+class Identifiers extends Ubki\BaseCollection
 {
     public function type(): string
     {
-        return Entity::class;
+        return Identifier::class;
     }
 }

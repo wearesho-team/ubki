@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
- * Class Entity
+ * Class Identifier
  * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural
  *
  * @property-read string|null               $inn
@@ -22,7 +22,7 @@ use Wearesho\Bobra\Ubki\Data;
  * @property-read Data\SocialStatus|null    $socialStatus
  * @property-read int|null                  $childrenCount
  */
-class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializable
+class NaturalIdentifier extends Data\Credential\Identifier\Identifier implements \JsonSerializable
 {
     public const TAG = 'ident';
 

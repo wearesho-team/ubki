@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Push\Error;
 use Wearesho\Bobra\Ubki\Element;
 
 /**
- * Class Entity
+ * Class Identifier
  * @package Wearesho\Bobra\Ubki\Push\Error
  *
  * @property-read int      $blockId

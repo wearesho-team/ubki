@@ -12,7 +12,7 @@ use Wearesho\Bobra\Ubki;
  */
 abstract class EntityTestCase extends Ubki\Tests\Extend\ElementTestCase
 {
-    /** @var Ubki\Data\Credential\Identifier\Entity */
+    /** @var Ubki\Data\Credential\Identifier\Identifier */
     protected $element;
 
     public function testGetCreatedAt(): void

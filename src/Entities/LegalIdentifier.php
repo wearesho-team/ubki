@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal;
+namespace Wearesho\Bobra\Ubki\Entities;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\References;
 
 /**
- * Class Entity
- * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Legal
+ * Class LegalIdentifier
+ * @package Wearesho\Bobra\Ubki\Entities
  *
  * @property-read string|null             $ergpou
  * @property-read int|null                $form
@@ -17,7 +17,7 @@ use Wearesho\Bobra\Ubki\Data;
  * @property-read \DateTimeInterface|null $edrRegistrationDate
  * @property-read \DateTimeInterface|null $taxRegistrationDate
  */
-class Entity extends Data\Credential\Identifier\Entity implements \JsonSerializable
+class LegalIdentifier extends Identifier implements \JsonSerializable
 {
     public const TAG = 'urident';
 

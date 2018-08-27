@@ -1,19 +1,20 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier;
+namespace Wearesho\Bobra\Ubki\Entities;
 
 use Carbon\Carbon;
+
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Entity
- * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier
+ * Class Identifier
+ * @package Wearesho\Bobra\Ubki\Entities
  *
  * @property-read \DateTimeInterface $createdAt
  * @property-read Ubki\Data\Language $language
  * @property-read string             $name
  */
-abstract class Entity extends Ubki\Element implements \JsonSerializable
+abstract class Identifier extends Ubki\Element implements \JsonSerializable
 {
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
