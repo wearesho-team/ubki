@@ -2,32 +2,30 @@
 
 namespace Wearesho\Bobra\Ubki\Push;
 
-use Wearesho\Bobra\Ubki\Push\Error;
-
 /**
  * Class Parser
  * @package Wearesho\Bobra\Ubki\Push
  */
 class Parser
 {
-    public function parseErrors(string $responseXml): Error\Collection
+    public function parseErrors(string $responseXml): ErrorCollection
     {
-        return new Error\Collection(array_map(
-            function (\SimpleXMLElement $item): Error\Entity {
+        return new ErrorCollection(array_map(
+            function (\SimpleXMLElement $item): Error {
                 $attributes = $item->attributes();
 
-                return new Error\Entity(
-                    (int)$attributes[Error\Entity::ATTR_BLOCK_ID],
-                    (string)$attributes[Error\Entity::ATTR_TAG],
-                    (string)$attributes[Error\Entity::ATTR_ATTRIBUTE],
-                    (string)$attributes[Error\Entity::ATTR_TYPE],
-                    (string)$attributes[Error\Entity::ATTR_MESSAGE],
-                    empty((string)$attributes[Error\Entity::PASSED_STRINGS])
+                return new Error(
+                    (int)$attributes[Error::ATTR_BLOCK_ID],
+                    (string)$attributes[Error::ATTR_TAG],
+                    (string)$attributes[Error::ATTR_ATTRIBUTE],
+                    (string)$attributes[Error::ATTR_TYPE],
+                    (string)$attributes[Error::ATTR_MESSAGE],
+                    empty((string)$attributes[Error::PASSED_STRINGS])
                         ? null
-                        : (int)$attributes[Error\Entity::PASSED_STRINGS],
-                    empty((string)$attributes[Error\Entity::ERROR_STRINGS])
+                        : (int)$attributes[Error::PASSED_STRINGS],
+                    empty((string)$attributes[Error::ERROR_STRINGS])
                         ? null
-                        : (int)$attributes[Error\Entity::ERROR_STRINGS]
+                        : (int)$attributes[Error::ERROR_STRINGS]
                 );
             },
             $this->fetchItems($responseXml)
@@ -43,9 +41,9 @@ class Parser
     {
         $items = [];
         $xml = simplexml_load_string($body);
-        $xmlItems = $xml->{Error\Entity::ROOT}
-            ->{Error\Entity::PARENT_TAG}
-            ->{Error\Entity::TAG};
+        $xmlItems = $xml->{Error::ROOT}
+            ->{Error::PARENT_TAG}
+            ->{Error::TAG};
 
         foreach ($xmlItems as $xmlItem) {
             $items[] = $xmlItem;

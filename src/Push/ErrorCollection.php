@@ -1,17 +1,17 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Push\Error;
+namespace Wearesho\Bobra\Ubki\Push;
 
 use Wearesho\Bobra\Ubki\BaseCollection;
 
 /**
- * Class Collection
+ * Class Addresses
  * @package Wearesho\Bobra\Ubki\Push\Error
  */
-class Collection extends BaseCollection
+class ErrorCollection extends BaseCollection
 {
     public function type(): string
     {
-        return Entity::class;
+        return Error::class;
     }
 }
