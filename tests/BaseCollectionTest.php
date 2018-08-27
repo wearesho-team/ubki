@@ -59,7 +59,7 @@ class BaseCollectionTest extends TestCase
          * @var Ubki\Tests\Mocks\Element $item
          */
         foreach ($this->collection as $index => $item) {
-            $this->assertEquals($values[$index], $item->value);
+            $this->assertEquals($values[$index], $item->getValue());
         }
     }
 

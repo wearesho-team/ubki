@@ -1,14 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier;
+namespace Wearesho\Bobra\Ubki\Collections;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\BaseCollection;
+use Wearesho\Bobra\Ubki\Entities\Identifier;
 
 /**
  * Class Identifiers
- * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier
+ * @package Wearesho\Bobra\Ubki\Collections
  */
-class Identifiers extends Ubki\BaseCollection
+class Identifiers extends BaseCollection
 {
     public function type(): string
     {

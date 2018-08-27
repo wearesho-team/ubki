@@ -1,28 +1,17 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural;
+namespace Wearesho\Bobra\Ubki\Entities;
 
 use Carbon\Carbon;
 
+use Wearesho\Bobra\Ubki\References;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
- * Class Identifier
- * @package Wearesho\Bobra\Ubki\Data\Credential\Identifier\Natural
- *
- * @property-read string|null               $inn
- * @property-read string|null               $patronymic
- * @property-read string                    $surname
- * @property-read \DateTimeInterface        $birthDate
- * @property-read Data\Gender               $gender
- * @property-read Data\FamilyStatus|null    $familyStatus
- * @property-read Data\Education            $education
- * @property-read Data\Nationality|null     $nationality
- * @property-read Data\RegistrationSpd|null $registrationSpd
- * @property-read Data\SocialStatus|null    $socialStatus
- * @property-read int|null                  $childrenCount
+ * Class NaturalIdentifier
+ * @package Wearesho\Bobra\Ubki\Entities
  */
-class NaturalIdentifier extends Data\Credential\Identifier\Identifier implements \JsonSerializable
+class NaturalIdentifier extends Identifier implements \JsonSerializable
 {
     public const TAG = 'ident';
 
@@ -39,9 +28,42 @@ class NaturalIdentifier extends Data\Credential\Identifier\Identifier implements
     public const SOCIAL_STATUS = 'sstate';
     public const CHILDREN_COUNT = 'cchild';
 
+    /** @var string */
+    protected $surname;
+
+    /** @var \DateTimeInterface */
+    protected $birthDate;
+
+    /** @var Data\Gender */
+    protected $gender;
+
+    /** @var string|null */
+    protected $inn;
+
+    /** @var string|null */
+    protected $patronymic;
+
+    /** @var Data\FamilyStatus|null */
+    protected $familyStatus;
+
+    /** @var Data\Education|null */
+    protected $education;
+
+    /** @var Data\Nationality|null */
+    protected $nationality;
+
+    /** @var Data\RegistrationSpd|null */
+    protected $registrationSpd;
+
+    /** @var Data\SocialStatus|null */
+    protected $socialStatus;
+
+    /** @var int|null */
+    protected $childrenCount;
+
     public function __construct(
         \DateTimeInterface $createdAt,
-        Data\Language $language,
+        References\Language $language,
         string $name,
         string $surname,
         \DateTimeInterface $birthDate,
@@ -55,19 +77,19 @@ class NaturalIdentifier extends Data\Credential\Identifier\Identifier implements
         ?Data\SocialStatus $socialStatus = null,
         ?int $childrenCount = null
     ) {
-        parent::__construct($createdAt, $language, $name, [
-            'surname' => $surname,
-            'birthDate' => $birthDate,
-            'gender' => $gender,
-            'inn' => $inn,
-            'patronymic' => $patronymic,
-            'familyStatus' => $familyStatus,
-            'education' => $education,
-            'nationality' => $nationality,
-            'registrationSpd' => $registrationSpd,
-            'socialStatus' => $socialStatus,
-            'childrenCount' => $childrenCount,
-        ]);
+        $this->surname = $surname;
+        $this->birthDate = $birthDate;
+        $this->gender = $gender;
+        $this->inn = $inn;
+        $this->patronymic = $patronymic;
+        $this->familyStatus = $familyStatus;
+        $this->education = $education;
+        $this->nationality = $nationality;
+        $this->registrationSpd = $registrationSpd;
+        $this->socialStatus = $socialStatus;
+        $this->childrenCount = $childrenCount;
+
+        parent::__construct($createdAt, $language, $name);
     }
 
     public function jsonSerialize(): array

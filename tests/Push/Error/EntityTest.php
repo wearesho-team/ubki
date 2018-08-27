@@ -34,13 +34,34 @@ class EntityTest extends Tests\Extend\ElementTestCase
 
     public function testGetters(): void
     {
-        $this->assertEquals(10, $this->element->passedStringsCount);
-        $this->assertEquals(Block\Identifying::ID, $this->element->blockId);
-        $this->assertEquals('ADDR', $this->element->tag);
-        $this->assertEquals(10, $this->element->errorStringsCount);
-        $this->assertEquals('lng', $this->element->attribute);
-        $this->assertEquals('CRITICAL', $this->element->type);
-        $this->assertEquals('Some message', $this->element->message);
+        $this->assertEquals(
+            10,
+            $this->element->getPassedStringsCount()
+        );
+    }
+
+    public function testGetBlockId(): void
+    {
+        $this->assertEquals(
+            Block\Identifying::ID,
+            $this->element->getBlockId()
+        );
+    }
+
+    public function testGetTag(): void
+    {
+        $this->assertEquals(
+            'ADDR',
+            $this->element->getTag()
+        );
+    }
+
+    public function testGetErrorStrings(): void
+    {
+        $this->assertEquals(
+            10,
+            $this->element->getErrorStringsCount()
+        );
     }
 
     public function testJsonSerialize(): void
@@ -56,6 +77,30 @@ class EntityTest extends Tests\Extend\ElementTestCase
                 'errorString' => 10
             ],
             $this->element->jsonSerialize()
+        );
+    }
+
+    public function testGetAttribute(): void
+    {
+        $this->assertEquals(
+            'lng',
+            $this->element->getAttribute()
+        );
+    }
+
+    public function testGetType(): void
+    {
+        $this->assertEquals(
+            'CRITICAL',
+            $this->element->getType()
+        );
+    }
+
+    public function testGetMessage(): void
+    {
+        $this->assertEquals(
+            'Some message',
+            $this->element->getMessage()
         );
     }
 }

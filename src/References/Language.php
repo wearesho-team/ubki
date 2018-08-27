@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+namespace Wearesho\Bobra\Ubki\References;
 
 use Wearesho\Bobra\Ubki\Reference;
 
 /**
  * Class Language
- * @package Wearesho\Bobra\Ubki\Data
+ * @package Wearesho\Bobra\Ubki\References
  *
  * Use iso 639-3 standard
  * @see https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4%D1%8B_%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2

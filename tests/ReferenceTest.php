@@ -4,12 +4,13 @@ namespace Wearesho\Bobra\Ubki\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Data\Language;
+use Wearesho\Bobra\Ubki\References\Language;
 
 /**
  * Class ReferenceTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Reference
+ * @internal
  */
 class ReferenceTest extends TestCase
 {
@@ -37,7 +38,7 @@ class ReferenceTest extends TestCase
 
     /**
      * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage No static method or enum constant 'BD' in class Wearesho\Bobra\Ubki\Data\Language
+     * @expectedExceptionMessage No static method or enum constant 'BD' in class Wearesho\Bobra\Ubki\References\Language
      */
     public function testInvalidConst(): void
     {

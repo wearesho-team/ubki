@@ -9,13 +9,6 @@ use Wearesho\Bobra\Ubki\References;
 /**
  * Class LegalIdentifier
  * @package Wearesho\Bobra\Ubki\Entities
- *
- * @property-read string|null             $ergpou
- * @property-read int|null                $form
- * @property-read string|null             $economyBranch
- * @property-read string|null             $activityType
- * @property-read \DateTimeInterface|null $edrRegistrationDate
- * @property-read \DateTimeInterface|null $taxRegistrationDate
  */
 class LegalIdentifier extends Identifier implements \JsonSerializable
 {
@@ -32,26 +25,45 @@ class LegalIdentifier extends Identifier implements \JsonSerializable
     public const EDR_REGISTRATION_DATE = 'urdatreg';
     public const TAX_REGISTRATION_DATE = 'urdatregnal';
 
+    /** @var string|null */
+    protected $ergpou;
+
+    /** @var string|null */
+    protected $form;
+
+    /** @var string|null */
+    protected $economyBranch;
+
+    /** @var string|null */
+    protected $activityType;
+
+    /** @var \DateTimeInterface|null */
+    protected $edrRegistrationDate;
+
+    /** @var \DateTimeInterface|null */
+    protected $taxRegistrationDate;
+
     public function __construct(
         \DateTimeInterface $createdAt,
-        Data\Language $language,
+        References\Language $language,
         string $name,
-        ?string $ergpou = null,
-        ?int $form = null,
-        ?string $economyBranch = null,
-        ?string $activityType = null,
-        ?\DateTimeInterface $edrRegistrationDate = null,
-        ?\DateTimeInterface $taxRegistrationDate = null
+        ?string $ergpou,
+        ?int $form,
+        ?string $economyBranch,
+        ?string $activityType,
+        ?\DateTimeInterface $edrRegistrationDate,
+        ?\DateTimeInterface $taxRegistrationDate
     ) {
-        parent::__construct($createdAt, $language, $name, [
-            'ergpou' => $ergpou,
-            'form' => $form,
-            'economyBranch' => $economyBranch,
-            'activityType' => $activityType,
-            'edrRegistrationDate' => $edrRegistrationDate,
-            'taxRegistrationDate' => $taxRegistrationDate
-        ]);
+        $this->ergpou = $ergpou;
+        $this->form = $form;
+        $this->economyBranch = $economyBranch;
+        $this->activityType = $activityType;
+        $this->edrRegistrationDate = $edrRegistrationDate;
+        $this->taxRegistrationDate = $taxRegistrationDate;
+
+        parent::__construct($createdAt, $language, $name);
     }
+
 
     public function jsonSerialize(): array
     {
