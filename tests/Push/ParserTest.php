@@ -8,8 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ParserTest
- * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Push
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Push\Parser
+ * @internal
  */
 class ParserTest extends TestCase
 {
@@ -52,8 +53,8 @@ class ParserTest extends TestCase
         $parsedErrors = $this->parser->parseErrors($this->response);
 
         $this->assertEquals(
-            new Push\Error\Collection([
-                new Push\Error\Entity(
+            new Push\ErrorCollection([
+                new Push\Error(
                     2,
                     'DEALLIFE',
                     'DLFLPAY',
@@ -62,7 +63,7 @@ class ParserTest extends TestCase
                     null,
                     null
                 ),
-                new Push\Error\Entity(
+                new Push\Error(
                     2,
                     'DEALLIFE',
                     'DLFLUSE',
@@ -71,7 +72,7 @@ class ParserTest extends TestCase
                     2,
                     3
                 ),
-                new Push\Error\Entity(
+                new Push\Error(
                     2,
                     'CRDEAL',
                     'INN',
@@ -80,7 +81,7 @@ class ParserTest extends TestCase
                     null,
                     null
                 ),
-                new Push\Error\Entity(
+                new Push\Error(
                     1,
                     'ADDR',
                     '',
