@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Contact;
+namespace Wearesho\Bobra\Ubki\References;
 
-use Wearesho\Bobra\Ubki;
+use MyCLabs\Enum\Enum;
 
 /**
- * Class Type
- * @package Wearesho\Bobra\Ubki\Data\Contact
+ * Class ContactType
+ * @package Wearesho\Bobra\Ubki\References
  *
  * @method static static HOME(string $description = null)
  * @method static static WORK(string $description = null)
@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki;
  * @method static static EMAIL(string $description = null)
  * @method static static FAX(string $description = null)
  */
-final class Type extends Ubki\Reference
+class ContactType extends Enum
 {
     public const HOME = 1;
     public const WORK = 2;
