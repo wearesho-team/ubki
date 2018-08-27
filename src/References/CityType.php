@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+namespace Wearesho\Bobra\Ubki\References;
 
 use Wearesho\Bobra\Ubki\Reference;
 
 /**
  * Class CityType
- * @package Wearesho\Bobra\Ubki\Data
+ * @package Wearesho\Bobra\Ubki\References
  *
  * @method static static VILLAGE(string $description = null)
  * @method static static SETTLEMENT(string $description = null)

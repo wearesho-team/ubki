@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Credential\Address;
+namespace Wearesho\Bobra\Ubki\References;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Reference;
 
 /**
- * Class Type
- * @package Wearesho\Bobra\Ubki\Data\Credential\Address
+ * Class AddressType
+ * @package Wearesho\Bobra\Ubki\References
  *
  * @method static static HOME(string $description = null)
  * @method static static REGISTRATION(string $description = null)
@@ -15,7 +15,7 @@ use Wearesho\Bobra\Ubki;
  * @method static static MAILING(string $description = null)
  * @method static static WORK(string $description = null)
  */
-final class Type extends Ubki\Reference
+final class AddressType extends Reference
 {
     public const HOME = 1;
     public const REGISTRATION = 2;
