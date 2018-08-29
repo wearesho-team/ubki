@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks;
 
 use Wearesho\Bobra\Ubki\Block;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Credential;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Identification
@@ -13,15 +13,15 @@ class Identification extends Block
 {
     public const ID = 1;
 
-    /** @var Credential */
+    /** @var Interfaces\Credential */
     protected $credential;
 
-    public function __construct(Credential $credential)
+    public function __construct(Interfaces\Credential $credential)
     {
         $this->credential = $credential;
     }
 
-    public function getCredential(): Credential
+    public function getCredential(): Interfaces\Credential
     {
         return $this->credential;
     }

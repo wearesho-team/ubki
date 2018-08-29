@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks\Collections;
 
 use Wearesho\Bobra\Ubki\BaseCollection;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Document;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Documents
@@ -13,6 +13,6 @@ class Documents extends BaseCollection
 {
     public function type(): string
     {
-        return Document::class;
+        return Interfaces\Document::class;
     }
 }

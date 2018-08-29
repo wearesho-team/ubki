@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks\Collections;
 
 use Wearesho\Bobra\Ubki\BaseCollection;
-use Wearesho\Bobra\Ubki\Blocks\Entities\LinkedPerson;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class LinkedPersons
@@ -13,6 +13,6 @@ class LinkedPersons extends BaseCollection
 {
     public function type(): string
     {
-        return LinkedPerson::class;
+        return Interfaces\LinkedPerson::class;
     }
 }

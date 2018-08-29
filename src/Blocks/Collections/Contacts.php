@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks\Collections;
 
 use Wearesho\Bobra\Ubki\BaseCollection;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Contact;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Contacts
@@ -13,6 +13,6 @@ class Contacts extends BaseCollection
 {
     public function type(): string
     {
-        return Contact::class;
+        return Interfaces\Contact::class;
     }
 }

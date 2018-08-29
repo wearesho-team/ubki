@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks\Collections;
 
 use Wearesho\Bobra\Ubki\BaseCollection;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Photo;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Photos
@@ -13,6 +13,6 @@ class Photos extends BaseCollection
 {
     public function type(): string
     {
-        return Photo::class;
+        return Interfaces\Photo::class;
     }
 }

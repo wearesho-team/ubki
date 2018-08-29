@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks\Collections;
 
 use Wearesho\Bobra\Ubki\BaseCollection;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Work;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Works
@@ -13,6 +13,6 @@ class Works extends BaseCollection
 {
     public function type(): string
     {
-        return Work::class;
+        return Interfaces\Work::class;
     }
 }

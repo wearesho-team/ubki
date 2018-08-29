@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks\Collections;
 
 use Wearesho\Bobra\Ubki\BaseCollection;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Identifier;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Identifiers
@@ -13,6 +13,6 @@ class Identifiers extends BaseCollection
 {
     public function type(): string
     {
-        return Identifier::class;
+        return Interfaces\Identifier::class;
     }
 }

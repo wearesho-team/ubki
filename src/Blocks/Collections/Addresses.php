@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks\Collections;
 
 use Wearesho\Bobra\Ubki\BaseCollection;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Address;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Addresses
@@ -13,6 +13,6 @@ class Addresses extends BaseCollection
 {
     public function type(): string
     {
-        return Address::class;
+        return Interfaces\Address::class;
     }
 }
