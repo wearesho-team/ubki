@@ -1,23 +1,24 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Credential\Document;
+namespace Wearesho\Bobra\Ubki\Tests\References;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Data\Credential\Document\Type;
+use Wearesho\Bobra\Ubki\Rerefences\DocumentType;
 
 /**
- * Class DocumentTest
+ * Class DocumentTypeTest
+ * @package Wearesho\Bobra\Ubki\Tests\References
+ * @coversDefaultClass DocumentType
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Data\Credential\Document
  */
-class TypeTest extends TestCase
+class DocumentTypeTest extends TestCase
 {
     public function testTempCard(): void
     {
         $description = 'Временное удостоверение личности';
-        $document = Type::TEMP_CARD($description);
-        $this->assertEquals(Type::TEMP_CARD, $document->getValue());
+        $document = DocumentType::TEMP_CARD($description);
+        $this->assertEquals(DocumentType::TEMP_CARD, $document->getValue());
         $this->assertEquals('TEMP_CARD', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -25,8 +26,8 @@ class TypeTest extends TestCase
     public function testCitizen(): void
     {
         $description = 'Паспорт иностранного гражданина';
-        $document = Type::CITIZEN($description);
-        $this->assertEquals(Type::CITIZEN, $document->getValue());
+        $document = DocumentType::CITIZEN($description);
+        $this->assertEquals(DocumentType::CITIZEN, $document->getValue());
         $this->assertEquals('CITIZEN', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -34,8 +35,8 @@ class TypeTest extends TestCase
     public function testDiploma(): void
     {
         $description = 'Диплом';
-        $document = Type::DIPLOMA($description);
-        $this->assertEquals(Type::DIPLOMA, $document->getValue());
+        $document = DocumentType::DIPLOMA($description);
+        $this->assertEquals(DocumentType::DIPLOMA, $document->getValue());
         $this->assertEquals('DIPLOMA', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -43,8 +44,8 @@ class TypeTest extends TestCase
     public function testBirth(): void
     {
         $description = 'Свидетельство о рождении';
-        $document = Type::BIRTH($description);
-        $this->assertEquals(Type::BIRTH, $document->getValue());
+        $document = DocumentType::BIRTH($description);
+        $this->assertEquals(DocumentType::BIRTH, $document->getValue());
         $this->assertEquals('BIRTH', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -52,8 +53,8 @@ class TypeTest extends TestCase
     public function testStateRegistration(): void
     {
         $description = 'Свидетельство про государственную регистрацию';
-        $document = Type::STATE_REGISTRATION($description);
-        $this->assertEquals(Type::STATE_REGISTRATION, $document->getValue());
+        $document = DocumentType::STATE_REGISTRATION($description);
+        $this->assertEquals(DocumentType::STATE_REGISTRATION, $document->getValue());
         $this->assertEquals('STATE_REGISTRATION', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -61,8 +62,8 @@ class TypeTest extends TestCase
     public function testOrderingFromEgr(): void
     {
         $description = 'Выписка из ЕГР';
-        $document = Type::ORDERING_FROM_EGR($description);
-        $this->assertEquals(Type::ORDERING_FROM_EGR, $document->getValue());
+        $document = DocumentType::ORDERING_FROM_EGR($description);
+        $this->assertEquals(DocumentType::ORDERING_FROM_EGR, $document->getValue());
         $this->assertEquals('ORDERING_FROM_EGR', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -70,8 +71,8 @@ class TypeTest extends TestCase
     public function testResidence(): void
     {
         $description = 'Вид на постоянное жительство';
-        $document = Type::RESIDENCE($description);
-        $this->assertEquals(Type::RESIDENCE, $document->getValue());
+        $document = DocumentType::RESIDENCE($description);
+        $this->assertEquals(DocumentType::RESIDENCE, $document->getValue());
         $this->assertEquals('RESIDENCE', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -79,8 +80,8 @@ class TypeTest extends TestCase
     public function testInternational(): void
     {
         $description = 'Заграничный паспорт';
-        $document = Type::INTERNATIONAL($description);
-        $this->assertEquals(Type::INTERNATIONAL, $document->getValue());
+        $document = DocumentType::INTERNATIONAL($description);
+        $this->assertEquals(DocumentType::INTERNATIONAL, $document->getValue());
         $this->assertEquals('INTERNATIONAL', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -88,8 +89,8 @@ class TypeTest extends TestCase
     public function testMilitary(): void
     {
         $description = 'Военный билет';
-        $document = Type::MILITARY($description);
-        $this->assertEquals(Type::MILITARY, $document->getValue());
+        $document = DocumentType::MILITARY($description);
+        $this->assertEquals(DocumentType::MILITARY, $document->getValue());
         $this->assertEquals('MILITARY', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -97,8 +98,8 @@ class TypeTest extends TestCase
     public function testCertificateTaxpayers(): void
     {
         $description = 'Свидетельство про регистрацию плательщиков налогов';
-        $document = Type::CERTIFICATE_TAXPAYERS($description);
-        $this->assertEquals(Type::CERTIFICATE_TAXPAYERS, $document->getValue());
+        $document = DocumentType::CERTIFICATE_TAXPAYERS($description);
+        $this->assertEquals(DocumentType::CERTIFICATE_TAXPAYERS, $document->getValue());
         $this->assertEquals('CERTIFICATE_TAXPAYERS', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -106,8 +107,8 @@ class TypeTest extends TestCase
     public function testSeaman(): void
     {
         $description = 'Паспорт моряка';
-        $document = Type::SEAMAN($description);
-        $this->assertEquals(Type::SEAMAN, $document->getValue());
+        $document = DocumentType::SEAMAN($description);
+        $this->assertEquals(DocumentType::SEAMAN, $document->getValue());
         $this->assertEquals('SEAMAN', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -115,8 +116,8 @@ class TypeTest extends TestCase
     public function testAttestat(): void
     {
         $description = 'Аттестат';
-        $document = Type::ATTESTAT($description);
-        $this->assertEquals(Type::ATTESTAT, $document->getValue());
+        $document = DocumentType::ATTESTAT($description);
+        $this->assertEquals(DocumentType::ATTESTAT, $document->getValue());
         $this->assertEquals('ATTESTAT', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -124,8 +125,8 @@ class TypeTest extends TestCase
     public function testInformationTaxpayer(): void
     {
         $description = 'Справка про взятие на учет плательщика налогов';
-        $document = Type::INFORMATION_TAXPAYER($description);
-        $this->assertEquals(Type::INFORMATION_TAXPAYER, $document->getValue());
+        $document = DocumentType::INFORMATION_TAXPAYER($description);
+        $this->assertEquals(DocumentType::INFORMATION_TAXPAYER, $document->getValue());
         $this->assertEquals('INFORMATION_TAXPAYER', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -133,8 +134,8 @@ class TypeTest extends TestCase
     public function testUkraineCard(): void
     {
         $description = 'Паспорт гражданина Украины в виде ID карты';
-        $document = Type::UKRAINE_CARD($description);
-        $this->assertEquals(Type::UKRAINE_CARD, $document->getValue());
+        $document = DocumentType::UKRAINE_CARD($description);
+        $this->assertEquals(DocumentType::UKRAINE_CARD, $document->getValue());
         $this->assertEquals('UKRAINE_CARD', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -142,8 +143,8 @@ class TypeTest extends TestCase
     public function testDriver(): void
     {
         $description = 'Водительское удостоверение';
-        $document = Type::DRIVER($description);
-        $this->assertEquals(Type::DRIVER, $document->getValue());
+        $document = DocumentType::DRIVER($description);
+        $this->assertEquals(DocumentType::DRIVER, $document->getValue());
         $this->assertEquals('DRIVER', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -151,8 +152,8 @@ class TypeTest extends TestCase
     public function testExtractFromEgr(): void
     {
         $description = 'Выдержка из ЕГР';
-        $document = Type::EXTRACT_FROM_EGR($description);
-        $this->assertEquals(Type::EXTRACT_FROM_EGR, $document->getValue());
+        $document = DocumentType::EXTRACT_FROM_EGR($description);
+        $this->assertEquals(DocumentType::EXTRACT_FROM_EGR, $document->getValue());
         $this->assertEquals('EXTRACT_FROM_EGR', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }
@@ -160,8 +161,8 @@ class TypeTest extends TestCase
     public function testPassport(): void
     {
         $description = 'Паспорт';
-        $document = Type::PASSPORT($description);
-        $this->assertEquals(Type::PASSPORT, $document->getValue());
+        $document = DocumentType::PASSPORT($description);
+        $this->assertEquals(DocumentType::PASSPORT, $document->getValue());
         $this->assertEquals('PASSPORT', $document->getKey());
         $this->assertEquals($description, $document->getDescription());
     }

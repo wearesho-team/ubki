@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Credential\Document;
+namespace Wearesho\Bobra\Ubki\Rerefences;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Reference;
 
 /**
- * Class Document
- * @package Wearesho\Bobra\Ubki\Data\Credential\Document
+ * Class DocumentType
+ * @package Wearesho\Bobra\Ubki\Rerefences
  *
  * @method static static PASSPORT(string $description = null)
  * @method static static DRIVER(string $description = null)
@@ -26,7 +26,7 @@ use Wearesho\Bobra\Ubki;
  * @method static static RESIDENCE(string $description = null)
  * @method static static UKRAINE_CARD(string $description = null)
  */
-final class Type extends Ubki\Reference
+final class DocumentType extends Reference
 {
     public const PASSPORT = 1;
     public const DRIVER = 2;
