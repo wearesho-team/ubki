@@ -7,6 +7,8 @@ use MyCLabs\Enum\Enum;
 /**
  * Class Reference
  * @package Wearesho\Bobra\Ubki
+ *
+ * @method int getValue()
  */
 abstract class Reference extends Enum
 {
