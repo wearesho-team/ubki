@@ -7,6 +7,8 @@ use MyCLabs\Enum\Enum;
 /**
  * Class Reference
  * @package Wearesho\Bobra\Ubki
+ *
+ * @method int getValue()
  */
 abstract class Reference extends Enum
 {
@@ -18,6 +20,11 @@ abstract class Reference extends Enum
         $this->description = $description;
 
         parent::__construct($value);
+    }
+
+    final public function __toString(): string
+    {
+        return (string)($this->description ?? $this->getKey());
     }
 
     public function getDescription(): ?string
