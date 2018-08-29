@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+namespace Wearesho\Bobra\Ubki\References;
 
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Gender
- * @package Wearesho\Bobra\Ubki\Data
+ * @package Wearesho\Bobra\Ubki\References
  *
  * @method static static MAN(string $description = null)
  * @method static static WOMAN(string $description = null)

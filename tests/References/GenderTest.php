@@ -1,19 +1,20 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data;
+namespace Wearesho\Bobra\Ubki\Tests\References;
 
-use Wearesho\Bobra\Ubki\Data\Gender;
+use Wearesho\Bobra\Ubki\References\Gender;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class GenderTest
+ * @package Wearesho\Bobra\Ubki\Tests\References
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\References\Gender
  * @internal
- * @package Wearesho\Bobra\Ubki\Tests\Data
  */
 class GenderTest extends TestCase
 {
-    public function testWOMAN(): void
+    public function testWoman(): void
     {
         $description = 'Мужской';
         $gender = Gender::MAN($description);
@@ -22,7 +23,7 @@ class GenderTest extends TestCase
         $this->assertEquals($description, $gender->getDescription());
     }
 
-    public function testMAN(): void
+    public function testMan(): void
     {
         $description = 'Женский';
         $gender = Gender::WOMAN($description);
