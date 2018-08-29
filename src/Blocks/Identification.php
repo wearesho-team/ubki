@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Blocks;
 
 use Wearesho\Bobra\Ubki\Block;
-use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Identification
