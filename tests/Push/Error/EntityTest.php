@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Push\Error;
 
-use Wearesho\Bobra\Ubki\Block;
+use Wearesho\Bobra\Ubki\Blocks\Identification;
 use Wearesho\Bobra\Ubki\Push;
 use Wearesho\Bobra\Ubki\Tests;
 
@@ -21,7 +21,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected function setUp(): void
     {
         $this->block = new Push\Error\Entity(
-            Block\Identifying::ID,
+            Identification::ID,
             'ADDR',
             'lng',
             'CRITICAL',
@@ -42,7 +42,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetBlockId(): void
     {
         $this->assertEquals(
-            Block\Identifying::ID,
+            Identification::ID,
             $this->block->getBlockId()
         );
     }
@@ -67,7 +67,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             [
-                'blockId' => Block\Identifying::ID,
+                'blockId' => Identification::ID,
                 'tag' => 'ADDR',
                 'attribute' => 'lng',
                 'type' => 'CRITICAL',
