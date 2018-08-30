@@ -9,7 +9,7 @@ use Wearesho\Bobra\Ubki\References;
  * Interface Address
  * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
  */
-interface Address extends \JsonSerializable, ElementInterface
+interface Address extends ElementInterface
 {
     public const TAG = 'addr';
     public const CREATED_AT = 'vdate';

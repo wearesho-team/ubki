@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
+use Wearesho\Bobra\Ubki\ElementInterface;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Interface Work
  * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
  */
-interface Work extends \JsonSerializable
+interface Work extends ElementInterface
 {
     public const TAG = 'work';
     public const CREATED_AT = 'vdate';

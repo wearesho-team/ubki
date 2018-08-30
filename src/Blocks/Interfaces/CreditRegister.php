@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
+use Wearesho\Bobra\Ubki\ElementInterface;
 use Wearesho\Bobra\Ubki\References\Decision;
 
 /**
  * Interface CreditRegister
  * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
  */
-interface CreditRegister extends \JsonSerializable
+interface CreditRegister extends ElementInterface
 {
     public const TAG = 'credres';
     public const DATE = 'redate';

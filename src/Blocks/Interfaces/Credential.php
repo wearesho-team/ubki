@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki\Blocks\Collections;
  * Interface Credential
  * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
  */
-interface Credential extends \JsonSerializable, ElementInterface
+interface Credential extends ElementInterface
 {
     public const TAG = 'cki';
     public const INN = 'inn';

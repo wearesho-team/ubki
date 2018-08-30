@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
+use Wearesho\Bobra\Ubki\ElementInterface;
 use Wearesho\Bobra\Ubki\References\LinkedIdentifierRole;
 
 /**
  * Interface LinkedPerson
  * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
  */
-interface LinkedPerson extends \JsonSerializable
+interface LinkedPerson extends ElementInterface
 {
     public const TAG = 'linked';
     public const ERGPOU = 'okpo2';

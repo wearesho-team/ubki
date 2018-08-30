@@ -9,7 +9,7 @@ use Wearesho\Bobra\Ubki\References;
  * Interface Document
  * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
  */
-interface Document extends \JsonSerializable, ElementInterface
+interface Document extends ElementInterface
 {
     public const TAG = 'doc';
     public const CREATED_AT = 'vdate';

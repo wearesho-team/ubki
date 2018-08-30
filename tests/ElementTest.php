@@ -27,6 +27,11 @@ class ElementTest extends TestCase
             use ElementTrait;
 
             protected const TAG = ElementTest::TAG;
+
+            public function jsonSerialize()
+            {
+                return [];
+            }
         };
     }
 

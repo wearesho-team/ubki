@@ -9,7 +9,7 @@ use Wearesho\Bobra\Ubki\References\ContactType;
  * Interface Contact
  * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
  */
-interface Contact extends \JsonSerializable, ElementInterface
+interface Contact extends ElementInterface
 {
     public const TAG = 'cont';
     public const VALUE = 'cval';

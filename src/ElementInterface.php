@@ -6,7 +6,7 @@ namespace Wearesho\Bobra\Ubki;
  * Interface ElementInterface
  * @package Wearesho\Bobra\Ubki
  */
-interface ElementInterface
+interface ElementInterface extends \JsonSerializable
 {
     public function tag(): string;
 }
