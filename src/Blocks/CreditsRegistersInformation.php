@@ -15,12 +15,15 @@ class CreditsRegistersInformation extends Block
     /** @var Collections\CreditRegisters */
     protected $creditRequests;
 
-    protected $registryTrim;
+    /** @var null|Entities\RegistryTimes */
+    protected $registryTimes;
 
-    public function __construct(Collections\CreditRegisters $creditRequests, $registryTrim)
-    {
+    public function __construct(
+        Collections\CreditRegisters $creditRequests,
+        ?Entities\RegistryTimes $registryTimes = null
+    ) {
         $this->creditRequests = $creditRequests;
-        $this->registryTrim = $registryTrim;
+        $this->registryTimes = $registryTimes;
     }
 
     public function getCreditRequests(): Collections\CreditRegisters
@@ -28,8 +31,8 @@ class CreditsRegistersInformation extends Block
         return $this->creditRequests;
     }
 
-    public function getRegistryTrim()
+    public function getRegistryTimes(): ?Entities\RegistryTimes
     {
-        return $this->registryTrim;
+        return $this->registryTimes;
     }
 }

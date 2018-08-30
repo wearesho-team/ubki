@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Blocks\Collections\CreditRegisters;
 use Wearesho\Bobra\Ubki\Blocks\CreditsRegistersInformation;
-use Wearesho\Bobra\Ubki\Blocks\Entities\CreditRegister;
+use Wearesho\Bobra\Ubki\Blocks\Entities;
 use Wearesho\Bobra\Ubki\References\Decision;
 
 /**
@@ -25,6 +25,13 @@ class CreditsRegistersInformationTest extends TestCase
     protected const REASON = 1;
     protected const ORGANIZATION = 'testOrganization';
     protected const REESTR_TRIM = 'trim';
+    protected const BY_HOUR = 1;
+    protected const BY_DAY = 2;
+    protected const BY_WEEK = 3;
+    protected const BY_MONTH = 4;
+    protected const BY_QUARTER = 5;
+    protected const BY_YEAR = 10;
+    protected const BY_MORE_YEAR = 200;
 
     /** @var CreditsRegistersInformation */
     protected $fakeCreditsRegistersInformation;
@@ -33,7 +40,7 @@ class CreditsRegistersInformationTest extends TestCase
     {
         $this->fakeCreditsRegistersInformation = new CreditsRegistersInformation(
             new CreditRegisters([
-                new CreditRegister(
+                new Entities\CreditRegister(
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
@@ -42,7 +49,15 @@ class CreditsRegistersInformationTest extends TestCase
                     static::ORGANIZATION
                 )
             ]),
-            static::REESTR_TRIM
+            new Entities\RegistryTimes(
+                static::BY_HOUR,
+                static::BY_DAY,
+                static::BY_WEEK,
+                static::BY_MONTH,
+                static::BY_QUARTER,
+                static::BY_YEAR,
+                static::BY_MORE_YEAR
+            )
         );
     }
 
@@ -50,7 +65,7 @@ class CreditsRegistersInformationTest extends TestCase
     {
         $this->assertEquals(
             new CreditRegisters([
-                new CreditRegister(
+                new Entities\CreditRegister(
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
@@ -66,8 +81,16 @@ class CreditsRegistersInformationTest extends TestCase
     public function testGetRegistryTrim(): void
     {
         $this->assertEquals(
-            static::REESTR_TRIM,
-            $this->fakeCreditsRegistersInformation->getRegistryTrim()
+            new Entities\RegistryTimes(
+                static::BY_HOUR,
+                static::BY_DAY,
+                static::BY_WEEK,
+                static::BY_MONTH,
+                static::BY_QUARTER,
+                static::BY_YEAR,
+                static::BY_MORE_YEAR
+            ),
+            $this->fakeCreditsRegistersInformation->getRegistryTimes()
         );
     }
 }
