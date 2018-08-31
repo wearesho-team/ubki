@@ -10,9 +10,9 @@ use Wearesho\Bobra\Ubki\Authorization;
  */
 interface ConfigInterface extends Authorization\ConfigInterface
 {
-    public const PRODUCTION_PULL_URL = '';
+    public const PRODUCTION_PULL_URL = 'https://secure.ubki.ua/b2_api_xml/ubki/xml';
 
-    public const TEST_PULL_URL = '';
+    public const TEST_PULL_URL = 'https://secure.ubki.ua:4040/b2_api_xml/ubki/xml';
 
     public function getPullUrl(): string;
 }
