@@ -5,15 +5,15 @@ namespace Wearesho\Bobra\Ubki\Element;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Contact
  * Data of one subject's contact
+ *
+ * Class Contact
  * @package Wearesho\Bobra\Ubki\Element
  */
 class Contact extends Ubki\Element
 {
     public const TAG = 'cont';
 
-    // attributes
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
     public const CREATED_AT = 'vdate';

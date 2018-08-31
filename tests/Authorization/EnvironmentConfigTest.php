@@ -65,32 +65,13 @@ class EnvironmentConfigTest extends TestCase
         $this->assertEquals($password, $this->config->getPassword());
     }
 
-    public function testGetEmptyMode(): void
-    {
-        putenv('UBKI_MODE');
-        $this->expectException(Environment\MissingEnvironmentException::class);
-        $this->expectExceptionMessage('Missing environment key UBKI_MODE');
-        $this->config->isProductionMode();
-    }
-
-    public function testGetProductionMode(): void
-    {
-        putenv('UBKI_MODE=1');
-        $this->assertEquals(true, $this->config->isProductionMode());
-    }
-
-    public function testGetTestMode(): void
-    {
-        putenv('UBKI_MODE=0');
-        $this->assertEquals(false, $this->config->isProductionMode());
-    }
-
     public function testGetInvalidMode(): void
     {
         putenv('UBKI_MODE=228');
+        putenv('UBKI_AUTH_URL');
         $this->expectException(Ubki\UnsupportedModeException::class);
         $this->expectExceptionMessage('Mode have invalid value 228');
-        $this->assertEquals(false, $this->config->isProductionMode());
+        $this->assertEquals(false, $this->config->getAuthUrl());
     }
 
     public function testGetTestDefaultAuthUrl(): void
