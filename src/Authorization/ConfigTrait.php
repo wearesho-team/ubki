@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Authorization;
 
 /**
  * Trait ConfigTrait
- *
  * @package Wearesho\Bobra\Ubki\Authorization
  */
 trait ConfigTrait
