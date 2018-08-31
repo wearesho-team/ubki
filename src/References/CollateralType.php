@@ -47,5 +47,7 @@ final class CollateralType extends Reference
     public const GOVERNMENT_SECURITIES = 23;
     public const NON_GOVERNMENT_SECURITIES = 24;
     public const REAL_ESTATE = 25;
-    // todo: add another types
+
+    public const RIGHTS_FUTURE_REAL_ESTATE = 26;
+    public const FINISHED_PRODUCTS = 27;
 }
