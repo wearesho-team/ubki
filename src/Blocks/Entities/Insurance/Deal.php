@@ -1,16 +1,18 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Blocks\Entities;
+namespace Wearesho\Bobra\Ubki\Blocks\Entities\Insurance;
 
-use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\Blocks\Collections;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
+use Wearesho\Bobra\Ubki\Blocks\Traits;
 
 /**
- * Class InsuranceDeal
- * @package Wearesho\Bobra\Ubki\Blocks\Entities
+ * Class Deal
+ * @package Wearesho\Bobra\Ubki\Blocks\Entities\Insurance
  */
-class InsuranceDeal implements Blocks\Interfaces\InsuranceDeal
+class Deal implements Interfaces\Insurance\Deal
 {
-    use Blocks\Traits\InsuranceDeal;
+    use Traits\Insurance\Deal;
 
     public function __construct(
         string $inn,
@@ -20,7 +22,7 @@ class InsuranceDeal implements Blocks\Interfaces\InsuranceDeal
         \DateTimeInterface $endDate,
         int $type,
         int $status,
-        ?Blocks\Collections\InsuranceEvents $events = null,
+        ?Collections\Insurance\Events $events = null,
         ?\DateTimeInterface $actualEndDate = null
     ) {
         $this->inn = $inn;

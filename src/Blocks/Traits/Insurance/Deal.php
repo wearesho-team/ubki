@@ -1,17 +1,18 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Blocks\Traits;
+namespace Wearesho\Bobra\Ubki\Blocks\Traits\Insurance;
 
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
+use Wearesho\Bobra\Ubki\Blocks\Collections;
 
 /**
- * Trait InsuranceDeal
- * @package Wearesho\Bobra\Ubki\Blocks\Traits
+ * Trait Deal
+ * @package Wearesho\Bobra\Ubki\Blocks\Traits\Insurance
  */
-trait InsuranceDeal
+trait Deal
 {
     use ElementTrait;
 
@@ -39,7 +40,7 @@ trait InsuranceDeal
     /** @var int */
     protected $status;
 
-    /** @var Blocks\Collections\InsuranceEvents */
+    /** @var Collections\Insurance\Events */
     protected $events;
 
     public function jsonSerialize()
@@ -55,7 +56,7 @@ trait InsuranceDeal
             'actualEndDate' => !is_null($this->actualEndDate)
                 ? Carbon::instance($this->actualEndDate)->toDateString()
                 : null,
-            'events' => array_map(function (Blocks\Interfaces\InsuranceEvent $event) {
+            'events' => array_map(function (Interfaces\Insurance\Event $event) {
                 return $event->jsonSerialize();
             }, $this->events->jsonSerialize()),
         ];
@@ -101,7 +102,7 @@ trait InsuranceDeal
         return $this->status;
     }
 
-    public function getEvents(): Blocks\Collections\InsuranceEvents
+    public function getEvents(): Collections\Insurance\Events
     {
         return $this->events;
     }

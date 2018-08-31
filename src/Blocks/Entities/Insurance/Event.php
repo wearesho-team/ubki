@@ -1,16 +1,17 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Blocks\Entities;
+namespace Wearesho\Bobra\Ubki\Blocks\Entities\Insurance;
 
-use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
+use Wearesho\Bobra\Ubki\Blocks\Traits;
 
 /**
- * Class InsuranceEvent
- * @package Wearesho\Bobra\Ubki\Blocks\Entities
+ * Class Event
+ * @package Wearesho\Bobra\Ubki\Blocks\Entities\Insurance
  */
-class InsuranceEvent implements Blocks\Interfaces\InsuranceEvent
+class Event implements Interfaces\Insurance\Event
 {
-    use Blocks\Traits\InsuranceEvent;
+    use Traits\Insurance\Event;
 
     public function __construct(
         \DateTimeInterface $requestDate,

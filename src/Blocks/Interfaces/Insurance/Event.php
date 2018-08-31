@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Blocks\Interfaces;
+namespace Wearesho\Bobra\Ubki\Blocks\Interfaces\Insurance;
 
 use Wearesho\Bobra\Ubki\ElementInterface;
 
 /**
- * Interface InsuranceEvent
- * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
+ * Interface Event
+ * @package Wearesho\Bobra\Ubki\Blocks\Interfaces\Insurance
  */
-interface InsuranceEvent extends ElementInterface
+interface Event extends ElementInterface
 {
     public const TAG = 'events';
     public const REQUEST_DATE = 'evdate';

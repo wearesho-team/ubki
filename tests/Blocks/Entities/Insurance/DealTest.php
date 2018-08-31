@@ -1,22 +1,21 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities;
+namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Insurance;
 
 use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\InsuranceEvents;
-use Wearesho\Bobra\Ubki\Blocks\Entities\InsuranceDeal;
-use Wearesho\Bobra\Ubki\Blocks\Entities\InsuranceEvent;
+use Wearesho\Bobra\Ubki\Blocks\Collections\Insurance\Events;
+use Wearesho\Bobra\Ubki\Blocks\Entities\Insurance;
 
 /**
- * Class InsuranceDealTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
- * @coversDefaultClass InsuranceDeal
+ * Class DealTest
+ * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Insurance
+ * @coversDefaultClass Insurance\Deal
  * @internal
  */
-class InsuranceDealTest extends TestCase
+class DealTest extends TestCase
 {
     protected const INN = 'testInn';
     protected const ID = 'testId';
@@ -30,12 +29,12 @@ class InsuranceDealTest extends TestCase
     protected const DECISION_DATE = '2018-03-12';
     protected const ACTUAL_END_DATE = '2020-03-12';
 
-    /** @var InsuranceDeal */
+    /** @var Insurance\Deal */
     protected $fakeInsuranceDeal;
 
     protected function setUp(): void
     {
-        $this->fakeInsuranceDeal = new InsuranceDeal(
+        $this->fakeInsuranceDeal = new Insurance\Deal(
             static::INN,
             static::ID,
             Carbon::parse(static::INFORMATION_DATE),
@@ -43,8 +42,8 @@ class InsuranceDealTest extends TestCase
             Carbon::parse(static::END_DATE),
             static::TYPE,
             static::STATUS,
-            new InsuranceEvents([
-                new InsuranceEvent(
+            new Events([
+                new Insurance\Event(
                     Carbon::parse(static::REQUEST_DATE),
                     static::DECISION,
                     Carbon::parse(static::DECISION_DATE)
@@ -81,8 +80,8 @@ class InsuranceDealTest extends TestCase
     public function testGetEvents(): void
     {
         $this->assertEquals(
-            new InsuranceEvents([
-                new InsuranceEvent(
+            new Events([
+                new Insurance\Event(
                     Carbon::parse(static::REQUEST_DATE),
                     static::DECISION,
                     Carbon::parse(static::DECISION_DATE)

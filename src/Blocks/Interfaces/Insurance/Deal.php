@@ -1,15 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Blocks\Interfaces;
+namespace Wearesho\Bobra\Ubki\Blocks\Interfaces\Insurance;
 
 use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\Blocks\Collections;
 
 /**
- * Interface InsuranceDeal
- * @package Wearesho\Bobra\Ubki\Blocks\Interfaces
+ * Interface Deal
+ * @package Wearesho\Bobra\Ubki\Blocks\Interfaces\Insurance
  */
-interface InsuranceDeal extends ElementInterface
+interface Deal extends ElementInterface
 {
     public const TAG = 'insur';
     public const INN = 'inn';
@@ -39,5 +39,5 @@ interface InsuranceDeal extends ElementInterface
 
     public function getStatus(): int;
 
-    public function getEvents(): Blocks\Collections\InsuranceEvents;
+    public function getEvents(): Collections\Insurance\Events;
 }

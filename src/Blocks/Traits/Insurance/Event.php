@@ -1,16 +1,16 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Blocks\Traits;
+namespace Wearesho\Bobra\Ubki\Blocks\Traits\Insurance;
 
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
- * Trait InsuranceTrait
- * @package Wearesho\Bobra\Ubki\Blocks\Traits
+ * Trait Event
+ * @package Wearesho\Bobra\Ubki\Blocks\Traits\Insurance
  */
-trait InsuranceEvent
+trait Event
 {
     use ElementTrait;
 

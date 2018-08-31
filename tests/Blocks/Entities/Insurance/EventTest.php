@@ -1,31 +1,31 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities;
+namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Insurance;
 
 use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\InsuranceEvent;
+use Wearesho\Bobra\Ubki\Blocks\Entities\Insurance;
 
 /**
- * Class InsuranceEventTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
- * @coversDefaultClass InsuranceEvent
+ * Class EventTest
+ * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Insurance
+ * @coversDefaultClass Insurance\Event
  * @internal
  */
-class InsuranceEventTest extends TestCase
+class EventTest extends TestCase
 {
     protected const REQUEST_DATE = '2018-03-12';
     protected const DECISION = 1;
     protected const DECISION_DATE = '2018-03-12';
 
-    /** @var InsuranceEvent */
+    /** @var Insurance\Event */
     protected $fakeInsuranceEvent;
 
     protected function setUp(): void
     {
-        $this->fakeInsuranceEvent = new InsuranceEvent(
+        $this->fakeInsuranceEvent = new Insurance\Event(
             Carbon::parse(static::REQUEST_DATE),
             static::DECISION,
             Carbon::parse(static::DECISION_DATE)

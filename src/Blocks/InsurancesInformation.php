@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks;
 
 use Wearesho\Bobra\Ubki\Block;
-use Wearesho\Bobra\Ubki\Blocks\Collections\InsuranceDeals;
+use Wearesho\Bobra\Ubki\Blocks\Collections\Insurance;
 
 /**
  * Class InsurancesInformation
@@ -13,15 +13,15 @@ class InsurancesInformation extends Block
 {
     public const ID = 9;
 
-    /** @var InsuranceDeals */
+    /** @var Insurance\Deals */
     protected $deals;
 
-    public function __construct(InsuranceDeals $deals)
+    public function __construct(Insurance\Deals $deals)
     {
         $this->deals = $deals;
     }
 
-    public function getDeals(): InsuranceDeals
+    public function getDeals(): Insurance\Deals
     {
         return $this->deals;
     }

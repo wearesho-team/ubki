@@ -36,8 +36,8 @@ class InsurancesInformationTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeInsurancesInformation = new InsurancesInformation(
-            new Collections\InsuranceDeals([
-                new Entities\InsuranceDeal(
+            new Collections\Insurance\Deals([
+                new Entities\Insurance\Deal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
@@ -45,8 +45,8 @@ class InsurancesInformationTest extends TestCase
                     Carbon::parse(static::END_DATE),
                     static::TYPE,
                     static::STATUS,
-                    new Collections\InsuranceEvents([
-                        new Entities\InsuranceEvent(
+                    new Collections\Insurance\Events([
+                        new Entities\Insurance\Event(
                             Carbon::parse(static::REQUEST_DATE),
                             static::DECISION,
                             Carbon::parse(static::DECISION_DATE)
@@ -61,8 +61,8 @@ class InsurancesInformationTest extends TestCase
     public function testGetDeals(): void
     {
         $this->assertEquals(
-            new Collections\InsuranceDeals([
-                new Entities\InsuranceDeal(
+            new Collections\Insurance\Deals([
+                new Entities\Insurance\Deal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
@@ -70,8 +70,8 @@ class InsurancesInformationTest extends TestCase
                     Carbon::parse(static::END_DATE),
                     static::TYPE,
                     static::STATUS,
-                    new Collections\InsuranceEvents([
-                        new Entities\InsuranceEvent(
+                    new Collections\Insurance\Events([
+                        new Entities\Insurance\Event(
                             Carbon::parse(static::REQUEST_DATE),
                             static::DECISION,
                             Carbon::parse(static::DECISION_DATE)
