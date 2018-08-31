@@ -56,7 +56,7 @@ class PhotoTest extends TestCase
     {
         $this->assertEquals(
             static::PHOTO,
-            $this->fakePhoto->getPhoto()
+            $this->fakePhoto->getUri()
         );
     }
 

@@ -18,7 +18,7 @@ trait Photo
     protected $createdAt;
 
     /** @var string */
-    protected $photo;
+    protected $uri;
 
     /** @var string|null */
     protected $inn;
@@ -28,7 +28,7 @@ trait Photo
         return [
             'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
             'inn' => $this->inn,
-            'photo' => $this->photo
+            'photo' => $this->uri
         ];
     }
 
@@ -37,9 +37,9 @@ trait Photo
         return $this->createdAt;
     }
 
-    public function getPhoto(): string
+    public function getUri(): string
     {
-        return $this->photo;
+        return $this->uri;
     }
 
     public function getInn(): ?string

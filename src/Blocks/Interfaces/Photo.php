@@ -17,7 +17,7 @@ interface Photo extends ElementInterface
 
     public function getCreatedAt(): \DateTimeInterface;
 
-    public function getPhoto(): string;
+    public function getUri(): string;
 
     public function getInn(): ?string;
 }
