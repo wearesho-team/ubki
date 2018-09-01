@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Blocks\Entities\Address;
+use Wearesho\Bobra\Ubki\ElementInterface;
 use Wearesho\Bobra\Ubki\References;
 
 /**
@@ -73,6 +74,11 @@ class AddressTest extends TestCase
             ],
             $this->fakeAddress->jsonSerialize()
         );
+    }
+
+    public function testInstanceOf(): void
+    {
+        $this->assertTrue($this->fakeAddress instanceof ElementInterface);
     }
 
     public function testGetFlat(): void

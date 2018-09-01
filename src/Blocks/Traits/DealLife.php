@@ -55,7 +55,7 @@ trait DealLife
     protected $delayIndication;
 
     /** @var References\Flag */
-    protected $creditTrancheIndication;
+    protected $trancheIndication;
 
     /** @var \DateTimeInterface */
     protected $paymentDate;
@@ -83,7 +83,7 @@ trait DealLife
             'overdueTime' => $this->overdueTime,
             'paymentIndication' => $this->paymentIndication->__toString(),
             'delayIndication' => $this->delayIndication->__toString(),
-            'creditTrancheIndication' => $this->creditTrancheIndication->__toString(),
+            'trancheIndication' => $this->trancheIndication->__toString(),
             'paymentDate' => Carbon::instance($this->paymentDate)->toDateString(),
             'actualEndDate' => Carbon::instance($this->actualEndDate)->toDateString(),
         ];
@@ -154,9 +154,9 @@ trait DealLife
         return $this->delayIndication;
     }
 
-    public function getCreditTrancheIndication(): References\Flag
+    public function getTrancheIndication(): References\Flag
     {
-        return $this->creditTrancheIndication;
+        return $this->trancheIndication;
     }
 
     public function getPaymentDate(): \DateTimeInterface

@@ -29,7 +29,7 @@ interface DealLife extends ElementInterface
     public const PAYMENT_INDICATION_REF = 'dlflpayref';
     public const DELAY_INDICATION = 'dlflbrk';
     public const DELAY_INDICATION_REF = 'dlflbrkref';
-    public const CREDIT_TRANCHE_INDICATION = 'dlfluse';
+    public const TRANCHE_INDICATION = 'dlfluse';
     public const CREDIT_TRANCHE_INDICATION_REF = 'dlfluseref';
     public const PAYMENT_DATE = 'dldateclc';
 
@@ -59,7 +59,7 @@ interface DealLife extends ElementInterface
 
     public function getDelayIndication(): References\Flag;
 
-    public function getCreditTrancheIndication(): References\Flag;
+    public function getTrancheIndication(): References\Flag;
 
     public function getPaymentDate(): \DateTimeInterface;
 

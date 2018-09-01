@@ -27,7 +27,7 @@ class DealLife implements Blocks\Interfaces\DealLife
         int $overdueTime,
         References\Flag $paymentIndication,
         References\Flag $delayIndication,
-        References\Flag $creditTrancheIndication,
+        References\Flag $trancheIndication,
         \DateTimeInterface $paymentDate,
         ?\DateTimeInterface $actualEndDate = null
     ) {
@@ -44,7 +44,7 @@ class DealLife implements Blocks\Interfaces\DealLife
         $this->overdueTime = $overdueTime;
         $this->paymentIndication = $paymentIndication;
         $this->delayIndication = $delayIndication;
-        $this->creditTrancheIndication = $creditTrancheIndication;
+        $this->trancheIndication = $trancheIndication;
         $this->paymentDate = $paymentDate;
 
         $this->validateActualEndDate($actualEndDate, $status);
