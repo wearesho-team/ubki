@@ -121,7 +121,7 @@ class CreditsInformationTest extends TestCase
                                 'overdueTime' => static::OVERDUE_TIME,
                                 'paymentIndication' => References\Flag::YES()->getKey(),
                                 'delayIndication' => References\Flag::YES()->getKey(),
-                                'creditTrancheIndication' => References\Flag::NO()->getKey(),
+                                'trancheIndication' => References\Flag::NO()->getKey(),
                                 'paymentDate' => static::PAYMENT_DATE,
                                 'actualEndDate' => static::ACTUAL_END_DATE,
                             ]
