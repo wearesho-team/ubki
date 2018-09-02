@@ -24,4 +24,13 @@ class CreditsInformation extends Block
     {
         return $this->creditCollection;
     }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'credits' => array_map(function (Interfaces\CreditDeal $credit) {
+                return $credit->jsonSerialize();
+            }, $this->creditCollection->jsonSerialize()),
+        ];
+    }
 }

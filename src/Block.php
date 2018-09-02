@@ -6,8 +6,10 @@ namespace Wearesho\Bobra\Ubki;
  * Interface Block
  * @package Wearesho\Bobra\Ubki
  */
-abstract class Block
+abstract class Block implements ElementInterface
 {
+    use ElementTrait;
+
     public const TAG = 'comp';
     public const ATTR_ID = 'id';
 

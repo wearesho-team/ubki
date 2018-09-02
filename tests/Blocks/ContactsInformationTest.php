@@ -46,6 +46,29 @@ class ContactsInformationTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'contacts' => [
+                    [
+                        'createdAt' => static::CREATED_AT,
+                        'value' => static::VALUE,
+                        'type' => ContactType::EMAIL()->getKey(),
+                        'inn' => static::INN,
+                    ],
+                    [
+                        'createdAt' => static::CREATED_AT,
+                        'value' => static::VALUE,
+                        'type' => ContactType::MOBILE()->getKey(),
+                        'inn' => static::INN,
+                    ],
+                ]
+            ],
+            $this->fakeContactsInformation->jsonSerialize()
+        );
+    }
+
     public function testGetContacts(): void
     {
         $this->assertEquals(

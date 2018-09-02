@@ -21,6 +21,15 @@ class InsurancesInformation extends Block
         $this->deals = $deals;
     }
 
+    public function jsonSerialize(): array
+    {
+        return [
+            'insuranceDeals' => array_map(function (Interfaces\Insurance\Deal $insuranceDeal) {
+                return $insuranceDeal->jsonSerialize();
+            }, $this->deals->jsonSerialize()),
+        ];
+    }
+
     public function getDeals(): Insurance\Deals
     {
         return $this->deals;

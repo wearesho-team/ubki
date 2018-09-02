@@ -26,6 +26,13 @@ class PassportMVDInformation extends Block
         $this->passportMVD = $passportMVD;
     }
 
+    public function jsonSerialize(): array
+    {
+        return [
+            'passportMVD' => $this->getPassportMVD()->jsonSerialize(),
+        ];
+    }
+
     public function getPassportMVD(): PassportMVD
     {
         return $this->passportMVD;

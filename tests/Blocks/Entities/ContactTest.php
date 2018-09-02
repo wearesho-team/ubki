@@ -34,6 +34,19 @@ class ContactTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'createdAt' => static::CREATED_AT,
+                'value' => static::VALUE,
+                'type' => ContactType::FAX()->getKey(),
+                'inn' => static::INN
+            ],
+            $this->fakeContact->jsonSerialize()
+        );
+    }
+
     public function testGetValue(): void
     {
         $this->assertEquals(
@@ -63,19 +76,6 @@ class ContactTest extends TestCase
         $this->assertEquals(
             static::INN,
             $this->fakeContact->getInn()
-        );
-    }
-
-    public function testJsonSerialize(): void
-    {
-        $this->assertArraySubset(
-            [
-                'createdAt' => static::CREATED_AT,
-                'value' => static::VALUE,
-                'type' => ContactType::FAX()->getKey(),
-                'inn' => static::INN
-            ],
-            $this->fakeContact->jsonSerialize()
         );
     }
 }

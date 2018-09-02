@@ -39,6 +39,22 @@ class CompromisedPhonesInformationTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'compromisedPhone' => [
+                    'found' => Flag::YES()->getKey(),
+                    'value' => static::VALUE,
+                    'type' => static::TYPE,
+                    'comment' => static::COMMENT,
+                    'createdAt' => static::CREATED_AT,
+                ],
+            ],
+            $this->fakeCompromisedPhonesInformation->jsonSerialize()
+        );
+    }
+
     public function testGetPhone(): void
     {
         $this->assertEquals(
