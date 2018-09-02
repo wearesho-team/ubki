@@ -96,6 +96,67 @@ class CreditRatingTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'score' => [
+                    'inn' => static::INN,
+                    'surname' => static::SURNAME,
+                    'name' => static::NAME,
+                    'patronymic' => static::PATRONYMIC,
+                    'birthDate' => static::BIRTH_DATE,
+                    'score' => [
+                        'date' => static::DATE,
+                        'value' => static::SCORE
+                    ],
+                    'previousScore' => [
+                        'date' => static::PREVIOUS_DATE,
+                        'value' => static::PREVIOUS_SCORE,
+                    ]
+                ],
+                'description' => [
+                    'all' => static::CREDITS_COUNT,
+                    'opened' => static::OPENED_CREDITS_COUNT,
+                    'openedDescription' => static::OPENED_CREDIT_DESCRIPTION,
+                    'closed' => static::CLOSED_CREDITS_COUNT,
+                    'expires' => static::EXPIRES,
+                    'maxOverdue' => static::MAX_OVERDUE,
+                    'updatedAt' => static::UPDATED_AT,
+                ],
+                'comments' => [
+                    [
+                        'id' => static::ID,
+                        'text' => static::TEXT,
+                    ]
+                ],
+                'factors' => [
+                    'positive' => [
+                        'count' => static::COUNT,
+                        'text' => static::DESCRIPTION,
+                        'comments' => [
+                            [
+                                'id' => static::ID,
+                                'text' => static::TEXT,
+                            ],
+                        ],
+                    ],
+                    'negative' => [
+                        'count' => static::COUNT,
+                        'text' => static::DESCRIPTION,
+                        'comments' => [
+                            [
+                                'id' => static::ID,
+                                'text' => static::TEXT,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            $this->fakeCreditRating->jsonSerialize()
+        );
+    }
+
     public function testGetScore(): void
     {
         $this->assertEquals(

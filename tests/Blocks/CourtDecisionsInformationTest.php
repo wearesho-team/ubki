@@ -58,6 +58,32 @@ class CourtDecisionsInformationTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'courtReports' => [
+                    [
+                        'id' => static::ID,
+                        'inn' => static::INN,
+                        'date' => static::DATE,
+                        'subjectStatus' => static::SUBJECT_STATUS,
+                        'courtDealType' => static::COURT_DEAL_TYPE,
+                        'courtName' => static::COURT_NAME,
+                        'documentType' => static::DOCUMENT_TYPE,
+                        'documentTypeReference' => static::DOCUMENT_TYPE_REFERENCE,
+                        'legalFact' => static::LEGAL_FACT,
+                        'legalFactReference' => static::LEGAL_FACT_REFERENCE,
+                        'createdAt' => static::CREATED_AT,
+                        'area' => static::AREA,
+                        'areaReference' => static::AREA_REFERENCE
+                    ],
+                ],
+            ],
+            $this->fakeCourtDecisionsInformation->jsonSerialize()
+        );
+    }
+
     public function testGetDecisionCollection(): void
     {
         $this->assertEquals(

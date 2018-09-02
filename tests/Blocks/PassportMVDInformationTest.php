@@ -50,6 +50,27 @@ class PassportMVDInformationTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'passportMVD' => [
+                    'found' => static::FOUND_DESCRIPTION,
+                    'description' => static::DESCRIPTION,
+                    'status' => static::STATUS,
+                    'date' => static::DATE,
+                    'serial' => static::SERIAL,
+                    'number' => static::NUMBER,
+                    'surname' => static::SURNAME,
+                    'name' => static::NAME,
+                    'patronymic' => static::PATRONYMIC,
+                    'birthDate' => static::BIRTH_DATE,
+                ],
+            ],
+            $this->fakePassportMVDInformation->jsonSerialize()
+        );
+    }
+
     public function testGetPassportMVD(): void
     {
         $this->assertEquals(

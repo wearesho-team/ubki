@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Blocks;
 
 use Wearesho\Bobra\Ubki\Block;
+use Wearesho\Bobra\Ubki\Blocks\Entities\Comment;
 use Wearesho\Bobra\Ubki\Blocks\Entities\Rating;
 
 /**
@@ -40,6 +41,21 @@ class CreditRating extends Block
         $this->comments = $comments;
         $this->positiveFactors = $positiveFactors;
         $this->negativeFactors = $negativeFactors;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'score' => $this->score->jsonSerialize(),
+            'description' => $this->description->jsonSerialize(),
+            'comments' => array_map(function (Comment $comment) {
+                return $comment->jsonSerialize();
+            }, $this->comments->jsonSerialize()),
+            'factors' => [
+                'positive' => $this->positiveFactors->jsonSerialize(),
+                'negative' => $this->negativeFactors->jsonSerialize(),
+            ],
+        ];
     }
 
     public function getScore(): Rating\Score

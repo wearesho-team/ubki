@@ -86,6 +86,54 @@ class CreditsInformationTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'credits' => [
+                    [
+                        'id' => static::ID,
+                        'inn' => static::INN,
+                        'language' => References\Language::RUS()->getKey(),
+                        'name' => static::NAME,
+                        'surname' => static::SURNAME,
+                        'patronymic' => static::PATRONYMIC,
+                        'birthDate' => static::BIRTH_DATE,
+                        'type' => References\CreditDealType::COMMERCIAL_CREDIT()->getKey(),
+                        'collateral' => References\CollateralType::R_1()->getKey(),
+                        'repaymentProcedure' => References\RepaymentProcedure::PERIODIC_MONTH()->getKey(),
+                        'currency' => References\Currency::UAH()->getKey(),
+                        'initialAmount' => static::INITIAL_AMOUNT,
+                        'subjectRole' => References\SubjectRole::BORROWER()->getKey(),
+                        'collateralCost' => static::COLLATERAL_COST,
+                        'dealLifes' => [
+                            [
+                                'id' => static::ID,
+                                'periodMonth' => static::PERIOD_MONTH,
+                                'periodYear' => static::PERIOD_YEAR,
+                                'issueDate' => static::ISSUE_DATE,
+                                'endDate' => static::END_DATE,
+                                'status' => References\DealStatus::CLOSE()->getKey(),
+                                'limit' => static::LIMIT,
+                                'mandatoryPayment' => static::MANDATORY_PAYMENT,
+                                'currentDebt' => static::CURRENT_DEBT,
+                                'currentOverdueDebt' => static::CURRENT_OVERDUE_DEBT,
+                                'overdueTime' => static::OVERDUE_TIME,
+                                'paymentIndication' => References\Flag::YES()->getKey(),
+                                'delayIndication' => References\Flag::YES()->getKey(),
+                                'creditTrancheIndication' => References\Flag::NO()->getKey(),
+                                'paymentDate' => static::PAYMENT_DATE,
+                                'actualEndDate' => static::ACTUAL_END_DATE,
+                            ]
+                        ],
+                        'source' => static::SOURCE
+                    ],
+                ],
+            ],
+            $this->fakeCreditsInformation->jsonSerialize()
+        );
+    }
+
     public function testGetCreditCollection(): void
     {
         $this->assertEquals(

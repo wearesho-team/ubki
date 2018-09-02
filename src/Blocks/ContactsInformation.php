@@ -24,4 +24,13 @@ class ContactsInformation extends Block
     {
         return $this->contacts;
     }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'contacts' => array_map(function (Interfaces\Contact $contact) {
+                return $contact->jsonSerialize();
+            }, $this->contacts->jsonSerialize()),
+        ];
+    }
 }

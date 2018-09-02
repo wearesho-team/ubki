@@ -26,6 +26,16 @@ class CreditsRegistersInformation extends Block
         $this->registryTimes = $registryTimes;
     }
 
+    public function jsonSerialize(): array
+    {
+        return [
+            'requests' => array_map(function (Interfaces\CreditRegister $creditRegister) {
+                return $creditRegister->jsonSerialize();
+            }, $this->creditRequests->jsonSerialize()),
+            'times' => $this->registryTimes->jsonSerialize(),
+        ];
+    }
+
     public function getCreditRequests(): Collections\CreditRegisters
     {
         return $this->creditRequests;

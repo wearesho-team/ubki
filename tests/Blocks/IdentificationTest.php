@@ -151,6 +151,108 @@ class IdentificationTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'credential' => [
+                    'language' => References\Language::RUS()->getKey(),
+                    'name' => static::NAME,
+                    'patronymic' => static::PATRONYMIC,
+                    'surname' => static::SURNAME,
+                    'birthDate' => static::BIRTH_DATE,
+                    'identifiers' => [
+                        [
+                            'createdAt' => static::CREATED_AT,
+                            'language' => References\Language::KAZ()->getKey(),
+                            'name' => static::NAME,
+                            'surname' => static::SURNAME,
+                            'birthDate' => static::BIRTH_DATE,
+                            'gender' => References\Gender::MAN()->getKey(),
+                            'inn' => static::INN,
+                            'patronymic' => static::PATRONYMIC,
+                            'familyStatus' => References\FamilyStatus::SINGLE()->getKey(),
+                            'education' => References\Education::SECONDARY()->getKey(),
+                            'nationality' => References\Nationality::RUSSIAN_FEDERATION()->getKey(),
+                            'registrationSpd' => References\RegistrationSpd::BUSINESS()->getKey(),
+                            'socialStatus' => References\SocialStatus::STUDENT()->getKey(),
+                            'childrenCount' => static::CHILDREN_COUNT,
+                        ],
+                        [
+                            'createdAt' => static::CREATED_AT,
+                            'language' => References\Language::RUS()->getKey(),
+                            'name' => static::NAME,
+                            'ergpou' => static::ERGPOU,
+                            'form' => static::FORM,
+                            'economyBranch' => static::ECONOMY_BRANCH,
+                            'activityType' => static::ACTIVITY_TYPE,
+                            'edrRegistrationDate' => static::EDR_REGISTRATION_DATE,
+                            'taxRegistrationDate' => static::TAX_REGISTRATION_DATE
+                        ],
+                    ],
+                    'documents' => [
+                        [
+                            'createdAt' => static::CREATED_AT,
+                            'language' => References\Language::RUS()->getKey(),
+                            'type' => References\DocumentType::DIPLOMA()->getKey(),
+                            'serial' => static::SERIAL,
+                            'number' => static::NUMBER,
+                            'issue' => static::ISSUE,
+                            'issueDate' => static::ISSUE_DATE,
+                            'termin' => static::TERMIN,
+                        ],
+                    ],
+                    'addresses' => [
+                        [
+                            'createdAt' => static::CREATED_AT,
+                            'language' => References\Language::RUS()->getKey(),
+                            'type' => References\AddressType::REGISTRATION()->getKey(),
+                            'country' => static::COUNTRY,
+                            'city' => static::CITY,
+                            'street' => static::STREET,
+                            'house' => static::HOUSE,
+                            'index' => static::INDEX,
+                            'state' => static::STATE,
+                            'area' => static::AREA,
+                            'cityType' => References\CityType::SETTLEMENT()->getKey(),
+                            'corpus' => static::CORPUS,
+                            'flat' => static::FLAT,
+                            'fullAddress' => static::FULL_ADDRESS
+                        ],
+                    ],
+                    'inn' => static::INN,
+                    'works' => [
+                        [
+                            'createdAt' => static::CREATED_AT,
+                            'language' => References\Language::RUS()->getKey(),
+                            'ergpou' => static::ERGPOU,
+                            'name' => static::NAME,
+                            'rank' => References\IdentifierRank::DIRECTOR()->getKey(),
+                            'experience' => static::EXPERIENCE,
+                            'income' => static::INCOME
+                        ],
+                    ],
+                    'photos' => [
+                        [
+                            'createdAt' => static::CREATED_AT,
+                            'inn' => static::INN,
+                            'photo' => static::PHOTO
+                        ],
+                    ],
+                    'linkedPersons' => [
+                        [
+                            'name' => static::NAME,
+                            'role' => References\LinkedIdentifierRole::DIRECTOR()->getKey(),
+                            'issueDate' => static::ISSUE_DATE,
+                            'ergpou' => static::ERGPOU
+                        ],
+                    ],
+                ],
+            ],
+            $this->fakeIdentification->jsonSerialize()
+        );
+    }
+
     public function testId(): void
     {
         $this->assertEquals(Blocks\Identification::ID, $this->fakeIdentification->getId());

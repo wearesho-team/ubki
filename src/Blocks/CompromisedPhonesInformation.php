@@ -25,4 +25,11 @@ class CompromisedPhonesInformation extends Block
     {
         return $this->phone;
     }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'compromisedPhone' => $this->phone->jsonSerialize(),
+        ];
+    }
 }
