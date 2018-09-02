@@ -50,7 +50,6 @@ class Converter implements ConverterInterface
                     Blocks\Interfaces\NaturalIdentifier::REGISTRATION_SPD => $identifier->getRegistrationSpd(),
                     Blocks\Interfaces\NaturalIdentifier::SOCIAL_STATUS => $identifier->getSocialStatus(),
                 ];
-
             } else {
                 /** @var Blocks\Interfaces\LegalIdentifier $identifier */
                 $attributes = [
@@ -338,7 +337,7 @@ class Converter implements ConverterInterface
             if (!is_null($value)) {
                 if ($value instanceof Reference) {
                     $element->setAttribute($name, $value->getValue());
-                } else if ($value instanceof \DateTimeInterface) {
+                } elseif ($value instanceof \DateTimeInterface) {
                     $element->setAttribute($name, Carbon::instance($value)->toDateString());
                 } else {
                     $element->setAttribute($name, $value);
