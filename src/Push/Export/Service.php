@@ -25,18 +25,18 @@ class Service implements ServiceInterface
     /** @var Authorization\ProviderInterface */
     protected $authProvider;
 
-    /** @var ConverterInterface */
-    protected $converter;
-
     /** @var Log\LoggerInterface */
     protected $logger;
+
+    /** @var ConverterInterface */
+    protected $converter;
 
     public function __construct(
         Push\ConfigInterface $config,
         Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        ConverterInterface $converter = null,
-        Log\LoggerInterface $logger = null
+        Log\LoggerInterface $logger = null,
+        ConverterInterface $converter = null
     ) {
         $this->config = $config;
         $this->authProvider = $authProvider;
@@ -50,7 +50,6 @@ class Service implements ServiceInterface
      *
      * @return Response
      * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws GuzzleHttp\Exception\BadResponseException
      */
     public function send(DataDocumentInterface $document): Response
     {
@@ -65,7 +64,14 @@ class Service implements ServiceInterface
 
         $this->validateResult($request, $response);
 
-        return $this->converter->xmlToResponse($response->getBody()->__toString());
+        return (new Parser())->getResponseBody(
+            $response->getBody()->__toString()
+        );
+    }
+
+    public function config(): Push\ConfigInterface
+    {
+        return $this->config;
     }
 
     /**

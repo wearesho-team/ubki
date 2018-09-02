@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki\Blocks;
  */
 interface DataDocumentInterface
 {
-    public function getTech();
+    public function getTech(); // TODO: need implement
 
     public function getIdentification(): Blocks\Identification;
 
@@ -24,5 +24,5 @@ interface DataDocumentInterface
 
     public function getContacts(): ?Blocks\ContactsInformation;
 
-    public function getCommunalPayments();
+    public function getCommunalPayments(); // TODO: need implement
 }

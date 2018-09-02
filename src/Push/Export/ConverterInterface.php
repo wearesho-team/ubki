@@ -8,9 +8,5 @@ namespace Wearesho\Bobra\Ubki\Push\Export;
  */
 interface ConverterInterface
 {
-    public function xmlToDataDocument(string $xml): DataDocumentInterface;
-
-    public function xmlToResponse(string $xml): Response;
-
-    public function dataDocumentToXml(DataDocumentInterface $document): string;
+    public function dataDocumentToXml(DataDocumentInterface $report): \DOMDocument;
 }

@@ -15,17 +15,7 @@ use Wearesho\Bobra\Ubki\Reference;
  */
 class Converter implements ConverterInterface
 {
-    public function xmlToDataDocument(string $xml): DataDocumentInterface
-    {
-
-    }
-
-    public function xmlToResponse(string $xml): Response
-    {
-
-    }
-
-    public function dataDocumentToXml(DataDocumentInterface $report): string
+    public function dataDocumentToXml(DataDocumentInterface $report): \DOMDocument
     {
         $document = new \DOMDocument('1.0', 'utf-8');
 
@@ -168,60 +158,158 @@ class Converter implements ConverterInterface
 
         $identificationBlock->appendChild($credentialElement);
 
-        $credits = $report->getCreditDeals();
+        $creditsInformation = $report->getCreditDeals();
 
-        if (!is_null($credits) && !empty($credits)) {
-            $creditsBlock = $this->createBlockInformation($credits);
+        if (!is_null($creditsInformation)) {
+            $creditDeals = $creditsInformation->getCreditCollection();
 
-            /** @var Blocks\Interfaces\CreditDeal $creditDeal */
-            foreach ($credits->getCreditCollection() as $creditDeal) {
-                $creditDealElement = $this->createFilledDOMElement($creditDeal, [
-                    Blocks\Interfaces\CreditDeal::TYPE => $creditDeal->getType(),
-                    Blocks\Interfaces\CreditDeal::LANGUAGE => $creditDeal->getLanguage(),
-                    Blocks\Interfaces\CreditDeal::ID => $creditDeal->getId(),
-                    Blocks\Interfaces\CreditDeal::BIRTH_DATE => $creditDeal->getBirthDate(),
-                    Blocks\Interfaces\CreditDeal::COLLATERAL => $creditDeal->getCollateral(),
-                    Blocks\Interfaces\CreditDeal::COLLATERAL_COST => $creditDeal->getCollateralCost(),
-                    Blocks\Interfaces\CreditDeal::CURRENCY => $creditDeal->getCurrency(),
-                    Blocks\Interfaces\CreditDeal::FIRST_NAME => $creditDeal->getName(),
-                    Blocks\Interfaces\CreditDeal::INITIAL_AMOUNT => $creditDeal->getInitialAmount(),
-                    Blocks\Interfaces\CreditDeal::INN => $creditDeal->getInn(),
-                    Blocks\Interfaces\CreditDeal::LAST_NAME => $creditDeal->getSurname(),
-                    Blocks\Interfaces\CreditDeal::MIDDLE_NAME => $creditDeal->getPatronymic(),
-                    Blocks\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $creditDeal->getRepaymentProcedure(),
-                    Blocks\Interfaces\CreditDeal::SOURCE => $creditDeal->getSource(),
-                    Blocks\Interfaces\CreditDeal::SUBJECT_ROLE => $creditDeal->getSubjectRole(),
-                ]);
+            if (!empty($creditDeals)) {
+                $creditsBlock = $this->createBlockInformation($creditsInformation);
 
-                /** @var Blocks\Interfaces\DealLife $dealLife */
-                foreach ($creditDeal->getDealLifeCollection() as $dealLife) {
-                    $creditDealElement->appendChild(
-                        $this->createFilledDOMElement($dealLife, [
-                            Blocks\Interfaces\DealLife::ID => $dealLife->getId(),
-                            Blocks\Interfaces\DealLife::ISSUE_DATE => $dealLife->getIssueDate(),
-                            Blocks\Interfaces\DealLife::ACTUAL_END_DATE => $dealLife->getActualEndDate(),
-                            Blocks\Interfaces\DealLife::TRANCHE_INDICATION => $dealLife->getTrancheIndication(),
-                            Blocks\Interfaces\DealLife::CURRENT_DEBT => $dealLife->getCurrentDebt(),
-                            Blocks\Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $dealLife->getCurrentOverdueDebt(),
-                            Blocks\Interfaces\DealLife::DELAY_INDICATION => $dealLife->getDelayIndication(),
-                            Blocks\Interfaces\DealLife::END_DATE => $dealLife->getEndDate(),
-                            Blocks\Interfaces\DealLife::LIMIT => $dealLife->getLimit(),
-                            Blocks\Interfaces\DealLife::MANDATORY_PAYMENT => $dealLife->getMandatoryPayment(),
-                            Blocks\Interfaces\DealLife::OVERDUE_TIME => $dealLife->getOverdueTime(),
-                            Blocks\Interfaces\DealLife::PAYMENT_DATE => $dealLife->getPaymentDate(),
-                            Blocks\Interfaces\DealLife::PAYMENT_INDICATION => $dealLife->getPaymentIndication(),
-                            Blocks\Interfaces\DealLife::PERIOD_MONTH => $dealLife->getPeriodMonth(),
-                            Blocks\Interfaces\DealLife::PERIOD_YEAR => $dealLife->getPeriodYear(),
-                            Blocks\Interfaces\DealLife::STATUS => $dealLife->getStatus(),
+                /** @var Blocks\Interfaces\CreditDeal $creditDeal */
+                foreach ($creditDeals as $creditDeal) {
+                    $creditDealElement = $this->createFilledDOMElement($creditDeal, [
+                        Blocks\Interfaces\CreditDeal::TYPE => $creditDeal->getType(),
+                        Blocks\Interfaces\CreditDeal::LANGUAGE => $creditDeal->getLanguage(),
+                        Blocks\Interfaces\CreditDeal::ID => $creditDeal->getId(),
+                        Blocks\Interfaces\CreditDeal::BIRTH_DATE => $creditDeal->getBirthDate(),
+                        Blocks\Interfaces\CreditDeal::COLLATERAL => $creditDeal->getCollateral(),
+                        Blocks\Interfaces\CreditDeal::COLLATERAL_COST => $creditDeal->getCollateralCost(),
+                        Blocks\Interfaces\CreditDeal::CURRENCY => $creditDeal->getCurrency(),
+                        Blocks\Interfaces\CreditDeal::FIRST_NAME => $creditDeal->getName(),
+                        Blocks\Interfaces\CreditDeal::INITIAL_AMOUNT => $creditDeal->getInitialAmount(),
+                        Blocks\Interfaces\CreditDeal::INN => $creditDeal->getInn(),
+                        Blocks\Interfaces\CreditDeal::LAST_NAME => $creditDeal->getSurname(),
+                        Blocks\Interfaces\CreditDeal::MIDDLE_NAME => $creditDeal->getPatronymic(),
+                        Blocks\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $creditDeal->getRepaymentProcedure(),
+                        Blocks\Interfaces\CreditDeal::SOURCE => $creditDeal->getSource(),
+                        Blocks\Interfaces\CreditDeal::SUBJECT_ROLE => $creditDeal->getSubjectRole(),
+                    ]);
+
+                    /** @var Blocks\Interfaces\DealLife $dealLife */
+                    foreach ($creditDeal->getDealLifeCollection() as $dealLife) {
+                        $creditDealElement->appendChild(
+                            $this->createFilledDOMElement($dealLife, [
+                                Blocks\Interfaces\DealLife::ID => $dealLife->getId(),
+                                Blocks\Interfaces\DealLife::ISSUE_DATE => $dealLife->getIssueDate(),
+                                Blocks\Interfaces\DealLife::ACTUAL_END_DATE => $dealLife->getActualEndDate(),
+                                Blocks\Interfaces\DealLife::TRANCHE_INDICATION => $dealLife->getTrancheIndication(),
+                                Blocks\Interfaces\DealLife::CURRENT_DEBT => $dealLife->getCurrentDebt(),
+                                Blocks\Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $dealLife->getCurrentOverdueDebt(),
+                                Blocks\Interfaces\DealLife::DELAY_INDICATION => $dealLife->getDelayIndication(),
+                                Blocks\Interfaces\DealLife::END_DATE => $dealLife->getEndDate(),
+                                Blocks\Interfaces\DealLife::LIMIT => $dealLife->getLimit(),
+                                Blocks\Interfaces\DealLife::MANDATORY_PAYMENT => $dealLife->getMandatoryPayment(),
+                                Blocks\Interfaces\DealLife::OVERDUE_TIME => $dealLife->getOverdueTime(),
+                                Blocks\Interfaces\DealLife::PAYMENT_DATE => $dealLife->getPaymentDate(),
+                                Blocks\Interfaces\DealLife::PAYMENT_INDICATION => $dealLife->getPaymentIndication(),
+                                Blocks\Interfaces\DealLife::PERIOD_MONTH => $dealLife->getPeriodMonth(),
+                                Blocks\Interfaces\DealLife::PERIOD_YEAR => $dealLife->getPeriodYear(),
+                                Blocks\Interfaces\DealLife::STATUS => $dealLife->getStatus(),
+                            ])
+                        );
+                    }
+
+                    $creditsBlock->appendChild($creditDealElement);
+                }
+            }
+        }
+
+        $courtDecisionsInformation = $report->getCourtDecisions();
+
+        if (!is_null($courtDecisionsInformation)) {
+            $decisions = $courtDecisionsInformation->getDecisionCollection();
+
+            if (!empty($decisions)) {
+                $courtDecisionsBlock = $this->createBlockInformation($courtDecisionsInformation);
+
+                /** @var Blocks\Interfaces\CourtDecision $decision */
+                foreach ($decisions as $decision) {
+                    $courtDecisionsBlock->appendChild(
+                        $this->createFilledDOMElement($decision, [
+                            Blocks\Interfaces\CourtDecision::ID => $decision->getId(),
+                            Blocks\Interfaces\CourtDecision::INN => $decision->getInn(),
+                            Blocks\Interfaces\CourtDecision::AREA => $decision->getArea(),
+                            Blocks\Interfaces\CourtDecision::CREATED_AT => $decision->getCreatedAt(),
+                            Blocks\Interfaces\CourtDecision::COURT_NAME => $decision->getCourtDealType(),
+                            Blocks\Interfaces\CourtDecision::COURT_DEAL_TYPE => $decision->getCourtDealType(),
+                            Blocks\Interfaces\CourtDecision::DATE => $decision->getDate(),
+                            Blocks\Interfaces\CourtDecision::DOCUMENT_TYPE => $decision->getDocumentType(),
+                            Blocks\Interfaces\CourtDecision::LEGAL_FACT => $decision->getLegalFact(),
+                            Blocks\Interfaces\CourtDecision::SUBJECT_STATUS => $decision->getSubjectStatus(),
+                        ])
+                    );
+                }
+            }
+        }
+
+        $creditRequestInformation = $report->getCreditRequests();
+
+        if (!is_null($creditRequestInformation)) {
+            $creditRequests = $creditRequestInformation->getCreditRequests();
+
+            if (!empty($creditRequests)) {
+                $creditRequestsBlock = $this->createBlockInformation($creditRequestInformation);
+
+                /** @var Blocks\Interfaces\CreditRegister $creditRequest */
+                foreach ($creditRequests as $creditRequest) {
+                    $creditRequestsBlock->appendChild(
+                        $this->createFilledDOMElement($creditRequest, [
+                            Blocks\Interfaces\CreditRegister::DATE => $creditRequest->getDate(),
+                            Blocks\Interfaces\CreditRegister::INN => $creditRequest->getInn(),
+                            Blocks\Interfaces\CreditRegister::ID => $creditRequest->getId(),
+                            Blocks\Interfaces\CreditRegister::DECISION => $creditRequest->getDecision(),
+                            Blocks\Interfaces\CreditRegister::ORGANIZATION => $creditRequest->getOrganization(),
+                            Blocks\Interfaces\CreditRegister::REASON => $creditRequest->getReason(),
                         ])
                     );
                 }
 
-                $creditsBlock->appendChild($creditDealElement);
+                $registryTimes = $creditRequestInformation->getRegistryTimes();
+
+                if (!is_null($registryTimes)) {
+                    $creditRequestsBlock->appendChild(
+                        $this->createFilledDOMElement($registryTimes, [
+                            Blocks\Interfaces\RegistryTimes::BY_HOUR => $registryTimes->getByHour(),
+                            Blocks\Interfaces\RegistryTimes::BY_DAY => $registryTimes->getByDay(),
+                            Blocks\Interfaces\RegistryTimes::BY_WEEK => $registryTimes->getByWeek(),
+                            Blocks\Interfaces\RegistryTimes::BY_MONTH => $registryTimes->getByMonth(),
+                            Blocks\Interfaces\RegistryTimes::BY_QUARTER => $registryTimes->getByQuarter(),
+                            Blocks\Interfaces\RegistryTimes::BY_YEAR => $registryTimes->getByYear(),
+                            Blocks\Interfaces\RegistryTimes::BY_MORE_YEAR => $registryTimes->getByMoreYear(),
+                        ])
+                    );
+                }
             }
         }
 
-        return $document->saveXML();
+        $insurancesInformation = $report->getInsuranceReports();
+
+        if (!is_null($insurancesInformation)) {
+            $insuranceReports = $insurancesInformation->getDeals();
+
+            if (!empty($insuranceReports)) {
+                $insurancesBlock = $this->createBlockInformation($insurancesInformation);
+
+                /** @var Blocks\Interfaces\Insurance\Deal $insuranceDeal */
+                foreach ($insuranceReports as $insuranceDeal) {
+                    $insurancesBlock->appendChild(
+                        $this->createFilledDOMElement($insuranceDeal, [
+                            Blocks\Interfaces\Insurance\Deal::ID => $insuranceDeal->getId(),
+                            Blocks\Interfaces\Insurance\Deal::INN => $insuranceDeal->getInn(),
+                            Blocks\Interfaces\Insurance\Deal::STATUS => $insuranceDeal->getStatus(),
+                            Blocks\Interfaces\Insurance\Deal::END_DATE => $insuranceDeal->getEndDate(),
+                            Blocks\Interfaces\Insurance\Deal::ACTUAL_END_DATE => $insuranceDeal->getActualEndDate(),
+                            Blocks\Interfaces\Insurance\Deal::TYPE => $insuranceDeal->getType(),
+                            Blocks\Interfaces\Insurance\Deal::INFORMATION_DATE => $insuranceDeal->getInformationDate(),
+                            Blocks\Interfaces\Insurance\Deal::START_DATE => $insuranceDeal->getStartDate(),
+                        ])
+                    );
+                }
+            }
+        }
+
+        return $document;
     }
 
     private function createBlockInformation(Block $class): \DOMElement
