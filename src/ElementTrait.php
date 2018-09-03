@@ -8,7 +8,7 @@ namespace Wearesho\Bobra\Ubki;
  */
 trait ElementTrait
 {
-    final public static function tag(): string
+    final public function tag(): string
     {
         return static::TAG;
     }

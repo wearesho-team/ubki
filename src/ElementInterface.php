@@ -8,5 +8,5 @@ namespace Wearesho\Bobra\Ubki;
  */
 interface ElementInterface extends \JsonSerializable
 {
-    public static function tag(): string;
+    public function tag(): string;
 }

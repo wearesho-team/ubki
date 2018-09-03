@@ -328,7 +328,7 @@ class Converter implements ConverterInterface
 
     private function instanceDOMElement(ElementInterface $class): \DOMElement
     {
-        return new \DOMElement(call_user_func([$class, 'tag']));
+        return new \DOMElement($class->tag());
     }
 
     private function setAttributesForElement(\DOMElement &$element, array $attributes): void
