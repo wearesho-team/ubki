@@ -7,15 +7,13 @@ use MyCLabs\Enum\Enum;
 /**
  * Class Reference
  * @package Wearesho\Bobra\Ubki
- *
- * @method int getValue()
  */
 abstract class Reference extends Enum
 {
     /** @var string|null */
     protected $description;
 
-    public function __construct(int $value, string $description = null)
+    public function __construct($value, string $description = null)
     {
         $this->description = $description;
 
