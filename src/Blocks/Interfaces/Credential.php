@@ -14,9 +14,11 @@ interface Credential extends ElementInterface
 {
     public const TAG = 'cki';
     public const INN = 'inn';
-    public const LAST_NAME = 'lname';
-    public const FIRST_NAME = 'fname';
-    public const MIDDLE_NAME = 'mname';
+    public const NAME = 'fname';
+    public const PATRONYMIC = 'mname';
+    public const SURNAME = 'lname';
+    public const LANGUAGE = 'reqlng';
+    public const BIRTH_DATE = 'bdate';
 
     public function getLanguage(): References\Language;
 

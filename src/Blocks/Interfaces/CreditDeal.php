@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Blocks;
 interface CreditDeal extends ElementInterface
 {
     public const TAG = 'crdeal';
-    public const ID = 'dlfer';
+    public const ID = 'dlref';
     public const LANGUAGE = 'lng';
     public const LANGUAGE_REF = 'lngref';
     public const INN = 'inn';

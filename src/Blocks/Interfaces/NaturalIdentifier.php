@@ -38,7 +38,7 @@ interface NaturalIdentifier extends Identifier
 
     public function getFamilyStatus(): ?References\FamilyStatus;
 
-    public function getEducation(): References\Education;
+    public function getEducation(): ?References\Education;
 
     public function getNationality(): ?References\Nationality;
 

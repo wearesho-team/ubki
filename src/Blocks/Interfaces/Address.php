@@ -27,7 +27,7 @@ interface Address extends ElementInterface
     public const STREET = 'adstreet';
     public const HOUSE = 'adhome';
     public const CORPUS = 'adcorp';
-    public const FLAT = 'flat';
+    public const FLAT = 'adflat';
     public const FULL_ADDRESS = 'addrdirt';
 
     public function getCreatedAt(): \DateTimeInterface;

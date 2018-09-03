@@ -359,6 +359,155 @@ class ConverterTest extends TestCase
         );
     }
 
+    public function testImitationRealExport(): void
+    {
+        $document = new Export\DataDocument(
+            $this->fakeTech,
+            new Blocks\Identification(
+                new Blocks\Entities\Credential(
+                    new References\Language(References\Language::RUS),
+                    'Иван',
+                    'Иванович',
+                    'Иванов',
+                    Carbon::parse('1998-03-12'),
+                    new Blocks\Collections\Identifiers([
+                        new Blocks\Entities\NaturalIdentifier(
+                            Carbon::parse('2018-06-13'),
+                            new References\Language(References\Language::RUS),
+                            'Иван',
+                            'Иванов',
+                            Carbon::parse('1998-03-12'),
+                            new References\Gender(References\Gender::MAN),
+                            '1234567890',
+                            'Иванович'
+                        )
+                    ]),
+                    new Blocks\Collections\Documents([
+                        new Blocks\Entities\Document(
+                            Carbon::parse('2018-06-13'),
+                            new References\Language(References\Language::RUS),
+                            new References\DocumentType(References\DocumentType::PASSPORT),
+                            'АА',
+                            '123456',
+                            'Харьковский ...',
+                            Carbon::parse('2014-03-12')
+                        )
+                    ]),
+                    new Blocks\Collections\Addresses([
+                        new Blocks\Entities\Address(
+                            Carbon::parse('2018-06-13'),
+                            new References\Language(References\Language::RUS),
+                            new References\AddressType(References\AddressType::HOME),
+                            'Україна',
+                            'Харьков',
+                            'Научная',
+                            '65',
+                            null,
+                            'Харьков',
+                            null,
+                            null,
+                            null,
+                            ''
+                        )
+                    ]),
+                    '1234567890'
+                )
+            ),
+            new Blocks\CreditsInformation(new Blocks\Collections\CreditDeals([
+                new Blocks\Entities\CreditDeal(
+                    '123456',
+                    new References\Language(References\Language::RUS),
+                    'Иван',
+                    'Иванов',
+                    Carbon::parse('1998-03-12'),
+                    new References\CreditDealType(References\CreditDealType::OTHER_CONSUMER_PURPOSES),
+                    new References\CollateralType(References\CollateralType::R_2),
+                    new References\RepaymentProcedure(References\RepaymentProcedure::PAYMENTS_INDIVIDUAL),
+                    new References\Currency(References\Currency::UAH),
+                    2500,
+                    new References\SubjectRole(References\SubjectRole::BORROWER),
+                    2500,
+                    new Blocks\Collections\DealLifes([
+                        new Blocks\Entities\DealLife(
+                            '123456',
+                            1,
+                            2018,
+                            Carbon::parse('2018-03-12'),
+                            Carbon::parse('2018-03-20'),
+                            new References\DealStatus(References\DealStatus::CLOSE),
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            References\Flag::NO(),
+                            References\Flag::NO(),
+                            References\Flag::NO(),
+                            Carbon::parse('2018-03-13'),
+                            Carbon::parse('2018-03-13')
+                        )
+                    ]),
+                    '1234567890',
+                    'Иванович'
+                )
+            ])),
+            null,
+            null,
+            null,
+            new Blocks\ContactsInformation(new Blocks\Collections\Contacts([
+                new Blocks\Entities\Contact(
+                    Carbon::parse('2017-05-11'),
+                    '380930439474',
+                    References\ContactType::MOBILE(),
+                    '1234567890'
+                ),
+            ]))
+        );
+
+        $this->assertXmlStringEqualsXmlString(
+            '<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <ubki sessid="testSessionId">
+        <req_envelope>
+            <req_xml>
+                <request version="1.0" reqtype="i" reqreason="0" reqdate="2018-03-12"
+                         reqidout="testId" reqsource="1">
+                    <ubkidata>
+                        <comp id="1">
+                            <cki inn="1234567890" lname="Иванов" fname="Иван" mname="Иванович" reqlng="1"
+                                 bdate="1998-03-12">
+                                <ident vdate="2018-06-13" inn="1234567890" lname="Иванов" fname="Иван"
+                                       mname="Иванович" lng="1" bdate="1998-03-12" csex="1"/>
+                                <doc vdate="2018-06-13" lng="1" dtype="1" dser="АА" dnom="123456"
+                                     dwho="Харьковский ..." dwdt="2014-03-12"/>
+                                <addr vdate="2018-06-13" lng="1" adtype="1" adcountry="Україна" adstate="Харьков"
+                                      adcity="Харьков" adstreet="Научная" adhome="65" adflat=""/>
+                            </cki>
+                        </comp>
+                        <comp id="2">
+                            <crdeal dlref="123456" inn="1234567890" fname="Иван" lname="Иванов"
+                                    mname="Иванович" bdate="1998-03-12" dlcelcred="7" dlvidobes="2" dlporpog="7"
+                                    dlcurr="980" dlamt="2500" dlrolesub="1" dlamtobes="2500" lng="1">
+                                <deallife dlref="123456" dlmonth="1" dlyear="2018" dlds="2018-03-12" dldpf="2018-03-20"
+                                          dldff="2018-03-13" dlflstat="2" dlamtlim="0" dlamtpaym="0" dlamtcur="0"
+                                          dlamtexp="0" dldayexp="0" dlflpay="0" dlflbrk="0" dlfluse="0"
+                                          dldateclc="2018-03-13"/>
+                            </crdeal>
+                        </comp>
+                        <comp id="10">
+                            <cont inn="1234567890" vdate="2017-05-11" ctype="3" cval="380930439474"/>
+                        </comp>
+                    </ubkidata>
+                </request>
+            </req_xml>
+        </req_envelope>
+    </ubki>
+</doc>
+',
+            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+        );
+    }
+
     public function testStandardExportReport(): void
     {
         $document = new Export\DataDocument(
@@ -378,8 +527,9 @@ class ConverterTest extends TestCase
         <req_envelope>
             <req_xml>
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
+                    <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
@@ -389,17 +539,17 @@ class ConverterTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dnom="testNumber" dser="testSerial"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
-                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" flat="testFlat"
+                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
                                   addrdirt="testFullAddress" adhome="testHouse" adindex="testIndex" adstate="testState"
                                   adstreet="testStreet"/>
                             <foto vdate="2018-03-12" inn="testInn" foto="testPhoto"/>
                         </cki>
                     </comp>
                     <comp id="2">
-                        <crdeal dlcelcred="9" lng="1" dlfer="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
+                        <crdeal dlcelcred="9" lng="1" dlref="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
                                 dlcurr="980" fname="testName" dlamt="5000" inn="testInn" lname="testSurname"
                                 mname="testPatronymic" dlporpog="9" dldonor="testSource" dlrolesub="1">
                             <deallife dlref="testId" dlds="2018-03-14" dldff="2019-02-01" dlfluse="0" dlamtcur="2400.45"
@@ -412,6 +562,7 @@ class ConverterTest extends TestCase
                         <cont ctype="4" inn="testInn" vdate="2018-03-12" cval="testValue"/>
                         <cont ctype="3" inn="testInn" vdate="2018-03-12" cval="testValue"/>
                     </comp>
+                    </ubkidata>
                 </request>
             </req_xml>
         </req_envelope>
@@ -436,8 +587,9 @@ class ConverterTest extends TestCase
         <req_envelope>
             <req_xml>
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
+                    <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
@@ -447,17 +599,17 @@ class ConverterTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dnom="testNumber" dser="testSerial"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
-                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" flat="testFlat"
+                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
                                   addrdirt="testFullAddress" adhome="testHouse" adindex="testIndex" adstate="testState"
                                   adstreet="testStreet"/>
                             <foto vdate="2018-03-12" inn="testInn" foto="testPhoto"/>
                         </cki>
                     </comp>
                     <comp id="2">
-                        <crdeal dlcelcred="9" lng="1" dlfer="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
+                        <crdeal dlcelcred="9" lng="1" dlref="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
                                 dlcurr="980" fname="testName" dlamt="5000" inn="testInn" lname="testSurname"
                                 mname="testPatronymic" dlporpog="9" dldonor="testSource" dlrolesub="1">
                             <deallife dlref="testId" dlds="2018-03-14" dldff="2019-02-01" dlfluse="0" dlamtcur="2400.45"
@@ -466,6 +618,7 @@ class ConverterTest extends TestCase
                                       dlflstat="2"/>
                         </crdeal>
                     </comp>
+                    </ubkidata>
                 </request>
             </req_xml>
         </req_envelope>
@@ -486,8 +639,9 @@ class ConverterTest extends TestCase
         <req_envelope>
             <req_xml>
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
+                    <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
@@ -497,15 +651,16 @@ class ConverterTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dnom="testNumber" dser="testSerial"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
-                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" flat="testFlat"
+                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
                                   addrdirt="testFullAddress" adhome="testHouse" adindex="testIndex" adstate="testState"
                                   adstreet="testStreet"/>
                             <foto vdate="2018-03-12" inn="testInn" foto="testPhoto"/>
                         </cki>
                     </comp>
+                    </ubkidata>
                 </request>
             </req_xml>
         </req_envelope>
@@ -534,8 +689,9 @@ class ConverterTest extends TestCase
         <req_envelope>
             <req_xml>
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
+                    <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
@@ -545,17 +701,17 @@ class ConverterTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dnom="testNumber" dser="testSerial"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
-                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" flat="testFlat"
+                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
                                   addrdirt="testFullAddress" adhome="testHouse" adindex="testIndex" adstate="testState"
                                   adstreet="testStreet"/>
                             <foto vdate="2018-03-12" inn="testInn" foto="testPhoto"/>
                         </cki>
                     </comp>
                     <comp id="2">
-                        <crdeal dlcelcred="9" lng="1" dlfer="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
+                        <crdeal dlcelcred="9" lng="1" dlref="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
                                 dlcurr="980" fname="testName" dlamt="5000" inn="testInn" lname="testSurname"
                                 mname="testPatronymic" dlporpog="9" dldonor="testSource" dlrolesub="1">
                             <deallife dlref="testId" dlds="2018-03-14" dldff="2019-02-01" dlfluse="0" dlamtcur="2400.45"
@@ -582,6 +738,7 @@ class ConverterTest extends TestCase
                         <cont ctype="4" cval="testvalue" inn="testinn" vdate="2018-03-12"/>
                         <cont ctype="3" cval="testvalue" inn="testinn" vdate="2018-03-12"/>
                     </comp>
+                    </ubkidata>
                 </request>
             </req_xml>
         </req_envelope>

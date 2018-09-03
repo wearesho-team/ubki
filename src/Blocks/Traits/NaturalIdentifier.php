@@ -101,7 +101,7 @@ trait NaturalIdentifier
         return $this->familyStatus;
     }
 
-    public function getEducation(): References\Education
+    public function getEducation(): ?References\Education
     {
         return $this->education;
     }

@@ -40,16 +40,19 @@ class Converter implements ConverterInterface
             Blocks\Interfaces\RequestData::VERSION => $requestData->getVersion(),
         ]);
 
+        $ubkiData = $this->createElement($report);
+
         $identification = $report->getIdentification();
         $identificationBlock = $this->createBlockInformation($identification);
 
         $credential = $identification->getCredential();
         $credentialElement = $this->createFilledElement($credential, [
-            'reqlng' => $credential->getLanguage(),
-            Blocks\Interfaces\Credential::FIRST_NAME => $credential->getName(),
-            Blocks\Interfaces\Credential::MIDDLE_NAME => $credential->getPatronymic(),
-            Blocks\Interfaces\Credential::LAST_NAME => $credential->getSurname(),
-            'bdate' => $credential->getBirthDate()
+            Blocks\Interfaces\Credential::LANGUAGE => $credential->getLanguage(),
+            Blocks\Interfaces\Credential::NAME => $credential->getName(),
+            Blocks\Interfaces\Credential::PATRONYMIC => $credential->getPatronymic(),
+            Blocks\Interfaces\Credential::SURNAME => $credential->getSurname(),
+            Blocks\Interfaces\Credential::BIRTH_DATE => $credential->getBirthDate(),
+            Blocks\Interfaces\Credential::INN => $credential->getInn(),
         ]);
 
         /** @var Blocks\Interfaces\Identifier $identifier */
@@ -133,6 +136,7 @@ class Converter implements ConverterInterface
                     Blocks\Interfaces\Document::TYPE => $identifierDocument->getType(),
                     Blocks\Interfaces\Document::NUMBER => $identifierDocument->getNumber(),
                     Blocks\Interfaces\Document::SERIAL => $identifierDocument->getSerial(),
+                    Blocks\Interfaces\Document::ISSUE => $identifierDocument->getIssue(),
                     Blocks\Interfaces\Document::ISSUE_DATE => $identifierDocument->getIssueDate(),
                     Blocks\Interfaces\Document::TERMIN => $identifierDocument->getTermin(),
                 ])
@@ -178,7 +182,7 @@ class Converter implements ConverterInterface
 
         $identificationBlock->appendChild($credentialElement);
         // todo: before first block need add tech
-        $request->appendChild($identificationBlock);
+        $ubkiData->appendChild($identificationBlock);
 
         $creditsInformation = $report->getCreditDeals();
 
@@ -235,7 +239,7 @@ class Converter implements ConverterInterface
                     $creditsBlock->appendChild($creditDealElement);
                 }
 
-                $request->appendChild($creditsBlock);
+                $ubkiData->appendChild($creditsBlock);
             }
         }
 
@@ -265,7 +269,7 @@ class Converter implements ConverterInterface
                     );
                 }
 
-                $request->appendChild($courtDecisionsBlock);
+                $ubkiData->appendChild($courtDecisionsBlock);
             }
         }
 
@@ -307,7 +311,7 @@ class Converter implements ConverterInterface
                     );
                 }
 
-                $request->appendChild($creditRequestsBlock);
+                $ubkiData->appendChild($creditRequestsBlock);
             }
         }
 
@@ -335,7 +339,7 @@ class Converter implements ConverterInterface
                     );
                 }
 
-                $request->appendChild($insurancesBlock);
+                $ubkiData->appendChild($insurancesBlock);
             }
         }
 
@@ -359,10 +363,11 @@ class Converter implements ConverterInterface
                     );
                 }
 
-                $request->appendChild($contactsBlock);
+                $ubkiData->appendChild($contactsBlock);
             }
         }
 
+        $request->appendChild($ubkiData);
         $reqxml->appendChild($request);
         $envelope->appendChild($reqxml);
         $ubki->appendChild($envelope);
