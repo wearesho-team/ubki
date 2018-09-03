@@ -339,6 +339,30 @@ class Converter implements ConverterInterface
             }
         }
 
+        $contactsInformation = $report->getContacts();
+
+        if (!is_null($contactsInformation)) {
+            $contacts = $contactsInformation->getContacts();
+
+            if (!empty($contacts)) {
+                $contactsBlock = $this->createBlockInformation($contactsInformation);
+
+                /** @var Blocks\Interfaces\Contact $contact */
+                foreach ($contacts as $contact) {
+                    $contactsBlock->appendChild(
+                        $this->createFilledElement($contact, [
+                            Blocks\Interfaces\Contact::TYPE => $contact->getType(),
+                            Blocks\Interfaces\Contact::INN => $contact->getInn(),
+                            Blocks\Interfaces\Contact::CREATED_AT => $contact->getCreatedAt(),
+                            Blocks\Interfaces\Contact::VALUE => $contact->getValue(),
+                        ])
+                    );
+                }
+
+                $request->appendChild($contactsBlock);
+            }
+        }
+
         $reqxml->appendChild($request);
         $envelope->appendChild($reqxml);
         $ubki->appendChild($envelope);
