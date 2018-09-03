@@ -10,6 +10,7 @@ use Psr\Log;
 use Wearesho\Bobra\Ubki\Blocks\Interfaces\RequestData;
 use Wearesho\Bobra\Ubki\Push;
 use Wearesho\Bobra\Ubki\Authorization;
+use Wearesho\Bobra\Ubki\RequestResponsePair;
 
 /**
  * Class Service
@@ -47,30 +48,37 @@ class Service implements ServiceInterface
     }
 
     /**
-     * @param RequestData           $reportTechData
-     * @param DataDocumentInterface $document
+     * @param RequestInterface $request
      *
-     * @return Response
+     * @return RequestResponsePair
+     * @throws RequestException
      * @throws GuzzleHttp\Exception\GuzzleException
      */
-    public function send(RequestData $reportTechData, DataDocumentInterface $document): Response
+    public function send(RequestInterface $request): RequestResponsePair
     {
         $body = $this->converter->dataDocumentToXml(
-            $reportTechData,
-            $document,
+            $request->getHead(),
+            $request->getBody(),
             $this->authProvider->provide($this->config)->getSessionId()
-        );
+        )->saveXML();
 
-        $request = new GuzzleHttp\Psr7\Request(
+        $guzzleRequest = new GuzzleHttp\Psr7\Request(
             'post',
             $this->config->getPushUrl(),
             [base64_encode($body),]
         );
-        $response = $this->client->send($request);
+        $this->logger->debug("UBKI export request {url}", [
+            'url' => $guzzleRequest->getUri()->__toString(),
+        ]);
 
-        $this->validateResult($request, $response);
+        try {
+            $response = $this->client->send($guzzleRequest);
+        } catch (GuzzleHttp\Exception\RequestException $exception) {
+            throw new RequestException($request, $exception->getMessage(), $exception->getCode(), $exception);
+        }
 
-        return (new Parser())->getResponseBody(
+        return new RequestResponsePair(
+            $body,
             $response->getBody()->__toString()
         );
     }
@@ -78,20 +86,5 @@ class Service implements ServiceInterface
     public function config(): Push\ConfigInterface
     {
         return $this->config;
-    }
-
-    /**
-     * @param GuzzleHttp\Psr7\Request        $request
-     * @param Http\Message\ResponseInterface $response
-     *
-     * @throws GuzzleHttp\Exception\BadResponseException
-     */
-    protected function validateResult(
-        GuzzleHttp\Psr7\Request $request,
-        Http\Message\ResponseInterface $response
-    ): void {
-        if (is_null($response)) {
-            throw new GuzzleHttp\Exception\BadResponseException("Null returned", $request, $response);
-        }
     }
 }

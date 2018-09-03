@@ -1,26 +1,24 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Push\Error;
+namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Element;
+use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
- * Class Entity
- * @package Wearesho\Bobra\Ubki\Push\Error
- *
- * @deprecated
+ * Class Error
+ * @package Wearesho\Bobra\Ubki\Push\Export
  */
-class Entity extends Element implements \JsonSerializable
+class Error implements ElementInterface
 {
-    public const ROOT = 'tech';
-    public const PARENT_TAG = 'sentdatainfo';
-    public const TAG = 'item';
+    use ElementTrait;
 
-    public const ATTR_BLOCK_ID = 'compid';
-    public const ATTR_TAG = 'tag';
-    public const ATTR_ATTRIBUTE = 'attr';
-    public const ATTR_TYPE = 'code';
-    public const ATTR_MESSAGE = 'msg';
+    public const TAG = 'item';
+    public const BLOCK_ID = 'compid';
+    public const ERRORED_TAG = 'tag';
+    public const ATTRIBUTE = 'attr';
+    public const TYPE = 'code';
+    public const MESSAGE = 'msg';
     public const PASSED_STRINGS = 'ok';
     public const ERROR_STRINGS = 'er';
 
@@ -28,7 +26,7 @@ class Entity extends Element implements \JsonSerializable
     protected $blockId;
 
     /** @var string */
-    protected $tag;
+    protected $erroredTag;
 
     /** @var string */
     protected $attribute;
@@ -51,16 +49,29 @@ class Entity extends Element implements \JsonSerializable
         string $attribute,
         string $type,
         string $message,
-        ?int $passedStrings = null,
-        ?int $errorStrings = null
+        ?int $passedStringsCount = null,
+        ?int $errorStringsCount = null
     ) {
         $this->blockId = $blockId;
-        $this->tag = $tag;
+        $this->erroredTag = $tag;
         $this->attribute = $attribute;
         $this->type = $type;
         $this->message = $message;
-        $this->passedStringsCount = $passedStrings;
-        $this->errorStringsCount = $errorStrings;
+        $this->passedStringsCount = $passedStringsCount;
+        $this->errorStringsCount = $errorStringsCount;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'blockId' => $this->blockId,
+            'tag' => $this->erroredTag,
+            'attribute' => $this->attribute,
+            'type' => $this->type,
+            'message' => $this->message,
+            'passedStrings' => $this->passedStringsCount,
+            'errorString' => $this->errorStringsCount
+        ];
     }
 
     public function getBlockId(): int
@@ -68,9 +79,9 @@ class Entity extends Element implements \JsonSerializable
         return $this->blockId;
     }
 
-    public function getTag(): string
+    public function getErroredTag(): string
     {
-        return $this->tag;
+        return $this->erroredTag;
     }
 
     public function getAttribute(): string
@@ -96,18 +107,5 @@ class Entity extends Element implements \JsonSerializable
     public function getErrorStringsCount(): ?int
     {
         return $this->errorStringsCount;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'blockId' => $this->getBlockId(),
-            'tag' => $this->getTag(),
-            'attribute' => $this->getAttribute(),
-            'type' => $this->getType(),
-            'message' => $this->getMessage(),
-            'passedStrings' => $this->getPassedStringsCount(),
-            'errorString' => $this->getErrorStringsCount()
-        ];
     }
 }
