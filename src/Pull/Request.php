@@ -2,64 +2,33 @@
 
 namespace Wearesho\Bobra\Ubki\Pull;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces;
 
 /**
  * Class Request
  * @package Wearesho\Bobra\Ubki\Pull
  */
-class Request
+class Request implements RequestInterface
 {
-    /** @var int */
-    protected $inn;
+    /** @var Interfaces\RequestData */
+    protected $head;
 
-    /** @var Ubki\Language */
-    protected $language;
+    /** @var IdentificationData */
+    protected $body;
 
-    /** @var Reason */
-    protected $reason;
-
-    /** @var Type */
-    protected $type;
-
-    /** @var \DateTimeInterface */
-    protected $date;
-
-    public function __construct(
-        int $inn,
-        Ubki\Language $language,
-        Reason $reason,
-        Type $type,
-        \DateTimeInterface $date
-    ) {
-        $this->language = $language;
-        $this->reason = $reason;
-        $this->type;
-        $this->date = $date;
+    public function __construct(Interfaces\RequestData $requestData, IdentificationDataInterface $identificationData)
+    {
+        $this->head = $requestData;
+        $this->body = $identificationData;
     }
 
-    public function getInn(): int
+    public function getHead(): Interfaces\RequestData
     {
-        return $this->inn;
+        return $this->head;
     }
 
-    public function getLanguage(): Ubki\Language
+    public function getBody(): IdentificationData
     {
-        return $this->language;
-    }
-
-    public function getReason(): Reason
-    {
-        return $this->reason;
-    }
-
-    public function getType(): Type
-    {
-        return $this->type;
-    }
-
-    public function getDate(): \DateTimeInterface
-    {
-        return $this->date;
+        return $this->body;
     }
 }

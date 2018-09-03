@@ -32,7 +32,7 @@ class Service
         ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authorization,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger
+        Log\LoggerInterface $logger = null
     ) {
         $this->config = $config;
         $this->authorization = $authorization;
