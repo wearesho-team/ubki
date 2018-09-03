@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki;
 
 /**
  * Class Config
- *
  * @package Wearesho\Bobra\Ubki\Pull
  */
 class Config implements ConfigInterface
@@ -14,11 +13,8 @@ class Config implements ConfigInterface
     use Ubki\Authorization\ConfigTrait;
     use ConfigTrait;
 
-    public function __construct(
-        string $username,
-        string $password,
-        int $mode
-    ) {
+    public function __construct(string $username, string $password, int $mode)
+    {
         $this->validateMode($mode);
 
         $this->username = $username;

@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Pull;
 
 /**
  * Trait ConfigTrait
- *
  * @package Wearesho\Bobra\Ubki\Pull
  */
 trait ConfigTrait
