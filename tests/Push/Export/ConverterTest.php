@@ -529,7 +529,8 @@ class ConverterTest extends TestCase
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
                     <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" 
+                        bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
@@ -539,7 +540,8 @@ class ConverterTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" dser="testSerial"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" 
+                            dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
                                   adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
@@ -589,7 +591,8 @@ class ConverterTest extends TestCase
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
                     <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname"
+                         bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
@@ -599,7 +602,8 @@ class ConverterTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" dser="testSerial"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" 
+                            dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
                                   adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
@@ -641,7 +645,8 @@ class ConverterTest extends TestCase
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
                     <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname"
+                         bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
@@ -651,7 +656,8 @@ class ConverterTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" dser="testSerial"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber"
+                             dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
                                   adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
@@ -691,7 +697,8 @@ class ConverterTest extends TestCase
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
                     <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" 
+                        bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
@@ -701,7 +708,8 @@ class ConverterTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" dser="testSerial"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber"
+                             dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
                                   adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
