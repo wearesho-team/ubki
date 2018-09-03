@@ -3,13 +3,16 @@
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
 use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\ElementInterface;
 
 /**
  * Interface DataDocumentInterface
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-interface DataDocumentInterface
+interface DataDocumentInterface extends ElementInterface
 {
+    public const TAG = 'ubkidata';
+
     public function getTech(); // TODO: need implement
 
     public function getIdentification(): Blocks\Identification;

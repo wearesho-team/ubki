@@ -18,6 +18,7 @@ use Wearesho\Bobra\Ubki\Blocks;
  */
 class ConverterTest extends TestCase
 {
+    protected const SESSION_ID = 'testSessionId';
     protected const NAME = 'testName';
     protected const CREATED_AT = '2018-03-12';
     protected const INN = 'testInn';
@@ -115,6 +116,13 @@ class ConverterTest extends TestCase
 
     public function testDataDocumentToXml(): void
     {
+        $requestData = new Blocks\Entities\RequestData(
+            References\RequestType::EXPORT(),
+            References\RequestReason::EXPORT(),
+            Carbon::parse(static::DATE),
+            static::ID,
+            References\RequestInitiator::PARTNER()
+        );
         $document = new Export\DataDocument(
             'tech',
             new Blocks\Identification(
@@ -332,5 +340,63 @@ class ConverterTest extends TestCase
             )
         );
 
+        $this->assertXmlStringEqualsXmlString(
+            '<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <ubki sessid="testSessionId">
+        <req_envelope>
+            <req_xml>
+                <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
+                    <comp id="1">
+                        <cki reqlng="1" fname="testName" mname="testPatronymic" lname="testSurname" bdate="1998-03-12">
+                            <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
+                                   bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
+                                   csex="1" cgrag="643" spd="2" sstate="5"/>
+                            <urident lng="1" vdate="2018-03-12" urname="testName" urdatregnal="2016-03-12"
+                                     urdatreg="2017-03-12" ureconom="testBranch" urvide="testActivityType"
+                                     okpo="testErgpou" urfrms="1"/>
+                            <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
+                            <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
+                                  lng="1" cdolgn="1"/>
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dnom="testNumber" dser="testSerial"
+                                 dwdt="2018-03-14" dterm="2020-01-01"/>
+                            <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
+                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" flat="testFlat"
+                                  addrdirt="testFullAddress" adhome="testHouse" adindex="testIndex" adstate="testState"
+                                  adstreet="testStreet"/>
+                            <foto vdate="2018-03-12" inn="testInn" foto="testPhoto"/>
+                        </cki>
+                    </comp>
+                    <comp id="2">
+                        <crdeal dlcelcred="9" lng="1" dlfer="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
+                                dlcurr="980" fname="testName" dlamt="5000" inn="testInn" lname="testSurname"
+                                mname="testPatronymic" dlporpog="9" dldonor="testSource" dlrolesub="1">
+                            <deallife dlref="testId" dlds="2018-03-14" dldff="2019-02-01" dlfluse="0" dlamtcur="2400.45"
+                                      dlamtexp="2200" dlflbrk="1" dldpf="2019-03-12" dlamtlim="10000" dlamtpaym="2000"
+                                      dldayexp="20" dldateclc="2018-03-12" dlflpay="1" dlmonth="4" dlyear="2012"
+                                      dlflstat="2"/>
+                        </crdeal>
+                    </comp>
+                    <comp id="3">
+                        <susd voteid="testId" inn="testInn" votesudregion="testArea" vdate="2018-03-12" votesudname="2"
+                              votetype="2" votedate="2018-03-12" votedoctype="testDocumentType"
+                              voteurfact="testLegalFact" voteusrst="1"/>
+                    </comp>
+                    <comp id="4">
+                        <credres redate="2018-03-12" inn="testInn" reqid="testId" result="1" org="testOrganization"
+                                 reqreason="1"/>
+                        <reestrtime hr="1" da="2" wk="3" mn="4" qw="5" ye="10" yu="200"/>
+                    </comp>
+                    <comp id="9">
+                        <insur dlref="testId" inn="testInn" dlstate="2" dldpf="2019-03-12" dldff="2019-02-01" dltype="1"
+                               dldate="2018-03-12" dlds="2017-03-12"/>
+                    </comp>
+                </request>
+            </req_xml>
+        </req_envelope>
+    </ubki>
+</doc>',
+            $this->fakeConverter->dataDocumentToXml($requestData, $document, static::SESSION_ID)
+        );
     }
 }

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki\Blocks;
  * Class DataDocument
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-class DataDocument implements DataDocumentInterface, \JsonSerializable
+class DataDocument implements DataDocumentInterface
 {
     use DataDocumentTrait;
 
@@ -30,17 +30,5 @@ class DataDocument implements DataDocumentInterface, \JsonSerializable
         $this->insuranceReports = $insuranceReports;
         $this->contacts = $contacts;
         $this->communalPayments = $communalPayments;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'identification' => $this->identification->jsonSerialize(),
-            'creditsInformation' => $this->creditDeals->jsonSerialize(),
-            'courtDecisionsInformation' => $this->courtDecisions->jsonSerialize(),
-            'creditRequestsInformation' => $this->creditRequests->jsonSerialize(),
-            'insuranceReportsInformation' => $this->insuranceReports->jsonSerialize(),
-            'contactsInformation' => $this->contacts->jsonSerialize(),
-        ];
     }
 }

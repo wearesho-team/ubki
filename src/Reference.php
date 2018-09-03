@@ -7,9 +7,14 @@ use MyCLabs\Enum\Enum;
 /**
  * Class Reference
  * @package Wearesho\Bobra\Ubki
+ *
+ * @method int|string getValue()
  */
 abstract class Reference extends Enum
 {
+    /** @var string|int */
+    protected $value;
+
     /** @var string|null */
     protected $description;
 

@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
 use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
  * Trait DataDocumentTrait
@@ -10,6 +11,8 @@ use Wearesho\Bobra\Ubki\Blocks;
  */
 trait DataDocumentTrait
 {
+    use ElementTrait;
+
     protected $tech;
 
     /** @var Blocks\Identification */
@@ -31,6 +34,18 @@ trait DataDocumentTrait
     protected $contacts;
 
     protected $communalPayments;
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'identification' => $this->identification->jsonSerialize(),
+            'creditsInformation' => $this->creditDeals->jsonSerialize(),
+            'courtDecisionsInformation' => $this->courtDecisions->jsonSerialize(),
+            'creditRequestsInformation' => $this->creditRequests->jsonSerialize(),
+            'insuranceReportsInformation' => $this->insuranceReports->jsonSerialize(),
+            'contactsInformation' => $this->contacts->jsonSerialize(),
+        ];
+    }
 
     public function getTech()
     {

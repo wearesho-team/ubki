@@ -15,15 +15,36 @@ use Wearesho\Bobra\Ubki\Reference;
  */
 class Converter implements ConverterInterface
 {
-    public function dataDocumentToXml(DataDocumentInterface $report): \DOMDocument
-    {
-        $document = new \DOMDocument('1.0', 'utf-8');
+    /** @var \DOMDocument */
+    private $document;
+
+    public function dataDocumentToXml(
+        Blocks\Interfaces\RequestData $requestData,
+        DataDocumentInterface $report,
+        string $sessionId
+    ): \DOMDocument {
+        $this->document = new \DOMDocument('1.0', 'utf-8');
+
+        $root = $this->document->createElement(static::DOC_ROOT);
+        $ubki = $this->document->createElement(static::UBKI_ROOT);
+        $ubki->setAttribute(static::SESSION_ID, $sessionId);
+        $envelope = $this->document->createElement(static::REQUEST_ENVELOPE);
+        $reqxml = $this->document->createElement(static::REQUEST_XML);
+
+        $request = $this->createFilledElement($requestData, [
+            Blocks\Interfaces\RequestData::ID => $requestData->getId(),
+            Blocks\Interfaces\RequestData::DATE => $requestData->getDate(),
+            Blocks\Interfaces\RequestData::TYPE => $requestData->getType(),
+            Blocks\Interfaces\RequestData::REASON => $requestData->getReason(),
+            Blocks\Interfaces\RequestData::INITIATOR => $requestData->getInitiator(),
+            Blocks\Interfaces\RequestData::VERSION => $requestData->getVersion(),
+        ]);
 
         $identification = $report->getIdentification();
         $identificationBlock = $this->createBlockInformation($identification);
 
         $credential = $identification->getCredential();
-        $credentialElement = $this->createFilledDOMElement($credential, [
+        $credentialElement = $this->createFilledElement($credential, [
             'reqlng' => $credential->getLanguage(),
             Blocks\Interfaces\Credential::FIRST_NAME => $credential->getName(),
             Blocks\Interfaces\Credential::MIDDLE_NAME => $credential->getPatronymic(),
@@ -65,7 +86,7 @@ class Converter implements ConverterInterface
                 ];
             }
 
-            $credentialElement->appendChild($this->createFilledDOMElement($identifier, $attributes));
+            $credentialElement->appendChild($this->createFilledElement($identifier, $attributes));
         }
 
         $linkedPersons = $credential->getLinkedPersons();
@@ -74,7 +95,7 @@ class Converter implements ConverterInterface
             /** @var Blocks\Interfaces\LinkedPerson $linkedPerson */
             foreach ($linkedPersons as $linkedPerson) {
                 $credentialElement->appendChild(
-                    $this->createFilledDOMElement($linkedPerson, [
+                    $this->createFilledElement($linkedPerson, [
                         Blocks\Interfaces\LinkedPerson::NAME => $linkedPerson->getName(),
                         Blocks\Interfaces\LinkedPerson::ERGPOU => $linkedPerson->getErgpou(),
                         Blocks\Interfaces\LinkedPerson::ISSUE_DATE => $linkedPerson->getIssueDate(),
@@ -90,7 +111,7 @@ class Converter implements ConverterInterface
             /** @var Blocks\Interfaces\Work $work */
             foreach ($works as $work) {
                 $credentialElement->appendChild(
-                    $this->createFilledDOMElement($work, [
+                    $this->createFilledElement($work, [
                         Blocks\Interfaces\Work::NAME => $work->getName(),
                         Blocks\Interfaces\Work::ERGPOU => $work->getErgpou(),
                         Blocks\Interfaces\Work::CREATED_AT => $work->getCreatedAt(),
@@ -106,7 +127,7 @@ class Converter implements ConverterInterface
         /** @var Blocks\Interfaces\Document $identifierDocument */
         foreach ($credential->getDocuments() as $identifierDocument) {
             $credentialElement->appendChild(
-                $this->createFilledDOMElement($identifierDocument, [
+                $this->createFilledElement($identifierDocument, [
                     Blocks\Interfaces\Document::CREATED_AT => $identifierDocument->getCreatedAt(),
                     Blocks\Interfaces\Document::LANGUAGE => $identifierDocument->getLanguage(),
                     Blocks\Interfaces\Document::TYPE => $identifierDocument->getType(),
@@ -121,7 +142,7 @@ class Converter implements ConverterInterface
         /** @var Blocks\Interfaces\Address $address */
         foreach ($credential->getAddresses() as $address) {
             $credentialElement->appendChild(
-                $this->createFilledDOMElement($address, [
+                $this->createFilledElement($address, [
                     Blocks\Interfaces\Address::LANGUAGE => $address->getLanguage(),
                     Blocks\Interfaces\Address::CREATED_AT => $address->getCreatedAt(),
                     Blocks\Interfaces\Address::TYPE => $address->getAddressType(),
@@ -146,7 +167,7 @@ class Converter implements ConverterInterface
             /** @var Blocks\Interfaces\Photo $photo */
             foreach ($photos as $photo) {
                 $credentialElement->appendChild(
-                    $this->createFilledDOMElement($photo, [
+                    $this->createFilledElement($photo, [
                         Blocks\Interfaces\Photo::CREATED_AT => $photo->getCreatedAt(),
                         Blocks\Interfaces\Photo::INN => $photo->getInn(),
                         Blocks\Interfaces\Photo::PHOTO => $photo->getUri(),
@@ -156,6 +177,8 @@ class Converter implements ConverterInterface
         }
 
         $identificationBlock->appendChild($credentialElement);
+        // todo: before first block need add tech
+        $request->appendChild($identificationBlock);
 
         $creditsInformation = $report->getCreditDeals();
 
@@ -167,7 +190,7 @@ class Converter implements ConverterInterface
 
                 /** @var Blocks\Interfaces\CreditDeal $creditDeal */
                 foreach ($creditDeals as $creditDeal) {
-                    $creditDealElement = $this->createFilledDOMElement($creditDeal, [
+                    $creditDealElement = $this->createFilledElement($creditDeal, [
                         Blocks\Interfaces\CreditDeal::TYPE => $creditDeal->getType(),
                         Blocks\Interfaces\CreditDeal::LANGUAGE => $creditDeal->getLanguage(),
                         Blocks\Interfaces\CreditDeal::ID => $creditDeal->getId(),
@@ -188,7 +211,7 @@ class Converter implements ConverterInterface
                     /** @var Blocks\Interfaces\DealLife $dealLife */
                     foreach ($creditDeal->getDealLifeCollection() as $dealLife) {
                         $creditDealElement->appendChild(
-                            $this->createFilledDOMElement($dealLife, [
+                            $this->createFilledElement($dealLife, [
                                 Blocks\Interfaces\DealLife::ID => $dealLife->getId(),
                                 Blocks\Interfaces\DealLife::ISSUE_DATE => $dealLife->getIssueDate(),
                                 Blocks\Interfaces\DealLife::ACTUAL_END_DATE => $dealLife->getActualEndDate(),
@@ -211,6 +234,8 @@ class Converter implements ConverterInterface
 
                     $creditsBlock->appendChild($creditDealElement);
                 }
+
+                $request->appendChild($creditsBlock);
             }
         }
 
@@ -225,7 +250,7 @@ class Converter implements ConverterInterface
                 /** @var Blocks\Interfaces\CourtDecision $decision */
                 foreach ($decisions as $decision) {
                     $courtDecisionsBlock->appendChild(
-                        $this->createFilledDOMElement($decision, [
+                        $this->createFilledElement($decision, [
                             Blocks\Interfaces\CourtDecision::ID => $decision->getId(),
                             Blocks\Interfaces\CourtDecision::INN => $decision->getInn(),
                             Blocks\Interfaces\CourtDecision::AREA => $decision->getArea(),
@@ -239,6 +264,8 @@ class Converter implements ConverterInterface
                         ])
                     );
                 }
+
+                $request->appendChild($courtDecisionsBlock);
             }
         }
 
@@ -253,7 +280,7 @@ class Converter implements ConverterInterface
                 /** @var Blocks\Interfaces\CreditRegister $creditRequest */
                 foreach ($creditRequests as $creditRequest) {
                     $creditRequestsBlock->appendChild(
-                        $this->createFilledDOMElement($creditRequest, [
+                        $this->createFilledElement($creditRequest, [
                             Blocks\Interfaces\CreditRegister::DATE => $creditRequest->getDate(),
                             Blocks\Interfaces\CreditRegister::INN => $creditRequest->getInn(),
                             Blocks\Interfaces\CreditRegister::ID => $creditRequest->getId(),
@@ -268,7 +295,7 @@ class Converter implements ConverterInterface
 
                 if (!is_null($registryTimes)) {
                     $creditRequestsBlock->appendChild(
-                        $this->createFilledDOMElement($registryTimes, [
+                        $this->createFilledElement($registryTimes, [
                             Blocks\Interfaces\RegistryTimes::BY_HOUR => $registryTimes->getByHour(),
                             Blocks\Interfaces\RegistryTimes::BY_DAY => $registryTimes->getByDay(),
                             Blocks\Interfaces\RegistryTimes::BY_WEEK => $registryTimes->getByWeek(),
@@ -279,6 +306,8 @@ class Converter implements ConverterInterface
                         ])
                     );
                 }
+
+                $request->appendChild($creditRequestsBlock);
             }
         }
 
@@ -293,7 +322,7 @@ class Converter implements ConverterInterface
                 /** @var Blocks\Interfaces\Insurance\Deal $insuranceDeal */
                 foreach ($insuranceReports as $insuranceDeal) {
                     $insurancesBlock->appendChild(
-                        $this->createFilledDOMElement($insuranceDeal, [
+                        $this->createFilledElement($insuranceDeal, [
                             Blocks\Interfaces\Insurance\Deal::ID => $insuranceDeal->getId(),
                             Blocks\Interfaces\Insurance\Deal::INN => $insuranceDeal->getInn(),
                             Blocks\Interfaces\Insurance\Deal::STATUS => $insuranceDeal->getStatus(),
@@ -305,33 +334,41 @@ class Converter implements ConverterInterface
                         ])
                     );
                 }
+
+                $request->appendChild($insurancesBlock);
             }
         }
 
-        return $document;
+        $reqxml->appendChild($request);
+        $envelope->appendChild($reqxml);
+        $ubki->appendChild($envelope);
+        $root->appendChild($ubki);
+        $this->document->appendChild($root);
+
+        return $this->document;
     }
 
     private function createBlockInformation(Block $class): \DOMElement
     {
-        return $this->createFilledDOMElement($class, [
+        return $this->createFilledElement($class, [
             Block::ATTR_ID => $class->getId()
         ]);
     }
 
-    private function createFilledDOMElement(ElementInterface $class, array $attributes): \DOMElement
+    private function createFilledElement(ElementInterface $class, array $attributes = []): \DOMElement
     {
-        $element = $this->instanceDOMElement($class);
+        $element = $this->createElement($class);
         $this->setAttributesForElement($element, $attributes);
 
         return $element;
     }
 
-    private function instanceDOMElement(ElementInterface $class): \DOMElement
+    private function createElement(ElementInterface $class): \DOMElement
     {
-        return new \DOMElement($class->tag());
+        return $this->document->createElement($class->tag());
     }
 
-    private function setAttributesForElement(\DOMElement &$element, array $attributes): void
+    private function setAttributesForElement(\DOMElement &$element, array $attributes = []): void
     {
         foreach ($attributes as $name => $value) {
             if (!is_null($value)) {
