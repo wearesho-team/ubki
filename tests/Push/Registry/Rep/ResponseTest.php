@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Push\Registry\Rep;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Block\Identifying;
+use Wearesho\Bobra\Ubki\Blocks\Identification;
 use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
@@ -27,7 +27,7 @@ class ResponseTest extends TestCase
             'A1F593950A8F4562AE5A5DB1914D658A',
             Registry\Response\State::CREATED(),
             Registry\Response\OperationType::TRANSFERRING(),
-            Identifying::ID,
+            Identification::ID,
             'IDENT',
             'NW',
             '',
@@ -91,7 +91,7 @@ class ResponseTest extends TestCase
     public function testGetBlockId(): void
     {
         $this->assertEquals(
-            Identifying::ID,
+            Identification::ID,
             $this->response->getBlockId()
         );
     }
