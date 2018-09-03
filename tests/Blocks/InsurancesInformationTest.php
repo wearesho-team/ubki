@@ -58,6 +58,34 @@ class InsurancesInformationTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'insuranceDeals' => [
+                    [
+                        'inn' => static::INN,
+                        'id' => static::ID,
+                        'informationDate' => static::INFORMATION_DATE,
+                        'startDate' => static::START_DATE,
+                        'endDate' => static::END_DATE,
+                        'type' => static::TYPE,
+                        'status' => static::STATUS,
+                        'actualEndDate' => static::ACTUAL_END_DATE,
+                        'events' => [
+                            [
+                                'requestDate' => static::REQUEST_DATE,
+                                'decision' => static::DECISION,
+                                'decisionDate' => static::DECISION_DATE
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            $this->fakeInsurancesInformation->jsonSerialize()
+        );
+    }
+
     public function testGetDeals(): void
     {
         $this->assertEquals(

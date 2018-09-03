@@ -61,6 +61,34 @@ class CreditsRegistersInformationTest extends TestCase
         );
     }
 
+    public function testJsonSerialize(): void
+    {
+        $this->assertArraySubset(
+            [
+                'requests' => [
+                    [
+                        'date' => static::DATE,
+                        'inn' => static::INN,
+                        'id' => static::ID,
+                        'decision' => Decision::POSITIVE()->getKey(),
+                        'reason' => static::REASON,
+                        'organization' => static::ORGANIZATION
+                    ],
+                ],
+                'times' => [
+                    'byHour' => static::BY_HOUR,
+                    'byDay' => static::BY_DAY,
+                    'byWeek' => static::BY_WEEK,
+                    'byMonth' => static::BY_MONTH,
+                    'byQuarter' => static::BY_QUARTER,
+                    'byYear' => static::BY_YEAR,
+                    'byMoreYear' => static::BY_MORE_YEAR,
+                ],
+            ],
+            $this->fakeCreditsRegistersInformation->jsonSerialize()
+        );
+    }
+
     public function testGetCreditRequests(): void
     {
         $this->assertEquals(

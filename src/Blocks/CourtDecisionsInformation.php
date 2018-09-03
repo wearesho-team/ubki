@@ -25,4 +25,13 @@ class CourtDecisionsInformation extends Block
     {
         return $this->decisionCollection;
     }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'courtReports' => array_map(function (Interfaces\CourtDecision $courtDecision) {
+                return $courtDecision->jsonSerialize();
+            }, $this->decisionCollection->jsonSerialize())
+        ];
+    }
 }

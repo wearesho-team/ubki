@@ -20,6 +20,13 @@ class Identification extends Block
         $this->credential = $credential;
     }
 
+    public function jsonSerialize(): array
+    {
+        return [
+            'credential' => $this->credential->jsonSerialize(),
+        ];
+    }
+
     public function getCredential(): Interfaces\Credential
     {
         return $this->credential;
