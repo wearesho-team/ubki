@@ -1,10 +1,10 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Push\Registry;
+namespace Wearesho\Bobra\Ubki;
 
 /**
  * Class RequestResponsePair
- * @package Wearesho\Bobra\Ubki\Push\Registry
+ * @package Wearesho\Bobra\Ubki
  */
 class RequestResponsePair
 {

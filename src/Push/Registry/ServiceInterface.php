@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
+use Wearesho\Bobra\Ubki\RequestResponsePair;
+
 /**
  * Interface ServiceInterface
  *

@@ -9,7 +9,7 @@ namespace Wearesho\Bobra\Ubki\Push\Export;
 class Parser
 {
     // TODO: need implement
-    public function getResponseBody(string $response): Response
+    public function parseResponse(string $response): Response
     {
         return new Response();
     }

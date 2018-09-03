@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Push;
+use Wearesho\Bobra\Ubki\Blocks\Interfaces\RequestData;
 
 /**
  * Interface ServiceInterface
@@ -10,5 +10,5 @@ use Wearesho\Bobra\Ubki\Push;
  */
 interface ServiceInterface
 {
-    public function send(DataDocumentInterface $document): Response;
+    public function send(RequestData $reportTechData, DataDocumentInterface $document): Response;
 }

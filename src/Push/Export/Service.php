@@ -7,6 +7,7 @@ use GuzzleHttp;
 use Psr\Http;
 use Psr\Log;
 
+use Wearesho\Bobra\Ubki\Blocks\Interfaces\RequestData;
 use Wearesho\Bobra\Ubki\Push;
 use Wearesho\Bobra\Ubki\Authorization;
 
@@ -46,14 +47,19 @@ class Service implements ServiceInterface
     }
 
     /**
+     * @param RequestData           $reportTechData
      * @param DataDocumentInterface $document
      *
      * @return Response
      * @throws GuzzleHttp\Exception\GuzzleException
      */
-    public function send(DataDocumentInterface $document): Response
+    public function send(RequestData $reportTechData, DataDocumentInterface $document): Response
     {
-        $body = $this->converter->dataDocumentToXml($document);
+        $body = $this->converter->dataDocumentToXml(
+            $reportTechData,
+            $document,
+            $this->authProvider->provide($this->config)->getSessionId()
+        );
 
         $request = new GuzzleHttp\Psr7\Request(
             'post',
