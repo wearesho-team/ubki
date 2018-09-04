@@ -43,21 +43,18 @@ class Service
     /**
      * @param Request $request
      *
-     * @return Response
+     * @return Ubki\RequestResponsePair
      * @throws GuzzleHttp\Exception\GuzzleException
      */
-    public function send(Request $request)
+    public function send(Request $request): Ubki\RequestResponsePair
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
-        $responseBody = $this->client
-            ->send($guzzleRequest)
-            ->getBody()
-            ->__toString();
+        $responseBody = $this->client->send($guzzleRequest);
 
-        $document = new \DOMDocument('1.0', 'utf-8');
-        $document->loadXML($responseBody);
-
-        return new Ubki\Pull\Response($document);
+        return new Ubki\RequestResponsePair(
+            $guzzleRequest->getBody()->__toString(),
+            $responseBody->getBody()->__toString()
+        );
     }
 
     protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki\References\Language;
  * Class IdentificationData
  * @package Wearesho\Bobra\Ubki\Pull
  */
-class IdentificationData implements IdentificationDataInterface
+class IdentificationData
 {
     /** @var Language */
     protected $language;
