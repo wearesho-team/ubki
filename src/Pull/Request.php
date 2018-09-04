@@ -16,7 +16,7 @@ class Request implements RequestInterface
     /** @var IdentificationData */
     protected $body;
 
-    public function __construct(Interfaces\RequestData $requestData, IdentificationDataInterface $identificationData)
+    public function __construct(Interfaces\RequestData $requestData, IdentificationData $identificationData)
     {
         $this->head = $requestData;
         $this->body = $identificationData;

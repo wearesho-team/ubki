@@ -20,7 +20,7 @@ class Service
     protected $config;
 
     /** @var Ubki\Authorization\ProviderInterface */
-    protected $authorization;
+    protected $authProvider;
 
     /** @var GuzzleHttp\ClientInterface */
     protected $client;
@@ -35,7 +35,7 @@ class Service
         Log\LoggerInterface $logger = null
     ) {
         $this->config = $config;
-        $this->authorization = $authorization;
+        $this->authProvider = $authorization;
         $this->client = $client;
         $this->logger = $logger ?? new Log\NullLogger();
     }
@@ -45,9 +45,8 @@ class Service
      *
      * @return Response
      * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws Ubki\Exception
      */
-    public function send(Request $request): Ubki\Pull\Response
+    public function send(Request $request)
     {
         $guzzleRequest = $this->convertToGuzzleRequest($request);
         $responseBody = $this->client
@@ -58,17 +57,10 @@ class Service
         $document = new \DOMDocument('1.0', 'utf-8');
         $document->loadXML($responseBody);
 
-        $this->checkErrors($document);
-
         return new Ubki\Pull\Response($document);
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return GuzzleHttp\Psr7\Request
-     */
-    protected function convertToGuzzleRequest(Request $request): GuzzleHttp\Psr7\Request
+    protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
     {
         return new GuzzleHttp\Psr7\Request(
             'post',
@@ -78,24 +70,22 @@ class Service
         );
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return string
-     */
-    private function getBody(Request $request): string
+    private function getBody(RequestInterface $request): string
     {
         $xml = new \DOMDocument('1.0', 'utf-8');
 
         // Create root element
-        $xmlRoot = $xml->createElement('doc');
+        $xmlRoot = $xml->createElement(RequestInterface::TAG);
         $xmlRoot = $xml->appendChild($xmlRoot);
 
-        $ubchElm = $xml->createElement('ubki');
-        $ubchElm->setAttribute('sessid', $this->authorization->provide($this->config)->getSessionId());
+        $ubchElm = $xml->createElement(RequestInterface::UBKI_BLOCK);
+        $ubchElm->setAttribute(
+            RequestInterface::SESSION_ID,
+            $this->authProvider->provide($this->config)->getSessionId()
+        );
         $ubchElm = $xmlRoot->appendChild($ubchElm);
 
-        $envelopeElm = $xml->createElement('req_envelope');
+        $envelopeElm = $xml->createElement(RequestInterface::REQ_ENVELOPE_BLOCK);
         $envelopeElm = $ubchElm->appendChild($envelopeElm);
 
         $requestWrapperElm = $xml->createElement('req_xml');
@@ -103,18 +93,20 @@ class Service
 
         $requestElm = $xml->createElement('request');
 
-        $requestElm->setAttribute('reqtype', $request->getType());
-        $requestElm->setAttribute('reqreason', $request->getReason());
-        $requestElm->setAttribute('reqdate', Carbon::instance($request->getDate())->toDateString());
+        $head = $request->getHead();
+        $requestElm->setAttribute('reqtype', $head->getType()->getValue());
+        $requestElm->setAttribute('reqreason', $head->getReason()->getValue());
+        $requestElm->setAttribute('reqdate', Carbon::instance($head->getDate())->toDateString());
 
         $requestElm = $requestWrapperElm->appendChild($requestElm);
 
+        $body = $request->getBody();
         $identityWrapperElm = $xml->createElement('i');
-        $identityWrapperElm->setAttribute('reqlng', $request->getLanguage());
+        $identityWrapperElm->setAttribute('reqlng', $body->getLanguage()->getValue());
         $identityWrapperElm = $requestElm->appendChild($identityWrapperElm);
 
         $identityElm = $xml->createElement('ident');
-        $identityElm->setAttribute('okpo', $request->getInn());
+        $identityElm->setAttribute('okpo', $body->getInn());
         $identityWrapperElm->appendChild($identityElm);
 
         $mvdElm = $xml->createElement('mvd');
@@ -131,27 +123,5 @@ class Service
             ->item(0)->textContent = base64_encode($xml->saveXML($requestElm));
 
         return $requestXML->saveXML();
-    }
-
-    /**
-     * @param \DOMDocument $document
-     *
-     * @throws Ubki\Exception
-     */
-    private function checkErrors(\DOMDocument $document): void
-    {
-        $errorTags = $document->getElementsByTagName('error');
-
-        if ($errorTags->length > 0) {
-            $error = $errorTags->item(0);
-
-            // todo: implement base exception for all response with <error> tag
-            throw new Ubki\Exception(
-                'There is an error in response: '
-                . "type: {$error->getAttribute('ertype')};"
-                . "\n"
-                . "message: {$error->getAttribute('ertext')};"
-            );
-        }
     }
 }

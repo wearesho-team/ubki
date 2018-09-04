@@ -13,13 +13,28 @@ class IdentificationData implements IdentificationDataInterface
     /** @var Language */
     protected $language;
 
-    protected $identifiers;
+    /** @var string */
+    protected $inn;
 
-    protected $documents;
+    /**
+     * IdentificationData constructor.
+     *
+     * @param Language $language
+     * @param string   $inn
+     */
+    public function __construct(Language $language, string $inn)
+    {
+        $this->language = $language;
+        $this->inn = $inn;
+    }
 
-    protected $contacts;
+    public function getLanguage(): Language
+    {
+        return $this->language;
+    }
 
-    protected $mvd;
-
-    protected $compromisedPhone;
+    public function getInn(): string
+    {
+        return $this->inn;
+    }
 }
