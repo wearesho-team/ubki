@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\Document;
+use Wearesho\Bobra\Ubki\Data\Elements\Document;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class DocumentTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass Document
  * @internal
  */

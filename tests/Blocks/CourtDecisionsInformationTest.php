@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\CourtDecisions;
-use Wearesho\Bobra\Ubki\Blocks\Entities\CourtDecision;
-use Wearesho\Bobra\Ubki\Blocks\CourtDecisionsInformation;
+use Wearesho\Bobra\Ubki\Data\Collections\CourtDecisions;
+use Wearesho\Bobra\Ubki\Data\Elements\CourtDecision;
+use Wearesho\Bobra\Ubki\Data\CourtDecisionsInformation;
 
 /**
  * Class CourtDecisionsInformationTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  * @coversDefaultClass CourtDecisionsInformation
  * @internal
  */

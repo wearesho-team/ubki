@@ -6,11 +6,11 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\Insurance;
+use Wearesho\Bobra\Ubki\Data\Elements\Insurance;
 
 /**
  * Class EventTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Insurance
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Insurance
  * @coversDefaultClass Insurance\Event
  * @internal
  */

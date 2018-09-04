@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\CompromisedPhone;
+use Wearesho\Bobra\Ubki\Data\Elements\BlackPhone;
 use Wearesho\Bobra\Ubki\References\Flag;
 
 /**
  * Class CompromisedPhoneTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
- * @coversDefaultClass CompromisedPhone
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
+ * @coversDefaultClass BlackPhone
  * @internal
  */
 class CompromisedPhoneTest extends TestCase
@@ -22,12 +22,12 @@ class CompromisedPhoneTest extends TestCase
     protected const COMMENT = 'testComment';
     protected const CREATED_AT = '2018-03-12';
 
-    /** @var CompromisedPhone */
+    /** @var BlackPhone */
     protected $fakeCompromisedPhone;
 
     protected function setUp(): void
     {
-        $this->fakeCompromisedPhone = new CompromisedPhone(
+        $this->fakeCompromisedPhone = new BlackPhone(
             Flag::YES(),
             static::VALUE,
             static::TYPE,

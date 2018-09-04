@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class CreditsInformationTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Blocks\CreditsInformation
+ * @package Wearesho\Bobra\Ubki\Tests\Data
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\CreditsInformation
  * @internal
  */
 class CreditsInformationTest extends TestCase
@@ -38,14 +38,14 @@ class CreditsInformationTest extends TestCase
     protected const PATRONYMIC = 'testPatronymic';
     protected const SOURCE = 'testSource';
 
-    /** @var Blocks\CreditsInformation */
+    /** @var Data\CreditsInformation */
     protected $fakeCreditsInformation;
 
     protected function setUp(): void
     {
-        $this->fakeCreditsInformation = new Blocks\CreditsInformation(
-            new Blocks\Collections\CreditDeals([
-                new Blocks\Entities\CreditDeal(
+        $this->fakeCreditsInformation = new Data\CreditsInformation(
+            new Data\Collections\CreditDeals([
+                new Data\Elements\CreditDeal(
                     static::ID,
                     References\Language::RUS(),
                     static::NAME,
@@ -58,8 +58,8 @@ class CreditsInformationTest extends TestCase
                     static::INITIAL_AMOUNT,
                     References\SubjectRole::BORROWER(),
                     static::COLLATERAL_COST,
-                    new Blocks\Collections\DealLifes([
-                        new Blocks\Entities\DealLife(
+                    new Data\Collections\DealLifes([
+                        new Data\Elements\DealLife(
                             static::ID,
                             static::PERIOD_MONTH,
                             static::PERIOD_YEAR,
@@ -137,8 +137,8 @@ class CreditsInformationTest extends TestCase
     public function testGetCreditCollection(): void
     {
         $this->assertEquals(
-            new Blocks\Collections\CreditDeals([
-                new Blocks\Entities\CreditDeal(
+            new Data\Collections\CreditDeals([
+                new Data\Elements\CreditDeal(
                     static::ID,
                     References\Language::RUS(),
                     static::NAME,
@@ -151,8 +151,8 @@ class CreditsInformationTest extends TestCase
                     static::INITIAL_AMOUNT,
                     References\SubjectRole::BORROWER(),
                     static::COLLATERAL_COST,
-                    new Blocks\Collections\DealLifes([
-                        new Blocks\Entities\DealLife(
+                    new Data\Collections\DealLifes([
+                        new Data\Elements\DealLife(
                             static::ID,
                             static::PERIOD_MONTH,
                             static::PERIOD_YEAR,

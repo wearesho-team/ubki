@@ -2,15 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\Steps;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Step;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Trace;
+use Wearesho\Bobra\Ubki\Data\Collections\Steps;
+use Wearesho\Bobra\Ubki\Data\Elements\Step;
+use Wearesho\Bobra\Ubki\Data\Elements\Trace;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class TraceTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass Trace
  * @internal
  */

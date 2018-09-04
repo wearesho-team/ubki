@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\CreditRegister;
+use Wearesho\Bobra\Ubki\Data\Elements\CreditRegister;
 use Wearesho\Bobra\Ubki\References\Decision;
 
 /**
  * Class CreditRegisterTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass CreditRegister
  * @internal
  */

@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class CredentialTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
- * @coversDefaultClass Blocks\Entities\Credential
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
+ * @coversDefaultClass Data\Elements\Credential
  * @internal
  */
 class CredentialTest extends TestCase
@@ -49,19 +49,19 @@ class CredentialTest extends TestCase
     protected const EDR_REGISTRATION_DATE = '2017-03-12';
     protected const TAX_REGISTRATION_DATE = '2016-03-12';
 
-    /** @var Blocks\Entities\Credential */
+    /** @var Data\Elements\Credential */
     protected $fakeCredential;
 
     protected function setUp(): void
     {
-        $this->fakeCredential = new Blocks\Entities\Credential(
+        $this->fakeCredential = new Data\Elements\Credential(
             References\Language::RUS(),
             static::NAME,
             static::PATRONYMIC,
             static::SURNAME,
             Carbon::parse(static::BIRTH_DATE),
-            new Blocks\Collections\Identifiers([
-                new Blocks\Entities\NaturalIdentifier(
+            new Data\Collections\Identifiers([
+                new Data\Elements\NaturalIdentifier(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::KAZ(),
                     static::NAME,
@@ -77,7 +77,7 @@ class CredentialTest extends TestCase
                     References\SocialStatus::STUDENT(),
                     static::CHILDREN_COUNT
                 ),
-                new Blocks\Entities\LegalIdentifier(
+                new Data\Elements\LegalIdentifier(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::RUS(),
                     static::NAME,
@@ -89,8 +89,8 @@ class CredentialTest extends TestCase
                     Carbon::parse(static::TAX_REGISTRATION_DATE)
                 ),
             ]),
-            new Blocks\Collections\Documents([
-                new Blocks\Entities\Document(
+            new Data\Collections\Documents([
+                new Data\Elements\Document(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::RUS(),
                     References\DocumentType::DIPLOMA(),
@@ -101,8 +101,8 @@ class CredentialTest extends TestCase
                     Carbon::parse(static::TERMIN)
                 ),
             ]),
-            new Blocks\Collections\Addresses([
-                new Blocks\Entities\Address(
+            new Data\Collections\Addresses([
+                new Data\Elements\Address(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::RUS(),
                     References\AddressType::REGISTRATION(),
@@ -120,8 +120,8 @@ class CredentialTest extends TestCase
                 ),
             ]),
             static::INN,
-            new Blocks\Collections\Works([
-                new Blocks\Entities\Work(
+            new Data\Collections\Works([
+                new Data\Elements\Work(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::RUS(),
                     static::ERGPOU,
@@ -131,15 +131,15 @@ class CredentialTest extends TestCase
                     static::INCOME
                 ),
             ]),
-            new Blocks\Collections\Photos([
-                new Blocks\Entities\Photo(
+            new Data\Collections\Photos([
+                new Data\Elements\Photo(
                     Carbon::parse(static::CREATED_AT),
                     static::PHOTO,
                     static::INN
                 ),
             ]),
-            new Blocks\Collections\LinkedPersons([
-                new Blocks\Entities\LinkedPerson(
+            new Data\Collections\LinkedPersons([
+                new Data\Elements\LinkedPerson(
                     static::NAME,
                     References\LinkedIdentifierRole::DIRECTOR(),
                     Carbon::parse(static::ISSUE_DATE),
@@ -252,8 +252,8 @@ class CredentialTest extends TestCase
     public function testGetAddresses(): void
     {
         $this->assertEquals(
-            new Blocks\Collections\Addresses([
-                new Blocks\Entities\Address(
+            new Data\Collections\Addresses([
+                new Data\Elements\Address(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::RUS(),
                     References\AddressType::REGISTRATION(),
@@ -293,8 +293,8 @@ class CredentialTest extends TestCase
     public function testGetLinkedPersons(): void
     {
         $this->assertEquals(
-            new Blocks\Collections\LinkedPersons([
-                new Blocks\Entities\LinkedPerson(
+            new Data\Collections\LinkedPersons([
+                new Data\Elements\LinkedPerson(
                     static::NAME,
                     References\LinkedIdentifierRole::DIRECTOR(),
                     Carbon::parse(static::ISSUE_DATE),
@@ -308,8 +308,8 @@ class CredentialTest extends TestCase
     public function testGetIdentifiers(): void
     {
         $this->assertEquals(
-            new Blocks\Collections\Identifiers([
-                new Blocks\Entities\NaturalIdentifier(
+            new Data\Collections\Identifiers([
+                new Data\Elements\NaturalIdentifier(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::KAZ(),
                     static::NAME,
@@ -325,7 +325,7 @@ class CredentialTest extends TestCase
                     References\SocialStatus::STUDENT(),
                     static::CHILDREN_COUNT
                 ),
-                new Blocks\Entities\LegalIdentifier(
+                new Data\Elements\LegalIdentifier(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::RUS(),
                     static::NAME,
@@ -344,8 +344,8 @@ class CredentialTest extends TestCase
     public function testGetWorks(): void
     {
         $this->assertEquals(
-            new Blocks\Collections\Works([
-                new Blocks\Entities\Work(
+            new Data\Collections\Works([
+                new Data\Elements\Work(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::RUS(),
                     static::ERGPOU,
@@ -362,8 +362,8 @@ class CredentialTest extends TestCase
     public function testGetPhotos(): void
     {
         $this->assertEquals(
-            new Blocks\Collections\Photos([
-                new Blocks\Entities\Photo(
+            new Data\Collections\Photos([
+                new Data\Elements\Photo(
                     Carbon::parse(static::CREATED_AT),
                     static::PHOTO,
                     static::INN
@@ -384,8 +384,8 @@ class CredentialTest extends TestCase
     public function testGetDocuments(): void
     {
         $this->assertEquals(
-            new Blocks\Collections\Documents([
-                new Blocks\Entities\Document(
+            new Data\Collections\Documents([
+                new Data\Elements\Document(
                     Carbon::parse(static::CREATED_AT),
                     References\Language::RUS(),
                     References\DocumentType::DIPLOMA(),

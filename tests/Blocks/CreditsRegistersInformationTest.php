@@ -6,14 +6,14 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\CreditRegisters;
-use Wearesho\Bobra\Ubki\Blocks\CreditsRegistersInformation;
-use Wearesho\Bobra\Ubki\Blocks\Entities;
+use Wearesho\Bobra\Ubki\Data\Collections\CreditRegisters;
+use Wearesho\Bobra\Ubki\Data\CreditsRegistersInformation;
+use Wearesho\Bobra\Ubki\Data\Elements;
 use Wearesho\Bobra\Ubki\References\Decision;
 
 /**
  * Class CreditsRegistersInformationTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  * @coversDefaultClass CreditsRegistersInformation
  * @internal
  */
@@ -40,7 +40,7 @@ class CreditsRegistersInformationTest extends TestCase
     {
         $this->fakeCreditsRegistersInformation = new CreditsRegistersInformation(
             new CreditRegisters([
-                new Entities\CreditRegister(
+                new Elements\CreditRegister(
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
@@ -49,7 +49,7 @@ class CreditsRegistersInformationTest extends TestCase
                     static::ORGANIZATION
                 )
             ]),
-            new Entities\RegistryTimes(
+            new Elements\RegistryTimes(
                 static::BY_HOUR,
                 static::BY_DAY,
                 static::BY_WEEK,
@@ -93,7 +93,7 @@ class CreditsRegistersInformationTest extends TestCase
     {
         $this->assertEquals(
             new CreditRegisters([
-                new Entities\CreditRegister(
+                new Elements\CreditRegister(
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
@@ -109,7 +109,7 @@ class CreditsRegistersInformationTest extends TestCase
     public function testGetRegistryTrim(): void
     {
         $this->assertEquals(
-            new Entities\RegistryTimes(
+            new Elements\RegistryTimes(
                 static::BY_HOUR,
                 static::BY_DAY,
                 static::BY_WEEK,

@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\RegistryTimes;
+use Wearesho\Bobra\Ubki\Data\Elements\RegistryTimes;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class RegistryTimesTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass RegistryTimes
  * @internal
  */

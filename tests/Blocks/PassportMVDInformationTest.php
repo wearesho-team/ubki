@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\PassportMVDInformation;
-use Wearesho\Bobra\Ubki\Blocks\Entities\PassportMVD;
+use Wearesho\Bobra\Ubki\Data\PassportMVDInformation;
+use Wearesho\Bobra\Ubki\Data\Elements\PassportMVD;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class PassportMVDInformationTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  * @coversDefaultClass PassportMVDInformation
  * @internal
  */

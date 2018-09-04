@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\Contact;
+use Wearesho\Bobra\Ubki\Data\Elements\Contact;
 use Wearesho\Bobra\Ubki\References\ContactType;
 
 /**
  * Class ContactTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass Contact
  * @internal
  */

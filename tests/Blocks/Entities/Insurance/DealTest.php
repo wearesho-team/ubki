@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\Insurance\Events;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Insurance;
+use Wearesho\Bobra\Ubki\Data\Collections\InsuranceEvents;
+use Wearesho\Bobra\Ubki\Data\Elements\Insurance;
 
 /**
  * Class DealTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Insurance
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Insurance
  * @coversDefaultClass Insurance\Deal
  * @internal
  */
@@ -42,7 +42,7 @@ class DealTest extends TestCase
             Carbon::parse(static::END_DATE),
             static::TYPE,
             static::STATUS,
-            new Events([
+            new InsuranceEvents([
                 new Insurance\Event(
                     Carbon::parse(static::REQUEST_DATE),
                     static::DECISION,
@@ -80,7 +80,7 @@ class DealTest extends TestCase
     public function testGetEvents(): void
     {
         $this->assertEquals(
-            new Events([
+            new InsuranceEvents([
                 new Insurance\Event(
                     Carbon::parse(static::REQUEST_DATE),
                     static::DECISION,

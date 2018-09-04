@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\DealLife;
+use Wearesho\Bobra\Ubki\Data\Elements\DealLife;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class DealLifeTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass DealLife
  * @internal
  */

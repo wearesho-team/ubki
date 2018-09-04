@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\RequestData;
+use Wearesho\Bobra\Ubki\Data\Elements\RequestData;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class RequestDataTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass RequestData
  * @internal
  */

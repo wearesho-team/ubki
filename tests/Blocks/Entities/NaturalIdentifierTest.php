@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\NaturalIdentifier;
+use Wearesho\Bobra\Ubki\Data\Elements\NaturalIdentifier;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class NaturalIdentifierTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass NaturalIdentifier
  * @internal
  */

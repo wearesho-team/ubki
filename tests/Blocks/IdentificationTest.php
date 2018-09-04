@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class IdentificationTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Blocks\Identification
+ * @package Wearesho\Bobra\Ubki\Tests\Data
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Identification
  * @internal
  */
 class IdentificationTest extends TestCase
@@ -49,20 +49,20 @@ class IdentificationTest extends TestCase
     protected const EDR_REGISTRATION_DATE = '2017-03-12';
     protected const TAX_REGISTRATION_DATE = '2016-03-12';
 
-    /** @var Blocks\Identification */
+    /** @var Data\Identification */
     protected $fakeIdentification;
 
     protected function setUp(): void
     {
-        $this->fakeIdentification = new Blocks\Identification(
-            new Blocks\Entities\Credential(
+        $this->fakeIdentification = new Data\Identification(
+            new Data\Elements\Credential(
                 References\Language::RUS(),
                 static::NAME,
                 static::PATRONYMIC,
                 static::SURNAME,
                 Carbon::parse(static::BIRTH_DATE),
-                new Blocks\Collections\Identifiers([
-                    new Blocks\Entities\NaturalIdentifier(
+                new Data\Collections\Identifiers([
+                    new Data\Elements\NaturalIdentifier(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::KAZ(),
                         static::NAME,
@@ -78,7 +78,7 @@ class IdentificationTest extends TestCase
                         References\SocialStatus::STUDENT(),
                         static::CHILDREN_COUNT
                     ),
-                    new Blocks\Entities\LegalIdentifier(
+                    new Data\Elements\LegalIdentifier(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::RUS(),
                         static::NAME,
@@ -90,8 +90,8 @@ class IdentificationTest extends TestCase
                         Carbon::parse(static::TAX_REGISTRATION_DATE)
                     ),
                 ]),
-                new Blocks\Collections\Documents([
-                    new Blocks\Entities\Document(
+                new Data\Collections\Documents([
+                    new Data\Elements\Document(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::RUS(),
                         References\DocumentType::DIPLOMA(),
@@ -102,8 +102,8 @@ class IdentificationTest extends TestCase
                         Carbon::parse(static::TERMIN)
                     ),
                 ]),
-                new Blocks\Collections\Addresses([
-                    new Blocks\Entities\Address(
+                new Data\Collections\Addresses([
+                    new Data\Elements\Address(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::RUS(),
                         References\AddressType::REGISTRATION(),
@@ -121,8 +121,8 @@ class IdentificationTest extends TestCase
                     ),
                 ]),
                 static::INN,
-                new Blocks\Collections\Works([
-                    new Blocks\Entities\Work(
+                new Data\Collections\Works([
+                    new Data\Elements\Work(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::RUS(),
                         static::ERGPOU,
@@ -132,15 +132,15 @@ class IdentificationTest extends TestCase
                         static::INCOME
                     ),
                 ]),
-                new Blocks\Collections\Photos([
-                    new Blocks\Entities\Photo(
+                new Data\Collections\Photos([
+                    new Data\Elements\Photo(
                         Carbon::parse(static::CREATED_AT),
                         static::PHOTO,
                         static::INN
                     ),
                 ]),
-                new Blocks\Collections\LinkedPersons([
-                    new Blocks\Entities\LinkedPerson(
+                new Data\Collections\LinkedPersons([
+                    new Data\Elements\LinkedPerson(
                         static::NAME,
                         References\LinkedIdentifierRole::DIRECTOR(),
                         Carbon::parse(static::ISSUE_DATE),
@@ -255,20 +255,20 @@ class IdentificationTest extends TestCase
 
     public function testId(): void
     {
-        $this->assertEquals(Blocks\Identification::ID, $this->fakeIdentification->getId());
+        $this->assertEquals(Data\Identification::ID, $this->fakeIdentification->getId());
     }
 
     public function testGetCredential(): void
     {
         $this->assertEquals(
-            new Blocks\Entities\Credential(
+            new Data\Elements\Credential(
                 References\Language::RUS(),
                 static::NAME,
                 static::PATRONYMIC,
                 static::SURNAME,
                 Carbon::parse(static::BIRTH_DATE),
-                new Blocks\Collections\Identifiers([
-                    new Blocks\Entities\NaturalIdentifier(
+                new Data\Collections\Identifiers([
+                    new Data\Elements\NaturalIdentifier(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::KAZ(),
                         static::NAME,
@@ -284,7 +284,7 @@ class IdentificationTest extends TestCase
                         References\SocialStatus::STUDENT(),
                         static::CHILDREN_COUNT
                     ),
-                    new Blocks\Entities\LegalIdentifier(
+                    new Data\Elements\LegalIdentifier(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::RUS(),
                         static::NAME,
@@ -296,8 +296,8 @@ class IdentificationTest extends TestCase
                         Carbon::parse(static::TAX_REGISTRATION_DATE)
                     ),
                 ]),
-                new Blocks\Collections\Documents([
-                    new Blocks\Entities\Document(
+                new Data\Collections\Documents([
+                    new Data\Elements\Document(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::RUS(),
                         References\DocumentType::DIPLOMA(),
@@ -308,8 +308,8 @@ class IdentificationTest extends TestCase
                         Carbon::parse(static::TERMIN)
                     ),
                 ]),
-                new Blocks\Collections\Addresses([
-                    new Blocks\Entities\Address(
+                new Data\Collections\Addresses([
+                    new Data\Elements\Address(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::RUS(),
                         References\AddressType::REGISTRATION(),
@@ -327,8 +327,8 @@ class IdentificationTest extends TestCase
                     ),
                 ]),
                 static::INN,
-                new Blocks\Collections\Works([
-                    new Blocks\Entities\Work(
+                new Data\Collections\Works([
+                    new Data\Elements\Work(
                         Carbon::parse(static::CREATED_AT),
                         References\Language::RUS(),
                         static::ERGPOU,
@@ -338,15 +338,15 @@ class IdentificationTest extends TestCase
                         static::INCOME
                     ),
                 ]),
-                new Blocks\Collections\Photos([
-                    new Blocks\Entities\Photo(
+                new Data\Collections\Photos([
+                    new Data\Elements\Photo(
                         Carbon::parse(static::CREATED_AT),
                         static::PHOTO,
                         static::INN
                     ),
                 ]),
-                new Blocks\Collections\LinkedPersons([
-                    new Blocks\Entities\LinkedPerson(
+                new Data\Collections\LinkedPersons([
+                    new Data\Elements\LinkedPerson(
                         static::NAME,
                         References\LinkedIdentifierRole::DIRECTOR(),
                         Carbon::parse(static::ISSUE_DATE),

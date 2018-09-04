@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\LegalIdentifier;
+use Wearesho\Bobra\Ubki\Data\Elements\LegalIdentifier;
 use Wearesho\Bobra\Ubki\References\Language;
 
 /**
  * Class LegalIdentifierTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass LegalIdentifier
  * @internal
  */

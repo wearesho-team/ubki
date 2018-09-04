@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\Comments;
-use Wearesho\Bobra\Ubki\Blocks\CreditRating;
-use Wearesho\Bobra\Ubki\Blocks\Entities;
+use Wearesho\Bobra\Ubki\Data\Collections\Comments;
+use Wearesho\Bobra\Ubki\Data\CreditRating;
+use Wearesho\Bobra\Ubki\Data\Elements;
 
 /**
  * Class CreditRatingTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  * @coversDefaultClass CreditRating
  * @internal
  */
@@ -46,7 +46,7 @@ class CreditRatingTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeCreditRating = new CreditRating(
-            new Entities\Rating\Score(
+            new Elements\Rating\Score(
                 static::INN,
                 static::SURNAME,
                 static::NAME,
@@ -58,7 +58,7 @@ class CreditRatingTest extends TestCase
                 Carbon::parse(static::PREVIOUS_DATE),
                 static::LEVEL
             ),
-            new Entities\Rating\Description(
+            new Elements\Rating\Description(
                 static::CREDITS_COUNT,
                 static::OPENED_CREDITS_COUNT,
                 static::OPENED_CREDIT_DESCRIPTION,
@@ -68,26 +68,26 @@ class CreditRatingTest extends TestCase
                 Carbon::parse(static::UPDATED_AT)
             ),
             new Comments([
-                new Entities\Comment(
+                new Elements\Comment(
                     static::TEXT,
                     static::ID
                 ),
             ]),
-            new Entities\Rating\PositiveFactors(
+            new Elements\Rating\PositiveFactors(
                 static::COUNT,
                 static::DESCRIPTION,
                 new Comments([
-                    new Entities\Comment(
+                    new Elements\Comment(
                         static::TEXT,
                         static::ID
                     ),
                 ])
             ),
-            new Entities\Rating\NegativeFactors(
+            new Elements\Rating\NegativeFactors(
                 static::COUNT,
                 static::DESCRIPTION,
                 new Comments([
-                    new Entities\Comment(
+                    new Elements\Comment(
                         static::TEXT,
                         static::ID
                     ),
@@ -160,7 +160,7 @@ class CreditRatingTest extends TestCase
     public function testGetScore(): void
     {
         $this->assertEquals(
-            new Entities\Rating\Score(
+            new Elements\Rating\Score(
                 static::INN,
                 static::SURNAME,
                 static::NAME,
@@ -180,7 +180,7 @@ class CreditRatingTest extends TestCase
     {
         $this->assertEquals(
             new Comments([
-                new Entities\Comment(
+                new Elements\Comment(
                     static::TEXT,
                     static::ID
                 ),
@@ -192,11 +192,11 @@ class CreditRatingTest extends TestCase
     public function testGetNegativeFactors(): void
     {
         $this->assertEquals(
-            new Entities\Rating\NegativeFactors(
+            new Elements\Rating\NegativeFactors(
                 static::COUNT,
                 static::DESCRIPTION,
                 new Comments([
-                    new Entities\Comment(
+                    new Elements\Comment(
                         static::TEXT,
                         static::ID
                     ),
@@ -209,11 +209,11 @@ class CreditRatingTest extends TestCase
     public function testGetPositiveFactors(): void
     {
         $this->assertEquals(
-            new Entities\Rating\PositiveFactors(
+            new Elements\Rating\PositiveFactors(
                 static::COUNT,
                 static::DESCRIPTION,
                 new Comments([
-                    new Entities\Comment(
+                    new Elements\Comment(
                         static::TEXT,
                         static::ID
                     ),
@@ -226,7 +226,7 @@ class CreditRatingTest extends TestCase
     public function testGetDescription(): void
     {
         $this->assertEquals(
-            new Entities\Rating\Description(
+            new Elements\Rating\Description(
                 static::CREDITS_COUNT,
                 static::OPENED_CREDITS_COUNT,
                 static::OPENED_CREDIT_DESCRIPTION,

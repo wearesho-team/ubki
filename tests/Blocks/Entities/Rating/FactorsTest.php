@@ -4,14 +4,14 @@ namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Rating;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\Comments;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Comment;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Rating\Factors;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Rating\PositiveFactors;
+use Wearesho\Bobra\Ubki\Data\Collections\Comments;
+use Wearesho\Bobra\Ubki\Data\Elements\Comment;
+use Wearesho\Bobra\Ubki\Data\Elements\Rating\Factors;
+use Wearesho\Bobra\Ubki\Data\Elements\Rating\PositiveFactors;
 
 /**
  * Class FactorsTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Rating
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating
  * @coversDefaultClass Factors
  * @internal
  */

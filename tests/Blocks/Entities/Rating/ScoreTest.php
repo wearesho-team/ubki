@@ -6,11 +6,11 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\Rating\Score;
+use Wearesho\Bobra\Ubki\Data\Elements\Rating\Score;
 
 /**
  * Class ScoreTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Rating
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating
  * @coversDefaultClass Score
  * @internal
  */

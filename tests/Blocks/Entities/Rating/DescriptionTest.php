@@ -3,13 +3,13 @@
 namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Rating;
 
 use Carbon\Carbon;
-use Wearesho\Bobra\Ubki\Blocks\Entities\Rating\Description;
+use Wearesho\Bobra\Ubki\Data\Elements\Rating\Description;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class DescriptionTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities\Rating
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating
  * @coversDefaultClass Description
  * @internal
  */

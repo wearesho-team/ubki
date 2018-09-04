@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\Comment;
+use Wearesho\Bobra\Ubki\Data\Elements\Comment;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class CommentTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass Comment
  * @internal
  */

@@ -6,14 +6,14 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\DealLifes;
-use Wearesho\Bobra\Ubki\Blocks\Entities;
+use Wearesho\Bobra\Ubki\Data\Collections\DealLifes;
+use Wearesho\Bobra\Ubki\Data\Elements;
 use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class CreditDealTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
- * @coversDefaultClass Entities\CreditDeal
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
+ * @coversDefaultClass Elements\CreditDeal
  * @internal
  */
 class CreditDealTest extends TestCase
@@ -39,12 +39,12 @@ class CreditDealTest extends TestCase
     protected const PATRONYMIC = 'testPatronymic';
     protected const SOURCE = 'testSource';
 
-    /** @var Entities\CreditDeal */
+    /** @var Elements\CreditDeal */
     protected $fakeCreditDeal;
 
     protected function setUp(): void
     {
-        $this->fakeCreditDeal = new Entities\CreditDeal(
+        $this->fakeCreditDeal = new Elements\CreditDeal(
             static::ID,
             References\Language::RUS(),
             static::NAME,
@@ -58,7 +58,7 @@ class CreditDealTest extends TestCase
             References\SubjectRole::BORROWER(),
             static::COLLATERAL_COST,
             new DealLifes([
-                new Entities\DealLife(
+                new Elements\DealLife(
                     static::ID,
                     static::PERIOD_MONTH,
                     static::PERIOD_YEAR,
@@ -251,7 +251,7 @@ class CreditDealTest extends TestCase
     {
         $this->assertEquals(
             new DealLifes([
-                new Entities\DealLife(
+                new Elements\DealLife(
                     static::ID,
                     static::PERIOD_MONTH,
                     static::PERIOD_YEAR,

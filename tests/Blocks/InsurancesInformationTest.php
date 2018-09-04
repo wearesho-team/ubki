@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections;
-use Wearesho\Bobra\Ubki\Blocks\Entities;
-use Wearesho\Bobra\Ubki\Blocks\InsurancesInformation;
+use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki\Data\Elements;
+use Wearesho\Bobra\Ubki\Data\InsurancesInformation;
 
 /**
  * Class InsurancesInformationTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks
+ * @package Wearesho\Bobra\Ubki\Tests\Data
  * @coversDefaultClass InsurancesInformation
  * @internal
  */
@@ -36,8 +36,8 @@ class InsurancesInformationTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeInsurancesInformation = new InsurancesInformation(
-            new Collections\Insurance\Deals([
-                new Entities\Insurance\Deal(
+            new Collections\InsuranceDeals([
+                new Elements\Insurance\Deal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
@@ -45,8 +45,8 @@ class InsurancesInformationTest extends TestCase
                     Carbon::parse(static::END_DATE),
                     static::TYPE,
                     static::STATUS,
-                    new Collections\Insurance\Events([
-                        new Entities\Insurance\Event(
+                    new Collections\InsuranceEvents([
+                        new Elements\Insurance\Event(
                             Carbon::parse(static::REQUEST_DATE),
                             static::DECISION,
                             Carbon::parse(static::DECISION_DATE)
@@ -89,8 +89,8 @@ class InsurancesInformationTest extends TestCase
     public function testGetDeals(): void
     {
         $this->assertEquals(
-            new Collections\Insurance\Deals([
-                new Entities\Insurance\Deal(
+            new Collections\InsuranceDeals([
+                new Elements\Insurance\Deal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
@@ -98,8 +98,8 @@ class InsurancesInformationTest extends TestCase
                     Carbon::parse(static::END_DATE),
                     static::TYPE,
                     static::STATUS,
-                    new Collections\Insurance\Events([
-                        new Entities\Insurance\Event(
+                    new Collections\InsuranceEvents([
+                        new Elements\Insurance\Event(
                             Carbon::parse(static::REQUEST_DATE),
                             static::DECISION,
                             Carbon::parse(static::DECISION_DATE)

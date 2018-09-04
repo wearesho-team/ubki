@@ -6,11 +6,11 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\Photo;
+use Wearesho\Bobra\Ubki\Data\Elements\Photo;
 
 /**
  * Class PhotoTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass Photo
  * @internal
  */

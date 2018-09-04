@@ -4,11 +4,11 @@ namespace Wearesho\Bobra\Ubki\Tests\Blocks\Entities;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks\Entities\Step;
+use Wearesho\Bobra\Ubki\Data\Elements\Step;
 
 /**
  * Class StepTest
- * @package Wearesho\Bobra\Ubki\Tests\Blocks\Entities
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
  * @coversDefaultClass Step
  * @internal
  */
