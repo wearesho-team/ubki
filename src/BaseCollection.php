@@ -8,13 +8,6 @@ namespace Wearesho\Bobra\Ubki;
  */
 abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
 {
-    /**
-     * BaseCollection constructor.
-     *
-     * @param array  $elements
-     * @param int    $flags
-     * @param string $iteratorClass
-     */
     public function __construct(
         array $elements = [],
         int $flags = 0,
@@ -30,7 +23,7 @@ abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
     /**
      * @param mixed $value
      */
-    public function append($value)
+    public function append($value): void
     {
         $this->instanceOfType($value);
 
@@ -41,14 +34,14 @@ abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
      * @param mixed $index
      * @param mixed $value
      */
-    public function offsetSet($index, $value)
+    public function offsetSet($index, $value): void
     {
         $this->instanceOfType($value);
 
         parent::offsetSet($index, $value);
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return (array)$this;
     }
