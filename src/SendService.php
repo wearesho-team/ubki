@@ -36,7 +36,7 @@ abstract class SendService implements SendServiceInterface
         $this->logger = $logger ?? new Log\NullLogger();
     }
 
-    public abstract function send(RequestInterface $request): RequestResponsePair;
+    abstract public function send(RequestInterface $request): RequestResponsePair;
 
     public function config(): Push\ConfigInterface
     {
