@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Extend;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Reference;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class ReferenceTestCase
@@ -14,6 +14,6 @@ abstract class ReferenceTestCase extends TestCase
 {
     protected const DESCRIPTION = 'testDescription';
 
-    /** @var Reference */
+    /** @var Dictionary */
     protected $fakeReference;
 }
