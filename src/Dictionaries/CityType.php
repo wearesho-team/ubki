@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class CityType
@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static URBAN_VILLAGE(string $description = null)
  * @method static static TOWN(string $description = null)
  */
-final class CityType extends Dictionary
+final class CityType extends Infrastructure\Dictionary
 {
     public const VILLAGE = 1;
     public const SETTLEMENT = 2;

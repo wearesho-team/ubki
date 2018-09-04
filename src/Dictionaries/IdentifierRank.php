@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class IdentifierRank
@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static SPECIALIST(string $description = null)
  * @method static static FREELANCER(string $description = null)
  */
-final class IdentifierRank extends Dictionary
+final class IdentifierRank extends Infrastructure\Dictionary
 {
     public const DIRECTOR = 1;
     public const MANAGER = 2;

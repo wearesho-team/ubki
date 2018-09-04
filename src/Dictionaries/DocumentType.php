@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class DocumentType
@@ -26,7 +26,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static RESIDENCE(string $description = null)
  * @method static static UKRAINE_CARD(string $description = null)
  */
-final class DocumentType extends Dictionary
+final class DocumentType extends Infrastructure\Dictionary
 {
     public const PASSPORT = 1;
     public const DRIVER = 2;

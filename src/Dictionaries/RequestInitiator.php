@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class RequestInitiator
@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static CERTIFICATED_SKI(string $description = null)
  * @method static static COURT(string $description = null)
  */
-final class RequestInitiator extends Dictionary
+final class RequestInitiator extends Infrastructure\Dictionary
 {
     public const PARTNER = 1;
     public const SKI = 2;

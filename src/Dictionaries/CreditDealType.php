@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class CreditDealType
@@ -52,7 +52,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static CONSUMER_CREDIT(string $description = null)
  * @method static static UNCERTAIN(string $description = null)
  */
-final class CreditDealType extends Dictionary
+final class CreditDealType extends Infrastructure\Dictionary
 {
     public const REPLENISHMENT_WORKING_CAPITAL = 1;
     public const ACQUISITION_FIXED_ASSETS = 2;

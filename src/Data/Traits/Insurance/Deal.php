@@ -9,7 +9,7 @@ use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Data\Collections;
 
 /**
- * Trait Deal
+ * Trait InsuranceDeal
  * @package Wearesho\Bobra\Ubki\Data\Traits\Insurance
  */
 trait Deal

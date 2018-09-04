@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Trait Work
@@ -18,7 +18,7 @@ trait Work
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var References\Language */
+    /** @var Dictionaries\Language */
     protected $language;
 
     /** @var string */
@@ -27,7 +27,7 @@ trait Work
     /** @var string */
     protected $name;
 
-    /** @var References\IdentifierRank|null */
+    /** @var Dictionaries\IdentifierRank|null */
     protected $rank;
 
     /** @var int|null */
@@ -54,7 +54,7 @@ trait Work
         return $this->createdAt;
     }
 
-    public function getLanguage(): References\Language
+    public function getLanguage(): Dictionaries\Language
     {
         return $this->language;
     }
@@ -69,7 +69,7 @@ trait Work
         return $this->name;
     }
 
-    public function getRank(): ?References\IdentifierRank
+    public function getRank(): ?Dictionaries\IdentifierRank
     {
         return $this->rank;
     }

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Flag
@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static CONSUMER(string $description = null)
  * @method static static GUARANTOR(string $description = null)
  */
-final class Flag extends Dictionary
+final class Flag extends Infrastructure\Dictionary
 {
     public const NO = 0;
     public const YES = 1;

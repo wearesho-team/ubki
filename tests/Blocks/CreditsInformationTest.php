@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class CreditsInformationTest
@@ -47,16 +47,16 @@ class CreditsInformationTest extends TestCase
             new Data\Collections\CreditDeals([
                 new Data\Elements\CreditDeal(
                     static::ID,
-                    References\Language::RUS(),
+                    Dictionaries\Language::RUS(),
                     static::NAME,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE),
-                    References\CreditDealType::COMMERCIAL_CREDIT(),
-                    References\CollateralType::R_1(),
-                    References\RepaymentProcedure::PERIODIC_MONTH(),
-                    References\Currency::UAH(),
+                    Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+                    Dictionaries\CollateralType::R_1(),
+                    Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
+                    Dictionaries\Currency::UAH(),
                     static::INITIAL_AMOUNT,
-                    References\SubjectRole::BORROWER(),
+                    Dictionaries\SubjectRole::BORROWER(),
                     static::COLLATERAL_COST,
                     new Data\Collections\DealLifes([
                         new Data\Elements\DealLife(
@@ -65,15 +65,15 @@ class CreditsInformationTest extends TestCase
                             static::PERIOD_YEAR,
                             Carbon::parse(static::ISSUE_DATE),
                             Carbon::parse(static::END_DATE),
-                            References\DealStatus::CLOSE(),
+                            Dictionaries\DealStatus::CLOSE(),
                             static::LIMIT,
                             static::MANDATORY_PAYMENT,
                             static::CURRENT_DEBT,
                             static::CURRENT_OVERDUE_DEBT,
                             static::OVERDUE_TIME,
-                            References\Flag::YES(),
-                            References\Flag::YES(),
-                            References\Flag::NO(),
+                            Dictionaries\Flag::YES(),
+                            Dictionaries\Flag::YES(),
+                            Dictionaries\Flag::NO(),
                             Carbon::parse(static::PAYMENT_DATE),
                             Carbon::parse(static::ACTUAL_END_DATE)
                         )
@@ -94,17 +94,17 @@ class CreditsInformationTest extends TestCase
                     [
                         'id' => static::ID,
                         'inn' => static::INN,
-                        'language' => References\Language::RUS()->getKey(),
+                        'language' => Dictionaries\Language::RUS()->getKey(),
                         'name' => static::NAME,
                         'surname' => static::SURNAME,
                         'patronymic' => static::PATRONYMIC,
                         'birthDate' => static::BIRTH_DATE,
-                        'type' => References\CreditDealType::COMMERCIAL_CREDIT()->getKey(),
-                        'collateral' => References\CollateralType::R_1()->getKey(),
-                        'repaymentProcedure' => References\RepaymentProcedure::PERIODIC_MONTH()->getKey(),
-                        'currency' => References\Currency::UAH()->getKey(),
+                        'type' => Dictionaries\CreditDealType::COMMERCIAL_CREDIT()->getKey(),
+                        'collateral' => Dictionaries\CollateralType::R_1()->getKey(),
+                        'repaymentProcedure' => Dictionaries\RepaymentProcedure::PERIODIC_MONTH()->getKey(),
+                        'currency' => Dictionaries\Currency::UAH()->getKey(),
                         'initialAmount' => static::INITIAL_AMOUNT,
-                        'subjectRole' => References\SubjectRole::BORROWER()->getKey(),
+                        'subjectRole' => Dictionaries\SubjectRole::BORROWER()->getKey(),
                         'collateralCost' => static::COLLATERAL_COST,
                         'dealLifes' => [
                             [
@@ -113,15 +113,15 @@ class CreditsInformationTest extends TestCase
                                 'periodYear' => static::PERIOD_YEAR,
                                 'issueDate' => static::ISSUE_DATE,
                                 'endDate' => static::END_DATE,
-                                'status' => References\DealStatus::CLOSE()->getKey(),
+                                'status' => Dictionaries\DealStatus::CLOSE()->getKey(),
                                 'limit' => static::LIMIT,
                                 'mandatoryPayment' => static::MANDATORY_PAYMENT,
                                 'currentDebt' => static::CURRENT_DEBT,
                                 'currentOverdueDebt' => static::CURRENT_OVERDUE_DEBT,
                                 'overdueTime' => static::OVERDUE_TIME,
-                                'paymentIndication' => References\Flag::YES()->getKey(),
-                                'delayIndication' => References\Flag::YES()->getKey(),
-                                'creditTrancheIndication' => References\Flag::NO()->getKey(),
+                                'paymentIndication' => Dictionaries\Flag::YES()->getKey(),
+                                'delayIndication' => Dictionaries\Flag::YES()->getKey(),
+                                'creditTrancheIndication' => Dictionaries\Flag::NO()->getKey(),
                                 'paymentDate' => static::PAYMENT_DATE,
                                 'actualEndDate' => static::ACTUAL_END_DATE,
                             ]
@@ -140,16 +140,16 @@ class CreditsInformationTest extends TestCase
             new Data\Collections\CreditDeals([
                 new Data\Elements\CreditDeal(
                     static::ID,
-                    References\Language::RUS(),
+                    Dictionaries\Language::RUS(),
                     static::NAME,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE),
-                    References\CreditDealType::COMMERCIAL_CREDIT(),
-                    References\CollateralType::R_1(),
-                    References\RepaymentProcedure::PERIODIC_MONTH(),
-                    References\Currency::UAH(),
+                    Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+                    Dictionaries\CollateralType::R_1(),
+                    Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
+                    Dictionaries\Currency::UAH(),
                     static::INITIAL_AMOUNT,
-                    References\SubjectRole::BORROWER(),
+                    Dictionaries\SubjectRole::BORROWER(),
                     static::COLLATERAL_COST,
                     new Data\Collections\DealLifes([
                         new Data\Elements\DealLife(
@@ -158,15 +158,15 @@ class CreditsInformationTest extends TestCase
                             static::PERIOD_YEAR,
                             Carbon::parse(static::ISSUE_DATE),
                             Carbon::parse(static::END_DATE),
-                            References\DealStatus::CLOSE(),
+                            Dictionaries\DealStatus::CLOSE(),
                             static::LIMIT,
                             static::MANDATORY_PAYMENT,
                             static::CURRENT_DEBT,
                             static::CURRENT_OVERDUE_DEBT,
                             static::OVERDUE_TIME,
-                            References\Flag::YES(),
-                            References\Flag::YES(),
-                            References\Flag::NO(),
+                            Dictionaries\Flag::YES(),
+                            Dictionaries\Flag::YES(),
+                            Dictionaries\Flag::NO(),
                             Carbon::parse(static::PAYMENT_DATE),
                             Carbon::parse(static::ACTUAL_END_DATE)
                         )

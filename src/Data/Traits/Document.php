@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Trait Document
@@ -18,10 +18,10 @@ trait Document
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var References\Language */
+    /** @var Dictionaries\Language */
     protected $language;
 
-    /** @var References\DocumentType */
+    /** @var Dictionaries\DocumentType */
     protected $type;
 
     /** @var string */
@@ -57,12 +57,12 @@ trait Document
         return $this->createdAt;
     }
 
-    public function getLanguage(): References\Language
+    public function getLanguage(): Dictionaries\Language
     {
         return $this->language;
     }
 
-    public function getType(): References\DocumentType
+    public function getType(): Dictionaries\DocumentType
     {
         return $this->type;
     }

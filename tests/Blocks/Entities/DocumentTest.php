@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\Document;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class DocumentTest
@@ -31,8 +31,8 @@ class DocumentTest extends TestCase
     {
         $this->fakeDocument = new Document(
             Carbon::parse(static::CREATED_AT),
-            References\Language::RUS(),
-            References\DocumentType::DIPLOMA(),
+            Dictionaries\Language::RUS(),
+            Dictionaries\DocumentType::DIPLOMA(),
             static::SERIAL,
             static::NUMBER,
             static::ISSUE,
@@ -46,8 +46,8 @@ class DocumentTest extends TestCase
         $this->assertArraySubset(
             [
                 'createdAt' => static::CREATED_AT,
-                'language' => References\Language::RUS()->getKey(),
-                'type' => References\DocumentType::DIPLOMA()->getKey(),
+                'language' => Dictionaries\Language::RUS()->getKey(),
+                'type' => Dictionaries\DocumentType::DIPLOMA()->getKey(),
                 'serial' => static::SERIAL,
                 'number' => static::NUMBER,
                 'issue' => static::ISSUE,
@@ -85,7 +85,7 @@ class DocumentTest extends TestCase
     public function testGetType(): void
     {
         $this->assertEquals(
-            References\DocumentType::DIPLOMA(),
+            Dictionaries\DocumentType::DIPLOMA(),
             $this->fakeDocument->getType()
         );
     }
@@ -117,7 +117,7 @@ class DocumentTest extends TestCase
     public function testGetLanguage(): void
     {
         $this->assertEquals(
-            References\Language::RUS(),
+            Dictionaries\Language::RUS(),
             $this->fakeDocument->getLanguage()
         );
     }

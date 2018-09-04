@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class SocialStatus
@@ -18,7 +18,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static MATERNITY_LEAVE(string $description = null)
  * @method static static OTHER(string $description = null)
  */
-final class SocialStatus extends Dictionary
+final class SocialStatus extends Infrastructure\Dictionary
 {
     const FULL_TIME = 1;
     const TERM_TIME = 2;

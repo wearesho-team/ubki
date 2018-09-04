@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\PassportMVDInformation;
 use Wearesho\Bobra\Ubki\Data\Elements\PassportMVD;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class PassportMVDInformationTest
@@ -36,7 +36,7 @@ class PassportMVDInformationTest extends TestCase
     {
         $this->fakePassportMVDInformation = new PassportMVDInformation(
             new PassportMVD(
-                References\Flag::YES(static::FOUND_DESCRIPTION),
+                Dictionaries\Flag::YES(static::FOUND_DESCRIPTION),
                 static::DESCRIPTION,
                 static::STATUS,
                 Carbon::parse(static::DATE),
@@ -75,7 +75,7 @@ class PassportMVDInformationTest extends TestCase
     {
         $this->assertEquals(
             new PassportMVD(
-                References\Flag::YES(static::FOUND_DESCRIPTION),
+                Dictionaries\Flag::YES(static::FOUND_DESCRIPTION),
                 static::DESCRIPTION,
                 static::STATUS,
                 Carbon::parse(static::DATE),

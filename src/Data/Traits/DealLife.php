@@ -4,8 +4,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Trait DealLife
@@ -13,8 +12,6 @@ use Wearesho\Bobra\Ubki\References;
  */
 trait DealLife
 {
-    use ElementTrait;
-
     /** @var string */
     protected $id;
 
@@ -30,7 +27,7 @@ trait DealLife
     /** @var \DateTimeInterface */
     protected $endDate;
 
-    /** @var References\DealStatus */
+    /** @var Dictionaries\DealStatus */
     protected $status;
 
     /** @var float */
@@ -48,13 +45,13 @@ trait DealLife
     /** @var int */
     protected $overdueTime;
 
-    /** @var References\Flag */
+    /** @var Dictionaries\Flag */
     protected $paymentIndication;
 
-    /** @var References\Flag */
+    /** @var Dictionaries\Flag */
     protected $delayIndication;
 
-    /** @var References\Flag */
+    /** @var Dictionaries\Flag */
     protected $creditTrancheIndication;
 
     /** @var \DateTimeInterface */
@@ -114,7 +111,7 @@ trait DealLife
         return $this->endDate;
     }
 
-    public function getStatus(): References\DealStatus
+    public function getStatus(): Dictionaries\DealStatus
     {
         return $this->status;
     }
@@ -144,17 +141,17 @@ trait DealLife
         return $this->overdueTime;
     }
 
-    public function getPaymentIndication(): References\Flag
+    public function getPaymentIndication(): Dictionaries\Flag
     {
         return $this->paymentIndication;
     }
 
-    public function getDelayIndication(): References\Flag
+    public function getDelayIndication(): Dictionaries\Flag
     {
         return $this->delayIndication;
     }
 
-    public function getCreditTrancheIndication(): References\Flag
+    public function getCreditTrancheIndication(): Dictionaries\Flag
     {
         return $this->creditTrancheIndication;
     }
@@ -169,9 +166,9 @@ trait DealLife
         return $this->actualEndDate;
     }
 
-    protected function validateActualEndDate(?string $actualEndDate, References\DealStatus $status): void
+    protected function validateActualEndDate(?string $actualEndDate, Dictionaries\DealStatus $status): void
     {
-        if (is_null($actualEndDate) && $status->equals(References\DealStatus::CLOSE())) {
+        if (is_null($actualEndDate) && $status->equals(Dictionaries\DealStatus::CLOSE())) {
             throw new \InvalidArgumentException("'Actual end date' must be set if deal status is CLOSE");
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class FamilyStatus
@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static WIDOW(string $description = null)
  * @method static static CIVIL(string $description = null)
  */
-final class FamilyStatus extends Dictionary
+final class FamilyStatus extends Infrastructure\Dictionary
 {
     public const SINGLE = 1;
     public const MARRIED = 2;

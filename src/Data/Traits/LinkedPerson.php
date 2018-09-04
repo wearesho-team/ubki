@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References\LinkedIdentifierRole;
+use Wearesho\Bobra\Ubki\Dictionaries\LinkedIdentifierRole;
 
 /**
  * Trait LinkedPerson

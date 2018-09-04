@@ -2,23 +2,26 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data\Collections;
 
 /**
  * Interface Credential
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Credential extends ElementInterface
+interface Credential
 {
     public const TAG = 'cki';
     public const INN = 'inn';
-    public const LAST_NAME = 'lname';
-    public const FIRST_NAME = 'fname';
-    public const MIDDLE_NAME = 'mname';
+    public const SURNAME = 'lname';
+    public const NAME = 'fname';
+    public const PATRONYMIC = 'mname';
+    public const LANGUAGE = 'reqlng';
+    public const LANGUAGE_REF = 'reqlngref';
+    public const BIRTH_DATE = 'bdate';
 
-    public function getLanguage(): References\Language;
+    public function getLanguage(): Dictionaries\Language;
 
     public function getName(): string;
 

@@ -4,14 +4,14 @@ namespace Wearesho\Bobra\Ubki\Data\Elements\Rating;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
  * Class Score
  * @package Wearesho\Bobra\Ubki\Data\Elements\Rating
  */
-class Score implements ElementInterface
+class Score implements Element
 {
     use ElementTrait;
 

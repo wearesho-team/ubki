@@ -2,20 +2,20 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\References\Decision;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
- * Interface CreditRegister
+ * Interface CreditRequest
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditRegister extends ElementInterface
+interface CreditRegister
 {
     public const TAG = 'credres';
     public const DATE = 'redate';
     public const INN = 'inn';
     public const ID = 'reqid';
     public const DECISION = 'result';
+    public const DECISION_REF = 'resultref';
     public const REASON = 'reqreason';
     public const ORGANIZATION = 'org';
 
@@ -25,7 +25,7 @@ interface CreditRegister extends ElementInterface
 
     public function getId(): string;
 
-    public function getDecision(): Decision;
+    public function getDecision(): Dictionaries\Decision;
 
     public function getReason(): int;
 

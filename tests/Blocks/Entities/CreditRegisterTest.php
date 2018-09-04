@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Data\Elements\CreditRegister;
-use Wearesho\Bobra\Ubki\References\Decision;
+use Wearesho\Bobra\Ubki\Data\Elements\CreditRequest;
+use Wearesho\Bobra\Ubki\Dictionaries\Decision;
 
 /**
  * Class CreditRegisterTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass CreditRegister
+ * @coversDefaultClass CreditRequest
  * @internal
  */
 class CreditRegisterTest extends TestCase
@@ -23,12 +23,12 @@ class CreditRegisterTest extends TestCase
     protected const REASON = 1;
     protected const ORGANIZATION = 'testOrganization';
 
-    /** @var CreditRegister */
+    /** @var CreditRequest */
     protected $fakeCreditRegister;
 
     protected function setUp(): void
     {
-        $this->fakeCreditRegister = new CreditRegister(
+        $this->fakeCreditRegister = new CreditRequest(
             Carbon::parse(static::DATE),
             static::INN,
             static::ID,

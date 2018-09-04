@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\LegalIdentifier;
-use Wearesho\Bobra\Ubki\References\Language;
+use Wearesho\Bobra\Ubki\Dictionaries\Language;
 
 /**
  * Class LegalIdentifierTest

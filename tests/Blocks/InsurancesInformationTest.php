@@ -37,7 +37,7 @@ class InsurancesInformationTest extends TestCase
     {
         $this->fakeInsurancesInformation = new InsurancesInformation(
             new Collections\InsuranceDeals([
-                new Elements\Insurance\Deal(
+                new Elements\Insurance\InsuranceDeal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
@@ -46,7 +46,7 @@ class InsurancesInformationTest extends TestCase
                     static::TYPE,
                     static::STATUS,
                     new Collections\InsuranceEvents([
-                        new Elements\Insurance\Event(
+                        new Elements\Insurance\InsuranceEvent(
                             Carbon::parse(static::REQUEST_DATE),
                             static::DECISION,
                             Carbon::parse(static::DECISION_DATE)
@@ -90,7 +90,7 @@ class InsurancesInformationTest extends TestCase
     {
         $this->assertEquals(
             new Collections\InsuranceDeals([
-                new Elements\Insurance\Deal(
+                new Elements\Insurance\InsuranceDeal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
@@ -99,7 +99,7 @@ class InsurancesInformationTest extends TestCase
                     static::TYPE,
                     static::STATUS,
                     new Collections\InsuranceEvents([
-                        new Elements\Insurance\Event(
+                        new Elements\Insurance\InsuranceEvent(
                             Carbon::parse(static::REQUEST_DATE),
                             static::DECISION,
                             Carbon::parse(static::DECISION_DATE)

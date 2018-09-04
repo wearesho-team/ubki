@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Trait Identifier
@@ -15,7 +15,7 @@ trait Identifier
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var References\Language */
+    /** @var Dictionaries\Language */
     protected $language;
 
     /** @var string */
@@ -35,7 +35,7 @@ trait Identifier
         return $this->createdAt;
     }
 
-    public function getLanguage(): References\Language
+    public function getLanguage(): Dictionaries\Language
     {
         return $this->language;
     }

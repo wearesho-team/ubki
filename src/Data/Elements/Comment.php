@@ -2,17 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Comment
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Comment implements ElementInterface
+class Comment extends Infrastructure\Element
 {
-    use ElementTrait;
-    
     public const TAG = 'comment';
     public const ID = 'id';
     public const TEXT = 'text';
@@ -32,9 +29,14 @@ class Comment implements ElementInterface
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
-            'text' => $this->text,
+            static::ID => $this->id,
+            static::TEXT => $this->text,
         ];
+    }
+
+    public function tag(): string
+    {
+        return static::TAG;
     }
 
     public function getId(): ?string

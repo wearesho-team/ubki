@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Education
@@ -16,7 +16,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static ACADEMIC(string $description = null)
  * @method static static BY_SELF(string $description = null)
  */
-final class Education extends Dictionary
+final class Education extends Infrastructure\Dictionary
 {
     public const SECONDARY_UNFINISHED = 1;
     public const SECONDARY = 2;

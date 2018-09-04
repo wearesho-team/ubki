@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki\Data\Elements\Insurance;
 /**
  * Class EventTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Insurance
- * @coversDefaultClass Insurance\Event
+ * @coversDefaultClass Insurance\InsuranceEvent
  * @internal
  */
 class EventTest extends TestCase
@@ -20,12 +20,12 @@ class EventTest extends TestCase
     protected const DECISION = 1;
     protected const DECISION_DATE = '2018-03-12';
 
-    /** @var Insurance\Event */
+    /** @var Insurance\InsuranceEvent */
     protected $fakeInsuranceEvent;
 
     protected function setUp(): void
     {
-        $this->fakeInsuranceEvent = new Insurance\Event(
+        $this->fakeInsuranceEvent = new Insurance\InsuranceEvent(
             Carbon::parse(static::REQUEST_DATE),
             static::DECISION,
             Carbon::parse(static::DECISION_DATE)

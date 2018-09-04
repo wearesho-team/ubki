@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
@@ -14,11 +14,11 @@ class RequestData implements Data\Interfaces\RequestData
     use Data\Traits\RequestData;
 
     public function __construct(
-        References\RequestType $type,
-        References\RequestReason $reason,
+        Dictionaries\RequestType $type,
+        Dictionaries\RequestReason $reason,
         ?\DateTimeInterface $date = null,
         ?string $id = null,
-        ?References\RequestInitiator $initiator = null
+        ?Dictionaries\RequestInitiator $initiator = null
     ) {
         $this->type = $type;
         $this->reason = $reason;

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Language
@@ -20,7 +20,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static ZHO(string $description = null)
  * @method static static KAZ(string $description = null)
  */
-final class Language extends Dictionary
+final class Language extends Infrastructure\Dictionary
 {
     /** @var int Russian */
     public const RUS = 1;

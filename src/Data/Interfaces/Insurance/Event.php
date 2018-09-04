@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces\Insurance;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
- * Interface Event
+ * Interface InsuranceEvent
  * @package Wearesho\Bobra\Ubki\Data\Interfaces\Insurance
  */
-interface Event extends ElementInterface
+interface Event extends Element
 {
     public const TAG = 'events';
     public const REQUEST_DATE = 'evdate';

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class CourtDealType
@@ -16,7 +16,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static PROBLEM_LOANS(string $description = null)
  * @method static static COMPLEX_CLAIMS(string $description = null)
  */
-final class CourtDealType extends Dictionary
+final class CourtDealType extends Infrastructure\Dictionary
 {
     public const CIVIL = 1;
     public const LABOR = 2;

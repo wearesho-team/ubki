@@ -4,14 +4,14 @@ namespace Wearesho\Bobra\Ubki\Data\Elements\Rating;
 
 use Wearesho\Bobra\Ubki\Data\Collections\Comments;
 use Wearesho\Bobra\Ubki\Data\Elements\Comment;
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
  * Class Factors
  * @package Wearesho\Bobra\Ubki\Data\Elements\Rating
  */
-abstract class Factors implements ElementInterface
+abstract class Factors implements Element
 {
     use ElementTrait;
 

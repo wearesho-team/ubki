@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
  * Interface RegistryTimes
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface RegistryTimes extends ElementInterface
+interface RegistryTimes extends Element
 {
     public const TAG = 'reestrtime';
     public const BY_HOUR = 'hr';

@@ -2,14 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\References\ContactType;
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Dictionaries\ContactType;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Contact
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Contact implements Data\Interfaces\Contact
+class Contact extends Infrastructure\Element implements Data\Interfaces\Contact
 {
     use Data\Traits\Contact;
 

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class AddressType
@@ -15,7 +15,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static MAILING(string $description = null)
  * @method static static WORK(string $description = null)
  */
-final class AddressType extends Dictionary
+final class AddressType extends Infrastructure\Dictionary
 {
     public const HOME = 1;
     public const REGISTRATION = 2;

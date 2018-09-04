@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Trait NaturalIdentifier
@@ -22,7 +22,7 @@ trait NaturalIdentifier
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var References\Gender */
+    /** @var Dictionaries\Gender */
     protected $gender;
 
     /** @var string|null */
@@ -31,19 +31,19 @@ trait NaturalIdentifier
     /** @var string|null */
     protected $patronymic;
 
-    /** @var References\FamilyStatus|null */
+    /** @var Dictionaries\FamilyStatus|null */
     protected $familyStatus;
 
-    /** @var References\Education|null */
+    /** @var Dictionaries\Education|null */
     protected $education;
 
-    /** @var References\Nationality|null */
+    /** @var Dictionaries\Nationality|null */
     protected $nationality;
 
-    /** @var References\RegistrationSpd|null */
+    /** @var Dictionaries\RegistrationSpd|null */
     protected $registrationSpd;
 
-    /** @var References\SocialStatus|null */
+    /** @var Dictionaries\SocialStatus|null */
     protected $socialStatus;
 
     /** @var int|null */
@@ -91,32 +91,32 @@ trait NaturalIdentifier
         return $this->childrenCount;
     }
 
-    public function getGender(): References\Gender
+    public function getGender(): Dictionaries\Gender
     {
         return $this->gender;
     }
 
-    public function getFamilyStatus(): ?References\FamilyStatus
+    public function getFamilyStatus(): ?Dictionaries\FamilyStatus
     {
         return $this->familyStatus;
     }
 
-    public function getEducation(): References\Education
+    public function getEducation(): Dictionaries\Education
     {
         return $this->education;
     }
 
-    public function getNationality(): ?References\Nationality
+    public function getNationality(): ?Dictionaries\Nationality
     {
         return $this->nationality;
     }
 
-    public function getRegistrationSpd(): ?References\RegistrationSpd
+    public function getRegistrationSpd(): ?Dictionaries\RegistrationSpd
     {
         return $this->registrationSpd;
     }
 
-    public function getSocialStatus(): ?References\SocialStatus
+    public function getSocialStatus(): ?Dictionaries\SocialStatus
     {
         return $this->socialStatus;
     }

@@ -4,8 +4,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
@@ -14,12 +13,10 @@ use Wearesho\Bobra\Ubki\Data;
  */
 trait CreditDeal
 {
-    use ElementTrait;
-
     /** @var string */
     protected $id;
 
-    /** @var References\Language */
+    /** @var Dictionaries\Language */
     protected $language;
 
     /** @var string */
@@ -31,22 +28,22 @@ trait CreditDeal
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var References\CreditDealType */
+    /** @var Dictionaries\CreditDealType */
     protected $type;
 
-    /** @var References\CollateralType */
+    /** @var Dictionaries\CollateralType */
     protected $collateral;
 
-    /** @var References\RepaymentProcedure */
+    /** @var Dictionaries\RepaymentProcedure */
     protected $repaymentProcedure;
 
-    /** @var References\Currency */
+    /** @var Dictionaries\Currency */
     protected $currency;
 
     /** @var float */
     protected $initialAmount;
 
-    /** @var References\SubjectRole */
+    /** @var Dictionaries\SubjectRole */
     protected $subjectRole;
 
     /** @var float */
@@ -67,25 +64,36 @@ trait CreditDeal
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
-            'inn' => $this->inn,
-            'language' => $this->language->__toString(),
-            'name' => $this->name,
-            'surname' => $this->surname,
-            'patronymic' => $this->patronymic,
-            'birthDate' => Carbon::instance($this->birthDate)->toDateString(),
-            'type' => $this->type->__toString(),
-            'collateral' => $this->collateral->__toString(),
-            'repaymentProcedure' => $this->repaymentProcedure->__toString(),
-            'currency' => $this->currency->__toString(),
-            'initialAmount' => $this->initialAmount,
-            'subjectRole' => $this->subjectRole->__toString(),
-            'collateralCost' => $this->collateralCost,
+            Data\Interfaces\CreditDeal::ID => $this->id,
+            Data\Interfaces\CreditDeal::INN => $this->inn,
+            Data\Interfaces\CreditDeal::LANGUAGE => $this->language->getValue(),
+            Data\Interfaces\CreditDeal::LANGUAGE_REF => $this->language->getDescription(),
+            Data\Interfaces\CreditDeal::NAME => $this->name,
+            Data\Interfaces\CreditDeal::SURNAME => $this->surname,
+            Data\Interfaces\CreditDeal::PATRONYMIC => $this->patronymic,
+            Data\Interfaces\CreditDeal::BIRTH_DATE => Carbon::instance($this->birthDate)->toDateString(),
+            Data\Interfaces\CreditDeal::TYPE => $this->type->getValue(),
+            Data\Interfaces\CreditDeal::TYPE_REF => $this->type->getDescription(),
+            Data\Interfaces\CreditDeal::COLLATERAL => $this->collateral->getValue(),
+            Data\Interfaces\CreditDeal::COLLATERAL_REF => $this->collateral->getDescription(),
+            Data\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $this->repaymentProcedure->getValue(),
+            Data\Interfaces\CreditDeal::REPAYMENT_PROCEDURE_REF => $this->repaymentProcedure->getDescription(),
+            Data\Interfaces\CreditDeal::CURRENCY => $this->currency->getValue(),
+            Data\Interfaces\CreditDeal::CURRENCY_REF => $this->currency->getDescription(),
+            Data\Interfaces\CreditDeal::INITIAL_AMOUNT => $this->initialAmount,
+            Data\Interfaces\CreditDeal::SUBJECT_ROLE => $this->subjectRole->getValue(),
+            Data\Interfaces\CreditDeal::SUBJECT_ROLE_REF => $this->subjectRole->getDescription(),
+            Data\Interfaces\CreditDeal::COLLATERAL_COST => $this->collateralCost,
             'dealLifes' => array_map(function (Data\Interfaces\DealLife $dealLife): array {
                 return $dealLife->jsonSerialize();
             }, $this->dealLifeCollection->jsonSerialize()),
-            'source' => $this->source
+            Data\Interfaces\CreditDeal::SOURCE => $this->source
         ];
+    }
+
+    public function tag(): string
+    {
+        return Data\Interfaces\CreditDeal::TAG;
     }
 
     public function getId(): string
@@ -93,7 +101,7 @@ trait CreditDeal
         return $this->id;
     }
 
-    public function getLanguage(): References\Language
+    public function getLanguage(): Dictionaries\Language
     {
         return $this->language;
     }
@@ -113,22 +121,22 @@ trait CreditDeal
         return $this->birthDate;
     }
 
-    public function getType(): References\CreditDealType
+    public function getType(): Dictionaries\CreditDealType
     {
         return $this->type;
     }
 
-    public function getCollateral(): References\CollateralType
+    public function getCollateral(): Dictionaries\CollateralType
     {
         return $this->collateral;
     }
 
-    public function getRepaymentProcedure(): References\RepaymentProcedure
+    public function getRepaymentProcedure(): Dictionaries\RepaymentProcedure
     {
         return $this->repaymentProcedure;
     }
 
-    public function getCurrency(): References\Currency
+    public function getCurrency(): Dictionaries\Currency
     {
         return $this->currency;
     }
@@ -138,7 +146,7 @@ trait CreditDeal
         return $this->initialAmount;
     }
 
-    public function getSubjectRole(): References\SubjectRole
+    public function getSubjectRole(): Dictionaries\SubjectRole
     {
         return $this->subjectRole;
     }

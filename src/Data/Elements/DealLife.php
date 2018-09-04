@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class DealLife
@@ -19,15 +19,15 @@ class DealLife implements Data\Interfaces\DealLife
         int $periodYear,
         \DateTimeInterface $issueDate,
         \DateTimeInterface $endDate,
-        References\DealStatus $status,
+        Dictionaries\DealStatus $status,
         float $limit,
         float $mandatoryPayment,
         float $currentDebt,
         float $currentOverdueDebt,
         int $overdueTime,
-        References\Flag $paymentIndication,
-        References\Flag $delayIndication,
-        References\Flag $creditTrancheIndication,
+        Dictionaries\Flag $paymentIndication,
+        Dictionaries\Flag $delayIndication,
+        Dictionaries\Flag $creditTrancheIndication,
         \DateTimeInterface $paymentDate,
         ?\DateTimeInterface $actualEndDate = null
     ) {

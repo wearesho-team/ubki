@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Interface NaturalInterface
@@ -34,15 +34,15 @@ interface NaturalIdentifier extends Identifier
 
     public function getChildrenCount(): ?int;
 
-    public function getGender(): References\Gender;
+    public function getGender(): Dictionaries\Gender;
 
-    public function getFamilyStatus(): ?References\FamilyStatus;
+    public function getFamilyStatus(): ?Dictionaries\FamilyStatus;
 
-    public function getEducation(): References\Education;
+    public function getEducation(): Dictionaries\Education;
 
-    public function getNationality(): ?References\Nationality;
+    public function getNationality(): ?Dictionaries\Nationality;
 
-    public function getRegistrationSpd(): ?References\RegistrationSpd;
+    public function getRegistrationSpd(): ?Dictionaries\RegistrationSpd;
 
-    public function getSocialStatus(): ?References\SocialStatus;
+    public function getSocialStatus(): ?Dictionaries\SocialStatus;
 }

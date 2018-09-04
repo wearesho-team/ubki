@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class CompromisedPhoneType
@@ -12,7 +12,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static PAYPHONE(string $description = null)
  * @method static static FRICKER(string $description = null)
  */
-final class CompromisedPhoneType extends Dictionary
+final class CompromisedPhoneType extends Infrastructure\Dictionary
 {
     public const SCAMMER = 1;
     public const PAYPHONE = 2;

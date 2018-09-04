@@ -3,18 +3,19 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Credential
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Credential implements Data\Interfaces\Credential
+class Credential extends Infrastructure\Element implements Data\Interfaces\Credential
 {
     use Data\Traits\Credential;
 
     public function __construct(
-        References\Language $language,
+        Dictionaries\Language $language,
         string $name,
         string $patronymic,
         string $surname,

@@ -1,18 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki;
+namespace Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class BaseCollection
- * @package Wearesho\Bobra\Ubki
+ * @package Wearesho\Bobra\Ubki\Infrastructure
  */
 abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
 {
-    public function __construct(
-        array $elements = [],
-        int $flags = 0,
-        string $iteratorClass = \ArrayIterator::class
-    ) {
+    public function __construct(array $elements = [], int $flags = 0, string $iteratorClass = \ArrayIterator::class)
+    {
         foreach ($elements as $element) {
             $this->instanceOfType($element);
         }

@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class RequestReason
  * @package Wearesho\Bobra\Ubki\Dictionaries
  */
-final class RequestReason extends Dictionary
+final class RequestReason extends Infrastructure\Dictionary
 {
     public const EXPORT = 0;
     public const MONITORING = 1;

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
@@ -15,18 +15,18 @@ class NaturalIdentifier extends Identifier implements Data\Interfaces\NaturalIde
 
     public function __construct(
         \DateTimeInterface $createdAt,
-        References\Language $language,
+        Dictionaries\Language $language,
         string $name,
         string $surname,
         \DateTimeInterface $birthDate,
-        References\Gender $gender,
+        Dictionaries\Gender $gender,
         ?string $inn = null,
         ?string $patronymic = null,
-        ?References\FamilyStatus $familyStatus = null,
-        ?References\Education $education = null,
-        ?References\Nationality $nationality = null,
-        ?References\RegistrationSpd $registrationSpd = null,
-        ?References\SocialStatus $socialStatus = null,
+        ?Dictionaries\FamilyStatus $familyStatus = null,
+        ?Dictionaries\Education $education = null,
+        ?Dictionaries\Nationality $nationality = null,
+        ?Dictionaries\RegistrationSpd $registrationSpd = null,
+        ?Dictionaries\SocialStatus $socialStatus = null,
         ?int $childrenCount = null
     ) {
         $this->surname = $surname;

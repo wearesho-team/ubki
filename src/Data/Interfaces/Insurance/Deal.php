@@ -2,14 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces\Insurance;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Data\Collections;
 
 /**
- * Interface Deal
+ * Interface InsuranceDeal
  * @package Wearesho\Bobra\Ubki\Data\Interfaces\Insurance
  */
-interface Deal extends ElementInterface
+interface Deal extends Element
 {
     public const TAG = 'insur';
     public const INN = 'inn';

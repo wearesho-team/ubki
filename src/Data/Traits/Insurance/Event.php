@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
- * Trait Event
+ * Trait InsuranceEvent
  * @package Wearesho\Bobra\Ubki\Data\Traits\Insurance
  */
 trait Event

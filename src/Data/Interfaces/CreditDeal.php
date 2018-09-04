@@ -2,24 +2,24 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
  * Interface CreditDeal
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditDeal extends ElementInterface
+interface CreditDeal extends Element
 {
     public const TAG = 'crdeal';
     public const ID = 'dlfer';
     public const LANGUAGE = 'lng';
     public const LANGUAGE_REF = 'lngref';
     public const INN = 'inn';
-    public const LAST_NAME = 'lname';
-    public const FIRST_NAME = 'fname';
-    public const MIDDLE_NAME = 'mname';
+    public const SURNAME = 'lname';
+    public const NAME = 'fname';
+    public const PATRONYMIC = 'mname';
     public const BIRTH_DATE = 'bdate';
     public const TYPE = 'dlcelcred';
     public const TYPE_REF = 'dlcelcredref';
@@ -37,7 +37,7 @@ interface CreditDeal extends ElementInterface
 
     public function getId(): string;
 
-    public function getLanguage(): References\Language;
+    public function getLanguage(): Dictionaries\Language;
 
     public function getName(): string;
 
@@ -45,17 +45,17 @@ interface CreditDeal extends ElementInterface
 
     public function getBirthDate(): \DateTimeInterface;
 
-    public function getType(): References\CreditDealType;
+    public function getType(): Dictionaries\CreditDealType;
 
-    public function getCollateral(): References\CollateralType;
+    public function getCollateral(): Dictionaries\CollateralType;
 
-    public function getRepaymentProcedure(): References\RepaymentProcedure;
+    public function getRepaymentProcedure(): Dictionaries\RepaymentProcedure;
 
-    public function getCurrency(): References\Currency;
+    public function getCurrency(): Dictionaries\Currency;
 
     public function getInitialAmount(): float;
 
-    public function getSubjectRole(): References\SubjectRole;
+    public function getSubjectRole(): Dictionaries\SubjectRole;
 
     public function getCollateralCost(): float;
 

@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\NaturalIdentifier;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class NaturalIdentifierTest
@@ -32,18 +32,18 @@ class NaturalIdentifierTest extends TestCase
     {
         $this->fakeNaturalIdentifier = new NaturalIdentifier(
             Carbon::parse(static::CREATED_AT),
-            References\Language::KAZ(),
+            Dictionaries\Language::KAZ(),
             static::NAME,
             static::SURNAME,
             Carbon::parse(static::BIRTH_DATE),
-            References\Gender::MAN(),
+            Dictionaries\Gender::MAN(),
             static::INN,
             static::PATRONYMIC,
-            References\FamilyStatus::SINGLE(),
-            References\Education::SECONDARY(),
-            References\Nationality::RUSSIAN_FEDERATION(),
-            References\RegistrationSpd::BUSINESS(),
-            References\SocialStatus::STUDENT(),
+            Dictionaries\FamilyStatus::SINGLE(),
+            Dictionaries\Education::SECONDARY(),
+            Dictionaries\Nationality::RUSSIAN_FEDERATION(),
+            Dictionaries\RegistrationSpd::BUSINESS(),
+            Dictionaries\SocialStatus::STUDENT(),
             static::CHILDREN_COUNT
         );
     }
@@ -53,18 +53,18 @@ class NaturalIdentifierTest extends TestCase
         $this->assertArraySubset(
             [
                 'createdAt' => static::CREATED_AT,
-                'language' => References\Language::KAZ()->getKey(),
+                'language' => Dictionaries\Language::KAZ()->getKey(),
                 'name' => static::NAME,
                 'surname' => static::SURNAME,
                 'birthDate' => static::BIRTH_DATE,
-                'gender' => References\Gender::MAN()->getKey(),
+                'gender' => Dictionaries\Gender::MAN()->getKey(),
                 'inn' => static::INN,
                 'patronymic' => static::PATRONYMIC,
-                'familyStatus' => References\FamilyStatus::SINGLE()->getKey(),
-                'education' => References\Education::SECONDARY()->getKey(),
-                'nationality' => References\Nationality::RUSSIAN_FEDERATION()->getKey(),
-                'registrationSpd' => References\RegistrationSpd::BUSINESS()->getKey(),
-                'socialStatus' => References\SocialStatus::STUDENT()->getKey(),
+                'familyStatus' => Dictionaries\FamilyStatus::SINGLE()->getKey(),
+                'education' => Dictionaries\Education::SECONDARY()->getKey(),
+                'nationality' => Dictionaries\Nationality::RUSSIAN_FEDERATION()->getKey(),
+                'registrationSpd' => Dictionaries\RegistrationSpd::BUSINESS()->getKey(),
+                'socialStatus' => Dictionaries\SocialStatus::STUDENT()->getKey(),
                 'childrenCount' => static::CHILDREN_COUNT,
             ],
             $this->fakeNaturalIdentifier->jsonSerialize()
@@ -74,7 +74,7 @@ class NaturalIdentifierTest extends TestCase
     public function testGetLanguage(): void
     {
         $this->assertEquals(
-            References\Language::KAZ(),
+            Dictionaries\Language::KAZ(),
             $this->fakeNaturalIdentifier->getLanguage()
         );
     }
@@ -98,7 +98,7 @@ class NaturalIdentifierTest extends TestCase
     public function testGetGender(): void
     {
         $this->assertEquals(
-            References\Gender::MAN(),
+            Dictionaries\Gender::MAN(),
             $this->fakeNaturalIdentifier->getGender()
         );
     }
@@ -114,7 +114,7 @@ class NaturalIdentifierTest extends TestCase
     public function testGetNationality(): void
     {
         $this->assertEquals(
-            References\Nationality::RUSSIAN_FEDERATION(),
+            Dictionaries\Nationality::RUSSIAN_FEDERATION(),
             $this->fakeNaturalIdentifier->getNationality()
         );
     }
@@ -138,7 +138,7 @@ class NaturalIdentifierTest extends TestCase
     public function testGetSocialStatus(): void
     {
         $this->assertEquals(
-            References\SocialStatus::STUDENT(),
+            Dictionaries\SocialStatus::STUDENT(),
             $this->fakeNaturalIdentifier->getSocialStatus()
         );
     }
@@ -146,7 +146,7 @@ class NaturalIdentifierTest extends TestCase
     public function testGetFamilyStatus(): void
     {
         $this->assertEquals(
-            References\FamilyStatus::SINGLE(),
+            Dictionaries\FamilyStatus::SINGLE(),
             $this->fakeNaturalIdentifier->getFamilyStatus()
         );
     }
@@ -170,7 +170,7 @@ class NaturalIdentifierTest extends TestCase
     public function testGetEducation(): void
     {
         $this->assertEquals(
-            References\Education::SECONDARY(),
+            Dictionaries\Education::SECONDARY(),
             $this->fakeNaturalIdentifier->getEducation()
         );
     }
@@ -178,7 +178,7 @@ class NaturalIdentifierTest extends TestCase
     public function testGetRegistrationSpd(): void
     {
         $this->assertEquals(
-            References\RegistrationSpd::BUSINESS(),
+            Dictionaries\RegistrationSpd::BUSINESS(),
             $this->fakeNaturalIdentifier->getRegistrationSpd()
         );
     }

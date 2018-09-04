@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\LinkedPerson;
-use Wearesho\Bobra\Ubki\References\LinkedIdentifierRole;
+use Wearesho\Bobra\Ubki\Dictionaries\LinkedIdentifierRole;
 
 /**
  * Class LinkedPersonTest

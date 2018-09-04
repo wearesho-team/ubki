@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki;
+namespace Wearesho\Bobra\Ubki\Infrastructure;
 
 use MyCLabs\Enum\Enum;
 
 /**
  * Class Dictionary
- * @package Wearesho\Bobra\Ubki
+ * @package Wearesho\Bobra\Ubki\Infrastructure
  */
 abstract class Dictionary extends Enum
 {

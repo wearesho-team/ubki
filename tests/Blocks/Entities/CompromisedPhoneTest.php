@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\BlackPhone;
-use Wearesho\Bobra\Ubki\References\Flag;
+use Wearesho\Bobra\Ubki\Dictionaries\Flag;
 
 /**
  * Class CompromisedPhoneTest

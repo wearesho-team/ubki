@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\RequestData;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class RequestDataTest
@@ -26,11 +26,11 @@ class RequestDataTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeRequestData = new RequestData(
-            References\RequestType::EXPORT(),
-            References\RequestReason::EXPORT(),
+            Dictionaries\RequestType::EXPORT(),
+            Dictionaries\RequestReason::EXPORT(),
             Carbon::parse(static::DATE),
             static::ID,
-            References\RequestInitiator::PARTNER()
+            Dictionaries\RequestInitiator::PARTNER()
         );
     }
 
@@ -39,11 +39,11 @@ class RequestDataTest extends TestCase
         $this->assertArraySubset(
             [
                 'version' => '1.0',
-                'type' => References\RequestType::EXPORT()->getKey(),
-                'reason' => References\RequestReason::EXPORT()->getKey(),
+                'type' => Dictionaries\RequestType::EXPORT()->getKey(),
+                'reason' => Dictionaries\RequestReason::EXPORT()->getKey(),
                 'date' => static::DATE,
                 'id' => static::ID,
-                'initiator' => References\RequestInitiator::PARTNER()->getKey(),
+                'initiator' => Dictionaries\RequestInitiator::PARTNER()->getKey(),
             ],
             $this->fakeRequestData->jsonSerialize()
         );
@@ -68,7 +68,7 @@ class RequestDataTest extends TestCase
     public function testGetType(): void
     {
         $this->assertEquals(
-            References\RequestType::EXPORT(),
+            Dictionaries\RequestType::EXPORT(),
             $this->fakeRequestData->getType()
         );
     }
@@ -76,7 +76,7 @@ class RequestDataTest extends TestCase
     public function testGetInitiator(): void
     {
         $this->assertEquals(
-            References\RequestInitiator::PARTNER(),
+            Dictionaries\RequestInitiator::PARTNER(),
             $this->fakeRequestData->getInitiator()
         );
     }
@@ -92,7 +92,7 @@ class RequestDataTest extends TestCase
     public function testGetReason(): void
     {
         $this->assertEquals(
-            References\RequestReason::EXPORT(),
+            Dictionaries\RequestReason::EXPORT(),
             $this->fakeRequestData->getReason()
         );
     }

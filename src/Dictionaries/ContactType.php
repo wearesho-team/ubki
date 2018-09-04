@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class ContactType
@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static EMAIL(string $description = null)
  * @method static static FAX(string $description = null)
  */
-final class ContactType extends Dictionary
+final class ContactType extends Infrastructure\Dictionary
 {
     public const HOME = 1;
     public const WORK = 2;

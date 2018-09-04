@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
@@ -15,8 +15,8 @@ class Document implements Data\Interfaces\Document
 
     public function __construct(
         \DateTimeInterface $createdAt,
-        References\Language $language,
-        References\DocumentType $type,
+        Dictionaries\Language $language,
+        Dictionaries\DocumentType $type,
         string $serial,
         string $number,
         string $issue,

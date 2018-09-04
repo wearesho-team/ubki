@@ -3,28 +3,29 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class CreditDeal
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class CreditDeal implements Data\Interfaces\CreditDeal
+class CreditDeal extends Infrastructure\Element implements Data\Interfaces\CreditDeal
 {
     use Data\Traits\CreditDeal;
 
     public function __construct(
         string $id,
-        References\Language $language,
+        Dictionaries\Language $language,
         string $name,
         string $surname,
         \DateTimeInterface $birthDate,
-        References\CreditDealType $type,
-        References\CollateralType $collateral,
-        References\RepaymentProcedure $repaymentProcedure,
-        References\Currency $currency,
+        Dictionaries\CreditDealType $type,
+        Dictionaries\CollateralType $collateral,
+        Dictionaries\RepaymentProcedure $repaymentProcedure,
+        Dictionaries\Currency $currency,
         float $initialAmount,
-        References\SubjectRole $subjectRole,
+        Dictionaries\SubjectRole $subjectRole,
         float $collateralCost,
         Data\Collections\DealLifes $dealLifeCollection,
         ?string $inn = null,

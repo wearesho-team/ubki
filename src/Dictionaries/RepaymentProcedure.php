@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class RepaymentProcedure
@@ -25,7 +25,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static PERIODIC_YEARLY(string $description = null)
  * @method static static SHEET_COMMITMENTS(string $description = null)
  */
-final class RepaymentProcedure extends Dictionary
+final class RepaymentProcedure extends Infrastructure\Dictionary
 {
     public const PAYMENT_MATURITY = 1;
     public const NON_REVOLVING_CREDIT_LINE = 2;

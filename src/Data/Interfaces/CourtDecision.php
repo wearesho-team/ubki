@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Interface CourtDectision
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CourtDecision extends ElementInterface
+interface CourtDecision
 {
     public const TAG = 'susd';
     public const ID = 'voteid';
@@ -33,9 +33,9 @@ interface CourtDecision extends ElementInterface
 
     public function getDate(): \DateTimeInterface;
 
-    public function getSubjectStatus(): int;
+    public function getSubjectStatus(): Dictionaries\CourtSubjectStatus;
 
-    public function getCourtDealType(): int;
+    public function getCourtDealType(): Dictionaries\CourtDealType;
 
     public function getCourtName(): string;
 

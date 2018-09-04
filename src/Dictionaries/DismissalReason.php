@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class DismissalReason
@@ -65,7 +65,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static A_43_P_1(string $description = null)
  * @method static static DEATH(string $description = null)
  */
-final class DismissalReason extends Dictionary
+final class DismissalReason extends Infrastructure\Dictionary
 {
     /**
      * As a non-probationary

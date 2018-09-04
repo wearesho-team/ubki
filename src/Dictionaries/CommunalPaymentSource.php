@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class CommunalPaymentSource
@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  *
  * @method static static IRC(string $description = null)
  */
-final class CommunalPaymentSource extends Dictionary
+final class CommunalPaymentSource extends Infrastructure\Dictionary
 {
     public const IRC = 1;
 }

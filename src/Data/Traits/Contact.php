@@ -4,8 +4,8 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References\ContactType;
+use Wearesho\Bobra\Ubki\Dictionaries\ContactType;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Trait Contact
@@ -13,8 +13,6 @@ use Wearesho\Bobra\Ubki\References\ContactType;
  */
 trait Contact
 {
-    use ElementTrait;
-
     /** @var \DateTimeInterface */
     protected $createdAt;
 
@@ -30,11 +28,17 @@ trait Contact
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
-            'value' => $this->value,
-            'type' => $this->type->__toString(),
-            'inn' => $this->inn
+            Interfaces\Contact::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
+            Interfaces\Contact::VALUE => $this->value,
+            Interfaces\Contact::TYPE => $this->type->getValue(),
+            Interfaces\Contact::TYPE_REF => $this->type->getDescription(),
+            Interfaces\Contact::INN => $this->inn
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\Contact::TAG;
     }
 
     public function getCreatedAt(): \DateTimeInterface

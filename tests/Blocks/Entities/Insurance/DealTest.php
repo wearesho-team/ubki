@@ -12,7 +12,7 @@ use Wearesho\Bobra\Ubki\Data\Elements\Insurance;
 /**
  * Class DealTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Insurance
- * @coversDefaultClass Insurance\Deal
+ * @coversDefaultClass Insurance\InsuranceDeal
  * @internal
  */
 class DealTest extends TestCase
@@ -29,12 +29,12 @@ class DealTest extends TestCase
     protected const DECISION_DATE = '2018-03-12';
     protected const ACTUAL_END_DATE = '2020-03-12';
 
-    /** @var Insurance\Deal */
+    /** @var Insurance\InsuranceDeal */
     protected $fakeInsuranceDeal;
 
     protected function setUp(): void
     {
-        $this->fakeInsuranceDeal = new Insurance\Deal(
+        $this->fakeInsuranceDeal = new Insurance\InsuranceDeal(
             static::INN,
             static::ID,
             Carbon::parse(static::INFORMATION_DATE),
@@ -43,7 +43,7 @@ class DealTest extends TestCase
             static::TYPE,
             static::STATUS,
             new InsuranceEvents([
-                new Insurance\Event(
+                new Insurance\InsuranceEvent(
                     Carbon::parse(static::REQUEST_DATE),
                     static::DECISION,
                     Carbon::parse(static::DECISION_DATE)
@@ -81,7 +81,7 @@ class DealTest extends TestCase
     {
         $this->assertEquals(
             new InsuranceEvents([
-                new Insurance\Event(
+                new Insurance\InsuranceEvent(
                     Carbon::parse(static::REQUEST_DATE),
                     static::DECISION,
                     Carbon::parse(static::DECISION_DATE)

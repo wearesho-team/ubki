@@ -4,8 +4,8 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Trait Address
@@ -13,15 +13,13 @@ use Wearesho\Bobra\Ubki\References;
  */
 trait Address
 {
-    use ElementTrait;
-
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var References\Language */
+    /** @var Dictionaries\Language */
     protected $language;
 
-    /** @var References\AddressType */
+    /** @var Dictionaries\AddressType */
     protected $addressType;
 
     /** @var string */
@@ -45,7 +43,7 @@ trait Address
     /** @var string|null */
     protected $area;
 
-    /** @var References\CityType */
+    /** @var Dictionaries\CityType */
     protected $cityType;
 
     /** @var string|null */
@@ -60,21 +58,29 @@ trait Address
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
-            'language' => $this->language->__toString(),
-            'type' => $this->addressType->__toString(),
-            'country' => $this->country,
-            'city' => $this->city,
-            'street' => $this->street,
-            'house' => $this->house,
-            'index' => $this->index,
-            'state' => $this->state,
-            'area' => $this->area,
-            'cityType' => $this->cityType->__toString(),
-            'corpus' => $this->corpus,
-            'flat' => $this->flat,
-            'fullAddress' => $this->fullAddress
+            Interfaces\Address::TYPE => $this->addressType->getValue(),
+            Interfaces\Address::TYPE_REF => $this->addressType->getDescription(),
+            Interfaces\Address::LANGUAGE => $this->language->getValue(),
+            Interfaces\Address::LANGUAGE_REF => $this->language->getDescription(),
+            Interfaces\Address::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
+            Interfaces\Address::AREA => $this->area,
+            Interfaces\Address::FULL_ADDRESS => $this->fullAddress,
+            Interfaces\Address::COUNTRY => $this->country,
+            Interfaces\Address::STREET => $this->street,
+            Interfaces\Address::HOUSE => $this->house,
+            Interfaces\Address::CORPUS => $this->corpus,
+            Interfaces\Address::INDEX => $this->index,
+            Interfaces\Address::STATE => $this->state,
+            Interfaces\Address::FLAT => $this->flat,
+            Interfaces\Address::CITY => $this->city,
+            Interfaces\Address::CITY_TYPE => $this->cityType->getValue(),
+            Interfaces\Address::CITY_TYPE_REF => $this->cityType->getDescription()
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\Address::TAG;
     }
 
     public function getCreatedAt(): \DateTimeInterface
@@ -82,12 +88,12 @@ trait Address
         return $this->createdAt;
     }
 
-    public function getLanguage(): References\Language
+    public function getLanguage(): Dictionaries\Language
     {
         return $this->language;
     }
 
-    public function getAddressType(): References\AddressType
+    public function getAddressType(): Dictionaries\AddressType
     {
         return $this->addressType;
     }
@@ -142,7 +148,7 @@ trait Address
         return $this->fullAddress;
     }
 
-    public function getCityType(): ?References\CityType
+    public function getCityType(): ?Dictionaries\CityType
     {
         return $this->cityType;
     }

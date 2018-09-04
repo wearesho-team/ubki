@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class SubjectRole
@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static GUARANTOR(string $description = null)
  * @method static static PLEDGOR(string $description = null)
  */
-final class SubjectRole extends Dictionary
+final class SubjectRole extends Infrastructure\Dictionary
 {
     public const BORROWER = 1;
     public const GUARANTOR = 2;

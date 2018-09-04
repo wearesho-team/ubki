@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class CourtSubjectStatus
@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static THIRD_PERSON_WITHOUT_REQUIREMENTS(string $description = null)
  * @method static static REPRESENTATIVE(string $description = null)
  */
-final class CourtSubjectStatus extends Dictionary
+final class CourtSubjectStatus extends Infrastructure\Dictionary
 {
     public const PLAINTIFF = 1;
     public const DEFENDANT = 2;

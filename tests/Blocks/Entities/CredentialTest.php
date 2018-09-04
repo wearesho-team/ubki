@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class CredentialTest
@@ -55,7 +55,7 @@ class CredentialTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeCredential = new Data\Elements\Credential(
-            References\Language::RUS(),
+            Dictionaries\Language::RUS(),
             static::NAME,
             static::PATRONYMIC,
             static::SURNAME,
@@ -63,23 +63,23 @@ class CredentialTest extends TestCase
             new Data\Collections\Identifiers([
                 new Data\Elements\NaturalIdentifier(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::KAZ(),
+                    Dictionaries\Language::KAZ(),
                     static::NAME,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE),
-                    References\Gender::MAN(),
+                    Dictionaries\Gender::MAN(),
                     static::INN,
                     static::PATRONYMIC,
-                    References\FamilyStatus::SINGLE(),
-                    References\Education::SECONDARY(),
-                    References\Nationality::RUSSIAN_FEDERATION(),
-                    References\RegistrationSpd::BUSINESS(),
-                    References\SocialStatus::STUDENT(),
+                    Dictionaries\FamilyStatus::SINGLE(),
+                    Dictionaries\Education::SECONDARY(),
+                    Dictionaries\Nationality::RUSSIAN_FEDERATION(),
+                    Dictionaries\RegistrationSpd::BUSINESS(),
+                    Dictionaries\SocialStatus::STUDENT(),
                     static::CHILDREN_COUNT
                 ),
                 new Data\Elements\LegalIdentifier(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::RUS(),
+                    Dictionaries\Language::RUS(),
                     static::NAME,
                     static::ERGPOU,
                     static::FORM,
@@ -92,8 +92,8 @@ class CredentialTest extends TestCase
             new Data\Collections\Documents([
                 new Data\Elements\Document(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::RUS(),
-                    References\DocumentType::DIPLOMA(),
+                    Dictionaries\Language::RUS(),
+                    Dictionaries\DocumentType::DIPLOMA(),
                     static::SERIAL,
                     static::NUMBER,
                     static::ISSUE,
@@ -104,8 +104,8 @@ class CredentialTest extends TestCase
             new Data\Collections\Addresses([
                 new Data\Elements\Address(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::RUS(),
-                    References\AddressType::REGISTRATION(),
+                    Dictionaries\Language::RUS(),
+                    Dictionaries\AddressType::REGISTRATION(),
                     static::COUNTRY,
                     static::CITY,
                     static::STREET,
@@ -113,7 +113,7 @@ class CredentialTest extends TestCase
                     static::INDEX,
                     static::STATE,
                     static::AREA,
-                    References\CityType::SETTLEMENT(),
+                    Dictionaries\CityType::SETTLEMENT(),
                     static::CORPUS,
                     static::FLAT,
                     static::FULL_ADDRESS
@@ -123,10 +123,10 @@ class CredentialTest extends TestCase
             new Data\Collections\Works([
                 new Data\Elements\Work(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::RUS(),
+                    Dictionaries\Language::RUS(),
                     static::ERGPOU,
                     static::NAME,
-                    References\IdentifierRank::DIRECTOR(),
+                    Dictionaries\IdentifierRank::DIRECTOR(),
                     static::EXPERIENCE,
                     static::INCOME
                 ),
@@ -141,7 +141,7 @@ class CredentialTest extends TestCase
             new Data\Collections\LinkedPersons([
                 new Data\Elements\LinkedPerson(
                     static::NAME,
-                    References\LinkedIdentifierRole::DIRECTOR(),
+                    Dictionaries\LinkedIdentifierRole::DIRECTOR(),
                     Carbon::parse(static::ISSUE_DATE),
                     static::ERGPOU
                 ),
@@ -153,7 +153,7 @@ class CredentialTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'language' => References\Language::RUS()->getKey(),
+                'language' => Dictionaries\Language::RUS()->getKey(),
                 'name' => static::NAME,
                 'patronymic' => static::PATRONYMIC,
                 'surname' => static::SURNAME,
@@ -161,23 +161,23 @@ class CredentialTest extends TestCase
                 'identifiers' => [
                     [
                         'createdAt' => static::CREATED_AT,
-                        'language' => References\Language::KAZ()->getKey(),
+                        'language' => Dictionaries\Language::KAZ()->getKey(),
                         'name' => static::NAME,
                         'surname' => static::SURNAME,
                         'birthDate' => static::BIRTH_DATE,
-                        'gender' => References\Gender::MAN()->getKey(),
+                        'gender' => Dictionaries\Gender::MAN()->getKey(),
                         'inn' => static::INN,
                         'patronymic' => static::PATRONYMIC,
-                        'familyStatus' => References\FamilyStatus::SINGLE()->getKey(),
-                        'education' => References\Education::SECONDARY()->getKey(),
-                        'nationality' => References\Nationality::RUSSIAN_FEDERATION()->getKey(),
-                        'registrationSpd' => References\RegistrationSpd::BUSINESS()->getKey(),
-                        'socialStatus' => References\SocialStatus::STUDENT()->getKey(),
+                        'familyStatus' => Dictionaries\FamilyStatus::SINGLE()->getKey(),
+                        'education' => Dictionaries\Education::SECONDARY()->getKey(),
+                        'nationality' => Dictionaries\Nationality::RUSSIAN_FEDERATION()->getKey(),
+                        'registrationSpd' => Dictionaries\RegistrationSpd::BUSINESS()->getKey(),
+                        'socialStatus' => Dictionaries\SocialStatus::STUDENT()->getKey(),
                         'childrenCount' => static::CHILDREN_COUNT,
                     ],
                     [
                         'createdAt' => static::CREATED_AT,
-                        'language' => References\Language::RUS()->getKey(),
+                        'language' => Dictionaries\Language::RUS()->getKey(),
                         'name' => static::NAME,
                         'ergpou' => static::ERGPOU,
                         'form' => static::FORM,
@@ -190,8 +190,8 @@ class CredentialTest extends TestCase
                 'documents' => [
                     [
                         'createdAt' => static::CREATED_AT,
-                        'language' => References\Language::RUS()->getKey(),
-                        'type' => References\DocumentType::DIPLOMA()->getKey(),
+                        'language' => Dictionaries\Language::RUS()->getKey(),
+                        'type' => Dictionaries\DocumentType::DIPLOMA()->getKey(),
                         'serial' => static::SERIAL,
                         'number' => static::NUMBER,
                         'issue' => static::ISSUE,
@@ -202,8 +202,8 @@ class CredentialTest extends TestCase
                 'addresses' => [
                     [
                         'createdAt' => static::CREATED_AT,
-                        'language' => References\Language::RUS()->getKey(),
-                        'type' => References\AddressType::REGISTRATION()->getKey(),
+                        'language' => Dictionaries\Language::RUS()->getKey(),
+                        'type' => Dictionaries\AddressType::REGISTRATION()->getKey(),
                         'country' => static::COUNTRY,
                         'city' => static::CITY,
                         'street' => static::STREET,
@@ -211,7 +211,7 @@ class CredentialTest extends TestCase
                         'index' => static::INDEX,
                         'state' => static::STATE,
                         'area' => static::AREA,
-                        'cityType' => References\CityType::SETTLEMENT()->getKey(),
+                        'cityType' => Dictionaries\CityType::SETTLEMENT()->getKey(),
                         'corpus' => static::CORPUS,
                         'flat' => static::FLAT,
                         'fullAddress' => static::FULL_ADDRESS
@@ -221,10 +221,10 @@ class CredentialTest extends TestCase
                 'works' => [
                     [
                         'createdAt' => static::CREATED_AT,
-                        'language' => References\Language::RUS()->getKey(),
+                        'language' => Dictionaries\Language::RUS()->getKey(),
                         'ergpou' => static::ERGPOU,
                         'name' => static::NAME,
-                        'rank' => References\IdentifierRank::DIRECTOR()->getKey(),
+                        'rank' => Dictionaries\IdentifierRank::DIRECTOR()->getKey(),
                         'experience' => static::EXPERIENCE,
                         'income' => static::INCOME
                     ],
@@ -239,7 +239,7 @@ class CredentialTest extends TestCase
                 'linkedPersons' => [
                     [
                         'name' => static::NAME,
-                        'role' => References\LinkedIdentifierRole::DIRECTOR()->getKey(),
+                        'role' => Dictionaries\LinkedIdentifierRole::DIRECTOR()->getKey(),
                         'issueDate' => static::ISSUE_DATE,
                         'ergpou' => static::ERGPOU
                     ],
@@ -255,8 +255,8 @@ class CredentialTest extends TestCase
             new Data\Collections\Addresses([
                 new Data\Elements\Address(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::RUS(),
-                    References\AddressType::REGISTRATION(),
+                    Dictionaries\Language::RUS(),
+                    Dictionaries\AddressType::REGISTRATION(),
                     static::COUNTRY,
                     static::CITY,
                     static::STREET,
@@ -264,7 +264,7 @@ class CredentialTest extends TestCase
                     static::INDEX,
                     static::STATE,
                     static::AREA,
-                    References\CityType::SETTLEMENT(),
+                    Dictionaries\CityType::SETTLEMENT(),
                     static::CORPUS,
                     static::FLAT,
                     static::FULL_ADDRESS
@@ -277,7 +277,7 @@ class CredentialTest extends TestCase
     public function testGetLanguage(): void
     {
         $this->assertEquals(
-            References\Language::RUS(),
+            Dictionaries\Language::RUS(),
             $this->fakeCredential->getLanguage()
         );
     }
@@ -296,7 +296,7 @@ class CredentialTest extends TestCase
             new Data\Collections\LinkedPersons([
                 new Data\Elements\LinkedPerson(
                     static::NAME,
-                    References\LinkedIdentifierRole::DIRECTOR(),
+                    Dictionaries\LinkedIdentifierRole::DIRECTOR(),
                     Carbon::parse(static::ISSUE_DATE),
                     static::ERGPOU
                 ),
@@ -311,23 +311,23 @@ class CredentialTest extends TestCase
             new Data\Collections\Identifiers([
                 new Data\Elements\NaturalIdentifier(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::KAZ(),
+                    Dictionaries\Language::KAZ(),
                     static::NAME,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE),
-                    References\Gender::MAN(),
+                    Dictionaries\Gender::MAN(),
                     static::INN,
                     static::PATRONYMIC,
-                    References\FamilyStatus::SINGLE(),
-                    References\Education::SECONDARY(),
-                    References\Nationality::RUSSIAN_FEDERATION(),
-                    References\RegistrationSpd::BUSINESS(),
-                    References\SocialStatus::STUDENT(),
+                    Dictionaries\FamilyStatus::SINGLE(),
+                    Dictionaries\Education::SECONDARY(),
+                    Dictionaries\Nationality::RUSSIAN_FEDERATION(),
+                    Dictionaries\RegistrationSpd::BUSINESS(),
+                    Dictionaries\SocialStatus::STUDENT(),
                     static::CHILDREN_COUNT
                 ),
                 new Data\Elements\LegalIdentifier(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::RUS(),
+                    Dictionaries\Language::RUS(),
                     static::NAME,
                     static::ERGPOU,
                     static::FORM,
@@ -347,10 +347,10 @@ class CredentialTest extends TestCase
             new Data\Collections\Works([
                 new Data\Elements\Work(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::RUS(),
+                    Dictionaries\Language::RUS(),
                     static::ERGPOU,
                     static::NAME,
-                    References\IdentifierRank::DIRECTOR(),
+                    Dictionaries\IdentifierRank::DIRECTOR(),
                     static::EXPERIENCE,
                     static::INCOME
                 ),
@@ -387,8 +387,8 @@ class CredentialTest extends TestCase
             new Data\Collections\Documents([
                 new Data\Elements\Document(
                     Carbon::parse(static::CREATED_AT),
-                    References\Language::RUS(),
-                    References\DocumentType::DIPLOMA(),
+                    Dictionaries\Language::RUS(),
+                    Dictionaries\DocumentType::DIPLOMA(),
                     static::SERIAL,
                     static::NUMBER,
                     static::ISSUE,

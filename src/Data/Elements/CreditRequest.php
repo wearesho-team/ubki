@@ -3,13 +3,14 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data;
-use Wearesho\Bobra\Ubki\References\Decision;
+use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
- * Class CreditRegister
+ * Class CreditRequest
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class CreditRegister implements Data\Interfaces\CreditRegister
+class CreditRequest extends Infrastructure\Element implements Data\Interfaces\CreditRegister
 {
     use Data\Traits\CreditRegister;
 
@@ -17,7 +18,7 @@ class CreditRegister implements Data\Interfaces\CreditRegister
         \DateTimeInterface $date,
         string $inn,
         string $id,
-        Decision $decision,
+        Dictionaries\Decision $decision,
         int $reason,
         ?string $organization = null
     ) {

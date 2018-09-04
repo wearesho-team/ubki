@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class SearchAnswerMVD
@@ -13,7 +13,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static FOUND(string $description = null)
  * @method static static WANTED(string $description = null)
  */
-final class SearchAnswerMVD extends Dictionary
+final class SearchAnswerMVD extends Infrastructure\Dictionary
 {
     public const ERROR = -1;
     public const NOT_FOUND = 0;

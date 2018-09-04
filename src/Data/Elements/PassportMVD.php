@@ -4,15 +4,15 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class PassportMVD
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class PassportMVD implements ElementInterface
+class PassportMVD implements Element
 {
     use ElementTrait;
     
@@ -29,7 +29,7 @@ class PassportMVD implements ElementInterface
     public const PATRONYMIC = 'pmname';
     public const BIRTH_DATE = 'pbdate';
 
-    /** @var References\Flag */
+    /** @var Dictionaries\Flag */
     protected $found;
 
     /** @var string */
@@ -60,7 +60,7 @@ class PassportMVD implements ElementInterface
     protected $birthDate;
 
     public function __construct(
-        References\Flag $found,
+        Dictionaries\Flag $found,
         string $description,
         string $status,
         Carbon $date,
@@ -99,7 +99,7 @@ class PassportMVD implements ElementInterface
         ];
     }
 
-    public function getFound(): References\Flag
+    public function getFound(): Dictionaries\Flag
     {
         return $this->found;
     }

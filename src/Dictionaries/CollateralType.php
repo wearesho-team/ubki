@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class CollateralType
@@ -66,7 +66,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static R_91(string $description = null)
  * @todo: need to review consts' descriptions
  */
-final class CollateralType extends Dictionary
+final class CollateralType extends Infrastructure\Dictionary
 {
     /**
      * Guarantee of legal entities

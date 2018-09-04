@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki;
 /**
  * Class Element
  * @package Wearesho\Bobra\Ubki
- * @deprecated @see ElementInterface and ElementTrait
+ * @deprecated @see Element and ElementTrait
  */
 abstract class Element
 {

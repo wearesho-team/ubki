@@ -2,14 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
  * Class Step
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Step implements ElementInterface
+class Step implements Element
 {
     use ElementTrait;
     

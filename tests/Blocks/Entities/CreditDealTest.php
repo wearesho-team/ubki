@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Collections\DealLifes;
 use Wearesho\Bobra\Ubki\Data\Elements;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class CreditDealTest
@@ -46,16 +46,16 @@ class CreditDealTest extends TestCase
     {
         $this->fakeCreditDeal = new Elements\CreditDeal(
             static::ID,
-            References\Language::RUS(),
+            Dictionaries\Language::RUS(),
             static::NAME,
             static::SURNAME,
             Carbon::parse(static::BIRTH_DATE),
-            References\CreditDealType::COMMERCIAL_CREDIT(),
-            References\CollateralType::R_1(),
-            References\RepaymentProcedure::PERIODIC_MONTH(),
-            References\Currency::UAH(),
+            Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+            Dictionaries\CollateralType::R_1(),
+            Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
+            Dictionaries\Currency::UAH(),
             static::INITIAL_AMOUNT,
-            References\SubjectRole::BORROWER(),
+            Dictionaries\SubjectRole::BORROWER(),
             static::COLLATERAL_COST,
             new DealLifes([
                 new Elements\DealLife(
@@ -64,15 +64,15 @@ class CreditDealTest extends TestCase
                     static::PERIOD_YEAR,
                     Carbon::parse(static::ISSUE_DATE),
                     Carbon::parse(static::END_DATE),
-                    References\DealStatus::CLOSE(),
+                    Dictionaries\DealStatus::CLOSE(),
                     static::LIMIT,
                     static::MANDATORY_PAYMENT,
                     static::CURRENT_DEBT,
                     static::CURRENT_OVERDUE_DEBT,
                     static::OVERDUE_TIME,
-                    References\Flag::YES(),
-                    References\Flag::YES(),
-                    References\Flag::NO(),
+                    Dictionaries\Flag::YES(),
+                    Dictionaries\Flag::YES(),
+                    Dictionaries\Flag::NO(),
                     Carbon::parse(static::PAYMENT_DATE),
                     Carbon::parse(static::ACTUAL_END_DATE)
                 )
@@ -89,17 +89,17 @@ class CreditDealTest extends TestCase
             [
                 'id' => static::ID,
                 'inn' => static::INN,
-                'language' => References\Language::RUS()->getKey(),
+                'language' => Dictionaries\Language::RUS()->getKey(),
                 'name' => static::NAME,
                 'surname' => static::SURNAME,
                 'patronymic' => static::PATRONYMIC,
                 'birthDate' => static::BIRTH_DATE,
-                'type' => References\CreditDealType::COMMERCIAL_CREDIT()->getKey(),
-                'collateral' => References\CollateralType::R_1()->getKey(),
-                'repaymentProcedure' => References\RepaymentProcedure::PERIODIC_MONTH()->getKey(),
-                'currency' => References\Currency::UAH()->getKey(),
+                'type' => Dictionaries\CreditDealType::COMMERCIAL_CREDIT()->getKey(),
+                'collateral' => Dictionaries\CollateralType::R_1()->getKey(),
+                'repaymentProcedure' => Dictionaries\RepaymentProcedure::PERIODIC_MONTH()->getKey(),
+                'currency' => Dictionaries\Currency::UAH()->getKey(),
                 'initialAmount' => static::INITIAL_AMOUNT,
-                'subjectRole' => References\SubjectRole::BORROWER()->getKey(),
+                'subjectRole' => Dictionaries\SubjectRole::BORROWER()->getKey(),
                 'collateralCost' => static::COLLATERAL_COST,
                 'dealLifes' => [
                     [
@@ -108,15 +108,15 @@ class CreditDealTest extends TestCase
                         'periodYear' => static::PERIOD_YEAR,
                         'issueDate' => static::ISSUE_DATE,
                         'endDate' => static::END_DATE,
-                        'status' => References\DealStatus::CLOSE()->getKey(),
+                        'status' => Dictionaries\DealStatus::CLOSE()->getKey(),
                         'limit' => static::LIMIT,
                         'mandatoryPayment' => static::MANDATORY_PAYMENT,
                         'currentDebt' => static::CURRENT_DEBT,
                         'currentOverdueDebt' => static::CURRENT_OVERDUE_DEBT,
                         'overdueTime' => static::OVERDUE_TIME,
-                        'paymentIndication' => References\Flag::YES()->getKey(),
-                        'delayIndication' => References\Flag::YES()->getKey(),
-                        'creditTrancheIndication' => References\Flag::NO()->getKey(),
+                        'paymentIndication' => Dictionaries\Flag::YES()->getKey(),
+                        'delayIndication' => Dictionaries\Flag::YES()->getKey(),
+                        'creditTrancheIndication' => Dictionaries\Flag::NO()->getKey(),
                         'paymentDate' => static::PAYMENT_DATE,
                         'actualEndDate' => static::ACTUAL_END_DATE,
                     ]
@@ -162,7 +162,7 @@ class CreditDealTest extends TestCase
     public function testGetCollateral(): void
     {
         $this->assertEquals(
-            References\CollateralType::R_1(),
+            Dictionaries\CollateralType::R_1(),
             $this->fakeCreditDeal->getCollateral()
         );
     }
@@ -186,7 +186,7 @@ class CreditDealTest extends TestCase
     public function testGetSubjectRole(): void
     {
         $this->assertEquals(
-            References\SubjectRole::BORROWER(),
+            Dictionaries\SubjectRole::BORROWER(),
             $this->fakeCreditDeal->getSubjectRole()
         );
     }
@@ -194,7 +194,7 @@ class CreditDealTest extends TestCase
     public function testGetCurrency(): void
     {
         $this->assertEquals(
-            References\Currency::UAH(),
+            Dictionaries\Currency::UAH(),
             $this->fakeCreditDeal->getCurrency()
         );
     }
@@ -202,7 +202,7 @@ class CreditDealTest extends TestCase
     public function testGetLanguage(): void
     {
         $this->assertEquals(
-            References\Language::RUS(),
+            Dictionaries\Language::RUS(),
             $this->fakeCreditDeal->getLanguage()
         );
     }
@@ -210,7 +210,7 @@ class CreditDealTest extends TestCase
     public function testGetType(): void
     {
         $this->assertEquals(
-            References\CreditDealType::COMMERCIAL_CREDIT(),
+            Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
             $this->fakeCreditDeal->getType()
         );
     }
@@ -218,7 +218,7 @@ class CreditDealTest extends TestCase
     public function testGetRepaymentProcedure(): void
     {
         $this->assertEquals(
-            References\RepaymentProcedure::PERIODIC_MONTH(),
+            Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
             $this->fakeCreditDeal->getRepaymentProcedure()
         );
     }
@@ -257,15 +257,15 @@ class CreditDealTest extends TestCase
                     static::PERIOD_YEAR,
                     Carbon::parse(static::ISSUE_DATE),
                     Carbon::parse(static::END_DATE),
-                    References\DealStatus::CLOSE(),
+                    Dictionaries\DealStatus::CLOSE(),
                     static::LIMIT,
                     static::MANDATORY_PAYMENT,
                     static::CURRENT_DEBT,
                     static::CURRENT_OVERDUE_DEBT,
                     static::OVERDUE_TIME,
-                    References\Flag::YES(),
-                    References\Flag::YES(),
-                    References\Flag::NO(),
+                    Dictionaries\Flag::YES(),
+                    Dictionaries\Flag::YES(),
+                    Dictionaries\Flag::NO(),
                     Carbon::parse(static::PAYMENT_DATE),
                     Carbon::parse(static::ACTUAL_END_DATE)
                 )

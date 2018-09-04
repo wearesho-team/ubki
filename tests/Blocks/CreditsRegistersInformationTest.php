@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki\Data\Collections\CreditRegisters;
 use Wearesho\Bobra\Ubki\Data\CreditsRegistersInformation;
 use Wearesho\Bobra\Ubki\Data\Elements;
-use Wearesho\Bobra\Ubki\References\Decision;
+use Wearesho\Bobra\Ubki\Dictionaries\Decision;
 
 /**
  * Class CreditsRegistersInformationTest
@@ -40,7 +40,7 @@ class CreditsRegistersInformationTest extends TestCase
     {
         $this->fakeCreditsRegistersInformation = new CreditsRegistersInformation(
             new CreditRegisters([
-                new Elements\CreditRegister(
+                new Elements\CreditRequest(
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
@@ -93,7 +93,7 @@ class CreditsRegistersInformationTest extends TestCase
     {
         $this->assertEquals(
             new CreditRegisters([
-                new Elements\CreditRegister(
+                new Elements\CreditRequest(
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,

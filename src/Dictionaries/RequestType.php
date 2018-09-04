@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class RequestType
  * @package Wearesho\Bobra\Ubki\Dictionaries
  */
-final class RequestType extends Dictionary
+final class RequestType extends Infrastructure\Dictionary
 {
     // region export
     public const EXPORT = 'i';

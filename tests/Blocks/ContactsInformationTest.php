@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki\Data\Collections\Contacts;
 use Wearesho\Bobra\Ubki\Data\ContactsInformation;
 use Wearesho\Bobra\Ubki\Data\Elements\Contact;
-use Wearesho\Bobra\Ubki\References\ContactType;
+use Wearesho\Bobra\Ubki\Dictionaries\ContactType;
 
 /**
  * Class ContactsInformationTest

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Nationality
@@ -23,7 +23,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static POLAND(string $description = null)
  * @method static static RUSSIAN_FEDERATION(string $description = null)
  */
-final class Nationality extends Dictionary
+final class Nationality extends Infrastructure\Dictionary
 {
     public const STATELESS = 1;
     public const AZERBAIJAN = 31;

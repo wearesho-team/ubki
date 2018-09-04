@@ -4,7 +4,8 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Trait CourtDecision
@@ -12,8 +13,6 @@ use Wearesho\Bobra\Ubki\ElementTrait;
  */
 trait CourtDecision
 {
-    use ElementTrait;
-
     /** @var string */
     protected $id;
 
@@ -23,10 +22,10 @@ trait CourtDecision
     /** @var \DateTimeInterface */
     protected $date;
 
-    /** @var int */
+    /** @var Dictionaries\CourtSubjectStatus */
     protected $subjectStatus;
 
-    /** @var int */
+    /** @var Dictionaries\CourtDealType */
     protected $courtDealType;
 
     /** @var string */
@@ -56,20 +55,29 @@ trait CourtDecision
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
-            'inn' => $this->inn,
-            'date' => Carbon::instance($this->date)->toDateString(),
-            'subjectStatus' => $this->subjectStatus,
-            'courtDealType' => $this->courtDealType,
-            'courtName' => $this->courtName,
-            'documentType' => $this->documentType,
-            'documentTypeReference' => $this->documentTypeReference,
-            'legalFact' => $this->legalFact,
-            'legalFactReference' => $this->legalFactReference,
-            'createdAt' => !is_null($this->createdAt) ? Carbon::instance($this->createdAt)->toDateString() : null,
-            'area' => $this->area,
-            'areaReference' => $this->areaReference
+            Interfaces\CourtDecision::ID => $this->id,
+            Interfaces\CourtDecision::INN => $this->inn,
+            Interfaces\CourtDecision::DATE => Carbon::instance($this->date)->toDateString(),
+            Interfaces\CourtDecision::SUBJECT_STATUS => $this->subjectStatus->getValue(),
+            Interfaces\CourtDecision::SUBJECT_STATUS_REF => $this->subjectStatus->getDescription(),
+            Interfaces\CourtDecision::COURT_DEAL_TYPE => $this->courtDealType->getValue(),
+            Interfaces\CourtDecision::COURT_DEAL_TYPE_REF => $this->courtDealType->getDescription(),
+            Interfaces\CourtDecision::COURT_NAME => $this->courtName,
+            Interfaces\CourtDecision::DOCUMENT_TYPE => $this->documentType,
+            Interfaces\CourtDecision::DOCUMENT_TYPE_REF => $this->documentTypeReference,
+            Interfaces\CourtDecision::LEGAL_FACT => $this->legalFact,
+            Interfaces\CourtDecision::LEGAL_FACT_REF => $this->legalFactReference,
+            Interfaces\CourtDecision::CREATED_AT => !is_null($this->createdAt)
+                ? Carbon::instance($this->createdAt)->toDateString()
+                : null,
+            Interfaces\CourtDecision::AREA => $this->area,
+            Interfaces\CourtDecision::AREA_REF => $this->areaReference
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\CourtDecision::TAG;
     }
 
     public function getId(): string
@@ -87,12 +95,12 @@ trait CourtDecision
         return $this->date;
     }
 
-    public function getSubjectStatus(): int
+    public function getSubjectStatus(): Dictionaries\CourtSubjectStatus
     {
         return $this->subjectStatus;
     }
 
-    public function getCourtDealType(): int
+    public function getCourtDealType(): Dictionaries\CourtDealType
     {
         return $this->courtDealType;
     }

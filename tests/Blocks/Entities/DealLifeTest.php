@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\DealLife;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class DealLifeTest
@@ -41,15 +41,15 @@ class DealLifeTest extends TestCase
             static::PERIOD_YEAR,
             Carbon::parse(static::ISSUE_DATE),
             Carbon::parse(static::END_DATE),
-            References\DealStatus::CLOSE(),
+            Dictionaries\DealStatus::CLOSE(),
             static::LIMIT,
             static::MANDATORY_PAYMENT,
             static::CURRENT_DEBT,
             static::CURRENT_OVERDUE_DEBT,
             static::OVERDUE_TIME,
-            References\Flag::YES(),
-            References\Flag::YES(),
-            References\Flag::NO(),
+            Dictionaries\Flag::YES(),
+            Dictionaries\Flag::YES(),
+            Dictionaries\Flag::NO(),
             Carbon::parse(static::PAYMENT_DATE),
             Carbon::parse(static::ACTUAL_END_DATE)
         );
@@ -64,15 +64,15 @@ class DealLifeTest extends TestCase
                 'periodYear' => static::PERIOD_YEAR,
                 'issueDate' => static::ISSUE_DATE,
                 'endDate' => static::END_DATE,
-                'status' => References\DealStatus::CLOSE()->getKey(),
+                'status' => Dictionaries\DealStatus::CLOSE()->getKey(),
                 'limit' => static::LIMIT,
                 'mandatoryPayment' => static::MANDATORY_PAYMENT,
                 'currentDebt' => static::CURRENT_DEBT,
                 'currentOverdueDebt' => static::CURRENT_OVERDUE_DEBT,
                 'overdueTime' => static::OVERDUE_TIME,
-                'paymentIndication' => References\Flag::YES()->getKey(),
-                'delayIndication' => References\Flag::YES()->getKey(),
-                'creditTrancheIndication' => References\Flag::NO()->getKey(),
+                'paymentIndication' => Dictionaries\Flag::YES()->getKey(),
+                'delayIndication' => Dictionaries\Flag::YES()->getKey(),
+                'creditTrancheIndication' => Dictionaries\Flag::NO()->getKey(),
                 'paymentDate' => static::PAYMENT_DATE,
                 'actualEndDate' => static::ACTUAL_END_DATE,
             ],
@@ -83,7 +83,7 @@ class DealLifeTest extends TestCase
     public function testGetDelayIndication(): void
     {
         $this->assertEquals(
-            References\Flag::YES(),
+            Dictionaries\Flag::YES(),
             $this->fakeDealLife->getDelayIndication()
         );
     }
@@ -115,7 +115,7 @@ class DealLifeTest extends TestCase
     public function testGetStatus(): void
     {
         $this->assertEquals(
-            References\DealStatus::CLOSE(),
+            Dictionaries\DealStatus::CLOSE(),
             $this->fakeDealLife->getStatus()
         );
     }
@@ -131,7 +131,7 @@ class DealLifeTest extends TestCase
     public function testGetCreditTrancheIndication(): void
     {
         $this->assertEquals(
-            References\Flag::NO(),
+            Dictionaries\Flag::NO(),
             $this->fakeDealLife->getCreditTrancheIndication()
         );
     }
@@ -147,7 +147,7 @@ class DealLifeTest extends TestCase
     public function testGetPaymentIndication(): void
     {
         $this->assertEquals(
-            References\Flag::YES(),
+            Dictionaries\Flag::YES(),
             $this->fakeDealLife->getPaymentIndication()
         );
     }
@@ -220,15 +220,15 @@ class DealLifeTest extends TestCase
             static::PERIOD_YEAR,
             Carbon::parse(static::ISSUE_DATE),
             Carbon::parse(static::END_DATE),
-            References\DealStatus::CLOSE(),
+            Dictionaries\DealStatus::CLOSE(),
             static::LIMIT,
             static::MANDATORY_PAYMENT,
             static::CURRENT_DEBT,
             static::CURRENT_OVERDUE_DEBT,
             static::OVERDUE_TIME,
-            References\Flag::YES(),
-            References\Flag::YES(),
-            References\Flag::NO(),
+            Dictionaries\Flag::YES(),
+            Dictionaries\Flag::YES(),
+            Dictionaries\Flag::NO(),
             Carbon::parse(static::PAYMENT_DATE)
         );
     }

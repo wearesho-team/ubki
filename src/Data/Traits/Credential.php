@@ -4,8 +4,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
@@ -14,9 +13,7 @@ use Wearesho\Bobra\Ubki\Data;
  */
 trait Credential
 {
-    use ElementTrait;
-
-    /** @var References\Language */
+    /** @var Dictionaries\Language */
     protected $language;
 
     /** @var string */
@@ -55,11 +52,12 @@ trait Credential
     public function jsonSerialize(): array
     {
         return [
-            'language' => $this->language->__toString(),
-            'name' => $this->name,
-            'patronymic' => $this->patronymic,
-            'surname' => $this->surname,
-            'birthDate' => Carbon::instance($this->birthDate)->toDateString(),
+            Data\Interfaces\Credential::LANGUAGE => $this->language->getValue(),
+            Data\Interfaces\Credential::LANGUAGE_REF => $this->language->getDescription(),
+            Data\Interfaces\Credential::NAME => $this->name,
+            Data\Interfaces\Credential::PATRONYMIC => $this->patronymic,
+            Data\Interfaces\Credential::SURNAME => $this->surname,
+            Data\Interfaces\Credential::BIRTH_DATE => Carbon::instance($this->birthDate)->toDateString(),
             'identifiers' => array_map(function (Data\Interfaces\Identifier $identifier): array {
                 return $identifier->jsonSerialize();
             }, $this->identifiers->jsonSerialize()),
@@ -88,7 +86,12 @@ trait Credential
         ];
     }
 
-    public function getLanguage(): References\Language
+    public function tag(): string
+    {
+        return Data\Interfaces\Credential::TAG;
+    }
+
+    public function getLanguage(): Dictionaries\Language
     {
         return $this->language;
     }

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Currency
@@ -22,7 +22,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static XAG(string $description = null)
  * @method static static XAU(string $description = null)
  */
-final class Currency extends Dictionary
+final class Currency extends Infrastructure\Dictionary
 {
     /** @var int The Belarusian Ruble */
     public const BYN = 974;

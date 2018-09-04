@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
@@ -15,7 +15,7 @@ abstract class Identifier implements Data\Interfaces\Identifier
 
     public function __construct(
         \DateTimeInterface $createdAt,
-        References\Language $language,
+        Dictionaries\Language $language,
         string $name
     ) {
         $this->createdAt = $createdAt;

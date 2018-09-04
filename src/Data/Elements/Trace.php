@@ -3,19 +3,15 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data\Collections\Steps;
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
  * Class Trace
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Trace implements ElementInterface
+class Trace implements Element
 {
-    use ElementTrait;
-
-    public const TAG = 'trace';
-
     /** @var Steps */
     protected $steps;
 

@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\Work;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class WorkTest
@@ -30,10 +30,10 @@ class WorkTest extends TestCase
     {
         $this->fakeWork = new Work(
             Carbon::parse(static::CREATED_AT),
-            References\Language::RUS(),
+            Dictionaries\Language::RUS(),
             static::ERGPOU,
             static::NAME,
-            References\IdentifierRank::DIRECTOR(),
+            Dictionaries\IdentifierRank::DIRECTOR(),
             static::EXPERIENCE,
             static::INCOME
         );
@@ -44,10 +44,10 @@ class WorkTest extends TestCase
         $this->assertArraySubset(
             [
                 'createdAt' => static::CREATED_AT,
-                'language' => References\Language::RUS()->getKey(),
+                'language' => Dictionaries\Language::RUS()->getKey(),
                 'ergpou' => static::ERGPOU,
                 'name' => static::NAME,
-                'rank' => References\IdentifierRank::DIRECTOR()->getKey(),
+                'rank' => Dictionaries\IdentifierRank::DIRECTOR()->getKey(),
                 'experience' => static::EXPERIENCE,
                 'income' => static::INCOME
             ],
@@ -98,7 +98,7 @@ class WorkTest extends TestCase
     public function testGetRank(): void
     {
         $this->assertEquals(
-            References\IdentifierRank::DIRECTOR(),
+            Dictionaries\IdentifierRank::DIRECTOR(),
             $this->fakeWork->getRank()
         );
     }
@@ -106,7 +106,7 @@ class WorkTest extends TestCase
     public function testGetLanguage(): void
     {
         $this->assertEquals(
-            References\Language::RUS(),
+            Dictionaries\Language::RUS(),
             $this->fakeWork->getLanguage()
         );
     }

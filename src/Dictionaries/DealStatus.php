@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class DealStatus
@@ -19,7 +19,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static TERMINATION(string $description = null)
  * @method static static REPLACEMENT(string $description = null)
  */
-final class DealStatus extends Dictionary
+final class DealStatus extends Infrastructure\Dictionary
 {
     public const OPEN = 1;
     public const CLOSE = 2;

@@ -2,21 +2,22 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\References;
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Address
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Address implements Data\Interfaces\Address
+class Address extends Infrastructure\Element implements Data\Interfaces\Address
 {
     use Data\Traits\Address;
 
     public function __construct(
         \DateTimeInterface $createdAt,
-        References\Language $language,
-        References\AddressType $addressType,
+        Dictionaries\Language $language,
+        Dictionaries\AddressType $addressType,
         string $country,
         string $city,
         string $street,
@@ -24,7 +25,7 @@ class Address implements Data\Interfaces\Address
         ?string $index = null,
         ?string $state = null,
         ?string $area = null,
-        ?References\CityType $cityType = null,
+        ?Dictionaries\CityType $cityType = null,
         ?string $corpus = null,
         ?string $flat = null,
         ?string $fullAddress = null

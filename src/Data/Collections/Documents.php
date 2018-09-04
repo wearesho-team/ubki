@@ -2,14 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Collections;
 
-use Wearesho\Bobra\Ubki\BaseCollection;
+use Wearesho\Bobra\Ubki\Infrastructure;
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Class Documents
  * @package Wearesho\Bobra\Ubki\Data\Collections
  */
-class Documents extends BaseCollection
+class Documents extends Infrastructure\BaseCollection
 {
     public function type(): string
     {

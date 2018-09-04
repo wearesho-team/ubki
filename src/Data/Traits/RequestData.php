@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Trait RequestData
@@ -18,10 +18,10 @@ trait RequestData
     /** @var string */
     protected $version = '1.0';
 
-    /** @var References\RequestType */
+    /** @var Dictionaries\RequestType */
     protected $type;
 
-    /** @var References\RequestReason */
+    /** @var Dictionaries\RequestReason */
     protected $reason;
 
     /** @var \DateTimeInterface|null */
@@ -30,7 +30,7 @@ trait RequestData
     /** @var string|null */
     protected $id;
 
-    /** @var References\RequestInitiator|null */
+    /** @var Dictionaries\RequestInitiator|null */
     protected $initiator;
 
     public function jsonSerialize(): array
@@ -50,12 +50,12 @@ trait RequestData
         return $this->version;
     }
 
-    public function getType(): References\RequestType
+    public function getType(): Dictionaries\RequestType
     {
         return $this->type;
     }
 
-    public function getReason(): References\RequestReason
+    public function getReason(): Dictionaries\RequestReason
     {
         return $this->reason;
     }
@@ -70,7 +70,7 @@ trait RequestData
         return $this->id;
     }
 
-    public function getInitiator(): ?References\RequestInitiator
+    public function getInitiator(): ?Dictionaries\RequestInitiator
     {
         return $this->initiator;
     }

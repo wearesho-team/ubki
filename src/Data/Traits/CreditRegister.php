@@ -4,17 +4,15 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\References\Decision;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
- * Trait CreditRegister
+ * Trait CreditRequest
  * @package Wearesho\Bobra\Ubki\Data\Traits
  */
 trait CreditRegister
 {
-    use ElementTrait;
-
     /** @var \DateTimeInterface */
     protected $date;
 
@@ -24,7 +22,7 @@ trait CreditRegister
     /** @var string */
     protected $id;
 
-    /** @var Decision */
+    /** @var Dictionaries\Decision */
     protected $decision;
 
     /** @var int */
@@ -36,13 +34,19 @@ trait CreditRegister
     public function jsonSerialize(): array
     {
         return [
-            'date' => Carbon::instance($this->date)->toDateString(),
-            'inn' => $this->inn,
-            'id' => $this->id,
-            'decision' => (string)$this->decision,
-            'reason' => $this->reason,
-            'organization' => $this->organization
+            Interfaces\CreditRegister::DATE => Carbon::instance($this->date)->toDateString(),
+            Interfaces\CreditRegister::INN => $this->inn,
+            Interfaces\CreditRegister::ID => $this->id,
+            Interfaces\CreditRegister::DECISION => $this->decision->getValue(),
+            Interfaces\CreditRegister::DECISION_REF => $this->decision->getDescription(),
+            Interfaces\CreditRegister::REASON => $this->reason, // TODO: implement CreditReason dictionary
+            Interfaces\CreditRegister::ORGANIZATION => $this->organization,
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\CreditRegister::TAG;
     }
 
     public function getDate(): \DateTimeInterface
@@ -60,7 +64,7 @@ trait CreditRegister
         return $this->id;
     }
 
-    public function getDecision(): Decision
+    public function getDecision(): Dictionaries\Decision
     {
         return $this->decision;
     }

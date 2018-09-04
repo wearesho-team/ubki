@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
@@ -15,7 +15,7 @@ class LegalIdentifier extends Identifier implements Data\Interfaces\LegalIdentif
 
     public function __construct(
         \DateTimeInterface $createdAt,
-        References\Language $language,
+        Dictionaries\Language $language,
         string $name,
         ?string $ergpou = null,
         ?int $form = null,

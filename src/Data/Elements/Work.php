@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
@@ -15,10 +15,10 @@ class Work implements Data\Interfaces\Work
 
     public function __construct(
         \DateTimeInterface $createdAt,
-        References\Language $language,
+        Dictionaries\Language $language,
         string $ergpou,
         string $name,
-        ?References\IdentifierRank $rank = null,
+        ?Dictionaries\IdentifierRank $rank = null,
         ?int $experience = null,
         ?float $income = null
     ) {

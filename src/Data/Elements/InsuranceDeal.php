@@ -1,16 +1,16 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\Elements\Insurance;
+namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data\Collections;
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Data\Traits;
 
 /**
- * Class Deal
- * @package Wearesho\Bobra\Ubki\Data\Elements\Insurance
+ * Class InsuranceDeal
+ * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Deal implements Interfaces\Insurance\Deal
+class InsuranceDeal implements Interfaces\Insurance\Deal
 {
     use Traits\Insurance\Deal;
 

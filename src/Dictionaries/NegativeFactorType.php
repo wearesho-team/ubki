@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class NegativeFactorType
@@ -15,7 +15,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static BANKRUPTCY_PROCEDURE(string $description = null)
  * @method static static BANK_DEBTORS(string $description = null)
  */
-final class NegativeFactorType extends Dictionary
+final class NegativeFactorType extends Infrastructure\Dictionary
 {
     public const PERSONS_WITH_FRAUDULENT_SIGNS = 1;
     public const DEAD = 2;

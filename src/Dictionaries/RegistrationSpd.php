@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use Wearesho\Bobra\Ubki\Dictionary;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class RegistrationSpd
@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * @method static static PHYSICAL(string $description = null)
  * @method static static BUSINESS(string $description = null)
  */
-final class RegistrationSpd extends Dictionary
+final class RegistrationSpd extends Infrastructure\Dictionary
 {
     /**
      * individual
