@@ -81,9 +81,11 @@ $config = new Ubki\Pull\Config(
 |  UBKI_PULL_AUTH_URL  |    no    | [Auth production url](https://secure.ubki.ua/b2_api_xml/ubki/auth) | [Auth test url](https://secure.ubki.ua:4040/b2_api_xml/ubki/auth) |    string (url format)    |
 |     UBKI_PULL_URL    |    no    |                                             |                                                  |    string (url format)    |
 
-### Пример использования: 
+## Пример использования: 
 
 *Рекомендуется использовать контейнер внедрения зависимостей.*
+
+### Запрос в реестр статусов (Push\Registry)
 
 Пример отправки запроса в реестр для получения статуса об отправленных отчетах:
 
@@ -106,6 +108,46 @@ $service = new Ubki\Push\Registry\Service(
 
 $request = new Ubki\Push\Registry\Rep\Request(...);
 $response = $service->send($request);
+```
+
+## Импорт отчетов (Pull)
+
+```php
+<?php
+
+use Wearesho\Bobra\Ubki\Authorization;
+use Wearesho\Bobra\Ubki\Blocks\Entities\RequestData;
+use Wearesho\Bobra\Ubki\Pull;
+use Wearesho\Bobra\Ubki\References;
+
+$config = new Pull\EnvironmentConfig();
+$client = new GuzzleHttp\Client(); // любой клиент, имплементирующий \GuzzleHttp\ClientInterface
+$authProvider = new Authorization\Provider($client);
+$service = new Pull\Service(
+    $config, 
+    $authProvider,
+    $client,
+    new \Psr\Log\NullLogger() // любой логгер, имплементирующий \Psr\Log\LoggerInterface
+);
+
+$request = new Pull\Request(
+    new RequestData(
+        $type = References\RequestType::CREDIT_REPORT(),
+        $reason = References\RequestReason::OTHER_SERVICES(),
+        $date = new DateTime(),
+        $id = 'id',
+        $initiator = References\RequestInitiator::PARTNER()
+    ),
+    new Pull\IdentificationData(
+        $language = References\Language::RUS(),
+        $inn = '1234567890'
+    )
+);
+
+$requestResponsePair = $service->send($request);
+
+$requestBody = $requestResponsePair->getRequest(); // Тело запроса для возможности сохранения в модели
+$report = $requestResponsePair->getResponse(); // Тело импортированного отчета
 ```
 
 **Библиотека находится в разработке**
