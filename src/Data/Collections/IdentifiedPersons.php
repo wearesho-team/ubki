@@ -6,13 +6,13 @@ use Wearesho\Bobra\Ubki\Infrastructure;
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
- * Class Identifiers
+ * Class IdentifiedPersons
  * @package Wearesho\Bobra\Ubki\Data\Collections
  */
-class Identifiers extends Infrastructure\BaseCollection
+class IdentifiedPersons extends Infrastructure\BaseCollection
 {
     public function type(): string
     {
-        return Interfaces\Identifier::class;
+        return Interfaces\IdentifiedPerson::class;
     }
 }

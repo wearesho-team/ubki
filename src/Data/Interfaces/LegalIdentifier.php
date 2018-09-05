@@ -3,10 +3,10 @@
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
- * Interface LegalIdentifier
+ * Interface LegalPerson
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface LegalIdentifier extends Identifier
+interface LegalIdentifier extends Person
 {
     public const TAG = 'urident';
     public const ERGPOU = 'okpo';

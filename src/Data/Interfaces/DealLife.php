@@ -2,14 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Interface DealLife
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface DealLife extends Element
+interface DealLife
 {
     public const TAG = 'deallife';
     public const ID = 'dlref';

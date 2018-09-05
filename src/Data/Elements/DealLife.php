@@ -4,12 +4,13 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class DealLife
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class DealLife implements Data\Interfaces\DealLife
+class DealLife extends Infrastructure\Element implements Data\Interfaces\DealLife
 {
     use Data\Traits\DealLife;
 

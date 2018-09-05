@@ -60,8 +60,8 @@ class CredentialTest extends TestCase
             static::PATRONYMIC,
             static::SURNAME,
             Carbon::parse(static::BIRTH_DATE),
-            new Data\Collections\Identifiers([
-                new Data\Elements\NaturalIdentifier(
+            new Data\Collections\IdentifiedPersons([
+                new Data\Elements\NaturalPerson(
                     Carbon::parse(static::CREATED_AT),
                     Dictionaries\Language::KAZ(),
                     static::NAME,
@@ -77,7 +77,7 @@ class CredentialTest extends TestCase
                     Dictionaries\SocialStatus::STUDENT(),
                     static::CHILDREN_COUNT
                 ),
-                new Data\Elements\LegalIdentifier(
+                new Data\Elements\LegalPerson(
                     Carbon::parse(static::CREATED_AT),
                     Dictionaries\Language::RUS(),
                     static::NAME,
@@ -308,8 +308,8 @@ class CredentialTest extends TestCase
     public function testGetIdentifiers(): void
     {
         $this->assertEquals(
-            new Data\Collections\Identifiers([
-                new Data\Elements\NaturalIdentifier(
+            new Data\Collections\IdentifiedPersons([
+                new Data\Elements\NaturalPerson(
                     Carbon::parse(static::CREATED_AT),
                     Dictionaries\Language::KAZ(),
                     static::NAME,
@@ -325,7 +325,7 @@ class CredentialTest extends TestCase
                     Dictionaries\SocialStatus::STUDENT(),
                     static::CHILDREN_COUNT
                 ),
-                new Data\Elements\LegalIdentifier(
+                new Data\Elements\LegalPerson(
                     Carbon::parse(static::CREATED_AT),
                     Dictionaries\Language::RUS(),
                     static::NAME,

@@ -6,10 +6,10 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
- * Class NaturalIdentifier
+ * Class NaturalPerson
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class NaturalIdentifier extends Identifier implements Data\Interfaces\NaturalIdentifier
+class NaturalPerson extends Person implements Data\Interfaces\NaturalIdentifier
 {
     use Data\Traits\NaturalIdentifier;
 

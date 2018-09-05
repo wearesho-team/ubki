@@ -5,6 +5,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Trait DealLife
@@ -36,7 +37,7 @@ trait DealLife
     /** @var float */
     protected $mandatoryPayment;
 
-    /** @var  float */
+    /** @var float */
     protected $currentDebt;
 
     /** @var float */
@@ -67,23 +68,32 @@ trait DealLife
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
-            'periodMonth' => $this->periodMonth,
-            'periodYear' => $this->periodYear,
-            'issueDate' => Carbon::instance($this->issueDate)->toDateString(),
-            'endDate' => Carbon::instance($this->endDate)->toDateString(),
-            'status' => $this->status->__toString(),
-            'limit' => $this->limit,
-            'mandatoryPayment' => $this->mandatoryPayment,
-            'currentDebt' => $this->currentDebt,
-            'currentOverdueDebt' => $this->currentOverdueDebt,
-            'overdueTime' => $this->overdueTime,
-            'paymentIndication' => $this->paymentIndication->__toString(),
-            'delayIndication' => $this->delayIndication->__toString(),
-            'creditTrancheIndication' => $this->creditTrancheIndication->__toString(),
-            'paymentDate' => Carbon::instance($this->paymentDate)->toDateString(),
-            'actualEndDate' => Carbon::instance($this->actualEndDate)->toDateString(),
+            Interfaces\DealLife::ID => $this->id,
+            Interfaces\DealLife::PERIOD_MONTH => $this->periodMonth,
+            Interfaces\DealLife::PERIOD_YEAR => $this->periodYear,
+            Interfaces\DealLife::ISSUE_DATE => Carbon::instance($this->issueDate)->toDateString(),
+            Interfaces\DealLife::END_DATE => Carbon::instance($this->endDate)->toDateString(),
+            Interfaces\DealLife::STATUS => $this->status->getValue(),
+            Interfaces\DealLife::STATUS_REF => $this->status->getDescription(),
+            Interfaces\DealLife::LIMIT => $this->limit,
+            Interfaces\DealLife::MANDATORY_PAYMENT => $this->mandatoryPayment,
+            Interfaces\DealLife::CURRENT_DEBT => $this->currentDebt,
+            Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $this->currentOverdueDebt,
+            Interfaces\DealLife::OVERDUE_TIME => $this->overdueTime,
+            Interfaces\DealLife::PAYMENT_INDICATION => $this->paymentIndication->getValue(),
+            Interfaces\DealLife::PAYMENT_INDICATION_REF => $this->paymentIndication->getDescription(),
+            Interfaces\DealLife::DELAY_INDICATION => $this->delayIndication->getValue(),
+            Interfaces\DealLife::DELAY_INDICATION_REF => $this->delayIndication->getDescription(),
+            Interfaces\DealLife::CREDIT_TRANCHE_INDICATION => $this->creditTrancheIndication->getValue(),
+            Interfaces\DealLife::CREDIT_TRANCHE_INDICATION_REF => $this->creditTrancheIndication->getDescription(),
+            Interfaces\DealLife::PAYMENT_DATE => Carbon::instance($this->paymentDate)->toDateString(),
+            Interfaces\DealLife::ACTUAL_END_DATE => Carbon::instance($this->actualEndDate)->toDateString(),
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\DealLife::TAG;
     }
 
     public function getId(): string

@@ -3,15 +3,16 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data\Collections\Steps;
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Trace
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Trace implements Element
+class Trace extends Infrastructure\Element
 {
+    public const TAG = 'trace';
+
     /** @var Steps */
     protected $steps;
 
@@ -27,6 +28,11 @@ class Trace implements Element
                 return $step->jsonSerialize();
             }, $this->steps->jsonSerialize()),
         ];
+    }
+
+    public function tag(): string
+    {
+        return static::TAG;
     }
 
     public function getSteps(): Steps

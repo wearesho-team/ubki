@@ -20,7 +20,7 @@ class Credential extends Infrastructure\Element implements Data\Interfaces\Crede
         string $patronymic,
         string $surname,
         \DateTimeInterface $birthDate,
-        Data\Collections\Identifiers $identifiers,
+        Data\Collections\IdentifiedPersons $identifiers,
         Data\Collections\Documents $documents,
         Data\Collections\Addresses $addresses,
         ?string $inn = null,

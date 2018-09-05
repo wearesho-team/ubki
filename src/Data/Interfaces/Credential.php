@@ -31,7 +31,7 @@ interface Credential
 
     public function getBirthDate(): \DateTimeInterface;
 
-    public function getIdentifiers(): Collections\Identifiers;
+    public function getIdentifiers(): Collections\IdentifiedPersons;
 
     public function getDocuments(): Collections\Documents;
 

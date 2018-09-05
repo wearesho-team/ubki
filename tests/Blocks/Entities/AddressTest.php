@@ -6,13 +6,14 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Data\Elements\Address;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki\Data\Elements;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class AddressTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass Address
+ * @coversDefaultClass Elements\Address
  * @internal
  */
 class AddressTest extends TestCase
@@ -28,16 +29,17 @@ class AddressTest extends TestCase
     protected const CORPUS = 'testCorpus';
     protected const FLAT = 'testFlat';
     protected const FULL_ADDRESS = 'testFullAddress';
+    protected const DESCRIPTION = 'testDescription';
 
-    /** @var Address */
+    /** @var Elements\Address */
     protected $fakeAddress;
 
     protected function setUp(): void
     {
-        $this->fakeAddress = new Address(
+        $this->fakeAddress = new Elements\Address(
             Carbon::parse(static::CREATED_AT),
-            Dictionaries\Language::RUS(),
-            Dictionaries\AddressType::REGISTRATION(),
+            Dictionaries\Language::RUS(static::DESCRIPTION),
+            Dictionaries\AddressType::REGISTRATION(static::DESCRIPTION),
             static::COUNTRY,
             static::CITY,
             static::STREET,
@@ -45,7 +47,7 @@ class AddressTest extends TestCase
             static::INDEX,
             static::STATE,
             static::AREA,
-            Dictionaries\CityType::SETTLEMENT(),
+            Dictionaries\CityType::SETTLEMENT(static::DESCRIPTION),
             static::CORPUS,
             static::FLAT,
             static::FULL_ADDRESS
@@ -56,20 +58,23 @@ class AddressTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'createdAt' => static::CREATED_AT,
-                'language' => Dictionaries\Language::RUS()->getKey(),
-                'type' => Dictionaries\AddressType::REGISTRATION()->getKey(),
-                'country' => static::COUNTRY,
-                'city' => static::CITY,
-                'street' => static::STREET,
-                'house' => static::HOUSE,
-                'index' => static::INDEX,
-                'state' => static::STATE,
-                'area' => static::AREA,
-                'cityType' => Dictionaries\CityType::SETTLEMENT()->getKey(),
-                'corpus' => static::CORPUS,
-                'flat' => static::FLAT,
-                'fullAddress' => static::FULL_ADDRESS
+                Interfaces\Address::TYPE => Dictionaries\AddressType::REGISTRATION()->getValue(),
+                Interfaces\Address::TYPE_REF => static::DESCRIPTION,
+                Interfaces\Address::CREATED_AT => static::CREATED_AT,
+                Interfaces\Address::LANGUAGE => Dictionaries\Language::RUS()->getValue(),
+                Interfaces\Address::LANGUAGE_REF => static::DESCRIPTION,
+                Interfaces\Address::AREA => static::AREA,
+                Interfaces\Address::FULL_ADDRESS => static::FULL_ADDRESS,
+                Interfaces\Address::COUNTRY => static::COUNTRY,
+                Interfaces\Address::STREET => static::STREET,
+                Interfaces\Address::CITY => static::CITY,
+                Interfaces\Address::HOUSE => static::HOUSE,
+                Interfaces\Address::CORPUS => static::CORPUS,
+                Interfaces\Address::INDEX => static::INDEX,
+                Interfaces\Address::STATE => static::STATE,
+                Interfaces\Address::FLAT => static::FLAT,
+                Interfaces\Address::CITY_TYPE => Dictionaries\CityType::SETTLEMENT()->getValue(),
+                Interfaces\Address::CITY_TYPE_REF => static::DESCRIPTION,
             ],
             $this->fakeAddress->jsonSerialize()
         );
@@ -126,7 +131,7 @@ class AddressTest extends TestCase
     public function testGetAddressType(): void
     {
         $this->assertEquals(
-            Dictionaries\AddressType::REGISTRATION(),
+            Dictionaries\AddressType::REGISTRATION(static::DESCRIPTION),
             $this->fakeAddress->getAddressType()
         );
     }
@@ -158,7 +163,7 @@ class AddressTest extends TestCase
     public function testGetLanguage(): void
     {
         $this->assertEquals(
-            Dictionaries\Language::RUS(),
+            Dictionaries\Language::RUS(static::DESCRIPTION),
             $this->fakeAddress->getLanguage()
         );
     }
@@ -182,7 +187,7 @@ class AddressTest extends TestCase
     public function testGetCityType(): void
     {
         $this->assertEquals(
-            Dictionaries\CityType::SETTLEMENT(),
+            Dictionaries\CityType::SETTLEMENT(static::DESCRIPTION),
             $this->fakeAddress->getCityType()
         );
     }

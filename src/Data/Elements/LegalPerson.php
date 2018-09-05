@@ -6,10 +6,10 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 
 /**
- * Class LegalIdentifier
+ * Class LegalPerson
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class LegalIdentifier extends Identifier implements Data\Interfaces\LegalIdentifier
+class LegalPerson extends IdentifiedPerson implements Data\Interfaces\LegalIdentifier
 {
     use Data\Traits\LegalIdentifier;
 

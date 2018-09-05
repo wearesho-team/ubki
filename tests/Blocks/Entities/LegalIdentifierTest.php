@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Data\Elements\LegalIdentifier;
+use Wearesho\Bobra\Ubki\Data\Elements\LegalPerson;
 use Wearesho\Bobra\Ubki\Dictionaries\Language;
 
 /**
  * Class LegalIdentifierTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass LegalIdentifier
+ * @coversDefaultClass LegalPerson
  * @internal
  */
 class LegalIdentifierTest extends TestCase
@@ -26,12 +26,12 @@ class LegalIdentifierTest extends TestCase
     protected const EDR_REGISTRATION_DATE = '2017-03-12';
     protected const TAX_REGISTRATION_DATE = '2016-03-12';
 
-    /** @var LegalIdentifier */
+    /** @var LegalPerson */
     protected $fakeLegalIdentifier;
 
     protected function setUp(): void
     {
-        $this->fakeLegalIdentifier = new LegalIdentifier(
+        $this->fakeLegalIdentifier = new LegalPerson(
             Carbon::parse(static::CREATED_AT),
             Language::RUS(),
             static::NAME,

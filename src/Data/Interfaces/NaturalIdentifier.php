@@ -8,20 +8,26 @@ use Wearesho\Bobra\Ubki\Dictionaries;
  * Interface NaturalInterface
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface NaturalIdentifier extends Identifier
+interface NaturalIdentifier extends Person
 {
     public const TAG = 'ident';
     public const INN = 'inn';
     public const NAME = 'fname';
-    public const MIDDLE_NAME = 'mname';
-    public const LAST_NAME = 'lname';
+    public const PATRONYMIC = 'mname';
+    public const SURNAME = 'lname';
     public const BIRTH_DATE = 'bdate';
     public const GENDER = 'csex';
+    public const GENDER_REF = 'csexref';
     public const FAMILY_STATUS = 'family';
+    public const FAMILY_STATUS_REF = 'familyref';
     public const EDUCATION = 'ceduc';
+    public const EDUCATION_REF = 'ceducref';
     public const NATIONALITY = 'cgrag';
+    public const NATIONALITY_REF = 'cgragref';
     public const REGISTRATION_SPD = 'spd';
+    public const REGISTRATION_SPD_REF = 'spdref';
     public const SOCIAL_STATUS = 'sstate';
+    public const SOCIAL_STATUS_REF = 'sstateref';
     public const CHILDREN_COUNT = 'cchild';
 
     public function getInn(): ?string;

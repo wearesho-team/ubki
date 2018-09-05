@@ -2,14 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Interface Document
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Document extends Element
+interface Document
 {
     public const TAG = 'doc';
     public const CREATED_AT = 'vdate';

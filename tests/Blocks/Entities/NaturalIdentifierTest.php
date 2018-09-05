@@ -6,13 +6,13 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Data\Elements\NaturalIdentifier;
+use Wearesho\Bobra\Ubki\Data\Elements\NaturalPerson;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class NaturalIdentifierTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass NaturalIdentifier
+ * @coversDefaultClass NaturalPerson
  * @internal
  */
 class NaturalIdentifierTest extends TestCase
@@ -25,12 +25,12 @@ class NaturalIdentifierTest extends TestCase
     protected const PATRONYMIC = 'testPatronymic';
     protected const CHILDREN_COUNT = 2;
 
-    /** @var NaturalIdentifier */
+    /** @var NaturalPerson */
     protected $fakeNaturalIdentifier;
 
     protected function setUp(): void
     {
-        $this->fakeNaturalIdentifier = new NaturalIdentifier(
+        $this->fakeNaturalIdentifier = new NaturalPerson(
             Carbon::parse(static::CREATED_AT),
             Dictionaries\Language::KAZ(),
             static::NAME,

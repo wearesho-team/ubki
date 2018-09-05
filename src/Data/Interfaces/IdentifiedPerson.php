@@ -2,14 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
-use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Dictionaries\Language;
 
 /**
- * Interface Identifier
+ * Interface IdentifiedPerson
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Identifier extends Element
+interface IdentifiedPerson extends Person
 {
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
@@ -17,7 +16,5 @@ interface Identifier extends Element
 
     public function getCreatedAt(): \DateTimeInterface;
 
-    public function getLanguage(): Dictionaries\Language;
-
-    public function getName(): string;
+    public function getLanguage(): Language;
 }

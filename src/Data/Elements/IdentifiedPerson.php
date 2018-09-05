@@ -3,15 +3,16 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
+
 use Wearesho\Bobra\Ubki\Data;
 
 /**
- * Class Identifier
+ * Class IdentifiedPerson
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-abstract class Identifier implements Data\Interfaces\Identifier
+class IdentifiedPerson extends Person implements Data\Interfaces\IdentifiedPerson
 {
-    use Data\Traits\Identifier;
+    use Data\Traits\IdentifiedPerson;
 
     public function __construct(
         \DateTimeInterface $createdAt,
@@ -20,6 +21,7 @@ abstract class Identifier implements Data\Interfaces\Identifier
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;
-        $this->name = $name;
+
+        parent::__construct($name);
     }
 }

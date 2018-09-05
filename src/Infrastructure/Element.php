@@ -6,7 +6,7 @@ namespace Wearesho\Bobra\Ubki\Infrastructure;
  * Class Element
  * @package Wearesho\Bobra\Ubki\Infrastructure
  */
-abstract class Element extends \JsonSerializable
+abstract class Element implements \JsonSerializable
 {
     /**
      * Name of tag

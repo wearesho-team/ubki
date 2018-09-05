@@ -4,17 +4,17 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
- * Trait LegalIdentifier
+ * Trait LegalPerson
  * @package Wearesho\Bobra\Ubki\Data\Traits
+ * @todo: implement ECONOMY_BRANCH dictionary
+ * @todo: implement FORM dictionary
+ * @todo: implement ACTIVITY_TYPE dictionary
  */
 trait LegalIdentifier
 {
-    use Identifier;
-    use ElementTrait;
-
     /** @var string|null */
     protected $ergpou;
 
@@ -35,14 +35,24 @@ trait LegalIdentifier
 
     public function jsonSerialize(): array
     {
-        return array_merge(parent::jsonSerialize(), [
-            'ergpou' => $this->ergpou,
-            'form' => $this->form,
-            'economyBranch' => $this->economyBranch,
-            'activityType' => $this->activityType,
-            'edrRegistrationDate' => Carbon::instance($this->edrRegistrationDate)->toDateString(),
-            'taxRegistrationDate' => Carbon::instance($this->taxRegistrationDate)->toDateString()
-        ]);
+        return [
+            Interfaces\IdentifiedPerson::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
+            Interfaces\IdentifiedPerson::LANGUAGE => $this->language->getValue(),
+            Interfaces\IdentifiedPerson::LANGUAGE_REF => $this->language->getDescription(),
+            Interfaces\LegalIdentifier::ERGPOU => $this->ergpou,
+            Interfaces\LegalIdentifier::FORM => $this->form,
+            Interfaces\LegalIdentifier::ECONOMY_BRANCH => $this->economyBranch,
+            Interfaces\LegalIdentifier::ACTIVITY_TYPE => $this->activityType,
+            Interfaces\LegalIdentifier::EDR_REGISTRATION_DATE =>
+                Carbon::instance($this->edrRegistrationDate)->toDateString(),
+            Interfaces\LegalIdentifier::TAX_REGISTRATION_DATE =>
+                Carbon::instance($this->taxRegistrationDate)->toDateString(),
+        ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\LegalIdentifier::TAG;
     }
 
     public function getActivityType(): ?string

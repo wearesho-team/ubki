@@ -2,17 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Step
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Step implements Element
+class Step extends Infrastructure\Element
 {
-    use ElementTrait;
-    
     public const TAG = 'step';
     public const NAME = 'name';
     public const START = 'stm';
@@ -37,10 +34,15 @@ class Step implements Element
     public function jsonSerialize(): array
     {
         return [
-            'name' => $this->name,
-            'start' => $this->start,
-            'end' => $this->end,
+            static::NAME => $this->name,
+            static::START => $this->start,
+            static::END => $this->end,
         ];
+    }
+
+    public function tag(): string
+    {
+        return static::TAG;
     }
 
     public function getName(): string

@@ -4,12 +4,13 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Document
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Document implements Data\Interfaces\Document
+class Document extends Infrastructure\Element implements Data\Interfaces\Document
 {
     use Data\Traits\Document;
 

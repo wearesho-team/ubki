@@ -4,8 +4,8 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Trait Document
@@ -13,8 +13,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
  */
 trait Document
 {
-    use ElementTrait;
-
     /** @var \DateTimeInterface */
     protected $createdAt;
 
@@ -38,18 +36,28 @@ trait Document
 
     /** @var \DateTimeInterface|null */
     protected $termin;
+
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
-            'language' => $this->language->__toString(),
-            'type' => $this->type->__toString(),
-            'serial' => $this->serial,
-            'number' => $this->number,
-            'issue' => $this->issue,
-            'issueDate' => Carbon::instance($this->issueDate)->toDateString(),
-            'termin' => !is_null($this->termin) ? Carbon::instance($this->termin)->toDateString() : null,
+            Interfaces\Document::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
+            Interfaces\Document::LANGUAGE => $this->language->getValue(),
+            Interfaces\Document::LANGUAGE_REF => $this->language->getDescription(),
+            Interfaces\Document::TYPE => $this->type->getValue(),
+            Interfaces\Document::TYPE_REF => $this->type->getDescription(),
+            Interfaces\Document::SERIAL => $this->serial,
+            Interfaces\Document::NUMBER => $this->number,
+            Interfaces\Document::ISSUE => $this->issue,
+            Interfaces\Document::ISSUE_DATE => Carbon::instance($this->issueDate)->toDateString(),
+            Interfaces\Document::TERMIN => !is_null($this->termin)
+                ? Carbon::instance($this->termin)->toDateString()
+                : null,
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\Document::TAG;
     }
 
     public function getCreatedAt(): \DateTimeInterface

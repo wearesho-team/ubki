@@ -4,17 +4,16 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
- * Trait NaturalIdentifier
+ * Trait NaturalPerson
  * @package Wearesho\Bobra\Ubki\Data\Traits
  */
 trait NaturalIdentifier
 {
     use Identifier;
-    use ElementTrait;
 
     /** @var string */
     protected $surname;
@@ -51,19 +50,34 @@ trait NaturalIdentifier
 
     public function jsonSerialize(): array
     {
-        return array_merge(parent::jsonSerialize(), [
-            'surname' => $this->surname,
-            'birthDate' => Carbon::instance($this->birthDate)->toDateString(),
-            'gender' => $this->gender->__toString(),
-            'inn' => $this->inn,
-            'patronymic' => $this->patronymic,
-            'familyStatus' => $this->familyStatus->__toString(),
-            'education' => $this->education->__toString(),
-            'nationality' => $this->nationality->__toString(),
-            'registrationSpd' => $this->registrationSpd->__toString(),
-            'socialStatus' => $this->socialStatus->__toString(),
-            'childrenCount' => $this->childrenCount,
-        ]);
+        return [
+            Interfaces\Person::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
+            Interfaces\Person::LANGUAGE => $this->language->getValue(),
+            Interfaces\Person::LANGUAGE_REF => $this->language->getDescription(),
+            Interfaces\NaturalIdentifier::NAME => $this->name,
+            Interfaces\NaturalIdentifier::PATRONYMIC => $this->patronymic,
+            Interfaces\NaturalIdentifier::SURNAME => $this->surname,
+            Interfaces\NaturalIdentifier::BIRTH_DATE => Carbon::instance($this->birthDate)->toDateString(),
+            Interfaces\NaturalIdentifier::GENDER => $this->gender->getValue(),
+            Interfaces\NaturalIdentifier::GENDER_REF => $this->gender->getDescription(),
+            Interfaces\NaturalIdentifier::INN => $this->inn,
+            Interfaces\NaturalIdentifier::FAMILY_STATUS => $this->familyStatus->getValue(),
+            Interfaces\NaturalIdentifier::FAMILY_STATUS_REF => $this->familyStatus->getDescription(),
+            Interfaces\NaturalIdentifier::EDUCATION => $this->education->getValue(),
+            Interfaces\NaturalIdentifier::EDUCATION_REF => $this->education->getDescription(),
+            Interfaces\NaturalIdentifier::NATIONALITY => $this->nationality->getValue(),
+            Interfaces\NaturalIdentifier::NATIONALITY_REF => $this->nationality->getDescription(),
+            Interfaces\NaturalIdentifier::REGISTRATION_SPD => $this->registrationSpd->getValue(),
+            Interfaces\NaturalIdentifier::REGISTRATION_SPD_REF => $this->registrationSpd->getDescription(),
+            Interfaces\NaturalIdentifier::SOCIAL_STATUS => $this->socialStatus->getValue(),
+            Interfaces\NaturalIdentifier::SOCIAL_STATUS_REF => $this->socialStatus->getDescription(),
+            Interfaces\NaturalIdentifier::CHILDREN_COUNT => $this->childrenCount,
+        ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\NaturalIdentifier::TAG;
     }
 
     public function getInn(): ?string

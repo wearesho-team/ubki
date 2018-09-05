@@ -28,7 +28,7 @@ trait Credential
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Data\Collections\Identifiers */
+    /** @var Data\Collections\IdentifiedPersons */
     protected $identifiers;
 
     /** @var Data\Collections\Documents */
@@ -58,7 +58,7 @@ trait Credential
             Data\Interfaces\Credential::PATRONYMIC => $this->patronymic,
             Data\Interfaces\Credential::SURNAME => $this->surname,
             Data\Interfaces\Credential::BIRTH_DATE => Carbon::instance($this->birthDate)->toDateString(),
-            'identifiers' => array_map(function (Data\Interfaces\Identifier $identifier): array {
+            'identifiers' => array_map(function (Data\Interfaces\Person $identifier): array {
                 return $identifier->jsonSerialize();
             }, $this->identifiers->jsonSerialize()),
             'documents' => array_map(function (Data\Interfaces\Document $document): array {
@@ -116,7 +116,7 @@ trait Credential
         return $this->birthDate;
     }
 
-    public function getIdentifiers(): Data\Collections\Identifiers
+    public function getIdentifiers(): Data\Collections\IdentifiedPersons
     {
         return $this->identifiers;
     }
