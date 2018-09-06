@@ -37,7 +37,7 @@ $config = new Ubki\Push\Config(
 );
 ```
 
-На импорт данных (в разработке):
+На импорт данных:
 ```php
 <?php
 
@@ -110,7 +110,7 @@ $request = new Ubki\Push\Registry\Rep\Request(...);
 $response = $service->send($request);
 ```
 
-## Импорт отчетов (Pull)
+## Импорт отчетов (Pull) .<small>alfa-version</small>
 
 ```php
 <?php
@@ -130,18 +130,55 @@ $service = new Pull\Service(
     new \Psr\Log\NullLogger() // любой логгер, имплементирующий \Psr\Log\LoggerInterface
 );
 
+// Стандартный минимальный запрос на импорт отчета
 $request = new Pull\Request(
     new RequestData(
-        $type = References\RequestType::CREDIT_REPORT(),
-        $reason = References\RequestReason::OTHER_SERVICES(),
-        $date = new DateTime(),
-        $id = 'id',
-        $initiator = References\RequestInitiator::PARTNER()
+        References\RequestType::CREDIT_REPORT(), // или любой другой тип
+        References\RequestReason::OTHER_SERVICES(), // или любая другая причина
+        $date = new DateTime(), // optional
+        $id = 'id', // optional
+        References\RequestInitiator::PARTNER() // или любой другой инициатор
     ),
-    new Pull\IdentificationData(
-        $language = References\Language::RUS(),
-        $inn = '1234567890'
+    new Pull\Elements\RequestContent(
+        References\Language::RUS(),
+        new Pull\Elements\Identification(
+            $inn = '1234567890'
+        )
     )
+);
+
+// Если тип запроса на Кредит-онлайн (RequestReason::CREDIT_ONLINE()) то требуется заполнить опциональные параметры
+$request = new Pull\Request(
+   new RequestData(
+       References\RequestType::CREDIT_REPORT(),
+       References\RequestReason::CREDIT_ONLINE(),
+       $date = new DateTime(),
+       $id = 'id',
+       References\RequestInitiator::PARTNER()
+   ),
+   new Pull\Elements\RequestContent(
+       References\Language::RUS(),
+       new Pull\Elements\Identification(
+           $inn = '1234567890',
+           $name = 'name',
+           $patronymic = 'patronymic',
+           $surname = 'surname',
+           $birthDate = new DateTime()
+       ),
+       new Pull\Collections\Contacts([
+           new Pull\Elements\Contact(
+               References\ContactType::MOBILE(),
+               $value = '380930439474'
+           ),
+       ]),
+       new Pull\Collections\Documents([
+           new Pull\Elements\Document(
+               References\DocumentType::PASSPORT(),
+               $serial = 'AB',
+               $number = "123456"
+           ),
+       ])
+   )
 );
 
 $requestResponsePair = $service->send($request);
@@ -149,6 +186,11 @@ $requestResponsePair = $service->send($request);
 $requestBody = $requestResponsePair->getRequest(); // Тело запроса для возможности сохранения в модели
 $report = $requestResponsePair->getResponse(); // Тело импортированного отчета
 ```
+
+## Справочники УБКИ
+
+- [Документация УБКИ](https://sites.google.com/ubki.ua/doc/справочники)
+- [Документация библиотеки](./src/References) (отсутствует)
 
 **Библиотека находится в разработке**
 1. Авторизация (Authorization)
