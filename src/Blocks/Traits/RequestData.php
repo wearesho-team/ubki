@@ -39,7 +39,7 @@ trait RequestData
             'version' => $this->version,
             'type' => $this->type->__toString(),
             'reason' => $this->reason->__toString(),
-            'date' => Carbon::instance($this->date)->toDateString(),
+            'date' => Carbon::instance($this->date)->toDateTimeString(),
             'id' => $this->id,
             'initiator' => $this->initiator->__toString(),
         ];

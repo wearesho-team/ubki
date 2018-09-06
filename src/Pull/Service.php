@@ -13,8 +13,9 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Service
  * @package Wearesho\Bobra\Ubki\Pull
+ * @todo: implement base SendService class
  */
-class Service
+class Service extends Ubki\SendService
 {
     /** @var ConfigInterface */
     protected $config;
@@ -22,11 +23,10 @@ class Service
     /** @var Ubki\Authorization\ProviderInterface */
     protected $authProvider;
 
-    /** @var GuzzleHttp\ClientInterface */
-    protected $client;
+    protected $logMessage = 'UBKI import request';
 
-    /** @var Log\LoggerInterface */
-    protected $logger;
+    /** @var \DOMDocument */
+    private $document;
 
     public function __construct(
         ConfigInterface $config,
@@ -48,47 +48,37 @@ class Service
      */
     public function send(Request $request): Ubki\RequestResponsePair
     {
-        $guzzleRequest = $this->convertToGuzzleRequest($request);
-        $responseBody = $this->client->send($guzzleRequest);
+        $response = $this->post($this->config->getPullUrl(), $this->getBody($request));
 
         return new Ubki\RequestResponsePair(
-            $guzzleRequest->getBody()->__toString(),
-            $responseBody->getBody()->__toString()
+            $this->getRequest()->getBody()->__toString(),
+            $response->getBody()->__toString()
         );
     }
 
-    protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
-    {
-        return new GuzzleHttp\Psr7\Request(
-            'post',
-            $this->config->getPullUrl(),
-            [],
-            $this->getBody($request)
-        );
-    }
-
+    // todo: refactor
     private function getBody(RequestInterface $request): string
     {
-        $xml = new \DOMDocument('1.0', 'utf-8');
+        $this->document = new \DOMDocument('1.0', 'utf-8');
 
         // Create root element
-        $xmlRoot = $xml->createElement(RequestInterface::TAG);
-        $xmlRoot = $xml->appendChild($xmlRoot);
+        $root = $this->document->createElement($request->tag());
+        $root = $this->document->appendChild($root);
 
-        $ubchElm = $xml->createElement(RequestInterface::UBKI_BLOCK);
+        $ubchElm = $this->document->createElement(RequestInterface::UBKI_BLOCK);
         $ubchElm->setAttribute(
             RequestInterface::SESSION_ID,
             $this->authProvider->provide($this->config)->getSessionId()
         );
-        $ubchElm = $xmlRoot->appendChild($ubchElm);
+        $ubchElm = $root->appendChild($ubchElm);
 
-        $envelopeElm = $xml->createElement(RequestInterface::REQ_ENVELOPE_BLOCK);
+        $envelopeElm = $this->document->createElement(RequestInterface::REQ_ENVELOPE_BLOCK);
         $envelopeElm = $ubchElm->appendChild($envelopeElm);
 
-        $requestWrapperElm = $xml->createElement('req_xml');
+        $requestWrapperElm = $this->document->createElement('req_xml');
         $requestWrapperElm = $envelopeElm->appendChild($requestWrapperElm);
 
-        $requestElm = $xml->createElement('request');
+        $requestElm = $this->document->createElement('request');
 
         $head = $request->getHead();
         $requestElm->setAttribute('reqtype', $head->getType()->getValue());
@@ -97,28 +87,66 @@ class Service
 
         $requestElm = $requestWrapperElm->appendChild($requestElm);
 
-        $body = $request->getBody();
-        $identityWrapperElm = $xml->createElement('i');
-        $identityWrapperElm->setAttribute('reqlng', $body->getLanguage()->getValue());
+        $requestContent = $request->getBody();
+        $identityWrapperElm = $this->document->createElement($requestContent->tag());
+        $identityWrapperElm->setAttribute(
+            Ubki\Pull\Elements\RequestContent::LANGUAGE,
+            $requestContent->getLanguage()->getValue()
+        );
         $identityWrapperElm = $requestElm->appendChild($identityWrapperElm);
 
-        $identityElm = $xml->createElement('ident');
-        $identityElm->setAttribute('okpo', $body->getInn());
+        $identification = $requestContent->getIdentification();
+        $identityElm = $this->createFilledElement($identification);
         $identityWrapperElm->appendChild($identityElm);
 
-        $mvdElm = $xml->createElement('mvd');
+        $contacts = $requestContent->getContacts();
+
+        if (!is_null($contacts)) {
+            $contactsElement = $identityWrapperElm->appendChild($this->createFilledElement($contacts));
+
+            foreach ($contacts as $contact) {
+                $contactsElement->appendChild($this->createFilledElement($contact));
+            }
+        }
+
+        $documents = $requestContent->getDocuments();
+
+        if (!is_null($documents)) {
+            $documentsElement = $identityWrapperElm->appendChild($this->createFilledElement($documents));
+
+            foreach ($documents as $document) {
+                $documentsElement->appendChild($this->createFilledElement($document));
+            }
+        }
+
+        $mvdElm = $this->document->createElement('mvd');
         $identityWrapperElm->appendChild($mvdElm);
 
-        $blackListPhoneElm = $xml->createElement('bphone');
+        $blackListPhoneElm = $this->document->createElement('bphone');
         $blackListPhoneElm->setAttribute('phone', null);
         $identityWrapperElm->appendChild($blackListPhoneElm);
 
-        $xml->formatOutput = true;
+        $this->document->formatOutput = true;
 
-        $requestXML = clone $xml;
+        $requestXML = clone $this->document;
         $requestXML->getElementsByTagName('req_xml')
-            ->item(0)->textContent = base64_encode($xml->saveXML($requestElm));
+            ->item(0)->textContent = base64_encode($this->document->saveXML($requestElm));
 
         return $requestXML->saveXML();
+    }
+
+    private function createFilledElement(?Ubki\ElementInterface $element)
+    {
+        $domElement = $this->document->createElement($element->tag());
+        $attributes = $element->jsonSerialize();
+
+        // todo: refactor
+        foreach ($attributes as $attributeName => $attributeValue) {
+            if (!is_null($attributeValue) && !is_object($attributeValue)) {
+                $domElement->setAttribute($attributeName, $attributeValue);
+            }
+        }
+
+        return $domElement;
     }
 }

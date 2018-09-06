@@ -27,7 +27,7 @@ class ResponseTest extends TestCase
             'A1F593950A8F4562AE5A5DB1914D658A',
             Registry\Response\State::CREATED(),
             Registry\Response\OperationType::TRANSFERRING(),
-            Identification::ID,
+            1,
             'IDENT',
             'NW',
             '',
@@ -91,7 +91,7 @@ class ResponseTest extends TestCase
     public function testGetBlockId(): void
     {
         $this->assertEquals(
-            Identification::ID,
+            1,
             $this->response->getBlockId()
         );
     }

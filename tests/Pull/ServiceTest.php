@@ -31,6 +31,13 @@ class ServiceTest extends TestCase
     protected const DATE = '2018-03-12';
     protected const ID = 'testId';
     protected const INN = 'testInn';
+    protected const NAME = 'testName';
+    protected const PATRONYMIC = 'testPatronymic';
+    protected const SURNAME = 'testSurname';
+    protected const BIRTH_DATE = '2018-03-12';
+    protected const VALUE = 'testValue';
+    protected const SERIAL = 'testSerial';
+    protected const NUMBER = 'testNumber';
 
     /** @var Pull\EnvironmentConfig */
     protected $fakeConfig;
@@ -291,20 +298,39 @@ class ServiceTest extends TestCase
         $requestResponsePair = $this->fakeService->send(new Pull\Request(
             new RequestData(
                 References\RequestType::CREDIT_REPORT(),
-                References\RequestReason::OTHER_SERVICES(),
+                References\RequestReason::CREDIT_ONLINE(),
                 Carbon::parse(static::DATE),
                 static::ID,
                 References\RequestInitiator::PARTNER()
             ),
-            new Pull\IdentificationData(
+            new Pull\Elements\RequestContent(
                 References\Language::RUS(),
-                static::INN
+                new Pull\Elements\Identification(
+                    static::INN,
+                    static::NAME,
+                    static::PATRONYMIC,
+                    static::SURNAME,
+                    Carbon::parse(static::BIRTH_DATE)
+                ),
+                new Pull\Collections\Contacts([
+                    new Pull\Elements\Contact(
+                        References\ContactType::MOBILE(),
+                        static::VALUE
+                    ),
+                ]),
+                new Pull\Collections\Documents([
+                    new Pull\Elements\Document(
+                        References\DocumentType::PASSPORT(),
+                        static::SERIAL,
+                        static::NUMBER
+                    ),
+                ])
             )
         ));
 
         $this->assertXmlStringEqualsXmlString(
             '<?xml version="1.0" encoding="utf-8"?>
-<doc><ubki sessid="A1F593950A8F4562AE5A5DB1914D658A"><req_envelope><req_xml>PHJlcXVlc3QgcmVxdHlwZT0iMDkiIHJlcXJlYXNvbj0iNSIgcmVxZGF0ZT0iMjAxOC0wMy0xMiI+CiAgPGkgcmVxbG5nPSIxIj4KICAgIDxpZGVudCBva3BvPSJ0ZXN0SW5uIi8+CiAgICA8bXZkLz4KICAgIDxicGhvbmUgcGhvbmU9IiIvPgogIDwvaT4KPC9yZXF1ZXN0Pg==</req_xml></req_envelope></ubki></doc>', // phpcs:ignore
+<doc><ubki sessid="A1F593950A8F4562AE5A5DB1914D658A"><req_envelope><req_xml>PHJlcXVlc3QgcmVxdHlwZT0iMDkiIHJlcXJlYXNvbj0iNCIgcmVxZGF0ZT0iMjAxOC0wMy0xMiI+CiAgPGkgcmVxbG5nPSIxIj4KICAgIDxpZGVudCBva3BvPSJ0ZXN0SW5uIiBmbmFtZT0idGVzdE5hbWUiIG1uYW1lPSJ0ZXN0UGF0cm9ueW1pYyIgbG5hbWU9InRlc3RTdXJuYW1lIiBiZGF0ZT0iMjAxOC0wMy0xMiIvPgogICAgPGNvbnRhY3RzPgogICAgICA8Y29udCBjdHlwZT0iMyIgY3ZhbD0idGVzdFZhbHVlIi8+CiAgICA8L2NvbnRhY3RzPgogICAgPGRvY3M+CiAgICAgIDxkb2MgZHR5cGU9IjEiIGRzZXI9InRlc3RTZXJpYWwiIGRub209InRlc3ROdW1iZXIiLz4KICAgIDwvZG9jcz4KICAgIDxtdmQvPgogICAgPGJwaG9uZSBwaG9uZT0iIi8+CiAgPC9pPgo8L3JlcXVlc3Q+</req_xml></req_envelope></ubki></doc>', // phpcs:ignore
             $requestResponsePair->getRequest()
         );
         $this->assertEquals(

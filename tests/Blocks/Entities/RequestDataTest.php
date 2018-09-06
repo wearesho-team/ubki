@@ -17,7 +17,7 @@ use Wearesho\Bobra\Ubki\References;
  */
 class RequestDataTest extends TestCase
 {
-    protected const DATE = '2018-03-12';
+    protected const DATE = '2018-03-12 00:00:00';
     protected const ID = 'testId';
 
     /** @var RequestData */
@@ -53,7 +53,7 @@ class RequestDataTest extends TestCase
     {
         $this->assertEquals(
             static::DATE,
-            Carbon::instance($this->fakeRequestData->getDate())->toDateString()
+            Carbon::instance($this->fakeRequestData->getDate())->toDateTimeString()
         );
     }
 

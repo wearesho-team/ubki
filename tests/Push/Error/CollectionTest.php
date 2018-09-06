@@ -22,7 +22,7 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
     {
         $this->collection = new Push\Error\Collection([
             new Push\Error\Entity(
-                Identification::ID,
+                1,
                 'ADDR',
                 'lng',
                 'CRITICAL',
@@ -31,7 +31,7 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
                 10
             ),
             new Push\Error\Entity(
-                Identification::ID,
+                1,
                 'DOC',
                 'type',
                 'CRITICAL',
@@ -46,7 +46,7 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
     {
         $elements = [
             new Push\Error\Entity(
-                Identification::ID,
+                1,
                 'ADDR',
                 'lng',
                 'CRITICAL',
@@ -55,7 +55,7 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
                 10
             ),
             new Push\Error\Entity(
-                Identification::ID,
+                1,
                 'DOC',
                 'type',
                 'CRITICAL',

@@ -21,7 +21,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     protected function setUp(): void
     {
         $this->block = new Push\Error\Entity(
-            Identification::ID,
+            1,
             'ADDR',
             'lng',
             'CRITICAL',
@@ -42,7 +42,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     public function testGetBlockId(): void
     {
         $this->assertEquals(
-            Identification::ID,
+            1,
             $this->block->getBlockId()
         );
     }
@@ -67,7 +67,7 @@ class EntityTest extends Tests\Extend\ElementTestCase
     {
         $this->assertEquals(
             [
-                'blockId' => Identification::ID,
+                'blockId' => 1,
                 'tag' => 'ADDR',
                 'attribute' => 'lng',
                 'type' => 'CRITICAL',
