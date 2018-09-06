@@ -14,12 +14,12 @@ trait ConfigTrait
     public function getPullUrl(): string
     {
         return $this->isProductionMode()
-            ? static::PRODUCTION_PULL_URL
-            : static::TEST_PULL_URL;
+            ? ConfigInterface::PRODUCTION_PULL_URL
+            : ConfigInterface::TEST_PULL_URL;
     }
 
     public function isProductionMode(): bool
     {
-        return $this->mode === static::MODE_PRODUCTION;
+        return $this->mode === ConfigInterface::MODE_PRODUCTION;
     }
 }
