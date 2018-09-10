@@ -25,7 +25,7 @@ trait CreditRegister
     /** @var Dictionaries\Decision */
     protected $decision;
 
-    /** @var int */
+    /** @var Dictionaries\RequestReason */
     protected $reason;
 
     /** @var string|null */
@@ -34,12 +34,11 @@ trait CreditRegister
     public function jsonSerialize(): array
     {
         return [
-            Interfaces\CreditRegister::DATE => Carbon::instance($this->date)->toDateString(),
+            Interfaces\CreditRegister::DATE => $this->date,
             Interfaces\CreditRegister::INN => $this->inn,
             Interfaces\CreditRegister::ID => $this->id,
-            Interfaces\CreditRegister::DECISION => $this->decision->getValue(),
-            Interfaces\CreditRegister::DECISION_REF => $this->decision->getDescription(),
-            Interfaces\CreditRegister::REASON => $this->reason, // TODO: implement CreditReason dictionary
+            Interfaces\CreditRegister::DECISION => $this->decision,
+            Interfaces\CreditRegister::REASON => $this->reason,
             Interfaces\CreditRegister::ORGANIZATION => $this->organization,
         ];
     }
@@ -69,7 +68,7 @@ trait CreditRegister
         return $this->decision;
     }
 
-    public function getReason(): int
+    public function getReason(): Dictionaries\RequestReason
     {
         return $this->reason;
     }

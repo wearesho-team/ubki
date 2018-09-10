@@ -4,12 +4,13 @@ namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Dictionaries\LinkedIdentifierRole;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface LinkedPerson
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface LinkedPerson extends Element
+interface LinkedPerson extends ElementInterface
 {
     public const TAG = 'linked';
     public const ERGPOU = 'okpo2';

@@ -3,12 +3,13 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
  * Class RegistryTimes
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class RegistryTimes implements Data\Interfaces\RegistryTimes
+class RegistryTimes extends Element implements Data\Interfaces\RegistryTimes
 {
     use Data\Traits\RegistryTimes;
 

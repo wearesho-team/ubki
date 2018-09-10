@@ -3,12 +3,13 @@
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface CreditRequest
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditRegister
+interface CreditRegister extends ElementInterface
 {
     public const TAG = 'credres';
     public const DATE = 'redate';
@@ -27,7 +28,7 @@ interface CreditRegister
 
     public function getDecision(): Dictionaries\Decision;
 
-    public function getReason(): int;
+    public function getReason(): Dictionaries\RequestReason;
 
     public function getOrganization(): ?string;
 }

@@ -15,4 +15,9 @@ class Photos extends Infrastructure\BaseCollection
     {
         return Interfaces\Photo::class;
     }
+
+    public function hasWrapper(): bool
+    {
+        return false;
+    }
 }

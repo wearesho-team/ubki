@@ -15,4 +15,9 @@ class Addresses extends Infrastructure\BaseCollection
     {
         return Interfaces\Address::class;
     }
+    public function hasWrapper(): bool
+    {
+        return false;
+    }
+
 }

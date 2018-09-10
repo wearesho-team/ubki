@@ -3,12 +3,13 @@
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface Address
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Address
+interface Address extends ElementInterface
 {
     public const TAG = 'addr';
     public const CREATED_AT = 'vdate';

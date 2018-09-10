@@ -2,16 +2,22 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces;
-use Wearesho\Bobra\Ubki\Data\Traits;
+use Carbon\Carbon;
 
 /**
  * Class InsuranceEvent
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class InsuranceEvent implements Interfaces\Insurance\Event
+class InsuranceEvent
 {
-    use Traits\Insurance\Event;
+    /** @var \DateTimeInterface */
+    protected $requestDate;
+
+    /** @var int */
+    protected $decision;
+
+    /** @var \DateTimeInterface */
+    protected $decisionDate;
 
     public function __construct(
         \DateTimeInterface $requestDate,
@@ -21,5 +27,29 @@ class InsuranceEvent implements Interfaces\Insurance\Event
         $this->requestDate = $requestDate;
         $this->decision = $decision;
         $this->decisionDate = $decisionDate;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'requestDate' => Carbon::instance($this->requestDate)->toDateString(),
+            'decision' => $this->decision,
+            'decisionDate' => Carbon::instance($this->decisionDate)->toDateString()
+        ];
+    }
+
+    public function getRequestDate(): \DateTimeInterface
+    {
+        return $this->requestDate;
+    }
+
+    public function getDecision(): int
+    {
+        return $this->decision;
+    }
+
+    public function getDecisionDate(): \DateTimeInterface
+    {
+        return $this->decisionDate;
     }
 }

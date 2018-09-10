@@ -3,12 +3,13 @@
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface Contact
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Contact
+interface Contact extends ElementInterface
 {
     public const TAG = 'cont';
     public const VALUE = 'cval';

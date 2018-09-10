@@ -2,10 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
-use Wearesho\Bobra\Ubki\ElementTrait;
 use Wearesho\Bobra\Ubki\Dictionaries\LinkedIdentifierRole;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Trait LinkedPerson
@@ -13,8 +11,6 @@ use Wearesho\Bobra\Ubki\Dictionaries\LinkedIdentifierRole;
  */
 trait LinkedPerson
 {
-    use ElementTrait;
-
     /** @var string */
     protected $name;
 
@@ -30,11 +26,16 @@ trait LinkedPerson
     public function jsonSerialize(): array
     {
         return [
-            'name' => $this->name,
-            'role' => (string)$this->role,
-            'issueDate' => Carbon::instance($this->issueDate)->toDateString(),
-            'ergpou' => $this->ergpou
+            Interfaces\LinkedPerson::NAME => $this->name,
+            Interfaces\LinkedPerson::ROLE => $this->role,
+            Interfaces\LinkedPerson::ISSUE_DATE => $this->issueDate,
+            Interfaces\LinkedPerson::ERGPOU => $this->ergpou
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\LinkedPerson::TAG;
     }
 
     public function getErgpou(): ?string

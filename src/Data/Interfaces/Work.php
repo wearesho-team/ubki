@@ -4,12 +4,13 @@ namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface Work
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Work extends Element
+interface Work extends ElementInterface
 {
     public const TAG = 'work';
     public const CREATED_AT = 'vdate';

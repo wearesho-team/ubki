@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
@@ -57,21 +55,17 @@ trait CourtDecision
         return [
             Interfaces\CourtDecision::ID => $this->id,
             Interfaces\CourtDecision::INN => $this->inn,
-            Interfaces\CourtDecision::DATE => Carbon::instance($this->date)->toDateString(),
-            Interfaces\CourtDecision::SUBJECT_STATUS => $this->subjectStatus->getValue(),
-            Interfaces\CourtDecision::SUBJECT_STATUS_REF => $this->subjectStatus->getDescription(),
-            Interfaces\CourtDecision::COURT_DEAL_TYPE => $this->courtDealType->getValue(),
-            Interfaces\CourtDecision::COURT_DEAL_TYPE_REF => $this->courtDealType->getDescription(),
+            Interfaces\CourtDecision::DATE => $this->date,
+            Interfaces\CourtDecision::SUBJECT_STATUS => $this->subjectStatus,
+            Interfaces\CourtDecision::COURT_DEAL_TYPE => $this->courtDealType,
             Interfaces\CourtDecision::COURT_NAME => $this->courtName,
             Interfaces\CourtDecision::DOCUMENT_TYPE => $this->documentType,
             Interfaces\CourtDecision::DOCUMENT_TYPE_REF => $this->documentTypeReference,
             Interfaces\CourtDecision::LEGAL_FACT => $this->legalFact,
             Interfaces\CourtDecision::LEGAL_FACT_REF => $this->legalFactReference,
-            Interfaces\CourtDecision::CREATED_AT => !is_null($this->createdAt)
-                ? Carbon::instance($this->createdAt)->toDateString()
-                : null,
+            Interfaces\CourtDecision::CREATED_AT => $this->createdAt,
             Interfaces\CourtDecision::AREA => $this->area,
-            Interfaces\CourtDecision::AREA_REF => $this->areaReference
+            Interfaces\CourtDecision::AREA_REF => $this->areaReference,
         ];
     }
 

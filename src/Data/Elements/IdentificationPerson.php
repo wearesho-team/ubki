@@ -2,26 +2,16 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
+use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki\Data\Traits;
+
 /**
  * Class IdentificationPerson
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class IdentificationPerson extends Person
+class IdentificationPerson extends Person implements Interfaces\IdentificationPerson
 {
-    /** @var string|null */
-    protected $inn;
-
-    /** @var string|null */
-    protected $surname;
-
-    /** @var string|null */
-    protected $patronymic;
-
-    /** @var string|null */
-    protected $birthDate;
-
-    /** @var string|null */
-    protected $organization;
+    use Traits\IdentificationPerson;
 
     public function __construct(
         ?string $name = null,
@@ -38,30 +28,5 @@ class IdentificationPerson extends Person
         $this->organization = $organization;
 
         parent::__construct($name);
-    }
-
-    public function getInn(): ?string
-    {
-        return $this->inn;
-    }
-
-    public function getSurname(): ?string
-    {
-        return $this->surname;
-    }
-
-    public function getPatronymic(): ?string
-    {
-        return $this->patronymic;
-    }
-
-    public function getBirthDate(): ?string
-    {
-        return $this->birthDate;
-    }
-
-    public function getOrganization(): ?string
-    {
-        return $this->organization;
     }
 }

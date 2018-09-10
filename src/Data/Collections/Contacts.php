@@ -15,4 +15,9 @@ class Contacts extends Infrastructure\BaseCollection
     {
         return Interfaces\Contact::class;
     }
+
+    public function hasWrapper(): bool
+    {
+        return false;
+    }
 }

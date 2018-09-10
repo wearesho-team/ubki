@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Trait RegistryTimes
@@ -10,8 +10,6 @@ use Wearesho\Bobra\Ubki\ElementTrait;
  */
 trait RegistryTimes
 {
-    use ElementTrait;
-
     /** @var int */
     protected $byHour;
 
@@ -36,14 +34,19 @@ trait RegistryTimes
     public function jsonSerialize(): array
     {
         return [
-            'byHour' => $this->byHour,
-            'byDay' => $this->byDay,
-            'byWeek' => $this->byWeek,
-            'byMonth' => $this->byMonth,
-            'byQuarter' => $this->byQuarter,
-            'byYear' => $this->byYear,
-            'byMoreYear' => $this->byMoreYear,
+            Interfaces\RegistryTimes::BY_HOUR => $this->byHour,
+            Interfaces\RegistryTimes::BY_DAY => $this->byDay,
+            Interfaces\RegistryTimes::BY_WEEK => $this->byWeek,
+            Interfaces\RegistryTimes::BY_MONTH => $this->byMonth,
+            Interfaces\RegistryTimes::BY_QUARTER => $this->byQuarter,
+            Interfaces\RegistryTimes::BY_YEAR => $this->byYear,
+            Interfaces\RegistryTimes::BY_MORE_YEAR => $this->byMoreYear,
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\RegistryTimes::TAG;
     }
 
     public function getByHour(): int

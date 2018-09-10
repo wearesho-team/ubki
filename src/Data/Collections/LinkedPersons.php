@@ -15,4 +15,9 @@ class LinkedPersons extends Infrastructure\BaseCollection
     {
         return Interfaces\LinkedPerson::class;
     }
+
+    public function hasWrapper(): bool
+    {
+        return false;
+    }
 }

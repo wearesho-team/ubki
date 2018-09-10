@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
@@ -58,11 +56,9 @@ trait Address
     public function jsonSerialize(): array
     {
         return [
-            Interfaces\Address::TYPE => $this->addressType->getValue(),
-            Interfaces\Address::TYPE_REF => $this->addressType->getDescription(),
-            Interfaces\Address::LANGUAGE => $this->language->getValue(),
-            Interfaces\Address::LANGUAGE_REF => $this->language->getDescription(),
-            Interfaces\Address::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
+            Interfaces\Address::TYPE => $this->addressType,
+            Interfaces\Address::LANGUAGE => $this->language,
+            Interfaces\Address::CREATED_AT => $this->createdAt,
             Interfaces\Address::AREA => $this->area,
             Interfaces\Address::FULL_ADDRESS => $this->fullAddress,
             Interfaces\Address::COUNTRY => $this->country,
@@ -73,8 +69,7 @@ trait Address
             Interfaces\Address::STATE => $this->state,
             Interfaces\Address::FLAT => $this->flat,
             Interfaces\Address::CITY => $this->city,
-            Interfaces\Address::CITY_TYPE => $this->cityType->getValue(),
-            Interfaces\Address::CITY_TYPE_REF => $this->cityType->getDescription()
+            Interfaces\Address::CITY_TYPE => $this->cityType,
         ];
     }
 

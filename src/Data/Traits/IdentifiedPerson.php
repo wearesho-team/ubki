@@ -10,6 +10,8 @@ use Wearesho\Bobra\Ubki\Dictionaries\Language;
  */
 trait IdentifiedPerson
 {
+    use Person;
+
     /** @var \DateTimeInterface */
     protected $createdAt;
 

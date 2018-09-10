@@ -3,12 +3,13 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
  * Class Photo
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Photo implements Data\Interfaces\Photo
+class Photo extends Element implements Data\Interfaces\Photo
 {
     use Data\Traits\Photo;
 

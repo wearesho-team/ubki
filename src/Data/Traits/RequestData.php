@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
@@ -13,8 +13,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
  */
 trait RequestData
 {
-    use ElementTrait;
-
     /** @var string */
     protected $version = '1.0';
 
@@ -36,13 +34,18 @@ trait RequestData
     public function jsonSerialize(): array
     {
         return [
-            'version' => $this->version,
-            'type' => $this->type->__toString(),
-            'reason' => $this->reason->__toString(),
-            'date' => Carbon::instance($this->date)->toDateString(),
-            'id' => $this->id,
-            'initiator' => $this->initiator->__toString(),
+            Interfaces\RequestData::VERSION => $this->version,
+            Interfaces\RequestData::TYPE => $this->type->getValue(),
+            Interfaces\RequestData::REASON => $this->reason->getValue(),
+            Interfaces\RequestData::DATE => !$this->date ?: Carbon::instance($this->date)->toDateString(),
+            Interfaces\RequestData::ID => $this->id,
+            Interfaces\RequestData::INITIATOR => $this->initiator->getValue(),
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\RequestData::TAG;
     }
 
     public function getVersion(): string

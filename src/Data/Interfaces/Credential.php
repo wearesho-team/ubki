@@ -5,12 +5,13 @@ namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface Credential
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Credential
+interface Credential extends ElementInterface
 {
     public const TAG = 'cki';
     public const INN = 'inn';

@@ -4,12 +4,13 @@ namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface RequestData
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface RequestData extends Element
+interface RequestData extends ElementInterface
 {
     public const TAG = 'request';
     public const VERSION = 'version';

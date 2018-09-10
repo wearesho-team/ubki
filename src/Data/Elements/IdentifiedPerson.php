@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki\Data;
  * Class IdentifiedPerson
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class IdentifiedPerson extends Person implements Data\Interfaces\IdentifiedPerson
+abstract class IdentifiedPerson extends Person implements Data\Interfaces\IdentifiedPerson
 {
     use Data\Traits\IdentifiedPerson;
 

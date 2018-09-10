@@ -3,12 +3,13 @@
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface CourtDectision
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CourtDecision
+interface CourtDecision extends ElementInterface
 {
     public const TAG = 'susd';
     public const ID = 'voteid';

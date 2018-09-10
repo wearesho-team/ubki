@@ -6,10 +6,8 @@ namespace Wearesho\Bobra\Ubki;
  * Interface Block
  * @package Wearesho\Bobra\Ubki
  */
-abstract class Block implements ElementInterface
+abstract class Block extends Infrastructure\Element
 {
-    use ElementTrait;
-
     public const TAG = 'comp';
     public const ATTR_ID = 'id';
 
@@ -18,5 +16,10 @@ abstract class Block implements ElementInterface
     public function getId(): int
     {
         return static::ID;
+    }
+
+    public function tag(): string
+    {
+        return static::TAG;
     }
 }

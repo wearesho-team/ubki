@@ -2,10 +2,9 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki\Data\Collections;
 
 /**
  * Trait Credential
@@ -28,67 +27,48 @@ trait Credential
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Data\Collections\IdentifiedPersons */
+    /** @var Collections\IdentifiedPersons */
     protected $identifiers;
 
-    /** @var Data\Collections\Documents */
+    /** @var Collections\Documents */
     protected $documents;
 
-    /** @var Data\Collections\Addresses */
+    /** @var Collections\Addresses */
     protected $addresses;
 
     /** @var string|null */
     protected $inn;
 
-    /** @var Data\Collections\Works|null */
+    /** @var Collections\Works|null */
     protected $works;
 
-    /** @var Data\Collections\Photos|null */
+    /** @var Collections\Photos|null */
     protected $photos;
 
-    /** @var Data\Collections\LinkedPersons|null */
+    /** @var Collections\LinkedPersons|null */
     protected $linkedPersons;
 
     public function jsonSerialize(): array
     {
         return [
-            Data\Interfaces\Credential::LANGUAGE => $this->language->getValue(),
-            Data\Interfaces\Credential::LANGUAGE_REF => $this->language->getDescription(),
-            Data\Interfaces\Credential::NAME => $this->name,
-            Data\Interfaces\Credential::PATRONYMIC => $this->patronymic,
-            Data\Interfaces\Credential::SURNAME => $this->surname,
-            Data\Interfaces\Credential::BIRTH_DATE => Carbon::instance($this->birthDate)->toDateString(),
-            'identifiers' => array_map(function (Data\Interfaces\Person $identifier): array {
-                return $identifier->jsonSerialize();
-            }, $this->identifiers->jsonSerialize()),
-            'documents' => array_map(function (Data\Interfaces\Document $document): array {
-                return $document->jsonSerialize();
-            }, $this->documents->jsonSerialize()),
-            'addresses' => array_map(function (Data\Interfaces\Address $address): array {
-                return $address->jsonSerialize();
-            }, $this->addresses->jsonSerialize()),
-            'inn' => $this->inn,
-            'works' => !is_null($this->works)
-                ? array_map(function (Data\Interfaces\Work $work): array {
-                    return $work->jsonSerialize();
-                }, $this->works->jsonSerialize())
-                : null,
-            'photos' => !is_null($this->photos)
-                ? array_map(function (Data\Interfaces\Photo $photo): array {
-                    return $photo->jsonSerialize();
-                }, $this->photos->jsonSerialize())
-                : null,
-            'linkedPersons' => !is_null($this->linkedPersons)
-                ? array_map(function (Data\Interfaces\LinkedPerson $person): array {
-                    return $person->jsonSerialize();
-                }, $this->linkedPersons->jsonSerialize())
-                : null,
+            Interfaces\Credential::LANGUAGE => $this->language,
+            Interfaces\Credential::NAME => $this->name,
+            Interfaces\Credential::PATRONYMIC => $this->patronymic,
+            Interfaces\Credential::SURNAME => $this->surname,
+            Interfaces\Credential::BIRTH_DATE => $this->birthDate,
+            Interfaces\Credential::INN => $this->inn,
+            'identifiers' =>  $this->identifiers->jsonSerialize(),
+            'documents' => $this->documents->jsonSerialize(),
+            'addresses' => $this->addresses->jsonSerialize(),
+            'works' => $this->works->jsonSerialize(),
+            'photos' => $this->photos->jsonSerialize(),
+            'linkedPersons' => $this->linkedPersons->jsonSerialize()
         ];
     }
 
     public function tag(): string
     {
-        return Data\Interfaces\Credential::TAG;
+        return Interfaces\Credential::TAG;
     }
 
     public function getLanguage(): Dictionaries\Language
@@ -116,17 +96,17 @@ trait Credential
         return $this->birthDate;
     }
 
-    public function getIdentifiers(): Data\Collections\IdentifiedPersons
+    public function getIdentifiers(): Collections\IdentifiedPersons
     {
         return $this->identifiers;
     }
 
-    public function getDocuments(): Data\Collections\Documents
+    public function getDocuments(): Collections\Documents
     {
         return $this->documents;
     }
 
-    public function getAddresses(): Data\Collections\Addresses
+    public function getAddresses(): Collections\Addresses
     {
         return $this->addresses;
     }
@@ -136,17 +116,17 @@ trait Credential
         return $this->inn;
     }
 
-    public function getWorks(): ?Data\Collections\Works
+    public function getWorks(): ?Collections\Works
     {
         return $this->works;
     }
 
-    public function getPhotos(): ?Data\Collections\Photos
+    public function getPhotos(): ?Collections\Photos
     {
         return $this->photos;
     }
 
-    public function getLinkedPersons(): ?Data\Collections\LinkedPersons
+    public function getLinkedPersons(): ?Collections\LinkedPersons
     {
         return $this->linkedPersons;
     }

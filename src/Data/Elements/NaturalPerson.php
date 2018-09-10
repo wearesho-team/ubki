@@ -9,9 +9,9 @@ use Wearesho\Bobra\Ubki\Data;
  * Class NaturalPerson
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class NaturalPerson extends Person implements Data\Interfaces\NaturalIdentifier
+class NaturalPerson extends IdentifiedPerson implements Data\Interfaces\NaturalPerson
 {
-    use Data\Traits\NaturalIdentifier;
+    use Data\Traits\NaturalPerson;
 
     public function __construct(
         \DateTimeInterface $createdAt,
@@ -20,14 +20,14 @@ class NaturalPerson extends Person implements Data\Interfaces\NaturalIdentifier
         string $surname,
         \DateTimeInterface $birthDate,
         Dictionaries\Gender $gender,
-        ?string $inn = null,
-        ?string $patronymic = null,
-        ?Dictionaries\FamilyStatus $familyStatus = null,
-        ?Dictionaries\Education $education = null,
-        ?Dictionaries\Nationality $nationality = null,
-        ?Dictionaries\RegistrationSpd $registrationSpd = null,
-        ?Dictionaries\SocialStatus $socialStatus = null,
-        ?int $childrenCount = null
+        string $inn = null,
+        string $patronymic = null,
+        Dictionaries\FamilyStatus $familyStatus = null,
+        Dictionaries\Education $education = null,
+        Dictionaries\Nationality $nationality = null,
+        Dictionaries\RegistrationSpd $registrationSpd = null,
+        Dictionaries\SocialStatus $socialStatus = null,
+        int $childrenCount = null
     ) {
         $this->surname = $surname;
         $this->birthDate = $birthDate;

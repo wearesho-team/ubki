@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface Photo
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Photo extends Element
+interface Photo extends ElementInterface
 {
     public const TAG = 'foto';
     public const CREATED_AT = 'vdate';

@@ -40,18 +40,14 @@ trait Document
     public function jsonSerialize(): array
     {
         return [
-            Interfaces\Document::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
-            Interfaces\Document::LANGUAGE => $this->language->getValue(),
-            Interfaces\Document::LANGUAGE_REF => $this->language->getDescription(),
-            Interfaces\Document::TYPE => $this->type->getValue(),
-            Interfaces\Document::TYPE_REF => $this->type->getDescription(),
+            Interfaces\Document::CREATED_AT => $this->createdAt,
+            Interfaces\Document::LANGUAGE => $this->language,
+            Interfaces\Document::TYPE => $this->type,
             Interfaces\Document::SERIAL => $this->serial,
             Interfaces\Document::NUMBER => $this->number,
             Interfaces\Document::ISSUE => $this->issue,
-            Interfaces\Document::ISSUE_DATE => Carbon::instance($this->issueDate)->toDateString(),
-            Interfaces\Document::TERMIN => !is_null($this->termin)
-                ? Carbon::instance($this->termin)->toDateString()
-                : null,
+            Interfaces\Document::ISSUE_DATE => $this->issueDate,
+            Interfaces\Document::TERMIN => $this->termin,
         ];
     }
 

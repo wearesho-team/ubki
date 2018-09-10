@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
@@ -13,8 +13,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
  */
 trait Work
 {
-    use ElementTrait;
-
     /** @var \DateTimeInterface */
     protected $createdAt;
 
@@ -39,14 +37,19 @@ trait Work
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
-            'language' => (string)$this->language,
-            'ergpou' => $this->ergpou,
-            'name' => $this->name,
-            'rank' => (string)$this->rank,
-            'experience' => $this->experience,
-            'income' => $this->income
+            Interfaces\Work::CREATED_AT => $this->createdAt,
+            Interfaces\Work::LANGUAGE => $this->language,
+            Interfaces\Work::ERGPOU => $this->ergpou,
+            Interfaces\Work::NAME => $this->name,
+            Interfaces\Work::RANK => $this->rank,
+            Interfaces\Work::EXPERIENCE => $this->experience,
+            Interfaces\Work::INCOME => $this->income
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\Work::TAG;
     }
 
     public function getCreatedAt(): \DateTimeInterface

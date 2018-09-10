@@ -9,9 +9,9 @@ use Wearesho\Bobra\Ubki\Data;
  * Class LegalPerson
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class LegalPerson extends IdentifiedPerson implements Data\Interfaces\LegalIdentifier
+class LegalPerson extends IdentifiedPerson implements Data\Interfaces\LegalPerson
 {
-    use Data\Traits\LegalIdentifier;
+    use Data\Traits\LegalPerson;
 
     public function __construct(
         \DateTimeInterface $createdAt,

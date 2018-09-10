@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Data\Collections;
 
 use Wearesho\Bobra\Ubki\Infrastructure;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki\Data\Elements;
 
 /**
  * Class InsuranceDeals
@@ -13,6 +13,6 @@ class InsuranceDeals extends Infrastructure\BaseCollection
 {
     public function type(): string
     {
-        return Interfaces\Insurance\Deal::class;
+        return Elements\InsuranceDeal::class;
     }
 }

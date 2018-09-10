@@ -2,15 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface CreditDeal
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditDeal extends Element
+interface CreditDeal extends ElementInterface
 {
     public const TAG = 'crdeal';
     public const ID = 'dlfer';

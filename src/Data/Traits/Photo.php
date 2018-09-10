@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Trait Photo
@@ -12,8 +12,6 @@ use Wearesho\Bobra\Ubki\ElementTrait;
  */
 trait Photo
 {
-    use ElementTrait;
-
     /** @var \DateTimeInterface */
     protected $createdAt;
 
@@ -26,10 +24,15 @@ trait Photo
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => Carbon::instance($this->createdAt)->toDateString(),
-            'inn' => $this->inn,
-            'photo' => $this->photo
+            Interfaces\Photo::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
+            Interfaces\Photo::INN => $this->inn,
+            Interfaces\Photo::PHOTO => $this->photo
         ];
+    }
+
+    public function tag(): string
+    {
+        return Interfaces\Photo::TAG;
     }
 
     public function getCreatedAt(): \DateTimeInterface

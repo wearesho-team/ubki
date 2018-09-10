@@ -4,12 +4,13 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
  * Class RequestData
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class RequestData implements Data\Interfaces\RequestData
+class RequestData extends Element implements Data\Interfaces\RequestData
 {
     use Data\Traits\RequestData;
 

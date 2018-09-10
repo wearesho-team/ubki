@@ -3,12 +3,13 @@
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface DealLife
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface DealLife
+interface DealLife extends ElementInterface
 {
     public const TAG = 'deallife';
     public const ID = 'dlref';

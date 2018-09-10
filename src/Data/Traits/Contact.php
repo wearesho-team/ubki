@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Dictionaries\ContactType;
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 
@@ -28,10 +26,9 @@ trait Contact
     public function jsonSerialize(): array
     {
         return [
-            Interfaces\Contact::CREATED_AT => Carbon::instance($this->createdAt)->toDateString(),
+            Interfaces\Contact::CREATED_AT => $this->createdAt,
             Interfaces\Contact::VALUE => $this->value,
-            Interfaces\Contact::TYPE => $this->type->getValue(),
-            Interfaces\Contact::TYPE_REF => $this->type->getDescription(),
+            Interfaces\Contact::TYPE => $this->type,
             Interfaces\Contact::INN => $this->inn
         ];
     }
