@@ -85,6 +85,14 @@ class CourtDecisionsInformationTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            CourtDecisionsInformation::TAG,
+            $this->fakeCourtDecisionsInformation->tag()
+        );
+    }
+
     public function testGetDecisionCollection(): void
     {
         $this->assertEquals(

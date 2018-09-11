@@ -77,6 +77,14 @@ class AddressTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\Address::TAG,
+            $this->fakeAddress->tag()
+        );
+    }
+
     public function testGetFlat(): void
     {
         $this->assertEquals(

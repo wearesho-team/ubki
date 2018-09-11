@@ -63,6 +63,14 @@ class LegalPersonTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            LegalPerson::LEGAL_PREFIX . Interfaces\LegalPerson::TAG,
+            $this->fakeLegalIdentifier->tag()
+        );
+    }
+
     public function testGetName(): void
     {
         $this->assertEquals(

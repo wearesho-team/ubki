@@ -79,6 +79,14 @@ class InsuranceDealTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Elements\InsuranceDeal::TAG,
+            $this->fakeInsuranceDeal->tag()
+        );
+    }
+
     public function testGetEvents(): void
     {
         $this->assertEquals(

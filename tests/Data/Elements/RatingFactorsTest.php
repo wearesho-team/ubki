@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Collections\Comments;
 use Wearesho\Bobra\Ubki\Data\Elements\Comment;
+use Wearesho\Bobra\Ubki\Data\Elements\NegativeRatingFactors;
 use Wearesho\Bobra\Ubki\Data\Elements\RatingFactors;
 use Wearesho\Bobra\Ubki\Data\Elements\PositiveRatingFactors;
 
@@ -56,6 +57,14 @@ class RatingFactorsTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            PositiveRatingFactors::TAG,
+            $this->fakeFactors->tag()
+        );
+    }
+
     public function testGetDescription(): void
     {
         $this->assertEquals(
@@ -82,6 +91,24 @@ class RatingFactorsTest extends TestCase
         $this->assertEquals(
             static::COUNT,
             $this->fakeFactors->getCount()
+        );
+    }
+
+    public function testNegativeFactorsTag(): void
+    {
+        $this->fakeFactors = new NegativeRatingFactors(
+            static::COUNT,
+            static::DESCRIPTION,
+            new Comments([
+                new Comment(
+                    static::TEXT,
+                    static::ID
+                ),
+            ])
+        );
+        $this->assertEquals(
+            NegativeRatingFactors::TAG,
+            $this->fakeFactors->tag()
         );
     }
 }

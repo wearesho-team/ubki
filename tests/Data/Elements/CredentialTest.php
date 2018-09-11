@@ -249,6 +249,14 @@ class CredentialTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Data\Interfaces\Credential::TAG,
+            $this->fakeCredential->tag()
+        );
+    }
+
     public function testGetAddresses(): void
     {
         $this->assertEquals(

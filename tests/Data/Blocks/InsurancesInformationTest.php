@@ -84,6 +84,14 @@ class InsurancesInformationTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            InsurancesInformation::TAG,
+            $this->fakeInsurancesInformation->tag()
+        );
+    }
+
     public function testGetDeals(): void
     {
         $this->assertEquals(

@@ -72,6 +72,14 @@ class NaturalIdentifierTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\NaturalPerson::TAG,
+            $this->fakeNaturalIdentifier->tag()
+        );
+    }
+
     public function testGetLanguage(): void
     {
         $this->assertEquals(

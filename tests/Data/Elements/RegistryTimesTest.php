@@ -2,9 +2,10 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
-use Wearesho\Bobra\Ubki\Data\Elements\RegistryTimes;
-
 use PHPUnit\Framework\TestCase;
+
+use Wearesho\Bobra\Ubki\Data\Elements\RegistryTimes;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Class RegistryTimesTest
@@ -42,15 +43,23 @@ class RegistryTimesTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                RegistryTimes::BY_HOUR => static::BY_HOUR,
-                RegistryTimes::BY_DAY => static::BY_DAY,
-                RegistryTimes::BY_WEEK => static::BY_WEEK,
-                RegistryTimes::BY_MONTH => static::BY_MONTH,
-                RegistryTimes::BY_QUARTER => static::BY_QUARTER,
-                RegistryTimes::BY_YEAR => static::BY_YEAR,
-                RegistryTimes::BY_MORE_YEAR => static::BY_MORE_YEAR,
+                Interfaces\RegistryTimes::BY_HOUR => static::BY_HOUR,
+                Interfaces\RegistryTimes::BY_DAY => static::BY_DAY,
+                Interfaces\RegistryTimes::BY_WEEK => static::BY_WEEK,
+                Interfaces\RegistryTimes::BY_MONTH => static::BY_MONTH,
+                Interfaces\RegistryTimes::BY_QUARTER => static::BY_QUARTER,
+                Interfaces\RegistryTimes::BY_YEAR => static::BY_YEAR,
+                Interfaces\RegistryTimes::BY_MORE_YEAR => static::BY_MORE_YEAR,
             ],
             $this->fakeRegistryTimes->jsonSerialize()
+        );
+    }
+
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\RegistryTimes::TAG,
+            $this->fakeRegistryTimes->tag()
         );
     }
 

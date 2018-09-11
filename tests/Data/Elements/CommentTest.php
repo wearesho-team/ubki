@@ -32,10 +32,18 @@ class CommentTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'id' => static::ID,
-                'text' => static::TEXT,
+                Comment::ID => static::ID,
+                Comment::TEXT => static::TEXT,
             ],
             $this->fakeComment->jsonSerialize()
+        );
+    }
+
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Comment::TAG,
+            $this->fakeComment->tag()
         );
     }
 

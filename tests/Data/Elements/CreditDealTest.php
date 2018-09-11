@@ -128,6 +128,14 @@ class CreditDealTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            CreditDeal::TAG,
+            $this->fakeCreditDeal->tag()
+        );
+    }
+
     public function testGetBirthDate(): void
     {
         $this->assertEquals(

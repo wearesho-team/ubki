@@ -151,6 +151,14 @@ class IdentificationTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Data\Blocks\Identification::TAG,
+            $this->fakeIdentification->tag()
+        );
+    }
+
     public function testJsonSerialize(): void
     {
         $this->assertArraySubset(

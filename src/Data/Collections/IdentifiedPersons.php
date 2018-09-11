@@ -15,9 +15,4 @@ class IdentifiedPersons extends Infrastructure\BaseCollection
     {
         return Interfaces\IdentifiedPerson::class;
     }
-
-    public function hasWrapper(): bool
-    {
-        return false;
-    }
 }

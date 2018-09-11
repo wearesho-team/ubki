@@ -44,6 +44,14 @@ class InsuranceEventTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            InsuranceEvent::TAG,
+            $this->fakeInsuranceEvent->tag()
+        );
+    }
+
     public function testGetRequestDate(): void
     {
         $this->assertEquals(

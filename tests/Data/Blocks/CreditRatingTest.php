@@ -159,6 +159,14 @@ class CreditRatingTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            CreditRating::TAG,
+            $this->fakeCreditRating->tag()
+        );
+    }
+
     public function testGetScore(): void
     {
         $this->assertEquals(

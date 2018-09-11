@@ -59,6 +59,14 @@ class DocumentTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\Document::TAG,
+            $this->fakeDocument->tag()
+        );
+    }
+
     public function testGetIssue(): void
     {
         $this->assertEquals(

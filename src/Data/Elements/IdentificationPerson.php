@@ -18,7 +18,7 @@ class IdentificationPerson extends Person implements Interfaces\IdentificationPe
         string $inn = null,
         string $surname = null,
         string $patronymic = null,
-        string $birthDate = null,
+        \DateTimeInterface $birthDate = null,
         string $organization = null
     ) {
         $this->inn = $inn;

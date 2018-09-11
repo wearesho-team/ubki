@@ -48,6 +48,14 @@ class LinkedPersonTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\LinkedPerson::TAG,
+            $this->fakeLinkedPerson->tag()
+        );
+    }
+
     public function testGetErgpou(): void
     {
         $this->assertEquals(

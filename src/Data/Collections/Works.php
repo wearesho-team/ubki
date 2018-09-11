@@ -15,9 +15,4 @@ class Works extends Infrastructure\BaseCollection
     {
         return Interfaces\Work::class;
     }
-
-    public function hasWrapper(): bool
-    {
-        return false;
-    }
 }

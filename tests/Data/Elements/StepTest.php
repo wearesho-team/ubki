@@ -42,6 +42,14 @@ class StepTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Step::TAG,
+            $this->fakeStep->tag()
+        );
+    }
+
     public function testGetName(): void
     {
         $this->assertEquals(

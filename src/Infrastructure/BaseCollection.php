@@ -45,11 +45,6 @@ abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
 
     abstract public function type(): string;
 
-    public function hasWrapper(): bool
-    {
-        return true;
-    }
-
     /**
      * @param mixed $object
      */

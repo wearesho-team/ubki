@@ -81,6 +81,14 @@ class DealLifeTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\DealLife::TAG,
+            $this->fakeDealLife->tag()
+        );
+    }
+
     public function testGetDelayIndication(): void
     {
         $this->assertEquals(

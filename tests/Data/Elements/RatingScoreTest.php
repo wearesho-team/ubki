@@ -70,6 +70,14 @@ class RatingScoreTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            RatingScore::TAG,
+            $this->fakeScore->tag()
+        );
+    }
+
     public function testGetSurname(): void
     {
         $this->assertEquals(

@@ -89,6 +89,14 @@ class CreditsRegistersInformationTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            CreditsRegistersInformation::TAG,
+            $this->fakeCreditsRegistersInformation->tag()
+        );
+    }
+
     public function testGetCreditRequests(): void
     {
         $this->assertEquals(

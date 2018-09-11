@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
+use Wearesho\Bobra\Ubki\Data\Interfaces;
+
 /**
  * Trait IdentificationPerson
  * @package Wearesho\Bobra\Ubki\Data\Traits
@@ -19,7 +21,7 @@ trait IdentificationPerson
     /** @var string|null */
     protected $patronymic;
 
-    /** @var string|null */
+    /** @var \DateTimeInterface|null */
     protected $birthDate;
 
     /** @var string|null */
@@ -28,12 +30,12 @@ trait IdentificationPerson
     public function jsonSerialize(): array
     {
         return [
-            IdentificationPerson::INN => $this->inn,
-            IdentificationPerson::BIRTH_DATE => $this->birthDate,
-            IdentificationPerson::SURNAME => $this->surname,
-            IdentificationPerson::PATRONYMIC => $this->patronymic,
-            IdentificationPerson::NAME => $this->name,
-            IdentificationPerson::ORGANIZATION => $this->organization
+            Interfaces\IdentificationPerson::INN => $this->inn,
+            Interfaces\IdentificationPerson::BIRTH_DATE => $this->birthDate,
+            Interfaces\IdentificationPerson::SURNAME => $this->surname,
+            Interfaces\IdentificationPerson::PATRONYMIC => $this->patronymic,
+            Interfaces\IdentificationPerson::NAME => $this->name,
+            Interfaces\IdentificationPerson::ORGANIZATION => $this->organization
         ];
     }
 
@@ -52,7 +54,7 @@ trait IdentificationPerson
         return $this->patronymic;
     }
 
-    public function getBirthDate(): ?string
+    public function getBirthDate(): ?\DateTimeInterface
     {
         return $this->birthDate;
     }

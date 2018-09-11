@@ -21,7 +21,7 @@ interface IdentificationPerson extends Person
 
     public function getPatronymic(): ?string;
 
-    public function getBirthDate(): ?string;
+    public function getBirthDate(): ?\DateTimeInterface;
 
     public function getOrganization(): ?string;
 }

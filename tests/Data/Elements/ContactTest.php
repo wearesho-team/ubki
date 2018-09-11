@@ -48,6 +48,14 @@ class ContactTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\Contact::TAG,
+            $this->fakeContact->tag()
+        );
+    }
+
     public function testGetValue(): void
     {
         $this->assertEquals(

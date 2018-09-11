@@ -15,9 +15,4 @@ class Documents extends Infrastructure\BaseCollection
     {
         return Interfaces\Document::class;
     }
-
-    public function hasWrapper(): bool
-    {
-        return false;
-    }
 }

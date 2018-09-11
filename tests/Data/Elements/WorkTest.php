@@ -56,6 +56,14 @@ class WorkTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\Work::TAG,
+            $this->fakeWork->tag()
+        );
+    }
+
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(

@@ -55,6 +55,14 @@ class RatingDescriptionTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            RatingDescription::TAG,
+            $this->fakeDescription->tag()
+        );
+    }
+
     public function testGetOpenCreditsCount(): void
     {
         $this->assertEquals(

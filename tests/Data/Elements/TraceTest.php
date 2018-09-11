@@ -72,6 +72,14 @@ class TraceTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Trace::TAG,
+            $this->fakeTrace->tag()
+        );
+    }
+
     public function testGetSteps(): void
     {
         $this->assertEquals(

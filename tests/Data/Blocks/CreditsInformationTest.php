@@ -136,6 +136,14 @@ class CreditsInformationTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Blocks\CreditsInformation::TAG,
+            $this->fakeCreditsInformation->tag()
+        );
+    }
+
     public function testGetCreditCollection(): void
     {
         $this->assertEquals(

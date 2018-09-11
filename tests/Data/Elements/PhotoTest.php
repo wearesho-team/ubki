@@ -45,6 +45,14 @@ class PhotoTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\Photo::TAG,
+            $this->fakePhoto->tag()
+        );
+    }
+
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(

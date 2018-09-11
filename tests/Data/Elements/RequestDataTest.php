@@ -50,6 +50,14 @@ class RequestDataTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\RequestData::TAG,
+            $this->fakeRequestData->tag()
+        );
+    }
+
     public function testGetDate(): void
     {
         $this->assertEquals(

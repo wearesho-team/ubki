@@ -70,6 +70,14 @@ class ContactsInformationTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            ContactsInformation::TAG,
+            $this->fakeContactsInformation->tag()
+        );
+    }
+
     public function testGetContacts(): void
     {
         $this->assertEquals(

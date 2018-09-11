@@ -74,6 +74,14 @@ class CourtDecisionTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Interfaces\CourtDecision::TAG,
+            $this->fakeCourtDecision->tag()
+        );
+    }
+
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(

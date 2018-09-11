@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\CreditRequest;
+use Wearesho\Bobra\Ubki\Data\Interfaces\CreditRegister;
 use Wearesho\Bobra\Ubki\Dictionaries\Decision;
 use Wearesho\Bobra\Ubki\Dictionaries\RequestReason;
 
@@ -51,6 +52,14 @@ class CreditRegisterTest extends TestCase
                 CreditRequest::ORGANIZATION => static::ORGANIZATION
             ],
             $this->fakeCreditRegister->jsonSerialize()
+        );
+    }
+
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            CreditRegister::TAG,
+            $this->fakeCreditRegister->tag()
         );
     }
 

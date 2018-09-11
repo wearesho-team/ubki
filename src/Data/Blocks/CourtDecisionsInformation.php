@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\BLocks;
 
-use Wearesho\Bobra\Ubki\Block;
+use Wearesho\Bobra\Ubki\Infrastructure\Block;
 use Wearesho\Bobra\Ubki\Data\Collections\CourtDecisions;
 
 /**
