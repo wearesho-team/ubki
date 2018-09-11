@@ -28,9 +28,9 @@ class CreditDeal extends Infrastructure\Element implements Data\Interfaces\Credi
         Dictionaries\SubjectRole $subjectRole,
         float $collateralCost,
         Data\Collections\DealLifes $dealLifeCollection,
-        ?string $inn = null,
-        ?string $patronymic = null,
-        ?string $source = null
+        string $inn = null,
+        string $patronymic = null,
+        string $source = null
     ) {
         $this->id = $id;
         $this->language = $language;

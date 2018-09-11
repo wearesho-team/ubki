@@ -2,18 +2,25 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Carbon\Carbon;
+use Wearesho\Bobra\Ubki\Dictionaries\InsuranceDecisionStatus;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class InsuranceEvent
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class InsuranceEvent
+class InsuranceEvent extends Infrastructure\Element
 {
+    public const TAG = 'events';
+    public const REQUEST_DATE = 'evdate';
+    public const DECISION = 'evstate';
+    public const DECISION_REF = 'evstateref';
+    public const DECISION_DATE = 'evstatedate';
+
     /** @var \DateTimeInterface */
     protected $requestDate;
 
-    /** @var int */
+    /** @var InsuranceDecisionStatus */
     protected $decision;
 
     /** @var \DateTimeInterface */
@@ -21,7 +28,7 @@ class InsuranceEvent
 
     public function __construct(
         \DateTimeInterface $requestDate,
-        int $decision,
+        InsuranceDecisionStatus $decision,
         \DateTimeInterface $decisionDate
     ) {
         $this->requestDate = $requestDate;
@@ -32,10 +39,15 @@ class InsuranceEvent
     public function jsonSerialize(): array
     {
         return [
-            'requestDate' => Carbon::instance($this->requestDate)->toDateString(),
-            'decision' => $this->decision,
-            'decisionDate' => Carbon::instance($this->decisionDate)->toDateString()
+            static::REQUEST_DATE => $this->requestDate,
+            static::DECISION => $this->decision,
+            static::DECISION_DATE => $this->decisionDate
         ];
+    }
+
+    public function tag(): string
+    {
+        return static::TAG;
     }
 
     public function getRequestDate(): \DateTimeInterface
@@ -43,7 +55,7 @@ class InsuranceEvent
         return $this->requestDate;
     }
 
-    public function getDecision(): int
+    public function getDecision(): InsuranceDecisionStatus
     {
         return $this->decision;
     }

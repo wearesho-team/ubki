@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\RequestData;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
@@ -38,12 +39,12 @@ class RequestDataTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'version' => '1.0',
-                'type' => Dictionaries\RequestType::EXPORT()->getKey(),
-                'reason' => Dictionaries\RequestReason::EXPORT()->getKey(),
-                'date' => static::DATE,
-                'id' => static::ID,
-                'initiator' => Dictionaries\RequestInitiator::PARTNER()->getKey(),
+                Interfaces\RequestData::VERSION => '1.0',
+                Interfaces\RequestData::TYPE => Dictionaries\RequestType::EXPORT(),
+                Interfaces\RequestData::REASON => Dictionaries\RequestReason::EXPORT(),
+                Interfaces\RequestData::DATE => Carbon::parse(static::DATE),
+                Interfaces\RequestData::ID => static::ID,
+                Interfaces\RequestData::INITIATOR => Dictionaries\RequestInitiator::PARTNER(),
             ],
             $this->fakeRequestData->jsonSerialize()
         );

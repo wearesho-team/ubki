@@ -17,12 +17,12 @@ class LegalPerson extends IdentifiedPerson implements Data\Interfaces\LegalPerso
         \DateTimeInterface $createdAt,
         Dictionaries\Language $language,
         string $name,
-        ?string $ergpou = null,
-        ?int $form = null,
-        ?string $economyBranch = null,
-        ?string $activityType = null,
-        ?\DateTimeInterface $edrRegistrationDate = null,
-        ?\DateTimeInterface $taxRegistrationDate = null
+        string $ergpou = null,
+        int $form = null,
+        string $economyBranch = null,
+        string $activityType = null,
+        \DateTimeInterface $edrRegistrationDate = null,
+        \DateTimeInterface $taxRegistrationDate = null
     ) {
         $this->ergpou = $ergpou;
         $this->form = $form;

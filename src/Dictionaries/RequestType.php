@@ -7,6 +7,26 @@ use Wearesho\Bobra\Ubki\Infrastructure;
 /**
  * Class RequestType
  * @package Wearesho\Bobra\Ubki\Dictionaries
+ *
+ * @method static static EXPORT(string $description = null)
+ * @method static static EDIT(string $description = null)
+ * @method static static DELETE(string $description = null)
+ * @method static static CONTACTS(string $description = null)
+ * @method static static REPORT_AFS(string $description = null)
+ * @method static static ONLY_CREDIT_RATING(string $description = null)
+ * @method static static CREDIT_REPORT(string $description = null)
+ * @method static static CREDIT_REPORT_WITH_PRIVATBANK(string $description = null)
+ * @method static static CREDTI_BALL(string $description = null)
+ * @method static static IDENTIFICATION(string $description = null)
+ * @method static static CHECK_PASSPORT_MVD(string $description = null)
+ * @method static static LEGAL_CREDIT_REPORT(string $description = null)
+ * @method static static LEGAL_CREDIT_REPORT_WITH_PRIVATBANK(string $description = null)
+ * @method static static AFS_UBKI(string $description = null)
+ * @method static static PHOTO_VERIFICATION(string $description = null)
+ * @method static static KI_REQUEST(string $description = null)
+ * @method static static MVD_IDENTIFICATION(string $description = null)
+ * @method static static STATEMENTS_SEARCH(string $description = null)
+ * @method static static EXPORT_CREDIT_REQUEST_DECISION(string $description = null)
  */
 final class RequestType extends Infrastructure\Dictionary
 {

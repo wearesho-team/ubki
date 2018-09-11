@@ -30,7 +30,7 @@ class DealLife extends Infrastructure\Element implements Data\Interfaces\DealLif
         Dictionaries\Flag $delayIndication,
         Dictionaries\Flag $creditTrancheIndication,
         \DateTimeInterface $paymentDate,
-        ?\DateTimeInterface $actualEndDate = null
+        \DateTimeInterface $actualEndDate = null
     ) {
         $this->id = $id;
         $this->periodMonth = $periodMonth;

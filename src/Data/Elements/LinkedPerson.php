@@ -18,7 +18,7 @@ class LinkedPerson extends Element implements Data\Interfaces\LinkedPerson
         string $name,
         LinkedIdentifierRole $role,
         \DateTimeInterface $issueDate,
-        ?string $ergpou = null
+        string $ergpou = null
     ) {
         $this->name = $name;
         $this->role = $role;

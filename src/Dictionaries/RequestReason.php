@@ -7,6 +7,14 @@ use Wearesho\Bobra\Ubki\Infrastructure;
 /**
  * Class RequestReason
  * @package Wearesho\Bobra\Ubki\Dictionaries
+ *
+ * @method static static EXPORT(string $description = null)
+ * @method static static MONITORING(string $description = null)
+ * @method static static REQUEST_LOAN(string $description = null)
+ * @method static static REPORTS_FOR_SMARTPHONE(string $description = null)
+ * @method static static REQUEST_ONLINE_CREDIT(string $description = null)
+ * @method static static OTHER_SERVICES(string $description = null)
+ * @method static static VERIFICATION(string $description = null)
  */
 final class RequestReason extends Infrastructure\Dictionary
 {

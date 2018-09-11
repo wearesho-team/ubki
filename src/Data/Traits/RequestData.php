@@ -35,11 +35,11 @@ trait RequestData
     {
         return [
             Interfaces\RequestData::VERSION => $this->version,
-            Interfaces\RequestData::TYPE => $this->type->getValue(),
-            Interfaces\RequestData::REASON => $this->reason->getValue(),
-            Interfaces\RequestData::DATE => !$this->date ?: Carbon::instance($this->date)->toDateString(),
+            Interfaces\RequestData::TYPE => $this->type,
+            Interfaces\RequestData::REASON => $this->reason,
+            Interfaces\RequestData::DATE => $this->date,
             Interfaces\RequestData::ID => $this->id,
-            Interfaces\RequestData::INITIATOR => $this->initiator->getValue(),
+            Interfaces\RequestData::INITIATOR => $this->initiator,
         ];
     }
 

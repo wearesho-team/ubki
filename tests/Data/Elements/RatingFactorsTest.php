@@ -6,16 +6,16 @@ use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Collections\Comments;
 use Wearesho\Bobra\Ubki\Data\Elements\Comment;
-use Wearesho\Bobra\Ubki\Data\Elements\Rating\RatingFactors;
-use Wearesho\Bobra\Ubki\Data\Elements\Rating\PositiveRatingFactors;
+use Wearesho\Bobra\Ubki\Data\Elements\RatingFactors;
+use Wearesho\Bobra\Ubki\Data\Elements\PositiveRatingFactors;
 
 /**
- * Class FactorsTest
+ * Class RatingFactorsTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating
  * @coversDefaultClass RatingFactors
  * @internal
  */
-class FactorsTest extends TestCase
+class RatingFactorsTest extends TestCase
 {
     protected const COUNT = 1;
     protected const DESCRIPTION = 'testDescription';
@@ -43,13 +43,13 @@ class FactorsTest extends TestCase
     {
         $this->assertEquals(
             [
-                'count' => static::COUNT,
-                'text' => static::DESCRIPTION,
-                'comments' => [
-                    [
-                        'id' => static::ID,
-                        'text' => static::TEXT,
-                    ],
+                RatingFactors::COUNT => static::COUNT,
+                RatingFactors::TEXT => static::DESCRIPTION,
+                RatingFactors::COMMENTS => [
+                    new Comment(
+                        static::TEXT,
+                        static::ID
+                    ),
                 ],
             ],
             $this->fakeFactors->jsonSerialize()

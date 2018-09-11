@@ -23,10 +23,10 @@ class Credential extends Infrastructure\Element implements Data\Interfaces\Crede
         Data\Collections\IdentifiedPersons $identifiers,
         Data\Collections\Documents $documents,
         Data\Collections\Addresses $addresses,
-        ?string $inn = null,
-        ?Data\Collections\Works $works = null,
-        ?Data\Collections\Photos $photos = null,
-        ?Data\Collections\LinkedPersons $linkedPersons = null
+        string $inn = null,
+        Data\Collections\Works $works = null,
+        Data\Collections\Photos $photos = null,
+        Data\Collections\LinkedPersons $linkedPersons = null
     ) {
         $this->language = $language;
         $this->name = $name;

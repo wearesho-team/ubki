@@ -17,9 +17,9 @@ class RequestData extends Element implements Data\Interfaces\RequestData
     public function __construct(
         Dictionaries\RequestType $type,
         Dictionaries\RequestReason $reason,
-        ?\DateTimeInterface $date = null,
-        ?string $id = null,
-        ?Dictionaries\RequestInitiator $initiator = null
+        \DateTimeInterface $date = null,
+        string $id = null,
+        Dictionaries\RequestInitiator $initiator = null
     ) {
         $this->type = $type;
         $this->reason = $reason;

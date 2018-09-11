@@ -23,11 +23,11 @@ class CourtDecision extends Infrastructure\Element implements Data\Interfaces\Co
         string $courtName,
         string $documentType,
         string $documentTypeReference,
-        ?string $legalFact = null,
-        ?string $legalFactReference = null,
-        ?\DateTimeInterface $createdAt = null,
-        ?string $area = null,
-        ?string $areaReference = null
+        string $legalFact = null,
+        string $legalFactReference = null,
+        \DateTimeInterface $createdAt = null,
+        string $area = null,
+        string $areaReference = null
     ) {
         $this->id = $id;
         $this->inn = $inn;

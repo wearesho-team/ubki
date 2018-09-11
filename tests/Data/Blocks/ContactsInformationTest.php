@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Blocks;
 
 use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
+use Wearesho\Bobra\Ubki\Data\Blocks\ContactsInformation;
 use Wearesho\Bobra\Ubki\Data\Collections\Contacts;
-use Wearesho\Bobra\Ubki\Data\ContactsInformation;
 use Wearesho\Bobra\Ubki\Data\Elements;
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries\ContactType;
@@ -52,18 +52,18 @@ class ContactsInformationTest extends TestCase
         $this->assertArraySubset(
             [
                 'contacts' => [
-                    [
-                        Interfaces\Contact::CREATED_AT => Carbon::parse(static::CREATED_AT),
-                        Interfaces\Contact::VALUE => static::VALUE,
-                        Interfaces\Contact::TYPE => ContactType::EMAIL(),
-                        Interfaces\Contact::INN => static::INN,
-                    ],
-                    [
-                        Interfaces\Contact::CREATED_AT => Carbon::parse(static::CREATED_AT),
-                        Interfaces\Contact::VALUE => static::VALUE,
-                        Interfaces\Contact::TYPE => ContactType::MOBILE(),
-                        Interfaces\Contact::INN => static::INN,
-                    ],
+                    new Elements\Contact(
+                        Carbon::parse(static::CREATED_AT),
+                        static::VALUE,
+                        ContactType::EMAIL(),
+                        static::INN
+                    ),
+                    new Elements\Contact(
+                        Carbon::parse(static::CREATED_AT),
+                        static::VALUE,
+                        ContactType::MOBILE(),
+                        static::INN
+                    ),
                 ]
             ],
             $this->fakeContactsInformation->jsonSerialize()

@@ -51,21 +51,21 @@ class TraceTest extends TestCase
         $this->assertArraySubset(
             [
                 'steps' => [
-                    [
-                        'name' => static::NAME,
-                        'start' => static::START,
-                        'end' => static::END
-                    ],
-                    [
-                        'name' => static::NAME,
-                        'start' => static::START,
-                        'end' => static::END
-                    ],
-                    [
-                        'name' => static::NAME,
-                        'start' => static::START,
-                        'end' => static::END
-                    ]
+                    new Step(
+                        static::NAME,
+                        static::START,
+                        static::END
+                    ),
+                    new Step(
+                        static::NAME,
+                        static::START,
+                        static::END
+                    ),
+                    new Step(
+                        static::NAME,
+                        static::START,
+                        static::END
+                    )
                 ],
             ],
             $this->fakeTrace->jsonSerialize()

@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+namespace Wearesho\Bobra\Ubki\Data\BLocks;
 
 use Wearesho\Bobra\Ubki\Block;
 use Wearesho\Bobra\Ubki\Data\Collections\InsuranceDeals;
 
 /**
  * Class InsurancesInformation
- * @package Wearesho\Bobra\Ubki\Data
+ * @package Wearesho\Bobra\Ubki\Data\BLocks
  */
 class InsurancesInformation extends Block
 {
@@ -24,9 +24,7 @@ class InsurancesInformation extends Block
     public function jsonSerialize(): array
     {
         return [
-            'insuranceDeals' => array_map(function (Interfaces\Insurance\Deal $insuranceDeal) {
-                return $insuranceDeal->jsonSerialize();
-            }, $this->deals->jsonSerialize()),
+            'insuranceDeals' => $this->deals->jsonSerialize(),
         ];
     }
 

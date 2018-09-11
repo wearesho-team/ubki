@@ -20,7 +20,7 @@ class Comment extends Infrastructure\Element
     /** @var string */
     protected $text;
 
-    public function __construct(string $text, ?string $id = null)
+    public function __construct(string $text, string $id = null)
     {
         $this->id = $id;
         $this->text = $text;

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\DealLife;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
@@ -59,22 +60,22 @@ class DealLifeTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'id' => static::ID,
-                'periodMonth' => static::PERIOD_MONTH,
-                'periodYear' => static::PERIOD_YEAR,
-                'issueDate' => static::ISSUE_DATE,
-                'endDate' => static::END_DATE,
-                'status' => Dictionaries\DealStatus::CLOSE()->getKey(),
-                'limit' => static::LIMIT,
-                'mandatoryPayment' => static::MANDATORY_PAYMENT,
-                'currentDebt' => static::CURRENT_DEBT,
-                'currentOverdueDebt' => static::CURRENT_OVERDUE_DEBT,
-                'overdueTime' => static::OVERDUE_TIME,
-                'paymentIndication' => Dictionaries\Flag::YES()->getKey(),
-                'delayIndication' => Dictionaries\Flag::YES()->getKey(),
-                'creditTrancheIndication' => Dictionaries\Flag::NO()->getKey(),
-                'paymentDate' => static::PAYMENT_DATE,
-                'actualEndDate' => static::ACTUAL_END_DATE,
+                Interfaces\DealLife::ID => static::ID,
+                Interfaces\DealLife::PERIOD_MONTH => static::PERIOD_MONTH,
+                Interfaces\DealLife::PERIOD_YEAR => static::PERIOD_YEAR,
+                Interfaces\DealLife::ISSUE_DATE => Carbon::parse(static::ISSUE_DATE),
+                Interfaces\DealLife::END_DATE => Carbon::parse(static::END_DATE),
+                Interfaces\DealLife::STATUS => Dictionaries\DealStatus::CLOSE(),
+                Interfaces\DealLife::LIMIT => static::LIMIT,
+                Interfaces\DealLife::MANDATORY_PAYMENT => static::MANDATORY_PAYMENT,
+                Interfaces\DealLife::CURRENT_DEBT => static::CURRENT_DEBT,
+                Interfaces\DealLife::CURRENT_OVERDUE_DEBT => static::CURRENT_OVERDUE_DEBT,
+                Interfaces\DealLife::OVERDUE_TIME => static::OVERDUE_TIME,
+                Interfaces\DealLife::PAYMENT_INDICATION => Dictionaries\Flag::YES(),
+                Interfaces\DealLife::DELAY_INDICATION => Dictionaries\Flag::YES(),
+                Interfaces\DealLife::CREDIT_TRANCHE_INDICATION => Dictionaries\Flag::NO(),
+                Interfaces\DealLife::PAYMENT_DATE => Carbon::parse(static::PAYMENT_DATE),
+                Interfaces\DealLife::ACTUAL_END_DATE => Carbon::parse(static::ACTUAL_END_DATE),
             ],
             $this->fakeDealLife->jsonSerialize()
         );

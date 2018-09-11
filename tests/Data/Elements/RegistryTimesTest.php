@@ -42,13 +42,13 @@ class RegistryTimesTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'byHour' => static::BY_HOUR,
-                'byDay' => static::BY_DAY,
-                'byWeek' => static::BY_WEEK,
-                'byMonth' => static::BY_MONTH,
-                'byQuarter' => static::BY_QUARTER,
-                'byYear' => static::BY_YEAR,
-                'byMoreYear' => static::BY_MORE_YEAR,
+                RegistryTimes::BY_HOUR => static::BY_HOUR,
+                RegistryTimes::BY_DAY => static::BY_DAY,
+                RegistryTimes::BY_WEEK => static::BY_WEEK,
+                RegistryTimes::BY_MONTH => static::BY_MONTH,
+                RegistryTimes::BY_QUARTER => static::BY_QUARTER,
+                RegistryTimes::BY_YEAR => static::BY_YEAR,
+                RegistryTimes::BY_MORE_YEAR => static::BY_MORE_YEAR,
             ],
             $this->fakeRegistryTimes->jsonSerialize()
         );

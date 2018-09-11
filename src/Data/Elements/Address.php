@@ -22,13 +22,13 @@ class Address extends Infrastructure\Element implements Data\Interfaces\Address
         string $city,
         string $street,
         string $house,
-        ?string $index = null,
-        ?string $state = null,
-        ?string $area = null,
-        ?Dictionaries\CityType $cityType = null,
-        ?string $corpus = null,
-        ?string $flat = null,
-        ?string $fullAddress = null
+        string $index = null,
+        string $state = null,
+        string $area = null,
+        Dictionaries\CityType $cityType = null,
+        string $corpus = null,
+        string $flat = null,
+        string $fullAddress = null
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;

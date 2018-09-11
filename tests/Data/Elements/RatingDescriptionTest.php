@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating;
 
 use Carbon\Carbon;
-use Wearesho\Bobra\Ubki\Data\Elements\Rating\RatingDescription;
+use Wearesho\Bobra\Ubki\Data\Elements\RatingDescription;
 
 use PHPUnit\Framework\TestCase;
 
@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @coversDefaultClass RatingDescription
  * @internal
  */
-class DescriptionTest extends TestCase
+class RatingDescriptionTest extends TestCase
 {
     protected const CREDITS_COUNT = 200;
     protected const OPENED_CREDITS_COUNT = 10;
@@ -43,13 +43,13 @@ class DescriptionTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'all' => static::CREDITS_COUNT,
-                'opened' => static::OPENED_CREDITS_COUNT,
-                'openedDescription' => static::OPENED_CREDIT_DESCRIPTION,
-                'closed' => static::CLOSED_CREDITS_COUNT,
-                'expires' => static::EXPIRES,
-                'maxOverdue' => static::MAX_OVERDUE,
-                'updatedAt' => static::UPDATED_AT,
+                RatingDescription::CREDITS_COUNT => static::CREDITS_COUNT,
+                RatingDescription::OPEN_CREDITS_COUNT => static::OPENED_CREDITS_COUNT,
+                RatingDescription::DESCRIPTION => static::OPENED_CREDIT_DESCRIPTION,
+                RatingDescription::CLOSED_CREDITS_COUNT => static::CLOSED_CREDITS_COUNT,
+                RatingDescription::EXPIRES => static::EXPIRES,
+                RatingDescription::MAX_OVERDUE => static::MAX_OVERDUE,
+                RatingDescription::UPDATED_AT => Carbon::parse(static::UPDATED_AT),
             ],
             $this->fakeDescription->jsonSerialize()
         );

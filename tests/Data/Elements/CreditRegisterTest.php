@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\CreditRequest;
 use Wearesho\Bobra\Ubki\Dictionaries\Decision;
+use Wearesho\Bobra\Ubki\Dictionaries\RequestReason;
 
 /**
  * Class CreditRegisterTest
@@ -33,7 +34,7 @@ class CreditRegisterTest extends TestCase
             static::INN,
             static::ID,
             Decision::POSITIVE(),
-            static::REASON,
+            RequestReason::EXPORT(),
             static::ORGANIZATION
         );
     }
@@ -42,12 +43,12 @@ class CreditRegisterTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'date' => static::DATE,
-                'inn' => static::INN,
-                'id' => static::ID,
-                'decision' => Decision::POSITIVE()->getKey(),
-                'reason' => static::REASON,
-                'organization' => static::ORGANIZATION
+                CreditRequest::DATE => Carbon::parse(static::DATE),
+                CreditRequest::INN => static::INN,
+                CreditRequest::ID => static::ID,
+                CreditRequest::DECISION => Decision::POSITIVE(),
+                CreditRequest::REASON => RequestReason::EXPORT(),
+                CreditRequest::ORGANIZATION => static::ORGANIZATION
             ],
             $this->fakeCreditRegister->jsonSerialize()
         );
@@ -56,7 +57,7 @@ class CreditRegisterTest extends TestCase
     public function testGetReason(): void
     {
         $this->assertEquals(
-            static::REASON,
+            RequestReason::EXPORT(),
             $this->fakeCreditRegister->getReason()
         );
     }

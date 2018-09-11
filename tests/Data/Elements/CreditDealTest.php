@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Collections\DealLifes;
 use Wearesho\Bobra\Ubki\Data\Elements;
+use Wearesho\Bobra\Ubki\Data\Interfaces\CreditDeal;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
@@ -87,41 +88,41 @@ class CreditDealTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'id' => static::ID,
-                'inn' => static::INN,
-                'language' => Dictionaries\Language::RUS()->getKey(),
-                'name' => static::NAME,
-                'surname' => static::SURNAME,
-                'patronymic' => static::PATRONYMIC,
-                'birthDate' => static::BIRTH_DATE,
-                'type' => Dictionaries\CreditDealType::COMMERCIAL_CREDIT()->getKey(),
-                'collateral' => Dictionaries\CollateralType::R_1()->getKey(),
-                'repaymentProcedure' => Dictionaries\RepaymentProcedure::PERIODIC_MONTH()->getKey(),
-                'currency' => Dictionaries\Currency::UAH()->getKey(),
-                'initialAmount' => static::INITIAL_AMOUNT,
-                'subjectRole' => Dictionaries\SubjectRole::BORROWER()->getKey(),
-                'collateralCost' => static::COLLATERAL_COST,
+                CreditDeal::ID => static::ID,
+                CreditDeal::INN => static::INN,
+                CreditDeal::LANGUAGE=> Dictionaries\Language::RUS(),
+                CreditDeal::NAME => static::NAME,
+                CreditDeal::SURNAME => static::SURNAME,
+                CreditDeal::PATRONYMIC => static::PATRONYMIC,
+                CreditDeal::BIRTH_DATE => Carbon::parse(static::BIRTH_DATE),
+                CreditDeal::TYPE => Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+                CreditDeal::COLLATERAL => Dictionaries\CollateralType::R_1(),
+                CreditDeal::REPAYMENT_PROCEDURE => Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
+                CreditDeal::CURRENCY => Dictionaries\Currency::UAH(),
+                CreditDeal::INITIAL_AMOUNT => static::INITIAL_AMOUNT,
+                CreditDeal::SUBJECT_ROLE => Dictionaries\SubjectRole::BORROWER(),
+                CreditDeal::COLLATERAL_COST => static::COLLATERAL_COST,
+                CreditDeal::SOURCE => static::SOURCE,
                 'dealLifes' => [
-                    [
-                        'id' => static::ID,
-                        'periodMonth' => static::PERIOD_MONTH,
-                        'periodYear' => static::PERIOD_YEAR,
-                        'issueDate' => static::ISSUE_DATE,
-                        'endDate' => static::END_DATE,
-                        'status' => Dictionaries\DealStatus::CLOSE()->getKey(),
-                        'limit' => static::LIMIT,
-                        'mandatoryPayment' => static::MANDATORY_PAYMENT,
-                        'currentDebt' => static::CURRENT_DEBT,
-                        'currentOverdueDebt' => static::CURRENT_OVERDUE_DEBT,
-                        'overdueTime' => static::OVERDUE_TIME,
-                        'paymentIndication' => Dictionaries\Flag::YES()->getKey(),
-                        'delayIndication' => Dictionaries\Flag::YES()->getKey(),
-                        'creditTrancheIndication' => Dictionaries\Flag::NO()->getKey(),
-                        'paymentDate' => static::PAYMENT_DATE,
-                        'actualEndDate' => static::ACTUAL_END_DATE,
-                    ]
+                    new Elements\DealLife(
+                        static::ID,
+                        static::PERIOD_MONTH,
+                        static::PERIOD_YEAR,
+                        Carbon::parse(static::ISSUE_DATE),
+                        Carbon::parse(static::END_DATE),
+                        Dictionaries\DealStatus::CLOSE(),
+                        static::LIMIT,
+                        static::MANDATORY_PAYMENT,
+                        static::CURRENT_DEBT,
+                        static::CURRENT_OVERDUE_DEBT,
+                        static::OVERDUE_TIME,
+                        Dictionaries\Flag::YES(),
+                        Dictionaries\Flag::YES(),
+                        Dictionaries\Flag::NO(),
+                        Carbon::parse(static::PAYMENT_DATE),
+                        Carbon::parse(static::ACTUAL_END_DATE)
+                    )
                 ],
-                'source' => static::SOURCE
             ],
             $this->fakeCreditDeal->jsonSerialize()
         );

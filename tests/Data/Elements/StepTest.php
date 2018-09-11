@@ -34,9 +34,9 @@ class StepTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'name' => static::NAME,
-                'start' => static::START,
-                'end' => static::END
+                Step::NAME => static::NAME,
+                Step::START => static::START,
+                Step::END => static::END
             ],
             $this->fakeStep->jsonSerialize()
         );

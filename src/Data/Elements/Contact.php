@@ -18,7 +18,7 @@ class Contact extends Infrastructure\Element implements Data\Interfaces\Contact
         \DateTimeInterface $createdAt,
         string $value,
         ContactType $type,
-        ?string $inn = null
+        string $inn = null
     ) {
         $this->createdAt = $createdAt;
         $this->value = $value;

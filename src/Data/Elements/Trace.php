@@ -24,9 +24,7 @@ class Trace extends Infrastructure\Element
     public function jsonSerialize(): array
     {
         return [
-            'steps' => array_map(function (Step $step) {
-                return $step->jsonSerialize();
-            }, $this->steps->jsonSerialize()),
+            'steps' => $this->steps->jsonSerialize(),
         ];
     }
 

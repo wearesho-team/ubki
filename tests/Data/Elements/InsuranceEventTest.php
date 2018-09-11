@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\InsuranceEvent;
+use Wearesho\Bobra\Ubki\Dictionaries\InsuranceDecisionStatus;
 
 /**
  * Class EventTest
@@ -17,7 +18,6 @@ use Wearesho\Bobra\Ubki\Data\Elements\InsuranceEvent;
 class InsuranceEventTest extends TestCase
 {
     protected const REQUEST_DATE = '2018-03-12';
-    protected const DECISION = 1;
     protected const DECISION_DATE = '2018-03-12';
 
     /** @var InsuranceEvent */
@@ -27,7 +27,7 @@ class InsuranceEventTest extends TestCase
     {
         $this->fakeInsuranceEvent = new InsuranceEvent(
             Carbon::parse(static::REQUEST_DATE),
-            static::DECISION,
+            InsuranceDecisionStatus::POSITIVE(),
             Carbon::parse(static::DECISION_DATE)
         );
     }
@@ -36,9 +36,9 @@ class InsuranceEventTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'requestDate' => static::REQUEST_DATE,
-                'decision' => static::DECISION,
-                'decisionDate' => static::DECISION_DATE
+                InsuranceEvent::REQUEST_DATE => Carbon::parse(static::REQUEST_DATE),
+                InsuranceEvent::DECISION => InsuranceDecisionStatus::POSITIVE(),
+                InsuranceEvent::DECISION_DATE => Carbon::parse(static::DECISION_DATE)
             ],
             $this->fakeInsuranceEvent->jsonSerialize()
         );
@@ -55,7 +55,7 @@ class InsuranceEventTest extends TestCase
     public function testGetDecision(): void
     {
         $this->assertEquals(
-            static::DECISION,
+            InsuranceDecisionStatus::POSITIVE(),
             $this->fakeInsuranceEvent->getDecision()
         );
     }

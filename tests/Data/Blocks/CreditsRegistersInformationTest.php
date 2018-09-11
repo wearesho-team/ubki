@@ -1,19 +1,20 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Blocks;
 
 use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Collections\CreditRegisters;
-use Wearesho\Bobra\Ubki\Data\CreditsRegistersInformation;
+use Wearesho\Bobra\Ubki\Data\Blocks\CreditsRegistersInformation;
 use Wearesho\Bobra\Ubki\Data\Elements;
-use Wearesho\Bobra\Ubki\Dictionaries\Decision;
+use Wearesho\Bobra\Ubki\Data\Interfaces\RegistryTimes;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class CreditsRegistersInformationTest
- * @package Wearesho\Bobra\Ubki\Tests\Data
+ * @package Wearesho\Bobra\Ubki\Tests\Data\Blocks
  * @coversDefaultClass CreditsRegistersInformation
  * @internal
  */
@@ -22,7 +23,6 @@ class CreditsRegistersInformationTest extends TestCase
     protected const DATE = '2018-03-12';
     protected const INN = 'testInn';
     protected const ID = 'testId';
-    protected const REASON = 1;
     protected const ORGANIZATION = 'testOrganization';
     protected const REESTR_TRIM = 'trim';
     protected const BY_HOUR = 1;
@@ -44,8 +44,8 @@ class CreditsRegistersInformationTest extends TestCase
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
-                    Decision::POSITIVE(),
-                    static::REASON,
+                    Dictionaries\Decision::POSITIVE(),
+                    Dictionaries\RequestReason::EXPORT(),
                     static::ORGANIZATION
                 )
             ]),
@@ -66,23 +66,23 @@ class CreditsRegistersInformationTest extends TestCase
         $this->assertArraySubset(
             [
                 'requests' => [
-                    [
-                        'date' => static::DATE,
-                        'inn' => static::INN,
-                        'id' => static::ID,
-                        'decision' => Decision::POSITIVE()->getKey(),
-                        'reason' => static::REASON,
-                        'organization' => static::ORGANIZATION
-                    ],
+                    new Elements\CreditRequest(
+                        Carbon::parse(static::DATE),
+                        static::INN,
+                        static::ID,
+                        Dictionaries\Decision::POSITIVE(),
+                        Dictionaries\RequestReason::EXPORT(),
+                        static::ORGANIZATION
+                    ),
                 ],
                 'times' => [
-                    'byHour' => static::BY_HOUR,
-                    'byDay' => static::BY_DAY,
-                    'byWeek' => static::BY_WEEK,
-                    'byMonth' => static::BY_MONTH,
-                    'byQuarter' => static::BY_QUARTER,
-                    'byYear' => static::BY_YEAR,
-                    'byMoreYear' => static::BY_MORE_YEAR,
+                    RegistryTimes::BY_HOUR => static::BY_HOUR,
+                    RegistryTimes::BY_DAY => static::BY_DAY,
+                    RegistryTimes::BY_WEEK => static::BY_WEEK,
+                    RegistryTimes::BY_MONTH => static::BY_MONTH,
+                    RegistryTimes::BY_QUARTER => static::BY_QUARTER,
+                    RegistryTimes::BY_YEAR => static::BY_YEAR,
+                    RegistryTimes::BY_MORE_YEAR => static::BY_MORE_YEAR,
                 ],
             ],
             $this->fakeCreditsRegistersInformation->jsonSerialize()
@@ -97,8 +97,8 @@ class CreditsRegistersInformationTest extends TestCase
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
-                    Decision::POSITIVE(),
-                    static::REASON,
+                    Dictionaries\Decision::POSITIVE(),
+                    Dictionaries\RequestReason::EXPORT(),
                     static::ORGANIZATION
                 )
             ]),

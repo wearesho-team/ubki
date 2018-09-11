@@ -2,8 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Collections;
 
+use Wearesho\Bobra\Ubki\Data\Elements\InsuranceEvent;
 use Wearesho\Bobra\Ubki\Infrastructure;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Class InsuranceEvents
@@ -13,6 +13,6 @@ class InsuranceEvents extends Infrastructure\BaseCollection
 {
     public function type(): string
     {
-        return Interfaces\Insurance\Event::class;
+        return InsuranceEvent::class;
     }
 }

@@ -18,9 +18,9 @@ class Work implements Data\Interfaces\Work
         Dictionaries\Language $language,
         string $ergpou,
         string $name,
-        ?Dictionaries\IdentifierRank $rank = null,
-        ?int $experience = null,
-        ?float $income = null
+        Dictionaries\IdentifierRank $rank = null,
+        int $experience = null,
+        float $income = null
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;

@@ -14,12 +14,12 @@ class IdentificationPerson extends Person implements Interfaces\IdentificationPe
     use Traits\IdentificationPerson;
 
     public function __construct(
-        ?string $name = null,
-        ?string $inn = null,
-        ?string $surname = null,
-        ?string $patronymic = null,
-        ?string $birthDate = null,
-        ?string $organization = null
+        string $name = null,
+        string $inn = null,
+        string $surname = null,
+        string $patronymic = null,
+        string $birthDate = null,
+        string $organization = null
     ) {
         $this->inn = $inn;
         $this->surname = $surname;

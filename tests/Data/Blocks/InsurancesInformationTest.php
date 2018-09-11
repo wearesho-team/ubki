@@ -6,9 +6,10 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
+use Wearesho\Bobra\Ubki\Data\Blocks\InsurancesInformation;
 use Wearesho\Bobra\Ubki\Data\Collections;
 use Wearesho\Bobra\Ubki\Data\Elements;
-use Wearesho\Bobra\Ubki\Data\InsurancesInformation;
+use Wearesho\Bobra\Ubki\Dictionaries;
 
 /**
  * Class InsurancesInformationTest
@@ -23,10 +24,7 @@ class InsurancesInformationTest extends TestCase
     protected const INFORMATION_DATE = '2018-03-12';
     protected const START_DATE = '2017-03-12';
     protected const END_DATE = '2019-03-12';
-    protected const TYPE = 1;
-    protected const STATUS = 2;
     protected const REQUEST_DATE = '2018-03-12';
-    protected const DECISION = 1;
     protected const DECISION_DATE = '2018-03-12';
     protected const ACTUAL_END_DATE = '2020-03-12';
 
@@ -37,18 +35,18 @@ class InsurancesInformationTest extends TestCase
     {
         $this->fakeInsurancesInformation = new InsurancesInformation(
             new Collections\InsuranceDeals([
-                new Elements\Insurance\InsuranceDeal(
+                new Elements\InsuranceDeal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
                     Carbon::parse(static::START_DATE),
                     Carbon::parse(static::END_DATE),
-                    static::TYPE,
-                    static::STATUS,
+                    Dictionaries\InsuranceDealType::ACCIDENT(),
+                    Dictionaries\DealStatus::CLOSE(),
                     new Collections\InsuranceEvents([
-                        new Elements\Insurance\InsuranceEvent(
+                        new Elements\InsuranceEvent(
                             Carbon::parse(static::REQUEST_DATE),
-                            static::DECISION,
+                            Dictionaries\InsuranceDecisionStatus::POSITIVE(),
                             Carbon::parse(static::DECISION_DATE)
                         )
                     ]),
@@ -63,23 +61,23 @@ class InsurancesInformationTest extends TestCase
         $this->assertArraySubset(
             [
                 'insuranceDeals' => [
-                    [
-                        'inn' => static::INN,
-                        'id' => static::ID,
-                        'informationDate' => static::INFORMATION_DATE,
-                        'startDate' => static::START_DATE,
-                        'endDate' => static::END_DATE,
-                        'type' => static::TYPE,
-                        'status' => static::STATUS,
-                        'actualEndDate' => static::ACTUAL_END_DATE,
-                        'events' => [
-                            [
-                                'requestDate' => static::REQUEST_DATE,
-                                'decision' => static::DECISION,
-                                'decisionDate' => static::DECISION_DATE
-                            ],
-                        ],
-                    ],
+                    new Elements\InsuranceDeal(
+                        static::INN,
+                        static::ID,
+                        Carbon::parse(static::INFORMATION_DATE),
+                        Carbon::parse(static::START_DATE),
+                        Carbon::parse(static::END_DATE),
+                        Dictionaries\InsuranceDealType::ACCIDENT(),
+                        Dictionaries\DealStatus::CLOSE(),
+                        new Collections\InsuranceEvents([
+                            new Elements\InsuranceEvent(
+                                Carbon::parse(static::REQUEST_DATE),
+                                Dictionaries\InsuranceDecisionStatus::POSITIVE(),
+                                Carbon::parse(static::DECISION_DATE)
+                            )
+                        ]),
+                        Carbon::parse(static::ACTUAL_END_DATE)
+                    ),
                 ],
             ],
             $this->fakeInsurancesInformation->jsonSerialize()
@@ -90,18 +88,18 @@ class InsurancesInformationTest extends TestCase
     {
         $this->assertEquals(
             new Collections\InsuranceDeals([
-                new Elements\Insurance\InsuranceDeal(
+                new Elements\InsuranceDeal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
                     Carbon::parse(static::START_DATE),
                     Carbon::parse(static::END_DATE),
-                    static::TYPE,
-                    static::STATUS,
+                    Dictionaries\InsuranceDealType::ACCIDENT(),
+                    Dictionaries\DealStatus::CLOSE(),
                     new Collections\InsuranceEvents([
-                        new Elements\Insurance\InsuranceEvent(
+                        new Elements\InsuranceEvent(
                             Carbon::parse(static::REQUEST_DATE),
-                            static::DECISION,
+                            Dictionaries\InsuranceDecisionStatus::POSITIVE(),
                             Carbon::parse(static::DECISION_DATE)
                         )
                     ]),

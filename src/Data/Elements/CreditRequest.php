@@ -20,7 +20,7 @@ class CreditRequest extends Infrastructure\Element implements Data\Interfaces\Cr
         string $id,
         Dictionaries\Decision $decision,
         Dictionaries\RequestReason $reason,
-        ?string $organization = null
+        string $organization = null
     ) {
         $this->date = $date;
         $this->inn = $inn;

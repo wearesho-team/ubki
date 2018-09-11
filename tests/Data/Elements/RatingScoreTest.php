@@ -6,15 +6,15 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Data\Elements\Rating\RatingScore;
+use Wearesho\Bobra\Ubki\Data\Elements\RatingScore;
 
 /**
- * Class ScoreTest
+ * Class RatingScoreTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating
  * @coversDefaultClass RatingScore
  * @internal
  */
-class ScoreTest extends TestCase
+class RatingScoreTest extends TestCase
 {
     protected const INN = 'testInn';
     protected const SURNAME = 'testSurname';
@@ -50,19 +50,21 @@ class ScoreTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'inn' => static::INN,
-                'surname' => static::SURNAME,
-                'name' => static::NAME,
-                'patronymic' => static::PATRONYMIC,
-                'birthDate' => static::BIRTH_DATE,
-                'score' => [
-                    'date' => static::DATE,
-                    'value' => static::SCORE
+                RatingScore::INN => static::INN,
+                RatingScore::SURNAME => static::SURNAME,
+                RatingScore::NAME => static::NAME,
+                RatingScore::PATRONYMIC => static::PATRONYMIC,
+                RatingScore::BIRTH_DATE => Carbon::parse(static::BIRTH_DATE),
+                RatingScore::SCORE => [
+                    RatingScore::CURRENT => [
+                        RatingScore::DATE => Carbon::parse(static::DATE),
+                        RatingScore::VALUE => static::SCORE
+                    ],
+                    RatingScore::PREVIOUS => [
+                        RatingScore::DATE => Carbon::parse(static::PREVIOUS_DATE),
+                        RatingScore::VALUE => static::PREVIOUS_SCORE,
+                    ]
                 ],
-                'previousScore' => [
-                    'date' => static::PREVIOUS_DATE,
-                    'value' => static::PREVIOUS_SCORE,
-                ]
             ],
             $this->fakeScore->jsonSerialize()
         );

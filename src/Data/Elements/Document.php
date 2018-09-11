@@ -22,7 +22,7 @@ class Document extends Infrastructure\Element implements Data\Interfaces\Documen
         string $number,
         string $issue,
         \DateTimeInterface $issueDate,
-        ?\DateTimeInterface $termin = null
+        \DateTimeInterface $termin = null
     ) {
         $this->createdAt = $createdAt;
         $this->language = $language;

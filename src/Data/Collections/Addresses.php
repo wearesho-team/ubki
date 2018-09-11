@@ -19,5 +19,4 @@ class Addresses extends Infrastructure\BaseCollection
     {
         return false;
     }
-
 }

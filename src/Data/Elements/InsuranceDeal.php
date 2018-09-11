@@ -5,13 +5,27 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class InsuranceDeal
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class InsuranceDeal
+class InsuranceDeal extends Infrastructure\Element
 {
+    public const TAG = 'insur';
+    public const INN = 'inn';
+    public const ID = 'dlref';
+    public const INFORMATION_DATE = 'dldate';
+    public const START_DATE = 'dlds';
+    public const END_DATE = 'dldpf';
+    public const ACTUAL_END_DATE = 'dldff';
+    public const TYPE = 'dltype';
+    public const TYPE_REF = 'dltyperef';
+    public const STATUS = 'dlstate';
+    public const STATUS_REF = 'dlstateref';
+
     /** @var string */
     protected $inn;
 
@@ -30,10 +44,10 @@ class InsuranceDeal
     /** @var \DateTimeInterface|null */
     protected $actualEndDate;
 
-    /** @var int */
+    /** @var Dictionaries\InsuranceDealType */
     protected $type;
 
-    /** @var int */
+    /** @var Dictionaries\DealStatus */
     protected $status;
 
     /** @var Collections\InsuranceEvents */
@@ -45,10 +59,10 @@ class InsuranceDeal
         \DateTimeInterface $informationDate,
         \DateTimeInterface $startDate,
         \DateTimeInterface $endDate,
-        int $type,
-        int $status,
-        ?Collections\InsuranceEvents $events = null,
-        ?\DateTimeInterface $actualEndDate = null
+        Dictionaries\InsuranceDealType $type,
+        Dictionaries\DealStatus $status,
+        Collections\InsuranceEvents $events = null,
+        \DateTimeInterface $actualEndDate = null
     ) {
         $this->inn = $inn;
         $this->id = $id;
@@ -64,18 +78,21 @@ class InsuranceDeal
     public function jsonSerialize(): array
     {
         return [
-            'inn' => $this->inn,
-            'id' => $this->id,
-            'informationDate' => Carbon::instance($this->informationDate)->toDateString(),
-            'startDate' => Carbon::instance($this->startDate)->toDateString(),
-            'endDate' => Carbon::instance($this->endDate)->toDateString(),
-            'type' => $this->type,
-            'status' => $this->status,
-            'actualEndDate' => !$this->actualEndDate ?: Carbon::instance($this->actualEndDate)->toDateString(),
-            'events' => array_map(function (InsuranceEvent $event) {
-                return $event->jsonSerialize();
-            }, $this->events->jsonSerialize()),
+            static::INN => $this->inn,
+            static::ID => $this->id,
+            static::INFORMATION_DATE => $this->informationDate,
+            static::START_DATE => $this->startDate,
+            static::END_DATE => $this->endDate,
+            static::TYPE => $this->type,
+            static::STATUS => $this->status,
+            static::ACTUAL_END_DATE => $this->actualEndDate,
+            'events' => $this->events->jsonSerialize(),
         ];
+    }
+
+    public function tag(): string
+    {
+        return static::TAG;
     }
 
     public function getInn(): string
@@ -108,12 +125,12 @@ class InsuranceDeal
         return $this->actualEndDate;
     }
 
-    public function getType(): int
+    public function getType(): Dictionaries\InsuranceDealType
     {
         return $this->type;
     }
 
-    public function getStatus(): int
+    public function getStatus(): Dictionaries\DealStatus
     {
         return $this->status;
     }

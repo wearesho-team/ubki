@@ -1,12 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+namespace Wearesho\Bobra\Ubki\Data\Blocks;
 
 use Wearesho\Bobra\Ubki\Block;
+use Wearesho\Bobra\Ubki\Data\Collections;
 
 /**
  * Class ContactsInformation
- * @package Wearesho\Bobra\Ubki\Data
+ * @package Wearesho\Bobra\Ubki\Data\Blocks
  */
 class ContactsInformation extends Block
 {
@@ -28,9 +29,7 @@ class ContactsInformation extends Block
     public function jsonSerialize(): array
     {
         return [
-            'contacts' => array_map(function (Interfaces\Contact $contact) {
-                return $contact->jsonSerialize();
-            }, $this->contacts->jsonSerialize()),
+            'contacts' =>  $this->contacts->jsonSerialize(),
         ];
     }
 }

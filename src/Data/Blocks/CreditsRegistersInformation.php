@@ -1,12 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+namespace Wearesho\Bobra\Ubki\Data\Blocks;
 
 use Wearesho\Bobra\Ubki\Block;
+use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki\Data\Elements;
 
 /**
  * Class CreditsRegistersInformation
- * @package Wearesho\Bobra\Ubki\Data
+ * @package Wearesho\Bobra\Ubki\Data\Blocks
  */
 class CreditsRegistersInformation extends Block
 {
@@ -15,12 +17,12 @@ class CreditsRegistersInformation extends Block
     /** @var Collections\CreditRegisters */
     protected $creditRequests;
 
-    /** @var null|Elements\RegistryTimes */
+    /** @var Elements\RegistryTimes|null */
     protected $registryTimes;
 
     public function __construct(
         Collections\CreditRegisters $creditRequests,
-        ?Elements\RegistryTimes $registryTimes = null
+        Elements\RegistryTimes $registryTimes = null
     ) {
         $this->creditRequests = $creditRequests;
         $this->registryTimes = $registryTimes;
@@ -29,9 +31,7 @@ class CreditsRegistersInformation extends Block
     public function jsonSerialize(): array
     {
         return [
-            'requests' => array_map(function (Interfaces\CreditRegister $creditRegister) {
-                return $creditRegister->jsonSerialize();
-            }, $this->creditRequests->jsonSerialize()),
+            'requests' => $this->creditRequests->jsonSerialize(),
             'times' => $this->registryTimes->jsonSerialize(),
         ];
     }
