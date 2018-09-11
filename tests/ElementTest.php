@@ -2,11 +2,9 @@
 
 namespace Wearesho\Bobra\Ubki\Tests;
 
-use Wearesho\Bobra\Ubki\Element;
-
 use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Class ElementTest
@@ -22,15 +20,18 @@ class ElementTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fakeElement = new class implements ElementInterface
+        $this->fakeElement = new class extends Element implements ElementInterface
         {
-            use ElementTrait;
-
             protected const TAG = ElementTest::TAG;
 
-            public function jsonSerialize()
+            public function jsonSerialize(): array
             {
                 return [];
+            }
+
+            public function tag(): string
+            {
+                return static::TAG;
             }
         };
     }

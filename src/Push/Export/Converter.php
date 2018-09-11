@@ -4,10 +4,8 @@ namespace Wearesho\Bobra\Ubki\Push\Export;
 
 use Carbon\Carbon;
 
-use Wearesho\Bobra\Ubki\Block;
-use Wearesho\Bobra\Ubki\Blocks;
-use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\Reference;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Converter
@@ -19,7 +17,7 @@ class Converter implements ConverterInterface
     private $document;
 
     public function dataDocumentToXml(
-        Blocks\Interfaces\RequestData $requestData,
+        Interfaces\RequestData $requestData,
         DataDocumentInterface $report,
         string $sessionId
     ): \DOMDocument {
@@ -27,158 +25,17 @@ class Converter implements ConverterInterface
 
         $root = $this->document->createElement(static::DOC_ROOT);
         $ubki = $this->document->createElement(static::UBKI_ROOT);
-        $ubki->setAttribute(static::SESSION_ID, $sessionId);
+
+        $ubki->setAttribute(static::ATTRIBUTE_SESSION_ID, $sessionId);
+
         $envelope = $this->document->createElement(static::REQUEST_ENVELOPE);
         $reqxml = $this->document->createElement(static::REQUEST_XML);
-
-        $request = $this->createFilledElement($requestData, [
-            Blocks\Interfaces\RequestData::ID => $requestData->getId(),
-            Blocks\Interfaces\RequestData::DATE => $requestData->getDate(),
-            Blocks\Interfaces\RequestData::TYPE => $requestData->getType(),
-            Blocks\Interfaces\RequestData::REASON => $requestData->getReason(),
-            Blocks\Interfaces\RequestData::INITIATOR => $requestData->getInitiator(),
-            Blocks\Interfaces\RequestData::VERSION => $requestData->getVersion(),
-        ]);
-
-        $ubkiData = $this->createElement($report);
-
+        $request = $this->createFilledElement($requestData);
+        $ubkiData = $this->createDOMElement($report);
         $identification = $report->getIdentification();
         $identificationBlock = $this->createBlockInformation($identification);
-
         $credential = $identification->getCredential();
-        $credentialElement = $this->createFilledElement($credential, [
-            Blocks\Interfaces\Credential::LANGUAGE => $credential->getLanguage(),
-            Blocks\Interfaces\Credential::NAME => $credential->getName(),
-            Blocks\Interfaces\Credential::PATRONYMIC => $credential->getPatronymic(),
-            Blocks\Interfaces\Credential::SURNAME => $credential->getSurname(),
-            Blocks\Interfaces\Credential::BIRTH_DATE => $credential->getBirthDate(),
-            Blocks\Interfaces\Credential::INN => $credential->getInn(),
-        ]);
-
-        /** @var Blocks\Interfaces\Identifier $identifier */
-        foreach ($credential->getIdentifiers() as $identifier) {
-            if ($identifier instanceof Blocks\Interfaces\NaturalIdentifier) {
-                $attributes = [
-                    Blocks\Interfaces\NaturalIdentifier::NAME => $identifier->getName(),
-                    Blocks\Interfaces\NaturalIdentifier::MIDDLE_NAME => $identifier->getPatronymic(),
-                    Blocks\Interfaces\NaturalIdentifier::LAST_NAME => $identifier->getSurname(),
-                    Blocks\Interfaces\NaturalIdentifier::INN => $identifier->getInn(),
-                    Blocks\Interfaces\NaturalIdentifier::BIRTH_DATE => $identifier->getBirthDate(),
-                    Blocks\Interfaces\NaturalIdentifier::CREATED_AT => $identifier->getCreatedAt(),
-                    Blocks\Interfaces\NaturalIdentifier::CHILDREN_COUNT => $identifier->getChildrenCount(),
-                    Blocks\Interfaces\NaturalIdentifier::LANGUAGE => $identifier->getLanguage(),
-                    Blocks\Interfaces\NaturalIdentifier::EDUCATION => $identifier->getEducation(),
-                    Blocks\Interfaces\NaturalIdentifier::FAMILY_STATUS => $identifier->getFamilyStatus(),
-                    Blocks\Interfaces\NaturalIdentifier::GENDER => $identifier->getGender(),
-                    Blocks\Interfaces\NaturalIdentifier::NATIONALITY => $identifier->getNationality(),
-                    Blocks\Interfaces\NaturalIdentifier::REGISTRATION_SPD => $identifier->getRegistrationSpd(),
-                    Blocks\Interfaces\NaturalIdentifier::SOCIAL_STATUS => $identifier->getSocialStatus(),
-                ];
-            } else {
-                /** @var Blocks\Interfaces\LegalIdentifier $identifier */
-                $attributes = [
-                    Blocks\Interfaces\LegalIdentifier::LANGUAGE => $identifier->getLanguage(),
-                    Blocks\Interfaces\LegalIdentifier::CREATED_AT => $identifier->getCreatedAt(),
-                    Blocks\Interfaces\LegalIdentifier::NAME => $identifier->getName(),
-                    Blocks\Interfaces\LegalIdentifier::TAX_REGISTRATION_DATE => $identifier->getTaxRegistrationDate(),
-                    Blocks\Interfaces\LegalIdentifier::EDR_REGISTRATION_DATE => $identifier->getEdrRegistrationDate(),
-                    Blocks\Interfaces\LegalIdentifier::ECONOMY_BRANCH => $identifier->getEconomyBranch(),
-                    Blocks\Interfaces\LegalIdentifier::ACTIVITY_TYPE => $identifier->getActivityType(),
-                    Blocks\Interfaces\LegalIdentifier::ERGPOU => $identifier->getErgpou(),
-                    Blocks\Interfaces\LegalIdentifier::FORM => $identifier->getForm(),
-                ];
-            }
-
-            $credentialElement->appendChild($this->createFilledElement($identifier, $attributes));
-        }
-
-        $linkedPersons = $credential->getLinkedPersons();
-
-        if (!is_null($linkedPersons) && !empty($linkedPersons)) {
-            /** @var Blocks\Interfaces\LinkedPerson $linkedPerson */
-            foreach ($linkedPersons as $linkedPerson) {
-                $credentialElement->appendChild(
-                    $this->createFilledElement($linkedPerson, [
-                        Blocks\Interfaces\LinkedPerson::NAME => $linkedPerson->getName(),
-                        Blocks\Interfaces\LinkedPerson::ERGPOU => $linkedPerson->getErgpou(),
-                        Blocks\Interfaces\LinkedPerson::ISSUE_DATE => $linkedPerson->getIssueDate(),
-                        Blocks\Interfaces\LinkedPerson::ROLE => $linkedPerson->getRole(),
-                    ])
-                );
-            }
-        }
-
-        $works = $credential->getWorks();
-
-        if (!is_null($works) && !empty($works)) {
-            /** @var Blocks\Interfaces\Work $work */
-            foreach ($works as $work) {
-                $credentialElement->appendChild(
-                    $this->createFilledElement($work, [
-                        Blocks\Interfaces\Work::NAME => $work->getName(),
-                        Blocks\Interfaces\Work::ERGPOU => $work->getErgpou(),
-                        Blocks\Interfaces\Work::CREATED_AT => $work->getCreatedAt(),
-                        Blocks\Interfaces\Work::EXPERIENCE => $work->getExperience(),
-                        Blocks\Interfaces\Work::INCOME => $work->getIncome(),
-                        Blocks\Interfaces\Work::LANGUAGE => $work->getLanguage(),
-                        Blocks\Interfaces\Work::RANK => $work->getRank(),
-                    ])
-                );
-            }
-        }
-
-        /** @var Blocks\Interfaces\Document $identifierDocument */
-        foreach ($credential->getDocuments() as $identifierDocument) {
-            $credentialElement->appendChild(
-                $this->createFilledElement($identifierDocument, [
-                    Blocks\Interfaces\Document::CREATED_AT => $identifierDocument->getCreatedAt(),
-                    Blocks\Interfaces\Document::LANGUAGE => $identifierDocument->getLanguage(),
-                    Blocks\Interfaces\Document::TYPE => $identifierDocument->getType(),
-                    Blocks\Interfaces\Document::NUMBER => $identifierDocument->getNumber(),
-                    Blocks\Interfaces\Document::SERIAL => $identifierDocument->getSerial(),
-                    Blocks\Interfaces\Document::ISSUE => $identifierDocument->getIssue(),
-                    Blocks\Interfaces\Document::ISSUE_DATE => $identifierDocument->getIssueDate(),
-                    Blocks\Interfaces\Document::TERMIN => $identifierDocument->getTermin(),
-                ])
-            );
-        }
-
-        /** @var Blocks\Interfaces\Address $address */
-        foreach ($credential->getAddresses() as $address) {
-            $credentialElement->appendChild(
-                $this->createFilledElement($address, [
-                    Blocks\Interfaces\Address::LANGUAGE => $address->getLanguage(),
-                    Blocks\Interfaces\Address::CREATED_AT => $address->getCreatedAt(),
-                    Blocks\Interfaces\Address::TYPE => $address->getAddressType(),
-                    Blocks\Interfaces\Address::AREA => $address->getArea(),
-                    Blocks\Interfaces\Address::CITY => $address->getCity(),
-                    Blocks\Interfaces\Address::CITY_TYPE => $address->getCityType(),
-                    Blocks\Interfaces\Address::CORPUS => $address->getCorpus(),
-                    Blocks\Interfaces\Address::COUNTRY => $address->getCountry(),
-                    Blocks\Interfaces\Address::FLAT => $address->getFlat(),
-                    Blocks\Interfaces\Address::FULL_ADDRESS => $address->getFullAddress(),
-                    Blocks\Interfaces\Address::HOUSE => $address->getHouse(),
-                    Blocks\Interfaces\Address::INDEX => $address->getIndex(),
-                    Blocks\Interfaces\Address::STATE => $address->getState(),
-                    Blocks\Interfaces\Address::STREET => $address->getStreet(),
-                ])
-            );
-        }
-
-        $photos = $credential->getPhotos();
-
-        if (!is_null($photos) && !empty($photos)) {
-            /** @var Blocks\Interfaces\Photo $photo */
-            foreach ($photos as $photo) {
-                $credentialElement->appendChild(
-                    $this->createFilledElement($photo, [
-                        Blocks\Interfaces\Photo::CREATED_AT => $photo->getCreatedAt(),
-                        Blocks\Interfaces\Photo::INN => $photo->getInn(),
-                        Blocks\Interfaces\Photo::PHOTO => $photo->getUri(),
-                    ])
-                );
-            }
-        }
+        $credentialElement = $this->createFilledElement($credential);
 
         $identificationBlock->appendChild($credentialElement);
         // todo: before first block need add tech
@@ -192,51 +49,9 @@ class Converter implements ConverterInterface
             if (!empty($creditDeals)) {
                 $creditsBlock = $this->createBlockInformation($creditsInformation);
 
-                /** @var Blocks\Interfaces\CreditDeal $creditDeal */
+                /** @var Interfaces\CreditDeal $creditDeal */
                 foreach ($creditDeals as $creditDeal) {
-                    $creditDealElement = $this->createFilledElement($creditDeal, [
-                        Blocks\Interfaces\CreditDeal::TYPE => $creditDeal->getType(),
-                        Blocks\Interfaces\CreditDeal::LANGUAGE => $creditDeal->getLanguage(),
-                        Blocks\Interfaces\CreditDeal::ID => $creditDeal->getId(),
-                        Blocks\Interfaces\CreditDeal::BIRTH_DATE => $creditDeal->getBirthDate(),
-                        Blocks\Interfaces\CreditDeal::COLLATERAL => $creditDeal->getCollateral(),
-                        Blocks\Interfaces\CreditDeal::COLLATERAL_COST => $creditDeal->getCollateralCost(),
-                        Blocks\Interfaces\CreditDeal::CURRENCY => $creditDeal->getCurrency(),
-                        Blocks\Interfaces\CreditDeal::FIRST_NAME => $creditDeal->getName(),
-                        Blocks\Interfaces\CreditDeal::INITIAL_AMOUNT => $creditDeal->getInitialAmount(),
-                        Blocks\Interfaces\CreditDeal::INN => $creditDeal->getInn(),
-                        Blocks\Interfaces\CreditDeal::LAST_NAME => $creditDeal->getSurname(),
-                        Blocks\Interfaces\CreditDeal::MIDDLE_NAME => $creditDeal->getPatronymic(),
-                        Blocks\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $creditDeal->getRepaymentProcedure(),
-                        Blocks\Interfaces\CreditDeal::SOURCE => $creditDeal->getSource(),
-                        Blocks\Interfaces\CreditDeal::SUBJECT_ROLE => $creditDeal->getSubjectRole(),
-                    ]);
-
-                    /** @var Blocks\Interfaces\DealLife $dealLife */
-                    foreach ($creditDeal->getDealLifeCollection() as $dealLife) {
-                        $creditDealElement->appendChild(
-                            $this->createFilledElement($dealLife, [
-                                Blocks\Interfaces\DealLife::ID => $dealLife->getId(),
-                                Blocks\Interfaces\DealLife::ISSUE_DATE => $dealLife->getIssueDate(),
-                                Blocks\Interfaces\DealLife::ACTUAL_END_DATE => $dealLife->getActualEndDate(),
-                                Blocks\Interfaces\DealLife::TRANCHE_INDICATION => $dealLife->getTrancheIndication(),
-                                Blocks\Interfaces\DealLife::CURRENT_DEBT => $dealLife->getCurrentDebt(),
-                                Blocks\Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $dealLife->getCurrentOverdueDebt(),
-                                Blocks\Interfaces\DealLife::DELAY_INDICATION => $dealLife->getDelayIndication(),
-                                Blocks\Interfaces\DealLife::END_DATE => $dealLife->getEndDate(),
-                                Blocks\Interfaces\DealLife::LIMIT => $dealLife->getLimit(),
-                                Blocks\Interfaces\DealLife::MANDATORY_PAYMENT => $dealLife->getMandatoryPayment(),
-                                Blocks\Interfaces\DealLife::OVERDUE_TIME => $dealLife->getOverdueTime(),
-                                Blocks\Interfaces\DealLife::PAYMENT_DATE => $dealLife->getPaymentDate(),
-                                Blocks\Interfaces\DealLife::PAYMENT_INDICATION => $dealLife->getPaymentIndication(),
-                                Blocks\Interfaces\DealLife::PERIOD_MONTH => $dealLife->getPeriodMonth(),
-                                Blocks\Interfaces\DealLife::PERIOD_YEAR => $dealLife->getPeriodYear(),
-                                Blocks\Interfaces\DealLife::STATUS => $dealLife->getStatus(),
-                            ])
-                        );
-                    }
-
-                    $creditsBlock->appendChild($creditDealElement);
+                    $creditsBlock->appendChild($this->createFilledElement($creditDeal));
                 }
 
                 $ubkiData->appendChild($creditsBlock);
@@ -251,22 +66,9 @@ class Converter implements ConverterInterface
             if (!empty($decisions)) {
                 $courtDecisionsBlock = $this->createBlockInformation($courtDecisionsInformation);
 
-                /** @var Blocks\Interfaces\CourtDecision $decision */
+                /** @var Interfaces\CourtDecision $decision */
                 foreach ($decisions as $decision) {
-                    $courtDecisionsBlock->appendChild(
-                        $this->createFilledElement($decision, [
-                            Blocks\Interfaces\CourtDecision::ID => $decision->getId(),
-                            Blocks\Interfaces\CourtDecision::INN => $decision->getInn(),
-                            Blocks\Interfaces\CourtDecision::AREA => $decision->getArea(),
-                            Blocks\Interfaces\CourtDecision::CREATED_AT => $decision->getCreatedAt(),
-                            Blocks\Interfaces\CourtDecision::COURT_NAME => $decision->getCourtDealType(),
-                            Blocks\Interfaces\CourtDecision::COURT_DEAL_TYPE => $decision->getCourtDealType(),
-                            Blocks\Interfaces\CourtDecision::DATE => $decision->getDate(),
-                            Blocks\Interfaces\CourtDecision::DOCUMENT_TYPE => $decision->getDocumentType(),
-                            Blocks\Interfaces\CourtDecision::LEGAL_FACT => $decision->getLegalFact(),
-                            Blocks\Interfaces\CourtDecision::SUBJECT_STATUS => $decision->getSubjectStatus(),
-                        ])
-                    );
+                    $courtDecisionsBlock->appendChild($this->createFilledElement($decision));
                 }
 
                 $ubkiData->appendChild($courtDecisionsBlock);
@@ -281,65 +83,18 @@ class Converter implements ConverterInterface
             if (!empty($creditRequests)) {
                 $creditRequestsBlock = $this->createBlockInformation($creditRequestInformation);
 
-                /** @var Blocks\Interfaces\CreditRegister $creditRequest */
+                /** @var Interfaces\CreditRegister $creditRequest */
                 foreach ($creditRequests as $creditRequest) {
-                    $creditRequestsBlock->appendChild(
-                        $this->createFilledElement($creditRequest, [
-                            Blocks\Interfaces\CreditRegister::DATE => $creditRequest->getDate(),
-                            Blocks\Interfaces\CreditRegister::INN => $creditRequest->getInn(),
-                            Blocks\Interfaces\CreditRegister::ID => $creditRequest->getId(),
-                            Blocks\Interfaces\CreditRegister::DECISION => $creditRequest->getDecision(),
-                            Blocks\Interfaces\CreditRegister::ORGANIZATION => $creditRequest->getOrganization(),
-                            Blocks\Interfaces\CreditRegister::REASON => $creditRequest->getReason(),
-                        ])
-                    );
+                    $creditRequestsBlock->appendChild($this->createFilledElement($creditRequest));
                 }
 
                 $registryTimes = $creditRequestInformation->getRegistryTimes();
 
                 if (!is_null($registryTimes)) {
-                    $creditRequestsBlock->appendChild(
-                        $this->createFilledElement($registryTimes, [
-                            Blocks\Interfaces\RegistryTimes::BY_HOUR => $registryTimes->getByHour(),
-                            Blocks\Interfaces\RegistryTimes::BY_DAY => $registryTimes->getByDay(),
-                            Blocks\Interfaces\RegistryTimes::BY_WEEK => $registryTimes->getByWeek(),
-                            Blocks\Interfaces\RegistryTimes::BY_MONTH => $registryTimes->getByMonth(),
-                            Blocks\Interfaces\RegistryTimes::BY_QUARTER => $registryTimes->getByQuarter(),
-                            Blocks\Interfaces\RegistryTimes::BY_YEAR => $registryTimes->getByYear(),
-                            Blocks\Interfaces\RegistryTimes::BY_MORE_YEAR => $registryTimes->getByMoreYear(),
-                        ])
-                    );
+                    $creditRequestsBlock->appendChild($this->createFilledElement($registryTimes));
                 }
 
                 $ubkiData->appendChild($creditRequestsBlock);
-            }
-        }
-
-        $insurancesInformation = $report->getInsuranceReports();
-
-        if (!is_null($insurancesInformation)) {
-            $insuranceReports = $insurancesInformation->getDeals();
-
-            if (!empty($insuranceReports)) {
-                $insurancesBlock = $this->createBlockInformation($insurancesInformation);
-
-                /** @var Blocks\Interfaces\Insurance\Deal $insuranceDeal */
-                foreach ($insuranceReports as $insuranceDeal) {
-                    $insurancesBlock->appendChild(
-                        $this->createFilledElement($insuranceDeal, [
-                            Blocks\Interfaces\Insurance\Deal::ID => $insuranceDeal->getId(),
-                            Blocks\Interfaces\Insurance\Deal::INN => $insuranceDeal->getInn(),
-                            Blocks\Interfaces\Insurance\Deal::STATUS => $insuranceDeal->getStatus(),
-                            Blocks\Interfaces\Insurance\Deal::END_DATE => $insuranceDeal->getEndDate(),
-                            Blocks\Interfaces\Insurance\Deal::ACTUAL_END_DATE => $insuranceDeal->getActualEndDate(),
-                            Blocks\Interfaces\Insurance\Deal::TYPE => $insuranceDeal->getType(),
-                            Blocks\Interfaces\Insurance\Deal::INFORMATION_DATE => $insuranceDeal->getInformationDate(),
-                            Blocks\Interfaces\Insurance\Deal::START_DATE => $insuranceDeal->getStartDate(),
-                        ])
-                    );
-                }
-
-                $ubkiData->appendChild($insurancesBlock);
             }
         }
 
@@ -351,16 +106,9 @@ class Converter implements ConverterInterface
             if (!empty($contacts)) {
                 $contactsBlock = $this->createBlockInformation($contactsInformation);
 
-                /** @var Blocks\Interfaces\Contact $contact */
+                /** @var Interfaces\Contact $contact */
                 foreach ($contacts as $contact) {
-                    $contactsBlock->appendChild(
-                        $this->createFilledElement($contact, [
-                            Blocks\Interfaces\Contact::TYPE => $contact->getType(),
-                            Blocks\Interfaces\Contact::INN => $contact->getInn(),
-                            Blocks\Interfaces\Contact::CREATED_AT => $contact->getCreatedAt(),
-                            Blocks\Interfaces\Contact::VALUE => $contact->getValue(),
-                        ])
-                    );
+                    $contactsBlock->appendChild($this->createFilledElement($contact));
                 }
 
                 $ubkiData->appendChild($contactsBlock);
@@ -377,38 +125,55 @@ class Converter implements ConverterInterface
         return $this->document;
     }
 
-    private function createBlockInformation(Block $class): \DOMElement
+    private function createBlockInformation(Infrastructure\Block $block): \DOMElement
     {
-        return $this->createFilledElement($class, [
-            Block::ATTR_ID => $class->getId()
-        ]);
-    }
-
-    private function createFilledElement(ElementInterface $class, array $attributes = []): \DOMElement
-    {
-        $element = $this->createElement($class);
-        $this->setAttributesForElement($element, $attributes);
+        $element = $this->document->createElement($block->tag());
+        $element->setAttribute(Infrastructure\Block::ATTR_ID, $block->getId());
 
         return $element;
     }
 
-    private function createElement(ElementInterface $class): \DOMElement
+    private function createFilledElement(Infrastructure\ElementInterface $element): \DOMElement
     {
-        return $this->document->createElement($class->tag());
+        $DOMElement = $this->createDOMElement($element);
+        $this->setAttributesForElement($DOMElement, $element->jsonSerialize());
+
+        return $DOMElement;
     }
 
-    private function setAttributesForElement(\DOMElement &$element, array $attributes = []): void
+    private function createDOMElement(Infrastructure\ElementInterface $element): \DOMElement
     {
-        foreach ($attributes as $name => $value) {
+        return $this->document->createElement($element->tag());
+    }
+
+    private function appendCollection(\DOMElement &$element, array $collection = []): \DOMElement
+    {
+        if (!empty($collection)) {
+            /** @var Infrastructure\ElementInterface $item */
+            foreach ($collection as $item) {
+                $element->appendChild($this->createFilledElement($item));
+            }
+        }
+
+        return $element;
+    }
+
+    private function setAttributesForElement(\DOMElement &$element, array $attributes = []): \DOMElement
+    {
+        foreach ($attributes as $key => $value) {
             if (!is_null($value)) {
-                if ($value instanceof Reference) {
-                    $element->setAttribute($name, $value->getValue());
+                if ($value instanceof Infrastructure\Dictionary) {
+                    $element->setAttribute($key, $value->getValue());
                 } elseif ($value instanceof \DateTimeInterface) {
-                    $element->setAttribute($name, Carbon::instance($value)->toDateString());
+                    $element->setAttribute($key, Carbon::instance($value)->toDateString());
+                } elseif (is_array($value)) {
+                    $this->appendCollection($element, $value);
                 } else {
-                    $element->setAttribute($name, $value);
+                    $element->setAttribute($key, $value);
                 }
             }
         }
+
+        return $element;
     }
 }

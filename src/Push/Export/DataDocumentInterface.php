@@ -2,8 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Blocks;
-use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\Data\BLocks;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Interface DataDocumentInterface
@@ -23,9 +23,5 @@ interface DataDocumentInterface extends ElementInterface
 
     public function getCreditRequests(): ?Blocks\CreditsRegistersInformation;
 
-    public function getInsuranceReports(): ?Blocks\InsurancesInformation;
-
     public function getContacts(): ?Blocks\ContactsInformation;
-
-    public function getCommunalPayments(); // TODO: need implement
 }

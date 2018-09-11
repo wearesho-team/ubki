@@ -6,9 +6,11 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
+use Wearesho\Bobra\Ubki\Data\Blocks;
+use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki\Data\Elements;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Push\Export;
-use Wearesho\Bobra\Ubki\References;
-use Wearesho\Bobra\Ubki\Blocks;
 
 /**
  * Class ConverterTest
@@ -109,7 +111,7 @@ class ConverterTest extends TestCase
     /** @var Export\Converter */
     protected $fakeConverter;
 
-    /** @var Blocks\Entities\RequestData */
+    /** @var Elements\RequestData */
     protected $fakeRequestDataBlock;
 
     /** @var string */
@@ -136,41 +138,41 @@ class ConverterTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeConverter = new Export\Converter();
-        $this->fakeRequestDataBlock = new Blocks\Entities\RequestData(
-            References\RequestType::EXPORT(),
-            References\RequestReason::EXPORT(),
+        $this->fakeRequestDataBlock = new Elements\RequestData(
+            Dictionaries\RequestType::EXPORT(),
+            Dictionaries\RequestReason::EXPORT(),
             Carbon::parse(static::DATE),
             static::ID,
-            References\RequestInitiator::PARTNER()
+            Dictionaries\RequestInitiator::PARTNER()
         );
         $this->fakeTech = 'tech';
         $this->fakeIdentificationBlock = new Blocks\Identification(
-            new Blocks\Entities\Credential(
-                References\Language::RUS(),
+            new Elements\Credential(
+                Dictionaries\Language::RUS(),
                 static::NAME,
                 static::PATRONYMIC,
                 static::SURNAME,
                 Carbon::parse(static::BIRTH_DATE),
-                new Blocks\Collections\Identifiers([
-                    new Blocks\Entities\NaturalIdentifier(
+                new Collections\IdentifiedPersons([
+                    new Elements\NaturalPerson(
                         Carbon::parse(static::CREATED_AT),
-                        References\Language::KAZ(),
+                        Dictionaries\Language::KAZ(),
                         static::NAME,
                         static::SURNAME,
                         Carbon::parse(static::BIRTH_DATE),
-                        References\Gender::MAN(),
+                        Dictionaries\Gender::MAN(),
                         static::INN,
                         static::PATRONYMIC,
-                        References\FamilyStatus::SINGLE(),
-                        References\Education::SECONDARY(),
-                        References\Nationality::RUSSIAN_FEDERATION(),
-                        References\RegistrationSpd::BUSINESS(),
-                        References\SocialStatus::STUDENT(),
+                        Dictionaries\FamilyStatus::SINGLE(),
+                        Dictionaries\Education::SECONDARY(),
+                        Dictionaries\Nationality::RUSSIAN_FEDERATION(),
+                        Dictionaries\RegistrationSpd::BUSINESS(),
+                        Dictionaries\SocialStatus::STUDENT(),
                         static::CHILDREN_COUNT
                     ),
-                    new Blocks\Entities\LegalIdentifier(
+                    new Elements\LegalPerson(
                         Carbon::parse(static::CREATED_AT),
-                        References\Language::RUS(),
+                        Dictionaries\Language::RUS(),
                         static::NAME,
                         static::ERGPOU,
                         static::FORM,
@@ -180,11 +182,11 @@ class ConverterTest extends TestCase
                         Carbon::parse(static::TAX_REGISTRATION_DATE)
                     ),
                 ]),
-                new Blocks\Collections\Documents([
-                    new Blocks\Entities\Document(
+                new Collections\Documents([
+                    new Elements\Document(
                         Carbon::parse(static::CREATED_AT),
-                        References\Language::RUS(),
-                        References\DocumentType::DIPLOMA(),
+                        Dictionaries\Language::RUS(),
+                        Dictionaries\DocumentType::DIPLOMA(),
                         static::SERIAL,
                         static::NUMBER,
                         static::ISSUE,
@@ -192,11 +194,11 @@ class ConverterTest extends TestCase
                         Carbon::parse(static::TERMIN)
                     ),
                 ]),
-                new Blocks\Collections\Addresses([
-                    new Blocks\Entities\Address(
+                new Collections\Addresses([
+                    new Elements\Address(
                         Carbon::parse(static::CREATED_AT),
-                        References\Language::RUS(),
-                        References\AddressType::REGISTRATION(),
+                        Dictionaries\Language::RUS(),
+                        Dictionaries\AddressType::REGISTRATION(),
                         static::COUNTRY,
                         static::CITY,
                         static::STREET,
@@ -204,35 +206,35 @@ class ConverterTest extends TestCase
                         static::INDEX,
                         static::STATE,
                         static::AREA,
-                        References\CityType::SETTLEMENT(),
+                        Dictionaries\CityType::SETTLEMENT(),
                         static::CORPUS,
                         static::FLAT,
                         static::FULL_ADDRESS
                     ),
                 ]),
                 static::INN,
-                new Blocks\Collections\Works([
-                    new Blocks\Entities\Work(
+                new Collections\Works([
+                    new Elements\Work(
                         Carbon::parse(static::CREATED_AT),
-                        References\Language::RUS(),
+                        Dictionaries\Language::RUS(),
                         static::ERGPOU,
                         static::NAME,
-                        References\IdentifierRank::DIRECTOR(),
+                        Dictionaries\IdentifierRank::DIRECTOR(),
                         static::EXPERIENCE,
                         static::INCOME
                     ),
                 ]),
-                new Blocks\Collections\Photos([
-                    new Blocks\Entities\Photo(
+                new Collections\Photos([
+                    new ELements\Photo(
                         Carbon::parse(static::CREATED_AT),
                         static::PHOTO,
                         static::INN
                     ),
                 ]),
-                new Blocks\Collections\LinkedPersons([
-                    new Blocks\Entities\LinkedPerson(
+                new Collections\LinkedPersons([
+                    new Elements\LinkedPerson(
                         static::NAME,
-                        References\LinkedIdentifierRole::DIRECTOR(),
+                        Dictionaries\LinkedIdentifierRole::DIRECTOR(),
                         Carbon::parse(static::ISSUE_DATE),
                         static::ERGPOU
                     ),
@@ -240,36 +242,36 @@ class ConverterTest extends TestCase
             )
         );
         $this->fakeCreditsBlock = new Blocks\CreditsInformation(
-            new Blocks\Collections\CreditDeals([
-                new Blocks\Entities\CreditDeal(
+            new Collections\CreditDeals([
+                new ELements\CreditDeal(
                     static::ID,
-                    References\Language::RUS(),
+                    Dictionaries\Language::RUS(),
                     static::NAME,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE),
-                    References\CreditDealType::COMMERCIAL_CREDIT(),
-                    References\CollateralType::R_1(),
-                    References\RepaymentProcedure::PERIODIC_MONTH(),
-                    References\Currency::UAH(),
+                    Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+                    Dictionaries\CollateralType::R_1(),
+                    Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
+                    Dictionaries\Currency::UAH(),
                     static::INITIAL_AMOUNT,
-                    References\SubjectRole::BORROWER(),
+                    Dictionaries\SubjectRole::BORROWER(),
                     static::COLLATERAL_COST,
-                    new Blocks\Collections\DealLifes([
-                        new Blocks\Entities\DealLife(
+                    new Collections\DealLifes([
+                        new Elements\DealLife(
                             static::ID,
                             static::PERIOD_MONTH,
                             static::PERIOD_YEAR,
                             Carbon::parse(static::ISSUE_DATE),
                             Carbon::parse(static::END_DATE),
-                            References\DealStatus::CLOSE(),
+                            Dictionaries\DealStatus::CLOSE(),
                             static::LIMIT,
                             static::MANDATORY_PAYMENT,
                             static::CURRENT_DEBT,
                             static::CURRENT_OVERDUE_DEBT,
                             static::OVERDUE_TIME,
-                            References\Flag::YES(),
-                            References\Flag::YES(),
-                            References\Flag::NO(),
+                            Dictionaries\Flag::YES(),
+                            Dictionaries\Flag::YES(),
+                            Dictionaries\Flag::NO(),
                             Carbon::parse(static::PAYMENT_DATE),
                             Carbon::parse(static::ACTUAL_END_DATE)
                         )
@@ -281,36 +283,35 @@ class ConverterTest extends TestCase
             ])
         );
         $this->fakeCourtsDecisionBlock = new Blocks\CourtDecisionsInformation(
-            new Blocks\Collections\CourtDecisions([
-                new Blocks\Entities\CourtDecision(
+            new Collections\CourtDecisions([
+                new Elements\CourtDecision(
                     static::ID,
                     static::INN,
                     Carbon::parse(static::DATE),
-                    static::SUBJECT_STATUS,
-                    static::COURT_DEAL_TYPE,
+                    Dictionaries\CourtSubjectStatus::PLAINTIFF(),
+                    Dictionaries\CourtDealType::ECONOMIC(),
                     static::COURT_NAME,
                     static::DOCUMENT_TYPE,
-                    static::DOCUMENT_TYPE_REFERENCE,
+                    null,
                     static::LEGAL_FACT,
-                    static::LEGAL_FACT_REFERENCE,
+                    null,
                     Carbon::parse(static::CREATED_AT),
-                    static::AREA,
-                    static::AREA_REFERENCE
+                    static::AREA
                 )
             ])
         );
         $this->fakeCreditRegistersBlock = new Blocks\CreditsRegistersInformation(
-            new Blocks\Collections\CreditRegisters([
-                new Blocks\Entities\CreditRegister(
+            new Collections\CreditRegisters([
+                new Elements\CreditRequest(
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
-                    References\Decision::POSITIVE(),
-                    static::REASON,
+                    Dictionaries\Decision::POSITIVE(),
+                    Dictionaries\RequestReason::EXPORT(),
                     static::ORGANIZATION
                 )
             ]),
-            new Blocks\Entities\RegistryTimes(
+            new Elements\RegistryTimes(
                 static::BY_HOUR,
                 static::BY_DAY,
                 static::BY_WEEK,
@@ -321,19 +322,19 @@ class ConverterTest extends TestCase
             )
         );
         $this->fakeInsurancesReports = new Blocks\InsurancesInformation(
-            new Blocks\Collections\Insurance\Deals([
-                new Blocks\Entities\Insurance\Deal(
+            new Collections\InsuranceDeals([
+                new Elements\InsuranceDeal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
                     Carbon::parse(static::START_DATE),
                     Carbon::parse(static::END_DATE),
-                    static::TYPE,
-                    static::STATUS,
-                    new Blocks\Collections\Insurance\Events([
-                        new Blocks\Entities\Insurance\Event(
+                    Dictionaries\InsuranceDealType::ACCIDENT(),
+                    Dictionaries\DealStatus::CLOSE(),
+                    new Collections\InsuranceEvents([
+                        new Elements\InsuranceEvent(
                             Carbon::parse(static::REQUEST_DATE),
-                            static::DECISION,
+                            Dictionaries\InsuranceDecisionStatus::POSITIVE(),
                             Carbon::parse(static::DECISION_DATE)
                         )
                     ]),
@@ -342,17 +343,17 @@ class ConverterTest extends TestCase
             ])
         );
         $this->fakeContactsInformation = new Blocks\ContactsInformation(
-            new Blocks\Collections\Contacts([
-                new Blocks\Entities\Contact(
+            new Collections\Contacts([
+                new Elements\Contact(
                     Carbon::parse(static::CREATED_AT),
                     static::VALUE,
-                    References\ContactType::EMAIL(),
+                    Dictionaries\ContactType::EMAIL(),
                     static::INN
                 ),
-                new Blocks\Entities\Contact(
+                new Elements\Contact(
                     Carbon::parse(static::CREATED_AT),
                     static::VALUE,
-                    References\ContactType::MOBILE(),
+                    Dictionaries\ContactType::MOBILE(),
                     static::INN
                 )
             ])
@@ -364,40 +365,40 @@ class ConverterTest extends TestCase
         $document = new Export\DataDocument(
             $this->fakeTech,
             new Blocks\Identification(
-                new Blocks\Entities\Credential(
-                    new References\Language(References\Language::RUS),
+                new Elements\Credential(
+                    Dictionaries\Language::RUS(),
                     'Иван',
                     'Иванович',
                     'Иванов',
                     Carbon::parse('1998-03-12'),
-                    new Blocks\Collections\Identifiers([
-                        new Blocks\Entities\NaturalIdentifier(
+                    new Collections\IdentifiedPersons([
+                        new Elements\NaturalPerson(
                             Carbon::parse('2018-06-13'),
-                            new References\Language(References\Language::RUS),
+                            Dictionaries\Language::RUS(),
                             'Иван',
                             'Иванов',
                             Carbon::parse('1998-03-12'),
-                            new References\Gender(References\Gender::MAN),
+                            Dictionaries\Gender::MAN(),
                             '1234567890',
                             'Иванович'
                         )
                     ]),
-                    new Blocks\Collections\Documents([
-                        new Blocks\Entities\Document(
+                    new Collections\Documents([
+                        new Elements\Document(
                             Carbon::parse('2018-06-13'),
-                            new References\Language(References\Language::RUS),
-                            new References\DocumentType(References\DocumentType::PASSPORT),
+                            Dictionaries\Language::RUS(),
+                            Dictionaries\DocumentType::PASSPORT(),
                             'АА',
                             '123456',
                             'Харьковский ...',
                             Carbon::parse('2014-03-12')
                         )
                     ]),
-                    new Blocks\Collections\Addresses([
-                        new Blocks\Entities\Address(
+                    new Collections\Addresses([
+                        new Elements\Address(
                             Carbon::parse('2018-06-13'),
-                            new References\Language(References\Language::RUS),
-                            new References\AddressType(References\AddressType::HOME),
+                            Dictionaries\Language::RUS(),
+                            Dictionaries\AddressType::HOME(),
                             'Україна',
                             'Харьков',
                             'Научная',
@@ -413,55 +414,56 @@ class ConverterTest extends TestCase
                     '1234567890'
                 )
             ),
-            new Blocks\CreditsInformation(new Blocks\Collections\CreditDeals([
-                new Blocks\Entities\CreditDeal(
-                    '123456',
-                    new References\Language(References\Language::RUS),
-                    'Иван',
-                    'Иванов',
-                    Carbon::parse('1998-03-12'),
-                    new References\CreditDealType(References\CreditDealType::OTHER_CONSUMER_PURPOSES),
-                    new References\CollateralType(References\CollateralType::R_2),
-                    new References\RepaymentProcedure(References\RepaymentProcedure::PAYMENTS_INDIVIDUAL),
-                    new References\Currency(References\Currency::UAH),
-                    2500,
-                    new References\SubjectRole(References\SubjectRole::BORROWER),
-                    2500,
-                    new Blocks\Collections\DealLifes([
-                        new Blocks\Entities\DealLife(
-                            '123456',
-                            1,
-                            2018,
-                            Carbon::parse('2018-03-12'),
-                            Carbon::parse('2018-03-20'),
-                            new References\DealStatus(References\DealStatus::CLOSE),
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            References\Flag::NO(),
-                            References\Flag::NO(),
-                            References\Flag::NO(),
-                            Carbon::parse('2018-03-13'),
-                            Carbon::parse('2018-03-13')
-                        )
-                    ]),
-                    '1234567890',
-                    'Иванович'
-                )
-            ])),
-            null,
-            null,
-            null,
-            new Blocks\ContactsInformation(new Blocks\Collections\Contacts([
-                new Blocks\Entities\Contact(
-                    Carbon::parse('2017-05-11'),
-                    '380930439474',
-                    References\ContactType::MOBILE(),
-                    '1234567890'
-                ),
-            ]))
+            new Blocks\CreditsInformation(
+                new Collections\CreditDeals([
+                    new Elements\CreditDeal(
+                        '123456',
+                        Dictionaries\Language::RUS(),
+                        'Иван',
+                        'Иванов',
+                        Carbon::parse('1998-03-12'),
+                        Dictionaries\CreditDealType::OTHER_CONSUMER_PURPOSES(),
+                        Dictionaries\CollateralType::R_2(),
+                        Dictionaries\RepaymentProcedure::PAYMENTS_INDIVIDUAL(),
+                        Dictionaries\Currency::UAH(),
+                        2500,
+                        Dictionaries\SubjectRole::BORROWER(),
+                        2500,
+                        new Collections\DealLifes([
+                            new Elements\DealLife(
+                                '123456',
+                                1,
+                                2018,
+                                Carbon::parse('2018-03-12'),
+                                Carbon::parse('2018-03-20'),
+                                Dictionaries\DealStatus::CLOSE(),
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                Dictionaries\Flag::NO(),
+                                Dictionaries\Flag::NO(),
+                                Dictionaries\Flag::NO(),
+                                Carbon::parse('2018-03-13'),
+                                Carbon::parse('2018-03-13')
+                            )
+                        ]),
+                        '1234567890',
+                        'Иванович'
+                    )
+                ])
+            ),
+            new Blocks\ContactsInformation(
+                new Collections\Contacts([
+                    new Elements\Contact(
+                        Carbon::parse('2017-05-11'),
+                        '380930439474',
+                        Dictionaries\ContactType::MOBILE(),
+                        '1234567890'
+                    ),
+                ])
+            )
         );
 
         $this->assertXmlStringEqualsXmlString(
@@ -514,9 +516,6 @@ class ConverterTest extends TestCase
             $this->fakeTech,
             $this->fakeIdentificationBlock,
             $this->fakeCreditsBlock,
-            null,
-            null,
-            null,
             $this->fakeContactsInformation
         );
 
@@ -574,118 +573,15 @@ class ConverterTest extends TestCase
         );
     }
 
-    public function testCreditsBlock(): void
-    {
-        $document = new Export\DataDocument(
-            $this->fakeTech,
-            $this->fakeIdentificationBlock,
-            $this->fakeCreditsBlock
-        );
-
-        $this->assertXmlStringEqualsXmlString(
-            '<?xml version="1.0" encoding="utf-8"?>
-<doc>
-    <ubki sessid="testSessionId">
-        <req_envelope>
-            <req_xml>
-                <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
-                    <ubkidata>
-                    <comp id="1">
-                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname"
-                         bdate="1998-03-12">
-                            <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
-                                   bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
-                                   csex="1" cgrag="643" spd="2" sstate="5"/>
-                            <urident lng="1" vdate="2018-03-12" urname="testName" urdatregnal="2016-03-12"
-                                     urdatreg="2017-03-12" ureconom="testBranch" urvide="testActivityType"
-                                     okpo="testErgpou" urfrms="1"/>
-                            <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
-                            <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
-                                  lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber" 
-                            dser="testSerial"
-                                 dwdt="2018-03-14" dterm="2020-01-01"/>
-                            <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
-                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
-                                  addrdirt="testFullAddress" adhome="testHouse" adindex="testIndex" adstate="testState"
-                                  adstreet="testStreet"/>
-                            <foto vdate="2018-03-12" inn="testInn" foto="testPhoto"/>
-                        </cki>
-                    </comp>
-                    <comp id="2">
-                        <crdeal dlcelcred="9" lng="1" dlref="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
-                                dlcurr="980" fname="testName" dlamt="5000" inn="testInn" lname="testSurname"
-                                mname="testPatronymic" dlporpog="9" dldonor="testSource" dlrolesub="1">
-                            <deallife dlref="testId" dlds="2018-03-14" dldff="2019-02-01" dlfluse="0" dlamtcur="2400.45"
-                                      dlamtexp="2200" dlflbrk="1" dldpf="2019-03-12" dlamtlim="10000" dlamtpaym="2000"
-                                      dldayexp="20" dldateclc="2018-03-12" dlflpay="1" dlmonth="4" dlyear="2012"
-                                      dlflstat="2"/>
-                        </crdeal>
-                    </comp>
-                    </ubkidata>
-                </request>
-            </req_xml>
-        </req_envelope>
-    </ubki>
-</doc>',
-            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
-        );
-    }
-
-    public function testIdentificationBlock(): void
-    {
-        $document = new Export\DataDocument($this->fakeTech, $this->fakeIdentificationBlock);
-
-        $this->assertXmlStringEqualsXmlString(
-            '<?xml version="1.0" encoding="utf-8"?>
-<doc>
-    <ubki sessid="testSessionId">
-        <req_envelope>
-            <req_xml>
-                <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
-                    <ubkidata>
-                    <comp id="1">
-                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname"
-                         bdate="1998-03-12">
-                            <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
-                                   bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
-                                   csex="1" cgrag="643" spd="2" sstate="5"/>
-                            <urident lng="1" vdate="2018-03-12" urname="testName" urdatregnal="2016-03-12"
-                                     urdatreg="2017-03-12" ureconom="testBranch" urvide="testActivityType"
-                                     okpo="testErgpou" urfrms="1"/>
-                            <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
-                            <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
-                                  lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber"
-                             dser="testSerial"
-                                 dwdt="2018-03-14" dterm="2020-01-01"/>
-                            <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
-                                  adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
-                                  addrdirt="testFullAddress" adhome="testHouse" adindex="testIndex" adstate="testState"
-                                  adstreet="testStreet"/>
-                            <foto vdate="2018-03-12" inn="testInn" foto="testPhoto"/>
-                        </cki>
-                    </comp>
-                    </ubkidata>
-                </request>
-            </req_xml>
-        </req_envelope>
-    </ubki>
-</doc>',
-            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
-        );
-    }
-
     public function testFullDataDocument(): void
     {
         $document = new Export\DataDocument(
             $this->fakeTech,
             $this->fakeIdentificationBlock,
             $this->fakeCreditsBlock,
+            $this->fakeContactsInformation,
             $this->fakeCourtsDecisionBlock,
-            $this->fakeCreditRegistersBlock,
-            $this->fakeInsurancesReports,
-            $this->fakeContactsInformation
+            $this->fakeCreditRegistersBlock
         );
 
         $this->assertXmlStringEqualsXmlString(
@@ -729,18 +625,15 @@ class ConverterTest extends TestCase
                         </crdeal>
                     </comp>
                     <comp id="3">
-                        <susd voteid="testId" inn="testInn" votesudregion="testArea" vdate="2018-03-12" votesudname="2"
-                              votetype="2" votedate="2018-03-12" votedoctype="testDocumentType"
+                        <susd voteid="testId" inn="testInn" votesudregion="testArea" vdate="2018-03-12" 
+                              votesudname="testCourtName"
+                              votetype="5" votedate="2018-03-12" votedoctype="testDocumentType"
                               voteurfact="testLegalFact" voteusrst="1"/>
                     </comp>
                     <comp id="4">
                         <credres redate="2018-03-12" inn="testInn" reqid="testId" result="1" org="testOrganization"
-                                 reqreason="1"/>
+                                 reqreason="0"/>
                         <reestrtime hr="1" da="2" wk="3" mn="4" qw="5" ye="10" yu="200"/>
-                    </comp>
-                    <comp id="9">
-                        <insur dlref="testId" inn="testInn" dlstate="2" dldpf="2019-03-12" dldff="2019-02-01" dltype="1"
-                               dldate="2018-03-12" dlds="2017-03-12"/>
                     </comp>
                     <comp id="10">
                         <cont ctype="4" cval="testvalue" inn="testinn" vdate="2018-03-12"/>

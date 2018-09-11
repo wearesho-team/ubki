@@ -54,6 +54,14 @@ class ErrorTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals(
+            Error::TAG,
+            $this->fakeError->tag()
+        );
+    }
+
     public function testGetMessage(): void
     {
         $this->assertEquals(

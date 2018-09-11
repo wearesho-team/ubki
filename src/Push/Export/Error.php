@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 
 /**
  * Class Error
@@ -11,8 +10,6 @@ use Wearesho\Bobra\Ubki\ElementTrait;
  */
 class Error implements ElementInterface
 {
-    use ElementTrait;
-
     public const TAG = 'item';
     public const BLOCK_ID = 'compid';
     public const ERRORED_TAG = 'tag';
@@ -72,6 +69,11 @@ class Error implements ElementInterface
             'passedStrings' => $this->passedStringsCount,
             'errorString' => $this->errorStringsCount
         ];
+    }
+
+    public function tag(): string
+    {
+        return static::TAG;
     }
 
     public function getBlockId(): int

@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Blocks;
-use Wearesho\Bobra\Ubki\ElementTrait;
+use Wearesho\Bobra\Ubki\Data\Blocks;
 
 /**
  * Trait DataDocumentTrait
@@ -11,14 +10,12 @@ use Wearesho\Bobra\Ubki\ElementTrait;
  */
 trait DataDocumentTrait
 {
-    use ElementTrait;
-
     protected $tech;
 
     /** @var Blocks\Identification */
     protected $identification;
 
-    /** @var Blocks\CreditsInformation|null */
+    /** @var Blocks\CreditsInformation */
     protected $creditDeals;
 
     /** @var Blocks\CourtDecisionsInformation|null */
@@ -27,13 +24,8 @@ trait DataDocumentTrait
     /** @var Blocks\CreditsRegistersInformation|null */
     protected $creditRequests;
 
-    /** @var Blocks\InsurancesInformation|null */
-    protected $insuranceReports;
-
-    /** @var Blocks\ContactsInformation|null */
+    /** @var Blocks\ContactsInformation */
     protected $contacts;
-
-    protected $communalPayments;
 
     public function jsonSerialize(): array
     {
@@ -42,9 +34,13 @@ trait DataDocumentTrait
             'creditsInformation' => $this->creditDeals->jsonSerialize(),
             'courtDecisionsInformation' => $this->courtDecisions->jsonSerialize(),
             'creditRequestsInformation' => $this->creditRequests->jsonSerialize(),
-            'insuranceReportsInformation' => $this->insuranceReports->jsonSerialize(),
             'contactsInformation' => $this->contacts->jsonSerialize(),
         ];
+    }
+
+    public function tag(): string
+    {
+        return DataDocumentInterface::TAG;
     }
 
     public function getTech()
@@ -57,7 +53,7 @@ trait DataDocumentTrait
         return $this->identification;
     }
 
-    public function getCreditDeals(): ?Blocks\CreditsInformation
+    public function getCreditDeals(): Blocks\CreditsInformation
     {
         return $this->creditDeals;
     }
@@ -72,18 +68,8 @@ trait DataDocumentTrait
         return $this->creditRequests;
     }
 
-    public function getInsuranceReports(): ?Blocks\InsurancesInformation
-    {
-        return $this->insuranceReports;
-    }
-
-    public function getContacts(): ?Blocks\ContactsInformation
+    public function getContacts(): Blocks\ContactsInformation
     {
         return $this->contacts;
-    }
-
-    public function getCommunalPayments()
-    {
-        return $this->communalPayments;
     }
 }

@@ -53,28 +53,6 @@ class ParserTest extends TestCase
         $response = $this->fakeParser->parseResponse($response);
 
         $this->assertEquals(
-            new Entities\Trace(
-                new Steps([
-                    new Entities\Step(
-                        'INPROC',
-                        '1530780931.0051',
-                        '1530780931.1068'
-                    ),
-                    new Entities\Step(
-                        'VALID',
-                        '1530780931.1068',
-                        '1530780931.116'
-                    ),
-                    new Entities\Step(
-                        'INSERT',
-                        '1530780931.3003',
-                        '1530780931.3004'
-                    )
-                ])
-            ),
-            $response->getTrace()
-        );
-        $this->assertEquals(
             'IN#1231231233',
             $response->getUbkiId()
         );

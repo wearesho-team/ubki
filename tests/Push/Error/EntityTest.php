@@ -2,7 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Push\Error;
 
-use Wearesho\Bobra\Ubki\Blocks\Identification;
+use Wearesho\Bobra\Ubki\Data\Blocks\Identification;
+use Wearesho\Bobra\Ubki\Data\Credential;
 use Wearesho\Bobra\Ubki\Push;
 use Wearesho\Bobra\Ubki\Tests;
 

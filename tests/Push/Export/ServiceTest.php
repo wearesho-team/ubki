@@ -13,8 +13,10 @@ use GuzzleHttp;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki\Authorization;
-use Wearesho\Bobra\Ubki\Blocks;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki\Data\Blocks;
+use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki\Data\Elements;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Push;
 
 /**
@@ -147,42 +149,42 @@ class ServiceTest extends TestCase
         $this->logger = new TestLogger();
         $this->config = new Push\EnvironmentConfig();
         $this->exportRequest = new Push\Export\Request(
-            new Blocks\Entities\RequestData(
-                References\RequestType::EXPORT(),
-                References\RequestReason::EXPORT(),
+            new Elements\RequestData(
+                Dictionaries\RequestType::EXPORT(),
+                Dictionaries\RequestReason::EXPORT(),
                 Carbon::parse(static::DATE),
                 static::ID,
-                References\RequestInitiator::PARTNER()
+                Dictionaries\RequestInitiator::PARTNER()
             ),
             new Push\Export\DataDocument(
                 'tech',
                 new Blocks\Identification(
-                    new Blocks\Entities\Credential(
-                        References\Language::RUS(),
+                    new Elements\Credential(
+                        Dictionaries\Language::RUS(),
                         static::NAME,
                         static::PATRONYMIC,
                         static::SURNAME,
                         Carbon::parse(static::BIRTH_DATE),
-                        new Blocks\Collections\Identifiers([
-                            new Blocks\Entities\NaturalIdentifier(
+                        new Collections\IdentifiedPersons([
+                            new Elements\NaturalPerson(
                                 Carbon::parse(static::CREATED_AT),
-                                References\Language::KAZ(),
+                                Dictionaries\Language::KAZ(),
                                 static::NAME,
                                 static::SURNAME,
                                 Carbon::parse(static::BIRTH_DATE),
-                                References\Gender::MAN(),
+                                Dictionaries\Gender::MAN(),
                                 static::INN,
                                 static::PATRONYMIC,
-                                References\FamilyStatus::SINGLE(),
-                                References\Education::SECONDARY(),
-                                References\Nationality::RUSSIAN_FEDERATION(),
-                                References\RegistrationSpd::BUSINESS(),
-                                References\SocialStatus::STUDENT(),
+                                Dictionaries\FamilyStatus::SINGLE(),
+                                Dictionaries\Education::SECONDARY(),
+                                Dictionaries\Nationality::RUSSIAN_FEDERATION(),
+                                Dictionaries\RegistrationSpd::BUSINESS(),
+                                Dictionaries\SocialStatus::STUDENT(),
                                 static::CHILDREN_COUNT
                             ),
-                            new Blocks\Entities\LegalIdentifier(
+                            new Elements\LegalPerson(
                                 Carbon::parse(static::CREATED_AT),
-                                References\Language::RUS(),
+                                Dictionaries\Language::RUS(),
                                 static::NAME,
                                 static::ERGPOU,
                                 static::FORM,
@@ -192,11 +194,11 @@ class ServiceTest extends TestCase
                                 Carbon::parse(static::TAX_REGISTRATION_DATE)
                             ),
                         ]),
-                        new Blocks\Collections\Documents([
-                            new Blocks\Entities\Document(
+                        new Collections\Documents([
+                            new Elements\Document(
                                 Carbon::parse(static::CREATED_AT),
-                                References\Language::RUS(),
-                                References\DocumentType::DIPLOMA(),
+                                Dictionaries\Language::RUS(),
+                                Dictionaries\DocumentType::DIPLOMA(),
                                 static::SERIAL,
                                 static::NUMBER,
                                 static::ISSUE,
@@ -204,11 +206,11 @@ class ServiceTest extends TestCase
                                 Carbon::parse(static::TERMIN)
                             ),
                         ]),
-                        new Blocks\Collections\Addresses([
-                            new Blocks\Entities\Address(
+                        new Collections\Addresses([
+                            new Elements\Address(
                                 Carbon::parse(static::CREATED_AT),
-                                References\Language::RUS(),
-                                References\AddressType::REGISTRATION(),
+                                Dictionaries\Language::RUS(),
+                                Dictionaries\AddressType::REGISTRATION(),
                                 static::COUNTRY,
                                 static::CITY,
                                 static::STREET,
@@ -216,35 +218,35 @@ class ServiceTest extends TestCase
                                 static::INDEX,
                                 static::STATE,
                                 static::AREA,
-                                References\CityType::SETTLEMENT(),
+                                Dictionaries\CityType::SETTLEMENT(),
                                 static::CORPUS,
                                 static::FLAT,
                                 static::FULL_ADDRESS
                             ),
                         ]),
                         static::INN,
-                        new Blocks\Collections\Works([
-                            new Blocks\Entities\Work(
+                        new Collections\Works([
+                            new Elements\Work(
                                 Carbon::parse(static::CREATED_AT),
-                                References\Language::RUS(),
+                                Dictionaries\Language::RUS(),
                                 static::ERGPOU,
                                 static::NAME,
-                                References\IdentifierRank::DIRECTOR(),
+                                Dictionaries\IdentifierRank::DIRECTOR(),
                                 static::EXPERIENCE,
                                 static::INCOME
                             ),
                         ]),
-                        new Blocks\Collections\Photos([
-                            new Blocks\Entities\Photo(
+                        new Collections\Photos([
+                            new Elements\Photo(
                                 Carbon::parse(static::CREATED_AT),
                                 static::PHOTO,
                                 static::INN
                             ),
                         ]),
-                        new Blocks\Collections\LinkedPersons([
-                            new Blocks\Entities\LinkedPerson(
+                        new Collections\LinkedPersons([
+                            new Elements\LinkedPerson(
                                 static::NAME,
-                                References\LinkedIdentifierRole::DIRECTOR(),
+                                Dictionaries\LinkedIdentifierRole::DIRECTOR(),
                                 Carbon::parse(static::ISSUE_DATE),
                                 static::ERGPOU
                             ),
@@ -252,36 +254,36 @@ class ServiceTest extends TestCase
                     )
                 ),
                 new Blocks\CreditsInformation(
-                    new Blocks\Collections\CreditDeals([
-                        new Blocks\Entities\CreditDeal(
+                    new Collections\CreditDeals([
+                        new Elements\CreditDeal(
                             static::ID,
-                            References\Language::RUS(),
+                            Dictionaries\Language::RUS(),
                             static::NAME,
                             static::SURNAME,
                             Carbon::parse(static::BIRTH_DATE),
-                            References\CreditDealType::COMMERCIAL_CREDIT(),
-                            References\CollateralType::R_1(),
-                            References\RepaymentProcedure::PERIODIC_MONTH(),
-                            References\Currency::UAH(),
+                            Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+                            Dictionaries\CollateralType::R_1(),
+                            Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
+                            Dictionaries\Currency::UAH(),
                             static::INITIAL_AMOUNT,
-                            References\SubjectRole::BORROWER(),
+                            Dictionaries\SubjectRole::BORROWER(),
                             static::COLLATERAL_COST,
-                            new Blocks\Collections\DealLifes([
-                                new Blocks\Entities\DealLife(
+                            new Collections\DealLifes([
+                                new Elements\DealLife(
                                     static::ID,
                                     static::PERIOD_MONTH,
                                     static::PERIOD_YEAR,
                                     Carbon::parse(static::ISSUE_DATE),
                                     Carbon::parse(static::END_DATE),
-                                    References\DealStatus::CLOSE(),
+                                    Dictionaries\DealStatus::CLOSE(),
                                     static::LIMIT,
                                     static::MANDATORY_PAYMENT,
                                     static::CURRENT_DEBT,
                                     static::CURRENT_OVERDUE_DEBT,
                                     static::OVERDUE_TIME,
-                                    References\Flag::YES(),
-                                    References\Flag::YES(),
-                                    References\Flag::NO(),
+                                    Dictionaries\Flag::YES(),
+                                    Dictionaries\Flag::YES(),
+                                    Dictionaries\Flag::NO(),
                                     Carbon::parse(static::PAYMENT_DATE),
                                     Carbon::parse(static::ACTUAL_END_DATE)
                                 )
@@ -292,37 +294,53 @@ class ServiceTest extends TestCase
                         )
                     ])
                 ),
+                new Blocks\ContactsInformation(
+                    new Collections\Contacts([
+                        new Elements\Contact(
+                            Carbon::parse(static::CREATED_AT),
+                            static::VALUE,
+                            Dictionaries\ContactType::EMAIL(),
+                            static::INN
+                        ),
+                        new Elements\Contact(
+                            Carbon::parse(static::CREATED_AT),
+                            static::VALUE,
+                            Dictionaries\ContactType::MOBILE(),
+                            static::INN
+                        )
+                    ])
+                ),
                 new Blocks\CourtDecisionsInformation(
-                    new Blocks\Collections\CourtDecisions([
-                        new Blocks\Entities\CourtDecision(
+                    new Collections\CourtDecisions([
+                        new Elements\CourtDecision(
                             static::ID,
                             static::INN,
                             Carbon::parse(static::DATE),
-                            static::SUBJECT_STATUS,
-                            static::COURT_DEAL_TYPE,
+                            Dictionaries\CourtSubjectStatus::PLAINTIFF(),
+                            Dictionaries\CourtDealType::ECONOMIC(),
                             static::COURT_NAME,
                             static::DOCUMENT_TYPE,
-                            static::DOCUMENT_TYPE_REFERENCE,
+                            null,
                             static::LEGAL_FACT,
-                            static::LEGAL_FACT_REFERENCE,
+                            null,
                             Carbon::parse(static::CREATED_AT),
                             static::AREA,
-                            static::AREA_REFERENCE
+                            null
                         )
                     ])
                 ),
                 new Blocks\CreditsRegistersInformation(
-                    new Blocks\Collections\CreditRegisters([
-                        new Blocks\Entities\CreditRegister(
+                    new Collections\CreditRegisters([
+                        new Elements\CreditRequest(
                             Carbon::parse(static::DATE),
                             static::INN,
                             static::ID,
-                            References\Decision::POSITIVE(),
-                            static::REASON,
+                            Dictionaries\Decision::POSITIVE(),
+                            Dictionaries\RequestReason::EXPORT(),
                             static::ORGANIZATION
                         )
                     ]),
-                    new Blocks\Entities\RegistryTimes(
+                    new Elements\RegistryTimes(
                         static::BY_HOUR,
                         static::BY_DAY,
                         static::BY_WEEK,
@@ -331,43 +349,6 @@ class ServiceTest extends TestCase
                         static::BY_YEAR,
                         static::BY_MORE_YEAR
                     )
-                ),
-                new Blocks\InsurancesInformation(
-                    new Blocks\Collections\Insurance\Deals([
-                        new Blocks\Entities\Insurance\Deal(
-                            static::INN,
-                            static::ID,
-                            Carbon::parse(static::INFORMATION_DATE),
-                            Carbon::parse(static::START_DATE),
-                            Carbon::parse(static::END_DATE),
-                            static::TYPE,
-                            static::STATUS,
-                            new Blocks\Collections\Insurance\Events([
-                                new Blocks\Entities\Insurance\Event(
-                                    Carbon::parse(static::REQUEST_DATE),
-                                    static::DECISION,
-                                    Carbon::parse(static::DECISION_DATE)
-                                )
-                            ]),
-                            Carbon::parse(static::ACTUAL_END_DATE)
-                        )
-                    ])
-                ),
-                new Blocks\ContactsInformation(
-                    new Blocks\Collections\Contacts([
-                        new Blocks\Entities\Contact(
-                            Carbon::parse(static::CREATED_AT),
-                            static::VALUE,
-                            References\ContactType::EMAIL(),
-                            static::INN
-                        ),
-                        new Blocks\Entities\Contact(
-                            Carbon::parse(static::CREATED_AT),
-                            static::VALUE,
-                            References\ContactType::MOBILE(),
-                            static::INN
-                        )
-                    ])
                 )
             )
         );
@@ -411,18 +392,15 @@ class ServiceTest extends TestCase
                         </crdeal>
                     </comp>
                     <comp id="3">
-                        <susd voteid="testId" inn="testInn" votesudregion="testArea" vdate="2018-03-12" votesudname="2"
-                              votetype="2" votedate="2018-03-12" votedoctype="testDocumentType"
+                        <susd voteid="testId" inn="testInn" votesudregion="testArea" vdate="2018-03-12" 
+                              votesudname="testCourtName"
+                              votetype="5" votedate="2018-03-12" votedoctype="testDocumentType"
                               voteurfact="testLegalFact" voteusrst="1"/>
                     </comp>
                     <comp id="4">
                         <credres redate="2018-03-12" inn="testInn" reqid="testId" result="1" org="testOrganization"
-                                 reqreason="1"/>
+                                 reqreason="0"/>
                         <reestrtime hr="1" da="2" wk="3" mn="4" qw="5" ye="10" yu="200"/>
-                    </comp>
-                    <comp id="9">
-                        <insur dlref="testId" inn="testInn" dlstate="2" dldpf="2019-03-12" dldff="2019-02-01" dltype="1"
-                               dldate="2018-03-12" dlds="2017-03-12"/>
                     </comp>
                     <comp id="10">
                         <cont ctype="4" cval="testvalue" inn="testinn" vdate="2018-03-12"/>
@@ -500,25 +478,6 @@ class ServiceTest extends TestCase
         $parser = new Push\Export\Parser();
         $this->assertEquals(
             new Push\Export\Response(
-                new Blocks\Entities\Trace(
-                    new Blocks\Collections\Steps([
-                        new Blocks\Entities\Step(
-                            'INPROC',
-                            '1530780931.0051',
-                            '1530780931.1068'
-                        ),
-                        new Blocks\Entities\Step(
-                            'VALID',
-                            '1530780931.1068',
-                            '1530780931.116'
-                        ),
-                        new Blocks\Entities\Step(
-                            'INSERT',
-                            '1530780931.3003',
-                            '1530780931.3004'
-                        )
-                    ])
-                ),
                 'IN#1231231233',
                 'ok',
                 '',
@@ -602,25 +561,6 @@ class ServiceTest extends TestCase
         );
         $parser = new Push\Export\Parser();
         $this->assertEquals(new Push\Export\Response(
-            new Blocks\Entities\Trace(
-                new Blocks\Collections\Steps([
-                    new Blocks\Entities\Step(
-                        'INPROC',
-                        '1530780931.0051',
-                        '1530780931.1068'
-                    ),
-                    new Blocks\Entities\Step(
-                        'VALID',
-                        '1530780931.1068',
-                        '1530780931.116'
-                    ),
-                    new Blocks\Entities\Step(
-                        'INSERT',
-                        '1530780931.3003',
-                        '1530780931.3004'
-                    )
-                ])
-            ),
             'IN#1231231233',
             'er',
             '',

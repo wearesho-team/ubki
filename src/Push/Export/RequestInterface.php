@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Blocks\Interfaces;
+use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
  * Interface RequestInterface

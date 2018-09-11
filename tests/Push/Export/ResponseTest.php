@@ -36,25 +36,6 @@ class ResponseTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeResponse = new Export\Response(
-            new Blocks\Entities\Trace(
-                new Blocks\Collections\Steps([
-                    new Blocks\Entities\Step(
-                        static::NAME,
-                        static::START,
-                        static::END
-                    ),
-                    new Blocks\Entities\Step(
-                        static::NAME,
-                        static::START,
-                        static::END
-                    ),
-                    new Blocks\Entities\Step(
-                        static::NAME,
-                        static::START,
-                        static::END
-                    )
-                ])
-            ),
             static::UBKI_ID,
             static::STATUS,
             static::INTERNAL_ERROR,
@@ -96,32 +77,6 @@ class ResponseTest extends TestCase
                 ),
             ]),
             $this->fakeResponse->getErrors()
-        );
-    }
-
-    public function testGetTrace(): void
-    {
-        $this->assertEquals(
-            new Blocks\Entities\Trace(
-                new Blocks\Collections\Steps([
-                    new Blocks\Entities\Step(
-                        static::NAME,
-                        static::START,
-                        static::END
-                    ),
-                    new Blocks\Entities\Step(
-                        static::NAME,
-                        static::START,
-                        static::END
-                    ),
-                    new Blocks\Entities\Step(
-                        static::NAME,
-                        static::START,
-                        static::END
-                    )
-                ])
-            ),
-            $this->fakeResponse->getTrace()
         );
     }
 

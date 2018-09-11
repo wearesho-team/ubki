@@ -21,17 +21,6 @@ class Parser
         $internalErrorAttributes = $xml->{ResponseInterface::INTERNAL_TAG}->attributes();
 
         return new Response(
-            new Entities\Trace(
-                new Steps(array_map(function (\SimpleXMLElement $step) {
-                    $attributes = $step->attributes();
-
-                    return new Entities\Step(
-                        (string)$attributes[Entities\Step::NAME],
-                        (string)$attributes[Entities\Step::START],
-                        (string)$attributes[Entities\Step::END]
-                    );
-                }, $this->simpleXmlToArray($xml->{Entities\Trace::TAG}->{Entities\Step::TAG})))
-            ),
             (string)$stateAttributes[ResponseInterface::ID],
             (string)$stateAttributes[ResponseInterface::STATUS],
             (string)$internalErrorAttributes[ResponseInterface::INTERNAL_ERROR],

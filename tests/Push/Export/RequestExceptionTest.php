@@ -6,9 +6,11 @@ use Carbon\Carbon;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks;
+use Wearesho\Bobra\Ubki\Data\Blocks;
+use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki\Data\Elements;
+use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Push\Export;
-use Wearesho\Bobra\Ubki\References;
 
 /**
  * Class RequestExceptionTest
@@ -51,6 +53,20 @@ class RequestExceptionTest extends TestCase
     protected const ACTIVITY_TYPE = 'testActivityType';
     protected const EDR_REGISTRATION_DATE = '2017-03-12';
     protected const TAX_REGISTRATION_DATE = '2016-03-12';
+    protected const INITIAL_AMOUNT = 5000.00;
+    protected const COLLATERAL_COST = 5000.00;
+    protected const PERIOD_MONTH = 4;
+    protected const PERIOD_YEAR = 2012;
+    protected const END_DATE = '2019-03-12';
+    protected const LIMIT = 10000;
+    protected const MANDATORY_PAYMENT = 2000;
+    protected const CURRENT_DEBT = 2400.45;
+    protected const CURRENT_OVERDUE_DEBT = 2200;
+    protected const OVERDUE_TIME = 20;
+    protected const PAYMENT_DATE = '2018-03-12';
+    protected const ACTUAL_END_DATE = '2019-02-01';
+    protected const SOURCE = 'testSource';
+    protected const VALUE = 'testValue';
 
     /** @var Export\RequestException */
     protected $fakeRequestException;
@@ -59,42 +75,42 @@ class RequestExceptionTest extends TestCase
     {
         $this->fakeRequestException = new Export\RequestException(
             new Export\Request(
-                new Blocks\Entities\RequestData(
-                    References\RequestType::EXPORT(),
-                    References\RequestReason::EXPORT(),
+                new Elements\RequestData(
+                    Dictionaries\RequestType::EXPORT(),
+                    Dictionaries\RequestReason::EXPORT(),
                     Carbon::parse(static::DATE),
                     static::ID,
-                    References\RequestInitiator::PARTNER()
+                    Dictionaries\RequestInitiator::PARTNER()
                 ),
                 new Export\DataDocument(
                     'tech',
                     new Blocks\Identification(
-                        new Blocks\Entities\Credential(
-                            References\Language::RUS(),
+                        new Elements\Credential(
+                            Dictionaries\Language::RUS(),
                             static::NAME,
                             static::PATRONYMIC,
                             static::SURNAME,
                             Carbon::parse(static::BIRTH_DATE),
-                            new Blocks\Collections\Identifiers([
-                                new Blocks\Entities\NaturalIdentifier(
+                            new Collections\IdentifiedPersons([
+                                new Elements\NaturalPerson(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::KAZ(),
+                                    Dictionaries\Language::KAZ(),
                                     static::NAME,
                                     static::SURNAME,
                                     Carbon::parse(static::BIRTH_DATE),
-                                    References\Gender::MAN(),
+                                    Dictionaries\Gender::MAN(),
                                     static::INN,
                                     static::PATRONYMIC,
-                                    References\FamilyStatus::SINGLE(),
-                                    References\Education::SECONDARY(),
-                                    References\Nationality::RUSSIAN_FEDERATION(),
-                                    References\RegistrationSpd::BUSINESS(),
-                                    References\SocialStatus::STUDENT(),
+                                    Dictionaries\FamilyStatus::SINGLE(),
+                                    Dictionaries\Education::SECONDARY(),
+                                    Dictionaries\Nationality::RUSSIAN_FEDERATION(),
+                                    Dictionaries\RegistrationSpd::BUSINESS(),
+                                    Dictionaries\SocialStatus::STUDENT(),
                                     static::CHILDREN_COUNT
                                 ),
-                                new Blocks\Entities\LegalIdentifier(
+                                new Elements\LegalPerson(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::RUS(),
+                                    Dictionaries\Language::RUS(),
                                     static::NAME,
                                     static::ERGPOU,
                                     static::FORM,
@@ -104,11 +120,11 @@ class RequestExceptionTest extends TestCase
                                     Carbon::parse(static::TAX_REGISTRATION_DATE)
                                 ),
                             ]),
-                            new Blocks\Collections\Documents([
-                                new Blocks\Entities\Document(
+                            new Collections\Documents([
+                                new Elements\Document(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::RUS(),
-                                    References\DocumentType::DIPLOMA(),
+                                    Dictionaries\Language::RUS(),
+                                    Dictionaries\DocumentType::DIPLOMA(),
                                     static::SERIAL,
                                     static::NUMBER,
                                     static::ISSUE,
@@ -116,11 +132,11 @@ class RequestExceptionTest extends TestCase
                                     Carbon::parse(static::TERMIN)
                                 ),
                             ]),
-                            new Blocks\Collections\Addresses([
-                                new Blocks\Entities\Address(
+                            new Collections\Addresses([
+                                new Elements\Address(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::RUS(),
-                                    References\AddressType::REGISTRATION(),
+                                    Dictionaries\Language::RUS(),
+                                    Dictionaries\AddressType::REGISTRATION(),
                                     static::COUNTRY,
                                     static::CITY,
                                     static::STREET,
@@ -128,40 +144,97 @@ class RequestExceptionTest extends TestCase
                                     static::INDEX,
                                     static::STATE,
                                     static::AREA,
-                                    References\CityType::SETTLEMENT(),
+                                    Dictionaries\CityType::SETTLEMENT(),
                                     static::CORPUS,
                                     static::FLAT,
                                     static::FULL_ADDRESS
                                 ),
                             ]),
                             static::INN,
-                            new Blocks\Collections\Works([
-                                new Blocks\Entities\Work(
+                            new Collections\Works([
+                                new Elements\Work(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::RUS(),
+                                    Dictionaries\Language::RUS(),
                                     static::ERGPOU,
                                     static::NAME,
-                                    References\IdentifierRank::DIRECTOR(),
+                                    Dictionaries\IdentifierRank::DIRECTOR(),
                                     static::EXPERIENCE,
                                     static::INCOME
                                 ),
                             ]),
-                            new Blocks\Collections\Photos([
-                                new Blocks\Entities\Photo(
+                            new Collections\Photos([
+                                new Elements\Photo(
                                     Carbon::parse(static::CREATED_AT),
                                     static::PHOTO,
                                     static::INN
                                 ),
                             ]),
-                            new Blocks\Collections\LinkedPersons([
-                                new Blocks\Entities\LinkedPerson(
+                            new Collections\LinkedPersons([
+                                new Elements\LinkedPerson(
                                     static::NAME,
-                                    References\LinkedIdentifierRole::DIRECTOR(),
+                                    Dictionaries\LinkedIdentifierRole::DIRECTOR(),
                                     Carbon::parse(static::ISSUE_DATE),
                                     static::ERGPOU
                                 ),
                             ])
                         )
+                    ),
+                    new Blocks\CreditsInformation(
+                        new Collections\CreditDeals([
+                            new Elements\CreditDeal(
+                                static::ID,
+                                Dictionaries\Language::RUS(),
+                                static::NAME,
+                                static::SURNAME,
+                                Carbon::parse(static::BIRTH_DATE),
+                                Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+                                Dictionaries\CollateralType::R_1(),
+                                Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
+                                Dictionaries\Currency::UAH(),
+                                static::INITIAL_AMOUNT,
+                                Dictionaries\SubjectRole::BORROWER(),
+                                static::COLLATERAL_COST,
+                                new Collections\DealLifes([
+                                    new Elements\DealLife(
+                                        static::ID,
+                                        static::PERIOD_MONTH,
+                                        static::PERIOD_YEAR,
+                                        Carbon::parse(static::ISSUE_DATE),
+                                        Carbon::parse(static::END_DATE),
+                                        Dictionaries\DealStatus::CLOSE(),
+                                        static::LIMIT,
+                                        static::MANDATORY_PAYMENT,
+                                        static::CURRENT_DEBT,
+                                        static::CURRENT_OVERDUE_DEBT,
+                                        static::OVERDUE_TIME,
+                                        Dictionaries\Flag::YES(),
+                                        Dictionaries\Flag::YES(),
+                                        Dictionaries\Flag::NO(),
+                                        Carbon::parse(static::PAYMENT_DATE),
+                                        Carbon::parse(static::ACTUAL_END_DATE)
+                                    )
+                                ]),
+                                static::INN,
+                                static::PATRONYMIC,
+                                static::SOURCE
+                            )
+                        ])
+                    ),
+                    new Blocks\ContactsInformation(
+                        new Collections\Contacts([
+                            new Elements\Contact(
+                                Carbon::parse(static::CREATED_AT),
+                                static::VALUE,
+                                Dictionaries\ContactType::EMAIL(),
+                                static::INN
+                            ),
+                            new Elements\Contact(
+                                Carbon::parse(static::CREATED_AT),
+                                static::VALUE,
+                                Dictionaries\ContactType::MOBILE(),
+                                static::INN
+                            )
+                        ])
                     )
                 )
             )
@@ -172,42 +245,42 @@ class RequestExceptionTest extends TestCase
     {
         $this->assertEquals(
             new Export\Request(
-                new Blocks\Entities\RequestData(
-                    References\RequestType::EXPORT(),
-                    References\RequestReason::EXPORT(),
+                new Elements\RequestData(
+                    Dictionaries\RequestType::EXPORT(),
+                    Dictionaries\RequestReason::EXPORT(),
                     Carbon::parse(static::DATE),
                     static::ID,
-                    References\RequestInitiator::PARTNER()
+                    Dictionaries\RequestInitiator::PARTNER()
                 ),
                 new Export\DataDocument(
                     'tech',
                     new Blocks\Identification(
-                        new Blocks\Entities\Credential(
-                            References\Language::RUS(),
+                        new Elements\Credential(
+                            Dictionaries\Language::RUS(),
                             static::NAME,
                             static::PATRONYMIC,
                             static::SURNAME,
                             Carbon::parse(static::BIRTH_DATE),
-                            new Blocks\Collections\Identifiers([
-                                new Blocks\Entities\NaturalIdentifier(
+                            new Collections\IdentifiedPersons([
+                                new Elements\NaturalPerson(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::KAZ(),
+                                    Dictionaries\Language::KAZ(),
                                     static::NAME,
                                     static::SURNAME,
                                     Carbon::parse(static::BIRTH_DATE),
-                                    References\Gender::MAN(),
+                                    Dictionaries\Gender::MAN(),
                                     static::INN,
                                     static::PATRONYMIC,
-                                    References\FamilyStatus::SINGLE(),
-                                    References\Education::SECONDARY(),
-                                    References\Nationality::RUSSIAN_FEDERATION(),
-                                    References\RegistrationSpd::BUSINESS(),
-                                    References\SocialStatus::STUDENT(),
+                                    Dictionaries\FamilyStatus::SINGLE(),
+                                    Dictionaries\Education::SECONDARY(),
+                                    Dictionaries\Nationality::RUSSIAN_FEDERATION(),
+                                    Dictionaries\RegistrationSpd::BUSINESS(),
+                                    Dictionaries\SocialStatus::STUDENT(),
                                     static::CHILDREN_COUNT
                                 ),
-                                new Blocks\Entities\LegalIdentifier(
+                                new Elements\LegalPerson(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::RUS(),
+                                    Dictionaries\Language::RUS(),
                                     static::NAME,
                                     static::ERGPOU,
                                     static::FORM,
@@ -217,11 +290,11 @@ class RequestExceptionTest extends TestCase
                                     Carbon::parse(static::TAX_REGISTRATION_DATE)
                                 ),
                             ]),
-                            new Blocks\Collections\Documents([
-                                new Blocks\Entities\Document(
+                            new Collections\Documents([
+                                new Elements\Document(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::RUS(),
-                                    References\DocumentType::DIPLOMA(),
+                                    Dictionaries\Language::RUS(),
+                                    Dictionaries\DocumentType::DIPLOMA(),
                                     static::SERIAL,
                                     static::NUMBER,
                                     static::ISSUE,
@@ -229,11 +302,11 @@ class RequestExceptionTest extends TestCase
                                     Carbon::parse(static::TERMIN)
                                 ),
                             ]),
-                            new Blocks\Collections\Addresses([
-                                new Blocks\Entities\Address(
+                            new Collections\Addresses([
+                                new Elements\Address(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::RUS(),
-                                    References\AddressType::REGISTRATION(),
+                                    Dictionaries\Language::RUS(),
+                                    Dictionaries\AddressType::REGISTRATION(),
                                     static::COUNTRY,
                                     static::CITY,
                                     static::STREET,
@@ -241,40 +314,97 @@ class RequestExceptionTest extends TestCase
                                     static::INDEX,
                                     static::STATE,
                                     static::AREA,
-                                    References\CityType::SETTLEMENT(),
+                                    Dictionaries\CityType::SETTLEMENT(),
                                     static::CORPUS,
                                     static::FLAT,
                                     static::FULL_ADDRESS
                                 ),
                             ]),
                             static::INN,
-                            new Blocks\Collections\Works([
-                                new Blocks\Entities\Work(
+                            new Collections\Works([
+                                new Elements\Work(
                                     Carbon::parse(static::CREATED_AT),
-                                    References\Language::RUS(),
+                                    Dictionaries\Language::RUS(),
                                     static::ERGPOU,
                                     static::NAME,
-                                    References\IdentifierRank::DIRECTOR(),
+                                    Dictionaries\IdentifierRank::DIRECTOR(),
                                     static::EXPERIENCE,
                                     static::INCOME
                                 ),
                             ]),
-                            new Blocks\Collections\Photos([
-                                new Blocks\Entities\Photo(
+                            new Collections\Photos([
+                                new Elements\Photo(
                                     Carbon::parse(static::CREATED_AT),
                                     static::PHOTO,
                                     static::INN
                                 ),
                             ]),
-                            new Blocks\Collections\LinkedPersons([
-                                new Blocks\Entities\LinkedPerson(
+                            new Collections\LinkedPersons([
+                                new Elements\LinkedPerson(
                                     static::NAME,
-                                    References\LinkedIdentifierRole::DIRECTOR(),
+                                    Dictionaries\LinkedIdentifierRole::DIRECTOR(),
                                     Carbon::parse(static::ISSUE_DATE),
                                     static::ERGPOU
                                 ),
                             ])
                         )
+                    ),
+                    new Blocks\CreditsInformation(
+                        new Collections\CreditDeals([
+                            new Elements\CreditDeal(
+                                static::ID,
+                                Dictionaries\Language::RUS(),
+                                static::NAME,
+                                static::SURNAME,
+                                Carbon::parse(static::BIRTH_DATE),
+                                Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+                                Dictionaries\CollateralType::R_1(),
+                                Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
+                                Dictionaries\Currency::UAH(),
+                                static::INITIAL_AMOUNT,
+                                Dictionaries\SubjectRole::BORROWER(),
+                                static::COLLATERAL_COST,
+                                new Collections\DealLifes([
+                                    new Elements\DealLife(
+                                        static::ID,
+                                        static::PERIOD_MONTH,
+                                        static::PERIOD_YEAR,
+                                        Carbon::parse(static::ISSUE_DATE),
+                                        Carbon::parse(static::END_DATE),
+                                        Dictionaries\DealStatus::CLOSE(),
+                                        static::LIMIT,
+                                        static::MANDATORY_PAYMENT,
+                                        static::CURRENT_DEBT,
+                                        static::CURRENT_OVERDUE_DEBT,
+                                        static::OVERDUE_TIME,
+                                        Dictionaries\Flag::YES(),
+                                        Dictionaries\Flag::YES(),
+                                        Dictionaries\Flag::NO(),
+                                        Carbon::parse(static::PAYMENT_DATE),
+                                        Carbon::parse(static::ACTUAL_END_DATE)
+                                    )
+                                ]),
+                                static::INN,
+                                static::PATRONYMIC,
+                                static::SOURCE
+                            )
+                        ])
+                    ),
+                    new Blocks\ContactsInformation(
+                        new Collections\Contacts([
+                            new Elements\Contact(
+                                Carbon::parse(static::CREATED_AT),
+                                static::VALUE,
+                                Dictionaries\ContactType::EMAIL(),
+                                static::INN
+                            ),
+                            new Elements\Contact(
+                                Carbon::parse(static::CREATED_AT),
+                                static::VALUE,
+                                Dictionaries\ContactType::MOBILE(),
+                                static::INN
+                            )
+                        ])
                     )
                 )
             ),
