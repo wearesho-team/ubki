@@ -232,4 +232,28 @@ class DealLifeTest extends TestCase
             Carbon::parse(static::PAYMENT_DATE)
         );
     }
+
+    public function testInstanceWithoutOptionalParams(): void
+    {
+        $this->fakeDealLife = new DealLife(
+            static::ID,
+            static::PERIOD_MONTH,
+            static::PERIOD_YEAR,
+            Carbon::parse(static::ISSUE_DATE),
+            Carbon::parse(static::END_DATE),
+            References\DealStatus::OPEN(),
+            static::LIMIT,
+            static::MANDATORY_PAYMENT,
+            static::CURRENT_DEBT,
+            static::CURRENT_OVERDUE_DEBT,
+            static::OVERDUE_TIME,
+            References\Flag::YES(),
+            References\Flag::YES(),
+            References\Flag::NO(),
+            Carbon::parse(static::PAYMENT_DATE),
+            null
+        );
+
+        $this->assertNotEmpty($this->fakeDealLife->jsonSerialize());
+    }
 }

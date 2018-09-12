@@ -85,7 +85,7 @@ trait DealLife
             'delayIndication' => $this->delayIndication->__toString(),
             'trancheIndication' => $this->trancheIndication->__toString(),
             'paymentDate' => Carbon::instance($this->paymentDate)->toDateString(),
-            'actualEndDate' => Carbon::instance($this->actualEndDate)->toDateString(),
+            'actualEndDate' => $this->actualEndDate ? Carbon::instance($this->actualEndDate)->toDateString() : null,
         ];
     }
 
