@@ -39,11 +39,11 @@ trait DataDocumentTrait
     {
         return [
             'identification' => $this->identification->jsonSerialize(),
-            'creditsInformation' => $this->creditDeals->jsonSerialize(),
-            'courtDecisionsInformation' => $this->courtDecisions->jsonSerialize(),
-            'creditRequestsInformation' => $this->creditRequests->jsonSerialize(),
-            'insuranceReportsInformation' => $this->insuranceReports->jsonSerialize(),
-            'contactsInformation' => $this->contacts->jsonSerialize(),
+            'creditsInformation' => $this->creditDeals ? $this->creditDeals->jsonSerialize() : null,
+            'courtDecisionsInformation' => $this->courtDecisions ? $this->courtDecisions->jsonSerialize() : null,
+            'creditRequestsInformation' => $this->creditRequests ? $this->creditRequests->jsonSerialize() : null,
+            'insuranceReportsInformation' => $this->insuranceReports ? $this->insuranceReports->jsonSerialize() : null,
+            'contactsInformation' => $this->contacts ? $this->contacts->jsonSerialize() : null,
         ];
     }
 

@@ -818,4 +818,54 @@ class DataDocumentTest extends TestCase
             $this->fakeDataDocument->getInsuranceReports()
         );
     }
+
+    public function testMinimalData(): void
+    {
+        $this->fakeDataDocument = new DataDocument(
+            'tech',
+            new Blocks\Identification(
+                new Blocks\Entities\Credential(
+                    References\Language::RUS(),
+                    'name',
+                    'patronymic',
+                    'surname',
+                    Carbon::now(),
+                    new Blocks\Collections\Identifiers([
+                        new Blocks\Entities\NaturalIdentifier(
+                            Carbon::now(),
+                            References\Language::RUS(),
+                            'name',
+                            'surname',
+                            Carbon::now(),
+                            References\Gender::MAN()
+                        )
+                    ]),
+                    new Blocks\Collections\Documents([
+                        new Blocks\Entities\Document(
+                            Carbon::now(),
+                            References\Language::RUS(),
+                            References\DocumentType::PASSPORT(),
+                            'AM',
+                            '123456',
+                            'issue',
+                            Carbon::now()
+                        )
+                    ]),
+                    new Blocks\Collections\Addresses([
+                        new Blocks\Entities\Address(
+                            Carbon::now(),
+                            References\Language::RUS(),
+                            References\AddressType::HOME(),
+                            'country',
+                            'city',
+                            'street',
+                            'house'
+                        )
+                    ])
+                )
+            )
+        );
+
+        $this->assertNotEmpty($this->fakeDataDocument->jsonSerialize());
+    }
 }

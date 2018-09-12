@@ -70,7 +70,7 @@ trait Address
             'index' => $this->index,
             'state' => $this->state,
             'area' => $this->area,
-            'cityType' => $this->cityType->__toString(),
+            'cityType' => $this->cityType ? $this->cityType->__toString() : null,
             'corpus' => $this->corpus,
             'flat' => $this->flat,
             'fullAddress' => $this->fullAddress

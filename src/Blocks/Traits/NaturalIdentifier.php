@@ -57,11 +57,11 @@ trait NaturalIdentifier
             'gender' => $this->gender->__toString(),
             'inn' => $this->inn,
             'patronymic' => $this->patronymic,
-            'familyStatus' => $this->familyStatus->__toString(),
-            'education' => $this->education->__toString(),
-            'nationality' => $this->nationality->__toString(),
-            'registrationSpd' => $this->registrationSpd->__toString(),
-            'socialStatus' => $this->socialStatus->__toString(),
+            'familyStatus' => $this->familyStatus ? $this->familyStatus->__toString() : null,
+            'education' => $this->education ? $this->education->__toString() : null,
+            'nationality' => $this->nationality ? $this->nationality->__toString() : null,
+            'registrationSpd' => $this->registrationSpd ? $this->registrationSpd->__toString() : null,
+            'socialStatus' => $this->socialStatus ? $this->socialStatus->__toString() : null,
             'childrenCount' => $this->childrenCount,
         ]);
     }
