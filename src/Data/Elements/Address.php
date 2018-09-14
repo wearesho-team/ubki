@@ -5,6 +5,8 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Validation\RuleCollection;
+use Wearesho\Bobra\Ubki\Validation\Rules\DateRule;
 
 /**
  * Class Address
@@ -44,5 +46,12 @@ class Address extends Infrastructure\Element implements Data\Interfaces\Address
         $this->corpus = $corpus;
         $this->flat = $flat;
         $this->fullAddress = $fullAddress;
+    }
+
+    public function rules(): RuleCollection
+    {
+        return new RuleCollection([
+            new DateRule(['createdAt'])
+        ]);
     }
 }
