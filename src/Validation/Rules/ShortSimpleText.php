@@ -5,10 +5,10 @@ namespace Wearesho\Bobra\Ubki\Validation\Rules;
 use Wearesho\Bobra\Ubki\Validation\Rule;
 
 /**
- * Class String40
+ * Class ShortSimpleText
  * @package Wearesho\Bobra\Ubki\Validation\Rules
  */
-class String40 extends Rule
+class ShortSimpleText extends Rule
 {
     public function getMessage(): string
     {

@@ -39,6 +39,11 @@ abstract class Rule
      */
     abstract public function getMessage(): string;
 
+    /**
+     * @param array $attributes
+     *
+     * @return static
+     */
     public static function verify(array $attributes): Rule
     {
         $cacheRules = static::$cache;

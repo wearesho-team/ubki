@@ -4,6 +4,7 @@ namespace Wearesho\Bobra\Ubki\Infrastructure;
 
 use Wearesho\Bobra\Ubki\Validation\Rule;
 use Wearesho\Bobra\Ubki\Validation\RuleCollection;
+use Wearesho\Bobra\Ubki\Validation\RuleInterface;
 use Wearesho\Bobra\Ubki\Validation\ValidationException;
 
 /**

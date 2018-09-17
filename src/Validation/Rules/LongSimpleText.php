@@ -15,7 +15,7 @@ class LongSimpleText extends Rule
         return 'Long string have invalid format or contain invalid symbols';
     }
 
-    public function getPattern(): string
+    final public function getPattern(): string
     {
         return '/(^[0-9A-Za-zйЙцЦуУкКеЕнНгГшШщЩзЗхХфФвВаАпПрРоОлЛдДжЖєЄяЯчЧсСмМиИтТьЬбБюЮэЭъЪёЁіїІЇєЄҐґЫы\s\\\"\–\—\-\.\;\:\,\`\№\(\)\&\+]{0,250}$)/u'; //phpcs:ignore
     }

@@ -15,7 +15,7 @@ class PersonName extends Rule
         return 'Person have incorrect name';
     }
 
-    public function getPattern(): string
+    final public function getPattern(): string
     {
         return "/^[0-9a-zA-ZйЙцЦуУкКеЕнНгГшШщЩзЗхХфФвВаАпПрРоОлЛдДжЖєЄяЯчЧсСмМиИтТьЬбБюЮэЭъЪёЁіїІЇєЄҐґЫы\´\s\\\"\'\–\—\-\´\`\.\,\&\;\(\)]{1,80}$/u"; //phpcs:ignore
     }

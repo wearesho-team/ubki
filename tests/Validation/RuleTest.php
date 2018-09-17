@@ -10,6 +10,7 @@ use Wearesho\Bobra\Ubki\Validation\Rules\LongSimpleText;
 use Wearesho\Bobra\Ubki\Validation\Rules\Number;
 use Wearesho\Bobra\Ubki\Validation\Rules\Okpo;
 use Wearesho\Bobra\Ubki\Validation\Rules\PersonName;
+use Wearesho\Bobra\Ubki\Validation\Rules\RangeNumber;
 use Wearesho\Bobra\Ubki\Validation\Rules\WorkName;
 
 use PHPUnit\Framework\TestCase;
@@ -31,6 +32,8 @@ class RuleTest extends TestCase
     protected const INVALID_SIMPLE_TEXT = 'This text contain invalid symbol: \'';
     protected const CORRECT_WORK_NAME = 'Correct work name';
     protected const INVALID_WORK_NAME = 'Invalid work name [';
+    protected const CORRECT_RANGE_NUMBER = '12345';
+    protected const INVALID_RANGE_NUMBER = '123456';
 
     /** @var Element */
     protected $element;
@@ -70,7 +73,8 @@ class RuleTest extends TestCase
                     Number::verify(['inn',])->length(Rule::INN_LENGTH),
                     Okpo::verify(['okpo',]),
                     PersonName::verify(['personNameFirst', 'personNameSecond',]),
-                    WorkName::verify(['workName',])
+                    WorkName::verify(['workName',]),
+                    RangeNumber::verify(['rangeNumber',])->length(5),
                 ]);
             }
 
@@ -207,6 +211,27 @@ class RuleTest extends TestCase
     public function testInvalidWorkName(): void
     {
         $this->element->workName = static::INVALID_WORK_NAME;
+        $this->element->validate();
+    }
+
+    public function testCorrectRangeNumber(): void
+    {
+        $this->element->rangeNumber = static::CORRECT_RANGE_NUMBER;
+        $this->element->validate();
+
+        $this->assertEquals(
+            static::CORRECT_RANGE_NUMBER,
+            $this->element->rangeNumber
+        );
+    }
+
+    /**
+     * @expectedException \Wearesho\Bobra\Ubki\Validation\ValidationException
+     * @expectedExceptionMessage Number must be in range between 1 and 5 digits
+     */
+    public function testInvalidRangeNumber(): void
+    {
+        $this->element->rangeNumber = static::INVALID_RANGE_NUMBER;
         $this->element->validate();
     }
 }

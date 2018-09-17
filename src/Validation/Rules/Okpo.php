@@ -15,7 +15,7 @@ class Okpo extends Rule
         return 'Value must be 8 or 10 digits length';
     }
 
-    public function getPattern(): string
+    final public function getPattern(): string
     {
         return '/(^\d{8}|\d{10}$)/u';
     }
