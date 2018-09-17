@@ -59,7 +59,7 @@ abstract class Element implements ElementInterface
         /** @var Rule $rule */
         foreach ($rules as $rule) {
             if (!$rule->execute($this)) {
-                throw new ValidationException('Validation exception', $rule->getMessage());
+                throw new ValidationException($this, $rule->getMessage());
             }
         }
     }

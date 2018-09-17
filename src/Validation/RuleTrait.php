@@ -19,9 +19,4 @@ trait RuleTrait
     {
         return preg_match($this->getPattern(), $value, $matches, $flags, $offset);
     }
-
-    protected function fetchAttribute(ElementInterface &$element, string $attribute)
-    {
-        return $element->{$attribute}();
-    }
 }

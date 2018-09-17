@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki\Validation\Rule;
  * Class Number
  * @package Wearesho\Bobra\Ubki\Validation\Rules
  *
- * @method static static check(array $attributes)
+ * @method static static verify(array $attributes)
  */
 class Number extends Rule
 {
