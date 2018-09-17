@@ -10,8 +10,6 @@ use Wearesho\Bobra\Ubki\Infrastructure\Element;
  */
 abstract class Rule
 {
-    use RuleTrait;
-
     public const INN_LENGTH = 10;
 
     /** @var array|null */
@@ -82,5 +80,15 @@ abstract class Rule
         }
 
         return true;
+    }
+
+    public function getAttributes(): array
+    {
+        return $this->attributes;
+    }
+
+    public function regex(string $value, array &$matches = null, $flags = 0, $offset = 0): bool
+    {
+        return preg_match($this->getPattern(), $value, $matches, $flags, $offset);
     }
 }
