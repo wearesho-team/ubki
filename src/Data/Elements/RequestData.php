@@ -26,5 +26,7 @@ class RequestData extends Element implements Data\Interfaces\RequestData
         $this->date = $date;
         $this->id = $id;
         $this->initiator = $initiator;
+
+        parent::__construct();
     }
 }

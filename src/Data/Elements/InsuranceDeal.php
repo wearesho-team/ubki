@@ -73,6 +73,8 @@ class InsuranceDeal extends Infrastructure\Element
         $this->type = $type;
         $this->status = $status;
         $this->events = $events;
+
+        parent::__construct();
     }
 
     public function jsonSerialize(): array

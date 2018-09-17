@@ -19,6 +19,8 @@ class Trace extends Infrastructure\Element
     public function __construct(Steps $steps)
     {
         $this->steps = $steps;
+
+        parent::__construct();
     }
 
     public function jsonSerialize(): array

@@ -32,5 +32,7 @@ class Document extends Infrastructure\Element implements Data\Interfaces\Documen
         $this->issue = $issue;
         $this->issueDate = $issueDate;
         $this->termin = $termin;
+
+        parent::__construct();
     }
 }

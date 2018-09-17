@@ -28,5 +28,7 @@ class CreditRequest extends Infrastructure\Element implements Data\Interfaces\Cr
         $this->decision = $decision;
         $this->reason = $reason;
         $this->organization = $organization;
+
+        parent::__construct();
     }
 }

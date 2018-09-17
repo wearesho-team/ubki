@@ -29,6 +29,8 @@ class Step extends Infrastructure\Element
         $this->name = $name;
         $this->start = $start;
         $this->end = $end;
+
+        parent::__construct();
     }
 
     public function jsonSerialize(): array

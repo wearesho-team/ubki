@@ -24,6 +24,8 @@ class Comment extends Infrastructure\Element
     {
         $this->id = $id;
         $this->text = $text;
+
+        parent::__construct();
     }
 
     public function jsonSerialize(): array

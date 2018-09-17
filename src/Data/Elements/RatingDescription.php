@@ -58,6 +58,8 @@ class RatingDescription extends Element
         $this->expires = $expires;
         $this->maxOverdue = $maxOverdue;
         $this->updatedAt = $updatedAt;
+
+        parent::__construct();
     }
 
     public function jsonSerialize(): array

@@ -24,5 +24,7 @@ class LinkedPerson extends Element implements Data\Interfaces\LinkedPerson
         $this->role = $role;
         $this->issueDate = $issueDate;
         $this->ergpou = $ergpou;
+
+        parent::__construct();
     }
 }

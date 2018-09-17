@@ -29,5 +29,7 @@ class RegistryTimes extends Element implements Data\Interfaces\RegistryTimes
         $this->byQuarter = $byQuarter;
         $this->byYear = $byYear;
         $this->byMoreYear = $byMoreYear;
+
+        parent::__construct();
     }
 }

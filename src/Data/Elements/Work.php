@@ -4,12 +4,13 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
  * Class Work
  * @package Wearesho\Bobra\Ubki\Data\Elements
  */
-class Work implements Data\Interfaces\Work
+class Work extends Element implements Data\Interfaces\Work
 {
     use Data\Traits\Work;
 
@@ -29,5 +30,7 @@ class Work implements Data\Interfaces\Work
         $this->rank = $rank;
         $this->experience = $experience;
         $this->income = $income;
+
+        parent::__construct();
     }
 }

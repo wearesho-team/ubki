@@ -19,7 +19,7 @@ class IdentificationTest extends TestCase
 {
     protected const NAME = 'testName';
     protected const CREATED_AT = '2018-03-12';
-    protected const INN = 'testInn';
+    protected const INN = '1234567890';
     protected const PATRONYMIC = 'testPatronymic';
     protected const SURNAME = 'testSurname';
     protected const BIRTH_DATE = '1998-03-12';

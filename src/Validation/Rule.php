@@ -10,60 +10,72 @@ use Wearesho\Bobra\Ubki\Infrastructure\Element;
  */
 abstract class Rule
 {
-    public const DATE_RULE = 1;
+    use RuleTrait;
+
+    public const INN_LENGTH = 10;
 
     /** @var array|null */
     protected $attributes;
+
+    /** @var Rule[] */
+    protected static $cache;
 
     protected function __construct(array $attributes = null)
     {
         $this->attributes = $attributes;
     }
 
+    /**
+     * The regular expression by which the value of the attribute is validated
+     *
+     * @return mixed
+     */
     abstract public function getPattern(): string;
 
+    /**
+     * A public message containing an explanation of the error
+     *
+     * @return string
+     */
     abstract public function getMessage(): string;
 
-    abstract public function execute(Element &$element): bool;
-
-    public function getAttributes(): array
+    public static function check(array $attributes): Rule
     {
-        $attributes = array_map(function (string $attribute) {
-            return 'get' . strtoupper(substr($attribute, 0, 1)) . substr($attribute, 1);
-        }, $this->attributes);
+        $cacheRules = static::$cache;
 
-        return $attributes;
+        foreach ((array)$cacheRules as $rule) {
+            if ($rule instanceof self && $rule->getAttributes() == $attributes) {
+                return $rule;
+            }
+        }
+
+        $rule = new static($attributes);
+        static::$cache[] = $rule;
+
+        return $rule;
     }
 
-//    public const NUMBER = 'number';
-//    public const PATTERN = 'pattern';
-//    public const TYPE = 'type';
-//    public const REGEX = 'regex';
-//    public const FUNC = 'func';
-//
-//    public const NUMERIC = 'numeric';
-//
-//    /**
-//     * Validate birth_date and created_at dates
-//     */
-//    public const BDATE_VDATE = [
-//        Rule::NUMBER => 1,
-//        Rule::TYPE => Rule::REGEX,
-//        Rule::PATTERN => '/^(19|20|21|22)\d\d-((0[1-9]|1[012])-(0[1-9]|[12]\\d)|(0[13-9]|1[012])-30|(0[13578]|1[02])-31)$/u', // phpcs:ignore
-//    ];
-//
-//    /**
-//     * Validate length of simple text
-//     */
-//    public const TEXT_250 = [
-//        Rule::NUMBER => 3,
-//        Rule::TYPE => Rule::REGEX,
-//        Rule::PATTERN => '/(^[0-9A-Za-zйЙцЦуУкКеЕнНгГшШщЩзЗхХфФвВаАпПрРоОлЛдДжЖєЄяЯчЧсСмМиИтТьЬбБюЮэЭъЪёЁіїІЇєЄҐґЫы\s\\\"\–\—\-\.\;\:\,\`\№\(\)\&\+]{0,250}$)/u' // phpcs:ignore
-//    ];
-//
-//    public const INTEGER = [
-//        Rule::NUMBER => 8,
-//        Rule::TYPE => Rule::FUNC,
-//        Rule::PATTERN => Rule::NUMERIC,
-//    ];
+    /**
+     * Should return false if is not valid or true if is valid
+     *
+     * @param Element $element
+     *
+     * @return bool
+     */
+    public function execute(Element &$element): bool
+    {
+        foreach ($this->getAttributes() as $attribute) {
+            $line = $element->$attribute;
+
+            if (is_null($line)) {
+                return true;
+            }
+
+            if (!$this->regex($line)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

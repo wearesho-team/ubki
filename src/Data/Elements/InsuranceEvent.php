@@ -34,6 +34,8 @@ class InsuranceEvent extends Infrastructure\Element
         $this->requestDate = $requestDate;
         $this->decision = $decision;
         $this->decisionDate = $decisionDate;
+
+        parent::__construct();
     }
 
     public function jsonSerialize(): array

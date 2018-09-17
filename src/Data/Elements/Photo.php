@@ -18,5 +18,7 @@ class Photo extends Element implements Data\Interfaces\Photo
         $this->createdAt = $createdAt;
         $this->photo = $photo;
         $this->inn = $inn;
+
+        parent::__construct();
     }
 }

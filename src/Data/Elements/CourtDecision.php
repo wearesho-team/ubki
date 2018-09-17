@@ -42,5 +42,7 @@ class CourtDecision extends Infrastructure\Element implements Data\Interfaces\Co
         $this->createdAt = $createdAt;
         $this->area = $area;
         $this->areaReference = $areaReference;
+
+        parent::__construct();
     }
 }

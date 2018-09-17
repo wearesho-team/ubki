@@ -11,7 +11,8 @@ class ValidationException extends \InvalidArgumentException
     /** @var string */
     protected $attribute;
 
-    public function __construct(string $attribute, string $message = "", int $code = 0, \Throwable $previous = null) {
+    public function __construct(string $attribute, string $message = "", int $code = 0, \Throwable $previous = null)
+    {
         $this->attribute = $attribute;
 
         parent::__construct($message, $code, $previous);

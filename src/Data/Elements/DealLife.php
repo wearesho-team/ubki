@@ -51,5 +51,7 @@ class DealLife extends Infrastructure\Element implements Data\Interfaces\DealLif
         $this->validateActualEndDate($actualEndDate, $status);
 
         $this->actualEndDate = $actualEndDate;
+
+        parent::__construct();
     }
 }

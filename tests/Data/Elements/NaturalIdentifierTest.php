@@ -22,7 +22,7 @@ class NaturalIdentifierTest extends TestCase
     protected const NAME = 'testName';
     protected const SURNAME = 'testSurname';
     protected const BIRTH_DATE = '1998-03-12';
-    protected const INN = 'testInn';
+    protected const INN = '1234567890';
     protected const PATRONYMIC = 'testPatronymic';
     protected const CHILDREN_COUNT = 2;
 

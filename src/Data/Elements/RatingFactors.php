@@ -29,6 +29,8 @@ abstract class RatingFactors extends Element
         $this->count = $count;
         $this->description = $description;
         $this->comments = $comments;
+
+        parent::__construct();
     }
 
     public function jsonSerialize(): array

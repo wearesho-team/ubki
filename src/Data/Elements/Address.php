@@ -6,7 +6,7 @@ use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Infrastructure;
 use Wearesho\Bobra\Ubki\Validation\RuleCollection;
-use Wearesho\Bobra\Ubki\Validation\Rules\DateRule;
+use Wearesho\Bobra\Ubki\Validation\Rules\LongSimpleText;
 
 /**
  * Class Address
@@ -46,12 +46,14 @@ class Address extends Infrastructure\Element implements Data\Interfaces\Address
         $this->corpus = $corpus;
         $this->flat = $flat;
         $this->fullAddress = $fullAddress;
+
+        parent::__construct();
     }
 
     public function rules(): RuleCollection
     {
         return new RuleCollection([
-            new DateRule(['createdAt'])
+            LongSimpleText::check(['country',])
         ]);
     }
 }

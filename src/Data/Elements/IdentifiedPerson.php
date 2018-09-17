@@ -5,6 +5,8 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
 use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Validation\RuleCollection;
+use Wearesho\Bobra\Ubki\Validation\Rules\PersonName;
 
 /**
  * Class IdentifiedPerson
@@ -23,5 +25,12 @@ abstract class IdentifiedPerson extends Person implements Data\Interfaces\Identi
         $this->language = $language;
 
         parent::__construct($name);
+    }
+
+    public function rules(): ?RuleCollection
+    {
+        return new RuleCollection([
+            PersonName::check(['name',])
+        ]);
     }
 }

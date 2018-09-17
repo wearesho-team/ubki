@@ -79,6 +79,8 @@ class RatingScore extends Element
         $this->date = $date;
         $this->previousDate = $previousDate;
         $this->level = $level;
+
+        parent::__construct();
     }
 
     public function jsonSerialize(): array

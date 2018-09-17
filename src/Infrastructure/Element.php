@@ -18,6 +18,20 @@ abstract class Element implements ElementInterface
     }
 
     /**
+     * @param $name
+     *
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        if (!array_key_exists($name, get_object_vars($this))) {
+            throw new \InvalidArgumentException("Attribute [{$name}] does not exist in " . self::class);
+        }
+
+        return $this->{$name};
+    }
+
+    /**
      * Name of tag
      *
      * @return string
@@ -27,16 +41,25 @@ abstract class Element implements ElementInterface
     /**
      * Validation rules for attributes
      *
-     * @return RuleCollection
+     * @return null|RuleCollection
      */
-    abstract public function rules(): RuleCollection;
+    public function rules(): ?RuleCollection
+    {
+        return null;
+    }
 
     public function validate(): void
     {
+        $rules = $this->rules();
+
+        if (is_null($rules)) {
+            return;
+        }
+
         /** @var Rule $rule */
-        foreach ($this->rules() as $rule) {
+        foreach ($rules as $rule) {
             if (!$rule->execute($this)) {
-                throw new ValidationException($this->{$attribute}, $rule->getMessage());
+                throw new ValidationException('Validation exception', $rule->getMessage());
             }
         }
     }

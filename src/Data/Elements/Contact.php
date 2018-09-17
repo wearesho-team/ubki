@@ -24,5 +24,7 @@ class Contact extends Infrastructure\Element implements Data\Interfaces\Contact
         $this->value = $value;
         $this->type = $type;
         $this->inn = $inn;
+
+        parent::__construct();
     }
 }

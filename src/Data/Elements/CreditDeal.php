@@ -48,5 +48,7 @@ class CreditDeal extends Infrastructure\Element implements Data\Interfaces\Credi
         $this->inn = $inn;
         $this->patronymic = $patronymic;
         $this->source = $source;
+
+        parent::__construct();
     }
 }

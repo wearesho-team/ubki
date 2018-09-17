@@ -16,5 +16,7 @@ abstract class Person extends Infrastructure\Element implements Data\Interfaces\
     public function __construct(string $name)
     {
         $this->name = $name;
+
+        parent::__construct();
     }
 }
