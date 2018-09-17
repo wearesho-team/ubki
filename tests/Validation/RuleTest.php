@@ -69,12 +69,12 @@ class RuleTest extends TestCase
             public function rules(): ?RuleCollection
             {
                 return new RuleCollection([
-                    LongSimpleText::verify(['longSimpleTextFirst', 'longSimpleTextSecond',]),
-                    Number::verify(['inn',])->length(Rule::INN_LENGTH),
-                    Okpo::verify(['okpo',]),
-                    PersonName::verify(['personNameFirst', 'personNameSecond',]),
-                    WorkName::verify(['workName',]),
-                    RangeNumber::verify(['rangeNumber',])->length(5),
+                    LongSimpleText::provide(['longSimpleTextFirst', 'longSimpleTextSecond',]),
+                    Number::provide(['inn',])->length(Rule::INN_LENGTH),
+                    Okpo::provide(['okpo',]),
+                    PersonName::provide(['personNameFirst', 'personNameSecond',]),
+                    WorkName::provide(['workName',]),
+                    RangeNumber::provide(['rangeNumber',])->length(5),
                 ]);
             }
 

@@ -44,7 +44,7 @@ abstract class Rule
      *
      * @return static
      */
-    public static function verify(array $attributes): Rule
+    public static function provide(array $attributes): Rule
     {
         $cacheRules = static::$cache;
 

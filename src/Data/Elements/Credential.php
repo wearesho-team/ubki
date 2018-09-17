@@ -51,8 +51,8 @@ class Credential extends Infrastructure\Element implements Data\Interfaces\Crede
     public function rules(): ?RuleCollection
     {
         return new RuleCollection([
-            Number::verify(['inn',])->length(Rule::INN_LENGTH),
-            PersonName::verify(['name', 'patronymic', 'surname',])
+            Number::provide(['inn',])->length(Rule::INN_LENGTH),
+            PersonName::provide(['name', 'patronymic', 'surname',])
         ]);
     }
 }

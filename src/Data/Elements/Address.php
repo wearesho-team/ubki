@@ -53,7 +53,7 @@ class Address extends Infrastructure\Element implements Data\Interfaces\Address
     public function rules(): RuleCollection
     {
         return new RuleCollection([
-            LongSimpleText::verify(['country',])
+            LongSimpleText::provide(['country',])
         ]);
     }
 }

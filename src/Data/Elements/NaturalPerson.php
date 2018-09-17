@@ -51,8 +51,8 @@ class NaturalPerson extends IdentifiedPerson implements Data\Interfaces\NaturalP
     public function rules(): ?RuleCollection
     {
         $rules = new RuleCollection([
-            Number::verify(['inn',])->length(Rule::INN_LENGTH),
-            PersonName::verify(['patronymic', 'surname',])
+            Number::provide(['inn',])->length(Rule::INN_LENGTH),
+            PersonName::provide(['patronymic', 'surname',])
         ]);
 
         return $rules->merge(parent::rules());
