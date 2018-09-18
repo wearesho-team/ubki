@@ -6,6 +6,7 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Validation\Rule;
 use Wearesho\Bobra\Ubki\Validation\RuleCollection;
+use Wearesho\Bobra\Ubki\Validation\Rules\Inn;
 use Wearesho\Bobra\Ubki\Validation\Rules\Number;
 use Wearesho\Bobra\Ubki\Validation\Rules\PersonName;
 
@@ -51,8 +52,8 @@ class NaturalPerson extends IdentifiedPerson implements Data\Interfaces\NaturalP
     public function rules(): ?RuleCollection
     {
         $rules = new RuleCollection([
-            Number::provide(['inn',])->length(Rule::INN_LENGTH),
-            PersonName::provide(['patronymic', 'surname',])
+            new Inn(['inn',]),
+            new PersonName(['patronymic', 'surname',])
         ]);
 
         return $rules->merge(parent::rules());

@@ -2,30 +2,28 @@
 
 namespace Wearesho\Bobra\Ubki\Validation;
 
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
-
 /**
  * Class ValidationException
  * @package Wearesho\Bobra\Ubki
  */
 class ValidationException extends \InvalidArgumentException
 {
-    /** @var ElementInterface */
-    protected $element;
+    /** @var string */
+    protected $value;
 
     public function __construct(
-        ElementInterface $element,
+        string $value,
         string $message = "",
         int $code = 0,
         \Throwable $previous = null
     ) {
-        $this->element = $element;
+        $this->value = $value;
 
         parent::__construct($message, $code, $previous);
     }
 
-    public function getElement(): string
+    public function getValue(): string
     {
-        return $this->element;
+        return $this->value;
     }
 }

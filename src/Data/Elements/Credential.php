@@ -7,6 +7,7 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Infrastructure;
 use Wearesho\Bobra\Ubki\Validation\Rule;
 use Wearesho\Bobra\Ubki\Validation\RuleCollection;
+use Wearesho\Bobra\Ubki\Validation\Rules\Inn;
 use Wearesho\Bobra\Ubki\Validation\Rules\Number;
 use Wearesho\Bobra\Ubki\Validation\Rules\PersonName;
 
@@ -51,8 +52,8 @@ class Credential extends Infrastructure\Element implements Data\Interfaces\Crede
     public function rules(): ?RuleCollection
     {
         return new RuleCollection([
-            Number::provide(['inn',])->length(Rule::INN_LENGTH),
-            PersonName::provide(['name', 'patronymic', 'surname',])
+            new Inn(['inn',]),
+            new PersonName(['name', 'patronymic', 'surname',])
         ]);
     }
 }

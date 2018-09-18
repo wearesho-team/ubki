@@ -5,10 +5,10 @@ namespace Wearesho\Bobra\Ubki\Validation\Rules;
 use Wearesho\Bobra\Ubki\Validation\Rule;
 
 /**
- * Class Country
+ * Class CorrectCountryName
  * @package Wearesho\Bobra\Ubki\Validation\Rules
  */
-class Country extends Rule
+class CorrectCountryName extends Rule
 {
     public function getMessage(): string
     {

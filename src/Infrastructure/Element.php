@@ -2,10 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Infrastructure;
 
-use Wearesho\Bobra\Ubki\Validation\Rule;
 use Wearesho\Bobra\Ubki\Validation\RuleCollection;
 use Wearesho\Bobra\Ubki\Validation\RuleInterface;
-use Wearesho\Bobra\Ubki\Validation\ValidationException;
 
 /**
  * Class Element
@@ -15,7 +13,9 @@ abstract class Element implements ElementInterface
 {
     public function __construct()
     {
-        $this->validate();
+        foreach ((array)$this->rules() as $rule) {
+            $this->validate($rule);
+        }
     }
 
     /**
@@ -49,19 +49,11 @@ abstract class Element implements ElementInterface
         return null;
     }
 
-    public function validate(): void
+    public function validate(RuleInterface $rule): void
     {
-        $rules = $this->rules();
-
-        if (is_null($rules)) {
-            return;
-        }
-
-        /** @var Rule $rule */
-        foreach ($rules as $rule) {
-            if (!$rule->execute($this)) {
-                throw new ValidationException($this, $rule->getMessage());
-            }
+        /** @var string $attribute */
+        foreach ($rule->getAttributes() as $attribute) {
+            $rule->validate($this->$attribute);
         }
     }
 }

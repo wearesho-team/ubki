@@ -30,7 +30,7 @@ abstract class IdentifiedPerson extends Person implements Data\Interfaces\Identi
     public function rules(): ?RuleCollection
     {
         return new RuleCollection([
-            PersonName::provide(['name',])
+            new PersonName(['name',])
         ]);
     }
 }

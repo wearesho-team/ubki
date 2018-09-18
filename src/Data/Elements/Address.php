@@ -6,6 +6,7 @@ use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Infrastructure;
 use Wearesho\Bobra\Ubki\Validation\RuleCollection;
+use Wearesho\Bobra\Ubki\Validation\Rules\CorrectCountryName;
 use Wearesho\Bobra\Ubki\Validation\Rules\LongSimpleText;
 
 /**
@@ -53,7 +54,7 @@ class Address extends Infrastructure\Element implements Data\Interfaces\Address
     public function rules(): RuleCollection
     {
         return new RuleCollection([
-            LongSimpleText::provide(['country',])
+            new CorrectCountryName(['country',])
         ]);
     }
 }

@@ -2,25 +2,25 @@
 
 namespace Wearesho\Bobra\Ubki\Validation;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
-
 /**
  * Class Rule
  * @package Wearesho\Bobra\Ubki\Validation
  */
-abstract class Rule
+class Rule implements RuleInterface
 {
-    public const INN_LENGTH = 10;
+    public const BASE_PATTERN = "/([\W\w])+/u";
+    public const BASE_MESSAGE = "Validation exception";
 
-    /** @var array|null */
+    /** @var array */
     protected $attributes;
 
-    /** @var Rule[] */
-    protected static $cache;
+    /** @var callable|null */
+    protected $userValidation;
 
-    protected function __construct(array $attributes = null)
+    public function __construct(array $attributes, callable $userRule = null)
     {
         $this->attributes = $attributes;
+        $this->userValidation = $userRule;
     }
 
     /**
@@ -28,63 +28,50 @@ abstract class Rule
      *
      * @return mixed
      */
-    abstract public function getPattern(): string;
+    public function getPattern(): string
+    {
+        return static::BASE_PATTERN;
+    }
 
     /**
      * A public message containing an explanation of the error
      *
      * @return string
      */
-    abstract public function getMessage(): string;
-
-    /**
-     * @param array $attributes
-     *
-     * @return static
-     */
-    public static function provide(array $attributes): Rule
+    public function getMessage(): string
     {
-        $cacheRules = static::$cache;
-
-        foreach ((array)$cacheRules as $rule) {
-            if ($rule instanceof self && $rule->getAttributes() == $attributes) {
-                return $rule;
-            }
-        }
-
-        $rule = new static($attributes);
-        static::$cache[] = $rule;
-
-        return $rule;
+        return static::BASE_MESSAGE;
     }
 
     /**
      * Should return false if is not valid or true if is valid
      *
-     * @param Element $element
-     *
-     * @return bool
+     * @param mixed $value
      */
-    public function execute(Element &$element): bool
+    public function validate($value): void
     {
-        foreach ($this->getAttributes() as $attribute) {
-            $line = $element->$attribute;
+        $match = $this->userValidation
+            ? call_user_func($this->getUserValidation(), $value)
+            : $this->regex((string)$value);
 
-            if (is_null($line)) {
-                return true;
-            }
-
-            if (!$this->regex($line)) {
-                return false;
-            }
+        if (!($match ?? false)) {
+            throw new ValidationException($value, $this->getMessage());
         }
-
-        return true;
     }
 
+    /**
+     * Properties of your class that should be validated
+     *
+     * @return array
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    public function getUserValidation(): ?callable
+    {
+        return $this->userValidation;
     }
 
     public function regex(string $value, array &$matches = null, $flags = 0, $offset = 0): bool

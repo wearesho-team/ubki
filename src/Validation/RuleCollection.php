@@ -14,6 +14,6 @@ class RuleCollection extends BaseCollection
 {
     public function type(): string
     {
-        return Rule::class;
+        return RuleInterface::class;
     }
 }

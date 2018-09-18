@@ -47,11 +47,10 @@ abstract class BaseCollection extends \ArrayObject implements \JsonSerializable
 
     public function merge(BaseCollection $collection): BaseCollection
     {
-        foreach ($collection as $item) {
-            $this->append($item);
-        }
-
-        return $this;
+        return new static(array_merge(
+            $this->jsonSerialize(),
+            $collection->jsonSerialize()
+        ));
     }
 
     /**
