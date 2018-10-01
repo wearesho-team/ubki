@@ -171,11 +171,4 @@ trait DealLife
     {
         return $this->actualEndDate;
     }
-
-    protected function validateActualEndDate(?string $actualEndDate, Dictionaries\DealStatus $status): void
-    {
-        if (is_null($actualEndDate) && $status->equals(Dictionaries\DealStatus::CLOSE())) {
-            throw new \InvalidArgumentException("'Actual end date' must be set if deal status is CLOSE");
-        }
-    }
 }

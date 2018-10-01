@@ -2,12 +2,10 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
-use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Dictionaries;
 use Wearesho\Bobra\Ubki\Infrastructure;
-use Wearesho\Bobra\Ubki\Validation\Rule;
-use Wearesho\Bobra\Ubki\Validation\RuleCollection;
+use Wearesho\Bobra\Ubki\Validation;
 
 /**
  * Class DealLife
@@ -50,20 +48,18 @@ class DealLife extends Infrastructure\Element implements Data\Interfaces\DealLif
         $this->delayIndication = $delayIndication;
         $this->creditTrancheIndication = $creditTrancheIndication;
         $this->paymentDate = $paymentDate;
-
-        $this->validateActualEndDate($actualEndDate, $status);
-
         $this->actualEndDate = $actualEndDate;
 
         parent::__construct();
     }
 
-    public function rules(): ?RuleCollection
+    public function rules(): ?Validation\RuleCollection
     {
-        return new RuleCollection([
-             new Rule(['actualEndDate',], function (?\DateTimeInterface $actualEndDate): bool {
-                 return !(is_null($actualEndDate) && $this->status->equals(Dictionaries\DealStatus::CLOSE()));
-             })
+        return new Validation\RuleCollection([
+            new Validation\Rule(['actualEndDate',], function (?\DateTimeInterface $actualEndDate): bool {
+                return !(is_null($actualEndDate) && $this->status->equals(Dictionaries\DealStatus::CLOSE()));
+            }),
+            new Validation\Rules\PeriodMonth(['periodMonth',])
         ]);
     }
 }
