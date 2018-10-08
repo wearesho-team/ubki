@@ -41,17 +41,11 @@ class ContactTest extends TestCase
 
     public function testGetValue(): void
     {
-        $this->assertEquals(
-            static::VALUE,
-            $this->fakeContact->getValue()
-        );
+        $this->assertEquals(static::VALUE, $this->fakeContact->getValue());
     }
 
     public function testGetType(): void
     {
-        $this->assertEquals(
-            ContactType::MOBILE(),
-            $this->fakeContact->getType()
-        );
+        $this->assertEquals(new ContactType(ContactType::MOBILE), $this->fakeContact->getType());
     }
 }

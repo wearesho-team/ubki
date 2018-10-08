@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Pull\Elements;
 
 use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\ElementTrait;
 use Wearesho\Bobra\Ubki\References\DocumentType;
 
 /**
@@ -12,6 +13,8 @@ use Wearesho\Bobra\Ubki\References\DocumentType;
  */
 class Document implements ElementInterface
 {
+    use ElementTrait;
+
     public const TAG = 'doc';
     public const TYPE = 'dtype';
     public const SERIAL = 'dser';
@@ -40,11 +43,6 @@ class Document implements ElementInterface
             static::SERIAL => $this->serial,
             static::NUMBER => $this->number,
         ];
-    }
-
-    public function tag(): string
-    {
-        return static::TAG;
     }
 
     public function getType(): DocumentType

@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Pull\Elements;
 
 use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\ElementTrait;
 use Wearesho\Bobra\Ubki\Pull\Collections;
 use Wearesho\Bobra\Ubki\References\Language;
 
@@ -12,6 +13,8 @@ use Wearesho\Bobra\Ubki\References\Language;
  */
 class RequestContent implements ElementInterface
 {
+    use ElementTrait;
+
     public const TAG = 'i';
     public const LANGUAGE = 'reqlng';
 
@@ -50,11 +53,6 @@ class RequestContent implements ElementInterface
                 return $document->jsonSerialize();
             }, $this->documents->jsonSerialize()),
         ];
-    }
-
-    public function tag(): string
-    {
-        return static::TAG;
     }
 
     public function getIdentification(): Identification

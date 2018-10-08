@@ -4,6 +4,7 @@ namespace Wearesho\Bobra\Ubki\Pull\Elements;
 
 use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\ElementTrait;
 
 /**
  * Class Identification
@@ -11,6 +12,8 @@ use Wearesho\Bobra\Ubki\ElementInterface;
  */
 class Identification implements ElementInterface
 {
+    use ElementTrait;
+
     public const TAG = 'ident';
     public const INN = 'okpo';
     public const NAME = 'fname';
@@ -56,11 +59,6 @@ class Identification implements ElementInterface
             static::SURNAME => $this->surname,
             static::BIRTH_DATE => Carbon::instance($this->birthDate)->toDateString(),
         ];
-    }
-
-    public function tag(): string
-    {
-        return static::TAG;
     }
 
     public function getInn(): string

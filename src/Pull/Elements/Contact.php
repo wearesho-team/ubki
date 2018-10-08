@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Pull\Elements;
 
 use Wearesho\Bobra\Ubki\ElementInterface;
+use Wearesho\Bobra\Ubki\ElementTrait;
 use Wearesho\Bobra\Ubki\References\ContactType;
 
 /**
@@ -12,6 +13,8 @@ use Wearesho\Bobra\Ubki\References\ContactType;
  */
 class Contact implements ElementInterface
 {
+    use ElementTrait;
+
     public const TAG = 'cont';
     public const TYPE = 'ctype';
     public const VALUE = 'cval';
@@ -36,18 +39,13 @@ class Contact implements ElementInterface
         ];
     }
 
-    public function tag(): string
+    public function getValue(): string
     {
-        return static::TAG;
+        return $this->value;
     }
 
     public function getType(): ContactType
     {
         return $this->type;
-    }
-
-    public function getValue(): string
-    {
-        return $this->value;
     }
 }
