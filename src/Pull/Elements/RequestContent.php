@@ -33,8 +33,8 @@ class RequestContent implements ElementInterface
     public function __construct(
         Language $language,
         Identification $identification,
-        ?Collections\Contacts $contacts = null,
-        ?Collections\Documents $documents = null
+        Collections\Contacts $contacts = null,
+        Collections\Documents $documents = null
     ) {
         $this->language = $language;
         $this->identification = $identification;

@@ -13,7 +13,6 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Service
  * @package Wearesho\Bobra\Ubki\Pull
- * @todo: implement base SendService class
  */
 class Service extends Ubki\SendService
 {
@@ -135,7 +134,7 @@ class Service extends Ubki\SendService
         return $requestXML->saveXML();
     }
 
-    private function createFilledElement(?Ubki\ElementInterface $element)
+    private function createFilledElement(Ubki\ElementInterface $element = null)
     {
         $domElement = $this->document->createElement($element->tag());
         $attributes = $element->jsonSerialize();

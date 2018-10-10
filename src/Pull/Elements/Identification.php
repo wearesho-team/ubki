@@ -38,10 +38,10 @@ class Identification implements ElementInterface
 
     public function __construct(
         string $inn,
-        ?string $name = null,
-        ?string $patronymic = null,
-        ?string $surname = null,
-        ?\DateTimeInterface $birthDate = null
+        string $name = null,
+        string $patronymic = null,
+        string $surname = null,
+        \DateTimeInterface $birthDate = null
     ) {
         $this->inn = $inn;
         $this->name = $name;
