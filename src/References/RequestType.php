@@ -7,6 +7,26 @@ use Wearesho\Bobra\Ubki\Reference;
 /**
  * Class RequestType
  * @package Wearesho\Bobra\Ubki\References
+ *
+ * @method static RequestType EXPORT(string $description = null)
+ * @method static RequestType EDIT(string $description = null)
+ * @method static RequestType DELETE(string $description = null)
+ * @method static RequestType CONTACTS(string $description = null)
+ * @method static RequestType REPORT_AFS(string $description = null)
+ * @method static RequestType ONLY_CREDIT_RATING(string $description = null)
+ * @method static RequestType CREDIT_REPORT(string $description = null)
+ * @method static RequestType CREDIT_REPORT_WITH_PRIVATBANK(string $description = null)
+ * @method static RequestType CREDTI_BALL(string $description = null)
+ * @method static RequestType IDENTIFICATION(string $description = null)
+ * @method static RequestType CHECK_PASSPORT_MVD(string $description = null)
+ * @method static RequestType LEGAL_CREDIT_REPORT(string $description = null)
+ * @method static RequestType LEGAL_CREDIT_REPORT_WITH_PRIVATBANK(string $description = null)
+ * @method static RequestType AFS_UBKI(string $description = null)
+ * @method static RequestType PHOTO_VERIFICATION(string $description = null)
+ * @method static RequestType KI_REQUEST(string $description = null)
+ * @method static RequestType MVD_IDENTIFICATION(string $description = null)
+ * @method static RequestType STATEMENTS_SEARCH(string $description = null)
+ * @method static RequestType EXPORT_CREDIT_REQUEST_DECISION(string $description = null)
  */
 final class RequestType extends Reference
 {
