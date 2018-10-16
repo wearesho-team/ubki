@@ -155,7 +155,6 @@ class ServiceTest extends TestCase
                 References\RequestInitiator::PARTNER()
             ),
             new Push\Export\DataDocument(
-                'tech',
                 new Blocks\Identification(
                     new Blocks\Entities\Credential(
                         References\Language::RUS(),

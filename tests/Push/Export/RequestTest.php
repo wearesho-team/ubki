@@ -66,7 +66,6 @@ class RequestTest extends TestCase
                 References\RequestInitiator::PARTNER()
             ),
             new Export\DataDocument(
-                'tech',
                 new Blocks\Identification(
                     new Blocks\Entities\Credential(
                         References\Language::RUS(),
@@ -184,7 +183,6 @@ class RequestTest extends TestCase
     {
         $this->assertEquals(
             new Export\DataDocument(
-                'tech',
                 new Blocks\Identification(
                     new Blocks\Entities\Credential(
                         References\Language::RUS(),

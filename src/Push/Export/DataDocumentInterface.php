@@ -13,8 +13,6 @@ interface DataDocumentInterface extends ElementInterface
 {
     public const TAG = 'ubkidata';
 
-    public function getTech(); // TODO: need implement
-
     public function getIdentification(): Blocks\Identification;
 
     public function getCreditDeals(): ?Blocks\CreditsInformation;
@@ -26,6 +24,4 @@ interface DataDocumentInterface extends ElementInterface
     public function getInsuranceReports(): ?Blocks\InsurancesInformation;
 
     public function getContacts(): ?Blocks\ContactsInformation;
-
-    public function getCommunalPayments(); // TODO: need implement
 }

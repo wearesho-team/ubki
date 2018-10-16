@@ -13,8 +13,6 @@ trait DataDocumentTrait
 {
     use ElementTrait;
 
-    protected $tech;
-
     /** @var Blocks\Identification */
     protected $identification;
 
@@ -33,8 +31,6 @@ trait DataDocumentTrait
     /** @var Blocks\ContactsInformation|null */
     protected $contacts;
 
-    protected $communalPayments;
-
     public function jsonSerialize(): array
     {
         return [
@@ -45,11 +41,6 @@ trait DataDocumentTrait
             'insuranceReportsInformation' => $this->insuranceReports ? $this->insuranceReports->jsonSerialize() : null,
             'contactsInformation' => $this->contacts ? $this->contacts->jsonSerialize() : null,
         ];
-    }
-
-    public function getTech()
-    {
-        return $this->tech;
     }
 
     public function getIdentification(): Blocks\Identification
@@ -80,10 +71,5 @@ trait DataDocumentTrait
     public function getContacts(): ?Blocks\ContactsInformation
     {
         return $this->contacts;
-    }
-
-    public function getCommunalPayments()
-    {
-        return $this->communalPayments;
     }
 }

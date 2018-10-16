@@ -112,7 +112,6 @@ class DataDocumentTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeDataDocument = new DataDocument(
-            'tech',
             new Blocks\Identification(
                 new Blocks\Entities\Credential(
                     References\Language::RUS(),
@@ -551,14 +550,6 @@ class DataDocumentTest extends TestCase
         );
     }
 
-    public function testGetTech(): void
-    {
-        $this->assertEquals(
-            'tech',
-            $this->fakeDataDocument->getTech()
-        );
-    }
-
     public function testGetContacts(): void
     {
         $this->assertEquals(
@@ -760,11 +751,6 @@ class DataDocumentTest extends TestCase
         );
     }
 
-    public function testGetCommunalPayments(): void
-    {
-        $this->assertNull($this->fakeDataDocument->getCommunalPayments());
-    }
-
     public function testGetCourtDecisions(): void
     {
         $this->assertEquals(
@@ -822,7 +808,6 @@ class DataDocumentTest extends TestCase
     public function testMinimalData(): void
     {
         $this->fakeDataDocument = new DataDocument(
-            'tech',
             new Blocks\Identification(
                 new Blocks\Entities\Credential(
                     References\Language::RUS(),

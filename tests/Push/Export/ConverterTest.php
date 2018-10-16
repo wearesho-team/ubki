@@ -362,7 +362,6 @@ class ConverterTest extends TestCase
     public function testImitationRealExport(): void
     {
         $document = new Export\DataDocument(
-            $this->fakeTech,
             new Blocks\Identification(
                 new Blocks\Entities\Credential(
                     new References\Language(References\Language::RUS),
@@ -511,7 +510,6 @@ class ConverterTest extends TestCase
     public function testStandardExportReport(): void
     {
         $document = new Export\DataDocument(
-            $this->fakeTech,
             $this->fakeIdentificationBlock,
             $this->fakeCreditsBlock,
             null,
@@ -577,7 +575,6 @@ class ConverterTest extends TestCase
     public function testCreditsBlock(): void
     {
         $document = new Export\DataDocument(
-            $this->fakeTech,
             $this->fakeIdentificationBlock,
             $this->fakeCreditsBlock
         );
@@ -634,7 +631,7 @@ class ConverterTest extends TestCase
 
     public function testIdentificationBlock(): void
     {
-        $document = new Export\DataDocument($this->fakeTech, $this->fakeIdentificationBlock);
+        $document = new Export\DataDocument($this->fakeIdentificationBlock);
 
         $this->assertXmlStringEqualsXmlString(
             '<?xml version="1.0" encoding="utf-8"?>
@@ -679,7 +676,6 @@ class ConverterTest extends TestCase
     public function testFullDataDocument(): void
     {
         $document = new Export\DataDocument(
-            $this->fakeTech,
             $this->fakeIdentificationBlock,
             $this->fakeCreditsBlock,
             $this->fakeCourtsDecisionBlock,

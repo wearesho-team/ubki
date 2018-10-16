@@ -67,7 +67,6 @@ class RequestExceptionTest extends TestCase
                     References\RequestInitiator::PARTNER()
                 ),
                 new Export\DataDocument(
-                    'tech',
                     new Blocks\Identification(
                         new Blocks\Entities\Credential(
                             References\Language::RUS(),
@@ -180,7 +179,6 @@ class RequestExceptionTest extends TestCase
                     References\RequestInitiator::PARTNER()
                 ),
                 new Export\DataDocument(
-                    'tech',
                     new Blocks\Identification(
                         new Blocks\Entities\Credential(
                             References\Language::RUS(),
