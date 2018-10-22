@@ -2,13 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Collection;
 
+use Wearesho\BaseCollection;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Contact
  * @package Wearesho\Bobra\Ubki\Collection
  */
-class Contact extends Ubki\BaseCollection
+class Contact extends BaseCollection
 {
     public function type(): string
     {

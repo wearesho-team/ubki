@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac14c611c6876fb255e5cf56aa10edc4",
+    "content-hash": "be131a4a9e0764e663f0b52b7bed0e60",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -590,6 +590,46 @@
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
             "time": "2018-02-22T06:28:18+00:00"
+        },
+        {
+            "name": "wearesho-team/base-collection",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wearesho-team/base-collection.git",
+                "reference": "34e629e71aca115cdb27c13b34e8c6cdd0bc5418"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wearesho-team/base-collection/zipball/34e629e71aca115cdb27c13b34e8c6cdd0bc5418",
+                "reference": "34e629e71aca115cdb27c13b34e8c6cdd0bc5418",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.4",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Wearesho\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Varkuta",
+                    "email": "roman.varkuta@gmail.com"
+                }
+            ],
+            "description": "Typed collection based on ArrayObject",
+            "time": "2018-10-19T12:17:38+00:00"
         }
     ],
     "packages-dev": [
