@@ -8,9 +8,9 @@ use MyCLabs\Enum\Enum;
  * Class Language
  * @package Wearesho\Bobra\Ubki
  *
- * @method static static RU(string $description = null)
- * @method static static UA(string $description = null)
- * @method static static EN(string $description = null)
+ * @method static static RU()
+ * @method static static UA()
+ * @method static static EN()
  */
 class Language extends Enum
 {
