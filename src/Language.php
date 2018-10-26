@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki;
 
+use MyCLabs\Enum\Enum;
+
 /**
  * Class Language
  * @package Wearesho\Bobra\Ubki
@@ -10,7 +12,7 @@ namespace Wearesho\Bobra\Ubki;
  * @method static static UA(string $description = null)
  * @method static static EN(string $description = null)
  */
-class Language extends Reference
+class Language extends Enum
 {
     public const RU = 1;
     public const UA = 2;
