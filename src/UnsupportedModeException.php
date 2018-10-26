@@ -2,11 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki;
 
-use Throwable;
-
 /**
  * Class UnsupportedModeException
- *
  * @package Wearesho\Bobra\Ubki
  */
 class UnsupportedModeException extends \InvalidArgumentException
@@ -17,7 +14,7 @@ class UnsupportedModeException extends \InvalidArgumentException
     public function __construct(
         int $mode,
         int $code = 0,
-        Throwable $previous = null
+        \Throwable $previous = null
     ) {
         $this->mode = $mode;
 
