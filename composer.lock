@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac14c611c6876fb255e5cf56aa10edc4",
+    "content-hash": "f679723ccdcb38ea8b72314ac9f04756",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -229,23 +229,23 @@
         },
         {
             "name": "myclabs/php-enum",
-            "version": "1.5.0",
+            "version": "1.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/php-enum.git",
-                "reference": "e42fa9d2ae5dd660dbd0fb573d94c61e5a0dbb02"
+                "reference": "a8284c7c540caf9988e339a404cadcdf1e8b165d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/e42fa9d2ae5dd660dbd0fb573d94c61e5a0dbb02",
-                "reference": "e42fa9d2ae5dd660dbd0fb573d94c61e5a0dbb02",
+                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/a8284c7c540caf9988e339a404cadcdf1e8b165d",
+                "reference": "a8284c7c540caf9988e339a404cadcdf1e8b165d",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3"
+                "php": ">=5.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*",
+                "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
                 "squizlabs/php_codesniffer": "1.*"
             },
             "type": "library",
@@ -269,7 +269,7 @@
             "keywords": [
                 "enum"
             ],
-            "time": "2016-10-09T21:43:05+00:00"
+            "time": "2018-10-27T21:15:22+00:00"
         },
         {
             "name": "nesbot/carbon",
