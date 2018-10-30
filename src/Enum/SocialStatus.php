@@ -18,7 +18,7 @@ use MyCLabs\Enum\Enum;
  * @method static SocialStatus MATERNITY_LEAVE()
  * @method static SocialStatus OTHER()
  */
-class SocialStatus extends Enum
+final class SocialStatus extends Enum
 {
     const FULL_TIME = 1;
     const TERM_TIME = 2;
