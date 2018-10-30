@@ -23,7 +23,7 @@ use MyCLabs\Enum\Enum;
  * @method static Nationality USA()
  * @method static Nationality UZBEKISTAN()
  */
-class Nationality extends Enum
+final class Nationality extends Enum
 {
     public const STATELESS = 1;
     public const AZERBAIJAN = 31;
