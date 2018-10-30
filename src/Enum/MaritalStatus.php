@@ -14,7 +14,7 @@ use MyCLabs\Enum\Enum;
  * @method static MaritalStatus WIDOW()
  * @method static MaritalStatus MATE()
  */
-class MaritalStatus extends Enum
+final class MaritalStatus extends Enum
 {
     public const UNMARRIED = 1;
     public const MARRIED = 2;
