@@ -26,7 +26,7 @@ use MyCLabs\Enum\Enum;
  * @method static DocumentType RESIDENCE()
  * @method static DocumentType UKRAINE_CARD()
  */
-class DocumentType extends Enum
+final class DocumentType extends Enum
 {
     public const PASSPORT = 1;
     public const DRIVER = 2;
