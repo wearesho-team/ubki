@@ -11,7 +11,7 @@ use MyCLabs\Enum\Enum;
  * @method static Gender MALE()
  * @method static Gender FEMALE()
  */
-class Gender extends Enum
+final class Gender extends Enum
 {
     public const MALE = 1;
     public const FEMALE = 2;
