@@ -13,7 +13,7 @@ use MyCLabs\Enum\Enum;
  * @method static SubjectRank SPECIALIST()
  * @method static SubjectRank FREELANCER()
  */
-class SubjectRank extends Enum
+final class SubjectRank extends Enum
 {
     public const DIRECTOR = 1;
     public const MANAGER = 2;
