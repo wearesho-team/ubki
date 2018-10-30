@@ -16,7 +16,7 @@ use MyCLabs\Enum\Enum;
  * @method static Education ACADEMIC()
  * @method static Education BY_SELF()
  */
-class Education extends Enum
+final class Education extends Enum
 {
     public const SECONDARY_UNFINISHED = 1;
     public const SECONDARY = 2;
