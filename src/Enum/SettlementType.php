@@ -13,7 +13,7 @@ use MyCLabs\Enum\Enum;
  * @method static SettlementType TOWNSHIP()
  * @method static SettlementType CITY()
  */
-class SettlementType extends Enum
+final class SettlementType extends Enum
 {
     public const HAMLET = 1;
     public const VILLAGE = 2;
