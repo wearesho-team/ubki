@@ -15,7 +15,7 @@ use MyCLabs\Enum\Enum;
  * @method static CourtDecisionDocumentType COURT_ORDER()
  * @method static CourtDecisionDocumentType COURT_DECISION()
  */
-class CourtDecisionDocumentType extends Enum
+final class CourtDecisionDocumentType extends Enum
 {
     public const SENTENCE = 1;
     public const SEPARATE_SOLUTION = 2;
