@@ -12,7 +12,7 @@ use MyCLabs\Enum\Enum;
  * @method static InsuranceDealType OSAGO()
  * @method static InsuranceDealType ACCIDENT()
  */
-class InsuranceDealType extends Enum
+final class InsuranceDealType extends Enum
 {
     public const CASCO = 1;
     public const OSAGO = 2;
