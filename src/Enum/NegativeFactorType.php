@@ -15,7 +15,7 @@ use MyCLabs\Enum\Enum;
  * @method static NegativeFactorType BANKRUPTCY_PROCEDURE()
  * @method static NegativeFactorType BANK_DEBTORS()
  */
-class NegativeFactorType extends Enum
+final class NegativeFactorType extends Enum
 {
     public const PERSONS_WITH_FRAUDULENT_SIGNS = 1;
     public const DEAD = 2;
