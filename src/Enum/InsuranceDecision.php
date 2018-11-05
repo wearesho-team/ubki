@@ -11,7 +11,7 @@ use MyCLabs\Enum\Enum;
  * @method static InsuranceDecision POSITIVE()
  * @method static InsuranceDecision NEGATIVE()
  */
-class InsuranceDecision extends Enum
+final class InsuranceDecision extends Enum
 {
     public const POSITIVE = 1;
     public const NEGATIVE = 2;
