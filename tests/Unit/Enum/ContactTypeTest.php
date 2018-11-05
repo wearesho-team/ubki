@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\ContactType;
 /**
  * Class ContactTypeTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\ContactType
+ * @internal
  */
 class ContactTypeTest extends TestCase
 {
