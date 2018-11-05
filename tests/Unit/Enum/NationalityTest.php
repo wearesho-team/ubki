@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\Nationality;
 /**
  * Class NationalityTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\Nationality
+ * @internal
  */
 class NationalityTest extends TestCase
 {
