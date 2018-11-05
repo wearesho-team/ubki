@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\CommunalPaymentSource;
 /**
  * Class CommunalPaymentSourceTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\CommunalPaymentSource
+ * @internal
  */
 class CommunalPaymentSourceTest extends TestCase
 {
