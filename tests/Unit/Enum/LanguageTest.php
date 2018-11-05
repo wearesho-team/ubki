@@ -1,13 +1,15 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Enum;
+namespace Wearesho\Bobra\Ubki\Tests\Unit\Enum;
 
 use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki\Enum\Language;
 
 /**
  * Class LanguageTest
- * @package Wearesho\Bobra\Ubki\Tests\Enum
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\Language
+ * @internal
  */
 class LanguageTest extends TestCase
 {
