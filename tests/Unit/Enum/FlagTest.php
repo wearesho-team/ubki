@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\Flag;
 /**
  * Class FlagTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\Flag
+ * @internal
  */
 class FlagTest extends TestCase
 {
