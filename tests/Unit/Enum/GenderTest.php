@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\Gender;
 /**
  * Class GenderTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\Gender
+ * @internal
  */
 class GenderTest extends TestCase
 {
