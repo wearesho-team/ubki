@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\Education;
 /**
  * Class EducationTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\Education
+ * @internal
  */
 class EducationTest extends TestCase
 {
