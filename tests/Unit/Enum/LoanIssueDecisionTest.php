@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\LoanIssueDecision;
 /**
  * Class LoanIssueDecisionTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\LoanIssueDecision
+ * @internal
  */
 class LoanIssueDecisionTest extends TestCase
 {
