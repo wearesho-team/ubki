@@ -16,8 +16,8 @@ class EconomyBranchTest extends TestCase
     public function testEnums(): void
     {
         $this->assertEquals(EconomyBranch::EDUCATION(), new EconomyBranch(EconomyBranch::EDUCATION));
-        $this->assertEquals(EconomyBranch::BUILDING(), new EconomyBranch(EconomyBranch::EDUCATION));
-        $this->assertEquals(EconomyBranch::AGRICULTURE(), new EconomyBranch(EconomyBranch::EDUCATION));
+        $this->assertEquals(EconomyBranch::BUILDING(), new EconomyBranch(EconomyBranch::BUILDING));
+        $this->assertEquals(EconomyBranch::AGRICULTURE(), new EconomyBranch(EconomyBranch::AGRICULTURE));
         $this->assertEquals(
             EconomyBranch::ACTIVITIES_OF_EXTRATERRITORIAL_ORGANIZATIONS_AND_BODIES(),
             new EconomyBranch(EconomyBranch::ACTIVITIES_OF_EXTRATERRITORIAL_ORGANIZATIONS_AND_BODIES)
