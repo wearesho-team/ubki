@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\AddressType;
 /**
  * Class AddressTypeTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\AddressType
+ * @internal
  */
 class AddressTypeTest extends TestCase
 {
