@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\MaritalStatus;
 /**
  * Class MaritalStatusTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\MaritalStatus
+ * @internal
  */
 class MaritalStatusTest extends TestCase
 {
