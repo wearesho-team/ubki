@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\NegativeFactorType;
 /**
  * Class NegativeFactorTypeTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\NegativeFactorType
+ * @internal
  */
 class NegativeFactorTypeTest extends TestCase
 {
