@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\CounterpartyStatus;
 /**
  * Class CounterpartyStatusTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\CounterpartyStatus
+ * @internal
  */
 final class CounterpartyStatusTest extends TestCase
 {
