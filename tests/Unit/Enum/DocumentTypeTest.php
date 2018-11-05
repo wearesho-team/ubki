@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\DocumentType;
 /**
  * Class DocumentTypeTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\DocumentType
+ * @internal
  */
 class DocumentTypeTest extends TestCase
 {
