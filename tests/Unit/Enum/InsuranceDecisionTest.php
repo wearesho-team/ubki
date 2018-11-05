@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\InsuranceDecision;
 /**
  * Class InsuranceDecisionTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\InsuranceDecision
+ * @internal
  */
 class InsuranceDecisionTest extends TestCase
 {
