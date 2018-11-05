@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\CourtDealType;
 /**
  * Class CourtDealTypeTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\CourtDealType
+ * @internal
  */
 class CourtDealTypeTest extends TestCase
 {
