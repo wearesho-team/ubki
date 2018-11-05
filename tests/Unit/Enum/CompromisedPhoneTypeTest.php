@@ -8,6 +8,8 @@ use Wearesho\Bobra\Ubki\Enum\CompromisedPhoneType;
 /**
  * Class CompromisedPhoneTypeTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\CompromisedPhoneType
+ * @internal
  */
 class CompromisedPhoneTypeTest extends TestCase
 {
