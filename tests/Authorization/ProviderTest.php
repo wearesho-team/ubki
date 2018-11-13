@@ -55,8 +55,9 @@ class ProviderTest extends TestCase
         $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth sessid="TESTSESSIONID" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" userlogin="UserLogin" userid="1" userfname="FirstName" userlname="LastName" usermname="MiddleName" rolegroupid="2" rolegroupname="GroupName" agrid="3" agrname="OrganizationName" role="1"/></doc>'; // phpcs:ignore
         $container = [];
         $history = GuzzleHttp\Middleware::history($container);
+        $httpResponse = new GuzzleHttp\Psr7\Response(200, [], $response);
         $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(200, [], $response),
+            $httpResponse,
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);
         $stack->push($history);
@@ -85,11 +86,14 @@ class ProviderTest extends TestCase
                 2,
                 'GroupName',
                 3,
-                'OrganizationName'
+                'OrganizationName',
+                $httpResponse,
+                $container[0]['request']
+                    ->withoutHeader('Content-Length')
+                    ->withoutHeader('User-Agent')
             ),
             $response
         );
-
 
         // testing request
         $this->assertCount(1, $container);
@@ -278,7 +282,11 @@ class ProviderTest extends TestCase
                 2,
                 'GroupName',
                 3,
-                'OrganizationName'
+                'OrganizationName',
+                $httpResponse,
+                $container[0]['request']
+                    ->withoutHeader('Content-Length')
+                    ->withoutHeader('User-Agent')
             ),
             $response
         );
@@ -294,7 +302,7 @@ class ProviderTest extends TestCase
             (string)$request->getUri()
         );
 
-        $this->assertEquals($httpResponse, $provider->getHttpResponse());
-        $this->assertEquals($request->getBody(), $provider->getHttpRequest()->getBody());
+        $this->assertEquals($httpResponse, $response->getResponse());
+        $this->assertEquals($request->getBody(), $response->getRequest()->getBody());
     }
 }

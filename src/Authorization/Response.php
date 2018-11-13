@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Authorization;
 
 use Carbon\Carbon;
+use Psr\Http;
 
 /**
  * Class Response
@@ -35,6 +36,12 @@ class Response
     /** @var string */
     protected $organizationName;
 
+    /** @var Http\Message\ResponseInterface */
+    protected $response;
+
+    /** @var Http\Message\RequestInterface */
+    protected $request;
+
     public function __construct(
         string $sessionId,
         Carbon $created,
@@ -47,7 +54,9 @@ class Response
         int $group,
         string $groupName,
         int $organization,
-        string $organizationName
+        string $organizationName,
+        Http\Message\ResponseInterface $response,
+        Http\Message\RequestInterface $request
     ) {
         $this->sessionId = $sessionId;
         $this->createdAt = $created;
@@ -61,6 +70,8 @@ class Response
         $this->groupName = $groupName;
         $this->organization = $organization;
         $this->organizationName = $organizationName;
+        $this->response = $response;
+        $this->request = $request;
     }
 
     public function getSessionId(): string
@@ -121,5 +132,15 @@ class Response
     public function getOrganizationName(): string
     {
         return $this->organizationName;
+    }
+
+    public function getResponse(): Http\Message\ResponseInterface
+    {
+        return $this->response;
+    }
+
+    public function getRequest(): Http\Message\RequestInterface
+    {
+        return $this->request;
     }
 }

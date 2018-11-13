@@ -4,6 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Carbon\Carbon;
 
+use GuzzleHttp\Psr7;
 use PHPUnit\Framework\TestCase;
 
 use Wearesho\Bobra\Ubki;
@@ -29,7 +30,9 @@ class ResponseTest extends TestCase
             9,
             "nine_group",
             23,
-            "the 23th org"
+            "the 23th org",
+            new Psr7\Response(),
+            new Psr7\Request('POST', 'uri')
         );
 
         $this->assertEquals(200, $response->getSessionId());
@@ -55,5 +58,9 @@ class ResponseTest extends TestCase
         $this->assertEquals(Carbon::parse('2017-01-01 04:00:01'), $response->getCreatedAt());
 
         $this->assertEquals(Carbon::parse('2017-01-01 04:15:01'), $response->getUpdatedAt());
+
+        $this->assertEquals(new Psr7\Response(), $response->getResponse());
+
+        $this->assertEquals(new Psr7\Request('POST', 'uri'), $response->getRequest());
     }
 }
