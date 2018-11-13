@@ -13,9 +13,9 @@ class Response
 {
     /** @var string */
     protected $sessionId;
-    /** @var Carbon */
+    /** @var Carbon|null */
     protected $createdAt;
-    /** @var Carbon */
+    /** @var Carbon|null */
     protected $updatedAt;
     /** @var string */
     protected $login;
@@ -44,8 +44,8 @@ class Response
 
     public function __construct(
         string $sessionId,
-        Carbon $created,
-        Carbon $updated,
+        ?Carbon $created,
+        ?Carbon $updated,
         string $login,
         int $user,
         string $lastName,
@@ -79,12 +79,12 @@ class Response
         return $this->sessionId;
     }
 
-    public function getCreatedAt(): Carbon
+    public function getCreatedAt(): ?Carbon
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): Carbon
+    public function getUpdatedAt(): ?Carbon
     {
         return $this->updatedAt;
     }

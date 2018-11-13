@@ -170,6 +170,31 @@ class ProviderTest extends TestCase
         $provider->provide($this->config);
     }
 
+    public function testProvideSuccessCodeWithEmptyBody(): void
+    {
+        $response = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc><auth errtext="Some error text" errcode="228" sessid="sessid" agrname="OrganizationName"/></doc>'; // phpcs:ignore
+        $container = [];
+        $history = GuzzleHttp\Middleware::history($container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(200, [], $response),
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+
+        $provider = new Ubki\Authorization\Provider(
+            $client,
+            $this->logger
+        );
+
+        /** @noinspection GuzzleHttp\Exception\ClientException */
+        $response = $provider->provide($this->config);
+
+        $this->assertNull($response->getCreatedAt());
+        $this->assertNull($response->getUpdatedAt());
+    }
+
     public function testProvideNoErrCodeException(): void
     {
         $this->expectException(GuzzleHttp\Exception\ClientException::class);
