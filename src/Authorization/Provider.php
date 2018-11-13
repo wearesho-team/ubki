@@ -6,6 +6,7 @@ use Carbon\Carbon;
 
 use GuzzleHttp;
 
+use Psr\Http;
 use Psr\Log;
 
 /**
@@ -19,6 +20,12 @@ class Provider implements ProviderInterface
 
     /** @var Log\LoggerInterface */
     protected $logger;
+
+    /** @var Http\Message\ResponseInterface */
+    protected $response;
+
+    /** @var Http\Message\RequestInterface */
+    protected $request;
 
     public function __construct(
         GuzzleHttp\ClientInterface $client,
@@ -49,7 +56,8 @@ class Provider implements ProviderInterface
             $this->catchException($exception);
         }
         /** @var GuzzleHttp\Psr7\Response $httpResponse */
-
+        $this->request = $request;
+        $this->response = $httpResponse;
         $xml = simplexml_load_string($httpResponse->getBody()->__toString());
         $attributes = $xml->auth->attributes();
 
@@ -137,5 +145,15 @@ class Provider implements ProviderInterface
         $authElm->appendChild($passwordAttr);
 
         return $xml->saveXML();
+    }
+
+    public function getHttpResponse(): Http\Message\ResponseInterface
+    {
+        return $this->response;
+    }
+
+    public function getHttpRequest(): Http\Message\RequestInterface
+    {
+        return $this->request;
     }
 }
