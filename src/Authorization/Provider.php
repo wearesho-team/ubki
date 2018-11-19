@@ -6,6 +6,7 @@ use Carbon\Carbon;
 
 use GuzzleHttp;
 
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log;
 
 /**
@@ -43,11 +44,9 @@ class Provider implements ProviderInterface
             'url' => $request->getUri()->__toString(),
         ]);
 
-        try {
-            $httpResponse = $this->client->send($request);
-        } catch (GuzzleHttp\Exception\RequestException $exception) {
-            $this->catchException($exception);
-        }
+        $httpResponse = $this->client->send($request);
+        $this->validateResponse($httpResponse);
+
         /** @var GuzzleHttp\Psr7\Response $httpResponse */
 
         $xml = simplexml_load_string($httpResponse->getBody()->__toString());
@@ -74,35 +73,35 @@ class Provider implements ProviderInterface
             (int)$attributes->rolegroupid,
             (string)$attributes->rolegroupname,
             (int)$attributes->agrid,
-            $attributes->agrname
+            (string)$attributes->agrname
         );
 
         return $response;
     }
 
     /**
-     * @param GuzzleHttp\Exception\RequestException $exception
+     * @param ResponseInterface $response
      * @throws GuzzleHttp\Exception\RequestException
      * @throws Exception
      */
-    protected function catchException(GuzzleHttp\Exception\RequestException $exception): void
+    protected function validateResponse(ResponseInterface $response): void
     {
-        $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
+        $xml = simplexml_load_string($response->getBody()->__toString());
         if ($xml === false || !isset($xml->auth)) {
             // Not XML or invalid format XML
-            throw $exception;
+            throw new Exception('Invalid response body format.', Exception::CODE_UNKNOWN_ERROR);
         }
 
         $attributes = $xml->auth->attributes();
         if (!isset($attributes->errcode) || !isset($attributes->errtext)) {
             // Invalid format XMl
-            throw $exception;
+            throw new Exception('Invalid xml doc structure', Exception::CODE_UNKNOWN_ERROR);
         }
 
         throw new Exception(
             (string)$attributes->errtext,
             (int)$attributes->errcode,
-            $exception,
+            null,
             isset($attributes->errtextclient) ? (string)$attributes->errtextclient : null
         );
     }
