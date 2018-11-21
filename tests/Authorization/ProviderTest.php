@@ -126,7 +126,7 @@ class ProviderTest extends TestCase
         $container = [];
         $history = GuzzleHttp\Middleware::history($container);
         $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(400, [], $response),
+            new GuzzleHttp\Psr7\Response(200, [], $response),
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);
         $stack->push($history);
