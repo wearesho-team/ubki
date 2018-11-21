@@ -93,17 +93,15 @@ class Provider implements ProviderInterface
         }
 
         $attributes = $xml->auth->attributes();
-        if (!isset($attributes->errcode) || !isset($attributes->errtext)) {
+        if (isset($attributes->errcode) || isset($attributes->errtext)) {
             // Invalid format XMl
-            throw new Exception('Invalid xml doc structure', Exception::CODE_UNKNOWN_ERROR);
+            throw new Exception(
+                (string)$attributes->errtext,
+                (int)$attributes->errcode,
+                null,
+                isset($attributes->errtextclient) ? (string)$attributes->errtextclient : null
+            );
         }
-
-        throw new Exception(
-            (string)$attributes->errtext,
-            (int)$attributes->errcode,
-            null,
-            isset($attributes->errtextclient) ? (string)$attributes->errtextclient : null
-        );
     }
 
     private function getRequest(ConfigInterface $config): GuzzleHttp\Psr7\Request
