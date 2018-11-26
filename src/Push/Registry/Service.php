@@ -45,12 +45,12 @@ class Service implements ServiceInterface
     /**
      * @param RequestInterface $request
      *
-     * @return RequestResponsePair
+     * @return Ubki\RequestResponsePair
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws RequestException
      * @throws UnknownErrorException
      */
-    public function send(RequestInterface $request): RequestResponsePair
+    public function send(RequestInterface $request): Ubki\RequestResponsePair
     {
         $this->request = $request;
         $guzzleRequest = $this->convertToGuzzleRequest($this->request);
@@ -67,7 +67,7 @@ class Service implements ServiceInterface
 
         $this->validateUrl($urlFile);
 
-        return new RequestResponsePair(
+        return new Ubki\RequestResponsePair(
             $guzzleRequest->getBody()->__toString(),
             $fileContent = $this->getFileContent($urlFile)
         );
