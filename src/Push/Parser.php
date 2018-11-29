@@ -7,6 +7,8 @@ use Wearesho\Bobra\Ubki\Push\Error;
 /**
  * Class Parser
  * @package Wearesho\Bobra\Ubki\Push
+ * @deprecated
+ * @see \Wearesho\Bobra\Ubki\Push\Export\Parser
  */
 class Parser
 {
