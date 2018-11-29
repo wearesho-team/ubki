@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Enum;
+namespace Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries;
 
 use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Enum\AddressType;
+use Wearesho\Bobra\Ubki\Dictionaries\AddressType;
 
 /**
  * Class AddressTypeTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\AddressType
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Dictionaries\AddressType
  * @internal
  */
 class AddressTypeTest extends TestCase

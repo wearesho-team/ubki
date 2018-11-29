@@ -8,12 +8,12 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class AddressType
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static HOME(string $description = null)
- * @method static static REGISTRATION(string $description = null)
- * @method static static ACTUAL(string $description = null)
- * @method static static LEGAL(string $description = null)
- * @method static static MAILING(string $description = null)
- * @method static static WORK(string $description = null)
+ * @method static AddressType HOME(string $description = null)
+ * @method static AddressType REGISTRATION(string $description = null)
+ * @method static AddressType ACTUAL(string $description = null)
+ * @method static AddressType LEGAL(string $description = null)
+ * @method static AddressType MAILING(string $description = null)
+ * @method static AddressType WORK(string $description = null)
  */
 final class AddressType extends Infrastructure\Dictionary
 {
