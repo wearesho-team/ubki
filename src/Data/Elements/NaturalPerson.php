@@ -25,7 +25,7 @@ class NaturalPerson extends IdentifiedPerson implements Data\Interfaces\NaturalP
         Dictionaries\FamilyStatus $familyStatus = null,
         Dictionaries\Education $education = null,
         Dictionaries\Nationality $nationality = null,
-        Dictionaries\RegistrationSpd $registrationSpd = null,
+        Dictionaries\Classification $registrationSpd = null,
         Dictionaries\SocialStatus $socialStatus = null,
         int $childrenCount = null
     ) {

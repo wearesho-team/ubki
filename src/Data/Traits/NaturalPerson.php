@@ -39,7 +39,7 @@ trait NaturalPerson
     /** @var Dictionaries\Nationality|null */
     protected $nationality;
 
-    /** @var Dictionaries\RegistrationSpd|null */
+    /** @var Dictionaries\Classification|null */
     protected $registrationSpd;
 
     /** @var Dictionaries\SocialStatus|null */
@@ -118,7 +118,7 @@ trait NaturalPerson
         return $this->nationality;
     }
 
-    public function getRegistrationSpd(): ?Dictionaries\RegistrationSpd
+    public function getRegistrationSpd(): ?Dictionaries\Classification
     {
         return $this->registrationSpd;
     }

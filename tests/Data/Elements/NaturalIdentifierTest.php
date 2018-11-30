@@ -43,7 +43,7 @@ class NaturalIdentifierTest extends TestCase
             Dictionaries\FamilyStatus::SINGLE(),
             Dictionaries\Education::SECONDARY(),
             Dictionaries\Nationality::RUSSIAN_FEDERATION(),
-            Dictionaries\RegistrationSpd::BUSINESS(),
+            Dictionaries\Classification::ENTREPRENEUR(),
             Dictionaries\SocialStatus::STUDENT(),
             static::CHILDREN_COUNT
         );
@@ -64,7 +64,7 @@ class NaturalIdentifierTest extends TestCase
                 Interfaces\NaturalPerson::FAMILY_STATUS => Dictionaries\FamilyStatus::SINGLE(),
                 Interfaces\NaturalPerson::EDUCATION => Dictionaries\Education::SECONDARY(),
                 Interfaces\NaturalPerson::NATIONALITY => Dictionaries\Nationality::RUSSIAN_FEDERATION(),
-                Interfaces\NaturalPerson::REGISTRATION_SPD => Dictionaries\RegistrationSpd::BUSINESS(),
+                Interfaces\NaturalPerson::REGISTRATION_SPD => Dictionaries\Classification::ENTREPRENEUR(),
                 Interfaces\NaturalPerson::SOCIAL_STATUS => Dictionaries\SocialStatus::STUDENT(),
                 Interfaces\NaturalPerson::CHILDREN_COUNT => static::CHILDREN_COUNT,
             ],
@@ -187,7 +187,7 @@ class NaturalIdentifierTest extends TestCase
     public function testGetRegistrationSpd(): void
     {
         $this->assertEquals(
-            Dictionaries\RegistrationSpd::BUSINESS(),
+            Dictionaries\Classification::ENTREPRENEUR(),
             $this->fakeNaturalIdentifier->getRegistrationSpd()
         );
     }

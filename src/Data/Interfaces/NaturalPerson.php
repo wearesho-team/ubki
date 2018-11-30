@@ -47,7 +47,7 @@ interface NaturalPerson extends IdentifiedPerson
 
     public function getNationality(): ?Dictionaries\Nationality;
 
-    public function getRegistrationSpd(): ?Dictionaries\RegistrationSpd;
+    public function getRegistrationSpd(): ?Dictionaries\Classification;
 
     public function getSocialStatus(): ?Dictionaries\SocialStatus;
 }

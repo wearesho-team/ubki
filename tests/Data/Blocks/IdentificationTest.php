@@ -74,7 +74,7 @@ class IdentificationTest extends TestCase
                         Dictionaries\FamilyStatus::SINGLE(),
                         Dictionaries\Education::SECONDARY(),
                         Dictionaries\Nationality::RUSSIAN_FEDERATION(),
-                        Dictionaries\RegistrationSpd::BUSINESS(),
+                        Dictionaries\Classification::ENTREPRENEUR(),
                         Dictionaries\SocialStatus::STUDENT(),
                         static::CHILDREN_COUNT
                     ),
@@ -182,7 +182,7 @@ class IdentificationTest extends TestCase
                         Dictionaries\FamilyStatus::SINGLE(),
                         Dictionaries\Education::SECONDARY(),
                         Dictionaries\Nationality::RUSSIAN_FEDERATION(),
-                        Dictionaries\RegistrationSpd::BUSINESS(),
+                        Dictionaries\Classification::ENTREPRENEUR(),
                         Dictionaries\SocialStatus::STUDENT(),
                         static::CHILDREN_COUNT
                     ),
@@ -286,7 +286,7 @@ class IdentificationTest extends TestCase
                         Dictionaries\FamilyStatus::SINGLE(),
                         Dictionaries\Education::SECONDARY(),
                         Dictionaries\Nationality::RUSSIAN_FEDERATION(),
-                        Dictionaries\RegistrationSpd::BUSINESS(),
+                        Dictionaries\Classification::ENTREPRENEUR(),
                         Dictionaries\SocialStatus::STUDENT(),
                         static::CHILDREN_COUNT
                     ),
