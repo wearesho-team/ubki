@@ -1,18 +1,18 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Enum;
+namespace Wearesho\Bobra\Ubki\Dictionaries;
 
-use MyCLabs\Enum\Enum;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class ContactRole
- * @package Wearesho\Bobra\Ubki\Enum
+ * @package Wearesho\Bobra\Ubki\Dictionaries
  *
  * @method static ContactRole MAIN()
  * @method static ContactRole ADDITIONAL()
  * @method static ContactRole THIRD_PERSON()
  */
-final class ContactRole extends Enum
+final class ContactRole extends Infrastructure\Dictionary
 {
     public const MAIN = 1;
     public const ADDITIONAL = 2;

@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Enum;
+namespace Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries;
 
 use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Enum\ContactRole;
+use Wearesho\Bobra\Ubki\Dictionaries\ContactRole;
 
 /**
  * Class ContactRoleTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\ContactRole
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Dictionaries\ContactRole
  * @internal
  */
 class ContactRoleTest extends TestCase
