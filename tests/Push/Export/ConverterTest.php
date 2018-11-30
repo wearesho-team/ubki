@@ -139,7 +139,7 @@ class ConverterTest extends TestCase
     {
         $this->fakeConverter = new Export\Converter();
         $this->fakeRequestDataBlock = new Elements\RequestData(
-            Dictionaries\RequestType::EXPORT(),
+            Dictionaries\InformationProcessingMode::INSERT(),
             Dictionaries\RequestReason::EXPORT(),
             Carbon::parse(static::DATE),
             static::ID,

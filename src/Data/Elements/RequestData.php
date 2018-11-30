@@ -15,7 +15,7 @@ class RequestData extends Element implements Data\Interfaces\RequestData
     use Data\Traits\RequestData;
 
     public function __construct(
-        Dictionaries\RequestType $type,
+        Dictionaries\RequestTemplate $type,
         Dictionaries\RequestReason $reason,
         \DateTimeInterface $date = null,
         string $id = null,

@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Enum;
+namespace Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries;
 
 use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Enum\InformationProcessingMode;
+use Wearesho\Bobra\Ubki\Dictionaries\InformationProcessingMode;
 
 /**
  * Class InformationProcessingModeTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries
  * @coversDefaultClass InformationProcessingMode
  * @internal
  */

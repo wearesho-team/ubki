@@ -16,7 +16,7 @@ trait RequestData
     /** @var string */
     protected $version = '1.0';
 
-    /** @var Dictionaries\RequestType */
+    /** @var Dictionaries\RequestTemplate */
     protected $type;
 
     /** @var Dictionaries\RequestReason */
@@ -53,7 +53,7 @@ trait RequestData
         return $this->version;
     }
 
-    public function getType(): Dictionaries\RequestType
+    public function getType(): Dictionaries\RequestTemplate
     {
         return $this->type;
     }

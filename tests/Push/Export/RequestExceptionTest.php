@@ -76,7 +76,7 @@ class RequestExceptionTest extends TestCase
         $this->fakeRequestException = new Export\RequestException(
             new Export\Request(
                 new Elements\RequestData(
-                    Dictionaries\RequestType::EXPORT(),
+                    Dictionaries\InformationProcessingMode::INSERT(),
                     Dictionaries\RequestReason::EXPORT(),
                     Carbon::parse(static::DATE),
                     static::ID,
@@ -246,7 +246,7 @@ class RequestExceptionTest extends TestCase
         $this->assertEquals(
             new Export\Request(
                 new Elements\RequestData(
-                    Dictionaries\RequestType::EXPORT(),
+                    Dictionaries\InformationProcessingMode::INSERT(),
                     Dictionaries\RequestReason::EXPORT(),
                     Carbon::parse(static::DATE),
                     static::ID,

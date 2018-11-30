@@ -22,7 +22,7 @@ interface RequestData extends ElementInterface
 
     public function getVersion(): string;
 
-    public function getType(): Dictionaries\RequestType;
+    public function getType(): Dictionaries\RequestTemplate;
 
     public function getReason(): Dictionaries\RequestReason;
 

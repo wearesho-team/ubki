@@ -75,7 +75,7 @@ class RequestTest extends TestCase
     {
         $this->fakeRequest = new Export\Request(
             new Elements\RequestData(
-                Dictionaries\RequestType::EXPORT(),
+                Dictionaries\InformationProcessingMode::INSERT(),
                 Dictionaries\RequestReason::EXPORT(),
                 Carbon::parse(static::DATE),
                 static::ID,
@@ -243,7 +243,7 @@ class RequestTest extends TestCase
     {
         $this->assertEquals(
             new Elements\RequestData(
-                Dictionaries\RequestType::EXPORT(),
+                Dictionaries\InformationProcessingMode::INSERT(),
                 Dictionaries\RequestReason::EXPORT(),
                 Carbon::parse(static::DATE),
                 static::ID,

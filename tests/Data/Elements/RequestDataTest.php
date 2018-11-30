@@ -27,7 +27,7 @@ class RequestDataTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeRequestData = new RequestData(
-            Dictionaries\RequestType::EXPORT(),
+            Dictionaries\InformationProcessingMode::INSERT(),
             Dictionaries\RequestReason::EXPORT(),
             Carbon::parse(static::DATE),
             static::ID,
@@ -40,7 +40,7 @@ class RequestDataTest extends TestCase
         $this->assertArraySubset(
             [
                 Interfaces\RequestData::VERSION => '1.0',
-                Interfaces\RequestData::TYPE => Dictionaries\RequestType::EXPORT(),
+                Interfaces\RequestData::TYPE => Dictionaries\InformationProcessingMode::INSERT(),
                 Interfaces\RequestData::REASON => Dictionaries\RequestReason::EXPORT(),
                 Interfaces\RequestData::DATE => Carbon::parse(static::DATE),
                 Interfaces\RequestData::ID => static::ID,
@@ -77,7 +77,7 @@ class RequestDataTest extends TestCase
     public function testGetType(): void
     {
         $this->assertEquals(
-            Dictionaries\RequestType::EXPORT(),
+            Dictionaries\InformationProcessingMode::INSERT(),
             $this->fakeRequestData->getType()
         );
     }

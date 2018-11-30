@@ -150,7 +150,7 @@ class ServiceTest extends TestCase
         $this->config = new Push\EnvironmentConfig();
         $this->exportRequest = new Push\Export\Request(
             new Elements\RequestData(
-                Dictionaries\RequestType::EXPORT(),
+                Dictionaries\InformationProcessingMode::INSERT(),
                 Dictionaries\RequestReason::EXPORT(),
                 Carbon::parse(static::DATE),
                 static::ID,
