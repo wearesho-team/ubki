@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class BaseCollectionTest
@@ -17,16 +17,16 @@ class BaseCollectionTest extends TestCase
     public const SECOND_VALUE = 2;
     public const THIRD_VALUE = 3;
 
-    /** @var Ubki\BaseCollection */
+    /** @var Infrastructure\BaseCollection */
     protected $collection;
 
     protected function setUp(): void
     {
-        $this->collection = new class extends Ubki\BaseCollection
+        $this->collection = new class extends Infrastructure\BaseCollection
         {
             public function type(): string
             {
-                return Ubki\Tests\Mocks\Element::class;
+                return Mocks\Element::class;
             }
         };
 
@@ -44,9 +44,9 @@ class BaseCollectionTest extends TestCase
 
     public function testAppends(): void
     {
-        $this->collection->append(new Ubki\Tests\Mocks\Element(BaseCollectionTest::FIRST_VALUE));
-        $this->collection->append(new Ubki\Tests\Mocks\Element(BaseCollectionTest::SECOND_VALUE));
-        $this->collection->append(new Ubki\Tests\Mocks\Element(BaseCollectionTest::THIRD_VALUE));
+        $this->collection->append(new Mocks\Element(BaseCollectionTest::FIRST_VALUE));
+        $this->collection->append(new Mocks\Element(BaseCollectionTest::SECOND_VALUE));
+        $this->collection->append(new Mocks\Element(BaseCollectionTest::THIRD_VALUE));
 
         $this->assertEquals($this->collection->offsetGet(0)->getValue(), static::FIRST_VALUE);
         $this->assertEquals($this->collection->offsetGet(1)->getValue(), static::SECOND_VALUE);
@@ -73,7 +73,7 @@ class BaseCollectionTest extends TestCase
 
         $this->testAppends();
 
-        $element = new Ubki\Tests\Mocks\Element(static::SECOND_VALUE);
+        $element = new Mocks\Element(static::SECOND_VALUE);
         $this->collection[] = $element;
 
         $this->assertEquals(4, count($this->collection));

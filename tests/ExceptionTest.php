@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 use PHPUnit\Framework\TestCase;
@@ -13,7 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ExceptionTest extends TestCase
 {
-    public function testGetPublicMessage()
+    public function testGetPublicMessage(): void
     {
         $exception = new Ubki\Exception('message', 0, null, 'public-message');
         $this->assertEquals('public-message', $exception->getPublicMessage());
