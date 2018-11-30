@@ -52,7 +52,7 @@ class CreditDealTest extends TestCase
             static::SURNAME,
             Carbon::parse(static::BIRTH_DATE),
             Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
-            Dictionaries\CollateralType::R_1(),
+            Dictionaries\CollateralType::LEGAL(),
             Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
             Dictionaries\Currency::UAH(),
             static::INITIAL_AMOUNT,
@@ -96,7 +96,7 @@ class CreditDealTest extends TestCase
                 CreditDeal::PATRONYMIC => static::PATRONYMIC,
                 CreditDeal::BIRTH_DATE => Carbon::parse(static::BIRTH_DATE),
                 CreditDeal::TYPE => Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
-                CreditDeal::COLLATERAL => Dictionaries\CollateralType::R_1(),
+                CreditDeal::COLLATERAL => Dictionaries\CollateralType::LEGAL(),
                 CreditDeal::REPAYMENT_PROCEDURE => Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
                 CreditDeal::CURRENCY => Dictionaries\Currency::UAH(),
                 CreditDeal::INITIAL_AMOUNT => static::INITIAL_AMOUNT,
@@ -171,7 +171,7 @@ class CreditDealTest extends TestCase
     public function testGetCollateral(): void
     {
         $this->assertEquals(
-            Dictionaries\CollateralType::R_1(),
+            Dictionaries\CollateralType::LEGAL(),
             $this->fakeCreditDeal->getCollateral()
         );
     }

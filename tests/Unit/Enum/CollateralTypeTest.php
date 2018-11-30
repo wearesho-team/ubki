@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Enum;
 
 use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Enum\CollateralType;
+use Wearesho\Bobra\Ubki\Dictionaries\CollateralType;
 
 /**
  * Class CollateralTypeTest

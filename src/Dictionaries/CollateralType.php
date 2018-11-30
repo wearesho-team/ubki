@@ -8,287 +8,240 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class CollateralType
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @see     https://docs.google.com/document/d/12yD1_bopAlZVAe-jFCKtGkOd15VJC4mPag_wH3gvChg/edit#heading=h.qyckc14lh0xo
+ * @see https://sites.google.com/ubki.ua/doc/%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B8/15-%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D1%87%D0%BD%D0%B8%D0%BA-%D0%B2%D0%B8%D0%B4-%D0%BE%D0%B1%D0%B5%D1%81%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D1%8F?authuser=0
  *
- * @method static static R_1(string $description = null)
- * @method static static R_2(string $description = null)
- * @method static static R_11(string $description = null)
- * @method static static R_12(string $description = null)
- * @method static static R_13(string $description = null)
- * @method static static R_14(string $description = null)
- * @method static static R_15(string $description = null)
- * @method static static R_16(string $description = null)
- * @method static static R_18(string $description = null)
- * @method static static R_19(string $description = null)
- * @method static static R_20(string $description = null)
- * @method static static R_21(string $description = null)
- * @method static static R_22(string $description = null)
- * @method static static R_23(string $description = null)
- * @method static static R_24(string $description = null)
- * @method static static R_25(string $description = null)
- * @method static static R_26(string $description = null)
- * @method static static R_27(string $description = null)
- * @method static static R_28(string $description = null)
- * @method static static R_29(string $description = null)
- * @method static static R_30(string $description = null)
- * @method static static R_31(string $description = null)
- * @method static static R_32(string $description = null)
- * @method static static R_33(string $description = null)
- * @method static static R_34(string $description = null)
- * @method static static R_35(string $description = null)
- * @method static static R_36(string $description = null)
- * @method static static R_37(string $description = null)
- * @method static static R_38(string $description = null)
- * @method static static R_39(string $description = null)
- * @method static static R_40(string $description = null)
- * @method static static R_41(string $description = null)
- * @method static static R_42(string $description = null)
- * @method static static R_43(string $description = null)
- * @method static static R_44(string $description = null)
- * @method static static R_45(string $description = null)
- * @method static static R_50(string $description = null)
- * @method static static R_51(string $description = null)
- * @method static static R_52(string $description = null)
- * @method static static R_53(string $description = null)
- * @method static static R_54(string $description = null)
- * @method static static R_55(string $description = null)
- * @method static static R_56(string $description = null)
- * @method static static R_57(string $description = null)
- * @method static static R_58(string $description = null)
- * @method static static R_59(string $description = null)
- * @method static static R_60(string $description = null)
- * @method static static R_61(string $description = null)
- * @method static static R_62(string $description = null)
- * @method static static R_63(string $description = null)
- * @method static static R_64(string $description = null)
- * @method static static R_65(string $description = null)
- * @method static static R_90(string $description = null)
- * @method static static R_91(string $description = null)
- * @todo: need to review consts' descriptions
+ * @method static CollateralType LEGAL(string $description = null)
+ * @method static CollateralType INDIVIDUAL(string $description = null)
+ * @method static CollateralType CABINET_MINISTERS_GUARANTEES(string $description = null)
+ * @method static CollateralType NATIONAL_BANK_GUARANTEES(string $description = null)
+ * @method static CollateralType INTERNATIONAL_BANKS_GUARANTEES(string $description = null)
+ * @method static CollateralType OTHER_BANKS_GUARANTEE(string $description = null)
+ * @method static CollateralType RIGHT_PROPERTY_TO_CASH_DEPOSITS(string $description = null)
+ * @method static CollateralType BANKS_AND_COUNTRY_GUARANTEE_WITH_RATE_A(string $description = null)
+ * @method static CollateralType RIGHT_PROPERTY_TO_CASH_PLACED_ON_DEPOSIT(string $description = null)
+ * @method static CollateralType SECURITIES_ISSUED_BY_NBU(string $description = null)
+ * @method static CollateralType BONDS_OF_STATE_MORTGAGE_INSTITUTION(string $description = null)
+ * @method static CollateralType BANK_METALS(string $description = null)
+ * @method static CollateralType PRECIOUS_METALS(string $description = null)
+ * @method static CollateralType GOVERNMENT_SECURITIES(string $description = null)
+ * @method static CollateralType NON_GOVERNMENT_SECURITIES(string $description = null)
+ * @method static CollateralType REAL_ESTATE(string $description = null)
+ * @method static CollateralType PROPERTY_RIGHTS_TO_FUTURE_REAL_ESTATE(string $description = null)
+ * @method static CollateralType FINISHED_PRODUCTS(string $description = null)
+ * @method static CollateralType STOCK_IN_TRADE(string $description = null)
+ * @method static CollateralType MOTOR_TRANSPORT(string $description = null)
+ * @method static CollateralType OTHER_MOVABLE_STATE(string $description = null)
+ * @method static CollateralType OTHER_REAL_ESTATE(string $description = null)
+ * @method static CollateralType PROPERTY_RIGHTS_TO_OTHER_COLLATERAL_OBJECTS(string $description = null)
+ * @method static CollateralType OTHER_TYPES_OF_COLLATERAL(string $description = null)
+ * @method static CollateralType GUARANTEE(string $description = null)
+ * @method static CollateralType LIGHT_VEHICLES(string $description = null)
+ * @method static CollateralType MONEY_COVER(string $description = null)
+ * @method static CollateralType REAL_ESTATE_EXCEPT_FOR_HOUSING(string $description = null)
+ * @method static CollateralType TRANSPORT_VEHICLES_EXCEPT_LIGHT_CARS(string $description = null)
+ * @method static CollateralType MORTGAGE_BONDS(string $description = null)
+ * @method static CollateralType SEVERAL_COLLATERAL(string $description = null)
+ * @method static CollateralType SEVERAL_SECURITY(string $description = null)
+ * @method static CollateralType SEVERAL_SECURITY_REAL_ESTATE_OF_HOUSING(string $description = null)
+ * @method static CollateralType SEVERAL_COLLATERAL_WITH_LARGEST_REAL_ESTATE(string $description = null)
+ * @method static CollateralType SEVERAL_COLLATERAL_WITH_FUTURE_LARGEST_REAL_ESTATE(string $description = null)
+ * @method static CollateralType SEVERAL_COLLATERAL_MORTGAGE(string $description = null)
+ * @method static CollateralType INTEGRAL_PROPERTY_COMPLEX_OBJECT(string $description = null)
+ * @method static CollateralType EQUIPMENT(string $description = null)
+ * @method static CollateralType SECURITIES_THAT_ENTERED_IN_EXCHANGE_REGISTER(string $description = null)
+ * @method static CollateralType SECURITIES_ISSUED_BY_LOCAL_AUTHORITIES(string $description = null)
+ * @method static CollateralType INVESTMENT_CERTIFICATES(string $description = null)
+ * @method static CollateralType BIOLOGICAL_ASSETS(string $description = null)
+ * @method static CollateralType PROPERTY_RIGHTS_PROPERTY_THAT_WILL_BELONG_NON_HOUSING_FUND(string $description = null)
+ * @method static CollateralType GOVERNMENT_SECURITIES_ON_REPO_TRANSACTIONS(string $description = null)
+ * @method static CollateralType MORTGAGE_BONDS_ISSUED_BY_FINANCIAL_INSTITUTION(string $description = null)
+ * @method static CollateralType NOMINAL_SAVINGS(string $description = null)
+ * @method static CollateralType SECURED_CASH_BANKS_GUARANTEES(string $description = null)
+ * @method static CollateralType GOVERNMENT_COUNTRIES_GUARANTEES_WITH_RATING_A(string $description = null)
+ * @method static CollateralType BANKS_GUARANTEES_WITH_CREDIT_RATING_A(string $description = null)
+ * @method static CollateralType INTERNATIONAL_MULTILATERAL_BANKS_GUARANTEES(string $description = null)
+ * @method static CollateralType GOVERNMENT_COUNTRIES_GUARANTEES_WITH_RATING_BBB(string $description = null)
+ * @method static CollateralType BANKS_GUARANTEE_WITH_CREDIT_RATING_NOT_LOWER_BBB(string $description = null)
+ * @method static CollateralType WITHOUT_COLLATERAL(string $description = null)
+ * @method static CollateralType PLEDGE_OF_LAND(string $description = null)
  */
 final class CollateralType extends Infrastructure\Dictionary
 {
-    /**
-     * Guarantee of legal entities
-     */
-    public const R_1 = 1;
-    /**
-     * Guarantee of physical persons
-     */
-    public const R_2 = 2;
+    public const LEGAL = 1;
+
+    public const INDIVIDUAL = 2;
+
     /**
      * Guarantees of the Cabinet of Ministers
      */
-    public const R_11 = 11;
+    public const CABINET_MINISTERS_GUARANTEES = 11;
+
     /**
      * Guarantees of the National Bank of Ukraine
      */
-    public const R_12 = 12;
+    public const NATIONAL_BANK_GUARANTEES = 12;
+
     /**
      * Guarantees of international banks and "investment class" banks
      */
-    public const R_13 = 13;
+    public const INTERNATIONAL_BANKS_GUARANTEES = 13;
+
     /**
      * Guarantees of other banks in Ukraine
      */
-    public const R_14 = 14;
+    public const OTHER_BANKS_GUARANTEE = 14;
+
     /**
      * Property rights to cash deposits and registered money certificates
      */
-    public const R_15 = 15;
+    public const RIGHT_PROPERTY_TO_CASH_DEPOSITS = 15;
+
     /**
      * Guarantees of the governments of countries and banks rated at least "A"
      */
-    public const R_16 = 16;
+    public const BANKS_AND_COUNTRY_GUARANTEE_WITH_RATE_A = 16;
+
     /**
      * Property rights to cash placed on a deposit account with a bank with a rating not lower than the "investment
      * class"
      */
-    public const R_18 = 18;
+    public const RIGHT_PROPERTY_TO_CASH_PLACED_ON_DEPOSIT = 18;
+
     /**
      * Securities issued by the National Bank of Ukraine
      */
-    public const R_19 = 19;
+    public const SECURITIES_ISSUED_BY_NBU = 19;
+
     /**
      * Bonds of the state mortgage institution, placement of which was carried out under the guarantee of the Cabinet
      * of Ministers of Ukraine
      */
-    public const R_20 = 20;
-    /**
-     * Bank metals
-     */
-    public const R_21 = 21;
-    /**
-     * Precious metals
-     */
-    public const R_22 = 22;
-    /**
-     * Government securities
-     */
-    public const R_23 = 23;
-    /**
-     * Non-government securities
-     */
-    public const R_24 = 24;
-    /**
-     * Real estate
-     */
-    public const R_25 = 25;
-    /**
-     * Property rights to the future real estate
-     */
-    public const R_26 = 26;
-    /**
-     * Finished products
-     */
-    public const R_27 = 27;
-    /**
-     * Stock-in-trade
-     */
-    public const R_28 = 28;
-    /**
-     * Motor transport
-     */
-    public const R_29 = 29;
-    /**
-     * Other movable state
-     */
-    public const R_30 = 30;
-    /**
-     * Other real estate
-     */
-    public const R_31 = 31;
-    /**
-     * Property rights to other collateral objects
-     */
-    public const R_32 = 32;
-    /**
-     * Other types of collateral
-     */
-    public const R_33 = 33;
-    /**
-     * Guarantee
-     */
-    public const R_34 = 34;
-    /**
-     * Light vehicles
-     */
-    public const R_35 = 35;
+    public const BONDS_OF_STATE_MORTGAGE_INSTITUTION = 20;
+
+    public const BANK_METALS = 21;
+
+    public const PRECIOUS_METALS = 22;
+
+    public const GOVERNMENT_SECURITIES = 23;
+
+    public const NON_GOVERNMENT_SECURITIES = 24;
+
+    public const REAL_ESTATE = 25;
+
+    public const PROPERTY_RIGHTS_TO_FUTURE_REAL_ESTATE = 26;
+
+    public const FINISHED_PRODUCTS = 27;
+
+    public const STOCK_IN_TRADE = 28;
+
+    public const MOTOR_TRANSPORT = 29;
+
+    public const OTHER_MOVABLE_STATE = 30;
+
+    public const OTHER_REAL_ESTATE = 31;
+
+    public const PROPERTY_RIGHTS_TO_OTHER_COLLATERAL_OBJECTS = 32;
+
+    public const OTHER_TYPES_OF_COLLATERAL = 33;
+
+    public const GUARANTEE = 34;
+
+    public const LIGHT_VEHICLES = 35;
+
     /**
      * The money cover, which is placed in the bank for a period not less than the period of using the asset
      */
-    public const R_36 = 36;
-    /**
-     * Real estate (except for housing)
-     */
-    public const R_37 = 37;
-    /**
-     * Transport vehicles (except light cars)
-     */
-    public const R_38 = 38;
-    /**
-     * Mortgage bonds
-     */
-    public const R_39 = 39;
-    /**
-     * Several types of collateral
-     */
-    public const R_40 = 40;
-    /**
-     * Several types of security, among which the cost of real estate is the largest
-     */
-    public const R_41 = 41;
+    public const MONEY_COVER = 36;
+
+    public const REAL_ESTATE_EXCEPT_FOR_HOUSING = 37;
+
+    public const TRANSPORT_VEHICLES_EXCEPT_LIGHT_CARS = 38;
+
+    public const MORTGAGE_BONDS = 39;
+
+    public const SEVERAL_COLLATERAL = 40;
+
+    public const SEVERAL_SECURITY = 41;
+
     /**
      * Several types of security, among which the value of property rights for the future real estate of the housing
      * stock - the largest
      */
-    public const R_42 = 42;
+    public const SEVERAL_SECURITY_REAL_ESTATE_OF_HOUSING = 42;
+
     /**
      * Several types of collateral, among which the value of other real estate is the largest
      */
-    public const R_43 = 43;
+    public const SEVERAL_COLLATERAL_WITH_LARGEST_REAL_ESTATE = 43;
+
     /**
      * Several types of collateral, among which the value of property rights for another future real estate is the
      * largest
      */
-    public const R_44 = 44;
+    public const SEVERAL_COLLATERAL_WITH_FUTURE_LARGEST_REAL_ESTATE = 44;
+
     /**
      * Several types of collateral, among which the cost of a mortgage is less than the value of other types of
      * collateral
      */
-    public const R_45 = 45;
-    /**
-     * Objects of integral property complex
-     */
-    public const R_50 = 50;
-    /**
-     * Equipment
-     */
-    public const R_51 = 51;
-    /**
-     * Securities that are entered in the exchange register
-     */
-    public const R_52 = 52;
-    /**
-     * Securities issued by local authorities
-     */
-    public const R_53 = 53;
-    /**
-     * Investment certificates
-     */
-    public const R_54 = 54;
-    /**
-     * Biological assets
-     */
-    public const R_55 = 55;
-    /**
-     * Property rights to property that will belong to a non-housing fund
-     */
-    public const R_56 = 56;
-    /**
-     * Government securities on repo transactions
-     */
-    public const R_57 = 57;
+    public const SEVERAL_COLLATERAL_MORTGAGE = 45;
+
+    public const INTEGRAL_PROPERTY_COMPLEX_OBJECT = 50;
+
+    public const EQUIPMENT = 51;
+
+    public const SECURITIES_THAT_ENTERED_IN_EXCHANGE_REGISTER = 52;
+
+    public const SECURITIES_ISSUED_BY_LOCAL_AUTHORITIES = 53;
+
+    public const INVESTMENT_CERTIFICATES = 54;
+
+    public const BIOLOGICAL_ASSETS = 55;
+
+    public const PROPERTY_RIGHTS_PROPERTY_THAT_WILL_BELONG_NON_HOUSING_FUND = 56;
+
+    public const GOVERNMENT_SECURITIES_ON_REPO_TRANSACTIONS = 57;
+
     /**
      * Mortgage bonds issued by a financial institution with more than 50 percent of corporate rights owned by the
      * state and / or state banks
      */
-    public const R_58 = 58;
+    public const MORTGAGE_BONDS_ISSUED_BY_FINANCIAL_INSTITUTION = 58;
+
     /**
      * Nominal savings (deposit) certificates issued by the creditor bank, property rights to money placed on a deposit
      * account with a creditor bank for a period not less than the period of using the asset
      */
-    public const R_59 = 59;
+    public const NOMINAL_SAVINGS = 59;
+
     /**
      * Guarantees of banks of Ukraine, secured by a cash cover for a period not less than the period of using the asset
      */
-    public const R_60 = 60;
+    public const SECURED_CASH_BANKS_GUARANTEES = 60;
+
     /**
      * The guarantees of the governments of countries that have a credit rating are not lower than the A-
      */
-    public const R_61 = 61;
+    public const GOVERNMENT_COUNTRIES_GUARANTEES_WITH_RATING_A = 61;
+
     /**
      * Guarantees of banks and other institutions that have a credit rating are not lower than A-
      */
-    public const R_62 = 62;
-    /**
-     * Guarantees of international multilateral banks
-     */
-    public const R_63 = 63;
+    public const BANKS_GUARANTEES_WITH_CREDIT_RATING_A = 62;
+
+    public const INTERNATIONAL_MULTILATERAL_BANKS_GUARANTEES = 63;
+
     /**
      * The guarantees of the governments of countries that have a credit rating are not lower than the BBB-
      */
-    public const R_64 = 64;
+    public const GOVERNMENT_COUNTRIES_GUARANTEES_WITH_RATING_BBB = 64;
+
     /**
      * Guarantees of banks that have a credit rating are not lower than BBB-
      */
-    public const R_65 = 65;
-    /**
-     * Without collateral (blank)
-     */
-    public const R_90 = 90;
-    /**
-     * Pledge of land plot
-     */
-    public const R_91 = 91;
+    public const BANKS_GUARANTEE_WITH_CREDIT_RATING_NOT_LOWER_BBB = 65;
+
+    public const WITHOUT_COLLATERAL = 90;
+
+    public const PLEDGE_OF_LAND = 91;
 }

@@ -262,7 +262,7 @@ class ServiceTest extends TestCase
                             static::SURNAME,
                             Carbon::parse(static::BIRTH_DATE),
                             Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
-                            Dictionaries\CollateralType::R_1(),
+                            Dictionaries\CollateralType::LEGAL(),
                             Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
                             Dictionaries\Currency::UAH(),
                             static::INITIAL_AMOUNT,
