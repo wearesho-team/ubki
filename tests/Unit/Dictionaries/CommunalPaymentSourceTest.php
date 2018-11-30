@@ -1,14 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Enum;
+namespace Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries;
 
 use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Enum\CommunalPaymentSource;
+use Wearesho\Bobra\Ubki\Dictionaries\CommunalPaymentSource;
 
 /**
  * Class CommunalPaymentSourceTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Enum\CommunalPaymentSource
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Dictionaries\CommunalPaymentSource
  * @internal
  */
 class CommunalPaymentSourceTest extends TestCase

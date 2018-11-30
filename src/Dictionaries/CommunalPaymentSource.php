@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class CommunalPaymentSource
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static IRC(string $description = null)
+ * @method static CommunalPaymentSource IRC(string $description = null)
  */
 final class CommunalPaymentSource extends Infrastructure\Dictionary
 {
