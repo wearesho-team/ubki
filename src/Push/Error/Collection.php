@@ -2,13 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Error;
 
-use Wearesho\Bobra\Ubki\BaseCollection;
+use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Class Collection
  * @package Wearesho\Bobra\Ubki\Push\Error
+ *
+ * @deprecated
  */
-class Collection extends BaseCollection
+class Collection extends Infrastructure\BaseCollection
 {
     public function type(): string
     {
