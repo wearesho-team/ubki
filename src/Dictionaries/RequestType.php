@@ -27,6 +27,9 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * @method static static MVD_IDENTIFICATION(string $description = null)
  * @method static static STATEMENTS_SEARCH(string $description = null)
  * @method static static EXPORT_CREDIT_REQUEST_DECISION(string $description = null)
+ *
+ * @deprecated
+ * @see RequestTemplate
  */
 final class RequestType extends Infrastructure\Dictionary
 {

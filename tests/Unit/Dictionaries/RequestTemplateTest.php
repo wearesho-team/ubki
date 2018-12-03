@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Enum;
+namespace Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries;
 
 use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Enum\RequestTemplate;
+use Wearesho\Bobra\Ubki\Dictionaries\RequestTemplate;
 
 /**
  * Class RequestTemplateTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Enum
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Dictionaries
  * @coversDefaultClass RequestTemplate
  * @internal
  */
