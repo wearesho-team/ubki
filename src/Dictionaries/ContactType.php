@@ -8,11 +8,11 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class ContactType
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static HOME(string $description = null)
- * @method static static WORK(string $description = null)
- * @method static static MOBILE(string $description = null)
- * @method static static EMAIL(string $description = null)
- * @method static static FAX(string $description = null)
+ * @method static ContactType HOME(string $description = null)
+ * @method static ContactType WORK(string $description = null)
+ * @method static ContactType MOBILE(string $description = null)
+ * @method static ContactType EMAIL(string $description = null)
+ * @method static ContactType FAX(string $description = null)
  */
 final class ContactType extends Infrastructure\Dictionary
 {
