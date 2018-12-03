@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Interface ResponseInterface
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
 interface ResponseInterface extends Registry\ResponseInterface

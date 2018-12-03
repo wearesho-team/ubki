@@ -15,6 +15,8 @@ use MyCLabs\Enum\Enum;
  * @method static static SQL_ERROR()
  *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Response
+ *
+ * @deprecated
  */
 class State extends Enum
 {

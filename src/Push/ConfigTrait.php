@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push;
 
 /**
  * Trait ConfigTrait
- *
  * @package Wearesho\Bobra\Ubki\Push
  */
 trait ConfigTrait

@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki\Authorization;
 
 /**
  * Interface ConfigInterface
- *
  * @package Wearesho\Bobra\Ubki\Push
  */
 interface ConfigInterface extends Authorization\ConfigInterface

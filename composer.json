@@ -5,11 +5,12 @@
   "require": {
     "ext-SimpleXML": "*",
     "guzzlehttp/guzzle": "^6.3",
-    "myclabs/php-enum": "^1.5",
     "horat1us/environment-config": "^1.2",
-    "nesbot/carbon": "^1.26",
+    "myclabs/php-enum": "^1.6.4",
+    "nesbot/carbon": "^1.36",
     "psr/log": "^1.0",
-    "psr/simple-cache": "^1.0"
+    "psr/simple-cache": "^1.0",
+    "wearesho-team/base-collection": "^1.0"
   },
   "require-dev": {
     "chillerlan/php-cache": "^1.0",
@@ -30,11 +31,13 @@
   "authors": [
     {
       "name": "Alexander Letnikow",
-      "email": "reclamme@gmail.com"
+      "email": "reclamme@gmail.com",
+      "role": "Lead"
     },
     {
       "name": "Roman Varkuta",
-      "email": "roman.varkuta@gmail.com"
+      "email": "roman.varkuta@gmail.com",
+      "role": "Developer"
     }
   ],
   "minimum-stability": "stable",
@@ -58,6 +61,8 @@
   "scripts": {
     "lint": "./vendor/bin/phpcs --standard=PSR2 ./src ./tests",
     "phpcbf": "./vendor/bin/phpcbf --standard=PSR2 ./src ./tests",
-    "test": "./vendor/bin/phpunit"
+    "cover": "./vendor/bin/phpunit --coverage-clover=coverage.xml",
+    "test": "./vendor/bin/phpunit",
+    "send-cover": "bash <(curl -s https://codecov.io/bash)"
   }
 }

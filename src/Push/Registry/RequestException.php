@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class RequestException
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class RequestException extends \Exception

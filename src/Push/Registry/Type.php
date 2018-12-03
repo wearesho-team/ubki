@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Interface Type
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 interface Type

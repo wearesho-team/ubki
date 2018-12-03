@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki;
 
 /**
  * Class Config
- *
  * @package Wearesho\Bobra\Ubki\Push
  */
 class Config implements ConfigInterface

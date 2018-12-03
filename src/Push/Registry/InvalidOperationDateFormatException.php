@@ -6,7 +6,6 @@ use Carbon\Carbon;
 
 /**
  * Class InvalidOperationDateException
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class InvalidOperationDateFormatException extends \InvalidArgumentException

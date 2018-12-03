@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Interface RequestInterface
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 interface RequestInterface

@@ -2,9 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Pull;
 
-use Wearesho\Bobra\Ubki\Blocks\Interfaces;
-use Wearesho\Bobra\Ubki\Pull\Elements\RequestContent;
-use Wearesho\Bobra\Ubki\References\RequestReason;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Request
@@ -12,13 +10,13 @@ use Wearesho\Bobra\Ubki\References\RequestReason;
  */
 class Request implements RequestInterface
 {
-    /** @var Interfaces\RequestData */
+    /** @var Ubki\Data\Elements\RequestData */
     protected $head;
 
     /** @var RequestContent */
     protected $body;
 
-    public function __construct(Interfaces\RequestData $requestData, RequestContent $content)
+    public function __construct(Ubki\Data\Elements\RequestData $requestData, Request $content)
     {
         // todo: wrap into validate() function
         if ($requestData->getReason()->equals(RequestReason::CREDIT_ONLINE())) {

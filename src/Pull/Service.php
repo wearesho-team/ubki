@@ -3,18 +3,14 @@
 namespace Wearesho\Bobra\Ubki\Pull;
 
 use Carbon\Carbon;
-
 use GuzzleHttp;
-
-use Psr\Log;
-
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Service
  * @package Wearesho\Bobra\Ubki\Pull
  */
-class Service extends Ubki\SendService
+class Service extends Ubki\Infrastructure\Service
 {
     /** @var ConfigInterface */
     protected $config;
@@ -27,25 +23,13 @@ class Service extends Ubki\SendService
     /** @var \DOMDocument */
     private $document;
 
-    public function __construct(
-        ConfigInterface $config,
-        Ubki\Authorization\ProviderInterface $authorization,
-        GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
-    ) {
-        $this->config = $config;
-        $this->authProvider = $authorization;
-        $this->client = $client;
-        $this->logger = $logger ?? new Log\NullLogger();
-    }
-
     /**
-     * @param Request $request
+     * @param Ubki\Infrastructure\RequestInterface $request
      *
      * @return Ubki\RequestResponsePair
      * @throws GuzzleHttp\Exception\GuzzleException
      */
-    public function send(Request $request): Ubki\RequestResponsePair
+    public function send(Ubki\Infrastructure\RequestInterface $request): Ubki\RequestResponsePair
     {
         $response = $this->post($this->config->getPullUrl(), $this->getBody($request));
 
@@ -134,7 +118,7 @@ class Service extends Ubki\SendService
         return $requestXML->saveXML();
     }
 
-    private function createFilledElement(Ubki\ElementInterface $element = null)
+    private function createFilledElement(Ubki\Infrastructure\ElementInterface $element = null)
     {
         $domElement = $this->document->createElement($element->tag());
         $attributes = $element->jsonSerialize();

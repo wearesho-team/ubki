@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Error;
 
-use Wearesho\Bobra\Ubki\BaseCollection;
+use Wearesho\BaseCollection;
 
 /**
  * Class Collection

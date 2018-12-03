@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki\Push\Registry\Response;
 
 /**
  * Interface ResponseInterface
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 interface ResponseInterface
