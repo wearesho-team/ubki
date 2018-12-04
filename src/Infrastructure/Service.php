@@ -25,15 +25,20 @@ abstract class Service implements ServiceInterface
     /** @var Log\LoggerInterface */
     protected $logger;
 
+    /** @var FormerInterface */
+    protected $former;
+
     public function __construct(
         ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        Log\LoggerInterface $logger = null,
+        FormerInterface $former = null
     ) {
         $this->config = $config;
         $this->authProvider = $authProvider;
         $this->client = $client;
+        $this->former = $former;
         $this->logger = $logger ?? new Log\NullLogger();
     }
 
@@ -52,6 +57,11 @@ abstract class Service implements ServiceInterface
     public function client(): GuzzleHttp\ClientInterface
     {
         return $this->client;
+    }
+
+    public function logger(): Log\LoggerInterface
+    {
+        return $this->logger;
     }
 
     /**

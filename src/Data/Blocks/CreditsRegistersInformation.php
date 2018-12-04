@@ -2,27 +2,25 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Blocks;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Block;
-use Wearesho\Bobra\Ubki\Data\Collections;
-use Wearesho\Bobra\Ubki\Data\Elements;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class CreditsRegistersInformation
  * @package Wearesho\Bobra\Ubki\Data\Blocks
  */
-class CreditsRegistersInformation extends Block
+class CreditsRegistersInformation extends Ubki\Infrastructure\Block
 {
     public const ID = 4;
 
-    /** @var Collections\CreditRegisters */
+    /** @var Ubki\Data\Collections\CreditRegisters */
     protected $creditRequests;
 
-    /** @var Elements\RegistryTimes|null */
+    /** @var Ubki\Data\Elements\RegistryTimes|null */
     protected $registryTimes;
 
     public function __construct(
-        Collections\CreditRegisters $creditRequests,
-        Elements\RegistryTimes $registryTimes = null
+        Ubki\Data\Collections\CreditRegisters $creditRequests,
+        Ubki\Data\Elements\RegistryTimes $registryTimes = null
     ) {
         $this->creditRequests = $creditRequests;
         $this->registryTimes = $registryTimes;
@@ -36,12 +34,12 @@ class CreditsRegistersInformation extends Block
         ];
     }
 
-    public function getCreditRequests(): Collections\CreditRegisters
+    public function getCreditRequests(): Ubki\Data\Collections\CreditRegisters
     {
         return $this->creditRequests;
     }
 
-    public function getRegistryTimes(): ?Elements\RegistryTimes
+    public function getRegistryTimes(): ?Ubki\Data\Elements\RegistryTimes
     {
         return $this->registryTimes;
     }

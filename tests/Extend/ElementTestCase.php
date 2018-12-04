@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Extend;
 
-use Wearesho\Bobra\Ubki\Element;
+use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
  * Class ElementTestCase

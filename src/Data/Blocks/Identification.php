@@ -2,21 +2,20 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Blocks;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Block;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Identification
  * @package Wearesho\Bobra\Ubki\Data\Blocks
  */
-class Identification extends Block
+class Identification extends Ubki\Infrastructure\Block
 {
     public const ID = 1;
 
-    /** @var Interfaces\Credential */
+    /** @var Ubki\Data\Interfaces\Credential */
     protected $credential;
 
-    public function __construct(Interfaces\Credential $credential)
+    public function __construct(Ubki\Data\Interfaces\Credential $credential)
     {
         $this->credential = $credential;
     }
@@ -26,7 +25,7 @@ class Identification extends Block
         return $this->credential->jsonSerialize();
     }
 
-    public function getCredential(): Interfaces\Credential
+    public function getCredential(): Ubki\Data\Interfaces\Credential
     {
         return $this->credential;
     }

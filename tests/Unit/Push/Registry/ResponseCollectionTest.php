@@ -123,10 +123,10 @@ class ResponseCollectionTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'All items have to be instance of Wearesho\Bobra\Ubki\Push\Registry\ResponseInterface'
+            'Element stdClass must be instance of Wearesho\Bobra\Ubki\Push\Registry\ResponseInterface'
         );
 
-        $response = 'Invalid value';
+        $response = new \stdClass();
         /** @noinspection PhpParamsInspection */
         $this->testResponseCollection->offsetSet(1, $response);
     }

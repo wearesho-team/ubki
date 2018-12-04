@@ -1,22 +1,21 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data\BLocks;
+namespace Wearesho\Bobra\Ubki\Data\Blocks;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Block;
-use Wearesho\Bobra\Ubki\Data\Collections\InsuranceDeals;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class InsurancesInformation
- * @package Wearesho\Bobra\Ubki\Data\BLocks
+ * @package Wearesho\Bobra\Ubki\Data\Blocks
  */
-class InsurancesInformation extends Block
+class InsurancesInformation extends Ubki\Infrastructure\Block
 {
     public const ID = 9;
 
-    /** @var InsuranceDeals */
+    /** @var Ubki\Data\Collections\InsuranceDeals */
     protected $deals;
 
-    public function __construct(InsuranceDeals $deals)
+    public function __construct(Ubki\Data\Collections\InsuranceDeals $deals)
     {
         $this->deals = $deals;
     }
@@ -28,7 +27,7 @@ class InsurancesInformation extends Block
         ];
     }
 
-    public function getDeals(): InsuranceDeals
+    public function getDeals(): Ubki\Data\Collections\InsuranceDeals
     {
         return $this->deals;
     }

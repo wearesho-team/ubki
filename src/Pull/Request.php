@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Request
  * @package Wearesho\Bobra\Ubki\Pull
  */
-class Request implements RequestInterface
+class Request implements RequestInterface, Ubki\Infrastructure\Formerable
 {
     /** @var Ubki\Data\Elements\RequestData */
     protected $head;

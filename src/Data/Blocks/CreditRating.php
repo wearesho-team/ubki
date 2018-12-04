@@ -2,39 +2,37 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Blocks;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Block;
-use Wearesho\Bobra\Ubki\Data\Collections;
-use Wearesho\Bobra\Ubki\Data\Elements;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class CreditRating
  * @package Wearesho\Bobra\Ubki\Data\Blocks
  */
-class CreditRating extends Block
+class CreditRating extends Ubki\Infrastructure\Block
 {
     public const ID = 8;
 
-    /** @var Elements\RatingScore */
+    /** @var Ubki\Data\Elements\RatingScore */
     protected $score;
 
-    /** @var Elements\RatingDescription */
+    /** @var Ubki\Data\Elements\RatingDescription */
     protected $description;
 
-    /** @var Collections\Comments */
+    /** @var Ubki\Data\Collections\Comments */
     protected $comments;
 
-    /** @var Elements\PositiveRatingFactors */
+    /** @var Ubki\Data\Elements\PositiveRatingFactors */
     protected $positiveFactors;
 
-    /** @var Elements\NegativeRatingFactors */
+    /** @var Ubki\Data\Elements\NegativeRatingFactors */
     protected $negativeFactors;
 
     public function __construct(
-        Elements\RatingScore $score,
-        Elements\RatingDescription $description,
-        Collections\Comments $comments,
-        Elements\PositiveRatingFactors $positiveFactors,
-        Elements\NegativeRatingFactors $negativeFactors
+        Ubki\Data\Elements\RatingScore $score,
+        Ubki\Data\Elements\RatingDescription $description,
+        Ubki\Data\Collections\Comments $comments,
+        Ubki\Data\Elements\PositiveRatingFactors $positiveFactors,
+        Ubki\Data\Elements\NegativeRatingFactors $negativeFactors
     ) {
         $this->score = $score;
         $this->description = $description;
@@ -56,27 +54,27 @@ class CreditRating extends Block
         ];
     }
 
-    public function getScore(): Elements\RatingScore
+    public function getScore(): Ubki\Data\Elements\RatingScore
     {
         return $this->score;
     }
 
-    public function getDescription(): Elements\RatingDescription
+    public function getDescription(): Ubki\Data\Elements\RatingDescription
     {
         return $this->description;
     }
 
-    public function getComments(): Collections\Comments
+    public function getComments(): Ubki\Data\Collections\Comments
     {
         return $this->comments;
     }
 
-    public function getPositiveFactors(): Elements\PositiveRatingFactors
+    public function getPositiveFactors(): Ubki\Data\Elements\PositiveRatingFactors
     {
         return $this->positiveFactors;
     }
 
-    public function getNegativeFactors(): Elements\NegativeRatingFactors
+    public function getNegativeFactors(): Ubki\Data\Elements\NegativeRatingFactors
     {
         return $this->negativeFactors;
     }

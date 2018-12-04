@@ -2,26 +2,25 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Blocks;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Block;
-use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class ContactsInformation
  * @package Wearesho\Bobra\Ubki\Data\Blocks
  */
-class ContactsInformation extends Block
+class ContactsInformation extends Ubki\Infrastructure\Block
 {
     public const ID = 10;
 
-    /** @var Collections\Contacts */
+    /** @var Ubki\Data\Collections\Contacts */
     protected $contacts;
 
-    public function __construct(Collections\Contacts $contacts)
+    public function __construct(Ubki\Data\Collections\Contacts $contacts)
     {
         $this->contacts = $contacts;
     }
 
-    public function getContacts(): Collections\Contacts
+    public function getContacts(): Ubki\Data\Collections\Contacts
     {
         return $this->contacts;
     }
