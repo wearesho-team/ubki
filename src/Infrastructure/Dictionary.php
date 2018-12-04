@@ -8,7 +8,7 @@ use MyCLabs\Enum\Enum;
  * Class Dictionary
  * @package Wearesho\Bobra\Ubki\Infrastructure
  */
-abstract class Dictionary extends Enum implements NullableEnum, \JsonSerializable
+abstract class Dictionary extends Enum implements \JsonSerializable
 {
     /** @var string|null */
     protected $description;
