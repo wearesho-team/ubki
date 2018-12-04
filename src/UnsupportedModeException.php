@@ -6,7 +6,7 @@ namespace Wearesho\Bobra\Ubki;
  * Class UnsupportedModeException
  * @package Wearesho\Bobra\Ubki
  */
-class UnsupportedModeException extends \InvalidArgumentException
+class UnsupportedModeException extends \InvalidArgumentException implements ExceptionInterface
 {
     /** @var int */
     public $mode;

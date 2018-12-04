@@ -17,6 +17,5 @@ class Former implements Ubki\Infrastructure\FormerInterface
      */
     public function form(Ubki\Infrastructure\Formerable $data): string
     {
-
     }
 }
