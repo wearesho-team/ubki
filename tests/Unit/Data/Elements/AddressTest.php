@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -10,143 +11,84 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\Address
  * @internal
  */
-class AddressTest extends Ubki\Tests\TestCase
+class AddressTest extends TestCase
 {
-    /** @var Ubki\Data\Elements\Address */
-    protected $fakeAddress;
+    protected const ELEMENT = Ubki\Data\Elements\Address::class;
 
-    protected function setUp(): void
+    protected const CREATED_AT = '2018-03-12';
+    protected const COUNTRY = 'testCountry';
+    protected const CITY = 'testCity';
+    protected const STREET = 'testStreet';
+    protected const HOUSE = 'testHouse';
+    protected const INDEX = 'testIndex';
+    protected const STATE = 'testState';
+    protected const AREA = 'testArea';
+    protected const CORPUS = 'testCorpus';
+    protected const FLAT = 'testFlat';
+    protected const FULL_ADDRESS = 'testFullAddress';
+
+    protected function arguments(): array
     {
-        parent::setUp();
-
-        $this->fakeAddress = $this->elementFaker->unique()->address;
+        return [
+            Carbon::make(static::CREATED_AT),
+            Ubki\Dictionaries\Language::ENG(),
+            Ubki\Dictionaries\AddressType::HOME(),
+            static::COUNTRY,
+            static::CITY,
+            static::STREET,
+            static::HOUSE,
+            static::INDEX,
+            static::STATE,
+            static::AREA,
+            Ubki\Dictionaries\CityType::TOWN(),
+            static::CORPUS,
+            static::FLAT,
+            static::FULL_ADDRESS
+        ];
     }
 
-    public function testJsonSerialize(): void
+    protected function expectTag(): string
     {
-        $this->assertArraySubset(
-            $this->elementFaker->unique()->address->jsonSerialize(),
-            $this->fakeAddress->jsonSerialize()
-        );
+        return Ubki\Data\Interfaces\Address::TAG;
     }
 
-    public function testTag(): void
+    protected function getExpectJson(): array
     {
-        $this->assertEquals(
-            Ubki\Data\Interfaces\Address::TAG,
-            $this->fakeAddress->tag()
-        );
+        return array_combine([
+            Ubki\Data\Interfaces\Address::CREATED_AT,
+            Ubki\Data\Interfaces\Address::LANGUAGE,
+            Ubki\Data\Interfaces\Address::TYPE,
+            Ubki\Data\Interfaces\Address::COUNTRY,
+            Ubki\Data\Interfaces\Address::CITY,
+            Ubki\Data\Interfaces\Address::STREET,
+            Ubki\Data\Interfaces\Address::HOUSE,
+            Ubki\Data\Interfaces\Address::INDEX,
+            Ubki\Data\Interfaces\Address::STATE,
+            Ubki\Data\Interfaces\Address::AREA,
+            Ubki\Data\Interfaces\Address::CITY_TYPE,
+            Ubki\Data\Interfaces\Address::CORPUS,
+            Ubki\Data\Interfaces\Address::FLAT,
+            Ubki\Data\Interfaces\Address::FULL_ADDRESS,
+        ], $this->arguments());
     }
 
-    public function testGetFlat(): void
+    protected function getAttributesGetters(): array
     {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getFlat(),
-            $this->fakeAddress->getFlat()
-        );
-    }
-
-    public function testGetCity(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getCity(),
-            $this->fakeAddress->getCity()
-        );
-    }
-
-    public function testGetState(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getState(),
-            $this->fakeAddress->getState()
-        );
-    }
-
-    public function testGetArea(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getArea(),
-            $this->fakeAddress->getArea()
-        );
-    }
-
-    public function testGetIndex(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getIndex(),
-            $this->fakeAddress->getIndex()
-        );
-    }
-
-    public function testGetCorpus(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getCorpus(),
-            $this->fakeAddress->getCorpus()
-        );
-    }
-
-    public function testGetAddressType(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getAddressType(),
-            $this->fakeAddress->getAddressType()
-        );
-    }
-
-    public function testGetHouse(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getHouse(),
-            $this->fakeAddress->getHouse()
-        );
-    }
-
-    public function testGetStreet(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getStreet(),
-            $this->fakeAddress->getStreet()
-        );
-    }
-
-    public function testGetCreatedAt(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getCreatedAt(),
-            $this->fakeAddress->getCreatedAt()
-        );
-    }
-
-    public function testGetLanguage(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getLanguage(),
-            $this->fakeAddress->getLanguage()
-        );
-    }
-
-    public function testGetCountry(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getCountry(),
-            $this->fakeAddress->getCountry()
-        );
-    }
-
-    public function testGetFullAddress(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getFullAddress(),
-            $this->fakeAddress->getFullAddress()
-        );
-    }
-
-    public function testGetCityType(): void
-    {
-        $this->assertEquals(
-            $this->elementFaker->unique()->address->getCityType(),
-            $this->fakeAddress->getCityType()
-        );
+        return array_combine([
+            'getCreatedAt',
+            'getLanguage',
+            'getAddressType',
+            'getCountry',
+            'getCity',
+            'getStreet',
+            'getHouse',
+            'getIndex',
+            'getState',
+            'getArea',
+            'getCityType',
+            'getCorpus',
+            'getFlat',
+            'getFullAddress',
+        ], $this->arguments());
     }
 }

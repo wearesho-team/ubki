@@ -8,51 +8,40 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class ElementFaker
  * @package Wearesho\Bobra\Ubki\Tests\Fakers
- *
- * @property-read Ubki\Data\Elements\Address $address
- * @property-read Ubki\Data\Elements\Comment $comment
  */
 class ElementFaker
 {
-    /** @var bool */
-    private $unique;
-
     /** @var array */
-    private static $cache;
+    private $injectData;
 
-    protected function __construct(bool $unique = false)
+    protected function __construct(array $injectData = [])
     {
-        $this->unique = $unique;
+        $this->injectData = $injectData;
     }
 
     public static function elements(): array
     {
         return [
-            'address' => [
-                Ubki\Data\Elements\Address::class,
-                [
-                    Carbon::create(mt_rand(1960, 2018), mt_rand(1, 12), mt_rand(1, 28)),
-                    DictionaryFaker::language(),
-                    DictionaryFaker::addressType(),
-                    'Country',
-                    'City',
-                    'Street',
-                    'House',
-                    'Index',
-                    'State',
-                    'Area',
-                    DictionaryFaker::cityType(),
-                    'Corpus',
-                    'Flat',
-                    'Full Address'
-                ]
+            Ubki\Data\Elements\Address::class => [
+                Carbon::create(mt_rand(1960, 2018), mt_rand(1, 12), mt_rand(1, 28)),
+                DictionaryFaker::language(),
+                DictionaryFaker::addressType(),
+                'Country',
+                'City',
+                'Street',
+                'House',
+                'Index',
+                'State',
+                'Area',
+                DictionaryFaker::cityType(),
+                'Corpus',
+                'Flat',
+                'Full Address',
             ],
-            'comment' => [
-                Ubki\Data\Elements\Comment::class,
-                [
-
-                ]
-            ]
+            Ubki\Data\Elements\Comment::class => [
+                'Text',
+                'Id',
+            ],
         ];
     }
 
@@ -61,24 +50,13 @@ class ElementFaker
         return new static();
     }
 
-    public function unique(): ElementFaker
+    public function with(array $arguments): ElementFaker
     {
-        return new static(true);
+        return new static($arguments);
     }
 
     public function __get($name): Ubki\Infrastructure\ElementInterface
     {
-        $element = static::elements()[$name];
-        $class = array_shift($element);
-
-        if ($this->unique) {
-            if (empty(static::$cache[$class])) {
-                static::$cache[$class] = static::instance()->$name;
-            }
-
-            return static::$cache[$class];
-        }
-
-        return new $class(...array_shift($element));
+        return new $name(...($this->injectData ?: static::elements()[$name]));
     }
 }
