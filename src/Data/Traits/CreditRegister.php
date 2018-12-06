@@ -31,12 +31,12 @@ trait CreditRegister
     public function jsonSerialize(): array
     {
         return [
-            Ubki\Data\Interfaces\CreditRegister::DATE => $this->date,
-            Ubki\Data\Interfaces\CreditRegister::INN => $this->inn,
-            Ubki\Data\Interfaces\CreditRegister::ID => $this->id,
-            Ubki\Data\Interfaces\CreditRegister::DECISION => $this->decision,
-            Ubki\Data\Interfaces\CreditRegister::REASON => $this->reason,
-            Ubki\Data\Interfaces\CreditRegister::ORGANIZATION => $this->organization,
+            Ubki\Data\Interfaces\CreditRegister::DATE => $this->getDate(),
+            Ubki\Data\Interfaces\CreditRegister::INN => $this->getInn(),
+            Ubki\Data\Interfaces\CreditRegister::ID => $this->getId(),
+            Ubki\Data\Interfaces\CreditRegister::DECISION => $this->getDecision(),
+            Ubki\Data\Interfaces\CreditRegister::REASON => $this->getReason(),
+            Ubki\Data\Interfaces\CreditRegister::ORGANIZATION => $this->getOrganization(),
         ];
     }
 

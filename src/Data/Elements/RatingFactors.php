@@ -33,9 +33,9 @@ abstract class RatingFactors extends Ubki\Infrastructure\Element
     public function jsonSerialize(): array
     {
         return [
-            static::COUNT => $this->count,
-            static::TEXT => $this->description,
-            'comments' => $this->comments->jsonSerialize(),
+            static::COUNT => $this->getCount(),
+            static::TEXT => $this->getDescription(),
+            'comments' => $this->getComments(),
         ];
     }
 

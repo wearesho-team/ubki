@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -14,73 +12,36 @@ use Wearesho\Bobra\Ubki;
  */
 class ContactTest extends TestCase
 {
-    protected const CREATED_AT = '2018-03-12';
-    protected const VALUE = 'testValue';
-    protected const INN = 'testInn';
+    use ArgumentsTrait\Contact;
 
-    /** @var Ubki\Data\Elements\Contact */
-    protected $fakeContact;
+    protected const ELEMENT = Ubki\Data\Elements\Contact::class;
 
-    protected function setUp(): void
+    public const CREATED_AT = '2018-03-12';
+    public const VALUE = 'testValue';
+    public const INN = 'testInn';
+
+    protected function jsonKeys(): array
     {
-        $this->fakeContact = new Ubki\Data\Elements\Contact(
-            Carbon::parse(static::CREATED_AT),
-            static::VALUE,
-            Ubki\Dictionaries\ContactType::FAX(),
-            static::INN
-        );
+        return [
+            Ubki\Data\Interfaces\Contact::CREATED_AT,
+            Ubki\Data\Interfaces\Contact::VALUE,
+            Ubki\Data\Interfaces\Contact::TYPE,
+            Ubki\Data\Interfaces\Contact::INN,
+        ];
     }
 
-    public function testJsonSerialize(): void
+    protected function getExpectTag(): string
     {
-        $this->assertArraySubset(
-            [
-                Ubki\Data\Interfaces\Contact::CREATED_AT => Carbon::parse(static::CREATED_AT),
-                Ubki\Data\Interfaces\Contact::VALUE => static::VALUE,
-                Ubki\Data\Interfaces\Contact::TYPE => Ubki\Dictionaries\ContactType::FAX(),
-                Ubki\Data\Interfaces\Contact::INN => static::INN
-            ],
-            $this->fakeContact->jsonSerialize()
-        );
+        return Ubki\Data\Interfaces\Contact::TAG;
     }
 
-    public function testTag(): void
+    protected function attributesNames(): array
     {
-        $this->assertEquals(
-            Ubki\Data\Interfaces\Contact::TAG,
-            $this->fakeContact->tag()
-        );
-    }
-
-    public function testGetValue(): void
-    {
-        $this->assertEquals(
-            static::VALUE,
-            $this->fakeContact->getValue()
-        );
-    }
-
-    public function testGetCreatedAt(): void
-    {
-        $this->assertEquals(
-            static::CREATED_AT,
-            Carbon::instance($this->fakeContact->getCreatedAt())->toDateString()
-        );
-    }
-
-    public function testGetType(): void
-    {
-        $this->assertEquals(
-            Ubki\Dictionaries\ContactType::FAX(),
-            $this->fakeContact->getType()
-        );
-    }
-
-    public function testGetInn(): void
-    {
-        $this->assertEquals(
-            static::INN,
-            $this->fakeContact->getInn()
-        );
+        return [
+            'createdAt',
+            'value',
+            'type',
+            'inn',
+        ];
     }
 }

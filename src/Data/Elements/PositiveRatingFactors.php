@@ -14,9 +14,4 @@ class PositiveRatingFactors extends RatingFactors
     {
         return static::TAG;
     }
-
-    public function jsonSerialize(): array
-    {
-        return parent::jsonSerialize();
-    }
 }

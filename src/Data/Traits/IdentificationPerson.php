@@ -30,12 +30,12 @@ trait IdentificationPerson
     public function jsonSerialize(): array
     {
         return [
-            Interfaces\IdentificationPerson::INN => $this->inn,
-            Interfaces\IdentificationPerson::BIRTH_DATE => $this->birthDate,
-            Interfaces\IdentificationPerson::SURNAME => $this->surname,
-            Interfaces\IdentificationPerson::PATRONYMIC => $this->patronymic,
-            Interfaces\IdentificationPerson::NAME => $this->name,
-            Interfaces\IdentificationPerson::ORGANIZATION => $this->organization
+            Interfaces\IdentificationPerson::INN => $this->getInn(),
+            Interfaces\IdentificationPerson::BIRTH_DATE => $this->getBirthDate(),
+            Interfaces\IdentificationPerson::SURNAME => $this->getSurname(),
+            Interfaces\IdentificationPerson::PATRONYMIC => $this->getPatronymic(),
+            Interfaces\IdentificationPerson::NAME => $this->getName(),
+            Interfaces\IdentificationPerson::ORGANIZATION => $this->getOrganization(),
         ];
     }
 

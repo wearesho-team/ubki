@@ -52,19 +52,19 @@ trait CourtDecision
     public function jsonSerialize(): array
     {
         return [
-            Ubki\Data\Interfaces\CourtDecision::ID => $this->id,
-            Ubki\Data\Interfaces\CourtDecision::INN => $this->inn,
-            Ubki\Data\Interfaces\CourtDecision::DATE => $this->date,
-            Ubki\Data\Interfaces\CourtDecision::SUBJECT_STATUS => $this->subjectStatus,
-            Ubki\Data\Interfaces\CourtDecision::COURT_DEAL_TYPE => $this->courtDealType,
-            Ubki\Data\Interfaces\CourtDecision::COURT_NAME => $this->courtName,
-            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE => $this->documentType,
-            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE_REF => $this->documentTypeReference,
-            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT => $this->legalFact,
-            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT_REF => $this->legalFactReference,
-            Ubki\Data\Interfaces\CourtDecision::CREATED_AT => $this->createdAt,
-            Ubki\Data\Interfaces\CourtDecision::AREA => $this->area,
-            Ubki\Data\Interfaces\CourtDecision::AREA_REF => $this->areaReference,
+            Ubki\Data\Interfaces\CourtDecision::ID => $this->getId(),
+            Ubki\Data\Interfaces\CourtDecision::INN => $this->getInn(),
+            Ubki\Data\Interfaces\CourtDecision::DATE => $this->getDate(),
+            Ubki\Data\Interfaces\CourtDecision::SUBJECT_STATUS => $this->getSubjectStatus(),
+            Ubki\Data\Interfaces\CourtDecision::COURT_DEAL_TYPE => $this->getCourtDealType(),
+            Ubki\Data\Interfaces\CourtDecision::COURT_NAME => $this->getCourtName(),
+            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE => $this->getDocumentType(),
+            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE_REF => $this->getDocumentTypeReference(),
+            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT => $this->getLegalFact(),
+            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT_REF => $this->getLegalFactReference(),
+            Ubki\Data\Interfaces\CourtDecision::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\CourtDecision::AREA => $this->getArea(),
+            Ubki\Data\Interfaces\CourtDecision::AREA_REF => $this->getAreaReference(),
         ];
     }
 

@@ -10,17 +10,15 @@ use Wearesho\Bobra\Ubki;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    /** @var Ubki\Tests\Fakers\DictionaryFaker */
-    protected $dictionaryFaker;
-
-    /** @var Ubki\Tests\Fakers\ElementFaker */
-    protected $elementFaker;
+    /** @var Ubki\Tests\Fakers\BaseFaker */
+    protected $faker;
 
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->dictionaryFaker = new Ubki\Tests\Fakers\DictionaryFaker();
-        $this->elementFaker = Ubki\Tests\Fakers\ElementFaker::instance();
+        $this->faker = new Ubki\Tests\Fakers\BaseFaker();
+        $this->faker->setFaker('collection', new Ubki\Tests\Fakers\ElementCollectionFaker());
+        $this->faker->setFaker('dictionary', new Ubki\Tests\Fakers\DictionaryFaker());
+        $this->faker->setFaker('element', Ubki\Tests\Fakers\ElementFaker::instance());
     }
 }

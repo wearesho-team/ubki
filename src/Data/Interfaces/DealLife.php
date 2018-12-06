@@ -58,7 +58,7 @@ interface DealLife extends Ubki\Infrastructure\ElementInterface
 
     public function getDelayIndication(): Ubki\Dictionaries\Flag;
 
-    public function getCreditTrancheIndication(): Ubki\Dictionaries\Flag;
+    public function getTrancheIndication(): Ubki\Dictionaries\Flag;
 
     public function getPaymentDate(): \DateTimeInterface;
 

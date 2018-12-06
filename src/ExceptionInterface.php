@@ -11,4 +11,6 @@ namespace Wearesho\Bobra\Ubki;
  */
 interface ExceptionInterface extends \Throwable
 {
+    public const CODE_UNKNOWN_ERROR = -1;
+    public const CODE_INVALID_ANSWER = -2;
 }

@@ -50,9 +50,6 @@ class RatingScore extends Element
     /** @var Carbon */
     protected $date;
 
-    /** @var Carbon */
-    protected $previousDate;
-
     /** @var string */
     protected $level;
 
@@ -65,7 +62,6 @@ class RatingScore extends Element
         string $score,
         string $previousScore,
         Carbon $date,
-        Carbon $previousDate,
         string $level
     ) {
         $this->inn = $inn;
@@ -76,28 +72,21 @@ class RatingScore extends Element
         $this->score = $score;
         $this->previousScore = $previousScore;
         $this->date = $date;
-        $this->previousDate = $previousDate;
         $this->level = $level;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            static::INN => $this->inn,
-            static::SURNAME => $this->surname,
-            static::NAME => $this->name,
-            static::PATRONYMIC => $this->patronymic,
-            static::BIRTH_DATE => $this->birthDate,
-            static::SCORE => [
-                static::CURRENT => [
-                    static::DATE => $this->date,
-                    static::VALUE => $this->score,
-                ],
-                static::PREVIOUS => [
-                    static::DATE => $this->previousDate,
-                    static::VALUE => $this->previousScore,
-                ],
-            ],
+            static::INN => $this->getInn(),
+            static::SURNAME => $this->getSurname(),
+            static::NAME => $this->getName(),
+            static::PATRONYMIC => $this->getPatronymic(),
+            static::BIRTH_DATE => $this->getBirthDate(),
+            static::SCORE => $this->getScore(),
+            static::PREVIOUS_SCORE => $this->getPreviousScore(),
+            static::DATE => $this->getDate(),
+            static::LEVEL => $this->getLevel(),
         ];
     }
 
@@ -144,11 +133,6 @@ class RatingScore extends Element
     public function getDate(): Carbon
     {
         return $this->date;
-    }
-
-    public function getPreviousDate(): Carbon
-    {
-        return $this->previousDate;
     }
 
     public function getLevel(): string

@@ -47,7 +47,7 @@ trait CreditDeal
     protected $collateralCost;
 
     /** @var Ubki\Data\Collections\DealLifes */
-    protected $dealLifeCollection;
+    protected $dealLifes;
 
     /** @var string|null */
     protected $inn;
@@ -61,22 +61,22 @@ trait CreditDeal
     public function jsonSerialize(): array
     {
         return [
-            Ubki\Data\Interfaces\CreditDeal::ID => $this->id,
-            Ubki\Data\Interfaces\CreditDeal::INN => $this->inn,
-            Ubki\Data\Interfaces\CreditDeal::LANGUAGE => $this->language,
-            Ubki\Data\Interfaces\CreditDeal::NAME => $this->name,
-            Ubki\Data\Interfaces\CreditDeal::SURNAME => $this->surname,
-            Ubki\Data\Interfaces\CreditDeal::PATRONYMIC => $this->patronymic,
-            Ubki\Data\Interfaces\CreditDeal::BIRTH_DATE => $this->birthDate,
-            Ubki\Data\Interfaces\CreditDeal::TYPE => $this->type,
-            Ubki\Data\Interfaces\CreditDeal::COLLATERAL => $this->collateral,
-            Ubki\Data\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $this->repaymentProcedure,
-            Ubki\Data\Interfaces\CreditDeal::CURRENCY => $this->currency,
-            Ubki\Data\Interfaces\CreditDeal::INITIAL_AMOUNT => $this->initialAmount,
-            Ubki\Data\Interfaces\CreditDeal::SUBJECT_ROLE => $this->subjectRole,
-            Ubki\Data\Interfaces\CreditDeal::COLLATERAL_COST => $this->collateralCost,
-            Ubki\Data\Interfaces\CreditDeal::SOURCE => $this->source,
-            'dealLifes' => $this->dealLifeCollection->jsonSerialize(),
+            Ubki\Data\Interfaces\CreditDeal::ID => $this->getId(),
+            Ubki\Data\Interfaces\CreditDeal::INN => $this->getInn(),
+            Ubki\Data\Interfaces\CreditDeal::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\CreditDeal::NAME => $this->getName(),
+            Ubki\Data\Interfaces\CreditDeal::SURNAME => $this->getSurname(),
+            Ubki\Data\Interfaces\CreditDeal::PATRONYMIC => $this->getPatronymic(),
+            Ubki\Data\Interfaces\CreditDeal::BIRTH_DATE => $this->getBirthDate(),
+            Ubki\Data\Interfaces\CreditDeal::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\CreditDeal::COLLATERAL => $this->getCollateral(),
+            Ubki\Data\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $this->getRepaymentProcedure(),
+            Ubki\Data\Interfaces\CreditDeal::CURRENCY => $this->getCurrency(),
+            Ubki\Data\Interfaces\CreditDeal::INITIAL_AMOUNT => $this->getInitialAmount(),
+            Ubki\Data\Interfaces\CreditDeal::SUBJECT_ROLE => $this->getSubjectRole(),
+            Ubki\Data\Interfaces\CreditDeal::COLLATERAL_COST => $this->getCollateralCost(),
+            Ubki\Data\Interfaces\CreditDeal::SOURCE => $this->getSource(),
+            'dealLifes' => $this->getDealLifes(),
         ];
     }
 
@@ -145,9 +145,9 @@ trait CreditDeal
         return $this->collateralCost;
     }
 
-    public function getDealLifeCollection(): Ubki\Data\Collections\DealLifes
+    public function getDealLifes(): Ubki\Data\Collections\DealLifes
     {
-        return $this->dealLifeCollection;
+        return $this->dealLifes;
     }
 
     public function getInn(): ?string

@@ -57,7 +57,7 @@ interface CreditDeal extends Ubki\Infrastructure\ElementInterface
 
     public function getCollateralCost(): float;
 
-    public function getDealLifeCollection(): Ubki\Data\Collections\DealLifes;
+    public function getDealLifes(): Ubki\Data\Collections\DealLifes;
 
     public function getInn(): ?string;
 

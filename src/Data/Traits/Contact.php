@@ -25,10 +25,10 @@ trait Contact
     public function jsonSerialize(): array
     {
         return [
-            Ubki\Data\Interfaces\Contact::CREATED_AT => $this->createdAt,
-            Ubki\Data\Interfaces\Contact::VALUE => $this->value,
-            Ubki\Data\Interfaces\Contact::TYPE => $this->type,
-            Ubki\Data\Interfaces\Contact::INN => $this->inn
+            Ubki\Data\Interfaces\Contact::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\Contact::VALUE => $this->getValue(),
+            Ubki\Data\Interfaces\Contact::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\Contact::INN => $this->getInn()
         ];
     }
 

@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -14,73 +12,36 @@ use Wearesho\Bobra\Ubki;
  */
 class LinkedPersonTest extends TestCase
 {
-    protected const NAME = 'testName';
-    protected const ISSUE_DATE = '2018-03-12';
-    protected const ERGPOU = 'testErgpou';
+    use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\LinkedPerson;
 
-    /** @var Ubki\Data\Elements\LinkedPerson */
-    protected $fakeLinkedPerson;
+    protected const ELEMENT = Ubki\Data\Elements\LinkedPerson::class;
 
-    protected function setUp(): void
+    public const NAME = 'testName';
+    public const ISSUE_DATE = '2018-03-12';
+    public const ERGPOU = 'testErgpou';
+
+    public function jsonKeys(): array
     {
-        $this->fakeLinkedPerson = new Ubki\Data\Elements\LinkedPerson(
-            static::NAME,
-            Ubki\Dictionaries\LinkedIdentifierRole::DIRECTOR(),
-            Carbon::parse(static::ISSUE_DATE),
-            static::ERGPOU
-        );
+        return [
+            Ubki\Data\Interfaces\LinkedPerson::NAME,
+            Ubki\Data\Interfaces\LinkedPerson::ROLE,
+            Ubki\Data\Interfaces\LinkedPerson::ISSUE_DATE,
+            Ubki\Data\Interfaces\LinkedPerson::ERGPOU,
+        ];
     }
 
-    public function testJsonSerialize(): void
+    protected function attributesNames(): array
     {
-        $this->assertArraySubset(
-            [
-                Ubki\Data\Interfaces\LinkedPerson::NAME => static::NAME,
-                Ubki\Data\Interfaces\LinkedPerson::ROLE => Ubki\Dictionaries\LinkedIdentifierRole::DIRECTOR(),
-                Ubki\Data\Interfaces\LinkedPerson::ISSUE_DATE => Carbon::parse(static::ISSUE_DATE),
-                Ubki\Data\Interfaces\LinkedPerson::ERGPOU => static::ERGPOU
-            ],
-            $this->fakeLinkedPerson->jsonSerialize()
-        );
+        return [
+            'name',
+            'role',
+            'issueDate',
+            'ergpou'
+        ];
     }
 
-    public function testTag(): void
+    protected function getExpectTag(): string
     {
-        $this->assertEquals(
-            Ubki\Data\Interfaces\LinkedPerson::TAG,
-            $this->fakeLinkedPerson->tag()
-        );
-    }
-
-    public function testGetErgpou(): void
-    {
-        $this->assertEquals(
-            static::ERGPOU,
-            $this->fakeLinkedPerson->getErgpou()
-        );
-    }
-
-    public function testGetRole(): void
-    {
-        $this->assertEquals(
-            Ubki\Dictionaries\LinkedIdentifierRole::DIRECTOR(),
-            $this->fakeLinkedPerson->getRole()
-        );
-    }
-
-    public function testGetName(): void
-    {
-        $this->assertEquals(
-            static::NAME,
-            $this->fakeLinkedPerson->getName()
-        );
-    }
-
-    public function testGetIssueDate(): void
-    {
-        $this->assertEquals(
-            static::ISSUE_DATE,
-            Carbon::instance($this->fakeLinkedPerson->getIssueDate())->toDateString()
-        );
+        return Ubki\Data\Interfaces\LinkedPerson::TAG;
     }
 }

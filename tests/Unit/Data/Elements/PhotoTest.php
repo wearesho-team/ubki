@@ -2,9 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class PhotoTest
@@ -14,63 +12,34 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class PhotoTest extends TestCase
 {
-    protected const CREATED_AT = '2018-03-12';
-    protected const PHOTO = 'testPhoto';
-    protected const INN = 'testInn';
+    use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\Photo;
 
-    /** @var Data\Elements\Photo */
-    protected $fakePhoto;
+    protected const ELEMENT = Ubki\Data\Elements\Photo::class;
 
-    protected function setUp(): void
+    public const CREATED_AT = '2018-03-12';
+    public const PHOTO = 'testPhoto';
+    public const INN = 'testInn';
+
+    public function jsonKeys(): array
     {
-        $this->fakePhoto = new Data\Elements\Photo(
-            Carbon::parse(static::CREATED_AT),
-            static::PHOTO,
-            static::INN
-        );
+        return [
+            Ubki\Data\Interfaces\Photo::CREATED_AT,
+            Ubki\Data\Interfaces\Photo::PHOTO,
+            Ubki\Data\Interfaces\Photo::INN,
+        ];
     }
 
-    public function testJsonSerialize(): void
+    protected function getExpectTag(): string
     {
-        $this->assertArraySubset(
-            [
-                Data\Interfaces\Photo::CREATED_AT => Carbon::parse(static::CREATED_AT),
-                Data\Interfaces\Photo::INN => static::INN,
-                Data\Interfaces\Photo::PHOTO => static::PHOTO
-            ],
-            $this->fakePhoto->jsonSerialize()
-        );
+        return Ubki\Data\Interfaces\Photo::TAG;
     }
 
-    public function testTag(): void
+    protected function attributesNames(): array
     {
-        $this->assertEquals(
-            Data\Interfaces\Photo::TAG,
-            $this->fakePhoto->tag()
-        );
-    }
-
-    public function testGetCreatedAt(): void
-    {
-        $this->assertEquals(
-            static::CREATED_AT,
-            Carbon::instance($this->fakePhoto->getCreatedAt())->toDateString()
-        );
-    }
-
-    public function testGetPhoto(): void
-    {
-        $this->assertEquals(
-            static::PHOTO,
-            $this->fakePhoto->getUri()
-        );
-    }
-
-    public function testGetInn(): void
-    {
-        $this->assertEquals(
-            static::INN,
-            $this->fakePhoto->getInn()
-        );
+        return [
+            'createdAt',
+            'uri',
+            'inn',
+        ];
     }
 }

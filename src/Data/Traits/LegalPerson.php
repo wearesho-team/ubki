@@ -36,15 +36,15 @@ trait LegalPerson
     public function jsonSerialize(): array
     {
         return [
-            Interfaces\IdentifiedPerson::CREATED_AT => $this->createdAt,
-            Interfaces\IdentifiedPerson::LANGUAGE => $this->language,
-            Interfaces\LegalPerson::NAME => $this->name,
-            Interfaces\LegalPerson::ERGPOU => $this->ergpou,
-            Interfaces\LegalPerson::FORM => $this->form,
-            Interfaces\LegalPerson::ECONOMY_BRANCH => $this->economyBranch,
-            Interfaces\LegalPerson::ACTIVITY_TYPE => $this->activityType,
-            Interfaces\LegalPerson::EDR_REGISTRATION_DATE => $this->edrRegistrationDate,
-            Interfaces\LegalPerson::TAX_REGISTRATION_DATE => $this->taxRegistrationDate,
+            Interfaces\IdentifiedPerson::CREATED_AT => $this->getCreatedAt(),
+            Interfaces\IdentifiedPerson::LANGUAGE => $this->getLanguage(),
+            Interfaces\LegalPerson::NAME => $this->getName(),
+            Interfaces\LegalPerson::ERGPOU => $this->getErgpou(),
+            Interfaces\LegalPerson::FORM => $this->getForm(),
+            Interfaces\LegalPerson::ECONOMY_BRANCH => $this->getEconomyBranch(),
+            Interfaces\LegalPerson::ACTIVITY_TYPE => $this->getActivityType(),
+            Interfaces\LegalPerson::EDR_REGISTRATION_DATE => $this->getEdrRegistrationDate(),
+            Interfaces\LegalPerson::TAX_REGISTRATION_DATE => $this->getTaxRegistrationDate(),
         ];
     }
 

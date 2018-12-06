@@ -65,22 +65,22 @@ trait DealLife
     public function jsonSerialize(): array
     {
         return [
-            Ubki\Data\Interfaces\DealLife::ID => $this->id,
-            Ubki\Data\Interfaces\DealLife::PERIOD_MONTH => $this->periodMonth,
-            Ubki\Data\Interfaces\DealLife::PERIOD_YEAR => $this->periodYear,
-            Ubki\Data\Interfaces\DealLife::ISSUE_DATE => $this->issueDate,
-            Ubki\Data\Interfaces\DealLife::END_DATE => $this->endDate,
-            Ubki\Data\Interfaces\DealLife::STATUS => $this->status,
-            Ubki\Data\Interfaces\DealLife::LIMIT => $this->limit,
-            Ubki\Data\Interfaces\DealLife::MANDATORY_PAYMENT => $this->mandatoryPayment,
-            Ubki\Data\Interfaces\DealLife::CURRENT_DEBT => $this->currentDebt,
-            Ubki\Data\Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $this->currentOverdueDebt,
-            Ubki\Data\Interfaces\DealLife::OVERDUE_TIME => $this->overdueTime,
-            Ubki\Data\Interfaces\DealLife::PAYMENT_INDICATION => $this->paymentIndication,
-            Ubki\Data\Interfaces\DealLife::DELAY_INDICATION => $this->delayIndication,
-            Ubki\Data\Interfaces\DealLife::TRANCHE_INDICATION => $this->trancheIndication,
-            Ubki\Data\Interfaces\DealLife::PAYMENT_DATE => $this->paymentDate,
-            Ubki\Data\Interfaces\DealLife::ACTUAL_END_DATE => $this->actualEndDate,
+            Ubki\Data\Interfaces\DealLife::ID => $this->getId(),
+            Ubki\Data\Interfaces\DealLife::PERIOD_MONTH => $this->getPeriodMonth(),
+            Ubki\Data\Interfaces\DealLife::PERIOD_YEAR => $this->getPeriodYear(),
+            Ubki\Data\Interfaces\DealLife::ISSUE_DATE => $this->getIssueDate(),
+            Ubki\Data\Interfaces\DealLife::END_DATE => $this->getEndDate(),
+            Ubki\Data\Interfaces\DealLife::STATUS => $this->getStatus(),
+            Ubki\Data\Interfaces\DealLife::LIMIT => $this->getLimit(),
+            Ubki\Data\Interfaces\DealLife::MANDATORY_PAYMENT => $this->getMandatoryPayment(),
+            Ubki\Data\Interfaces\DealLife::CURRENT_DEBT => $this->getCurrentDebt(),
+            Ubki\Data\Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $this->getCurrentOverdueDebt(),
+            Ubki\Data\Interfaces\DealLife::OVERDUE_TIME => $this->getOverdueTime(),
+            Ubki\Data\Interfaces\DealLife::PAYMENT_INDICATION => $this->getPaymentIndication(),
+            Ubki\Data\Interfaces\DealLife::DELAY_INDICATION => $this->getDelayIndication(),
+            Ubki\Data\Interfaces\DealLife::TRANCHE_INDICATION => $this->getTrancheIndication(),
+            Ubki\Data\Interfaces\DealLife::PAYMENT_DATE => $this->getPaymentDate(),
+            Ubki\Data\Interfaces\DealLife::ACTUAL_END_DATE => $this->getActualEndDate(),
         ];
     }
 
@@ -154,7 +154,7 @@ trait DealLife
         return $this->delayIndication;
     }
 
-    public function getCreditTrancheIndication(): Ubki\Dictionaries\Flag
+    public function getTrancheIndication(): Ubki\Dictionaries\Flag
     {
         return $this->trancheIndication;
     }

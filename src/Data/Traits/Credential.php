@@ -49,18 +49,18 @@ trait Credential
     public function jsonSerialize(): array
     {
         return [
-            Ubki\Data\Interfaces\Credential::LANGUAGE => $this->language,
-            Ubki\Data\Interfaces\Credential::NAME => $this->name,
-            Ubki\Data\Interfaces\Credential::PATRONYMIC => $this->patronymic,
-            Ubki\Data\Interfaces\Credential::SURNAME => $this->surname,
-            Ubki\Data\Interfaces\Credential::BIRTH_DATE => $this->birthDate,
-            Ubki\Data\Interfaces\Credential::INN => $this->inn,
-            'identifiers' =>  $this->identifiers->jsonSerialize(),
-            'linkedPersons' => $this->linkedPersons ? $this->linkedPersons->jsonSerialize() : null,
-            'works' => $this->works ? $this->works->jsonSerialize() : null,
-            'documents' => $this->documents->jsonSerialize(),
-            'addresses' => $this->addresses->jsonSerialize(),
-            'photos' => $this->photos ? $this->photos->jsonSerialize() : null,
+            Ubki\Data\Interfaces\Credential::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\Credential::NAME => $this->getName(),
+            Ubki\Data\Interfaces\Credential::PATRONYMIC => $this->getPatronymic(),
+            Ubki\Data\Interfaces\Credential::SURNAME => $this->getSurname(),
+            Ubki\Data\Interfaces\Credential::BIRTH_DATE => $this->getBirthDate(),
+            Ubki\Data\Interfaces\Credential::INN => $this->getInn(),
+            'identifiers' =>  $this->getIdentifiers(),
+            'linkedPersons' => $this->getLinkedPersons(),
+            'works' => $this->getWorks(),
+            'documents' => $this->getDocuments(),
+            'addresses' => $this->getAddresses(),
+            'photos' => $this->getPhotos(),
         ];
     }
 

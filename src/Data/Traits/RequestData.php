@@ -31,12 +31,12 @@ trait RequestData
     public function jsonSerialize(): array
     {
         return [
-            Ubki\Data\Interfaces\RequestData::VERSION => $this->version,
-            Ubki\Data\Interfaces\RequestData::TYPE => $this->type,
-            Ubki\Data\Interfaces\RequestData::REASON => $this->reason,
-            Ubki\Data\Interfaces\RequestData::DATE => $this->date,
-            Ubki\Data\Interfaces\RequestData::ID => $this->id,
-            Ubki\Data\Interfaces\RequestData::INITIATOR => $this->initiator,
+            Ubki\Data\Interfaces\RequestData::VERSION => $this->getVersion(),
+            Ubki\Data\Interfaces\RequestData::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\RequestData::REASON => $this->getReason(),
+            Ubki\Data\Interfaces\RequestData::DATE => $this->getDate(),
+            Ubki\Data\Interfaces\RequestData::ID => $this->getId(),
+            Ubki\Data\Interfaces\RequestData::INITIATOR => $this->getInitiator(),
         ];
     }
 

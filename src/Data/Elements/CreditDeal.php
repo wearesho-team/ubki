@@ -25,7 +25,7 @@ class CreditDeal extends Ubki\Infrastructure\Element implements Ubki\Data\Interf
         float $initialAmount,
         Ubki\Dictionaries\SubjectRole $subjectRole,
         float $collateralCost,
-        Ubki\Data\Collections\DealLifes $dealLifeCollection,
+        Ubki\Data\Collections\DealLifes $dealLifes,
         string $inn = null,
         string $patronymic = null,
         string $source = null
@@ -42,7 +42,7 @@ class CreditDeal extends Ubki\Infrastructure\Element implements Ubki\Data\Interf
         $this->initialAmount = $initialAmount;
         $this->subjectRole = $subjectRole;
         $this->collateralCost = $collateralCost;
-        $this->dealLifeCollection = $dealLifeCollection;
+        $this->dealLifes = $dealLifes;
         $this->inn = $inn;
         $this->patronymic = $patronymic;
         $this->source = $source;

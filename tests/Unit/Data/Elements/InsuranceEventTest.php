@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -14,62 +12,33 @@ use Wearesho\Bobra\Ubki;
  */
 class InsuranceEventTest extends TestCase
 {
-    protected const REQUEST_DATE = '2018-03-12';
-    protected const DECISION_DATE = '2018-03-12';
+    use ArgumentsTrait\InsuranceEvent;
 
-    /** @var Ubki\Data\Elements\InsuranceEvent */
-    protected $fakeInsuranceEvent;
+    protected const ELEMENT = Ubki\Data\Elements\InsuranceEvent::class;
 
-    protected function setUp(): void
+    public const REQUEST_DATE = '2018-03-12';
+    public const DECISION_DATE = '2018-03-12';
+
+    protected function jsonKeys(): array
     {
-        $this->fakeInsuranceEvent = new Ubki\Data\Elements\InsuranceEvent(
-            Carbon::parse(static::REQUEST_DATE),
-            Ubki\Dictionaries\InsuranceDecisionStatus::POSITIVE(),
-            Carbon::parse(static::DECISION_DATE)
-        );
+        return [
+            Ubki\Data\Elements\InsuranceEvent::REQUEST_DATE,
+            Ubki\Data\Elements\InsuranceEvent::DECISION,
+            Ubki\Data\Elements\InsuranceEvent::DECISION_DATE,
+        ];
     }
 
-    public function testJsonSerialize(): void
+    protected function getExpectTag(): string
     {
-        $this->assertArraySubset(
-            [
-                Ubki\Data\Elements\InsuranceEvent::REQUEST_DATE => Carbon::parse(static::REQUEST_DATE),
-                Ubki\Data\Elements\InsuranceEvent::DECISION => Ubki\Dictionaries\InsuranceDecisionStatus::POSITIVE(),
-                Ubki\Data\Elements\InsuranceEvent::DECISION_DATE => Carbon::parse(static::DECISION_DATE)
-            ],
-            $this->fakeInsuranceEvent->jsonSerialize()
-        );
+        return Ubki\Data\Elements\InsuranceEvent::TAG;
     }
 
-    public function testTag(): void
+    protected function attributesNames(): array
     {
-        $this->assertEquals(
-            Ubki\Data\Elements\InsuranceEvent::TAG,
-            $this->fakeInsuranceEvent->tag()
-        );
-    }
-
-    public function testGetRequestDate(): void
-    {
-        $this->assertEquals(
-            static::REQUEST_DATE,
-            Carbon::instance($this->fakeInsuranceEvent->getRequestDate())->toDateString()
-        );
-    }
-
-    public function testGetDecision(): void
-    {
-        $this->assertEquals(
-            Ubki\Dictionaries\InsuranceDecisionStatus::POSITIVE(),
-            $this->fakeInsuranceEvent->getDecision()
-        );
-    }
-
-    public function testGetDecisionDate(): void
-    {
-        $this->assertEquals(
-            static::DECISION_DATE,
-            Carbon::instance($this->fakeInsuranceEvent->getDecisionDate())->toDateString()
-        );
+        return [
+            'requestDate',
+            'decision',
+            'decisionDate'
+        ];
     }
 }

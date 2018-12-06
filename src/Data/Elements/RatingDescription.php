@@ -62,13 +62,13 @@ class RatingDescription extends Element
     public function jsonSerialize(): array
     {
         return [
-            static::CREDITS_COUNT => $this->creditsCount,
-            static::OPEN_CREDITS_COUNT => $this->openCreditsCount,
-            static::DESCRIPTION => $this->openCreditsDescription,
-            static::CLOSED_CREDITS_COUNT => $this->closedCreditsCount,
-            static::EXPIRES => $this->expires,
-            static::MAX_OVERDUE => $this->maxOverdue,
-            static::UPDATED_AT => $this->updatedAt
+            static::CREDITS_COUNT => $this->getCreditsCount(),
+            static::OPEN_CREDITS_COUNT => $this->getOpenCreditsCount(),
+            static::DESCRIPTION => $this->getOpenCreditsDescription(),
+            static::CLOSED_CREDITS_COUNT => $this->getClosedCreditsCount(),
+            static::EXPIRES => $this->getExpires(),
+            static::MAX_OVERDUE => $this->getMaxOverdue(),
+            static::UPDATED_AT => $this->getUpdatedAt()
         ];
     }
 

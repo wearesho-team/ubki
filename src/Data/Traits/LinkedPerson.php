@@ -25,10 +25,10 @@ trait LinkedPerson
     public function jsonSerialize(): array
     {
         return [
-            Ubki\Data\Interfaces\LinkedPerson::NAME => $this->name,
-            Ubki\Data\Interfaces\LinkedPerson::ROLE => $this->role,
-            Ubki\Data\Interfaces\LinkedPerson::ISSUE_DATE => $this->issueDate,
-            Ubki\Data\Interfaces\LinkedPerson::ERGPOU => $this->ergpou
+            Ubki\Data\Interfaces\LinkedPerson::NAME => $this->getName(),
+            Ubki\Data\Interfaces\LinkedPerson::ROLE => $this->getRole(),
+            Ubki\Data\Interfaces\LinkedPerson::ISSUE_DATE => $this->getIssueDate(),
+            Ubki\Data\Interfaces\LinkedPerson::ERGPOU => $this->getErgpou(),
         ];
     }
 

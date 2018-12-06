@@ -2,9 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class IdentificationPersonTest
@@ -14,96 +12,43 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class IdentificationPersonTest extends TestCase
 {
-    protected const NAME = 'testName';
-    protected const INN = 'testInn';
-    protected const SURNAME = 'testSurname';
-    protected const PATRONYMIC = 'testPatronymic';
-    protected const BIRTH_DATE = '2018-03-12';
-    protected const ORGANIZATION = 'testOrganization';
+    use ArgumentsTrait\IdentificationPerson;
 
-    /** @var Data\Elements\IdentificationPerson */
-    protected $fakeIdentificationPerson;
+    protected const ELEMENT = Ubki\Data\Elements\IdentificationPerson::class;
 
-    protected function setUp(): void
+    public const NAME = 'testName';
+    public const INN = 'testInn';
+    public const SURNAME = 'testSurname';
+    public const PATRONYMIC = 'testPatronymic';
+    public const BIRTH_DATE = '2018-03-12';
+    public const ORGANIZATION = 'testOrganization';
+
+    protected function jsonKeys(): array
     {
-        $this->fakeIdentificationPerson = new Data\Elements\IdentificationPerson(
-            static::NAME,
-            static::INN,
-            static::SURNAME,
-            static::PATRONYMIC,
-            Carbon::parse(static::BIRTH_DATE),
-            static::ORGANIZATION
-        );
+        return [
+            Ubki\Data\Interfaces\IdentificationPerson::NAME,
+            Ubki\Data\Interfaces\IdentificationPerson::INN,
+            Ubki\Data\Interfaces\IdentificationPerson::SURNAME,
+            Ubki\Data\Interfaces\IdentificationPerson::PATRONYMIC,
+            Ubki\Data\Interfaces\IdentificationPerson::BIRTH_DATE,
+            Ubki\Data\Interfaces\IdentificationPerson::ORGANIZATION,
+        ];
     }
 
-    public function testJsonSerialize(): void
+    protected function getExpectTag(): string
     {
-        $this->assertArraySubset(
-            [
-                Data\Interfaces\IdentificationPerson::INN => static::INN,
-                Data\Interfaces\IdentificationPerson::BIRTH_DATE => Carbon::parse(static::BIRTH_DATE),
-                Data\Interfaces\IdentificationPerson::SURNAME => static::SURNAME,
-                Data\Interfaces\IdentificationPerson::PATRONYMIC => static::PATRONYMIC,
-                Data\Interfaces\IdentificationPerson::NAME => static::NAME,
-                Data\Interfaces\IdentificationPerson::ORGANIZATION => static::ORGANIZATION
-            ],
-            $this->fakeIdentificationPerson->jsonSerialize()
-        );
+        return Ubki\Data\Interfaces\IdentificationPerson::TAG;
     }
 
-    public function testTag(): void
+    protected function attributesNames(): array
     {
-        $this->assertEquals(
-            Data\Interfaces\IdentifiedPerson::TAG,
-            $this->fakeIdentificationPerson->tag()
-        );
-    }
-
-    public function testGetSurname(): void
-    {
-        $this->assertEquals(
-            static::SURNAME,
-            $this->fakeIdentificationPerson->getSurname()
-        );
-    }
-
-    public function testGetOrganization(): void
-    {
-        $this->assertEquals(
-            static::ORGANIZATION,
-            $this->fakeIdentificationPerson->getOrganization()
-        );
-    }
-
-    public function testGetName(): void
-    {
-        $this->assertEquals(
-            static::NAME,
-            $this->fakeIdentificationPerson->getName()
-        );
-    }
-
-    public function testGetPatronymic(): void
-    {
-        $this->assertEquals(
-            static::PATRONYMIC,
-            $this->fakeIdentificationPerson->getPatronymic()
-        );
-    }
-
-    public function testGetBirthDate(): void
-    {
-        $this->assertEquals(
-            static::BIRTH_DATE,
-            Carbon::instance($this->fakeIdentificationPerson->getBirthDate())->toDateString()
-        );
-    }
-
-    public function testGetInn(): void
-    {
-        $this->assertEquals(
-            static::INN,
-            $this->fakeIdentificationPerson->getInn()
-        );
+        return [
+            'name',
+            'inn',
+            'surname',
+            'patronymic',
+            'birthDate',
+            'organization',
+        ];
     }
 }

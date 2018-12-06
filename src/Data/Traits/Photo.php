@@ -22,9 +22,9 @@ trait Photo
     public function jsonSerialize(): array
     {
         return [
-            Interfaces\Photo::CREATED_AT => $this->createdAt,
-            Interfaces\Photo::INN => $this->inn,
-            Interfaces\Photo::PHOTO => $this->uri
+            Interfaces\Photo::CREATED_AT => $this->getCreatedAt(),
+            Interfaces\Photo::INN => $this->getInn(),
+            Interfaces\Photo::PHOTO => $this->getUri(),
         ];
     }
 

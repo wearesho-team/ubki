@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -14,91 +12,46 @@ use Wearesho\Bobra\Ubki;
  */
 class RequestDataTest extends TestCase
 {
-    protected const DATE = '2018-03-12';
-    protected const ID = 'testId';
+    use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\RequestData;
 
-    /** @var Ubki\Data\Elements\RequestData */
-    protected $fakeRequestData;
+    protected const ELEMENT = Ubki\Data\Elements\RequestData::class;
+
+    public const DATE = '2018-03-12';
+    public const ID = 'testId';
 
     protected function setUp(): void
     {
-        $this->fakeRequestData = new Ubki\Data\Elements\RequestData(
-            Ubki\Dictionaries\RequestType::EXPORT(),
-            Ubki\Dictionaries\RequestReason::EXPORT(),
-            Carbon::parse(static::DATE),
-            static::ID,
-            Ubki\Dictionaries\RequestInitiator::PARTNER()
-        );
+        parent::setUp();
+
+        array_unshift($this->data, '1.0');
     }
 
-    public function testJsonSerialize(): void
+    protected function getExpectTag(): string
     {
-        $this->assertArraySubset(
-            [
-                Ubki\Data\Interfaces\RequestData::VERSION => '1.0',
-                Ubki\Data\Interfaces\RequestData::TYPE => Ubki\Dictionaries\RequestType::EXPORT(),
-                Ubki\Data\Interfaces\RequestData::REASON => Ubki\Dictionaries\RequestReason::EXPORT(),
-                Ubki\Data\Interfaces\RequestData::DATE => Carbon::parse(static::DATE),
-                Ubki\Data\Interfaces\RequestData::ID => static::ID,
-                Ubki\Data\Interfaces\RequestData::INITIATOR => Ubki\Dictionaries\RequestInitiator::PARTNER(),
-            ],
-            $this->fakeRequestData->jsonSerialize()
-        );
+        return Ubki\Data\Interfaces\RequestData::TAG;
     }
 
-    public function testTag(): void
+    public function jsonKeys(): array
     {
-        $this->assertEquals(
-            Ubki\Data\Interfaces\RequestData::TAG,
-            $this->fakeRequestData->tag()
-        );
+        return [
+            Ubki\Data\Interfaces\RequestData::VERSION,
+            Ubki\Data\Interfaces\RequestData::TYPE,
+            Ubki\Data\Interfaces\RequestData::REASON,
+            Ubki\Data\Interfaces\RequestData::DATE,
+            Ubki\Data\Interfaces\RequestData::ID,
+            Ubki\Data\Interfaces\RequestData::INITIATOR,
+        ];
     }
 
-    public function testGetDate(): void
+    protected function attributesNames(): array
     {
-        $this->assertEquals(
-            static::DATE,
-            Carbon::instance($this->fakeRequestData->getDate())->toDateString()
-        );
-    }
-
-    public function testGetId(): void
-    {
-        $this->assertEquals(
-            static::ID,
-            $this->fakeRequestData->getId()
-        );
-    }
-
-    public function testGetType(): void
-    {
-        $this->assertEquals(
-            Ubki\Dictionaries\RequestType::EXPORT(),
-            $this->fakeRequestData->getType()
-        );
-    }
-
-    public function testGetInitiator(): void
-    {
-        $this->assertEquals(
-            Ubki\Dictionaries\RequestInitiator::PARTNER(),
-            $this->fakeRequestData->getInitiator()
-        );
-    }
-
-    public function testGetVersion(): void
-    {
-        $this->assertEquals(
-            '1.0',
-            $this->fakeRequestData->getVersion()
-        );
-    }
-
-    public function testGetReason(): void
-    {
-        $this->assertEquals(
-            Ubki\Dictionaries\RequestReason::EXPORT(),
-            $this->fakeRequestData->getReason()
-        );
+        return [
+            'version',
+            'type',
+            'reason',
+            'date',
+            'id',
+            'initiator',
+        ];
     }
 }

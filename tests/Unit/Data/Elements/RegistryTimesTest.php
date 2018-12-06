@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class RegistryTimesTest
@@ -13,6 +12,10 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class RegistryTimesTest extends TestCase
 {
+    use ArgumentsTrait\RegistryTimes;
+
+    protected const ELEMENT = Ubki\Data\Elements\RegistryTimes::class;
+
     protected const BY_HOUR = 1;
     protected const BY_DAY = 2;
     protected const BY_WEEK = 3;
@@ -21,99 +24,34 @@ class RegistryTimesTest extends TestCase
     protected const BY_YEAR = 10;
     protected const BY_MORE_YEAR = 200;
 
-    /** @var Data\Elements\RegistryTimes */
-    protected $fakeRegistryTimes;
-
-    protected function setUp(): void
+    protected function jsonKeys(): array
     {
-        $this->fakeRegistryTimes = new Data\Elements\RegistryTimes(
-            static::BY_HOUR,
-            static::BY_DAY,
-            static::BY_WEEK,
-            static::BY_MONTH,
-            static::BY_QUARTER,
-            static::BY_YEAR,
-            static::BY_MORE_YEAR
-        );
+        return [
+            Ubki\Data\Interfaces\RegistryTimes::BY_HOUR,
+            Ubki\Data\Interfaces\RegistryTimes::BY_DAY,
+            Ubki\Data\Interfaces\RegistryTimes::BY_WEEK,
+            Ubki\Data\Interfaces\RegistryTimes::BY_MONTH,
+            Ubki\Data\Interfaces\RegistryTimes::BY_QUARTER,
+            Ubki\Data\Interfaces\RegistryTimes::BY_YEAR,
+            Ubki\Data\Interfaces\RegistryTimes::BY_MORE_YEAR,
+        ];
     }
 
-    public function testJsonSerialize(): void
+    protected function getExpectTag(): string
     {
-        $this->assertArraySubset(
-            [
-                Data\Interfaces\RegistryTimes::BY_HOUR => static::BY_HOUR,
-                Data\Interfaces\RegistryTimes::BY_DAY => static::BY_DAY,
-                Data\Interfaces\RegistryTimes::BY_WEEK => static::BY_WEEK,
-                Data\Interfaces\RegistryTimes::BY_MONTH => static::BY_MONTH,
-                Data\Interfaces\RegistryTimes::BY_QUARTER => static::BY_QUARTER,
-                Data\Interfaces\RegistryTimes::BY_YEAR => static::BY_YEAR,
-                Data\Interfaces\RegistryTimes::BY_MORE_YEAR => static::BY_MORE_YEAR,
-            ],
-            $this->fakeRegistryTimes->jsonSerialize()
-        );
+        return Ubki\Data\Interfaces\RegistryTimes::TAG;
     }
 
-    public function testTag(): void
+    protected function attributesNames(): array
     {
-        $this->assertEquals(
-            Data\Interfaces\RegistryTimes::TAG,
-            $this->fakeRegistryTimes->tag()
-        );
-    }
-
-    public function testGetByHour(): void
-    {
-        $this->assertEquals(
-            static::BY_HOUR,
-            $this->fakeRegistryTimes->getByHour()
-        );
-    }
-
-    public function testGetByYear(): void
-    {
-        $this->assertEquals(
-            static::BY_YEAR,
-            $this->fakeRegistryTimes->getByYear()
-        );
-    }
-
-    public function testGetByMoreYear(): void
-    {
-        $this->assertEquals(
-            static::BY_MORE_YEAR,
-            $this->fakeRegistryTimes->getByMoreYear()
-        );
-    }
-
-    public function testGetByWeek(): void
-    {
-        $this->assertEquals(
-            static::BY_WEEK,
-            $this->fakeRegistryTimes->getByWeek()
-        );
-    }
-
-    public function testGetByMonth(): void
-    {
-        $this->assertEquals(
-            static::BY_MONTH,
-            $this->fakeRegistryTimes->getByMonth()
-        );
-    }
-
-    public function testGetByDay(): void
-    {
-        $this->assertEquals(
-            static::BY_DAY,
-            $this->fakeRegistryTimes->getByDay()
-        );
-    }
-
-    public function testGetByQuarter(): void
-    {
-        $this->assertEquals(
-            static::BY_QUARTER,
-            $this->fakeRegistryTimes->getByQuarter()
-        );
+        return [
+            'byHour',
+            'byDay',
+            'byWeek',
+            'byMonth',
+            'byQuarter',
+            'byYear',
+            'byMoreYear',
+        ];
     }
 }

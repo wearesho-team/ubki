@@ -8,9 +8,6 @@ namespace Wearesho\Bobra\Ubki;
  */
 class Exception extends \Exception implements ExceptionInterface
 {
-    public const CODE_UNKNOWN_ERROR = -1;
-    public const CODE_INVALID_ANSWER = -2;
-
     /** @var string|null */
     protected $publicMessage;
 

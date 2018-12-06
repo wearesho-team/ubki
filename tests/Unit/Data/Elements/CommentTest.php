@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Data\Elements\Comment;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class CommentTest
@@ -13,52 +12,31 @@ use Wearesho\Bobra\Ubki\Data\Elements\Comment;
  */
 class CommentTest extends TestCase
 {
-    protected const TEXT = 'testText';
-    protected const ID = 'testId';
+    use ArgumentsTrait\Comment;
 
-    /** @var Comment */
-    protected $fakeComment;
+    protected const ELEMENT = Ubki\Data\Elements\Comment::class;
 
-    protected function setUp(): void
+    public const TEXT = 'testText';
+    public const ID = 'testId';
+
+    protected function getExpectTag(): string
     {
-        $this->fakeComment = new Comment(
-            static::TEXT,
-            static::ID
-        );
+        return Ubki\Data\Elements\Comment::TAG;
     }
 
-    public function testJsonSerialize(): void
+    protected function jsonKeys(): array
     {
-        $this->assertArraySubset(
-            [
-                Comment::ID => static::ID,
-                Comment::TEXT => static::TEXT,
-            ],
-            $this->fakeComment->jsonSerialize()
-        );
+        return [
+            Ubki\Data\Elements\Comment::TEXT,
+            Ubki\Data\Elements\Comment::ID,
+        ];
     }
 
-    public function testTag(): void
+    protected function attributesNames(): array
     {
-        $this->assertEquals(
-            Comment::TAG,
-            $this->fakeComment->tag()
-        );
-    }
-
-    public function testGetId(): void
-    {
-        $this->assertEquals(
-            static::ID,
-            $this->fakeComment->getId()
-        );
-    }
-
-    public function testGetText(): void
-    {
-        $this->assertEquals(
-            static::TEXT,
-            $this->fakeComment->getText()
-        );
+        return [
+            'text',
+            'id'
+        ];
     }
 }

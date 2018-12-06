@@ -8,13 +8,12 @@ use Wearesho\Bobra\Ubki\Dictionaries;
  * Class DictionaryFaker
  * @package Wearesho\Bobra\Ubki\Tests\Fakers
  *
- * @method static Dictionaries\AddressType addressType()
- * @method static Dictionaries\Language language()
- * @method static Dictionaries\CityType cityType()
- *
  * @property-read Dictionaries\AddressType $addressType
  * @property-read Dictionaries\Language $language
  * @property-read Dictionaries\CityType $cityType
+ * @property-read Dictionaries\DocumentType $documentType
+ * @property-read Dictionaries\RequestReason $requestReason
+ * @property-read Dictionaries\RequestType $requestType
  */
 class DictionaryFaker
 {
@@ -24,17 +23,15 @@ class DictionaryFaker
         'addressType' => Dictionaries\AddressType::class,
         'language' => Dictionaries\Language::class,
         'cityType' => Dictionaries\CityType::class,
+        'documentType' => Dictionaries\DocumentType::class,
+        'requestReason' => Dictionaries\RequestReason::class,
+        'requestType' => Dictionaries\RequestType::class,
     ];
-
-    public static function __callStatic($name, $arguments)
-    {
-        return (new static)->$name;
-    }
 
     public function __get($name)
     {
         $keys = static::$dictionaries[$name]::keys();
 
-        return static::$dictionaries[$name]::{$keys[mt_rand(0, count($keys) - 1)]}(static::DESCRIPTION);
+        return static::$dictionaries[$name]::{$keys[\mt_rand(0, \count($keys) - 1)]}(static::DESCRIPTION);
     }
 }

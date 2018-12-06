@@ -2,119 +2,56 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
 
-use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
-use Wearesho\Bobra\Ubki\Data\Elements\RatingDescription;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class DescriptionTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements
- * @coversDefaultClass RatingDescription
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\RatingDescription
  * @internal
  */
 class RatingDescriptionTest extends TestCase
 {
-    protected const CREDITS_COUNT = 200;
-    protected const OPENED_CREDITS_COUNT = 10;
-    protected const OPENED_CREDIT_DESCRIPTION = 'testDescription';
-    protected const CLOSED_CREDITS_COUNT = 50;
-    protected const EXPIRES = 'testExpires';
-    protected const MAX_OVERDUE = 'testMaxOverdue';
-    protected const UPDATED_AT = '2018-03-12';
+    use ArgumentsTrait\RatingDescription;
 
-    /** @var RatingDescription */
-    protected $fakeDescription;
+    protected const ELEMENT = Ubki\Data\Elements\RatingDescription::class;
 
-    protected function setUp(): void
+    public const CREDITS_COUNT = 200;
+    public const OPENED_CREDITS_COUNT = 10;
+    public const OPENED_CREDIT_DESCRIPTION = 'testDescription';
+    public const CLOSED_CREDITS_COUNT = 50;
+    public const EXPIRES = 'testExpires';
+    public const MAX_OVERDUE = 'testMaxOverdue';
+    public const UPDATED_AT = '2018-03-12';
+
+    protected function jsonKeys(): array
     {
-        $this->fakeDescription = new RatingDescription(
-            static::CREDITS_COUNT,
-            static::OPENED_CREDITS_COUNT,
-            static::OPENED_CREDIT_DESCRIPTION,
-            static::CLOSED_CREDITS_COUNT,
-            static::EXPIRES,
-            static::MAX_OVERDUE,
-            Carbon::parse(static::UPDATED_AT)
-        );
+        return [
+            Ubki\Data\Elements\RatingDescription::CREDITS_COUNT,
+            Ubki\Data\Elements\RatingDescription::OPEN_CREDITS_COUNT,
+            Ubki\Data\Elements\RatingDescription::DESCRIPTION,
+            Ubki\Data\Elements\RatingDescription::CLOSED_CREDITS_COUNT,
+            Ubki\Data\Elements\RatingDescription::EXPIRES,
+            Ubki\Data\Elements\RatingDescription::MAX_OVERDUE,
+            Ubki\Data\Elements\RatingDescription::UPDATED_AT,
+        ];
     }
 
-    public function testJsonSerialize(): void
+    protected function getExpectTag(): string
     {
-        $this->assertArraySubset(
-            [
-                RatingDescription::CREDITS_COUNT => static::CREDITS_COUNT,
-                RatingDescription::OPEN_CREDITS_COUNT => static::OPENED_CREDITS_COUNT,
-                RatingDescription::DESCRIPTION => static::OPENED_CREDIT_DESCRIPTION,
-                RatingDescription::CLOSED_CREDITS_COUNT => static::CLOSED_CREDITS_COUNT,
-                RatingDescription::EXPIRES => static::EXPIRES,
-                RatingDescription::MAX_OVERDUE => static::MAX_OVERDUE,
-                RatingDescription::UPDATED_AT => Carbon::parse(static::UPDATED_AT),
-            ],
-            $this->fakeDescription->jsonSerialize()
-        );
+        return Ubki\Data\Elements\RatingDescription::TAG;
     }
 
-    public function testTag(): void
+    protected function attributesNames(): array
     {
-        $this->assertEquals(
-            RatingDescription::TAG,
-            $this->fakeDescription->tag()
-        );
-    }
-
-    public function testGetOpenCreditsCount(): void
-    {
-        $this->assertEquals(
-            static::OPENED_CREDITS_COUNT,
-            $this->fakeDescription->getOpenCreditsCount()
-        );
-    }
-
-    public function testGetClosedCreditsCount(): void
-    {
-        $this->assertEquals(
-            static::CLOSED_CREDITS_COUNT,
-            $this->fakeDescription->getClosedCreditsCount()
-        );
-    }
-
-    public function testGetExpires(): void
-    {
-        $this->assertEquals(
-            static::EXPIRES,
-            $this->fakeDescription->getExpires()
-        );
-    }
-
-    public function testGetOpenCreditsDescription(): void
-    {
-        $this->assertEquals(
-            static::OPENED_CREDIT_DESCRIPTION,
-            $this->fakeDescription->getOpenCreditsDescription()
-        );
-    }
-
-    public function testGetMaxOverdue(): void
-    {
-        $this->assertEquals(
-            static::MAX_OVERDUE,
-            $this->fakeDescription->getMaxOverdue()
-        );
-    }
-
-    public function testGetUpdatedAt(): void
-    {
-        $this->assertEquals(
-            static::UPDATED_AT,
-            $this->fakeDescription->getUpdatedAt()->toDateString()
-        );
-    }
-
-    public function testGetCreditsCount(): void
-    {
-        $this->assertEquals(
-            static::CREDITS_COUNT,
-            $this->fakeDescription->getCreditsCount()
-        );
+        return [
+            'creditsCount',
+            'openCreditsCount',
+            'openCreditsDescription',
+            'closedCreditsCount',
+            'expires',
+            'maxOverdue',
+            'updatedAt'
+        ];
     }
 }
