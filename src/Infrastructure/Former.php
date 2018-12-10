@@ -3,9 +3,10 @@
 namespace Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
- * Interface Formerable
+ * Class Former
  * @package Wearesho\Bobra\Ubki\Infrastructure
  */
-interface Formerable
+abstract class Former implements FormerInterface
 {
+    abstract public function form(): string;
 }

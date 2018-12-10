@@ -9,6 +9,8 @@ use Wearesho\Bobra\Ubki\Data;
 /**
  * Trait CreditDeal
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements\ArgumentsTrait
+ *
+ * @property-read Ubki\Tests\Fakers\BaseFaker $faker
  */
 trait CreditDeal
 {
@@ -32,8 +34,7 @@ trait CreditDeal
             Ubki\Dictionaries\SubjectRole::BORROWER(),
             Ubki\Tests\Unit\Data\Elements\CreditDealTest::COLLATERAL_COST,
             $this->faker->collection->type(Data\Collections\DealLifes::class)
-                ->fill(99, $this->faker->element->with($this->lifeArguments())->make(Data\Elements\DealLife::class))
-                ->get(),
+                ->fill(99, $this->faker->element->dealLife($this->lifeArguments()))->get(),
             Ubki\Tests\Unit\Data\Elements\CreditDealTest::INN,
             Ubki\Tests\Unit\Data\Elements\CreditDealTest::PATRONYMIC,
             Ubki\Tests\Unit\Data\Elements\CreditDealTest::SOURCE

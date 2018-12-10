@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\RatingDescription
  * @internal
  */
-class RatingDescriptionTest extends TestCase
+class RatingDescriptionTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\RatingDescription;
 
@@ -23,19 +23,6 @@ class RatingDescriptionTest extends TestCase
     public const EXPIRES = 'testExpires';
     public const MAX_OVERDUE = 'testMaxOverdue';
     public const UPDATED_AT = '2018-03-12';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Elements\RatingDescription::CREDITS_COUNT,
-            Ubki\Data\Elements\RatingDescription::OPEN_CREDITS_COUNT,
-            Ubki\Data\Elements\RatingDescription::DESCRIPTION,
-            Ubki\Data\Elements\RatingDescription::CLOSED_CREDITS_COUNT,
-            Ubki\Data\Elements\RatingDescription::EXPIRES,
-            Ubki\Data\Elements\RatingDescription::MAX_OVERDUE,
-            Ubki\Data\Elements\RatingDescription::UPDATED_AT,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

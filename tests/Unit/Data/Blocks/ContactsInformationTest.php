@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Blocks;
 
-use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -14,82 +12,19 @@ use Wearesho\Bobra\Ubki;
  */
 class ContactsInformationTest extends TestCase
 {
-    protected const CREATED_AT = '2018-03-12';
-    protected const VALUE = 'testValue';
-    protected const INN = 'testInn';
+    use ArgumentsTrait\ContactsInformation;
 
-    /** @var Ubki\Data\Blocks\ContactsInformation */
-    protected $fakeContactsInformation;
+    protected const ELEMENT = Ubki\Data\Blocks\ContactsInformation::class;
 
-    protected function setUp(): void
+    protected function getExpectId(): int
     {
-        $this->fakeContactsInformation = new Ubki\Data\Blocks\ContactsInformation(
-            new Ubki\Data\Collections\Contacts([
-                new Ubki\Data\Elements\Contact(
-                    Carbon::parse(static::CREATED_AT),
-                    static::VALUE,
-                    Ubki\Dictionaries\ContactType::EMAIL(),
-                    static::INN
-                ),
-                new Ubki\Data\Elements\Contact(
-                    Carbon::parse(static::CREATED_AT),
-                    static::VALUE,
-                    Ubki\Dictionaries\ContactType::MOBILE(),
-                    static::INN
-                )
-            ])
-        );
+        return Ubki\Data\Blocks\ContactsInformation::ID;
     }
 
-    public function testJsonSerialize(): void
+    protected function attributesNames(): array
     {
-        $this->assertArraySubset(
-            [
-                'contacts' => [
-                    new Ubki\Data\Elements\Contact(
-                        Carbon::parse(static::CREATED_AT),
-                        static::VALUE,
-                        Ubki\Dictionaries\ContactType::EMAIL(),
-                        static::INN
-                    ),
-                    new Ubki\Data\Elements\Contact(
-                        Carbon::parse(static::CREATED_AT),
-                        static::VALUE,
-                        Ubki\Dictionaries\ContactType::MOBILE(),
-                        static::INN
-                    ),
-                ]
-            ],
-            $this->fakeContactsInformation->jsonSerialize()
-        );
-    }
-
-    public function testTag(): void
-    {
-        $this->assertEquals(
-            Ubki\Data\Blocks\ContactsInformation::TAG,
-            $this->fakeContactsInformation->tag()
-        );
-    }
-
-    public function testGetContacts(): void
-    {
-        $this->assertEquals(
-            new Ubki\Data\Collections\Contacts([
-                new Ubki\Data\Elements\Contact(
-                    Carbon::parse(static::CREATED_AT),
-                    static::VALUE,
-                    Ubki\Dictionaries\ContactType::EMAIL(),
-                    static::INN
-                ),
-                new Ubki\Data\Elements\Contact(
-                    Carbon::parse(static::CREATED_AT),
-                    static::VALUE,
-                    Ubki\Dictionaries\ContactType::MOBILE(),
-                    static::INN
-                )
-            ]),
-            $this->fakeContactsInformation->getContacts()
-        );
+        return [
+            'contacts',
+        ];
     }
 }

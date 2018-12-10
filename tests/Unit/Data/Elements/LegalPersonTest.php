@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\LegalPerson
  * @internal
  */
-class LegalPersonTest extends TestCase
+class LegalPersonTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\LegalPerson;
 
@@ -24,21 +24,6 @@ class LegalPersonTest extends TestCase
     public const ACTIVITY_TYPE = 'testActivityType';
     public const EDR_REGISTRATION_DATE = '2017-03-12';
     public const TAX_REGISTRATION_DATE = '2016-03-12';
-
-    public function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\IdentifiedPerson::CREATED_AT,
-            Ubki\Data\Interfaces\IdentifiedPerson::LANGUAGE,
-            Ubki\Data\Interfaces\LegalPerson::NAME,
-            Ubki\Data\Interfaces\LegalPerson::ERGPOU,
-            Ubki\Data\Interfaces\LegalPerson::FORM,
-            Ubki\Data\Interfaces\LegalPerson::ECONOMY_BRANCH,
-            Ubki\Data\Interfaces\LegalPerson::ACTIVITY_TYPE,
-            Ubki\Data\Interfaces\LegalPerson::EDR_REGISTRATION_DATE,
-            Ubki\Data\Interfaces\LegalPerson::TAX_REGISTRATION_DATE,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

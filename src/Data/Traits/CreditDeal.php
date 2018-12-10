@@ -58,28 +58,6 @@ trait CreditDeal
     /** @var string|null */
     protected $source;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\CreditDeal::ID => $this->getId(),
-            Ubki\Data\Interfaces\CreditDeal::INN => $this->getInn(),
-            Ubki\Data\Interfaces\CreditDeal::LANGUAGE => $this->getLanguage(),
-            Ubki\Data\Interfaces\CreditDeal::NAME => $this->getName(),
-            Ubki\Data\Interfaces\CreditDeal::SURNAME => $this->getSurname(),
-            Ubki\Data\Interfaces\CreditDeal::PATRONYMIC => $this->getPatronymic(),
-            Ubki\Data\Interfaces\CreditDeal::BIRTH_DATE => $this->getBirthDate(),
-            Ubki\Data\Interfaces\CreditDeal::TYPE => $this->getType(),
-            Ubki\Data\Interfaces\CreditDeal::COLLATERAL => $this->getCollateral(),
-            Ubki\Data\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $this->getRepaymentProcedure(),
-            Ubki\Data\Interfaces\CreditDeal::CURRENCY => $this->getCurrency(),
-            Ubki\Data\Interfaces\CreditDeal::INITIAL_AMOUNT => $this->getInitialAmount(),
-            Ubki\Data\Interfaces\CreditDeal::SUBJECT_ROLE => $this->getSubjectRole(),
-            Ubki\Data\Interfaces\CreditDeal::COLLATERAL_COST => $this->getCollateralCost(),
-            Ubki\Data\Interfaces\CreditDeal::SOURCE => $this->getSource(),
-            'dealLifes' => $this->getDealLifes(),
-        ];
-    }
-
     public function tag(): string
     {
         return Ubki\Data\Interfaces\CreditDeal::TAG;

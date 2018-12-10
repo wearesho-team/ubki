@@ -20,11 +20,6 @@ class Identification extends Ubki\Infrastructure\Block
         $this->credential = $credential;
     }
 
-    public function jsonSerialize(): array
-    {
-        return $this->credential->jsonSerialize();
-    }
-
     public function getCredential(): Ubki\Data\Interfaces\Credential
     {
         return $this->credential;

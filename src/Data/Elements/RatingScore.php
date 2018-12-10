@@ -75,21 +75,6 @@ class RatingScore extends Element
         $this->level = $level;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            static::INN => $this->getInn(),
-            static::SURNAME => $this->getSurname(),
-            static::NAME => $this->getName(),
-            static::PATRONYMIC => $this->getPatronymic(),
-            static::BIRTH_DATE => $this->getBirthDate(),
-            static::SCORE => $this->getScore(),
-            static::PREVIOUS_SCORE => $this->getPreviousScore(),
-            static::DATE => $this->getDate(),
-            static::LEVEL => $this->getLevel(),
-        ];
-    }
-
     public function tag(): string
     {
         return static::TAG;

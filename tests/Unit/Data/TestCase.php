@@ -1,12 +1,12 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements;
+namespace Wearesho\Bobra\Ubki\Tests\Unit\Data;
 
 use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
  * Class TestCase
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Data
  */
 class TestCase extends \Wearesho\Bobra\Ubki\Tests\TestCase
 {
@@ -23,9 +23,7 @@ class TestCase extends \Wearesho\Bobra\Ubki\Tests\TestCase
         parent::setUp();
 
         $this->data = $this->arguments();
-        $this->element = $this->faker->element
-            ->with($this->data)
-            ->make(static::ELEMENT);
+        $this->element = $this->faker->element->{static::ELEMENT}($this->data);
     }
 
     public function testTag(): void
@@ -36,7 +34,7 @@ class TestCase extends \Wearesho\Bobra\Ubki\Tests\TestCase
     public function testJsonSerialize(): void
     {
         $this->assertArraySubset(
-            array_combine($this->jsonKeys(), $this->data),
+            array_combine($this->attributesNames(), $this->data),
             $this->element->jsonSerialize()
         );
     }
@@ -46,11 +44,6 @@ class TestCase extends \Wearesho\Bobra\Ubki\Tests\TestCase
         foreach (array_combine($this->attributesNames(), $this->data) as $getter => $expectValue) {
             $this->assertEquals($expectValue, $this->element->{'get' . $getter}());
         }
-    }
-
-    protected function jsonKeys(): array
-    {
-        return [];
     }
 
     protected function attributesNames(): array

@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\IdentificationPerson
  * @internal
  */
-class IdentificationPersonTest extends TestCase
+class IdentificationPersonTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\IdentificationPerson;
 
@@ -22,18 +22,6 @@ class IdentificationPersonTest extends TestCase
     public const PATRONYMIC = 'testPatronymic';
     public const BIRTH_DATE = '2018-03-12';
     public const ORGANIZATION = 'testOrganization';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\IdentificationPerson::NAME,
-            Ubki\Data\Interfaces\IdentificationPerson::INN,
-            Ubki\Data\Interfaces\IdentificationPerson::SURNAME,
-            Ubki\Data\Interfaces\IdentificationPerson::PATRONYMIC,
-            Ubki\Data\Interfaces\IdentificationPerson::BIRTH_DATE,
-            Ubki\Data\Interfaces\IdentificationPerson::ORGANIZATION,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

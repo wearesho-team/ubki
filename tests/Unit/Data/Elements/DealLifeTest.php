@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\DealLife
  * @internal
  */
-class DealLifeTest extends TestCase
+class DealLifeTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\DealLife;
 
@@ -28,28 +28,6 @@ class DealLifeTest extends TestCase
     public const OVERDUE_TIME = 20;
     public const PAYMENT_DATE = '2018-03-12';
     public const ACTUAL_END_DATE = '2019-02-01';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\DealLife::ID,
-            Ubki\Data\Interfaces\DealLife::PERIOD_MONTH,
-            Ubki\Data\Interfaces\DealLife::PERIOD_YEAR,
-            Ubki\Data\Interfaces\DealLife::ISSUE_DATE,
-            Ubki\Data\Interfaces\DealLife::END_DATE,
-            Ubki\Data\Interfaces\DealLife::STATUS,
-            Ubki\Data\Interfaces\DealLife::LIMIT,
-            Ubki\Data\Interfaces\DealLife::MANDATORY_PAYMENT,
-            Ubki\Data\Interfaces\DealLife::CURRENT_DEBT,
-            Ubki\Data\Interfaces\DealLife::CURRENT_OVERDUE_DEBT,
-            Ubki\Data\Interfaces\DealLife::OVERDUE_TIME,
-            Ubki\Data\Interfaces\DealLife::PAYMENT_INDICATION,
-            Ubki\Data\Interfaces\DealLife::DELAY_INDICATION,
-            Ubki\Data\Interfaces\DealLife::TRANCHE_INDICATION,
-            Ubki\Data\Interfaces\DealLife::PAYMENT_DATE,
-            Ubki\Data\Interfaces\DealLife::ACTUAL_END_DATE,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

@@ -22,16 +22,6 @@ trait LinkedPerson
     /** @var string|null */
     protected $ergpou;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\LinkedPerson::NAME => $this->getName(),
-            Ubki\Data\Interfaces\LinkedPerson::ROLE => $this->getRole(),
-            Ubki\Data\Interfaces\LinkedPerson::ISSUE_DATE => $this->getIssueDate(),
-            Ubki\Data\Interfaces\LinkedPerson::ERGPOU => $this->getErgpou(),
-        ];
-    }
-
     public function tag(): string
     {
         return Ubki\Data\Interfaces\LinkedPerson::TAG;

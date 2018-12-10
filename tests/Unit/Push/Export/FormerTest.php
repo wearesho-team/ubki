@@ -9,10 +9,10 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class ConverterTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Push\Export
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Push\Export\Converter
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Push\Export\Former
  * @internal
  */
-class ConverterTest extends TestCase
+class FormerTest extends TestCase
 {
     protected const SESSION_ID = 'testSessionId';
     protected const NAME = 'testName';
@@ -102,7 +102,7 @@ class ConverterTest extends TestCase
     protected const DECISION_DATE = '2018-03-12';
     protected const VALUE = 'testValue';
 
-    /** @var Ubki\Push\Export\Converter */
+    /** @var Ubki\Push\Export\Former */
     protected $fakeConverter;
 
     /** @var Ubki\Data\Elements\RequestData */
@@ -117,7 +117,7 @@ class ConverterTest extends TestCase
     /** @var Ubki\Data\Blocks\CourtDecisionsInformation */
     protected $fakeCourtsDecisionBlock;
 
-    /** @var Ubki\Data\Blocks\CreditsRegistersInformation */
+    /** @var Ubki\Data\Blocks\CreditsRequestsInformation */
     protected $fakeCreditRegistersBlock;
 
     /** @var Ubki\Data\Blocks\InsurancesInformation */
@@ -128,7 +128,7 @@ class ConverterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fakeConverter = new Ubki\Push\Export\Converter();
+        $this->fakeConverter = new Ubki\Push\Export\Former();
         $this->fakeRequestDataBlock = new Ubki\Data\Elements\RequestData(
             Ubki\Dictionaries\RequestType::EXPORT(),
             Ubki\Dictionaries\RequestReason::EXPORT(),
@@ -290,8 +290,8 @@ class ConverterTest extends TestCase
                 )
             ])
         );
-        $this->fakeCreditRegistersBlock = new Ubki\Data\Blocks\CreditsRegistersInformation(
-            new Ubki\Data\Collections\CreditRegisters([
+        $this->fakeCreditRegistersBlock = new Ubki\Data\Blocks\CreditsRequestsInformation(
+            new Ubki\Data\Collections\CreditRequests([
                 new Ubki\Data\Elements\CreditRequest(
                     Carbon::parse(static::DATE),
                     static::INN,

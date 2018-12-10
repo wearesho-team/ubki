@@ -31,19 +31,6 @@ trait Work
     /** @var float|null */
     protected $income;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Work::CREATED_AT => $this->getCreatedAt(),
-            Ubki\Data\Interfaces\Work::LANGUAGE => $this->getLanguage(),
-            Ubki\Data\Interfaces\Work::ERGPOU => $this->getErgpou(),
-            Ubki\Data\Interfaces\Work::NAME => $this->getName(),
-            Ubki\Data\Interfaces\Work::RANK => $this->getRank(),
-            Ubki\Data\Interfaces\Work::EXPERIENCE => $this->getExperience(),
-            Ubki\Data\Interfaces\Work::INCOME => $this->getIncome(),
-        ];
-    }
-
     public function tag(): string
     {
         return Ubki\Data\Interfaces\Work::TAG;

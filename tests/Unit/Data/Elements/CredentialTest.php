@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\Credential
  * @internal
  */
-class CredentialTest extends TestCase
+class CredentialTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\Credential;
 
@@ -21,24 +21,6 @@ class CredentialTest extends TestCase
     public const PATRONYMIC = 'testPatronymic';
     public const SURNAME = 'testSurname';
     public const BIRTH_DATE = '1998-03-12';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Credential::LANGUAGE,
-            Ubki\Data\Interfaces\Credential::NAME,
-            Ubki\Data\Interfaces\Credential::PATRONYMIC,
-            Ubki\Data\Interfaces\Credential::SURNAME,
-            Ubki\Data\Interfaces\Credential::BIRTH_DATE,
-            'identifiers',
-            'documents',
-            'addresses',
-            Ubki\Data\Interfaces\Credential::INN,
-            'works',
-            'photos',
-            'linkedPersons',
-        ];
-    }
 
     protected function getExpectTag(): string
     {

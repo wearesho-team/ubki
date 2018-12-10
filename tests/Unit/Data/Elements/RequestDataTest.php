@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\RequestData
  * @internal
  */
-class RequestDataTest extends TestCase
+class RequestDataTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\RequestData;
 
@@ -29,18 +29,6 @@ class RequestDataTest extends TestCase
     protected function getExpectTag(): string
     {
         return Ubki\Data\Interfaces\RequestData::TAG;
-    }
-
-    public function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\RequestData::VERSION,
-            Ubki\Data\Interfaces\RequestData::TYPE,
-            Ubki\Data\Interfaces\RequestData::REASON,
-            Ubki\Data\Interfaces\RequestData::DATE,
-            Ubki\Data\Interfaces\RequestData::ID,
-            Ubki\Data\Interfaces\RequestData::INITIATOR,
-        ];
     }
 
     protected function attributesNames(): array

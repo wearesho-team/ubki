@@ -41,25 +41,19 @@ trait Credential
             Ubki\Tests\Unit\Data\Elements\CredentialTest::SURNAME,
             Carbon::parse(Ubki\Tests\Unit\Data\Elements\CredentialTest::BIRTH_DATE),
             $this->faker->collection->type(Collections\IdentifiedPersons::class)
-                ->fill(10, $this->faker->element->with($this->naturalArguments())->make(Elements\NaturalPerson::class))
-                ->fill(10, $this->faker->element->with($this->legalArguments())->make(Elements\LegalPerson::class))
-                ->get(),
+                ->fill(10, $this->faker->element->naturalPerson($this->naturalArguments()))
+                ->fill(10, $this->faker->element->legalPerson($this->legalArguments()))->get(),
             $this->faker->collection->type(Collections\Documents::class)
-                ->fill(40, $this->faker->element->with($this->documentArguments())->make(Elements\Document::class))
-                ->get(),
+                ->fill(40, $this->faker->element->document($this->documentArguments()))->get(),
             $this->faker->collection->type(Collections\Addresses::class)
-                ->fill(30, $this->faker->element->with($this->addressArguments())->make(Elements\Address::class))
-                ->get(),
+                ->fill(30, $this->faker->element->address($this->addressArguments()))->get(),
             Ubki\Tests\Unit\Data\Elements\CredentialTest::INN,
             $this->faker->collection->type(Collections\Works::class)
-                ->fill(15, $this->faker->element->with($this->workArguments())->make(Elements\Work::class))
-                ->get(),
+                ->fill(15, $this->faker->element->work($this->workArguments()))->get(),
             $this->faker->collection->type(Collections\Photos::class)
-                ->fill(100, $this->faker->element->with($this->photoArguments())->make(Elements\Photo::class))
-                ->get(),
+                ->fill(100, $this->faker->element->photo($this->photoArguments()))->get(),
             $this->faker->collection->type(Collections\LinkedPersons::class)
-                ->fill(5, $this->faker->element->with($this->linkedArguments())->make(Elements\LinkedPerson::class))
-                ->get(),
+                ->fill(5, $this->faker->element->linkedPerson($this->linkedArguments()))->get(),
         ];
     }
 }

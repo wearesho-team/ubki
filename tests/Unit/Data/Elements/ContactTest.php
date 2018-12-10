@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\Contact
  * @internal
  */
-class ContactTest extends TestCase
+class ContactTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\Contact;
 
@@ -19,16 +19,6 @@ class ContactTest extends TestCase
     public const CREATED_AT = '2018-03-12';
     public const VALUE = 'testValue';
     public const INN = 'testInn';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Contact::CREATED_AT,
-            Ubki\Data\Interfaces\Contact::VALUE,
-            Ubki\Data\Interfaces\Contact::TYPE,
-            Ubki\Data\Interfaces\Contact::INN,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

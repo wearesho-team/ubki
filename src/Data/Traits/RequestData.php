@@ -28,18 +28,6 @@ trait RequestData
     /** @var Ubki\Dictionaries\RequestInitiator|null */
     protected $initiator;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\RequestData::VERSION => $this->getVersion(),
-            Ubki\Data\Interfaces\RequestData::TYPE => $this->getType(),
-            Ubki\Data\Interfaces\RequestData::REASON => $this->getReason(),
-            Ubki\Data\Interfaces\RequestData::DATE => $this->getDate(),
-            Ubki\Data\Interfaces\RequestData::ID => $this->getId(),
-            Ubki\Data\Interfaces\RequestData::INITIATOR => $this->getInitiator(),
-        ];
-    }
-
     public function tag(): string
     {
         return Ubki\Data\Interfaces\RequestData::TAG;

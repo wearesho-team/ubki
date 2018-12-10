@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\Photo
  * @internal
  */
-class PhotoTest extends TestCase
+class PhotoTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\Photo;
 
@@ -19,15 +19,6 @@ class PhotoTest extends TestCase
     public const CREATED_AT = '2018-03-12';
     public const PHOTO = 'testPhoto';
     public const INN = 'testInn';
-
-    public function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Photo::CREATED_AT,
-            Ubki\Data\Interfaces\Photo::PHOTO,
-            Ubki\Data\Interfaces\Photo::INN,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

@@ -20,13 +20,6 @@ class InsurancesInformation extends Ubki\Infrastructure\Block
         $this->deals = $deals;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'insuranceDeals' => $this->deals->jsonSerialize(),
-        ];
-    }
-
     public function getDeals(): Ubki\Data\Collections\InsuranceDeals
     {
         return $this->deals;

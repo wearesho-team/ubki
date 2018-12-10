@@ -13,22 +13,15 @@ class CreditsInformation extends Ubki\Infrastructure\Block
     public const ID = 2;
 
     /** @var Ubki\Data\Collections\CreditDeals */
-    protected $creditCollection;
+    protected $deals;
 
     public function __construct(Ubki\Data\Collections\CreditDeals $creditCollection)
     {
-        $this->creditCollection = $creditCollection;
+        $this->deals = $creditCollection;
     }
 
-    public function getCreditCollection(): Ubki\Data\Collections\CreditDeals
+    public function getDeals(): Ubki\Data\Collections\CreditDeals
     {
-        return $this->creditCollection;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'credits' => $this->creditCollection->jsonSerialize(),
-        ];
+        return $this->deals;
     }
 }

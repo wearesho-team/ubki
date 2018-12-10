@@ -26,14 +26,6 @@ class Comment extends Infrastructure\Element
         $this->text = $text;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            static::ID => $this->id,
-            static::TEXT => $this->text,
-        ];
-    }
-
     public function tag(): string
     {
         return static::TAG;

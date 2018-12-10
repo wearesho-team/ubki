@@ -27,18 +27,6 @@ trait IdentificationPerson
     /** @var string|null */
     protected $organization;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\IdentificationPerson::INN => $this->getInn(),
-            Interfaces\IdentificationPerson::BIRTH_DATE => $this->getBirthDate(),
-            Interfaces\IdentificationPerson::SURNAME => $this->getSurname(),
-            Interfaces\IdentificationPerson::PATRONYMIC => $this->getPatronymic(),
-            Interfaces\IdentificationPerson::NAME => $this->getName(),
-            Interfaces\IdentificationPerson::ORGANIZATION => $this->getOrganization(),
-        ];
-    }
-
     public function getInn(): ?string
     {
         return $this->inn;

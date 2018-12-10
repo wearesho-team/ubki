@@ -8,22 +8,13 @@ use Wearesho\Bobra\Ubki;
  * Class RatingFactorsTestCase
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Data\Elements
  */
-class RatingFactorsTestCase extends TestCase
+class RatingFactorsTestCase extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\RatingFactors;
 
     public const COUNT = 1;
     public const DESCRIPTION = 'testDescription';
     public const TEXT = 'testText';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Elements\RatingFactors::COUNT,
-            Ubki\Data\Elements\RatingFactors::TEXT,
-            Ubki\Data\Elements\RatingFactors::COMMENTS,
-        ];
-    }
 
     protected function attributesNames(): array
     {

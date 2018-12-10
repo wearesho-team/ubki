@@ -34,20 +34,6 @@ trait Document
     /** @var \DateTimeInterface|null */
     protected $termin;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Document::CREATED_AT => $this->getCreatedAt(),
-            Ubki\Data\Interfaces\Document::LANGUAGE => $this->getLanguage(),
-            Ubki\Data\Interfaces\Document::TYPE => $this->getType(),
-            Ubki\Data\Interfaces\Document::SERIAL => $this->getSerial(),
-            Ubki\Data\Interfaces\Document::NUMBER => $this->getNumber(),
-            Ubki\Data\Interfaces\Document::ISSUE => $this->getIssue(),
-            Ubki\Data\Interfaces\Document::ISSUE_DATE => $this->getIssueDate(),
-            Ubki\Data\Interfaces\Document::TERMIN => $this->getTermin(),
-        ];
-    }
-
     public function tag(): string
     {
         return Ubki\Data\Interfaces\Document::TAG;

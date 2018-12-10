@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  */
 class CreditRequest extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\CreditRegister
 {
-    use Ubki\Data\Traits\CreditRegister;
+    use Ubki\Data\Traits\CreditRequest;
 
     public function __construct(
         \DateTimeInterface $date,

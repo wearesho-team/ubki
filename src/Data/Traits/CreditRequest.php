@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Trait CreditRequest
  * @package Wearesho\Bobra\Ubki\Data\Traits
  */
-trait CreditRegister
+trait CreditRequest
 {
     /** @var \DateTimeInterface */
     protected $date;
@@ -27,18 +27,6 @@ trait CreditRegister
 
     /** @var string|null */
     protected $organization;
-
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\CreditRegister::DATE => $this->getDate(),
-            Ubki\Data\Interfaces\CreditRegister::INN => $this->getInn(),
-            Ubki\Data\Interfaces\CreditRegister::ID => $this->getId(),
-            Ubki\Data\Interfaces\CreditRegister::DECISION => $this->getDecision(),
-            Ubki\Data\Interfaces\CreditRegister::REASON => $this->getReason(),
-            Ubki\Data\Interfaces\CreditRegister::ORGANIZATION => $this->getOrganization(),
-        ];
-    }
 
     public function tag(): string
     {

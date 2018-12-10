@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\Work
  * @internal
  */
-class WorkTest extends TestCase
+class WorkTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\Work;
 
@@ -25,19 +25,6 @@ class WorkTest extends TestCase
     protected function getExpectTag(): string
     {
         return Ubki\Data\Interfaces\Work::TAG;
-    }
-
-    public function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Work::CREATED_AT,
-            Ubki\Data\Interfaces\Work::LANGUAGE,
-            Ubki\Data\Interfaces\Work::ERGPOU,
-            Ubki\Data\Interfaces\Work::NAME,
-            Ubki\Data\Interfaces\Work::RANK,
-            Ubki\Data\Interfaces\Work::EXPERIENCE,
-            Ubki\Data\Interfaces\Work::INCOME,
-        ];
     }
 
     protected function attributesNames(): array

@@ -33,21 +33,6 @@ trait LegalPerson
     /** @var \DateTimeInterface|null */
     protected $taxRegistrationDate;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\IdentifiedPerson::CREATED_AT => $this->getCreatedAt(),
-            Interfaces\IdentifiedPerson::LANGUAGE => $this->getLanguage(),
-            Interfaces\LegalPerson::NAME => $this->getName(),
-            Interfaces\LegalPerson::ERGPOU => $this->getErgpou(),
-            Interfaces\LegalPerson::FORM => $this->getForm(),
-            Interfaces\LegalPerson::ECONOMY_BRANCH => $this->getEconomyBranch(),
-            Interfaces\LegalPerson::ACTIVITY_TYPE => $this->getActivityType(),
-            Interfaces\LegalPerson::EDR_REGISTRATION_DATE => $this->getEdrRegistrationDate(),
-            Interfaces\LegalPerson::TAX_REGISTRATION_DATE => $this->getTaxRegistrationDate(),
-        ];
-    }
-
     public function tag(): string
     {
         return Interfaces\LegalPerson::LEGAL_PREFIX . Interfaces\Person::TAG;

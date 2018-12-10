@@ -49,25 +49,6 @@ trait CourtDecision
     /** @var string|null */
     protected $areaReference;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\CourtDecision::ID => $this->getId(),
-            Ubki\Data\Interfaces\CourtDecision::INN => $this->getInn(),
-            Ubki\Data\Interfaces\CourtDecision::DATE => $this->getDate(),
-            Ubki\Data\Interfaces\CourtDecision::SUBJECT_STATUS => $this->getSubjectStatus(),
-            Ubki\Data\Interfaces\CourtDecision::COURT_DEAL_TYPE => $this->getCourtDealType(),
-            Ubki\Data\Interfaces\CourtDecision::COURT_NAME => $this->getCourtName(),
-            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE => $this->getDocumentType(),
-            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE_REF => $this->getDocumentTypeReference(),
-            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT => $this->getLegalFact(),
-            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT_REF => $this->getLegalFactReference(),
-            Ubki\Data\Interfaces\CourtDecision::CREATED_AT => $this->getCreatedAt(),
-            Ubki\Data\Interfaces\CourtDecision::AREA => $this->getArea(),
-            Ubki\Data\Interfaces\CourtDecision::AREA_REF => $this->getAreaReference(),
-        ];
-    }
-
     public function tag(): string
     {
         return Ubki\Data\Interfaces\CourtDecision::TAG;

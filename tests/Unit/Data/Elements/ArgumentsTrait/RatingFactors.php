@@ -23,8 +23,7 @@ trait RatingFactors
             Ubki\Tests\Unit\Data\Elements\PositiveRatingFactorsTest::COUNT,
             Ubki\Tests\Unit\Data\Elements\PositiveRatingFactorsTest::DESCRIPTION,
             $this->faker->collection->type(Ubki\Data\Collections\Comments::class)
-                ->fill(30, $this->faker->element->with($this->commentArguments())->make(Elements\Comment::class))
-                ->get()
+                ->fill(30, $this->faker->element->comment($this->commentArguments()))->get()
         ];
     }
 }

@@ -10,32 +10,19 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\RegistryTimes
  * @internal
  */
-class RegistryTimesTest extends TestCase
+class RegistryTimesTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\RegistryTimes;
 
     protected const ELEMENT = Ubki\Data\Elements\RegistryTimes::class;
 
-    protected const BY_HOUR = 1;
-    protected const BY_DAY = 2;
-    protected const BY_WEEK = 3;
-    protected const BY_MONTH = 4;
-    protected const BY_QUARTER = 5;
-    protected const BY_YEAR = 10;
-    protected const BY_MORE_YEAR = 200;
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\RegistryTimes::BY_HOUR,
-            Ubki\Data\Interfaces\RegistryTimes::BY_DAY,
-            Ubki\Data\Interfaces\RegistryTimes::BY_WEEK,
-            Ubki\Data\Interfaces\RegistryTimes::BY_MONTH,
-            Ubki\Data\Interfaces\RegistryTimes::BY_QUARTER,
-            Ubki\Data\Interfaces\RegistryTimes::BY_YEAR,
-            Ubki\Data\Interfaces\RegistryTimes::BY_MORE_YEAR,
-        ];
-    }
+    public const BY_HOUR = 1;
+    public const BY_DAY = 2;
+    public const BY_WEEK = 3;
+    public const BY_MONTH = 4;
+    public const BY_QUARTER = 5;
+    public const BY_YEAR = 10;
+    public const BY_MORE_YEAR = 200;
 
     protected function getExpectTag(): string
     {

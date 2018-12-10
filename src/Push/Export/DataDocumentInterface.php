@@ -18,7 +18,7 @@ interface DataDocumentInterface extends Ubki\Infrastructure\ElementInterface
 
     public function getCourtDecisions(): ?Ubki\Data\Blocks\CourtDecisionsInformation;
 
-    public function getCreditRequests(): ?Ubki\Data\Blocks\CreditsRegistersInformation;
+    public function getCreditRequests(): ?Ubki\Data\Blocks\CreditsRequestsInformation;
 
     public function getContacts(): ?Ubki\Data\Blocks\ContactsInformation;
 }

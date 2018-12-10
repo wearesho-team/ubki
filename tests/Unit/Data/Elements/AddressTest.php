@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\Address
  * @internal
  */
-class AddressTest extends TestCase
+class AddressTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\Address;
 
@@ -31,26 +31,6 @@ class AddressTest extends TestCase
     protected function getExpectTag(): string
     {
         return Ubki\Data\Interfaces\Address::TAG;
-    }
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Address::CREATED_AT,
-            Ubki\Data\Interfaces\Address::LANGUAGE,
-            Ubki\Data\Interfaces\Address::TYPE,
-            Ubki\Data\Interfaces\Address::COUNTRY,
-            Ubki\Data\Interfaces\Address::CITY,
-            Ubki\Data\Interfaces\Address::STREET,
-            Ubki\Data\Interfaces\Address::HOUSE,
-            Ubki\Data\Interfaces\Address::INDEX,
-            Ubki\Data\Interfaces\Address::STATE,
-            Ubki\Data\Interfaces\Address::AREA,
-            Ubki\Data\Interfaces\Address::CITY_TYPE,
-            Ubki\Data\Interfaces\Address::CORPUS,
-            Ubki\Data\Interfaces\Address::FLAT,
-            Ubki\Data\Interfaces\Address::FULL_ADDRESS,
-        ];
     }
 
     protected function attributesNames(): array

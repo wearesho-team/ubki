@@ -6,10 +6,10 @@ use Wearesho\BaseCollection;
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 
 /**
- * Class CreditRegisters
+ * Class CreditRequests
  * @package Wearesho\Bobra\Ubki\Data\Collections
  */
-class CreditRegisters extends BaseCollection
+class CreditRequests extends BaseCollection
 {
     public function type(): string
     {

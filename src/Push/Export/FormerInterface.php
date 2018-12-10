@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
- * Interface ConverterInterface
+ * Interface FormerInterface
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-interface ConverterInterface
+interface FormerInterface extends Ubki\Infrastructure\FormerInterface
 {
     public const DOC_ROOT = 'doc';
     public const UBKI_ROOT = 'ubki';
@@ -16,9 +16,9 @@ interface ConverterInterface
     public const REQUEST_ENVELOPE = 'req_envelope';
     public const REQUEST_XML = 'req_xml';
 
-    public function dataDocumentToXml(
-        Interfaces\RequestData $requestData,
+    public function __construct(
+        Ubki\Data\Interfaces\RequestData $requestData,
         DataDocumentInterface $report,
         string $sessionId
-    ): \DOMDocument;
+    );
 }

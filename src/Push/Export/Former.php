@@ -6,29 +6,52 @@ use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Converter
+ * Class Former
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-class Converter implements ConverterInterface
+class Former implements FormerInterface
 {
-    /** @var \DOMDocument */
-    private $document;
+    /** @var Ubki\Data\Interfaces\RequestData */
+    protected $requestData;
 
-    public function dataDocumentToXml(
+    /** @var DataDocumentInterface */
+    protected $report;
+
+    /** @var string */
+    protected $sessionId;
+
+    public function __construct(
         Ubki\Data\Interfaces\RequestData $requestData,
         DataDocumentInterface $report,
         string $sessionId
-    ): \DOMDocument {
-        $this->document = new \DOMDocument('1.0', 'utf-8');
+    ) {
+        $this->requestData = $requestData;
+        $this->report = $report;
+        $this->sessionId = $sessionId;
+    }
 
-        $root = $this->document->createElement(static::DOC_ROOT);
-        $ubki = $this->document->createElement(static::UBKI_ROOT);
+    public function form(): string
+    {
+        $document = new \DOMDocument('1.0', 'utf-8');
 
-        $ubki->setAttribute(static::ATTRIBUTE_SESSION_ID, $sessionId);
+        $root = $document->createElement(static::DOC_ROOT);
+        $ubki = $document->createElement(static::UBKI_ROOT);
 
-        $envelope = $this->document->createElement(static::REQUEST_ENVELOPE);
-        $reqxml = $this->document->createElement(static::REQUEST_XML);
-        $request = $this->createFilledElement($requestData);
+        $ubki->setAttribute(static::ATTRIBUTE_SESSION_ID, $this->sessionId);
+
+        $envelope = $document->createElement(static::REQUEST_ENVELOPE);
+        $reqxml = $document->createElement(static::REQUEST_XML);
+
+        $requestDataWrapper = $document->createElement(Ubki\Data\Interfaces\RequestData::TAG);
+        $this->setAttributes($requestDataWrapper, [
+            Ubki\Data\Interfaces\RequestData::ID => $this->requestData->getId(),
+            Ubki\Data\Interfaces\RequestData::DATE => $this->requestData->getDate(),
+            Ubki\Data\Interfaces\RequestData::TYPE => $this->requestData->getType(),
+            Ubki\Data\Interfaces\RequestData::INITIATOR => $this->requestData->getInitiator(),
+            Ubki\Data\Interfaces\RequestData::REASON => $this->requestData->getReason(),
+            Ubki\Data\Interfaces\RequestData::VERSION => $this->requestData->getVersion(),
+        ]);
+
         $ubkiData = $this->createDOMElement($report);
         $identification = $report->getIdentification();
         $identificationBlock = $this->createBlockInformation($identification);
@@ -42,7 +65,7 @@ class Converter implements ConverterInterface
         $creditsInformation = $report->getCreditDeals();
 
         if (!is_null($creditsInformation)) {
-            $creditDeals = $creditsInformation->getCreditCollection();
+            $creditDeals = $creditsInformation->getDeals();
 
             if (!empty($creditDeals)) {
                 $creditsBlock = $this->createBlockInformation($creditsInformation);
@@ -59,7 +82,7 @@ class Converter implements ConverterInterface
         $courtDecisionsInformation = $report->getCourtDecisions();
 
         if (!is_null($courtDecisionsInformation)) {
-            $decisions = $courtDecisionsInformation->getDecisionCollection();
+            $decisions = $courtDecisionsInformation->getDecisions();
 
             if (!empty($decisions)) {
                 $courtDecisionsBlock = $this->createBlockInformation($courtDecisionsInformation);
@@ -131,14 +154,6 @@ class Converter implements ConverterInterface
         return $element;
     }
 
-    private function createFilledElement(Ubki\Infrastructure\ElementInterface $element): \DOMElement
-    {
-        $DOMElement = $this->createDOMElement($element);
-        $this->setAttributesForElement($DOMElement, $element->jsonSerialize());
-
-        return $DOMElement;
-    }
-
     private function createDOMElement(Ubki\Infrastructure\ElementInterface $element): \DOMElement
     {
         return $this->document->createElement($element->tag());
@@ -156,7 +171,7 @@ class Converter implements ConverterInterface
         return $element;
     }
 
-    private function setAttributesForElement(\DOMElement &$element, array $attributes = []): \DOMElement
+    private function setAttributes(\DOMElement &$element, array $attributes = []): \DOMElement
     {
         foreach ($attributes as $key => $value) {
             if (!is_null($value)) {
@@ -164,8 +179,6 @@ class Converter implements ConverterInterface
                     $element->setAttribute($key, $value->getValue());
                 } elseif ($value instanceof \DateTimeInterface) {
                     $element->setAttribute($key, Carbon::instance($value)->toDateString());
-                } elseif (is_array($value)) {
-                    $this->appendCollection($element, $value);
                 } else {
                     $element->setAttribute($key, $value);
                 }

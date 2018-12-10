@@ -19,7 +19,7 @@ trait DataDocumentTrait
     /** @var Blocks\CourtDecisionsInformation|null */
     protected $courtDecisions;
 
-    /** @var Blocks\CreditsRegistersInformation|null */
+    /** @var Blocks\CreditsRequestsInformation|null */
     protected $creditRequests;
 
     /** @var Blocks\ContactsInformation */
@@ -56,7 +56,7 @@ trait DataDocumentTrait
         return $this->courtDecisions;
     }
 
-    public function getCreditRequests(): ?Blocks\CreditsRegistersInformation
+    public function getCreditRequests(): ?Blocks\CreditsRequestsInformation
     {
         return $this->creditRequests;
     }

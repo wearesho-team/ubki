@@ -46,24 +46,6 @@ trait Credential
     /** @var Ubki\Data\Collections\LinkedPersons|null */
     protected $linkedPersons;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Credential::LANGUAGE => $this->getLanguage(),
-            Ubki\Data\Interfaces\Credential::NAME => $this->getName(),
-            Ubki\Data\Interfaces\Credential::PATRONYMIC => $this->getPatronymic(),
-            Ubki\Data\Interfaces\Credential::SURNAME => $this->getSurname(),
-            Ubki\Data\Interfaces\Credential::BIRTH_DATE => $this->getBirthDate(),
-            Ubki\Data\Interfaces\Credential::INN => $this->getInn(),
-            'identifiers' =>  $this->getIdentifiers(),
-            'linkedPersons' => $this->getLinkedPersons(),
-            'works' => $this->getWorks(),
-            'documents' => $this->getDocuments(),
-            'addresses' => $this->getAddresses(),
-            'photos' => $this->getPhotos(),
-        ];
-    }
-
     public function tag(): string
     {
         return Ubki\Data\Interfaces\Credential::TAG;

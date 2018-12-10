@@ -44,4 +44,18 @@ class DictionaryTest extends TestCase
     {
         Language::BDA();
     }
+
+    public function testJsonSerialize(): void
+    {
+        $language = Language::ENG(static::LANGUAGE_DESCRIPTION);
+
+        $this->assertEquals(
+            [
+                'value' => Language::ENG,
+                'key' => 'ENG',
+                'description' => static::LANGUAGE_DESCRIPTION,
+            ],
+            $language->jsonSerialize()
+        );
+    }
 }

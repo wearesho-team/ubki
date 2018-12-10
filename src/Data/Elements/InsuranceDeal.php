@@ -71,21 +71,6 @@ class InsuranceDeal extends Ubki\Infrastructure\Element
         $this->events = $events;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            static::INN => $this->getInn(),
-            static::ID => $this->getId(),
-            static::INFORMATION_DATE => $this->getInformationDate(),
-            static::START_DATE => $this->getStartDate(),
-            static::END_DATE => $this->getEndDate(),
-            static::TYPE => $this->getType(),
-            static::STATUS => $this->getStatus(),
-            static::ACTUAL_END_DATE => $this->getActualEndDate(),
-            'events' => $this->events,
-        ];
-    }
-
     public function tag(): string
     {
         return static::TAG;

@@ -30,15 +30,6 @@ abstract class RatingFactors extends Ubki\Infrastructure\Element
         $this->comments = $comments;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            static::COUNT => $this->getCount(),
-            static::TEXT => $this->getDescription(),
-            'comments' => $this->getComments(),
-        ];
-    }
-
     public function getCount(): int
     {
         return $this->count;

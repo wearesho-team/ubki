@@ -35,15 +35,6 @@ class InsuranceEvent extends Ubki\Infrastructure\Element
         $this->decisionDate = $decisionDate;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            static::REQUEST_DATE => $this->requestDate,
-            static::DECISION => $this->decision,
-            static::DECISION_DATE => $this->decisionDate
-        ];
-    }
-
     public function tag(): string
     {
         return static::TAG;

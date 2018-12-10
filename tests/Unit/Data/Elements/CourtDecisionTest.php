@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\CourtDecision
  * @internal
  */
-class CourtDecisionTest extends TestCase
+class CourtDecisionTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\CourtDecision;
 
@@ -27,25 +27,6 @@ class CourtDecisionTest extends TestCase
     public const CREATED_AT = '2018-03-12';
     public const AREA = 'testArea';
     public const AREA_REFERENCE = 'testAreaReference';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\CourtDecision::ID,
-            Ubki\Data\Interfaces\CourtDecision::INN,
-            Ubki\Data\Interfaces\CourtDecision::DATE,
-            Ubki\Data\Interfaces\CourtDecision::SUBJECT_STATUS,
-            Ubki\Data\Interfaces\CourtDecision::COURT_DEAL_TYPE,
-            Ubki\Data\Interfaces\CourtDecision::COURT_NAME,
-            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE,
-            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE_REF,
-            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT,
-            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT_REF,
-            Ubki\Data\Interfaces\CourtDecision::CREATED_AT,
-            Ubki\Data\Interfaces\CourtDecision::AREA,
-            Ubki\Data\Interfaces\CourtDecision::AREA_REF,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

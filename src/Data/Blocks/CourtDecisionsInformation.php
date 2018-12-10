@@ -13,20 +13,15 @@ class CourtDecisionsInformation extends Ubki\Infrastructure\Block
     public const ID = 3;
 
     /** @var Ubki\Data\Collections\CourtDecisions */
-    protected $decisionCollection;
+    protected $decisions;
 
     public function __construct(Ubki\Data\Collections\CourtDecisions $decisionCollection)
     {
-        $this->decisionCollection = $decisionCollection;
+        $this->decisions = $decisionCollection;
     }
 
-    public function getDecisionCollection(): Ubki\Data\Collections\CourtDecisions
+    public function getDecisions(): Ubki\Data\Collections\CourtDecisions
     {
-        return $this->decisionCollection;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->decisionCollection->jsonSerialize();
+        return $this->decisions;
     }
 }

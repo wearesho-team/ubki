@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\Document
  * @internal
  */
-class DocumentTest extends TestCase
+class DocumentTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use Ubki\Tests\Unit\Data\Elements\ArgumentsTrait\Document;
 
@@ -22,20 +22,6 @@ class DocumentTest extends TestCase
     public const ISSUE = 'testIssue';
     public const ISSUE_DATE = '2018-03-14';
     public const TERMIN = '2020-01-01';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\Document::CREATED_AT,
-            Ubki\Data\Interfaces\Document::LANGUAGE,
-            Ubki\Data\Interfaces\Document::TYPE,
-            Ubki\Data\Interfaces\Document::SERIAL,
-            Ubki\Data\Interfaces\Document::NUMBER,
-            Ubki\Data\Interfaces\Document::ISSUE,
-            Ubki\Data\Interfaces\Document::ISSUE_DATE,
-            Ubki\Data\Interfaces\Document::TERMIN,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

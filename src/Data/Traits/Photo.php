@@ -19,15 +19,6 @@ trait Photo
     /** @var string|null */
     protected $inn;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\Photo::CREATED_AT => $this->getCreatedAt(),
-            Interfaces\Photo::INN => $this->getInn(),
-            Interfaces\Photo::PHOTO => $this->getUri(),
-        ];
-    }
-
     public function tag(): string
     {
         return Interfaces\Photo::TAG;

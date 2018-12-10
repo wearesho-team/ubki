@@ -45,26 +45,6 @@ trait NaturalPerson
     /** @var int|null */
     protected $childrenCount;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Ubki\Data\Interfaces\IdentifiedPerson::CREATED_AT => $this->getCreatedAt(),
-            Ubki\Data\Interfaces\IdentifiedPerson::LANGUAGE => $this->getLanguage(),
-            Ubki\Data\Interfaces\NaturalPerson::NAME => $this->getName(),
-            Ubki\Data\Interfaces\NaturalPerson::PATRONYMIC => $this->getPatronymic(),
-            Ubki\Data\Interfaces\NaturalPerson::SURNAME => $this->getSurname(),
-            Ubki\Data\Interfaces\NaturalPerson::BIRTH_DATE => $this->getBirthDate(),
-            Ubki\Data\Interfaces\NaturalPerson::GENDER => $this->getGender(),
-            Ubki\Data\Interfaces\NaturalPerson::INN => $this->getInn(),
-            Ubki\Data\Interfaces\NaturalPerson::FAMILY_STATUS => $this->getFamilyStatus(),
-            Ubki\Data\Interfaces\NaturalPerson::EDUCATION => $this->getEducation(),
-            Ubki\Data\Interfaces\NaturalPerson::NATIONALITY => $this->getNationality(),
-            Ubki\Data\Interfaces\NaturalPerson::REGISTRATION_SPD => $this->getRegistrationSpd(),
-            Ubki\Data\Interfaces\NaturalPerson::SOCIAL_STATUS => $this->getSocialStatus(),
-            Ubki\Data\Interfaces\NaturalPerson::CHILDREN_COUNT => $this->getChildrenCount(),
-        ];
-    }
-
     public function tag(): string
     {
         return Ubki\Data\Interfaces\NaturalPerson::TAG;

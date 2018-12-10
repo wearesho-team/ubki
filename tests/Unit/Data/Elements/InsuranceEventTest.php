@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\InsuranceEvent
  * @internal
  */
-class InsuranceEventTest extends TestCase
+class InsuranceEventTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\InsuranceEvent;
 
@@ -18,15 +18,6 @@ class InsuranceEventTest extends TestCase
 
     public const REQUEST_DATE = '2018-03-12';
     public const DECISION_DATE = '2018-03-12';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Elements\InsuranceEvent::REQUEST_DATE,
-            Ubki\Data\Elements\InsuranceEvent::DECISION,
-            Ubki\Data\Elements\InsuranceEvent::DECISION_DATE,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

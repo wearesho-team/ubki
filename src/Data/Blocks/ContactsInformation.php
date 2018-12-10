@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class ContactsInformation
  * @package Wearesho\Bobra\Ubki\Data\Blocks
  */
-class ContactsInformation extends Ubki\Infrastructure\Block
+class ContactsInformation extends Ubki\Infrastructure\Block implements Ubki\Data\Interfaces\ContactsInformation
 {
     public const ID = 10;
 
@@ -23,12 +23,5 @@ class ContactsInformation extends Ubki\Infrastructure\Block
     public function getContacts(): Ubki\Data\Collections\Contacts
     {
         return $this->contacts;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'contacts' =>  $this->contacts->jsonSerialize(),
-        ];
     }
 }

@@ -273,8 +273,8 @@ class DataDocumentTest extends TestCase
                     )
                 ])
             ),
-            new Ubki\Data\Blocks\CreditsRegistersInformation(
-                new Ubki\Data\Collections\CreditRegisters([
+            new Ubki\Data\Blocks\CreditsRequestsInformation(
+                new Ubki\Data\Collections\CreditRequests([
                     new Ubki\Data\Elements\CreditRequest(
                         Carbon::parse(static::DATE),
                         static::INN,
@@ -670,8 +670,8 @@ class DataDocumentTest extends TestCase
     public function testGetCreditRequests(): void
     {
         $this->assertEquals(
-            new Ubki\Data\Blocks\CreditsRegistersInformation(
-                new Ubki\Data\Collections\CreditRegisters([
+            new Ubki\Data\Blocks\CreditsRequestsInformation(
+                new Ubki\Data\Collections\CreditRequests([
                     new Ubki\Data\Elements\CreditRequest(
                         Carbon::parse(static::DATE),
                         static::INN,

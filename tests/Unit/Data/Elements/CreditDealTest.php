@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\CreditDeal
  * @internal
  */
-class CreditDealTest extends TestCase
+class CreditDealTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use  ArgumentsTrait\CreditDeal;
 
@@ -36,28 +36,6 @@ class CreditDealTest extends TestCase
     public const INN = 'testInn';
     public const PATRONYMIC = 'testPatronymic';
     public const SOURCE = 'testSource';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Interfaces\CreditDeal::ID,
-            Ubki\Data\Interfaces\CreditDeal::LANGUAGE,
-            Ubki\Data\Interfaces\CreditDeal::NAME,
-            Ubki\Data\Interfaces\CreditDeal::SURNAME,
-            Ubki\Data\Interfaces\CreditDeal::BIRTH_DATE,
-            Ubki\Data\Interfaces\CreditDeal::TYPE,
-            Ubki\Data\Interfaces\CreditDeal::COLLATERAL,
-            Ubki\Data\Interfaces\CreditDeal::REPAYMENT_PROCEDURE,
-            Ubki\Data\Interfaces\CreditDeal::CURRENCY,
-            Ubki\Data\Interfaces\CreditDeal::INITIAL_AMOUNT,
-            Ubki\Data\Interfaces\CreditDeal::SUBJECT_ROLE,
-            Ubki\Data\Interfaces\CreditDeal::COLLATERAL_COST,
-            'dealLifes',
-            Ubki\Data\Interfaces\CreditDeal::INN,
-            Ubki\Data\Interfaces\CreditDeal::PATRONYMIC,
-            Ubki\Data\Interfaces\CreditDeal::SOURCE,
-        ];
-    }
 
     protected function getExpectTag(): string
     {

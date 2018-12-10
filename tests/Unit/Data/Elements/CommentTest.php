@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\Comment
  * @internal
  */
-class CommentTest extends TestCase
+class CommentTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\Comment;
 
@@ -22,14 +22,6 @@ class CommentTest extends TestCase
     protected function getExpectTag(): string
     {
         return Ubki\Data\Elements\Comment::TAG;
-    }
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Elements\Comment::TEXT,
-            Ubki\Data\Elements\Comment::ID,
-        ];
     }
 
     protected function attributesNames(): array

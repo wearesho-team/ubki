@@ -59,19 +59,6 @@ class RatingDescription extends Element
         $this->updatedAt = $updatedAt;
     }
 
-    public function jsonSerialize(): array
-    {
-        return [
-            static::CREDITS_COUNT => $this->getCreditsCount(),
-            static::OPEN_CREDITS_COUNT => $this->getOpenCreditsCount(),
-            static::DESCRIPTION => $this->getOpenCreditsDescription(),
-            static::CLOSED_CREDITS_COUNT => $this->getClosedCreditsCount(),
-            static::EXPIRES => $this->getExpires(),
-            static::MAX_OVERDUE => $this->getMaxOverdue(),
-            static::UPDATED_AT => $this->getUpdatedAt()
-        ];
-    }
-
     public function tag(): string
     {
         return static::TAG;

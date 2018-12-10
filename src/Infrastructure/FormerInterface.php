@@ -8,5 +8,5 @@ namespace Wearesho\Bobra\Ubki\Infrastructure;
  */
 interface FormerInterface
 {
-    public function form(Formerable $data): string;
+    public function form(): string;
 }

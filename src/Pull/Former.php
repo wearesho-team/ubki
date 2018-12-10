@@ -15,7 +15,7 @@ class Former implements Ubki\Infrastructure\FormerInterface
      *
      * @return string
      */
-    public function form(Ubki\Infrastructure\Formerable $data): string
+    public function form(): string
     {
     }
 }

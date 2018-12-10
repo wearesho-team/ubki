@@ -19,6 +19,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $this->faker = new Ubki\Tests\Fakers\BaseFaker();
         $this->faker->setFaker('collection', new Ubki\Tests\Fakers\ElementCollectionFaker());
         $this->faker->setFaker('dictionary', new Ubki\Tests\Fakers\DictionaryFaker());
-        $this->faker->setFaker('element', Ubki\Tests\Fakers\ElementFaker::instance());
+        $this->faker->setFaker('element', new Ubki\Tests\Fakers\ElementFaker());
     }
 }

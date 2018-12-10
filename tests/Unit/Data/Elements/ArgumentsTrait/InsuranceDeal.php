@@ -29,8 +29,7 @@ trait InsuranceDeal
             Ubki\Dictionaries\InsuranceDealType::ACCIDENT(),
             Ubki\Dictionaries\DealStatus::CLOSE(),
             $this->faker->collection->type(Ubki\Data\Collections\InsuranceEvents::class)
-                ->fill(20, $this->faker->element->with($this->eventArguments())->make(Elements\InsuranceEvent::class))
-                ->get(),
+                ->fill(20, $this->faker->element->insuranceEvent($this->eventArguments()))->get(),
             Carbon::parse(Ubki\Tests\Unit\Data\Elements\InsuranceDealTest::ACTUAL_END_DATE)
         ];
     }

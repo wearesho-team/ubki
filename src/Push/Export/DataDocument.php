@@ -17,7 +17,7 @@ class DataDocument implements DataDocumentInterface
         Blocks\CreditsInformation $creditsInformation,
         Blocks\ContactsInformation $contacts,
         Blocks\CourtDecisionsInformation $courtDecisions = null,
-        Blocks\CreditsRegistersInformation $creditRequests = null
+        Blocks\CreditsRequestsInformation $creditRequests = null
     ) {
         $this->identification = $identification;
         $this->creditDeals = $creditsInformation;

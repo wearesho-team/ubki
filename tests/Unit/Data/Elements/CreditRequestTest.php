@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Elements\CreditRequest
  * @internal
  */
-class CreditRequestTest extends TestCase
+class CreditRequestTest extends Ubki\Tests\Unit\Data\TestCase
 {
     use ArgumentsTrait\CreditRequest;
 
@@ -21,18 +21,6 @@ class CreditRequestTest extends TestCase
     public const ID = 'testId';
     public const REASON = 1;
     public const ORGANIZATION = 'testOrganization';
-
-    protected function jsonKeys(): array
-    {
-        return [
-            Ubki\Data\Elements\CreditRequest::DATE,
-            Ubki\Data\Elements\CreditRequest::INN,
-            Ubki\Data\Elements\CreditRequest::ID,
-            Ubki\Data\Elements\CreditRequest::DECISION,
-            Ubki\Data\Elements\CreditRequest::REASON,
-            Ubki\Data\Elements\CreditRequest::ORGANIZATION,
-        ];
-    }
 
     protected function getExpectTag(): string
     {
