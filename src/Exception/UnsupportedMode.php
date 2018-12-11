@@ -1,12 +1,14 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki;
+namespace Wearesho\Bobra\Ubki\Exception;
+
+use Wearesho\Bobra\Ubki;
 
 /**
- * Class UnsupportedModeException
- * @package Wearesho\Bobra\Ubki
+ * Class UnsupportedMode
+ * @package Wearesho\Bobra\Ubki\Exception
  */
-class UnsupportedModeException extends \InvalidArgumentException implements ExceptionInterface
+class UnsupportedMode extends \InvalidArgumentException implements Ubki\Infrastructure\ExceptionInterface
 {
     /** @var int */
     public $mode;

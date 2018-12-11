@@ -12,6 +12,8 @@ class Document extends Ubki\Infrastructure\Element implements Ubki\Data\Interfac
 {
     use Ubki\Data\Traits\Document;
 
+    public const TAG = 'doc';
+
     public function __construct(
         \DateTimeInterface $createdAt,
         Ubki\Dictionaries\Language $language,

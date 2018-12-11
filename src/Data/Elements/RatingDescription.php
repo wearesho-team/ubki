@@ -38,7 +38,7 @@ class RatingDescription extends Element
     /** @var string */
     protected $maxOverdue;
 
-    /** @var Carbon */
+    /** @var \DateTimeInterface */
     protected $updatedAt;
 
     public function __construct(
@@ -48,7 +48,7 @@ class RatingDescription extends Element
         int $closedCreditsCount,
         string $expires,
         string $maxOverdue,
-        Carbon $updatedAt
+        \DateTimeInterface $updatedAt
     ) {
         $this->creditsCount = $creditsCount;
         $this->openCreditsCount = $openCreditsCount;
@@ -57,11 +57,6 @@ class RatingDescription extends Element
         $this->expires = $expires;
         $this->maxOverdue = $maxOverdue;
         $this->updatedAt = $updatedAt;
-    }
-
-    public function tag(): string
-    {
-        return static::TAG;
     }
 
     public function getCreditsCount(): int
@@ -94,7 +89,7 @@ class RatingDescription extends Element
         return $this->maxOverdue;
     }
 
-    public function getUpdatedAt(): Carbon
+    public function getUpdatedAt(): \DateTimeInterface
     {
         return $this->updatedAt;
     }

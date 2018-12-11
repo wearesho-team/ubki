@@ -29,7 +29,7 @@ class Config implements ConfigInterface
             || $mode === static::MODE_TEST;
 
         if (!$isValid) {
-            throw new Ubki\UnsupportedModeException($mode);
+            throw new Ubki\Exception\UnsupportedMode($mode);
         }
     }
 }

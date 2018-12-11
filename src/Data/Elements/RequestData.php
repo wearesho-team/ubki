@@ -12,6 +12,8 @@ class RequestData extends Ubki\Infrastructure\Element implements Ubki\Data\Inter
 {
     use Ubki\Data\Traits\RequestData;
 
+    public const TAG = 'request';
+
     public function __construct(
         Ubki\Dictionaries\RequestType $type,
         Ubki\Dictionaries\RequestReason $reason,

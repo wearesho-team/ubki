@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Unit\Push\Error;
 
+use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -9,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * @internal
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Push\Error
  */
-class EntityTest extends Ubki\Tests\Extend\ElementTestCase
+class EntityTest extends TestCase
 {
     protected const TAG = 'item';
 
@@ -27,6 +28,11 @@ class EntityTest extends Ubki\Tests\Extend\ElementTestCase
             10,
             10
         );
+    }
+
+    public function testTag(): void
+    {
+        $this->assertEquals(Ubki\Push\Error\Entity::TAG, $this->block->tag());
     }
 
     public function testGetPassedStrings(): void

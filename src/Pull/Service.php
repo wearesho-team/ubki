@@ -31,7 +31,7 @@ class Service extends Ubki\Infrastructure\Service
      */
     public function send(Ubki\Infrastructure\RequestInterface $request): Ubki\RequestResponsePair
     {
-        $response = $this->post($this->config->getPullUrl(), $this->getBody($request));
+        $response = $this->send($this->config->getPullUrl(), $this->getBody($request));
 
         return new Ubki\RequestResponsePair(
             $this->getRequest()->getBody()->__toString(),

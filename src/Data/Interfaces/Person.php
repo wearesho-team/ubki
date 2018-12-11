@@ -10,7 +10,5 @@ use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
  */
 interface Person extends ElementInterface
 {
-    public const TAG = 'ident';
-
     public function getName(): string;
 }

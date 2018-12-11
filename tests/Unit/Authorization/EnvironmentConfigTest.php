@@ -66,7 +66,7 @@ class EnvironmentConfigTest extends TestCase
     {
         putenv('UBKI_MODE=228');
         putenv('UBKI_AUTH_URL');
-        $this->expectException(Ubki\UnsupportedModeException::class);
+        $this->expectException(Ubki\Exception\UnsupportedMode::class);
         $this->expectExceptionMessage('Mode have invalid value 228');
         $this->assertEquals(false, $this->config->getAuthUrl());
     }

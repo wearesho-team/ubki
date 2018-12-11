@@ -35,11 +35,6 @@ class InsuranceEvent extends Ubki\Infrastructure\Element
         $this->decisionDate = $decisionDate;
     }
 
-    public function tag(): string
-    {
-        return static::TAG;
-    }
-
     public function getRequestDate(): \DateTimeInterface
     {
         return $this->requestDate;

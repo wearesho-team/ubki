@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface LinkedPerson extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'linked';
     public const ERGPOU = 'okpo2';
     public const NAME = 'okpo2_name';
     public const ROLE = 'linkrole';

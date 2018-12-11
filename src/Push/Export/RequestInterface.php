@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki\Data\Interfaces;
  * Interface RequestInterface
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-interface RequestInterface extends \Wearesho\Bobra\Ubki\Infrastructure\RequestInterface
+interface RequestInterface
 {
     public function getHead(): Interfaces\RequestData;
 

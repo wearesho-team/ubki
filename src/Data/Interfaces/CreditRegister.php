@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface CreditRegister extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'credres';
     public const DATE = 'redate';
     public const INN = 'inn';
     public const ID = 'reqid';

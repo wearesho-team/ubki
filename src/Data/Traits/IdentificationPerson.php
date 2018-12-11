@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces;
-
 /**
  * Trait IdentificationPerson
  * @package Wearesho\Bobra\Ubki\Data\Traits

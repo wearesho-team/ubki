@@ -12,6 +12,8 @@ class CourtDecision extends Ubki\Infrastructure\Element implements Ubki\Data\Int
 {
     use Ubki\Data\Traits\CourtDecision;
 
+    public const TAG = 'susd';
+
     public function __construct(
         string $id,
         string $inn,

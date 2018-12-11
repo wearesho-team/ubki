@@ -12,6 +12,8 @@ class LegalPerson extends IdentifiedPerson implements Ubki\Data\Interfaces\Legal
 {
     use Ubki\Data\Traits\LegalPerson;
 
+    public const TAG = 'urident';
+
     public function __construct(
         \DateTimeInterface $createdAt,
         Ubki\Dictionaries\Language $language,

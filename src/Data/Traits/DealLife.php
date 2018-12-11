@@ -62,11 +62,6 @@ trait DealLife
      */
     protected $actualEndDate;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\DealLife::TAG;
-    }
-
     public function getId(): string
     {
         return $this->id;

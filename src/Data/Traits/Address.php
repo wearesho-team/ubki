@@ -52,11 +52,6 @@ trait Address
     /** @var string|null */
     protected $fullAddress;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\Address::TAG;
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;

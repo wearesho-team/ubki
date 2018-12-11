@@ -34,11 +34,6 @@ trait Document
     /** @var \DateTimeInterface|null */
     protected $termin;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\Document::TAG;
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;

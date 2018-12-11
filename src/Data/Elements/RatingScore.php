@@ -38,7 +38,7 @@ class RatingScore extends Element
     /** @var string */
     protected $patronymic;
 
-    /** @var Carbon */
+    /** @var \DateTimeInterface */
     protected $birthDate;
 
     /** @var string */
@@ -47,7 +47,7 @@ class RatingScore extends Element
     /** @var string */
     protected $previousScore;
 
-    /** @var Carbon */
+    /** @var \DateTimeInterface */
     protected $date;
 
     /** @var string */
@@ -58,10 +58,10 @@ class RatingScore extends Element
         string $surname,
         string $name,
         string $patronymic,
-        Carbon $birthDate,
+        \DateTimeInterface $birthDate,
         string $score,
         string $previousScore,
-        Carbon $date,
+        \DateTimeInterface $date,
         string $level
     ) {
         $this->inn = $inn;
@@ -73,11 +73,6 @@ class RatingScore extends Element
         $this->previousScore = $previousScore;
         $this->date = $date;
         $this->level = $level;
-    }
-
-    public function tag(): string
-    {
-        return static::TAG;
     }
 
     public function getInn(): string
@@ -100,7 +95,7 @@ class RatingScore extends Element
         return $this->patronymic;
     }
 
-    public function getBirthDate(): Carbon
+    public function getBirthDate(): \DateTimeInterface
     {
         return $this->birthDate;
     }
@@ -115,7 +110,7 @@ class RatingScore extends Element
         return $this->previousScore;
     }
 
-    public function getDate(): Carbon
+    public function getDate(): \DateTimeInterface
     {
         return $this->date;
     }

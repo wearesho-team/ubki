@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki;
 trait RequestData
 {
     /** @var string */
-    protected $version = '1.0';
+    public $version = '1.0';
 
     /** @var Ubki\Dictionaries\RequestType */
     protected $type;
@@ -27,16 +27,6 @@ trait RequestData
 
     /** @var Ubki\Dictionaries\RequestInitiator|null */
     protected $initiator;
-
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\RequestData::TAG;
-    }
-
-    public function getVersion(): string
-    {
-        return $this->version;
-    }
 
     public function getType(): Ubki\Dictionaries\RequestType
     {

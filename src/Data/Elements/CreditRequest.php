@@ -12,6 +12,8 @@ class CreditRequest extends Ubki\Infrastructure\Element implements Ubki\Data\Int
 {
     use Ubki\Data\Traits\CreditRequest;
 
+    public const TAG = 'credres';
+
     public function __construct(
         \DateTimeInterface $date,
         string $inn,

@@ -12,6 +12,8 @@ class Address extends Ubki\Infrastructure\Element implements Ubki\Data\Interface
 {
     use Ubki\Data\Traits\Address;
 
+    public const TAG = 'addr';
+
     public function __construct(
         \DateTimeInterface $createdAt,
         Ubki\Dictionaries\Language $language,

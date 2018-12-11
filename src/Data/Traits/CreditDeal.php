@@ -58,11 +58,6 @@ trait CreditDeal
     /** @var string|null */
     protected $source;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\CreditDeal::TAG;
-    }
-
     public function getId(): string
     {
         return $this->id;

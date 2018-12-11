@@ -8,7 +8,6 @@ namespace Wearesho\Bobra\Ubki\Data\Interfaces;
  */
 interface LegalPerson extends IdentifiedPerson
 {
-    public const LEGAL_PREFIX = 'ur';
     public const ERGPOU = 'okpo';
     public const NAME = 'urname';
     public const FORM = 'urfrms';

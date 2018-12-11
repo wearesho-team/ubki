@@ -28,11 +28,6 @@ class Step extends Infrastructure\Element
         $this->end = $end;
     }
 
-    public function tag(): string
-    {
-        return static::TAG;
-    }
-
     public function getName(): ?string
     {
         return $this->name;

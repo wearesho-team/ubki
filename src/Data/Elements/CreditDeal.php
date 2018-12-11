@@ -12,6 +12,8 @@ class CreditDeal extends Ubki\Infrastructure\Element implements Ubki\Data\Interf
 {
     use Ubki\Data\Traits\CreditDeal;
 
+    public const TAG = 'crdeal';
+
     public function __construct(
         string $id,
         Ubki\Dictionaries\Language $language,

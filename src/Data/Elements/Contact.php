@@ -12,6 +12,8 @@ class Contact extends Ubki\Infrastructure\Element implements Ubki\Data\Interface
 {
     use Ubki\Data\Traits\Contact;
 
+    public const TAG = 'cont';
+
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,

@@ -31,11 +31,6 @@ trait Work
     /** @var float|null */
     protected $income;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\Work::TAG;
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;

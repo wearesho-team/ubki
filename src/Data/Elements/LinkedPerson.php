@@ -12,6 +12,8 @@ class LinkedPerson extends Ubki\Infrastructure\Element implements Ubki\Data\Inte
 {
     use Ubki\Data\Traits\LinkedPerson;
 
+    public const TAG = 'linked';
+
     public function __construct(
         string $name,
         Ubki\Dictionaries\LinkedIdentifierRole $role,

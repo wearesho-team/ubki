@@ -42,9 +42,4 @@ class Tech extends Ubki\Infrastructure\Element
     {
         return $this->balance;
     }
-
-    public function tag(): string
-    {
-        return static::TAG;
-    }
 }

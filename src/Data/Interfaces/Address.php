@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface Address extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'addr';
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const LANGUAGE_REF = 'lngref';

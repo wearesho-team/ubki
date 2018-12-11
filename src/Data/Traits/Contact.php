@@ -22,11 +22,6 @@ trait Contact
     /** @var string|null */
     protected $inn;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\Contact::TAG;
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;

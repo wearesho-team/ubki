@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface Credential extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'cki';
     public const INN = 'inn';
     public const SURNAME = 'lname';
     public const NAME = 'fname';

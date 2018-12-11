@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
  */
 interface RegistryTimes extends ElementInterface
 {
-    public const TAG = 'reestrtime';
     public const BY_HOUR = 'hr';
     public const BY_DAY = 'da';
     public const BY_WEEK = 'wk';

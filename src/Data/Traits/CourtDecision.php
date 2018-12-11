@@ -49,11 +49,6 @@ trait CourtDecision
     /** @var string|null */
     protected $areaReference;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\CourtDecision::TAG;
-    }
-
     public function getId(): string
     {
         return $this->id;

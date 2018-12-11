@@ -17,9 +17,4 @@ trait Person
     {
         return $this->name;
     }
-
-    public function tag(): string
-    {
-        return Interfaces\Person::TAG;
-    }
 }

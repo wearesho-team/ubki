@@ -9,9 +9,4 @@ namespace Wearesho\Bobra\Ubki\Data\Elements;
 class PositiveRatingFactors extends RatingFactors
 {
     public const TAG = 'pfactors';
-
-    public function tag(): string
-    {
-        return static::TAG;
-    }
 }

@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface Work extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'work';
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const LANGUAGE_REF = 'lngref';

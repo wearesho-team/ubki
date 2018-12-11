@@ -41,7 +41,7 @@ trait EnvironmentConfigTrait
             case ConfigInterface::MODE_TEST:
                 return false;
             default:
-                throw new Ubki\UnsupportedModeException($environmentMode);
+                throw new Ubki\Exception\UnsupportedMode($environmentMode);
         }
     }
 }

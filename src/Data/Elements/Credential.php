@@ -12,6 +12,8 @@ class Credential extends Ubki\Infrastructure\Element implements Ubki\Data\Interf
 {
     use Ubki\Data\Traits\Credential;
 
+    public const TAG = 'cki';
+
     public function __construct(
         Ubki\Dictionaries\Language $language,
         string $name,

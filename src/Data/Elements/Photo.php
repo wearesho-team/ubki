@@ -12,6 +12,8 @@ class Photo extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\
 {
     use Ubki\Data\Traits\Photo;
 
+    public const TAG = 'foto';
+
     public function __construct(\DateTimeInterface $createdAt, string $uri, string $inn = null)
     {
         $this->createdAt = $createdAt;

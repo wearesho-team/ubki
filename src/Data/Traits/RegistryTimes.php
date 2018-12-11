@@ -31,11 +31,6 @@ trait RegistryTimes
     /** @var int */
     protected $byMoreYear;
 
-    public function tag(): string
-    {
-        return Interfaces\RegistryTimes::TAG;
-    }
-
     public function getByHour(): int
     {
         return $this->byHour;

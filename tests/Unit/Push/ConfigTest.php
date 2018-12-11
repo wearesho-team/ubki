@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Tests\Push;
 
 use PHPUnit\Framework\TestCase;
-
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -13,52 +12,51 @@ use Wearesho\Bobra\Ubki;
  */
 class ConfigTest extends TestCase
 {
-    public function testGetTestRegistryUrl(): void
+    protected const USERNAME = 'username';
+    protected const PASSWORD = 'password';
+
+    /**
+     * @param string $expectUrl
+     * @param string $needUrl
+     *
+     * @dataProvider providerConfigTestMode
+     * @dataProvider providerConfigProductionMode
+     */
+    public function testUrls(string $expectUrl, string $needUrl): void
     {
-        $url = $this->getTestConfig()->getRegistryUrl();
-        $this->assertEquals(Ubki\Push\ConfigInterface::TEST_REGISTRY_URL, $url);
+        $this->assertEquals($expectUrl, $needUrl);
     }
 
-    public function testGetTestPushUrl(): void
+    public function providerConfigTestMode(): array
     {
-        $url = $this->getTestConfig()->getPushUrl();
-        $this->assertEquals(Ubki\Push\ConfigInterface::TEST_PUSH_URL, $url);
+        $config = $this->createConfig(Ubki\Infrastructure\ConfigInterface::MODE_TEST);
+
+        return [
+            [Ubki\Push\ConfigInterface::TEST_REGISTRY_URL, $config->getRegistryUrl(),],
+            [Ubki\Push\ConfigInterface::TEST_PUSH_URL, $config->getPushUrl(),],
+        ];
     }
 
-    public function testGetProductionRegistryUrl(): void
+    public function providerConfigProductionMode($a): array
     {
-        $url = $this->getProductionConfig()->getRegistryUrl();
-        $this->assertEquals(Ubki\Push\ConfigInterface::PRODUCTION_REGISTRY_URL, $url);
-    }
+        $config = $this->createConfig(Ubki\Infrastructure\ConfigInterface::MODE_PRODUCTION);
 
-    public function testGetProductionPushUrl(): void
-    {
-        $url = $this->getProductionConfig()->getPushUrl();
-        $this->assertEquals(Ubki\Push\ConfigInterface::PRODUCTION_PUSH_URL, $url);
+        return [
+            [Ubki\Push\ConfigInterface::PRODUCTION_REGISTRY_URL, $config->getRegistryUrl(),],
+            [Ubki\Push\ConfigInterface::PRODUCTION_PUSH_URL, $config->getPushUrl(),],
+        ];
     }
 
     public function testInvalidMode(): void
     {
-        $this->expectException(Ubki\UnsupportedModeException::class);
+        $this->expectException(Ubki\Exception\UnsupportedMode::class);
         $this->expectExceptionMessage("Mode have invalid value 3");
-        new Ubki\Push\Config('username', 'password', 3);
+
+        $this->createConfig(3);
     }
 
-    protected function getTestConfig(): Ubki\Push\ConfigInterface
+    protected function createConfig(int $mode): Ubki\Push\ConfigInterface
     {
-        return new Ubki\Push\Config(
-            'username',
-            'password',
-            Ubki\Push\ConfigInterface::MODE_TEST
-        );
-    }
-
-    protected function getProductionConfig(): Ubki\Push\ConfigInterface
-    {
-        return new Ubki\Push\Config(
-            'username',
-            'password',
-            Ubki\Push\Config::MODE_PRODUCTION
-        );
+        return new Ubki\Push\Config(static::USERNAME, static::PASSWORD, $mode);
     }
 }

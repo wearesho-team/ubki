@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface CourtDecision extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'susd';
     public const ID = 'voteid';
     public const INN = 'inn';
     public const DATE = 'votedate';

@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface DealLife extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'deallife';
     public const ID = 'dlref';
     public const PERIOD_MONTH = 'dlmonth';
     public const PERIOD_YEAR = 'dlyear';

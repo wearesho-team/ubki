@@ -12,6 +12,8 @@ class RegistryTimes extends Ubki\Infrastructure\Element implements Ubki\Data\Int
 {
     use Ubki\Data\Traits\RegistryTimes;
 
+    public const TAG = 'reestrtime';
+
     public function __construct(
         int $byHour,
         int $byDay,

@@ -22,11 +22,6 @@ trait LinkedPerson
     /** @var string|null */
     protected $ergpou;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\LinkedPerson::TAG;
-    }
-
     public function getErgpou(): ?string
     {
         return $this->ergpou;

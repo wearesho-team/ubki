@@ -24,37 +24,32 @@ class Service extends Ubki\Infrastructure\Service
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
         Log\LoggerInterface $logger = null,
-        FormerInterface $converter = null
+        FormerInterface $former = null
     ) {
-        $this->former = $converter ?? new Former();
+        $this->former = $former ?? new Former();
 
         parent::__construct($config, $authProvider, $client, $logger);
     }
 
     /**
-     * @param Ubki\Infrastructure\RequestInterface $request
+     * @param RequestInterface $request
      *
      * @return Ubki\RequestResponsePair
-     * @throws RequestException
+     * @throws FormerException
      * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws RequestException
      */
-    public function send(Ubki\Infrastructure\RequestInterface $request): Ubki\RequestResponsePair
+    public function export(RequestInterface $request): Ubki\RequestResponsePair
     {
-        /** @var \Wearesho\Bobra\Ubki\Push\Export\RequestInterface $request */
-        $body = $this->former->dataDocumentToXml(
-            $request->getHead(),
-            $request->getBody(),
-            $this->authProvider->provide($this->config)->getSessionId()
-        )->saveXML();
-
+        $body = $this->former->form($request);
 
         $this->log("UBKI export request {url}", [
             'url' => $this->config->getPushUrl(),
         ]);
 
         try {
-            $response = $this->post($this->config->getPushUrl(), base64_encode($body));
-        } catch (GuzzleHttp\Exception\RequestException $exception) {
+            $response = $this->send($this->config->getPushUrl(), $body);
+        } catch (\Throwable $exception) {
             throw new RequestException($request, $exception->getMessage(), $exception->getCode(), $exception);
         }
 

@@ -28,11 +28,6 @@ class Balance extends Infrastructure\Element
         $this->time = $time;
     }
 
-    public function tag(): string
-    {
-        return static::TAG;
-    }
-
     public function getValue(): float
     {
         return $this->value;

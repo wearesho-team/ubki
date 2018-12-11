@@ -19,11 +19,6 @@ trait Photo
     /** @var string|null */
     protected $inn;
 
-    public function tag(): string
-    {
-        return Interfaces\Photo::TAG;
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;

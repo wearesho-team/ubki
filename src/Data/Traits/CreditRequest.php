@@ -28,11 +28,6 @@ trait CreditRequest
     /** @var string|null */
     protected $organization;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\CreditRegister::TAG;
-    }
-
     public function getDate(): \DateTimeInterface
     {
         return $this->date;

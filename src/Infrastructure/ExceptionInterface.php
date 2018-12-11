@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki;
+namespace Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
  * Interface ExceptionInterface
  *
  * Base exceptions interface for all exceptions in this library
  *
- * @package Wearesho\Bobra\Ubki
+ * @package Wearesho\Bobra\Ubki\Infrastructure
  */
 interface ExceptionInterface extends \Throwable
 {

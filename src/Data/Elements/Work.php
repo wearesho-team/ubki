@@ -12,6 +12,8 @@ class Work extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\W
 {
     use Ubki\Data\Traits\Work;
 
+    public const TAG = 'work';
+
     public function __construct(
         \DateTimeInterface $createdAt,
         Ubki\Dictionaries\Language $language,

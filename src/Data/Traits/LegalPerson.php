@@ -33,11 +33,6 @@ trait LegalPerson
     /** @var \DateTimeInterface|null */
     protected $taxRegistrationDate;
 
-    public function tag(): string
-    {
-        return Interfaces\LegalPerson::LEGAL_PREFIX . Interfaces\Person::TAG;
-    }
-
     public function getActivityType(): ?string
     {
         return $this->activityType;

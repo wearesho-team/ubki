@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface CreditDeal extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'crdeal';
     public const ID = 'dlref';
     public const LANGUAGE = 'lng';
     public const LANGUAGE_REF = 'lngref';

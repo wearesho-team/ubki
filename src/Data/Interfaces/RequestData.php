@@ -10,15 +10,12 @@ use Wearesho\Bobra\Ubki;
  */
 interface RequestData extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'request';
     public const VERSION = 'version';
     public const TYPE = 'reqtype';
     public const REASON = 'reqreason';
     public const DATE = 'reqdate';
     public const ID = 'reqidout';
     public const INITIATOR = 'reqsource';
-
-    public function getVersion(): string;
 
     public function getType(): Ubki\Dictionaries\RequestType;
 

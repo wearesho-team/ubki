@@ -12,6 +12,8 @@ abstract class Person extends Ubki\Infrastructure\Element implements Ubki\Data\I
 {
     use Ubki\Data\Traits\Person;
 
+    public const TAG = 'ident';
+
     public function __construct(string $name)
     {
         $this->name = $name;

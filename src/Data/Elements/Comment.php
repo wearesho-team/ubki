@@ -26,11 +26,6 @@ class Comment extends Infrastructure\Element
         $this->text = $text;
     }
 
-    public function tag(): string
-    {
-        return static::TAG;
-    }
-
     public function getId(): ?string
     {
         return $this->id;

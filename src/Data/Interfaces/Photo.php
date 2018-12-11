@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
  */
 interface Photo extends ElementInterface
 {
-    public const TAG = 'foto';
     public const CREATED_AT = 'vdate';
     public const INN = 'inn';
     public const PHOTO = 'foto';

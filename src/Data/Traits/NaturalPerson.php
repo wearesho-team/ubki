@@ -45,11 +45,6 @@ trait NaturalPerson
     /** @var int|null */
     protected $childrenCount;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\NaturalPerson::TAG;
-    }
-
     public function getInn(): ?string
     {
         return $this->inn;

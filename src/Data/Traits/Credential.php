@@ -46,11 +46,6 @@ trait Credential
     /** @var Ubki\Data\Collections\LinkedPersons|null */
     protected $linkedPersons;
 
-    public function tag(): string
-    {
-        return Ubki\Data\Interfaces\Credential::TAG;
-    }
-
     public function getLanguage(): Ubki\Dictionaries\Language
     {
         return $this->language;

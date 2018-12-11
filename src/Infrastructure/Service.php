@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki;
  * Class Service
  * @package Wearesho\Bobra\Ubki\Infrastructure
  */
-abstract class Service implements ServiceInterface
+abstract class Service
 {
     /** @var ConfigInterface */
     protected $config;
@@ -25,24 +25,17 @@ abstract class Service implements ServiceInterface
     /** @var Log\LoggerInterface */
     protected $logger;
 
-    /** @var FormerInterface */
-    protected $former;
-
     public function __construct(
         ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null,
-        FormerInterface $former = null
+        Log\LoggerInterface $logger = null
     ) {
         $this->config = $config;
         $this->authProvider = $authProvider;
         $this->client = $client;
-        $this->former = $former;
         $this->logger = $logger ?? new Log\NullLogger();
     }
-
-    abstract public function send(RequestInterface $request): Ubki\RequestResponsePair;
 
     public function config(): ConfigInterface
     {
@@ -72,7 +65,7 @@ abstract class Service implements ServiceInterface
      * @return ResponseInterface
      * @throws GuzzleHttp\Exception\GuzzleException
      */
-    protected function post(string $url, string $body, array $headers = []): ResponseInterface
+    protected function send(string $url, string $body, array $headers = []): ResponseInterface
     {
         return $this->client->request('POST', $url, [
             GuzzleHttp\RequestOptions::HEADERS => $headers,

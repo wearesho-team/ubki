@@ -12,6 +12,8 @@ class DealLife extends Ubki\Infrastructure\Element implements Ubki\Data\Interfac
 {
     use Ubki\Data\Traits\DealLife;
 
+    public const TAG = 'deallife';
+
     public function __construct(
         string $id,
         int $periodMonth,

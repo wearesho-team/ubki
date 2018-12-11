@@ -13,32 +13,51 @@ use Wearesho\Bobra\Ubki;
  */
 class ConfigTest extends TestCase
 {
-    public function testGetTestPullUrl(): void
+    protected const USERNAME = 'username';
+    protected const PASSWORD = 'password';
+
+    /**
+     * @param string $expectUrl
+     * @param string $needUrl
+     *
+     * @dataProvider providerConfigTestMode
+     * @dataProvider providerConfigProductionMode
+     */
+    public function testUrls(string $expectUrl, string $needUrl): void
     {
-        $config = new Ubki\Pull\Config(
-            'username',
-            'password',
-            Ubki\Pull\ConfigInterface::MODE_TEST
-        );
-        $url = $config->getPullUrl();
-        $this->assertEquals(Ubki\Pull\ConfigInterface::TEST_PULL_URL, $url);
+        $this->assertEquals($expectUrl, $needUrl);
     }
 
-    public function testGetProductionPullUrl(): void
+    public function providerConfigTestMode(): array
     {
-        $config = new Ubki\Pull\Config(
-            'username',
-            'password',
-            Ubki\Pull\Config::MODE_PRODUCTION
-        );
-        $url = $config->getPullUrl();
-        $this->assertEquals(Ubki\Pull\ConfigInterface::PRODUCTION_PULL_URL, $url);
+        $config = $this->createConfig(Ubki\Infrastructure\ConfigInterface::MODE_TEST);
+
+        return [
+            [Ubki\Pull\ConfigInterface::TEST_PULL_URL, $config->getPullUrl(),],
+            [Ubki\Pull\ConfigInterface::TEST_AUTH_URL, $config->getAuthUrl(),],
+        ];
+    }
+
+    public function providerConfigProductionMode($a): array
+    {
+        $config = $this->createConfig(Ubki\Infrastructure\ConfigInterface::MODE_PRODUCTION);
+
+        return [
+            [Ubki\Pull\ConfigInterface::PRODUCTION_PULL_URL, $config->getPullUrl(),],
+            [Ubki\Pull\ConfigInterface::PRODUCTION_AUTH_URL, $config->getAuthUrl(),],
+        ];
     }
 
     public function testInvalidMode(): void
     {
-        $this->expectException(Ubki\UnsupportedModeException::class);
+        $this->expectException(Ubki\Exception\UnsupportedMode::class);
         $this->expectExceptionMessage("Mode have invalid value 3");
-        new Ubki\Pull\Config('username', 'password', 3);
+
+        $this->createConfig(3);
+    }
+
+    protected function createConfig(int $mode): Ubki\Pull\ConfigInterface
+    {
+        return new Ubki\Pull\Config(static::USERNAME, static::PASSWORD, $mode);
     }
 }

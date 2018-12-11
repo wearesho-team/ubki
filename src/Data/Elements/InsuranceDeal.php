@@ -71,11 +71,6 @@ class InsuranceDeal extends Ubki\Infrastructure\Element
         $this->events = $events;
     }
 
-    public function tag(): string
-    {
-        return static::TAG;
-    }
-
     public function getInn(): string
     {
         return $this->inn;
