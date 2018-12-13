@@ -41,4 +41,14 @@ trait Contact
     {
         return $this->inn;
     }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\Contact::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\Contact::INN => $this->getInn(),
+            Ubki\Data\Interfaces\Contact::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\Contact::VALUE => $this->getValue(),
+        ];
+    }
 }

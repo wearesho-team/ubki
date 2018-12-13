@@ -73,6 +73,11 @@ abstract class Service
         ]);
     }
 
+    protected function formResponse(string $body, ResponseInterface $response): Ubki\RequestResponsePair
+    {
+        return new Ubki\RequestResponsePair($body, (string)$response->getBody());
+    }
+
     protected function log(string $message, array $args): void
     {
         $this->logger->debug($message, $args);

@@ -103,7 +103,7 @@ class FormerTest extends TestCase
     protected const VALUE = 'testValue';
 
     /** @var Ubki\Push\Export\Former */
-    protected $fakeConverter;
+    protected $fakeFormer;
 
     /** @var Ubki\Data\Elements\RequestData */
     protected $fakeRequestDataBlock;
@@ -128,7 +128,7 @@ class FormerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fakeConverter = new Ubki\Push\Export\Former();
+        $this->fakeFormer = new Ubki\Push\Export\Former(true);
         $this->fakeRequestDataBlock = new Ubki\Data\Elements\RequestData(
             Ubki\Dictionaries\RequestType::EXPORT(),
             Ubki\Dictionaries\RequestReason::EXPORT(),
@@ -370,7 +370,17 @@ class FormerTest extends TestCase
                             Ubki\Dictionaries\Gender::MAN(),
                             '1234567890',
                             'Иванович'
-                        )
+                        ),
+                        new Ubki\Data\Elements\NaturalPerson(
+                            Carbon::parse('2018-06-13'),
+                            Ubki\Dictionaries\Language::RUS(),
+                            'Иван',
+                            'Иванов',
+                            Carbon::parse('1998-03-12'),
+                            Ubki\Dictionaries\Gender::MAN(),
+                            '1234567890',
+                            'Иванович'
+                        ),
                     ]),
                     new Ubki\Data\Collections\Documents([
                         new Ubki\Data\Elements\Document(
@@ -400,7 +410,18 @@ class FormerTest extends TestCase
                             ''
                         )
                     ]),
-                    '1234567890'
+                    '1234567890',
+                    new Ubki\Data\Collections\Works([
+                        new Ubki\Data\Elements\Work(
+                            Carbon::make('2018-03-12'),
+                            Ubki\Dictionaries\Language::RUS(),
+                            static::ERGPOU,
+                            static::NAME,
+                            Ubki\Dictionaries\IdentifierRank::DIRECTOR(),
+                            10,
+                            1234.56
+                        )
+                    ])
                 )
             ),
             new Ubki\Data\Blocks\CreditsInformation(
@@ -454,7 +475,9 @@ class FormerTest extends TestCase
                 ])
             )
         );
+        $request = new Ubki\Push\Export\Request($this->fakeRequestDataBlock, $document);
 
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->assertXmlStringEqualsXmlString(
             '<?xml version="1.0" encoding="utf-8"?>
 <doc>
@@ -469,6 +492,10 @@ class FormerTest extends TestCase
                                  bdate="1998-03-12">
                                 <ident vdate="2018-06-13" inn="1234567890" lname="Иванов" fname="Иван"
                                        mname="Иванович" lng="1" bdate="1998-03-12" csex="1"/>
+                                <ident vdate="2018-06-13" inn="1234567890" lname="Иванов" fname="Иван"
+                                       mname="Иванович" lng="1" bdate="1998-03-12" csex="1"/>
+                                <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
+                                      lng="1" cdolgn="1"/>
                                 <doc vdate="2018-06-13" lng="1" dtype="1" dser="АА" dnom="123456"
                                      dwho="Харьковский ..." dwdt="2014-03-12"/>
                                 <addr vdate="2018-06-13" lng="1" adtype="1" adcountry="Україна" adstate="Харьков"
@@ -495,7 +522,7 @@ class FormerTest extends TestCase
     </ubki>
 </doc>
 ',
-            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+            $this->fakeFormer->form($request, static::SESSION_ID)
         );
     }
 
@@ -507,6 +534,8 @@ class FormerTest extends TestCase
             $this->fakeContactsInformation
         );
 
+        $request = new Ubki\Push\Export\Request($this->fakeRequestDataBlock, $document);
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->assertXmlStringEqualsXmlString(
             '<?xml version="1.0" encoding="utf-8"?>
 <doc>
@@ -557,7 +586,7 @@ class FormerTest extends TestCase
         </req_envelope>
     </ubki>
 </doc>',
-            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+            $this->fakeFormer->form($request, static::SESSION_ID)
         );
     }
 
@@ -632,7 +661,21 @@ class FormerTest extends TestCase
         </req_envelope>
     </ubki>
 </doc>',
-            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+            $this->fakeFormer->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+        );
+    }
+
+    protected function createNaturalPerson(): Ubki\Data\Elements\NaturalPerson
+    {
+        return new Ubki\Data\Elements\NaturalPerson(
+            Carbon::make(static::CREATED_AT),
+            Ubki\Dictionaries\Language::RUS(),
+            static::NAME,
+            static::SURNAME,
+            Carbon::make(static::BIRTH_DATE),
+            Ubki\Dictionaries\Gender::MAN(),
+            static::INN,
+            static::PATRONYMIC
         );
     }
 }

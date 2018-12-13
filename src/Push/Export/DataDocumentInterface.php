@@ -10,8 +10,6 @@ use Wearesho\Bobra\Ubki;
  */
 interface DataDocumentInterface extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'ubkidata';
-
     public function getIdentification(): Ubki\Data\Blocks\Identification;
 
     public function getCreditDeals(): ?Ubki\Data\Blocks\CreditsInformation;

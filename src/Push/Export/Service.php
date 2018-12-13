@@ -6,16 +6,16 @@ use GuzzleHttp;
 use Psr\Http;
 use Psr\Log;
 use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Infrastructure\ConfigInterface;
 
 /**
  * Class Service
  * @package Wearesho\Bobra\Ubki\Push\Export
+ *
+ * @method Ubki\Push\ConfigInterface config();
  */
-class Service extends Ubki\Infrastructure\Service
+class Service extends Ubki\Infrastructure\Service implements ServiceInterface
 {
-    /** @var Ubki\Push\ConfigInterface */
-    protected $config;
-
     /** @var FormerInterface */
     protected $former;
 
@@ -36,20 +36,21 @@ class Service extends Ubki\Infrastructure\Service
      *
      * @return Ubki\RequestResponsePair
      * @throws FormerException
-     * @throws GuzzleHttp\Exception\GuzzleException
      * @throws RequestException
      */
     public function export(RequestInterface $request): Ubki\RequestResponsePair
     {
-        $body = $this->former->form($request);
-
-        $this->log("UBKI export request {url}", [
-            'url' => $this->config->getPushUrl(),
-        ]);
+        $body = $this->former
+            ->form(
+                $request,
+                $this->authProvider()
+                    ->provide($this->config())
+                    ->getSessionId()
+            );
 
         try {
-            $response = $this->send($this->config->getPushUrl(), $body);
-        } catch (\Throwable $exception) {
+            $response = $this->send($this->config()->getPushUrl(), $body);
+        } catch (GuzzleHttp\Exception\GuzzleException $exception) {
             throw new RequestException($request, $exception->getMessage(), $exception->getCode(), $exception);
         }
 

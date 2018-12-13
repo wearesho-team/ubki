@@ -450,7 +450,7 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $requestResponsePair = $this->fakeService->send($this->exportRequest);
+        $requestResponsePair = $this->fakeService->export($this->exportRequest);
 
         $this->assertEquals(
             new Ubki\Push\EnvironmentConfig(),
@@ -534,7 +534,7 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $requestResponsePair = $this->fakeService->send($this->exportRequest);
+        $requestResponsePair = $this->fakeService->export($this->exportRequest);
 
         $this->assertEquals(
             new Ubki\Push\EnvironmentConfig(),
@@ -634,6 +634,6 @@ class ServiceTest extends TestCase
         $this->expectExceptionMessage("Some client error");
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->fakeService->send($this->exportRequest);
+        $this->fakeService->export($this->exportRequest);
     }
 }

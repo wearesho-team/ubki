@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Carbon\Carbon;
+use Wearesho\BaseCollection;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -11,6 +11,25 @@ use Wearesho\Bobra\Ubki;
  */
 class Former implements FormerInterface
 {
+    use Ubki\Infrastructure\FormerHelperTrait;
+
+    /** @var bool */
+    protected $prettyPrint;
+
+    /** @var \DOMDocument */
+    private $document;
+
+    public function __construct(bool $prettyPrint = false)
+    {
+        $this->prettyPrint = $prettyPrint;
+        $this->init();
+    }
+
+    private function init(): void
+    {
+        $this->document = new \DOMDocument('1.0', 'utf-8');
+    }
+
     /**
      * @param RequestInterface $request
      * @param string $sessionId
@@ -20,42 +39,40 @@ class Former implements FormerInterface
      */
     public function form(RequestInterface $request, string $sessionId): string
     {
+        $this->init();
+
         try {
-            $document = new \DOMDocument('1.0', 'utf-8');
+            // root tags
+            $root = $this->document->createElement(static::DOC_ROOT);
+            $ubki = $this->document->createElement(static::UBKI_ROOT);
 
-            $root = $document->createElement(static::DOC_ROOT);
-
-            $ubki = $document->createElement(static::UBKI_ROOT);
             $ubki->setAttribute(static::ATTRIBUTE_SESSION_ID, $sessionId);
 
-            $envelope = $document->createElement(static::REQUEST_ENVELOPE);
+            // head tags
+            $envelope = $this->document->createElement(static::REQUEST_ENVELOPE);
+            $reqxml = $this->document->createElement(static::REQUEST_XML);
+            $requestDataWrapper = $this->createFilledElement($request->getHead());
+            $ubkiData = $this->createFilledElement($request->getBody());
 
-            $reqxml = $document->createElement(static::REQUEST_XML);
-
-            $requestDataWrapper = $this->formHeadElement($document, $request->getHead());
-
-            $ubkiData = $document->createElement($request->getBody()->tag());
-
+            // data
             $identification = $request->getBody()->getIdentification();
-            $identificationBlock = $this->createBlockInformation($document, $identification);
-            $credential = $identification->getCredential();
-            $credentialElement = $this->createFilledElement($credential);
-
+            $identificationBlock = $this->createFilledElement($identification);
+            $credentialElement = $this->formCredential($identification->getCredential());
             $identificationBlock->appendChild($credentialElement);
-            // todo: before first block need add tech
             $ubkiData->appendChild($identificationBlock);
 
+            $report = $request->getBody();
             $creditsInformation = $report->getCreditDeals();
 
             if (!is_null($creditsInformation)) {
                 $creditDeals = $creditsInformation->getDeals();
 
                 if (!empty($creditDeals)) {
-                    $creditsBlock = $this->createBlockInformation($creditsInformation);
+                    $creditsBlock = $this->createFilledElement($creditsInformation);
 
                     /** @var Ubki\Data\Interfaces\CreditDeal $creditDeal */
                     foreach ($creditDeals as $creditDeal) {
-                        $creditsBlock->appendChild($this->createFilledElement($creditDeal));
+                        $creditsBlock->appendChild($this->formCreditDeal($creditDeal));
                     }
 
                     $ubkiData->appendChild($creditsBlock);
@@ -68,7 +85,7 @@ class Former implements FormerInterface
                 $decisions = $courtDecisionsInformation->getDecisions();
 
                 if (!empty($decisions)) {
-                    $courtDecisionsBlock = $this->createBlockInformation($courtDecisionsInformation);
+                    $courtDecisionsBlock = $this->createFilledElement($courtDecisionsInformation);
 
                     /** @var Ubki\Data\Interfaces\CourtDecision $decision */
                     foreach ($decisions as $decision) {
@@ -85,7 +102,7 @@ class Former implements FormerInterface
                 $creditRequests = $creditRequestInformation->getCreditRequests();
 
                 if (!empty($creditRequests)) {
-                    $creditRequestsBlock = $this->createBlockInformation($creditRequestInformation);
+                    $creditRequestsBlock = $this->createFilledElement($creditRequestInformation);
 
                     /** @var Ubki\Data\Interfaces\CreditRegister $creditRequest */
                     foreach ($creditRequests as $creditRequest) {
@@ -108,7 +125,7 @@ class Former implements FormerInterface
                 $contacts = $contactsInformation->getContacts();
 
                 if (!empty($contacts)) {
-                    $contactsBlock = $this->createBlockInformation($contactsInformation);
+                    $contactsBlock = $this->createFilledElement($contactsInformation);
 
                     /** @var Ubki\Data\Interfaces\Contact $contact */
                     foreach ($contacts as $contact) {
@@ -124,69 +141,49 @@ class Former implements FormerInterface
             $envelope->appendChild($reqxml);
             $ubki->appendChild($envelope);
             $root->appendChild($ubki);
-            $document->appendChild($root);
+            $this->document->appendChild($root);
+            $this->document->formatOutput = $this->prettyPrint;
         } catch (\Throwable $exception) {
             throw new FormerException($request, $exception->getMessage(), $exception->getCode());
         }
 
-        return $document;
+        return $this->document->saveXML();
     }
 
-    protected function formHeadElement(\DOMDocument $document, Ubki\Data\Interfaces\RequestData $data): \DOMElement
-    {
-        $requestDataWrapper = $this->createDOMElement($document, $data);
-
-        return $this->setAttributes($requestDataWrapper, [
-            Ubki\Data\Interfaces\RequestData::ID => $data->getId(),
-            Ubki\Data\Interfaces\RequestData::DATE => $data->getDate(),
-            Ubki\Data\Interfaces\RequestData::TYPE => $data->getType(),
-            Ubki\Data\Interfaces\RequestData::INITIATOR => $data->getInitiator(),
-            Ubki\Data\Interfaces\RequestData::REASON => $data->getReason(),
-            Ubki\Data\Interfaces\RequestData::VERSION => $data->getVersion(),
-        ]);
-    }
-
-    protected function createBlockInformation(\DOMDocument $document, Ubki\Infrastructure\Block $block): \DOMElement
-    {
-        $element = $this->createDOMElement($document, $block);
-        $element->setAttribute(Ubki\Infrastructure\Block::ATTR_ID, $block->getId());
-
-        return $element;
-    }
-
-    protected function createDOMElement(
-        \DOMDocument $document,
-        Ubki\Infrastructure\ElementInterface $element
+    protected function appendCollectionTo(
+        \DOMElement $wrapper,
+        BaseCollection $collection = null
     ): \DOMElement {
-        return $document->createElement($element->tag());
-    }
-
-    private function appendCollection(\DOMElement &$element, array $collection = []): \DOMElement
-    {
-        if (!empty($collection)) {
-            /** @var Ubki\Infrastructure\ElementInterface $item */
-            foreach ($collection as $item) {
-                $element->appendChild($this->createFilledElement($item));
-            }
+        foreach ((array)$collection as $item) {
+            $wrapper->appendChild($this->createFilledElement($item));
         }
 
-        return $element;
+        return $wrapper;
     }
 
-    private function setAttributes(\DOMElement &$element, array $attributes = []): \DOMElement
+    protected function formCredential(Ubki\Data\Interfaces\Credential $credential): \DOMElement
     {
-        foreach ($attributes as $key => $value) {
-            if (!is_null($value)) {
-                if ($value instanceof Ubki\Infrastructure\Dictionary) {
-                    $element->setAttribute($key, $value->getValue());
-                } elseif ($value instanceof \DateTimeInterface) {
-                    $element->setAttribute($key, Carbon::instance($value)->toDateString());
-                } else {
-                    $element->setAttribute($key, $value);
-                }
-            }
-        }
+        $credentialElement = $this->createDOMElement($credential);
 
-        return $element;
+        $this->setAttributes($credentialElement, $credential);
+
+        $this->appendCollectionTo($credentialElement, $credential->getIdentifiers());
+        $this->appendCollectionTo($credentialElement, $credential->getWorks());
+        $this->appendCollectionTo($credentialElement, $credential->getLinkedPersons());
+        $this->appendCollectionTo($credentialElement, $credential->getDocuments());
+        $this->appendCollectionTo($credentialElement, $credential->getAddresses());
+        $this->appendCollectionTo($credentialElement, $credential->getPhotos());
+
+        return $credentialElement;
+    }
+
+    protected function formCreditDeal(Ubki\Data\Interfaces\CreditDeal $deal): \DOMElement
+    {
+        return $this->appendCollectionTo($this->createFilledElement($deal), $deal->getDealLifes());
+    }
+
+    protected function createDOMElement(Ubki\Infrastructure\ElementInterface $element): \DOMElement
+    {
+        return $this->document->createElement($element->tag());
     }
 }

@@ -43,7 +43,7 @@ interface NaturalPerson extends IdentifiedPerson
 
     public function getFamilyStatus(): ?Dictionaries\FamilyStatus;
 
-    public function getEducation(): Dictionaries\Education;
+    public function getEducation(): ?Dictionaries\Education;
 
     public function getNationality(): ?Dictionaries\Nationality;
 

@@ -19,12 +19,14 @@ class RequestData extends Ubki\Infrastructure\Element implements Ubki\Data\Inter
         Ubki\Dictionaries\RequestReason $reason,
         \DateTimeInterface $date = null,
         string $id = null,
-        Ubki\Dictionaries\RequestInitiator $initiator = null
+        Ubki\Dictionaries\RequestInitiator $initiator = null,
+        string $version = '1.0'
     ) {
         $this->type = $type;
         $this->reason = $reason;
         $this->date = $date;
         $this->id = $id;
         $this->initiator = $initiator;
+        $this->version = $version;
     }
 }

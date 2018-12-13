@@ -60,7 +60,7 @@ class EnvironmentConfigTest extends TestCase
 
     public function testInvalidMode(): void
     {
-        $this->expectException(Ubki\UnsupportedMode::class);
+        $this->expectException(Ubki\Exception\UnsupportedMode::class);
         $this->expectExceptionMessage("Mode have invalid value 3");
         new Ubki\Push\Config('username', 'password', 3);
     }

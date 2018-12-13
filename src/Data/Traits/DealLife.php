@@ -142,6 +142,28 @@ trait DealLife
         return $this->actualEndDate;
     }
 
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\DealLife::ID => $this->getId(),
+            Ubki\Data\Interfaces\DealLife::ISSUE_DATE => $this->getIssueDate(),
+            Ubki\Data\Interfaces\DealLife::STATUS => $this->getStatus(),
+            Ubki\Data\Interfaces\DealLife::ACTUAL_END_DATE => $this->getActualEndDate(),
+            Ubki\Data\Interfaces\DealLife::CURRENT_DEBT => $this->getCurrentDebt(),
+            Ubki\Data\Interfaces\DealLife::DELAY_INDICATION => $this->getDelayIndication(),
+            Ubki\Data\Interfaces\DealLife::END_DATE => $this->getEndDate(),
+            Ubki\Data\Interfaces\DealLife::LIMIT => $this->getLimit(),
+            Ubki\Data\Interfaces\DealLife::MANDATORY_PAYMENT => $this->getMandatoryPayment(),
+            Ubki\Data\Interfaces\DealLife::OVERDUE_TIME => $this->getOverdueTime(),
+            Ubki\Data\Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $this->getCurrentOverdueDebt(),
+            Ubki\Data\Interfaces\DealLife::PAYMENT_DATE => $this->getPaymentDate(),
+            Ubki\Data\Interfaces\DealLife::PAYMENT_INDICATION => $this->getPaymentIndication(),
+            Ubki\Data\Interfaces\DealLife::PERIOD_MONTH => $this->getPeriodMonth(),
+            Ubki\Data\Interfaces\DealLife::PERIOD_YEAR => $this->getPeriodYear(),
+            Ubki\Data\Interfaces\DealLife::TRANCHE_INDICATION => $this->getTrancheIndication(),
+        ];
+    }
+
     protected function validateActualEndDate(?string $actualEndDate, Ubki\Dictionaries\DealStatus $status): void
     {
         if (is_null($actualEndDate) && $status->equals(Ubki\Dictionaries\DealStatus::CLOSE())) {

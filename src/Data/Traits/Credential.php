@@ -105,4 +105,16 @@ trait Credential
     {
         return $this->linkedPersons;
     }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\Credential::PATRONYMIC => $this->getPatronymic(),
+            Ubki\Data\Interfaces\Credential::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\Credential::INN => $this->getInn(),
+            Ubki\Data\Interfaces\Credential::NAME => $this->getName(),
+            Ubki\Data\Interfaces\Credential::BIRTH_DATE => $this->getBirthDate(),
+            Ubki\Data\Interfaces\Credential::SURNAME => $this->getSurname(),
+        ];
+    }
 }

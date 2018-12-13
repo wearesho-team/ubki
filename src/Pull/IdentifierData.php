@@ -1,25 +1,19 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Pull\Elements;
+namespace Wearesho\Bobra\Ubki\Pull;
 
-use Wearesho\Bobra\Ubki\ElementInterface;
-use Wearesho\Bobra\Ubki\ElementTrait;
-use Wearesho\Bobra\Ubki\Pull\Collections;
-use Wearesho\Bobra\Ubki\References\Language;
+use Wearesho\Bobra\Ubki;
 
 /**
- * Class RequestContent
- * @package Wearesho\Bobra\Ubki\Pull\Elements
- * // todo: remove this shit
+ * Class IdentifierData
+ * @package Wearesho\Bobra\Ubki\Pull
  */
-class RequestContent implements ElementInterface
+class IdentifierData extends Ubki\Infrastructure\Element implements Ubki\Infrastructure\ElementInterface
 {
-    use ElementTrait;
-
     public const TAG = 'i';
     public const LANGUAGE = 'reqlng';
 
-    /** @var Language */
+    /** @var Ubki\Dictionaries\Language */
     protected $language;
 
     /** @var Identification */
@@ -32,7 +26,7 @@ class RequestContent implements ElementInterface
     protected $documents;
 
     public function __construct(
-        Language $language,
+        Ubki\Dictionaries\Language $language,
         Identification $identification,
         Collections\Contacts $contacts = null,
         Collections\Documents $documents = null

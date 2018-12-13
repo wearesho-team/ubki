@@ -24,4 +24,9 @@ abstract class Element implements ElementInterface
     {
         return get_object_vars($this);
     }
+
+    public function associativeAttributes(): array
+    {
+        return [];
+    }
 }

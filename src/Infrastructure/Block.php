@@ -17,4 +17,11 @@ abstract class Block extends Element implements BlockInterface
     {
         return static::ID;
     }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Block::ATTR_ID => $this->getId(),
+        ];
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait LegalPerson
@@ -61,5 +61,20 @@ trait LegalPerson
     public function getTaxRegistrationDate(): ?\DateTimeInterface
     {
         return $this->taxRegistrationDate;
+    }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\LegalPerson::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\LegalPerson::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\LegalPerson::ERGPOU => $this->getErgpou(),
+            Ubki\Data\Interfaces\LegalPerson::NAME => $this->getName(),
+            Ubki\Data\Interfaces\LegalPerson::FORM => $this->getForm(),
+            Ubki\Data\Interfaces\LegalPerson::ECONOMY_BRANCH => $this->getEconomyBranch(),
+            Ubki\Data\Interfaces\LegalPerson::ACTIVITY_TYPE => $this->getActivityType(),
+            Ubki\Data\Interfaces\LegalPerson::EDR_REGISTRATION_DATE => $this->getEdrRegistrationDate(),
+            Ubki\Data\Interfaces\LegalPerson::TAX_REGISTRATION_DATE => $this->getTaxRegistrationDate()
+        ];
     }
 }

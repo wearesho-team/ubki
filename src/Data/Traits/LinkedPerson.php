@@ -41,4 +41,17 @@ trait LinkedPerson
     {
         return $this->issueDate;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\LinkedPerson::NAME => $this->getName(),
+            Ubki\Data\Interfaces\LinkedPerson::ERGPOU => $this->getErgpou(),
+            Ubki\Data\Interfaces\LinkedPerson::ISSUE_DATE => $this->getIssueDate(),
+            Ubki\Data\Interfaces\LinkedPerson::ROLE => $this->getRole(),
+        ];
+    }
 }

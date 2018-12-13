@@ -2,134 +2,63 @@
 
 namespace Wearesho\Bobra\Ubki\Pull;
 
-use Carbon\Carbon;
 use GuzzleHttp;
+use Psr\Log;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Service
  * @package Wearesho\Bobra\Ubki\Pull
+ *
+ * @method ConfigInterface config();
  */
-class Service extends Ubki\Infrastructure\Service
+class Service extends Ubki\Infrastructure\Service implements ServiceInterface
 {
-    /** @var ConfigInterface */
-    protected $config;
-
-    /** @var Ubki\Authorization\ProviderInterface */
-    protected $authProvider;
-
     protected $logMessage = 'UBKI import request';
 
-    /** @var \DOMDocument */
-    private $document;
+    /** @var FormerInterface */
+    protected $former;
+
+    public function __construct(
+        ConfigInterface $config,
+        Ubki\Authorization\ProviderInterface $authProvider,
+        GuzzleHttp\ClientInterface $client,
+        Log\LoggerInterface $logger = null,
+        FormerInterface $former = null
+    ) {
+        parent::__construct($config, $authProvider, $client, $logger);
+    }
 
     /**
-     * @param Ubki\Infrastructure\RequestInterface $request
+     * @param RequestInterface $request
      *
      * @return Ubki\RequestResponsePair
-     * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws RequestException
      */
-    public function send(Ubki\Infrastructure\RequestInterface $request): Ubki\RequestResponsePair
+    public function import(RequestInterface $request): Ubki\RequestResponsePair
     {
-        $response = $this->send($this->config->getPullUrl(), $this->getBody($request));
+        $body = $this->former
+            ->form(
+                $request,
+                $this->authProvider()
+                    ->provide($this->config())
+                    ->getSessionId()
+            );
 
-        return new Ubki\RequestResponsePair(
-            $this->getRequest()->getBody()->__toString(),
-            $response->getBody()->__toString()
-        );
-    }
-
-    // todo: refactor
-    private function getBody(RequestInterface $request): string
-    {
-        $this->document = new \DOMDocument('1.0', 'utf-8');
-
-        // Create root element
-        $root = $this->document->createElement($request->tag());
-        $root = $this->document->appendChild($root);
-
-        $ubchElm = $this->document->createElement(RequestInterface::UBKI_BLOCK);
-        $ubchElm->setAttribute(
-            RequestInterface::SESSION_ID,
-            $this->authProvider->provide($this->config)->getSessionId()
-        );
-        $ubchElm = $root->appendChild($ubchElm);
-
-        $envelopeElm = $this->document->createElement(RequestInterface::REQ_ENVELOPE_BLOCK);
-        $envelopeElm = $ubchElm->appendChild($envelopeElm);
-
-        $requestWrapperElm = $this->document->createElement('req_xml');
-        $requestWrapperElm = $envelopeElm->appendChild($requestWrapperElm);
-
-        $requestElm = $this->document->createElement('request');
-
-        $head = $request->getHead();
-        $requestElm->setAttribute('reqtype', $head->getType()->getValue());
-        $requestElm->setAttribute('reqreason', $head->getReason()->getValue());
-        $requestElm->setAttribute('reqdate', Carbon::instance($head->getDate())->toDateString());
-
-        $requestElm = $requestWrapperElm->appendChild($requestElm);
-
-        $requestContent = $request->getBody();
-        $identityWrapperElm = $this->document->createElement($requestContent->tag());
-        $identityWrapperElm->setAttribute(
-            Ubki\Pull\Elements\RequestContent::LANGUAGE,
-            $requestContent->getLanguage()->getValue()
-        );
-        $identityWrapperElm = $requestElm->appendChild($identityWrapperElm);
-
-        $identification = $requestContent->getIdentification();
-        $identityElm = $this->createFilledElement($identification);
-        $identityWrapperElm->appendChild($identityElm);
-
-        $contacts = $requestContent->getContacts();
-
-        if (!is_null($contacts)) {
-            $contactsElement = $identityWrapperElm->appendChild($this->createFilledElement($contacts));
-
-            foreach ($contacts as $contact) {
-                $contactsElement->appendChild($this->createFilledElement($contact));
-            }
+        try {
+            $response = $this->send(
+                $this->config()->getPullUrl(),
+                $body
+            );
+        } catch (GuzzleHttp\Exception\GuzzleException $exception) {
+            throw new RequestException(
+                $request,
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception
+            );
         }
 
-        $documents = $requestContent->getDocuments();
-
-        if (!is_null($documents)) {
-            $documentsElement = $identityWrapperElm->appendChild($this->createFilledElement($documents));
-
-            foreach ($documents as $document) {
-                $documentsElement->appendChild($this->createFilledElement($document));
-            }
-        }
-
-        $mvdElm = $this->document->createElement('mvd');
-        $identityWrapperElm->appendChild($mvdElm);
-
-        $blackListPhoneElm = $this->document->createElement('bphone');
-        $blackListPhoneElm->setAttribute('phone', null);
-        $identityWrapperElm->appendChild($blackListPhoneElm);
-
-        $this->document->formatOutput = true;
-
-        $requestXML = clone $this->document;
-        $requestXML->getElementsByTagName('req_xml')
-            ->item(0)->textContent = base64_encode($this->document->saveXML($requestElm));
-
-        return $requestXML->saveXML();
-    }
-
-    private function createFilledElement(Ubki\Infrastructure\ElementInterface $element = null)
-    {
-        $domElement = $this->document->createElement($element->tag());
-        $attributes = $element->jsonSerialize();
-
-        // todo: refactor
-        foreach ($attributes as $attributeName => $attributeValue) {
-            if (!is_null($attributeValue) && !is_object($attributeValue)) {
-                $domElement->setAttribute($attributeName, $attributeValue);
-            }
-        }
-
-        return $domElement;
+        return $this->formResponse($body, $response);
     }
 }

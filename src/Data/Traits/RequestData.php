@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki;
 trait RequestData
 {
     /** @var string */
-    public $version = '1.0';
+    protected $version = '1.0';
 
     /** @var Ubki\Dictionaries\RequestType */
     protected $type;
@@ -27,6 +27,11 @@ trait RequestData
 
     /** @var Ubki\Dictionaries\RequestInitiator|null */
     protected $initiator;
+
+    public function getVersion(): string
+    {
+        return $this->version;
+    }
 
     public function getType(): Ubki\Dictionaries\RequestType
     {
@@ -51,5 +56,20 @@ trait RequestData
     public function getInitiator(): ?Ubki\Dictionaries\RequestInitiator
     {
         return $this->initiator;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\RequestData::ID => $this->getId(),
+            Ubki\Data\Interfaces\RequestData::DATE => $this->getDate(),
+            Ubki\Data\Interfaces\RequestData::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\RequestData::INITIATOR => $this->getInitiator(),
+            Ubki\Data\Interfaces\RequestData::REASON => $this->getReason(),
+            Ubki\Data\Interfaces\RequestData::VERSION => $this->getVersion(),
+        ];
     }
 }

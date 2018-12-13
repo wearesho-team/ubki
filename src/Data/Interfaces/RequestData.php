@@ -17,6 +17,8 @@ interface RequestData extends Ubki\Infrastructure\ElementInterface
     public const ID = 'reqidout';
     public const INITIATOR = 'reqsource';
 
+    public function getVersion(): string;
+
     public function getType(): Ubki\Dictionaries\RequestType;
 
     public function getReason(): Ubki\Dictionaries\RequestReason;

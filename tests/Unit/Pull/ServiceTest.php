@@ -289,7 +289,7 @@ class ServiceTest extends TestCase
         return;
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $requestResponsePair = $this->fakeService->send(new Ubki\Pull\Request(
+        $requestResponsePair = $this->fakeService->import(new Ubki\Pull\Request(
             new Ubki\Data\Elements\RequestData(
                 Ubki\Dictionaries\RequestType::CREDIT_REPORT(),
                 Ubki\Dictionaries\RequestReason::CREDIT_ONLINE(),

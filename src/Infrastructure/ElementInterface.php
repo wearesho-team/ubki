@@ -9,4 +9,10 @@ namespace Wearesho\Bobra\Ubki\Infrastructure;
 interface ElementInterface extends \JsonSerializable
 {
     public function tag(): string;
+
+    /**
+     * @internal
+     * @return array
+     */
+    public function associativeAttributes(): array;
 }
