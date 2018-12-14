@@ -1,5 +1,15 @@
 # UBKI Integration Changelog
 
+## 0.3.0 Dev
+### Added:
+#### - Pull:
+### Backward compatible changes:
+
+
+## 0.2.1 Unstable
+### Fixed:
+- [MyCLabs\Enum](https://github.com/myclabs/php-enum) version compatibility
+
 ## 0.2.0 Unstable
 ### Added:
 #### - Push

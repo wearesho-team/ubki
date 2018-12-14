@@ -16,9 +16,8 @@ composer require wearesho-team/ubki
 ## Конфигурация
 Для конфигурирования нужного сервиса используется соответствующий ```ConfigInterface```:
 
-Push (экспорт): [Push\ConfigInterface](./src/Push/ConfigInterface.php)
-
-Pull (импорт): [Pull\ConfigInterface](./src/Pull/ConfigInterface.php) (в разработке)
+- Push (экспорт): [Push\ConfigInterface](./src/Push/ConfigInterface.php)
+- Pull (импорт): [Pull\ConfigInterface](./src/Pull/ConfigInterface.php)
 
 Также для каждого сервиса требуется провайдер ```Authorization\Provider``` для авторизации.
 
@@ -81,7 +80,48 @@ $config = new Ubki\Pull\Config(
 |  UBKI_PULL_AUTH_URL  |    no    | [Auth production url](https://secure.ubki.ua/b2_api_xml/ubki/auth) | [Auth test url](https://secure.ubki.ua:4040/b2_api_xml/ubki/auth) |    string (url format)    |
 |     UBKI_PULL_URL    |    no    |                                             |                                                  |    string (url format)    |
 
-## Пример использования: 
+## Пример использования:
+
+Все сервисы используют интерфейсы:
+- Клиента guzzle
+```php
+<?php
+
+$client = new GuzzleHttp\Client();
+// или любой другой клиент, имплементирующий GuzzleHttp\ClientInterface
+```
+- Psr-логгера
+```php
+<?php
+
+$logger = new \Psr\Log\NullLogger();
+// или любой другой логгер, имплементирующий LoggerInterface
+```
+- Встроенного провайдера авторизации
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+use chillerlan\SimpleCache;
+
+/** @var \GuzzleHttp\ClientInterface $client */
+/** @var \Psr\Log\LoggerInterface $logger */
+
+$authProvider = new Ubki\Authorization\Provider($client, $logger);
+// или используейте кэш-провайдер для сохранения ключа сессии
+$cacheDriver = new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver());
+$authProvider = new Ubki\Authorization\CacheProvider($cacheDriver, $client, $logger);
+```
+
+Все сервисы возвращают [RequestResponsePair](./src/RequestResponsePair.php):
+```php
+<?php
+
+/** @var \Wearesho\Bobra\Ubki\RequestResponsePair $requestResponsePair */
+
+$requestResponsePair->getRequest(); // Тело запроса в виде строки
+$requestResponsePair->getResponse(); // Тело ответа в виде строки
+```
 
 *Рекомендуется использовать контейнер внедрения зависимостей.*
 
@@ -94,103 +134,346 @@ $config = new Ubki\Pull\Config(
 
 use Wearesho\Bobra\Ubki;
 
-$authProvider = new Ubki\Authorization\Provider(
-    new \GuzzleHttp\Client(), // любой клиент, имплементирующий \GuzzleHttp\ClientInterface
-    new Psr\Log\NullLogger() // любой логгер, имплементирующий \Psr\Log\LoggerInterface
-);
+/** @var Ubki\Push\ConfigInterface $config */
+/** @var \GuzzleHttp\ClientInterface $client */
+/** @var \Psr\Log\LoggerInterface $logger */
+/** @var Ubki\Authorization\ProviderInterface $authProvider */
 
 $service = new Ubki\Push\Registry\Service(
-    new Ubki\Push\EnvironmentConfig("UBKI_"),
+    $config,
     $authProvider,
-    new \GuzzleHttp\Client(), // любой клиент, имплементирующий \GuzzleHttp\ClientInterface
-    new Psr\Log\NullLogger() // любой логгер, имплементирующий \Psr\Log\LoggerInterface
+    $client,
+    $logger
 );
 
-$request = new Ubki\Push\Registry\Rep\Request(...);
-$response = $service->send($request);
+$request = new Ubki\Push\Registry\Rep\Request(
+    $operationDate = new \DateTime('now'),
+    $ubkiId = 'ubki_id',
+    $partnerId = 'partner_id'
+);
+
+$pair = $service->send($request);
 ```
 
-## Импорт отчетов (Pull) .<small>alfa-version</small>
-
+## Импорт отчетов (Pull)
+- Инстанцирование конфига:
 ```php
 <?php
 
-use Wearesho\Bobra\Ubki\Authorization;
-use Wearesho\Bobra\Ubki\Blocks\Entities\RequestData;
-use Wearesho\Bobra\Ubki\Pull;
-use Wearesho\Bobra\Ubki\References;
+use Wearesho\Bobra\Ubki;
 
-$config = new Pull\EnvironmentConfig();
-$client = new GuzzleHttp\Client(); // любой клиент, имплементирующий \GuzzleHttp\ClientInterface
-$authProvider = new Authorization\Provider($client);
-$service = new Pull\Service(
-    $config, 
-    $authProvider,
-    $client,
-    new \Psr\Log\NullLogger() // любой логгер, имплементирующий \Psr\Log\LoggerInterface
-);
+$config = new Ubki\Pull\Config('username', 'password', Ubki\Pull\ConfigInterface::MODE_PRODUCTION);
+// или используйте конфиг окружения
+$config = new Ubki\Pull\EnvironmentConfig($prefix = 'UBKI_PULL_');
+```
 
-// Стандартный минимальный запрос на импорт отчета
-$request = new Pull\Request(
-    new RequestData(
-        References\RequestType::CREDIT_REPORT(), // или любой другой тип
-        References\RequestReason::OTHER_SERVICES(), // или любая другая причина
-        $date = new DateTime(), // optional
-        $id = 'id', // optional
-        References\RequestInitiator::PARTNER() // или любой другой инициатор
+- Инстанцирование сервиса:
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+
+/** @var Ubki\Pull\ConfigInterface $config */
+/** @var \GuzzleHttp\ClientInterface $client */
+/** @var \Psr\Log\LoggerInterface $logger */
+/** @var Ubki\Authorization\ProviderInterface $authProvider */
+
+$service = new Ubki\Pull\Service($config, $authProvider, $client, $logger);
+```
+- Запрос в УБКИ на импорт отчета:
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+
+/** @var Ubki\Pull\ServiceInterface $service */
+
+$request = new Ubki\Pull\Request(
+    $headData = new Ubki\Data\Elements\RequestData(
+        $type = Ubki\Dictionaries\RequestType::CREDIT_REPORT(),
+        $reason = Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT(),
+        $date = new DateTime('now'),
+        $id = 'id',
+        $initiator = Ubki\Dictionaries\RequestInitiator::PARTNER()
     ),
-    new Pull\Elements\RequestContent(
-        References\Language::RUS(),
-        new Pull\Elements\Identification(
-            $inn = '1234567890'
-        )
+    $content = new Ubki\Pull\Elements\RequestContent(
+        $language = Ubki\Dictionaries\Language::RUS(),
+        $identificationData = new Ubki\Pull\Elements\Identification(
+            $inn = '123456790', // Всегда обязательный
+            $name = 'name',
+            $patronymic = 'patronymic',
+            $surname = 'surname',
+            $birthDate = new \DateTime('1984-03-12')
+        ),
+        $contacts = new Ubki\Pull\Collections\Contacts([
+            new Ubki\Pull\Elements\Contact(
+                Ubki\Dictionaries\ContactType::EMAIL(),
+                $value = 'example@gmail.com'
+            ),
+        ]),
+        $documents = new Ubki\Pull\Collections\Documents([
+            new Ubki\Pull\Elements\Document(
+                Ubki\Dictionaries\DocumentType::PASSPORT(),
+                $serial = 'МТ',
+                $number = '123456'
+            ),
+        ])
     )
 );
 
-// Если тип запроса на Кредит-онлайн (RequestReason::CREDIT_ONLINE()) то требуется заполнить опциональные параметры
-$request = new Pull\Request(
-   new RequestData(
-       References\RequestType::CREDIT_REPORT(),
-       References\RequestReason::CREDIT_ONLINE(),
-       $date = new DateTime(),
-       $id = 'id',
-       References\RequestInitiator::PARTNER()
-   ),
-   new Pull\Elements\RequestContent(
-       References\Language::RUS(),
-       new Pull\Elements\Identification(
-           $inn = '1234567890',
-           $name = 'name',
-           $patronymic = 'patronymic',
-           $surname = 'surname',
-           $birthDate = new DateTime()
-       ),
-       new Pull\Collections\Contacts([
-           new Pull\Elements\Contact(
-               References\ContactType::MOBILE(),
-               $value = '380930439474'
-           ),
-       ]),
-       new Pull\Collections\Documents([
-           new Pull\Elements\Document(
-               References\DocumentType::PASSPORT(),
-               $serial = 'AB',
-               $number = "123456"
-           ),
-       ])
-   )
+$pair = $service->import($request);
+```
+
+## Экспорт отчетов
+- Инстанцирование конфига:
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+
+$config = new Ubki\Push\Config('username', 'password', Ubki\Push\ConfigInterface::MODE_PRODUCTION);
+// или используйте конфиг окружения
+$config = new Ubki\Push\EnvironmentConfig($prefix = 'UBKI_PUSH_');
+```
+- Инстанцирование формера (опционально)
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+
+$former = new Ubki\Push\Export\Former();
+```
+- Инстанцирование сервиса
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+
+/** @var Ubki\Push\ConfigInterface $config */
+/** @var \GuzzleHttp\ClientInterface $client */
+/** @var \Psr\Log\LoggerInterface $logger */
+/** @var Ubki\Authorization\ProviderInterface $authProvider */
+/** @var Ubki\Push\Export\Former $former */
+
+$service = new Ubki\Push\Export\Service(
+    $config,
+    $authProvider,
+    $client,
+    $logger,
+    $former
+);
+```
+- Запрос в убки с экспортируемым отчетом
+```php
+<?php
+
+use Wearesho\Bobra\Ubki;
+
+/** @var Ubki\Push\Export\ServiceInterface $service */
+
+// основные данные отчета
+$headData = new Ubki\Data\Elements\RequestData(
+    Ubki\Dictionaries\RequestType::EXPORT(),
+    Ubki\Dictionaries\RequestReason::EXPORT(),
+    new DateTime('now'),
+    'id',
+    Ubki\Dictionaries\RequestInitiator::PARTNER()
 );
 
-$requestResponsePair = $service->send($request);
+$report = new Ubki\Push\Export\DataDocument(
+    // Блок идентификации
+    new Ubki\Data\Blocks\Identification(
+        // Композиция данных идентификации лица
+        new Ubki\Data\Elements\Credential(
+            Ubki\Dictionaries\Language::RUS(),
+            'name',
+            'patronymic',
+            'surname',
+            $birthDate = new DateTime('1984-03-12'),
+            // Коллекция стандартных данных идентификации лица
+            new Ubki\Data\Collections\IdentifiedPersons([
+                // Данные идентификация физического лица
+                new Ubki\Data\Elements\NaturalPerson(
+                    $createdAt = new DateTime('now'),
+                    Ubki\Dictionaries\Language::RUS(),
+                    'name',
+                    'surname',
+                    $birthDate = new DateTime('1984-03-12'),
+                    Ubki\Dictionaries\Gender::MAN(),
+                    $inn = '1234567890',
+                    'patronymic',
+                    Ubki\Dictionaries\FamilyStatus::MARRIED(),
+                    Ubki\Dictionaries\Education::HIGH(),
+                    Ubki\Dictionaries\Nationality::UKRAINE(),
+                    Ubki\Dictionaries\RegistrationSpd::PHYSICAL(),
+                    Ubki\Dictionaries\SocialStatus::PENSIONER(),
+                    $childrenCoun = 2
+                ),
+                // Данные идентификация юридического лица
+                new Ubki\Data\Elements\LegalPerson(
+                    $createdAt = new DateTime('now'),
+                    Ubki\Dictionaries\Language::RUS(),
+                    'name',
+                    'egrpou',
+                    'form',
+                    'economy_branch',
+                    'activity_type',
+                    $edrRegistrationDate = new DateTime('1984-03-12'),
+                    $taxRegistrationDate = new DateTime('1984-03-12')
+                ),
+            ]),
+            // Различные документы лица
+            new Ubki\Data\Collections\Documents([
+                new Ubki\Data\Elements\Document(
+                    $createdAt = new DateTime('now'),
+                    Ubki\Dictionaries\Language::RUS(),
+                    Ubki\Dictionaries\DocumentType::PASSPORT(),
+                    $serial = 'МТ',
+                    $number = '1234567890',
+                    'issueBy',
+                    $issueDate = new DateTime('1984-03-12'),
+                    $termin = new DateTime('2020-03-12')
+                ),
+            ]),
+            // Места проживания лица
+            new Ubki\Data\Collections\Addresses([
+                new Ubki\Data\Elements\Address(
+                    $createdAt = new DateTime('now'),
+                    Ubki\Dictionaries\Language::RUS(),
+                    Ubki\Dictionaries\AddressType::HOME(),
+                    'country',
+                    'city',
+                    'street',
+                    'house',
+                    'index',
+                    'state',
+                    'area',
+                    Ubki\Dictionaries\CityType::TOWN(),
+                    'corpus',
+                    'flat',
+                    'fullAddress'
+                ),
+            ]),
+            $inn = '123467890',
+            // Места работы лица
+            new Ubki\Data\Collections\Works([
+                new Ubki\Data\Elements\Work(
+                    $createdAt = new DateTime('now'),
+                    Ubki\Dictionaries\Language::RUS(),
+                    'egrpou',
+                    'name',
+                    Ubki\Dictionaries\IdentifierRank::DIRECTOR(),
+                    $experience = 10, // стаж в полных годах
+                    $income = 2500.00 // зарплата по документам
+                ),
+            ]),
+            // Фотографии заемщика
+            new Ubki\Data\Collections\Photos([
+                new Ubki\Data\Elements\Photo(
+                    $createdAt = new DateTime('now'),
+                    'uri', // фото, закодированное в base64
+                    $inn = '1234567890'
+                ),
+            ]),
+            // Поручители
+            new Ubki\Data\Collections\LinkedPersons([
+                new Ubki\Data\Elements\LinkedPerson(
+                    'name',
+                    Ubki\Dictionaries\LinkedIdentifierRole::DIRECTOR(),
+                    $issueDate = new DateTime('now'),
+                    'egrpou'
+                ),
+            ])
+        )
+    ),
+    // Блок информации о кредитах
+    new Ubki\Data\Blocks\CreditsInformation(
+        // Коллекция кредитных сделок
+        new Ubki\Data\Collections\CreditDeals([
+            new Ubki\Data\Elements\CreditDeal(
+                'id',
+                Ubki\Dictionaries\Language::RUS(),
+                'name',
+                'surname',
+                $birthDate = new DateTime('1984-03-12'),
+                Ubki\Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
+                Ubki\Dictionaries\CollateralType::R_1(),
+                Ubki\Dictionaries\RepaymentProcedure::CREDIT_LIMIT(),
+                Ubki\Dictionaries\Currency::UAH(),
+                $initialAmount = 10000.00,
+                Ubki\Dictionaries\SubjectRole::BORROWER(),
+                $collateralCost = 10000.00,
+                // Жиненный цикл сделки
+                new Ubki\Data\Collections\DealLifes([
+                    new Ubki\Data\Elements\DealLife(
+                        'id', // должно быть идентичным id сделки
+                        $periodMonth = 2,
+                        $periodYear = 2018,
+                        $issueDate = new DateTime('now'),
+                        $endDate = new DateTime('2020-03-12'),
+                        Ubki\Dictionaries\DealStatus::OPEN(),
+                        $limit = 10000.00,
+                        $mandatoryPayment = 200.00,
+                        $currentDebt = 0,
+                        $currentDebtOverdue = 0,
+                        $overdueTime = 0,
+                        $paymentIndication = Ubki\Dictionaries\Flag::YES(),
+                        $delayIndication = Ubki\Dictionaries\Flag::YES(),
+                        $trancheIndication = Ubki\Dictionaries\Flag::YES(),
+                        $paymentDate = new DateTime('now'),
+                        // должно быть обязательно указано при статусе "закрыта"
+                        $actualEndDate = new DateTime('2018-03-12')
+                    ),
+                ]),
+                $inn = '1234567890',
+                'patronymic',
+                'source'
+            ),
+        ])
+    ),
+    // Блок ифнормации о контактах
+    new Ubki\Data\Blocks\ContactsInformation(
+        // Коллекция контактов лица
+        new Ubki\Data\Collections\Contacts([
+            new Ubki\Data\Elements\Contact(
+                $createdAt = new DateTime('now'),
+                '+380000000000',
+                Ubki\Dictionaries\ContactType::MOBILE(),
+                $inn = '1234567890'
+            ),
+        ])
+    ),
+    // Блок информации о судебных решениях
+    new Ubki\Data\Blocks\CourtDecisionsInformation(
+        // Коллекция судебных решений
+        new Ubki\Data\Collections\CourtDecisions([
+            new Ubki\Data\Elements\CourtDecision(
+                'id',
+                $inn = '1234567890',
+                $date = new DateTime('now'),
+                Ubki\Dictionaries\CourtSubjectStatus::DEFENDANT(),
+                Ubki\Dictionaries\CourtDealType::CIVIL(),
+                'courtName',
+                'documentType',
+                'documentTypeReference',
+                'legalFact',
+                'legalFactReference',
+                $createdAt = new DateTime('now'),
+                'area',
+                'areaReference'
+            ),
+        ])
+    )
+);
 
-$requestBody = $requestResponsePair->getRequest(); // Тело запроса для возможности сохранения в модели
-$report = $requestResponsePair->getResponse(); // Тело импортированного отчета
+$request = new Ubki\Push\Export\Request($headData, $report);
+
+$service->export($request);
 ```
 
 ## Справочники УБКИ
-
 - [Документация УБКИ](https://sites.google.com/ubki.ua/doc/справочники)
-- [Документация библиотеки](./src/References) (отсутствует)
+- [Реализация библиотеки](./src/Dictionaries)
 
 **Библиотека находится в разработке**
 1. Авторизация (Authorization)

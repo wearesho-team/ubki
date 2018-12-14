@@ -19,81 +19,86 @@ class Former extends Ubki\Infrastructure\Former implements FormerInterface
      */
     public function form(Ubki\Infrastructure\RequestInterface $request, string $sessionId): string
     {
-        $this->init();
+        try {
+            $this->init();
 
-        return $this->getBody($request, $sessionId);
-    }
+            // Create root element
+            $root = $this->document->createElement($request->tag());
+            $root = $this->document->appendChild($root);
 
-    protected function getBody(RequestInterface $request, string $sessionId): string
-    {
-        // Create root element
-        $root = $this->document->createElement($request->tag());
-        $root = $this->document->appendChild($root);
+            $ubchElm = $this->document->createElement(RequestInterface::UBKI_BLOCK);
+            $ubchElm->setAttribute(RequestInterface::SESSION_ID, $sessionId);
+            $ubchElm = $root->appendChild($ubchElm);
 
-        $ubchElm = $this->document->createElement(RequestInterface::UBKI_BLOCK);
-        $ubchElm->setAttribute(RequestInterface::SESSION_ID, $sessionId);
-        $ubchElm = $root->appendChild($ubchElm);
+            $envelopeElm = $this->document->createElement(RequestInterface::REQ_ENVELOPE_BLOCK);
+            $envelopeElm = $ubchElm->appendChild($envelopeElm);
 
-        $envelopeElm = $this->document->createElement(RequestInterface::REQ_ENVELOPE_BLOCK);
-        $envelopeElm = $ubchElm->appendChild($envelopeElm);
+            $requestWrapperElm = $this->document->createElement('req_xml');
+            $requestWrapperElm = $envelopeElm->appendChild($requestWrapperElm);
 
-        $requestWrapperElm = $this->document->createElement('req_xml');
-        $requestWrapperElm = $envelopeElm->appendChild($requestWrapperElm);
+            $requestElm = $this->document->createElement('request');
 
-        $requestElm = $this->document->createElement('request');
+            $head = $request->getHead();
+            $requestElm->setAttribute('reqtype', $head->getType()->getValue());
+            $requestElm->setAttribute('reqreason', $head->getReason()->getValue());
+            $requestElm->setAttribute('reqdate', Carbon::instance($head->getDate())->toDateString());
 
-        $head = $request->getHead();
-        $requestElm->setAttribute('reqtype', $head->getType()->getValue());
-        $requestElm->setAttribute('reqreason', $head->getReason()->getValue());
-        $requestElm->setAttribute('reqdate', Carbon::instance($head->getDate())->toDateString());
+            $requestElm = $requestWrapperElm->appendChild($requestElm);
 
-        $requestElm = $requestWrapperElm->appendChild($requestElm);
+            $requestContent = $request->getBody();
+            $identityWrapperElm = $this->document->createElement($requestContent->tag());
+            $identityWrapperElm->setAttribute(
+                Ubki\Pull\Elements\RequestContentInterface::LANGUAGE,
+                $requestContent->getLanguage()->getValue()
+            );
+            $identityWrapperElm = $requestElm->appendChild($identityWrapperElm);
 
-        $requestContent = $request->getBody();
-        $identityWrapperElm = $this->document->createElement($requestContent->tag());
-        $identityWrapperElm->setAttribute(
-            Ubki\Pull\Elements\RequestContentInterface::LANGUAGE,
-            $requestContent->getLanguage()->getValue()
-        );
-        $identityWrapperElm = $requestElm->appendChild($identityWrapperElm);
+            $identification = $requestContent->getIdentification();
+            $identityElm = $this->createFilledElement($identification);
+            $identityWrapperElm->appendChild($identityElm);
 
-        $identification = $requestContent->getIdentification();
-        $identityElm = $this->createFilledElement($identification);
-        $identityWrapperElm->appendChild($identityElm);
+            $contacts = $requestContent->getContacts();
 
-        $contacts = $requestContent->getContacts();
+            if (!is_null($contacts)) {
+                $contactsElement = $identityWrapperElm->appendChild($this->createFilledElement($contacts));
 
-        if (!is_null($contacts)) {
-            $contactsElement = $identityWrapperElm->appendChild($this->createFilledElement($contacts));
-
-            foreach ($contacts as $contact) {
-                $contactsElement->appendChild($this->createFilledElement($contact));
+                foreach ($contacts as $contact) {
+                    $contactsElement->appendChild($this->createFilledElement($contact));
+                }
             }
-        }
 
-        $documents = $requestContent->getDocuments();
+            $documents = $requestContent->getDocuments();
 
-        if (!is_null($documents)) {
-            $documentsElement = $identityWrapperElm->appendChild($this->createFilledElement($documents));
+            if (!is_null($documents)) {
+                $documentsElement = $identityWrapperElm->appendChild($this->createFilledElement($documents));
 
-            foreach ($documents as $document) {
-                $documentsElement->appendChild($this->createFilledElement($document));
+                foreach ($documents as $document) {
+                    $documentsElement->appendChild($this->createFilledElement($document));
+                }
             }
+
+            $mvdElm = $this->document->createElement('mvd');
+            $identityWrapperElm->appendChild($mvdElm);
+
+            $blackListPhoneElm = $this->document->createElement('bphone');
+            $blackListPhoneElm->setAttribute('phone', null);
+            $identityWrapperElm->appendChild($blackListPhoneElm);
+
+            $this->document->formatOutput = true;
+
+            $requestXML = clone $this->document;
+            $requestXML->getElementsByTagName('req_xml')
+                ->item(0)->textContent = base64_encode($this->document->saveXML($requestElm));
+
+            return $requestXML->saveXML();
+        } catch (\Throwable $exception) {
+            throw new Ubki\Exception\Former(
+                $request,
+                $this,
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception
+            );
         }
-
-        $mvdElm = $this->document->createElement('mvd');
-        $identityWrapperElm->appendChild($mvdElm);
-
-        $blackListPhoneElm = $this->document->createElement('bphone');
-        $blackListPhoneElm->setAttribute('phone', null);
-        $identityWrapperElm->appendChild($blackListPhoneElm);
-
-        $this->document->formatOutput = true;
-
-        $requestXML = clone $this->document;
-        $requestXML->getElementsByTagName('req_xml')
-            ->item(0)->textContent = base64_encode($this->document->saveXML($requestElm));
-
-        return $requestXML->saveXML();
     }
 }
