@@ -3,7 +3,7 @@
   "description": "UBKI Integration for PHP",
   "type": "library",
   "require": {
-    "php": "7.2",
+    "php": "^7.1",
     "ext-SimpleXML": "*",
     "guzzlehttp/guzzle": "^6.3",
     "horat1us/environment-config": "^1.2",
@@ -56,7 +56,7 @@
     "process-timeout": 1800,
     "sort-packages": true,
     "platform": {
-      "php": "7.2"
+      "php": "7.1"
     }
   },
   "scripts": {

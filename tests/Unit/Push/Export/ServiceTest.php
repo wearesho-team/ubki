@@ -134,7 +134,7 @@ class ServiceTest extends TestCase
     {
         putenv('UBKI_PUSH_USERNAME=' . static::USERNAME);
         putenv('UBKI_PUSH_PASSWORD=' . static::PASSWORD);
-        putenv('UBKI_PUSH_MODE=' .  Ubki\Authorization\ConfigInterface::MODE_TEST);
+        putenv('UBKI_PUSH_MODE=' . Ubki\Authorization\ConfigInterface::MODE_TEST);
         putenv('UBKI_AUTH_URL=' . Ubki\Authorization\ConfigInterface::TEST_AUTH_URL);
         $this->logger = new TestLogger();
         $this->config = new  Ubki\Push\EnvironmentConfig();
@@ -401,6 +401,158 @@ class ServiceTest extends TestCase
         </req_envelope>
     </ubki>
 </doc>';
+    }
+
+    public function testExportWithCustomConfigProductionMode(): void
+    {
+        $authResponse =
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <doc>
+                <auth sessid="testSessionId" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" 
+                      userlogin="testUsername" userid="1"
+                      userfname="FirstName" userlname="LastName" usermname="MiddleName"
+                      rolegroupid="2" rolegroupname="GroupName"
+                      agrid="3" agrname="OrganizationName" role="1"/>
+            </doc>';
+        $exportResponse =
+            '<?xml version="1.0" encoding="utf-8"?><doc>
+            <tech>
+                <trace>
+                    <step name="INPROC" stm="1530780931.0051" ftm="1530780931.1068"/>
+                    <step name="VALID" stm="1530780931.1068" ftm="1530780931.116"/>
+                    <step name="INSERT" stm="1530780931.3003" ftm="1530780931.3004"/>
+                </trace>
+                <reqinfo reqid="IN#1231231233"/>
+                <error errtype="" errtext=""/>
+                <sentdatainfo reqid="IN#1231231233" state="ok">
+                </sentdatainfo>
+            </tech>
+            </doc>';
+        $this->container = [];
+        $history = GuzzleHttp\Middleware::history($this->container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(200, [], $authResponse),
+            new GuzzleHttp\Psr7\Response(200, [], $exportResponse),
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+        $this->config = new Ubki\Push\Config(
+            static::USERNAME,
+            static::PASSWORD,
+            Ubki\Push\ConfigInterface::MODE_PRODUCTION
+        );
+        $this->authProvider = new Ubki\Authorization\CacheProvider(
+            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            $client,
+            $this->logger
+        );
+        $this->fakeService = new Ubki\Push\Export\Service(
+            $this->config,
+            $this->authProvider,
+            $client
+        );
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $requestResponsePair = $this->fakeService->export($this->exportRequest);
+
+        $this->assertEquals(
+            $this->config,
+            $this->fakeService->config()
+        );
+        $this->assertXmlStringEqualsXmlString(
+            $this->exportXml,
+            $requestResponsePair->getRequest()
+        );
+        $this->assertXmlStringEqualsXmlString(
+            $exportResponse,
+            $requestResponsePair->getResponse()
+        );
+        $parser = new Ubki\Push\Export\Parser();
+        $this->assertEquals(
+            new Ubki\Push\Export\Response(
+                'IN#1231231233',
+                'ok',
+                '',
+                '',
+                new Ubki\Push\Error\Collection()
+            ),
+            $parser->parseResponse($requestResponsePair->getResponse())
+        );
+    }
+
+    public function testExportWithCustomConfigTestMode(): void
+    {
+        $authResponse =
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            <doc>
+                <auth sessid="testSessionId" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" 
+                      userlogin="testUsername" userid="1"
+                      userfname="FirstName" userlname="LastName" usermname="MiddleName"
+                      rolegroupid="2" rolegroupname="GroupName"
+                      agrid="3" agrname="OrganizationName" role="1"/>
+            </doc>';
+        $exportResponse =
+            '<?xml version="1.0" encoding="utf-8"?><doc>
+            <tech>
+                <trace>
+                    <step name="INPROC" stm="1530780931.0051" ftm="1530780931.1068"/>
+                    <step name="VALID" stm="1530780931.1068" ftm="1530780931.116"/>
+                    <step name="INSERT" stm="1530780931.3003" ftm="1530780931.3004"/>
+                </trace>
+                <reqinfo reqid="IN#1231231233"/>
+                <error errtype="" errtext=""/>
+                <sentdatainfo reqid="IN#1231231233" state="ok">
+                </sentdatainfo>
+            </tech>
+            </doc>';
+        $this->container = [];
+        $history = GuzzleHttp\Middleware::history($this->container);
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(200, [], $authResponse),
+            new GuzzleHttp\Psr7\Response(200, [], $exportResponse),
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+        $stack->push($history);
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+        $this->config = new Ubki\Push\Config(static::USERNAME, static::PASSWORD, Ubki\Push\ConfigInterface::MODE_TEST);
+        $this->authProvider = new Ubki\Authorization\CacheProvider(
+            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            $client,
+            $this->logger
+        );
+        $this->fakeService = new Ubki\Push\Export\Service(
+            $this->config,
+            $this->authProvider,
+            $client
+        );
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $requestResponsePair = $this->fakeService->export($this->exportRequest);
+
+        $this->assertEquals(
+            $this->config,
+            $this->fakeService->config()
+        );
+        $this->assertXmlStringEqualsXmlString(
+            $this->exportXml,
+            $requestResponsePair->getRequest()
+        );
+        $this->assertXmlStringEqualsXmlString(
+            $exportResponse,
+            $requestResponsePair->getResponse()
+        );
+        $parser = new Ubki\Push\Export\Parser();
+        $this->assertEquals(
+            new Ubki\Push\Export\Response(
+                'IN#1231231233',
+                'ok',
+                '',
+                '',
+                new Ubki\Push\Error\Collection()
+            ),
+            $parser->parseResponse($requestResponsePair->getResponse())
+        );
     }
 
     public function testSuccessExport(): void

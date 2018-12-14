@@ -31,9 +31,14 @@ trait EnvironmentConfigTrait
         return $url;
     }
 
+    public function getMode(): int
+    {
+        return (int)$this->getEnv('MODE');
+    }
+
     protected function isProductionMode(): bool
     {
-        $environmentMode = (int)$this->getEnv('MODE');
+        $environmentMode = $this->getMode();
 
         switch ($environmentMode) {
             case ConfigInterface::MODE_PRODUCTION:

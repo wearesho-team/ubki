@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Authorization;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
-
 /**
  * Interface ConfigInterface
  * @package Wearesho\Bobra\Ubki\Authorization
@@ -31,4 +29,6 @@ interface ConfigInterface
     public function getPassword(): string;
 
     public function getAuthUrl(): string;
+
+    public function getMode(): int;
 }

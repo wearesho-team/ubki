@@ -285,36 +285,34 @@ class ServiceTest extends TestCase
             $client,
             $this->logger
         );
-        $this->markTestSkipped();
-        return;
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $requestResponsePair = $this->fakeService->import(new Ubki\Pull\Request(
             new Ubki\Data\Elements\RequestData(
                 Ubki\Dictionaries\RequestType::CREDIT_REPORT(),
-                Ubki\Dictionaries\RequestReason::CREDIT_ONLINE(),
+                Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
                 static::ID,
                 Ubki\Dictionaries\RequestInitiator::PARTNER()
             ),
-            new Pull\Elements\RequestContent(
-                References\Language::RUS(),
-                new Pull\Elements\Identification(
+            new Ubki\Pull\Elements\RequestContent(
+                Ubki\Dictionaries\Language::RUS(),
+                new Ubki\Pull\Elements\Identification(
                     static::INN,
                     static::NAME,
                     static::PATRONYMIC,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE)
                 ),
-                new Pull\Collections\Contacts([
-                    new Pull\Elements\Contact(
-                        References\ContactType::MOBILE(),
+                new Ubki\Pull\Collections\Contacts([
+                    new Ubki\Pull\Elements\Contact(
+                        Ubki\Dictionaries\ContactType::MOBILE(),
                         static::VALUE
                     ),
                 ]),
-                new Pull\Collections\Documents([
-                    new Pull\Elements\Document(
-                        References\DocumentType::PASSPORT(),
+                new Ubki\Pull\Collections\Documents([
+                    new Ubki\Pull\Elements\Document(
+                        Ubki\Dictionaries\DocumentType::PASSPORT(),
                         static::SERIAL,
                         static::NUMBER
                     ),
@@ -322,11 +320,16 @@ class ServiceTest extends TestCase
             )
         ));
 
+        $expectRequest = '<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<ubki sessid="A1F593950A8F4562AE5A5DB1914D658A">
+<req_envelope>
+<req_xml>PHJlcXVlc3QgcmVxdHlwZT0iMDkiIHJlcXJlYXNvbj0iNCIgcmVxZGF0ZT0iMjAxOC0wMy0xMiI+CiAgPGkgcmVxbG5nPSIxIj4KICAgIDxpZGVudCBva3BvPSJ0ZXN0SW5uIiBmbmFtZT0idGVzdE5hbWUiIG1uYW1lPSJ0ZXN0UGF0cm9ueW1pYyIgbG5hbWU9InRlc3RTdXJuYW1lIiBiZGF0ZT0iMjAxOC0wMy0xMiIvPgogICAgPGNvbnRhY3RzPgogICAgICA8Y29udCBjdHlwZT0iMyIgY3ZhbD0idGVzdFZhbHVlIi8+CiAgICA8L2NvbnRhY3RzPgogICAgPGRvY3M+CiAgICAgIDxkb2MgZHR5cGU9IjEiIGRzZXI9InRlc3RTZXJpYWwiIGRub209InRlc3ROdW1iZXIiLz4KICAgIDwvZG9jcz4KICAgIDxtdmQvPgogICAgPGJwaG9uZSBwaG9uZT0iIi8+CiAgPC9pPgo8L3JlcXVlc3Q+</req_xml></req_envelope></ubki></doc>'; // phpcs:ignore
         $this->assertXmlStringEqualsXmlString(
-            '<?xml version="1.0" encoding="utf-8"?>
-<doc><ubki sessid="A1F593950A8F4562AE5A5DB1914D658A"><req_envelope><req_xml>PHJlcXVlc3QgcmVxdHlwZT0iMDkiIHJlcXJlYXNvbj0iNCIgcmVxZGF0ZT0iMjAxOC0wMy0xMiI+CiAgPGkgcmVxbG5nPSIxIj4KICAgIDxpZGVudCBva3BvPSJ0ZXN0SW5uIiBmbmFtZT0idGVzdE5hbWUiIG1uYW1lPSJ0ZXN0UGF0cm9ueW1pYyIgbG5hbWU9InRlc3RTdXJuYW1lIiBiZGF0ZT0iMjAxOC0wMy0xMiIvPgogICAgPGNvbnRhY3RzPgogICAgICA8Y29udCBjdHlwZT0iMyIgY3ZhbD0idGVzdFZhbHVlIi8+CiAgICA8L2NvbnRhY3RzPgogICAgPGRvY3M+CiAgICAgIDxkb2MgZHR5cGU9IjEiIGRzZXI9InRlc3RTZXJpYWwiIGRub209InRlc3ROdW1iZXIiLz4KICAgIDwvZG9jcz4KICAgIDxtdmQvPgogICAgPGJwaG9uZSBwaG9uZT0iIi8+CiAgPC9pPgo8L3JlcXVlc3Q+</req_xml></req_envelope></ubki></doc>', // phpcs:ignore
+            $expectRequest,
             $requestResponsePair->getRequest()
         );
+
         $this->assertEquals(
             $importResponse,
             $requestResponsePair->getResponse()

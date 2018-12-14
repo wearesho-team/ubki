@@ -10,16 +10,14 @@ use Wearesho\Bobra\Ubki;
  */
 class Request extends Ubki\Infrastructure\Element implements RequestInterface
 {
+    use RequestTrait;
+
     public const TAG = 'doc';
 
-    /** @var Ubki\Data\Elements\RequestData */
-    protected $head;
-
-    /** @var RequestContent */
-    protected $body;
-
-    public function __construct(Ubki\Data\Elements\RequestData $requestData, Request $content)
-    {
+    public function __construct(
+        Ubki\Data\Interfaces\RequestData $requestData,
+        Elements\RequestContentInterface $content
+    ) {
         // todo: wrap into validate() function
         if ($requestData->getReason()->equals(Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT())) {
             $identification = $content->getIdentification();
@@ -38,20 +36,5 @@ class Request extends Ubki\Infrastructure\Element implements RequestInterface
 
         $this->head = $requestData;
         $this->body = $content;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [];
-    }
-
-    public function getHead(): Ubki\Data\Interfaces\RequestData
-    {
-        return $this->head;
-    }
-
-    public function getBody(): RequestContent
-    {
-        return $this->body;
     }
 }

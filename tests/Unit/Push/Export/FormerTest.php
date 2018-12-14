@@ -5,6 +5,8 @@ namespace Wearesho\Bobra\Ubki\Tests\Unit\Push\Export;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
+use Wearesho\Bobra\Ubki\Data\Interfaces\RequestData;
+use Wearesho\Bobra\Ubki\Infrastructure\RequestInterface;
 
 /**
  * Class ConverterTest
@@ -663,6 +665,27 @@ class FormerTest extends TestCase
     </ubki>
 </doc>',
             $this->fakeFormer->form($request, static::SESSION_ID)
+        );
+    }
+
+    public function testException(): void
+    {
+        $this->expectException(Ubki\Exception\Former::class);
+
+        $this->fakeFormer->form(
+            new class extends Ubki\Infrastructure\Element implements RequestInterface
+            {
+                public function getBody()
+                {
+                    return null;
+                }
+
+                public function getHead(): RequestData
+                {
+                    throw new \RuntimeException();
+                }
+            },
+            static::SESSION_ID
         );
     }
 
