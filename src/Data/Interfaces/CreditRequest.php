@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface CreditRequest
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditRegister extends Ubki\Infrastructure\ElementInterface
+interface CreditRequest extends Ubki\Infrastructure\ElementInterface
 {
     public const DATE = 'redate';
     public const INN = 'inn';

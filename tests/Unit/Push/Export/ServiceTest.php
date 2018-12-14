@@ -630,7 +630,7 @@ class ServiceTest extends TestCase
             $client
         );
 
-        $this->expectException(Ubki\Push\Export\RequestException::class);
+        $this->expectException(Ubki\Exception\Request::class);
         $this->expectExceptionMessage("Some client error");
 
         /** @noinspection PhpUnhandledExceptionInspection */

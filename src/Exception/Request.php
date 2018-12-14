@@ -1,14 +1,16 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Push\Export;
+namespace Wearesho\Bobra\Ubki\Exception;
+
+use Wearesho\Bobra\Ubki\Infrastructure\RequestInterface;
 
 /**
- * Class RequestException
- * @package Wearesho\Bobra\Ubki\Push\Export
+ * Class Request
+ * @package Wearesho\Bobra\Ubki\Exception
  */
-class RequestException extends \Exception
+class Request extends \Exception
 {
-    /** @var Request */
+    /** @var RequestInterface */
     protected $request;
 
     public function __construct(
@@ -22,7 +24,7 @@ class RequestException extends \Exception
         parent::__construct($message, $code, $previous);
     }
 
-    public function getRequest(): Request
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }

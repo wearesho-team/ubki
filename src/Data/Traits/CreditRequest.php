@@ -57,4 +57,17 @@ trait CreditRequest
     {
         return $this->organization;
     }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\CreditRequest::DATE => $this->getDate(),
+            Ubki\Data\Interfaces\CreditRequest::ID => $this->getId(),
+            Ubki\Data\Interfaces\CreditRequest::INN => $this->getInn(),
+            Ubki\Data\Interfaces\CreditRequest::REASON => $this->getReason(),
+            Ubki\Data\Interfaces\CreditRequest::DECISION => $this->getDecision(),
+            Ubki\Data\Interfaces\CreditRequest::ORGANIZATION => $this->getOrganization(),
+
+        ];
+    }
 }

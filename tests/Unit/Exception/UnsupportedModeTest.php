@@ -6,12 +6,12 @@ use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki\Exception\UnsupportedMode;
 
 /**
- * Class UnsupportedModeExceptionTest
+ * Class UnsupportedModeTest
  * @package Wearesho\Bobra\Ubki\Tests\Unit\Exception
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Exception\UnsupportedMode
  * @internal
  */
-class UnsupportedModeExceptionTest extends TestCase
+class UnsupportedModeTest extends TestCase
 {
     protected const MODE = 10;
 

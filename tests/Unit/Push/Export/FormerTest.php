@@ -599,6 +599,7 @@ class FormerTest extends TestCase
             $this->fakeCourtsDecisionBlock,
             $this->fakeCreditRegistersBlock
         );
+        $request = new Ubki\Push\Export\Request($this->fakeRequestDataBlock, $document);
 
         $this->assertXmlStringEqualsXmlString(
             '<?xml version="1.0" encoding="utf-8"?>
@@ -661,7 +662,7 @@ class FormerTest extends TestCase
         </req_envelope>
     </ubki>
 </doc>',
-            $this->fakeFormer->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+            $this->fakeFormer->form($request, static::SESSION_ID)
         );
     }
 

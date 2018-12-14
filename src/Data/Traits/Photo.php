@@ -33,4 +33,16 @@ trait Photo
     {
         return $this->inn;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function associativeAttributes(): array
+    {
+        return [
+            Interfaces\Photo::CREATED_AT => $this->getCreatedAt(),
+            Interfaces\Photo::INN => $this->getInn(),
+            Interfaces\Photo::PHOTO => $this->getUri(),
+        ];
+    }
 }

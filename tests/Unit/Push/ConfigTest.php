@@ -29,7 +29,7 @@ class ConfigTest extends TestCase
 
     public function providerConfigTestMode(): array
     {
-        $config = $this->createConfig(Ubki\Infrastructure\ConfigInterface::MODE_TEST);
+        $config = $this->createConfig(Ubki\Push\ConfigInterface::MODE_TEST);
 
         return [
             [Ubki\Push\ConfigInterface::TEST_REGISTRY_URL, $config->getRegistryUrl(),],
@@ -37,9 +37,9 @@ class ConfigTest extends TestCase
         ];
     }
 
-    public function providerConfigProductionMode($a): array
+    public function providerConfigProductionMode(): array
     {
-        $config = $this->createConfig(Ubki\Infrastructure\ConfigInterface::MODE_PRODUCTION);
+        $config = $this->createConfig(Ubki\Push\ConfigInterface::MODE_PRODUCTION);
 
         return [
             [Ubki\Push\ConfigInterface::PRODUCTION_REGISTRY_URL, $config->getRegistryUrl(),],

@@ -13,6 +13,6 @@ class CreditRequests extends BaseCollection
 {
     public function type(): string
     {
-        return Interfaces\CreditRegister::class;
+        return Interfaces\CreditRequest::class;
     }
 }

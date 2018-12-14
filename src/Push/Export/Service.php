@@ -6,7 +6,6 @@ use GuzzleHttp;
 use Psr\Http;
 use Psr\Log;
 use Wearesho\Bobra\Ubki;
-use Wearesho\Bobra\Ubki\Infrastructure\ConfigInterface;
 
 /**
  * Class Service
@@ -26,34 +25,18 @@ class Service extends Ubki\Infrastructure\Service implements ServiceInterface
         Log\LoggerInterface $logger = null,
         FormerInterface $former = null
     ) {
-        $this->former = $former ?? new Former();
-
-        parent::__construct($config, $authProvider, $client, $logger);
+        parent::__construct($config, $authProvider, $client, $former ?? new Former(), $logger);
     }
 
     /**
      * @param RequestInterface $request
      *
      * @return Ubki\RequestResponsePair
-     * @throws FormerException
-     * @throws RequestException
+     * @throws Ubki\Exception\Request
+     * @throws Ubki\Exception\Former
      */
     public function export(RequestInterface $request): Ubki\RequestResponsePair
     {
-        $body = $this->former
-            ->form(
-                $request,
-                $this->authProvider()
-                    ->provide($this->config())
-                    ->getSessionId()
-            );
-
-        try {
-            $response = $this->send($this->config()->getPushUrl(), $body);
-        } catch (GuzzleHttp\Exception\GuzzleException $exception) {
-            throw new RequestException($request, $exception->getMessage(), $exception->getCode(), $exception);
-        }
-
-        return new Ubki\RequestResponsePair($body, (string)$response->getBody());
+        return $this->send($this->config()->getPushUrl(), $request);
     }
 }

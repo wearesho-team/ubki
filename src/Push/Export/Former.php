@@ -9,25 +9,20 @@ use Wearesho\Bobra\Ubki;
  * Class Former
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-class Former implements FormerInterface
+class Former extends Ubki\Infrastructure\Former implements FormerInterface
 {
-    use Ubki\Infrastructure\FormerHelperTrait;
-
-    /** @var bool */
-    protected $prettyPrint;
-
-    /** @var \DOMDocument */
-    private $document;
-
-    public function __construct(bool $prettyPrint = false)
+    /**
+     * @param RequestInterface|Ubki\Infrastructure\RequestInterface $request
+     * @param string $sessionId
+     *
+     * @return string
+     * @throws Ubki\Exception\Former
+     */
+    public function form(Ubki\Infrastructure\RequestInterface $request, string $sessionId): string
     {
-        $this->prettyPrint = $prettyPrint;
         $this->init();
-    }
 
-    private function init(): void
-    {
-        $this->document = new \DOMDocument('1.0', 'utf-8');
+        return $this->getBody($request, $sessionId);
     }
 
     /**
@@ -35,15 +30,13 @@ class Former implements FormerInterface
      * @param string $sessionId
      *
      * @return string
-     * @throws FormerException
+     * @throws Ubki\Exception\Former
      */
-    public function form(RequestInterface $request, string $sessionId): string
+    protected function getBody(RequestInterface $request, string $sessionId): string
     {
-        $this->init();
-
         try {
             // root tags
-            $root = $this->document->createElement(static::DOC_ROOT);
+            $root = $this->document->createElement($request->tag());
             $ubki = $this->document->createElement(static::UBKI_ROOT);
 
             $ubki->setAttribute(static::ATTRIBUTE_SESSION_ID, $sessionId);
@@ -104,7 +97,7 @@ class Former implements FormerInterface
                 if (!empty($creditRequests)) {
                     $creditRequestsBlock = $this->createFilledElement($creditRequestInformation);
 
-                    /** @var Ubki\Data\Interfaces\CreditRegister $creditRequest */
+                    /** @var Ubki\Data\Interfaces\CreditRequest $creditRequest */
                     foreach ($creditRequests as $creditRequest) {
                         $creditRequestsBlock->appendChild($this->createFilledElement($creditRequest));
                     }
@@ -144,7 +137,7 @@ class Former implements FormerInterface
             $this->document->appendChild($root);
             $this->document->formatOutput = $this->prettyPrint;
         } catch (\Throwable $exception) {
-            throw new FormerException($request, $exception->getMessage(), $exception->getCode());
+            throw new Ubki\Exception\Former($request, $this, $exception->getMessage(), $exception->getCode());
         }
 
         return $this->document->saveXML();
@@ -168,8 +161,8 @@ class Former implements FormerInterface
         $this->setAttributes($credentialElement, $credential);
 
         $this->appendCollectionTo($credentialElement, $credential->getIdentifiers());
-        $this->appendCollectionTo($credentialElement, $credential->getWorks());
         $this->appendCollectionTo($credentialElement, $credential->getLinkedPersons());
+        $this->appendCollectionTo($credentialElement, $credential->getWorks());
         $this->appendCollectionTo($credentialElement, $credential->getDocuments());
         $this->appendCollectionTo($credentialElement, $credential->getAddresses());
         $this->appendCollectionTo($credentialElement, $credential->getPhotos());

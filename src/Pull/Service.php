@@ -16,9 +16,6 @@ class Service extends Ubki\Infrastructure\Service implements ServiceInterface
 {
     protected $logMessage = 'UBKI import request';
 
-    /** @var FormerInterface */
-    protected $former;
-
     public function __construct(
         ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
@@ -26,39 +23,18 @@ class Service extends Ubki\Infrastructure\Service implements ServiceInterface
         Log\LoggerInterface $logger = null,
         FormerInterface $former = null
     ) {
-        parent::__construct($config, $authProvider, $client, $logger);
+        parent::__construct($config, $authProvider, $client, $former ?? new Former(), $logger);
     }
 
     /**
      * @param RequestInterface $request
      *
      * @return Ubki\RequestResponsePair
-     * @throws RequestException
+     * @throws Ubki\Exception\Request
+     * @throws Ubki\Exception\Former
      */
     public function import(RequestInterface $request): Ubki\RequestResponsePair
     {
-        $body = $this->former
-            ->form(
-                $request,
-                $this->authProvider()
-                    ->provide($this->config())
-                    ->getSessionId()
-            );
-
-        try {
-            $response = $this->send(
-                $this->config()->getPullUrl(),
-                $body
-            );
-        } catch (GuzzleHttp\Exception\GuzzleException $exception) {
-            throw new RequestException(
-                $request,
-                $exception->getMessage(),
-                $exception->getCode(),
-                $exception
-            );
-        }
-
-        return $this->formResponse($body, $response);
+        return $this->send($this->config()->getPullUrl(), $request);
     }
 }

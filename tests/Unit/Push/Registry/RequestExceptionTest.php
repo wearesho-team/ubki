@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki\Push\Registry\RequestException;
 
 /**
- * Class RequestExceptionTest
+ * Class RequestTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Registry
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Push\Registry\RequestException
  * @internal

@@ -1,18 +1,18 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Push\Export;
+namespace Wearesho\Bobra\Ubki\Tests\Unit\Exception;
 
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class RequestExceptionTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Push\Export
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Push\Export\RequestException
+ * Class RequestTest
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Exception
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Exception\Request
  * @internal
  */
-class RequestExceptionTest extends TestCase
+class RequestTest extends TestCase
 {
     protected const DATE = '2018-03-12';
     protected const ID = 'testId';
@@ -62,12 +62,12 @@ class RequestExceptionTest extends TestCase
     protected const SOURCE = 'testSource';
     protected const VALUE = 'testValue';
 
-    /** @var Ubki\Push\Export\RequestException */
+    /** @var Ubki\Exception\Request */
     protected $fakeRequestException;
 
     protected function setUp(): void
     {
-        $this->fakeRequestException = new Ubki\Push\Export\RequestException(
+        $this->fakeRequestException = new Ubki\Exception\Request(
             new Ubki\Push\Export\Request(
                 new Ubki\Data\Elements\RequestData(
                     Ubki\Dictionaries\RequestType::EXPORT(),

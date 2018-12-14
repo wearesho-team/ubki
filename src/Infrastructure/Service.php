@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Infrastructure;
 
 use GuzzleHttp;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Log;
 use Wearesho\Bobra\Ubki;
 
@@ -13,7 +12,7 @@ use Wearesho\Bobra\Ubki;
  */
 abstract class Service
 {
-    /** @var ConfigInterface */
+    /** @var Ubki\Authorization\ConfigInterface */
     protected $config;
 
     /** @var GuzzleHttp\ClientInterface */
@@ -25,19 +24,24 @@ abstract class Service
     /** @var Log\LoggerInterface */
     protected $logger;
 
+    /** @var FormerInterface */
+    protected $former;
+
     public function __construct(
-        ConfigInterface $config,
+        Ubki\Authorization\ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
+        FormerInterface $former,
         Log\LoggerInterface $logger = null
     ) {
         $this->config = $config;
         $this->authProvider = $authProvider;
         $this->client = $client;
+        $this->former = $former;
         $this->logger = $logger ?? new Log\NullLogger();
     }
 
-    public function config(): ConfigInterface
+    public function config(): Ubki\Authorization\ConfigInterface
     {
         return $this->config;
     }
@@ -57,29 +61,47 @@ abstract class Service
         return $this->logger;
     }
 
-    /**
-     * @param string $url
-     * @param string $body
-     * @param array $headers
-     *
-     * @return ResponseInterface
-     * @throws GuzzleHttp\Exception\GuzzleException
-     */
-    protected function send(string $url, string $body, array $headers = []): ResponseInterface
+    public function former(): FormerInterface
     {
-        return $this->client->request('POST', $url, [
-            GuzzleHttp\RequestOptions::HEADERS => $headers,
-            GuzzleHttp\RequestOptions::BODY => $body,
-        ]);
+        return $this->former;
     }
 
-    protected function formResponse(string $body, ResponseInterface $response): Ubki\RequestResponsePair
+    /**
+     * @param string $url
+     * @param RequestInterface $request
+     * @param array $headers
+     *
+     * @return Ubki\RequestResponsePair
+     * @throws Ubki\Exception\Request
+     * @throws Ubki\Exception\Former
+     */
+    protected function send(string $url, RequestInterface $request, array $headers = []): Ubki\RequestResponsePair
     {
-        return new Ubki\RequestResponsePair($body, (string)$response->getBody());
+        $body = $this->former()
+            ->form(
+                $request,
+                $this->authProvider()
+                    ->provide($this->config())
+                    ->getSessionId()
+            );
+
+        $this->log('UBKI service: Send request to {url}', ['url' => $url]);
+
+        try {
+            $response = $this->client()
+                ->request('POST', $url, [
+                    GuzzleHttp\RequestOptions::HEADERS => $headers,
+                    GuzzleHttp\RequestOptions::BODY => $body,
+                ]);
+        } catch (GuzzleHttp\Exception\GuzzleException $exception) {
+            throw new Ubki\Exception\Request($request, $exception->getMessage(), $exception->getCode(), $exception);
+        }
+
+        return new Ubki\RequestResponsePair($body, $response->getBody()->__toString());
     }
 
     protected function log(string $message, array $args): void
     {
-        $this->logger->debug($message, $args);
+        $this->logger()->info($message, $args);
     }
 }

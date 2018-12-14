@@ -8,8 +8,10 @@ use Wearesho\Bobra\Ubki;
  * Class Request
  * @package Wearesho\Bobra\Ubki\Pull
  */
-class Request implements RequestInterface
+class Request extends Ubki\Infrastructure\Element implements RequestInterface
 {
+    public const TAG = 'doc';
+
     /** @var Ubki\Data\Elements\RequestData */
     protected $head;
 
@@ -19,7 +21,7 @@ class Request implements RequestInterface
     public function __construct(Ubki\Data\Elements\RequestData $requestData, Request $content)
     {
         // todo: wrap into validate() function
-        if ($requestData->getReason()->equals(RequestReason::CREDIT_ONLINE())) {
+        if ($requestData->getReason()->equals(Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT())) {
             $identification = $content->getIdentification();
 
             if (is_null($content->getContacts())
@@ -43,12 +45,7 @@ class Request implements RequestInterface
         return [];
     }
 
-    public function tag(): string
-    {
-        return RequestInterface::TAG;
-    }
-
-    public function getHead(): Interfaces\RequestData
+    public function getHead(): Ubki\Data\Interfaces\RequestData
     {
         return $this->head;
     }

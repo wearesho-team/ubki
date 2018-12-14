@@ -9,27 +9,22 @@ use Wearesho\Bobra\Ubki;
  * Class Former
  * @package Wearesho\Bobra\Ubki\Pull
  */
-class Former implements FormerInterface
+class Former extends Ubki\Infrastructure\Former implements FormerInterface
 {
-    use Ubki\Infrastructure\FormerHelperTrait;
-
-    /** @var bool */
-    protected $prettyPrint;
-
-    /** @var \DOMDocument */
-    private $document;
-
-    public function __construct(bool $prettyPrint = false)
+    /**
+     * @param RequestInterface|Ubki\Infrastructure\RequestInterface $request
+     * @param string $sessionId
+     *
+     * @return string
+     */
+    public function form(Ubki\Infrastructure\RequestInterface $request, string $sessionId): string
     {
-        $this->prettyPrint = $prettyPrint;
+        $this->init();
+
+        return $this->getBody($request, $sessionId);
     }
 
-    private function init(): void
-    {
-        $this->document = new \DOMDocument('1.0', 'utf-8');
-    }
-
-    public function form(RequestInterface $request, string $sessionId): string
+    protected function getBody(RequestInterface $request, string $sessionId): string
     {
         // Create root element
         $root = $this->document->createElement($request->tag());
@@ -100,18 +95,5 @@ class Former implements FormerInterface
             ->item(0)->textContent = base64_encode($this->document->saveXML($requestElm));
 
         return $requestXML->saveXML();
-    }
-
-    private function createFilledElement(Ubki\Infrastructure\ElementInterface $element = null)
-    {
-        $domElement = $this->document->createElement($element->tag());
-
-        foreach ($element->associativeAttributes() as $attributeName => $attributeValue) {
-            if (!is_null($attributeValue) && !is_object($attributeValue)) {
-                $domElement->setAttribute($attributeName, $attributeValue);
-            }
-        }
-
-        return $domElement;
     }
 }

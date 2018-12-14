@@ -301,194 +301,101 @@ class DataDocumentTest extends TestCase
     {
         $this->assertArraySubset(
             [
-                'identification' => [
-                    Ubki\Data\Interfaces\Credential::LANGUAGE => Ubki\Dictionaries\Language::RUS(),
-                    Ubki\Data\Interfaces\Credential::NAME => static::NAME,
-                    Ubki\Data\Interfaces\Credential::PATRONYMIC => static::PATRONYMIC,
-                    Ubki\Data\Interfaces\Credential::SURNAME => static::SURNAME,
-                    Ubki\Data\Interfaces\Credential::BIRTH_DATE => Carbon::parse(static::BIRTH_DATE),
-                    Ubki\Data\Interfaces\Credential::INN => static::INN,
-                    'identifiers' => [
-                        new Ubki\Data\Elements\NaturalPerson(
-                            Carbon::parse(static::CREATED_AT),
-                            Ubki\Dictionaries\Language::KAZ(),
-                            static::NAME,
-                            static::SURNAME,
-                            Carbon::parse(static::BIRTH_DATE),
-                            Ubki\Dictionaries\Gender::MAN(),
-                            static::INN,
-                            static::PATRONYMIC,
-                            Ubki\Dictionaries\FamilyStatus::SINGLE(),
-                            Ubki\Dictionaries\Education::SECONDARY(),
-                            Ubki\Dictionaries\Nationality::RUSSIAN_FEDERATION(),
-                            Ubki\Dictionaries\RegistrationSpd::BUSINESS(),
-                            Ubki\Dictionaries\SocialStatus::STUDENT(),
-                            static::CHILDREN_COUNT
-                        ),
-                        new Ubki\Data\Elements\LegalPerson(
-                            Carbon::parse(static::CREATED_AT),
-                            Ubki\Dictionaries\Language::RUS(),
-                            static::NAME,
-                            static::ERGPOU,
-                            static::FORM,
-                            static::ECONOMY_BRANCH,
-                            static::ACTIVITY_TYPE,
-                            Carbon::parse(static::EDR_REGISTRATION_DATE),
-                            Carbon::parse(static::TAX_REGISTRATION_DATE)
-                        ),
-                    ],
-                    'documents' => [
-                        new Ubki\Data\Elements\Document(
-                            Carbon::parse(static::CREATED_AT),
-                            Ubki\Dictionaries\Language::RUS(),
-                            Ubki\Dictionaries\DocumentType::DIPLOMA(),
-                            static::SERIAL,
-                            static::NUMBER,
-                            static::ISSUE,
-                            Carbon::parse(static::ISSUE_DATE),
-                            Carbon::parse(static::TERMIN)
-                        ),
-                    ],
-                    'addresses' => [
-                        new Ubki\Data\Elements\Address(
-                            Carbon::parse(static::CREATED_AT),
-                            Ubki\Dictionaries\Language::RUS(),
-                            Ubki\Dictionaries\AddressType::REGISTRATION(),
-                            static::COUNTRY,
-                            static::CITY,
-                            static::STREET,
-                            static::HOUSE,
-                            static::INDEX,
-                            static::STATE,
-                            static::AREA,
-                            Ubki\Dictionaries\CityType::SETTLEMENT(),
-                            static::CORPUS,
-                            static::FLAT,
-                            static::FULL_ADDRESS
-                        ),
-                    ],
-                    'works' => [
-                        new Ubki\Data\Elements\Work(
-                            Carbon::parse(static::CREATED_AT),
-                            Ubki\Dictionaries\Language::RUS(),
-                            static::ERGPOU,
-                            static::NAME,
-                            Ubki\Dictionaries\IdentifierRank::DIRECTOR(),
-                            static::EXPERIENCE,
-                            static::INCOME
-                        ),
-                    ],
-                    'photos' => [
-                        new Ubki\Data\Elements\Photo(
-                            Carbon::parse(static::CREATED_AT),
-                            static::PHOTO,
-                            static::INN
-                        ),
-                    ],
-                    'linkedPersons' => [
-                        new Ubki\Data\ELements\LinkedPerson(
-                            static::NAME,
-                            Ubki\Dictionaries\LinkedIdentifierRole::DIRECTOR(),
-                            Carbon::parse(static::ISSUE_DATE),
-                            static::ERGPOU
-                        ),
-                    ],
-                ],
-                'creditsInformation' => [
-                    'credits' => [
-                        new Ubki\Data\Elements\CreditDeal(
-                            static::ID,
-                            Ubki\Dictionaries\Language::RUS(),
-                            static::NAME,
-                            static::SURNAME,
-                            Carbon::parse(static::BIRTH_DATE),
-                            Ubki\Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
-                            Ubki\Dictionaries\CollateralType::R_1(),
-                            Ubki\Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
-                            Ubki\Dictionaries\Currency::UAH(),
-                            static::INITIAL_AMOUNT,
-                            Ubki\Dictionaries\SubjectRole::BORROWER(),
-                            static::COLLATERAL_COST,
-                            new Ubki\Data\Collections\DealLifes([
-                                new Ubki\Data\Elements\DealLife(
-                                    static::ID,
-                                    static::PERIOD_MONTH,
-                                    static::PERIOD_YEAR,
-                                    Carbon::parse(static::ISSUE_DATE),
-                                    Carbon::parse(static::END_DATE),
-                                    Ubki\Dictionaries\DealStatus::CLOSE(),
-                                    static::LIMIT,
-                                    static::MANDATORY_PAYMENT,
-                                    static::CURRENT_DEBT,
-                                    static::CURRENT_OVERDUE_DEBT,
-                                    static::OVERDUE_TIME,
-                                    Ubki\Dictionaries\Flag::YES(),
-                                    Ubki\Dictionaries\Flag::YES(),
-                                    Ubki\Dictionaries\Flag::NO(),
-                                    Carbon::parse(static::PAYMENT_DATE),
-                                    Carbon::parse(static::ACTUAL_END_DATE)
-                                )
-                            ]),
-                            static::INN,
-                            static::PATRONYMIC,
-                            static::SOURCE
-                        )
-                    ],
-                ],
-                'courtDecisionsInformation' => [
-                    new Ubki\Data\Elements\CourtDecision(
-                        static::ID,
+                'identification' => new Ubki\Data\Blocks\Identification(
+                    new Ubki\Data\Elements\Credential(
+                        Ubki\Dictionaries\Language::RUS(),
+                        static::NAME,
+                        static::PATRONYMIC,
+                        static::SURNAME,
+                        Carbon::parse(static::BIRTH_DATE),
+                        new Ubki\Data\Collections\IdentifiedPersons([
+                            new Ubki\Data\Elements\NaturalPerson(
+                                Carbon::parse(static::CREATED_AT),
+                                Ubki\Dictionaries\Language::KAZ(),
+                                static::NAME,
+                                static::SURNAME,
+                                Carbon::parse(static::BIRTH_DATE),
+                                Ubki\Dictionaries\Gender::MAN(),
+                                static::INN,
+                                static::PATRONYMIC,
+                                Ubki\Dictionaries\FamilyStatus::SINGLE(),
+                                Ubki\Dictionaries\Education::SECONDARY(),
+                                Ubki\Dictionaries\Nationality::RUSSIAN_FEDERATION(),
+                                Ubki\Dictionaries\RegistrationSpd::BUSINESS(),
+                                Ubki\Dictionaries\SocialStatus::STUDENT(),
+                                static::CHILDREN_COUNT
+                            ),
+                            new Ubki\Data\Elements\LegalPerson(
+                                Carbon::parse(static::CREATED_AT),
+                                Ubki\Dictionaries\Language::RUS(),
+                                static::NAME,
+                                static::ERGPOU,
+                                static::FORM,
+                                static::ECONOMY_BRANCH,
+                                static::ACTIVITY_TYPE,
+                                Carbon::parse(static::EDR_REGISTRATION_DATE),
+                                Carbon::parse(static::TAX_REGISTRATION_DATE)
+                            ),
+                        ]),
+                        new Ubki\Data\Collections\Documents([
+                            new Ubki\Data\Elements\Document(
+                                Carbon::parse(static::CREATED_AT),
+                                Ubki\Dictionaries\Language::RUS(),
+                                Ubki\Dictionaries\DocumentType::DIPLOMA(),
+                                static::SERIAL,
+                                static::NUMBER,
+                                static::ISSUE,
+                                Carbon::parse(static::ISSUE_DATE),
+                                Carbon::parse(static::TERMIN)
+                            ),
+                        ]),
+                        new Ubki\Data\Collections\Addresses([
+                            new Ubki\Data\Elements\Address(
+                                Carbon::parse(static::CREATED_AT),
+                                Ubki\Dictionaries\Language::RUS(),
+                                Ubki\Dictionaries\AddressType::REGISTRATION(),
+                                static::COUNTRY,
+                                static::CITY,
+                                static::STREET,
+                                static::HOUSE,
+                                static::INDEX,
+                                static::STATE,
+                                static::AREA,
+                                Ubki\Dictionaries\CityType::SETTLEMENT(),
+                                static::CORPUS,
+                                static::FLAT,
+                                static::FULL_ADDRESS
+                            ),
+                        ]),
                         static::INN,
-                        Carbon::parse(static::DATE),
-                        Ubki\Dictionaries\CourtSubjectStatus::PLAINTIFF(),
-                        Ubki\Dictionaries\CourtDealType::ECONOMIC(),
-                        static::COURT_NAME,
-                        static::DOCUMENT_TYPE,
-                        static::DOCUMENT_TYPE_REFERENCE,
-                        static::LEGAL_FACT,
-                        static::LEGAL_FACT_REFERENCE,
-                        Carbon::parse(static::CREATED_AT),
-                        static::AREA,
-                        static::AREA_REFERENCE
-                    ),
-                ],
-                'creditRequestsInformation' => [
-                    'requests' => [
-                        new Ubki\Data\Elements\CreditRequest(
-                            Carbon::parse(static::DATE),
-                            static::INN,
-                            static::ID,
-                            Ubki\Dictionaries\Decision::POSITIVE(),
-                            Ubki\Dictionaries\RequestReason::EXPORT(),
-                            static::ORGANIZATION
-                        ),
-                    ],
-                    'times' => [
-                        Ubki\Data\Interfaces\RegistryTimes::BY_HOUR => static::BY_HOUR,
-                        Ubki\Data\Interfaces\RegistryTimes::BY_DAY => static::BY_DAY,
-                        Ubki\Data\Interfaces\RegistryTimes::BY_WEEK => static::BY_WEEK,
-                        Ubki\Data\Interfaces\RegistryTimes::BY_MONTH => static::BY_MONTH,
-                        Ubki\Data\Interfaces\RegistryTimes::BY_QUARTER => static::BY_QUARTER,
-                        Ubki\Data\Interfaces\RegistryTimes::BY_YEAR => static::BY_YEAR,
-                        Ubki\Data\Interfaces\RegistryTimes::BY_MORE_YEAR => static::BY_MORE_YEAR,
-                    ],
-                ],
-                'contactsInformation' => [
-                    'contacts' => [
-                        new Ubki\Data\Elements\Contact(
-                            Carbon::parse(static::CREATED_AT),
-                            static::VALUE,
-                            Ubki\Dictionaries\ContactType::EMAIL(),
-                            static::INN
-                        ),
-                        new Ubki\Data\Elements\Contact(
-                            Carbon::parse(static::CREATED_AT),
-                            static::VALUE,
-                            Ubki\Dictionaries\ContactType::MOBILE(),
-                            static::INN
-                        ),
-                    ]
-                ],
+                        new Ubki\Data\Collections\Works([
+                            new Ubki\Data\Elements\Work(
+                                Carbon::parse(static::CREATED_AT),
+                                Ubki\Dictionaries\Language::RUS(),
+                                static::ERGPOU,
+                                static::NAME,
+                                Ubki\Dictionaries\IdentifierRank::DIRECTOR(),
+                                static::EXPERIENCE,
+                                static::INCOME
+                            ),
+                        ]),
+                        new Ubki\Data\Collections\Photos([
+                            new Ubki\Data\Elements\Photo(
+                                Carbon::parse(static::CREATED_AT),
+                                static::PHOTO,
+                                static::INN
+                            ),
+                        ]),
+                        new Ubki\Data\Collections\LinkedPersons([
+                            new Ubki\Data\Elements\LinkedPerson(
+                                static::NAME,
+                                Ubki\Dictionaries\LinkedIdentifierRole::DIRECTOR(),
+                                Carbon::parse(static::ISSUE_DATE),
+                                static::ERGPOU
+                            ),
+                        ])
+                    )
+                ),
             ],
             $this->fakeDataDocument->jsonSerialize()
         );

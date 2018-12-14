@@ -10,5 +10,4 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  */
 interface FormerInterface extends Infrastructure\FormerInterface
 {
-    public function form(RequestInterface $request, string $sessionId): string;
 }

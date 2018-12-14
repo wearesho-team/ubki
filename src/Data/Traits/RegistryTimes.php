@@ -65,4 +65,17 @@ trait RegistryTimes
     {
         return $this->byMoreYear;
     }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Interfaces\RegistryTimes::BY_DAY => $this->getByDay(),
+            Interfaces\RegistryTimes::BY_HOUR => $this->getByHour(),
+            Interfaces\RegistryTimes::BY_MONTH => $this->getByMonth(),
+            Interfaces\RegistryTimes::BY_MORE_YEAR => $this->getByMoreYear(),
+            Interfaces\RegistryTimes::BY_QUARTER => $this->getByQuarter(),
+            Interfaces\RegistryTimes::BY_WEEK => $this->getByWeek(),
+            Interfaces\RegistryTimes::BY_YEAR => $this->getByYear(),
+        ];
+    }
 }
