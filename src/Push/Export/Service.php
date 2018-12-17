@@ -15,8 +15,7 @@ use Wearesho\Bobra\Ubki;
  */
 class Service extends Ubki\Infrastructure\Service implements ServiceInterface
 {
-    /** @var FormerInterface */
-    protected $former;
+    use ServiceTrait;
 
     public function __construct(
         Ubki\Push\ConfigInterface $config,
@@ -26,17 +25,5 @@ class Service extends Ubki\Infrastructure\Service implements ServiceInterface
         FormerInterface $former = null
     ) {
         parent::__construct($config, $authProvider, $client, $former ?? new Former(), $logger);
-    }
-
-    /**
-     * @param RequestInterface $request
-     *
-     * @return Ubki\RequestResponsePair
-     * @throws Ubki\Exception\Request
-     * @throws Ubki\Exception\Former
-     */
-    public function export(RequestInterface $request): Ubki\RequestResponsePair
-    {
-        return $this->send($this->config()->getPushUrl(), $request);
     }
 }

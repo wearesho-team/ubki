@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  * Class Service
  * @package Wearesho\Bobra\Ubki\Infrastructure
  */
-abstract class Service
+abstract class Service implements ServiceInterface
 {
     /** @var Ubki\Authorization\ConfigInterface */
     protected $config;
@@ -75,7 +75,7 @@ abstract class Service
      * @throws Ubki\Exception\Request
      * @throws Ubki\Exception\Former
      */
-    protected function send(string $url, RequestInterface $request, array $headers = []): Ubki\RequestResponsePair
+    public function send(string $url, RequestInterface $request, array $headers = []): Ubki\RequestResponsePair
     {
         $body = $this->former()
             ->form(

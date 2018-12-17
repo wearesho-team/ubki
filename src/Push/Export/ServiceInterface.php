@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\RequestResponsePair;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface ServiceInterface
@@ -10,5 +10,5 @@ use Wearesho\Bobra\Ubki\RequestResponsePair;
  */
 interface ServiceInterface
 {
-    public function export(RequestInterface $request): RequestResponsePair;
+    public function export(RequestInterface $request): Ubki\RequestResponsePair;
 }

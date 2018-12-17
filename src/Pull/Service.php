@@ -14,7 +14,7 @@ use Wearesho\Bobra\Ubki;
  */
 class Service extends Ubki\Infrastructure\Service implements ServiceInterface
 {
-    protected $logMessage = 'UBKI import request';
+    use ServiceTrait;
 
     public function __construct(
         ConfigInterface $config,
@@ -24,17 +24,5 @@ class Service extends Ubki\Infrastructure\Service implements ServiceInterface
         FormerInterface $former = null
     ) {
         parent::__construct($config, $authProvider, $client, $former ?? new Former(), $logger);
-    }
-
-    /**
-     * @param RequestInterface $request
-     *
-     * @return Ubki\RequestResponsePair
-     * @throws Ubki\Exception\Request
-     * @throws Ubki\Exception\Former
-     */
-    public function import(RequestInterface $request): Ubki\RequestResponsePair
-    {
-        return $this->send($this->config()->getPullUrl(), $request);
     }
 }
