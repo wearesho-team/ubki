@@ -107,64 +107,64 @@ class FormerTest extends TestCase
     /** @var Ubki\Push\Export\Former */
     protected $fakeFormer;
 
-    /** @var Ubki\Data\Elements\RequestData */
+    /** @var Ubki\Data\Element\RequestData */
     protected $fakeRequestDataBlock;
 
-    /** @var Ubki\Data\Blocks\Identification */
+    /** @var Ubki\Data\Block\Identification */
     protected $fakeIdentificationBlock;
 
-    /** @var Ubki\Data\Blocks\CreditsInformation */
+    /** @var Ubki\Data\Block\CreditsInformation */
     protected $fakeCreditsBlock;
 
-    /** @var Ubki\Data\Blocks\CourtDecisionsInformation */
+    /** @var Ubki\Data\Block\CourtDecisionsInformation */
     protected $fakeCourtsDecisionBlock;
 
-    /** @var Ubki\Data\Blocks\CreditsRequestsInformation */
+    /** @var Ubki\Data\Block\CreditsRequestsInformation */
     protected $fakeCreditRegistersBlock;
 
-    /** @var Ubki\Data\Blocks\InsurancesInformation */
+    /** @var Ubki\Data\Block\InsurancesInformation */
     protected $fakeInsurancesReports;
 
-    /** @var Ubki\Data\Blocks\ContactsInformation */
+    /** @var Ubki\Data\Block\ContactsInformation */
     protected $fakeContactsInformation;
 
     protected function setUp(): void
     {
         $this->fakeFormer = new Ubki\Push\Export\Former(true);
-        $this->fakeRequestDataBlock = new Ubki\Data\Elements\RequestData(
-            Ubki\Dictionaries\RequestType::EXPORT(),
-            Ubki\Dictionaries\RequestReason::EXPORT(),
+        $this->fakeRequestDataBlock = new Ubki\Data\Element\RequestData(
+            Ubki\Dictionary\RequestType::EXPORT(),
+            Ubki\Dictionary\RequestReason::EXPORT(),
             Carbon::parse(static::DATE),
             static::ID,
-            Ubki\Dictionaries\RequestInitiator::PARTNER()
+            Ubki\Dictionary\RequestInitiator::PARTNER()
         );
-        $this->fakeIdentificationBlock = new Ubki\Data\Blocks\Identification(
-            new Ubki\Data\Elements\Credential(
-                Ubki\Dictionaries\Language::RUS(),
+        $this->fakeIdentificationBlock = new Ubki\Data\Block\Identification(
+            new Ubki\Data\Element\Credential(
+                Ubki\Dictionary\Language::RUS(),
                 static::NAME,
                 static::PATRONYMIC,
                 static::SURNAME,
                 Carbon::parse(static::BIRTH_DATE),
-                new Ubki\Data\Collections\IdentifiedPersons([
-                    new Ubki\Data\Elements\NaturalPerson(
+                new Ubki\Data\Collection\IdentifiedPersons([
+                    new Ubki\Data\Element\NaturalPerson(
                         Carbon::parse(static::CREATED_AT),
-                        Ubki\Dictionaries\Language::KAZ(),
+                        Ubki\Dictionary\Language::KAZ(),
                         static::NAME,
                         static::SURNAME,
                         Carbon::parse(static::BIRTH_DATE),
-                        Ubki\Dictionaries\Gender::MAN(),
+                        Ubki\Dictionary\Gender::MAN(),
                         static::INN,
                         static::PATRONYMIC,
-                        Ubki\Dictionaries\FamilyStatus::SINGLE(),
-                        Ubki\Dictionaries\Education::SECONDARY(),
-                        Ubki\Dictionaries\Nationality::RUSSIAN_FEDERATION(),
-                        Ubki\Dictionaries\RegistrationSpd::BUSINESS(),
-                        Ubki\Dictionaries\SocialStatus::STUDENT(),
+                        Ubki\Dictionary\FamilyStatus::SINGLE(),
+                        Ubki\Dictionary\Education::SECONDARY(),
+                        Ubki\Dictionary\Nationality::RUSSIAN_FEDERATION(),
+                        Ubki\Dictionary\RegistrationSpd::BUSINESS(),
+                        Ubki\Dictionary\SocialStatus::STUDENT(),
                         static::CHILDREN_COUNT
                     ),
-                    new Ubki\Data\Elements\LegalPerson(
+                    new Ubki\Data\Element\LegalPerson(
                         Carbon::parse(static::CREATED_AT),
-                        Ubki\Dictionaries\Language::RUS(),
+                        Ubki\Dictionary\Language::RUS(),
                         static::NAME,
                         static::ERGPOU,
                         static::FORM,
@@ -174,11 +174,11 @@ class FormerTest extends TestCase
                         Carbon::parse(static::TAX_REGISTRATION_DATE)
                     ),
                 ]),
-                new Ubki\Data\Collections\Documents([
-                    new Ubki\Data\Elements\Document(
+                new Ubki\Data\Collection\Documents([
+                    new Ubki\Data\Element\Document(
                         Carbon::parse(static::CREATED_AT),
-                        Ubki\Dictionaries\Language::RUS(),
-                        Ubki\Dictionaries\DocumentType::DIPLOMA(),
+                        Ubki\Dictionary\Language::RUS(),
+                        Ubki\Dictionary\DocumentType::DIPLOMA(),
                         static::SERIAL,
                         static::NUMBER,
                         static::ISSUE,
@@ -186,11 +186,11 @@ class FormerTest extends TestCase
                         Carbon::parse(static::TERMIN)
                     ),
                 ]),
-                new Ubki\Data\Collections\Addresses([
-                    new Ubki\Data\Elements\Address(
+                new Ubki\Data\Collection\Addresses([
+                    new Ubki\Data\Element\Address(
                         Carbon::parse(static::CREATED_AT),
-                        Ubki\Dictionaries\Language::RUS(),
-                        Ubki\Dictionaries\AddressType::REGISTRATION(),
+                        Ubki\Dictionary\Language::RUS(),
+                        Ubki\Dictionary\AddressType::REGISTRATION(),
                         static::COUNTRY,
                         static::CITY,
                         static::STREET,
@@ -198,72 +198,72 @@ class FormerTest extends TestCase
                         static::INDEX,
                         static::STATE,
                         static::AREA,
-                        Ubki\Dictionaries\CityType::SETTLEMENT(),
+                        Ubki\Dictionary\CityType::SETTLEMENT(),
                         static::CORPUS,
                         static::FLAT,
                         static::FULL_ADDRESS
                     ),
                 ]),
                 static::INN,
-                new Ubki\Data\Collections\Works([
-                    new Ubki\Data\Elements\Work(
+                new Ubki\Data\Collection\Works([
+                    new Ubki\Data\Element\Work(
                         Carbon::parse(static::CREATED_AT),
-                        Ubki\Dictionaries\Language::RUS(),
+                        Ubki\Dictionary\Language::RUS(),
                         static::ERGPOU,
                         static::NAME,
-                        Ubki\Dictionaries\IdentifierRank::DIRECTOR(),
+                        Ubki\Dictionary\IdentifierRank::DIRECTOR(),
                         static::EXPERIENCE,
                         static::INCOME
                     ),
                 ]),
-                new Ubki\Data\Collections\Photos([
-                    new Ubki\Data\Elements\Photo(
+                new Ubki\Data\Collection\Photos([
+                    new Ubki\Data\Element\Photo(
                         Carbon::parse(static::CREATED_AT),
                         static::PHOTO,
                         static::INN
                     ),
                 ]),
-                new Ubki\Data\Collections\LinkedPersons([
-                    new Ubki\Data\Elements\LinkedPerson(
+                new Ubki\Data\Collection\LinkedPersons([
+                    new Ubki\Data\Element\LinkedPerson(
                         static::NAME,
-                        Ubki\Dictionaries\LinkedIdentifierRole::DIRECTOR(),
+                        Ubki\Dictionary\LinkedIdentifierRole::DIRECTOR(),
                         Carbon::parse(static::ISSUE_DATE),
                         static::ERGPOU
                     ),
                 ])
             )
         );
-        $this->fakeCreditsBlock = new Ubki\Data\Blocks\CreditsInformation(
-            new Ubki\Data\Collections\CreditDeals([
-                new Ubki\Data\Elements\CreditDeal(
+        $this->fakeCreditsBlock = new Ubki\Data\Block\CreditsInformation(
+            new Ubki\Data\Collection\CreditDeals([
+                new Ubki\Data\Element\CreditDeal(
                     static::ID,
-                    Ubki\Dictionaries\Language::RUS(),
+                    Ubki\Dictionary\Language::RUS(),
                     static::NAME,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE),
-                    Ubki\Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
-                    Ubki\Dictionaries\CollateralType::R_1(),
-                    Ubki\Dictionaries\RepaymentProcedure::PERIODIC_MONTH(),
-                    Ubki\Dictionaries\Currency::UAH(),
+                    Ubki\Dictionary\CreditDealType::COMMERCIAL_CREDIT(),
+                    Ubki\Dictionary\CollateralType::R_1(),
+                    Ubki\Dictionary\RepaymentProcedure::PERIODIC_MONTH(),
+                    Ubki\Dictionary\Currency::UAH(),
                     static::INITIAL_AMOUNT,
-                    Ubki\Dictionaries\SubjectRole::BORROWER(),
+                    Ubki\Dictionary\SubjectRole::BORROWER(),
                     static::COLLATERAL_COST,
-                    new Ubki\Data\Collections\DealLifes([
-                        new Ubki\Data\Elements\DealLife(
+                    new Ubki\Data\Collection\DealLifes([
+                        new Ubki\Data\Element\DealLife(
                             static::ID,
                             static::PERIOD_MONTH,
                             static::PERIOD_YEAR,
                             Carbon::parse(static::ISSUE_DATE),
                             Carbon::parse(static::END_DATE),
-                            Ubki\Dictionaries\DealStatus::CLOSE(),
+                            Ubki\Dictionary\DealStatus::CLOSE(),
                             static::LIMIT,
                             static::MANDATORY_PAYMENT,
                             static::CURRENT_DEBT,
                             static::CURRENT_OVERDUE_DEBT,
                             static::OVERDUE_TIME,
-                            Ubki\Dictionaries\Flag::YES(),
-                            Ubki\Dictionaries\Flag::YES(),
-                            Ubki\Dictionaries\Flag::NO(),
+                            Ubki\Dictionary\Flag::YES(),
+                            Ubki\Dictionary\Flag::YES(),
+                            Ubki\Dictionary\Flag::NO(),
                             Carbon::parse(static::PAYMENT_DATE),
                             Carbon::parse(static::ACTUAL_END_DATE)
                         )
@@ -274,14 +274,14 @@ class FormerTest extends TestCase
                 )
             ])
         );
-        $this->fakeCourtsDecisionBlock = new Ubki\Data\Blocks\CourtDecisionsInformation(
-            new Ubki\Data\Collections\CourtDecisions([
-                new Ubki\Data\Elements\CourtDecision(
+        $this->fakeCourtsDecisionBlock = new Ubki\Data\Block\CourtDecisionsInformation(
+            new Ubki\Data\Collection\CourtDecisions([
+                new Ubki\Data\Element\CourtDecision(
                     static::ID,
                     static::INN,
                     Carbon::parse(static::DATE),
-                    Ubki\Dictionaries\CourtSubjectStatus::PLAINTIFF(),
-                    Ubki\Dictionaries\CourtDealType::ECONOMIC(),
+                    Ubki\Dictionary\CourtSubjectStatus::PLAINTIFF(),
+                    Ubki\Dictionary\CourtDealType::ECONOMIC(),
                     static::COURT_NAME,
                     static::DOCUMENT_TYPE,
                     null,
@@ -292,18 +292,18 @@ class FormerTest extends TestCase
                 )
             ])
         );
-        $this->fakeCreditRegistersBlock = new Ubki\Data\Blocks\CreditsRequestsInformation(
-            new Ubki\Data\Collections\CreditRequests([
-                new Ubki\Data\Elements\CreditRequest(
+        $this->fakeCreditRegistersBlock = new Ubki\Data\Block\CreditsRequestsInformation(
+            new Ubki\Data\Collection\CreditRequests([
+                new Ubki\Data\Element\CreditRequest(
                     Carbon::parse(static::DATE),
                     static::INN,
                     static::ID,
-                    Ubki\Dictionaries\Decision::POSITIVE(),
-                    Ubki\Dictionaries\RequestReason::EXPORT(),
+                    Ubki\Dictionary\Decision::POSITIVE(),
+                    Ubki\Dictionary\RequestReason::EXPORT(),
                     static::ORGANIZATION
                 )
             ]),
-            new Ubki\Data\Elements\RegistryTimes(
+            new Ubki\Data\Element\RegistryTimes(
                 static::BY_HOUR,
                 static::BY_DAY,
                 static::BY_WEEK,
@@ -313,20 +313,20 @@ class FormerTest extends TestCase
                 static::BY_MORE_YEAR
             )
         );
-        $this->fakeInsurancesReports = new Ubki\Data\Blocks\InsurancesInformation(
-            new Ubki\Data\Collections\InsuranceDeals([
-                new Ubki\Data\Elements\InsuranceDeal(
+        $this->fakeInsurancesReports = new Ubki\Data\Block\InsurancesInformation(
+            new Ubki\Data\Collection\InsuranceDeals([
+                new Ubki\Data\Element\InsuranceDeal(
                     static::INN,
                     static::ID,
                     Carbon::parse(static::INFORMATION_DATE),
                     Carbon::parse(static::START_DATE),
                     Carbon::parse(static::END_DATE),
-                    Ubki\Dictionaries\InsuranceDealType::ACCIDENT(),
-                    Ubki\Dictionaries\DealStatus::CLOSE(),
-                    new Ubki\Data\Collections\InsuranceEvents([
-                        new Ubki\Data\Elements\InsuranceEvent(
+                    Ubki\Dictionary\InsuranceDealType::ACCIDENT(),
+                    Ubki\Dictionary\DealStatus::CLOSE(),
+                    new Ubki\Data\Collection\InsuranceEvents([
+                        new Ubki\Data\Element\InsuranceEvent(
                             Carbon::parse(static::REQUEST_DATE),
-                            Ubki\Dictionaries\InsuranceDecisionStatus::POSITIVE(),
+                            Ubki\Dictionary\InsuranceDecisionStatus::POSITIVE(),
                             Carbon::parse(static::DECISION_DATE)
                         )
                     ]),
@@ -334,18 +334,18 @@ class FormerTest extends TestCase
                 )
             ])
         );
-        $this->fakeContactsInformation = new Ubki\Data\Blocks\ContactsInformation(
-            new Ubki\Data\Collections\Contacts([
-                new Ubki\Data\Elements\Contact(
+        $this->fakeContactsInformation = new Ubki\Data\Block\ContactsInformation(
+            new Ubki\Data\Collection\Contacts([
+                new Ubki\Data\Element\Contact(
                     Carbon::parse(static::CREATED_AT),
                     static::VALUE,
-                    Ubki\Dictionaries\ContactType::EMAIL(),
+                    Ubki\Dictionary\ContactType::EMAIL(),
                     static::INN
                 ),
-                new Ubki\Data\Elements\Contact(
+                new Ubki\Data\Element\Contact(
                     Carbon::parse(static::CREATED_AT),
                     static::VALUE,
-                    Ubki\Dictionaries\ContactType::MOBILE(),
+                    Ubki\Dictionary\ContactType::MOBILE(),
                     static::INN
                 )
             ])
@@ -355,51 +355,51 @@ class FormerTest extends TestCase
     public function testImitationRealExport(): void
     {
         $document = new Ubki\Push\Export\DataDocument(
-            new Ubki\Data\Blocks\Identification(
-                new Ubki\Data\Elements\Credential(
-                    Ubki\Dictionaries\Language::RUS(),
+            new Ubki\Data\Block\Identification(
+                new Ubki\Data\Element\Credential(
+                    Ubki\Dictionary\Language::RUS(),
                     'Иван',
                     'Иванович',
                     'Иванов',
                     Carbon::parse('1998-03-12'),
-                    new Ubki\Data\Collections\IdentifiedPersons([
-                        new Ubki\Data\Elements\NaturalPerson(
+                    new Ubki\Data\Collection\IdentifiedPersons([
+                        new Ubki\Data\Element\NaturalPerson(
                             Carbon::parse('2018-06-13'),
-                            Ubki\Dictionaries\Language::RUS(),
+                            Ubki\Dictionary\Language::RUS(),
                             'Иван',
                             'Иванов',
                             Carbon::parse('1998-03-12'),
-                            Ubki\Dictionaries\Gender::MAN(),
+                            Ubki\Dictionary\Gender::MAN(),
                             '1234567890',
                             'Иванович'
                         ),
-                        new Ubki\Data\Elements\NaturalPerson(
+                        new Ubki\Data\Element\NaturalPerson(
                             Carbon::parse('2018-06-13'),
-                            Ubki\Dictionaries\Language::RUS(),
+                            Ubki\Dictionary\Language::RUS(),
                             'Иван',
                             'Иванов',
                             Carbon::parse('1998-03-12'),
-                            Ubki\Dictionaries\Gender::MAN(),
+                            Ubki\Dictionary\Gender::MAN(),
                             '1234567890',
                             'Иванович'
                         ),
                     ]),
-                    new Ubki\Data\Collections\Documents([
-                        new Ubki\Data\Elements\Document(
+                    new Ubki\Data\Collection\Documents([
+                        new Ubki\Data\Element\Document(
                             Carbon::parse('2018-06-13'),
-                            Ubki\Dictionaries\Language::RUS(),
-                            Ubki\Dictionaries\DocumentType::PASSPORT(),
+                            Ubki\Dictionary\Language::RUS(),
+                            Ubki\Dictionary\DocumentType::PASSPORT(),
                             'АА',
                             '123456',
                             'Харьковский ...',
                             Carbon::parse('2014-03-12')
                         )
                     ]),
-                    new Ubki\Data\Collections\Addresses([
-                        new Ubki\Data\Elements\Address(
+                    new Ubki\Data\Collection\Addresses([
+                        new Ubki\Data\Element\Address(
                             Carbon::parse('2018-06-13'),
-                            Ubki\Dictionaries\Language::RUS(),
-                            Ubki\Dictionaries\AddressType::HOME(),
+                            Ubki\Dictionary\Language::RUS(),
+                            Ubki\Dictionary\AddressType::HOME(),
                             'Україна',
                             'Харьков',
                             'Научная',
@@ -413,50 +413,50 @@ class FormerTest extends TestCase
                         )
                     ]),
                     '1234567890',
-                    new Ubki\Data\Collections\Works([
-                        new Ubki\Data\Elements\Work(
+                    new Ubki\Data\Collection\Works([
+                        new Ubki\Data\Element\Work(
                             Carbon::make('2018-03-12'),
-                            Ubki\Dictionaries\Language::RUS(),
+                            Ubki\Dictionary\Language::RUS(),
                             static::ERGPOU,
                             static::NAME,
-                            Ubki\Dictionaries\IdentifierRank::DIRECTOR(),
+                            Ubki\Dictionary\IdentifierRank::DIRECTOR(),
                             10,
                             1234.56
                         )
                     ])
                 )
             ),
-            new Ubki\Data\Blocks\CreditsInformation(
-                new Ubki\Data\Collections\CreditDeals([
-                    new Ubki\Data\Elements\CreditDeal(
+            new Ubki\Data\Block\CreditsInformation(
+                new Ubki\Data\Collection\CreditDeals([
+                    new Ubki\Data\Element\CreditDeal(
                         '123456',
-                        Ubki\Dictionaries\Language::RUS(),
+                        Ubki\Dictionary\Language::RUS(),
                         'Иван',
                         'Иванов',
                         Carbon::parse('1998-03-12'),
-                        Ubki\Dictionaries\CreditDealType::OTHER_CONSUMER_PURPOSES(),
-                        Ubki\Dictionaries\CollateralType::R_2(),
-                        Ubki\Dictionaries\RepaymentProcedure::PAYMENTS_INDIVIDUAL(),
-                        Ubki\Dictionaries\Currency::UAH(),
+                        Ubki\Dictionary\CreditDealType::OTHER_CONSUMER_PURPOSES(),
+                        Ubki\Dictionary\CollateralType::R_2(),
+                        Ubki\Dictionary\RepaymentProcedure::PAYMENTS_INDIVIDUAL(),
+                        Ubki\Dictionary\Currency::UAH(),
                         2500,
-                        Ubki\Dictionaries\SubjectRole::BORROWER(),
+                        Ubki\Dictionary\SubjectRole::BORROWER(),
                         2500,
-                        new Ubki\Data\Collections\DealLifes([
-                            new Ubki\Data\Elements\DealLife(
+                        new Ubki\Data\Collection\DealLifes([
+                            new Ubki\Data\Element\DealLife(
                                 '123456',
                                 1,
                                 2018,
                                 Carbon::parse('2018-03-12'),
                                 Carbon::parse('2018-03-20'),
-                                Ubki\Dictionaries\DealStatus::CLOSE(),
+                                Ubki\Dictionary\DealStatus::CLOSE(),
                                 0,
                                 0,
                                 0,
                                 0,
                                 0,
-                                Ubki\Dictionaries\Flag::NO(),
-                                Ubki\Dictionaries\Flag::NO(),
-                                Ubki\Dictionaries\Flag::NO(),
+                                Ubki\Dictionary\Flag::NO(),
+                                Ubki\Dictionary\Flag::NO(),
+                                Ubki\Dictionary\Flag::NO(),
                                 Carbon::parse('2018-03-13'),
                                 Carbon::parse('2018-03-13')
                             )
@@ -466,12 +466,12 @@ class FormerTest extends TestCase
                     )
                 ])
             ),
-            new Ubki\Data\Blocks\ContactsInformation(
-                new Ubki\Data\Collections\Contacts([
-                    new Ubki\Data\Elements\Contact(
+            new Ubki\Data\Block\ContactsInformation(
+                new Ubki\Data\Collection\Contacts([
+                    new Ubki\Data\Element\Contact(
                         Carbon::parse('2017-05-11'),
                         '380930439474',
-                        Ubki\Dictionaries\ContactType::MOBILE(),
+                        Ubki\Dictionary\ContactType::MOBILE(),
                         '1234567890'
                     ),
                 ])
@@ -689,15 +689,15 @@ class FormerTest extends TestCase
         );
     }
 
-    protected function createNaturalPerson(): Ubki\Data\Elements\NaturalPerson
+    protected function createNaturalPerson(): Ubki\Data\Element\NaturalPerson
     {
-        return new Ubki\Data\Elements\NaturalPerson(
+        return new Ubki\Data\Element\NaturalPerson(
             Carbon::make(static::CREATED_AT),
-            Ubki\Dictionaries\Language::RUS(),
+            Ubki\Dictionary\Language::RUS(),
             static::NAME,
             static::SURNAME,
             Carbon::make(static::BIRTH_DATE),
-            Ubki\Dictionaries\Gender::MAN(),
+            Ubki\Dictionary\Gender::MAN(),
             static::INN,
             static::PATRONYMIC
         );

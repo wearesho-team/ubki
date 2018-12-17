@@ -22,13 +22,13 @@ interface Work extends Ubki\Infrastructure\ElementInterface
 
     public function getCreatedAt(): \DateTimeInterface;
 
-    public function getLanguage(): Ubki\Dictionaries\Language;
+    public function getLanguage(): Ubki\Dictionary\Language;
 
     public function getErgpou(): string;
 
     public function getName(): string;
 
-    public function getRank(): ?Ubki\Dictionaries\IdentifierRank;
+    public function getRank(): ?Ubki\Dictionary\IdentifierRank;
 
     public function getExperience(): ?int;
 

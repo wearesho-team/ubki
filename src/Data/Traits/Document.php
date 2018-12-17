@@ -13,10 +13,10 @@ trait Document
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var Ubki\Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
-    /** @var Ubki\Dictionaries\DocumentType */
+    /** @var Ubki\Dictionary\DocumentType */
     protected $type;
 
     /** @var string */
@@ -39,12 +39,12 @@ trait Document
         return $this->createdAt;
     }
 
-    public function getLanguage(): Ubki\Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
 
-    public function getType(): Ubki\Dictionaries\DocumentType
+    public function getType(): Ubki\Dictionary\DocumentType
     {
         return $this->type;
     }

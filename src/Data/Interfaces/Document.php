@@ -23,9 +23,9 @@ interface Document extends Ubki\Infrastructure\ElementInterface
 
     public function getCreatedAt(): \DateTimeInterface;
 
-    public function getLanguage(): Ubki\Dictionaries\Language;
+    public function getLanguage(): Ubki\Dictionary\Language;
 
-    public function getType(): Ubki\Dictionaries\DocumentType;
+    public function getType(): Ubki\Dictionary\DocumentType;
 
     public function getSerial(): string;
 

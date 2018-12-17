@@ -10,13 +10,13 @@ use Wearesho\Bobra\Ubki;
  */
 interface DataDocumentInterface extends Ubki\Infrastructure\ElementInterface
 {
-    public function getIdentification(): Ubki\Data\Blocks\Identification;
+    public function getIdentification(): Ubki\Data\Block\Identification;
 
-    public function getCreditDeals(): ?Ubki\Data\Blocks\CreditsInformation;
+    public function getCreditDeals(): ?Ubki\Data\Block\CreditsInformation;
 
-    public function getCourtDecisions(): ?Ubki\Data\Blocks\CourtDecisionsInformation;
+    public function getCourtDecisions(): ?Ubki\Data\Block\CourtDecisionsInformation;
 
-    public function getCreditRequests(): ?Ubki\Data\Blocks\CreditsRequestsInformation;
+    public function getCreditRequests(): ?Ubki\Data\Block\CreditsRequestsInformation;
 
-    public function getContacts(): ?Ubki\Data\Blocks\ContactsInformation;
+    public function getContacts(): ?Ubki\Data\Block\ContactsInformation;
 }

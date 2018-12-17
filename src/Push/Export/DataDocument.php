@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Data\Blocks;
+use Wearesho\Bobra\Ubki\Data\Block;
 use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**
@@ -16,11 +16,11 @@ class DataDocument extends Element implements DataDocumentInterface
     use DataDocumentTrait;
 
     public function __construct(
-        Blocks\Identification $identification,
-        Blocks\CreditsInformation $creditsInformation,
-        Blocks\ContactsInformation $contacts,
-        Blocks\CourtDecisionsInformation $courtDecisions = null,
-        Blocks\CreditsRequestsInformation $creditRequests = null
+        Block\Identification $identification,
+        Block\CreditsInformation $creditsInformation,
+        Block\ContactsInformation $contacts,
+        Block\CourtDecisionsInformation $courtDecisions = null,
+        Block\CreditsRequestsInformation $creditRequests = null
     ) {
         $this->identification = $identification;
         $this->creditDeals = $creditsInformation;

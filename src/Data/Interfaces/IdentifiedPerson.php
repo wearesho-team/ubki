@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Dictionaries\Language;
+use Wearesho\Bobra\Ubki\Dictionary\Language;
 
 /**
  * Interface IdentifiedPerson

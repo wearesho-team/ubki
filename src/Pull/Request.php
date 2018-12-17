@@ -16,10 +16,10 @@ class Request extends Ubki\Infrastructure\Element implements RequestInterface
 
     public function __construct(
         Ubki\Data\Interfaces\RequestData $requestData,
-        Elements\RequestContentInterface $content
+        Element\RequestContentInterface $content
     ) {
         // todo: wrap into validate() function
-        if ($requestData->getReason()->equals(Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT())) {
+        if ($requestData->getReason()->equals(Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT())) {
             $identification = $content->getIdentification();
 
             if (is_null($content->getContacts())

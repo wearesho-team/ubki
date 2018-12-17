@@ -13,10 +13,10 @@ trait Address
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var Ubki\Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
-    /** @var Ubki\Dictionaries\AddressType */
+    /** @var Ubki\Dictionary\AddressType */
     protected $addressType;
 
     /** @var string */
@@ -40,7 +40,7 @@ trait Address
     /** @var string|null */
     protected $area;
 
-    /** @var Ubki\Dictionaries\CityType */
+    /** @var Ubki\Dictionary\CityType */
     protected $cityType;
 
     /** @var string|null */
@@ -57,12 +57,12 @@ trait Address
         return $this->createdAt;
     }
 
-    public function getLanguage(): Ubki\Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
 
-    public function getAddressType(): Ubki\Dictionaries\AddressType
+    public function getAddressType(): Ubki\Dictionary\AddressType
     {
         return $this->addressType;
     }
@@ -117,7 +117,7 @@ trait Address
         return $this->fullAddress;
     }
 
-    public function getCityType(): ?Ubki\Dictionaries\CityType
+    public function getCityType(): ?Ubki\Dictionary\CityType
     {
         return $this->cityType;
     }

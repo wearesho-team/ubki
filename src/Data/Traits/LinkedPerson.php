@@ -13,7 +13,7 @@ trait LinkedPerson
     /** @var string */
     protected $name;
 
-    /** @var Ubki\Dictionaries\LinkedIdentifierRole */
+    /** @var Ubki\Dictionary\LinkedIdentifierRole */
     protected $role;
 
     /** @var \DateTimeInterface */
@@ -32,7 +32,7 @@ trait LinkedPerson
         return $this->name;
     }
 
-    public function getRole(): Ubki\Dictionaries\LinkedIdentifierRole
+    public function getRole(): Ubki\Dictionary\LinkedIdentifierRole
     {
         return $this->role;
     }

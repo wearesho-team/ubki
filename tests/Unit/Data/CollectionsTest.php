@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Unit\Data;
 
 use PHPUnit\Framework\TestCase;
 use Wearesho\BaseCollection;
-use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki\Data\Collection;
 
 /**
  * Class CollectionsTest
@@ -26,22 +26,22 @@ class CollectionsTest extends TestCase
     public function providerCollections(): array
     {
         return [
-            [new Collections\Addresses()],
-            [new Collections\Comments()],
-            [new Collections\Contacts()],
-            [new Collections\CourtDecisions()],
-            [new Collections\CreditDeals()],
-            [new Collections\CreditDeals()],
-            [new Collections\CreditRequests()],
-            [new Collections\DealLifes()],
-            [new Collections\Documents()],
-            [new Collections\IdentifiedPersons()],
-            [new Collections\InsuranceDeals()],
-            [new Collections\InsuranceEvents()],
-            [new Collections\LinkedPersons()],
-            [new Collections\Photos()],
-            [new Collections\Trace()],
-            [new Collections\Works()],
+            [new Collection\Addresses()],
+            [new Collection\Comments()],
+            [new Collection\Contacts()],
+            [new Collection\CourtDecisions()],
+            [new Collection\CreditDeals()],
+            [new Collection\CreditDeals()],
+            [new Collection\CreditRequests()],
+            [new Collection\DealLifes()],
+            [new Collection\Documents()],
+            [new Collection\IdentifiedPersons()],
+            [new Collection\InsuranceDeals()],
+            [new Collection\InsuranceEvents()],
+            [new Collection\LinkedPersons()],
+            [new Collection\Photos()],
+            [new Collection\Trace()],
+            [new Collection\Works()],
         ];
     }
 }

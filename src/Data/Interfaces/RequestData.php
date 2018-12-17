@@ -19,13 +19,13 @@ interface RequestData extends Ubki\Infrastructure\ElementInterface
 
     public function getVersion(): string;
 
-    public function getType(): Ubki\Dictionaries\RequestType;
+    public function getType(): Ubki\Dictionary\RequestType;
 
-    public function getReason(): Ubki\Dictionaries\RequestReason;
+    public function getReason(): Ubki\Dictionary\RequestReason;
 
     public function getDate(): ?\DateTimeInterface;
 
     public function getId(): ?string;
 
-    public function getInitiator(): ?Ubki\Dictionaries\RequestInitiator;
+    public function getInitiator(): ?Ubki\Dictionary\RequestInitiator;
 }

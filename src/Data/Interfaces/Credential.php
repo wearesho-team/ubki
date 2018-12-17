@@ -18,7 +18,7 @@ interface Credential extends Ubki\Infrastructure\ElementInterface
     public const LANGUAGE_REF = 'reqlngref';
     public const BIRTH_DATE = 'bdate';
 
-    public function getLanguage(): Ubki\Dictionaries\Language;
+    public function getLanguage(): Ubki\Dictionary\Language;
 
     public function getName(): string;
 
@@ -28,17 +28,17 @@ interface Credential extends Ubki\Infrastructure\ElementInterface
 
     public function getBirthDate(): \DateTimeInterface;
 
-    public function getIdentifiers(): Ubki\Data\Collections\IdentifiedPersons;
+    public function getIdentifiers(): Ubki\Data\Collection\IdentifiedPersons;
 
-    public function getDocuments(): Ubki\Data\Collections\Documents;
+    public function getDocuments(): Ubki\Data\Collection\Documents;
 
-    public function getAddresses(): Ubki\Data\Collections\Addresses;
+    public function getAddresses(): Ubki\Data\Collection\Addresses;
 
     public function getInn(): ?string;
 
-    public function getWorks(): ?Ubki\Data\Collections\Works;
+    public function getWorks(): ?Ubki\Data\Collection\Works;
 
-    public function getPhotos(): ?Ubki\Data\Collections\Photos;
+    public function getPhotos(): ?Ubki\Data\Collection\Photos;
 
-    public function getLinkedPersons(): ?Ubki\Data\Collections\LinkedPersons;
+    public function getLinkedPersons(): ?Ubki\Data\Collection\LinkedPersons;
 }

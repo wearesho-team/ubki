@@ -24,9 +24,9 @@ interface CreditRequest extends Ubki\Infrastructure\ElementInterface
 
     public function getId(): string;
 
-    public function getDecision(): Ubki\Dictionaries\Decision;
+    public function getDecision(): Ubki\Dictionary\Decision;
 
-    public function getReason(): Ubki\Dictionaries\RequestReason;
+    public function getReason(): Ubki\Dictionary\RequestReason;
 
     public function getOrganization(): ?string;
 }

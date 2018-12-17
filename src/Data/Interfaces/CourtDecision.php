@@ -32,9 +32,9 @@ interface CourtDecision extends Ubki\Infrastructure\ElementInterface
 
     public function getDate(): \DateTimeInterface;
 
-    public function getSubjectStatus(): Ubki\Dictionaries\CourtSubjectStatus;
+    public function getSubjectStatus(): Ubki\Dictionary\CourtSubjectStatus;
 
-    public function getCourtDealType(): Ubki\Dictionaries\CourtDealType;
+    public function getCourtDealType(): Ubki\Dictionary\CourtDealType;
 
     public function getCourtName(): string;
 

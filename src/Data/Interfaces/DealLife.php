@@ -41,7 +41,7 @@ interface DealLife extends Ubki\Infrastructure\ElementInterface
 
     public function getEndDate(): \DateTimeInterface;
 
-    public function getStatus(): Ubki\Dictionaries\DealStatus;
+    public function getStatus(): Ubki\Dictionary\DealStatus;
 
     public function getLimit(): float;
 
@@ -53,11 +53,11 @@ interface DealLife extends Ubki\Infrastructure\ElementInterface
 
     public function getOverdueTime(): int;
 
-    public function getPaymentIndication(): Ubki\Dictionaries\Flag;
+    public function getPaymentIndication(): Ubki\Dictionary\Flag;
 
-    public function getDelayIndication(): Ubki\Dictionaries\Flag;
+    public function getDelayIndication(): Ubki\Dictionary\Flag;
 
-    public function getTrancheIndication(): Ubki\Dictionaries\Flag;
+    public function getTrancheIndication(): Ubki\Dictionary\Flag;
 
     public function getPaymentDate(): \DateTimeInterface;
 

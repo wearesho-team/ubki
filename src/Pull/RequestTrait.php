@@ -11,10 +11,10 @@ use Wearesho\Bobra\Ubki;
 trait RequestTrait
 {
 
-    /** @var Ubki\Data\Elements\RequestData */
+    /** @var Ubki\Data\Element\RequestData */
     protected $head;
 
-    /** @var Elements\RequestContentInterface */
+    /** @var Element\RequestContentInterface */
     protected $body;
 
     public function getHead(): Ubki\Data\Interfaces\RequestData
@@ -22,7 +22,7 @@ trait RequestTrait
         return $this->head;
     }
 
-    public function getBody(): Elements\RequestContentInterface
+    public function getBody(): Element\RequestContentInterface
     {
         return $this->body;
     }

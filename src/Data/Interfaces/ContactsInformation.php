@@ -10,5 +10,5 @@ use Wearesho\Bobra\Ubki;
  */
 interface ContactsInformation extends Ubki\Infrastructure\ElementInterface
 {
-    public function getContacts(): Ubki\Data\Collections\Contacts;
+    public function getContacts(): Ubki\Data\Collection\Contacts;
 }

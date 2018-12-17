@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  */
 trait Credential
 {
-    /** @var Ubki\Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
     /** @var string */
@@ -25,28 +25,28 @@ trait Credential
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Ubki\Data\Collections\IdentifiedPersons */
+    /** @var Ubki\Data\Collection\IdentifiedPersons */
     protected $identifiers;
 
-    /** @var Ubki\Data\Collections\Documents */
+    /** @var Ubki\Data\Collection\Documents */
     protected $documents;
 
-    /** @var Ubki\Data\Collections\Addresses */
+    /** @var Ubki\Data\Collection\Addresses */
     protected $addresses;
 
     /** @var string|null */
     protected $inn;
 
-    /** @var Ubki\Data\Collections\Works|null */
+    /** @var Ubki\Data\Collection\Works|null */
     protected $works;
 
-    /** @var Ubki\Data\Collections\Photos|null */
+    /** @var Ubki\Data\Collection\Photos|null */
     protected $photos;
 
-    /** @var Ubki\Data\Collections\LinkedPersons|null */
+    /** @var Ubki\Data\Collection\LinkedPersons|null */
     protected $linkedPersons;
 
-    public function getLanguage(): Ubki\Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
@@ -71,17 +71,17 @@ trait Credential
         return $this->birthDate;
     }
 
-    public function getIdentifiers(): Ubki\Data\Collections\IdentifiedPersons
+    public function getIdentifiers(): Ubki\Data\Collection\IdentifiedPersons
     {
         return $this->identifiers;
     }
 
-    public function getDocuments(): Ubki\Data\Collections\Documents
+    public function getDocuments(): Ubki\Data\Collection\Documents
     {
         return $this->documents;
     }
 
-    public function getAddresses(): Ubki\Data\Collections\Addresses
+    public function getAddresses(): Ubki\Data\Collection\Addresses
     {
         return $this->addresses;
     }
@@ -91,17 +91,17 @@ trait Credential
         return $this->inn;
     }
 
-    public function getWorks(): ?Ubki\Data\Collections\Works
+    public function getWorks(): ?Ubki\Data\Collection\Works
     {
         return $this->works;
     }
 
-    public function getPhotos(): ?Ubki\Data\Collections\Photos
+    public function getPhotos(): ?Ubki\Data\Collection\Photos
     {
         return $this->photos;
     }
 
-    public function getLinkedPersons(): ?Ubki\Data\Collections\LinkedPersons
+    public function getLinkedPersons(): ?Ubki\Data\Collection\LinkedPersons
     {
         return $this->linkedPersons;
     }

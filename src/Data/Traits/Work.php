@@ -13,7 +13,7 @@ trait Work
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var Ubki\Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
     /** @var string */
@@ -22,7 +22,7 @@ trait Work
     /** @var string */
     protected $name;
 
-    /** @var Ubki\Dictionaries\IdentifierRank|null */
+    /** @var Ubki\Dictionary\IdentifierRank|null */
     protected $rank;
 
     /** @var int|null */
@@ -36,7 +36,7 @@ trait Work
         return $this->createdAt;
     }
 
-    public function getLanguage(): Ubki\Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
@@ -51,7 +51,7 @@ trait Work
         return $this->name;
     }
 
-    public function getRank(): ?Ubki\Dictionaries\IdentifierRank
+    public function getRank(): ?Ubki\Dictionary\IdentifierRank
     {
         return $this->rank;
     }

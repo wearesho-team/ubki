@@ -30,9 +30,9 @@ interface Address extends Ubki\Infrastructure\ElementInterface
 
     public function getCreatedAt(): \DateTimeInterface;
 
-    public function getLanguage(): Ubki\Dictionaries\Language;
+    public function getLanguage(): Ubki\Dictionary\Language;
 
-    public function getAddressType(): Ubki\Dictionaries\AddressType;
+    public function getAddressType(): Ubki\Dictionary\AddressType;
 
     public function getCountry(): string;
 
@@ -54,5 +54,5 @@ interface Address extends Ubki\Infrastructure\ElementInterface
 
     public function getFullAddress(): ?string;
 
-    public function getCityType(): ?Ubki\Dictionaries\CityType;
+    public function getCityType(): ?Ubki\Dictionary\CityType;
 }

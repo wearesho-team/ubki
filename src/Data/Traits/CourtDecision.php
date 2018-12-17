@@ -19,10 +19,10 @@ trait CourtDecision
     /** @var \DateTimeInterface */
     protected $date;
 
-    /** @var Ubki\Dictionaries\CourtSubjectStatus */
+    /** @var Ubki\Dictionary\CourtSubjectStatus */
     protected $subjectStatus;
 
-    /** @var Ubki\Dictionaries\CourtDealType */
+    /** @var Ubki\Dictionary\CourtDealType */
     protected $courtDealType;
 
     /** @var string */
@@ -64,12 +64,12 @@ trait CourtDecision
         return $this->date;
     }
 
-    public function getSubjectStatus(): Ubki\Dictionaries\CourtSubjectStatus
+    public function getSubjectStatus(): Ubki\Dictionary\CourtSubjectStatus
     {
         return $this->subjectStatus;
     }
 
-    public function getCourtDealType(): Ubki\Dictionaries\CourtDealType
+    public function getCourtDealType(): Ubki\Dictionary\CourtDealType
     {
         return $this->courtDealType;
     }

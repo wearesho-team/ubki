@@ -19,10 +19,10 @@ trait CreditRequest
     /** @var string */
     protected $id;
 
-    /** @var Ubki\Dictionaries\Decision */
+    /** @var Ubki\Dictionary\Decision */
     protected $decision;
 
-    /** @var Ubki\Dictionaries\RequestReason */
+    /** @var Ubki\Dictionary\RequestReason */
     protected $reason;
 
     /** @var string|null */
@@ -43,12 +43,12 @@ trait CreditRequest
         return $this->id;
     }
 
-    public function getDecision(): Ubki\Dictionaries\Decision
+    public function getDecision(): Ubki\Dictionary\Decision
     {
         return $this->decision;
     }
 
-    public function getReason(): Ubki\Dictionaries\RequestReason
+    public function getReason(): Ubki\Dictionary\RequestReason
     {
         return $this->reason;
     }

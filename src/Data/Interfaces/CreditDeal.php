@@ -34,7 +34,7 @@ interface CreditDeal extends Ubki\Infrastructure\ElementInterface
 
     public function getId(): string;
 
-    public function getLanguage(): Ubki\Dictionaries\Language;
+    public function getLanguage(): Ubki\Dictionary\Language;
 
     public function getName(): string;
 
@@ -42,21 +42,21 @@ interface CreditDeal extends Ubki\Infrastructure\ElementInterface
 
     public function getBirthDate(): \DateTimeInterface;
 
-    public function getType(): Ubki\Dictionaries\CreditDealType;
+    public function getType(): Ubki\Dictionary\CreditDealType;
 
-    public function getCollateral(): Ubki\Dictionaries\CollateralType;
+    public function getCollateral(): Ubki\Dictionary\CollateralType;
 
-    public function getRepaymentProcedure(): Ubki\Dictionaries\RepaymentProcedure;
+    public function getRepaymentProcedure(): Ubki\Dictionary\RepaymentProcedure;
 
-    public function getCurrency(): Ubki\Dictionaries\Currency;
+    public function getCurrency(): Ubki\Dictionary\Currency;
 
     public function getInitialAmount(): float;
 
-    public function getSubjectRole(): Ubki\Dictionaries\SubjectRole;
+    public function getSubjectRole(): Ubki\Dictionary\SubjectRole;
 
     public function getCollateralCost(): float;
 
-    public function getDealLifes(): Ubki\Data\Collections\DealLifes;
+    public function getDealLifes(): Ubki\Data\Collection\DealLifes;
 
     public function getInn(): ?string;
 

@@ -48,7 +48,7 @@ class Former extends Ubki\Infrastructure\Former implements FormerInterface
             $requestContent = $request->getBody();
             $identityWrapperElm = $this->document->createElement($requestContent->tag());
             $identityWrapperElm->setAttribute(
-                Ubki\Pull\Elements\RequestContentInterface::LANGUAGE,
+                Ubki\Pull\Element\RequestContentInterface::LANGUAGE,
                 $requestContent->getLanguage()->getValue()
             );
             $identityWrapperElm = $requestElm->appendChild($identityWrapperElm);

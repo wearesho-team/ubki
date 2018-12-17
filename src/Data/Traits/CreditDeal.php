@@ -13,7 +13,7 @@ trait CreditDeal
     /** @var string */
     protected $id;
 
-    /** @var Ubki\Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
     /** @var string */
@@ -25,28 +25,28 @@ trait CreditDeal
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Ubki\Dictionaries\CreditDealType */
+    /** @var Ubki\Dictionary\CreditDealType */
     protected $type;
 
-    /** @var Ubki\Dictionaries\CollateralType */
+    /** @var Ubki\Dictionary\CollateralType */
     protected $collateral;
 
-    /** @var Ubki\Dictionaries\RepaymentProcedure */
+    /** @var Ubki\Dictionary\RepaymentProcedure */
     protected $repaymentProcedure;
 
-    /** @var Ubki\Dictionaries\Currency */
+    /** @var Ubki\Dictionary\Currency */
     protected $currency;
 
     /** @var float */
     protected $initialAmount;
 
-    /** @var Ubki\Dictionaries\SubjectRole */
+    /** @var Ubki\Dictionary\SubjectRole */
     protected $subjectRole;
 
     /** @var float */
     protected $collateralCost;
 
-    /** @var Ubki\Data\Collections\DealLifes */
+    /** @var Ubki\Data\Collection\DealLifes */
     protected $dealLifes;
 
     /** @var string|null */
@@ -63,7 +63,7 @@ trait CreditDeal
         return $this->id;
     }
 
-    public function getLanguage(): Ubki\Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
@@ -83,22 +83,22 @@ trait CreditDeal
         return $this->birthDate;
     }
 
-    public function getType(): Ubki\Dictionaries\CreditDealType
+    public function getType(): Ubki\Dictionary\CreditDealType
     {
         return $this->type;
     }
 
-    public function getCollateral(): Ubki\Dictionaries\CollateralType
+    public function getCollateral(): Ubki\Dictionary\CollateralType
     {
         return $this->collateral;
     }
 
-    public function getRepaymentProcedure(): Ubki\Dictionaries\RepaymentProcedure
+    public function getRepaymentProcedure(): Ubki\Dictionary\RepaymentProcedure
     {
         return $this->repaymentProcedure;
     }
 
-    public function getCurrency(): Ubki\Dictionaries\Currency
+    public function getCurrency(): Ubki\Dictionary\Currency
     {
         return $this->currency;
     }
@@ -108,7 +108,7 @@ trait CreditDeal
         return $this->initialAmount;
     }
 
-    public function getSubjectRole(): Ubki\Dictionaries\SubjectRole
+    public function getSubjectRole(): Ubki\Dictionary\SubjectRole
     {
         return $this->subjectRole;
     }
@@ -118,7 +118,7 @@ trait CreditDeal
         return $this->collateralCost;
     }
 
-    public function getDealLifes(): Ubki\Data\Collections\DealLifes
+    public function getDealLifes(): Ubki\Data\Collection\DealLifes
     {
         return $this->dealLifes;
     }

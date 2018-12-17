@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Unit\Infrastructure;
 
 use PHPUnit\Framework\TestCase;
 
-use Wearesho\Bobra\Ubki\Dictionaries\Language;
+use Wearesho\Bobra\Ubki\Dictionary\Language;
 
 /**
  * Class DictionaryTest
@@ -38,7 +38,7 @@ class DictionaryTest extends TestCase
     /**
      * @expectedException \BadMethodCallException
      * @expectedExceptionMessage No static method or enum constant 'BDA' in class
-     *                           Wearesho\Bobra\Ubki\Dictionaries\Language
+     *                           Wearesho\Bobra\Ubki\Dictionary\Language
      */
     public function testInvalidConst(): void
     {

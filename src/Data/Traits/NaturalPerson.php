@@ -18,7 +18,7 @@ trait NaturalPerson
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Ubki\Dictionaries\Gender */
+    /** @var Ubki\Dictionary\Gender */
     protected $gender;
 
     /** @var string|null */
@@ -27,19 +27,19 @@ trait NaturalPerson
     /** @var string|null */
     protected $patronymic;
 
-    /** @var Ubki\Dictionaries\FamilyStatus|null */
+    /** @var Ubki\Dictionary\FamilyStatus|null */
     protected $familyStatus;
 
-    /** @var Ubki\Dictionaries\Education|null */
+    /** @var Ubki\Dictionary\Education|null */
     protected $education;
 
-    /** @var Ubki\Dictionaries\Nationality|null */
+    /** @var Ubki\Dictionary\Nationality|null */
     protected $nationality;
 
-    /** @var Ubki\Dictionaries\RegistrationSpd|null */
+    /** @var Ubki\Dictionary\RegistrationSpd|null */
     protected $registrationSpd;
 
-    /** @var Ubki\Dictionaries\SocialStatus|null */
+    /** @var Ubki\Dictionary\SocialStatus|null */
     protected $socialStatus;
 
     /** @var int|null */
@@ -70,32 +70,32 @@ trait NaturalPerson
         return $this->childrenCount;
     }
 
-    public function getGender(): Ubki\Dictionaries\Gender
+    public function getGender(): Ubki\Dictionary\Gender
     {
         return $this->gender;
     }
 
-    public function getFamilyStatus(): ?Ubki\Dictionaries\FamilyStatus
+    public function getFamilyStatus(): ?Ubki\Dictionary\FamilyStatus
     {
         return $this->familyStatus;
     }
 
-    public function getEducation(): ?Ubki\Dictionaries\Education
+    public function getEducation(): ?Ubki\Dictionary\Education
     {
         return $this->education;
     }
 
-    public function getNationality(): ?Ubki\Dictionaries\Nationality
+    public function getNationality(): ?Ubki\Dictionary\Nationality
     {
         return $this->nationality;
     }
 
-    public function getRegistrationSpd(): ?Ubki\Dictionaries\RegistrationSpd
+    public function getRegistrationSpd(): ?Ubki\Dictionary\RegistrationSpd
     {
         return $this->registrationSpd;
     }
 
-    public function getSocialStatus(): ?Ubki\Dictionaries\SocialStatus
+    public function getSocialStatus(): ?Ubki\Dictionary\SocialStatus
     {
         return $this->socialStatus;
     }

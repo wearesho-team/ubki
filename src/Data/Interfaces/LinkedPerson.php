@@ -20,7 +20,7 @@ interface LinkedPerson extends Ubki\Infrastructure\ElementInterface
 
     public function getName(): string;
 
-    public function getRole(): Ubki\Dictionaries\LinkedIdentifierRole;
+    public function getRole(): Ubki\Dictionary\LinkedIdentifierRole;
 
     public function getIssueDate(): \DateTimeInterface;
 }

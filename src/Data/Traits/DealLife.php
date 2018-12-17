@@ -25,7 +25,7 @@ trait DealLife
     /** @var \DateTimeInterface */
     protected $endDate;
 
-    /** @var Ubki\Dictionaries\DealStatus */
+    /** @var Ubki\Dictionary\DealStatus */
     protected $status;
 
     /** @var float */
@@ -43,13 +43,13 @@ trait DealLife
     /** @var int */
     protected $overdueTime;
 
-    /** @var Ubki\Dictionaries\Flag */
+    /** @var Ubki\Dictionary\Flag */
     protected $paymentIndication;
 
-    /** @var Ubki\Dictionaries\Flag */
+    /** @var Ubki\Dictionary\Flag */
     protected $delayIndication;
 
-    /** @var Ubki\Dictionaries\Flag */
+    /** @var Ubki\Dictionary\Flag */
     protected $trancheIndication;
 
     /** @var \DateTimeInterface */
@@ -87,7 +87,7 @@ trait DealLife
         return $this->endDate;
     }
 
-    public function getStatus(): Ubki\Dictionaries\DealStatus
+    public function getStatus(): Ubki\Dictionary\DealStatus
     {
         return $this->status;
     }
@@ -117,17 +117,17 @@ trait DealLife
         return $this->overdueTime;
     }
 
-    public function getPaymentIndication(): Ubki\Dictionaries\Flag
+    public function getPaymentIndication(): Ubki\Dictionary\Flag
     {
         return $this->paymentIndication;
     }
 
-    public function getDelayIndication(): Ubki\Dictionaries\Flag
+    public function getDelayIndication(): Ubki\Dictionary\Flag
     {
         return $this->delayIndication;
     }
 
-    public function getTrancheIndication(): Ubki\Dictionaries\Flag
+    public function getTrancheIndication(): Ubki\Dictionary\Flag
     {
         return $this->trancheIndication;
     }
@@ -164,9 +164,9 @@ trait DealLife
         ];
     }
 
-    protected function validateActualEndDate(?string $actualEndDate, Ubki\Dictionaries\DealStatus $status): void
+    protected function validateActualEndDate(?string $actualEndDate, Ubki\Dictionary\DealStatus $status): void
     {
-        if (is_null($actualEndDate) && $status->equals(Ubki\Dictionaries\DealStatus::CLOSE())) {
+        if (is_null($actualEndDate) && $status->equals(Ubki\Dictionary\DealStatus::CLOSE())) {
             throw new \InvalidArgumentException("'Actual end date' must be set if deal status is CLOSE");
         }
     }

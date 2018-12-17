@@ -13,10 +13,10 @@ trait RequestData
     /** @var string */
     protected $version = '1.0';
 
-    /** @var Ubki\Dictionaries\RequestType */
+    /** @var Ubki\Dictionary\RequestType */
     protected $type;
 
-    /** @var Ubki\Dictionaries\RequestReason */
+    /** @var Ubki\Dictionary\RequestReason */
     protected $reason;
 
     /** @var \DateTimeInterface|null */
@@ -25,7 +25,7 @@ trait RequestData
     /** @var string|null */
     protected $id;
 
-    /** @var Ubki\Dictionaries\RequestInitiator|null */
+    /** @var Ubki\Dictionary\RequestInitiator|null */
     protected $initiator;
 
     public function getVersion(): string
@@ -33,12 +33,12 @@ trait RequestData
         return $this->version;
     }
 
-    public function getType(): Ubki\Dictionaries\RequestType
+    public function getType(): Ubki\Dictionary\RequestType
     {
         return $this->type;
     }
 
-    public function getReason(): Ubki\Dictionaries\RequestReason
+    public function getReason(): Ubki\Dictionary\RequestReason
     {
         return $this->reason;
     }
@@ -53,7 +53,7 @@ trait RequestData
         return $this->id;
     }
 
-    public function getInitiator(): ?Ubki\Dictionaries\RequestInitiator
+    public function getInitiator(): ?Ubki\Dictionary\RequestInitiator
     {
         return $this->initiator;
     }

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Dictionaries\Language;
+use Wearesho\Bobra\Ubki\Dictionary\Language;
 
 /**
  * Trait IdentifiedPerson

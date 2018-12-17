@@ -35,11 +35,11 @@ class ElementsTest extends TestCase
     {
         return [
             [
-                Ubki\Data\Elements\Address::class,
+                Ubki\Data\Element\Address::class,
                 [
                     'createdAt' => Carbon::make('2018-03-12'),
-                    'language' => Ubki\Dictionaries\Language::ENG(),
-                    'addressType' => Ubki\Dictionaries\AddressType::HOME(),
+                    'language' => Ubki\Dictionary\Language::ENG(),
+                    'addressType' => Ubki\Dictionary\AddressType::HOME(),
                     'country' => 'testCountry',
                     'city' => 'testCity',
                     'street' => 'testStreet',
@@ -47,14 +47,14 @@ class ElementsTest extends TestCase
                     'index' => 'testIndex',
                     'state' => 'testState',
                     'area' => 'testArea',
-                    'cityType' => Ubki\Dictionaries\CityType::TOWN(),
+                    'cityType' => Ubki\Dictionary\CityType::TOWN(),
                     'corpus' => 'testCorpus',
                     'flat' => 'testFlat',
                     'fullAddress' => 'testFullAddress',
                 ],
             ],
             [
-                Ubki\Data\Elements\Balance::class,
+                Ubki\Data\Element\Balance::class,
                 [
                     'value' => 1234.56,
                     'date' => Carbon::make('2018-03-12'),
@@ -62,29 +62,29 @@ class ElementsTest extends TestCase
                 ]
             ],
             [
-                Ubki\Data\Elements\Comment::class,
+                Ubki\Data\Element\Comment::class,
                 [
                     'text' => 'testText',
                     'id' => 'testId',
                 ]
             ],
             [
-                Ubki\Data\Elements\Contact::class,
+                Ubki\Data\Element\Contact::class,
                 [
                     'createdAt' => Carbon::make('2018-02-12'),
                     'value' => 'value',
-                    'type' => Ubki\Dictionaries\ContactType::HOME(),
+                    'type' => Ubki\Dictionary\ContactType::HOME(),
                     'inn' => static::INN,
                 ]
             ],
             [
-                Ubki\Data\Elements\CourtDecision::class,
+                Ubki\Data\Element\CourtDecision::class,
                 [
                     'id' => 'testId',
                     'inn' => static::INN,
                     'date' => Carbon::make('2018-03-12'),
-                    'subjectStatus' => Ubki\Dictionaries\CourtSubjectStatus::PLAINTIFF(),
-                    'courtDealType' => Ubki\Dictionaries\CourtDealType::PROBLEM_LOANS(),
+                    'subjectStatus' => Ubki\Dictionary\CourtSubjectStatus::PLAINTIFF(),
+                    'courtDealType' => Ubki\Dictionary\CourtDealType::PROBLEM_LOANS(),
                     'courtName' => 'testCourtName',
                     'documentType' => 'testDocumentType',
                     'documentTypeReference' => 'testDocumentReference',
@@ -96,81 +96,81 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Elements\Credential::class,
+                Ubki\Data\Element\Credential::class,
                 [
-                    'language' => Ubki\Dictionaries\Language::ENG(),
+                    'language' => Ubki\Dictionary\Language::ENG(),
                     'name' => 'testName',
                     'patronymic' => 'testPatronymic',
                     'surname' => 'testSurname',
                     'birthDate' => Carbon::make('1984-03-12'),
-                    'identifiers' => new Ubki\Data\Collections\IdentifiedPersons(),
-                    'documents' => new Ubki\Data\Collections\Documents(),
-                    'addresses' => new Ubki\Data\Collections\Addresses(),
+                    'identifiers' => new Ubki\Data\Collection\IdentifiedPersons(),
+                    'documents' => new Ubki\Data\Collection\Documents(),
+                    'addresses' => new Ubki\Data\Collection\Addresses(),
                     'inn' => static::INN,
-                    'works' => new Ubki\Data\Collections\Works(),
-                    'photos' => new Ubki\Data\Collections\Photos(),
-                    'linkedPersons' => new Ubki\Data\Collections\LinkedPersons(),
+                    'works' => new Ubki\Data\Collection\Works(),
+                    'photos' => new Ubki\Data\Collection\Photos(),
+                    'linkedPersons' => new Ubki\Data\Collection\LinkedPersons(),
                 ],
             ],
             [
-                Ubki\Data\Elements\CreditDeal::class,
+                Ubki\Data\Element\CreditDeal::class,
                 [
                     'id' => 'testId',
-                    'language' => Ubki\Dictionaries\Language::ENG(),
+                    'language' => Ubki\Dictionary\Language::ENG(),
                     'name' => 'testName',
                     'surname' => 'testSurname',
                     'birthDate' => Carbon::make('2018-03-12'),
-                    'type' => Ubki\Dictionaries\CreditDealType::ACQUISITION_FIXED_ASSETS(),
-                    'collateral' => Ubki\Dictionaries\CollateralType::R_1(),
-                    'repaymentProcedure' => Ubki\Dictionaries\RepaymentProcedure::CREDIT_LIMIT(),
-                    'currency' => Ubki\Dictionaries\Currency::BYN(),
+                    'type' => Ubki\Dictionary\CreditDealType::ACQUISITION_FIXED_ASSETS(),
+                    'collateral' => Ubki\Dictionary\CollateralType::R_1(),
+                    'repaymentProcedure' => Ubki\Dictionary\RepaymentProcedure::CREDIT_LIMIT(),
+                    'currency' => Ubki\Dictionary\Currency::BYN(),
                     'initialAmount' => 2000.30,
-                    'subjectRole' => Ubki\Dictionaries\SubjectRole::BORROWER(),
+                    'subjectRole' => Ubki\Dictionary\SubjectRole::BORROWER(),
                     'collateralCost' => 2300.12,
-                    'dealLifes' => new Ubki\Data\Collections\DealLifes(),
+                    'dealLifes' => new Ubki\Data\Collection\DealLifes(),
                     'inn' => static::INN,
                     'patronymic' => 'testPatronymic',
                     'source' => 'testSource',
                 ],
             ],
             [
-                Ubki\Data\Elements\CreditRequest::class,
+                Ubki\Data\Element\CreditRequest::class,
                 [
                     'date' => Carbon::make('2018-03-12'),
                     'inn' => static::INN,
                     'id' => 'testId',
-                    'decision' => Ubki\Dictionaries\Decision::POSITIVE(),
-                    'reason' => Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT(),
+                    'decision' => Ubki\Dictionary\Decision::POSITIVE(),
+                    'reason' => Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                     'organization' => 'testOrganization',
                 ],
             ],
             [
-                Ubki\Data\Elements\DealLife::class,
+                Ubki\Data\Element\DealLife::class,
                 [
                     'id' => 'testId',
                     'periodMonth' => 1,
                     'periodYear' => 2018,
                     'issueDate' => Carbon::make('2015-03-12'),
                     'endDate' => Carbon::make('2018-03-12'),
-                    'status' => Ubki\Dictionaries\DealStatus::ANNULLED(),
+                    'status' => Ubki\Dictionary\DealStatus::ANNULLED(),
                     'limit' => 10000.00,
                     'mandatoryPayment' => 123.45,
                     'currentDebt' => 123.56,
                     'currentOverdueDebt' => 123.45,
                     'overdueTime' => 12,
-                    'paymentIndication' => Ubki\Dictionaries\Flag::YES(),
-                    'delayIndication' => Ubki\Dictionaries\Flag::NO(),
-                    'trancheIndication' => Ubki\Dictionaries\Flag::YES(),
+                    'paymentIndication' => Ubki\Dictionary\Flag::YES(),
+                    'delayIndication' => Ubki\Dictionary\Flag::NO(),
+                    'trancheIndication' => Ubki\Dictionary\Flag::YES(),
                     'paymentDate' => Carbon::make('2017-09-12'),
                     'actualEndDate' => Carbon::make('2018-03-12'),
                 ],
             ],
             [
-                Ubki\Data\Elements\Document::class,
+                Ubki\Data\Element\Document::class,
                 [
                     'createdAt' => Carbon::make('2018-03-12'),
-                    'language' => Ubki\Dictionaries\Language::ENG(),
-                    'type' => Ubki\Dictionaries\DocumentType::ATTESTAT(),
+                    'language' => Ubki\Dictionary\Language::ENG(),
+                    'type' => Ubki\Dictionary\DocumentType::ATTESTAT(),
                     'serial' => 'AF',
                     'number' => '123456',
                     'issue' => 'testIssue',
@@ -179,7 +179,7 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Elements\IdentificationPerson::class,
+                Ubki\Data\Element\IdentificationPerson::class,
                 [
                     'name' => 'testName',
                     'inn' => static::INN,
@@ -190,32 +190,32 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Elements\InsuranceDeal::class,
+                Ubki\Data\Element\InsuranceDeal::class,
                 [
                     'inn' => static::INN,
                     'id' => 'testId',
                     'informationDate' => Carbon::make('2010-03-12'),
                     'startDate' => Carbon::make('2015-03-12'),
                     'endDate' => Carbon::make('2020-03-12'),
-                    'type' => Ubki\Dictionaries\InsuranceDealType::OSAGO(),
-                    'status' => Ubki\Dictionaries\DealStatus::ANNULLED(),
-                    'events' => new Ubki\Data\Collections\InsuranceEvents(),
+                    'type' => Ubki\Dictionary\InsuranceDealType::OSAGO(),
+                    'status' => Ubki\Dictionary\DealStatus::ANNULLED(),
+                    'events' => new Ubki\Data\Collection\InsuranceEvents(),
                     'actualEndDate' => Carbon::make('2018-03-12'),
                 ],
             ],
             [
-                Ubki\Data\Elements\InsuranceEvent::class,
+                Ubki\Data\Element\InsuranceEvent::class,
                 [
                     'requestDate' => Carbon::make('2010-02-12'),
-                    'decision' => Ubki\Dictionaries\InsuranceDecisionStatus::POSITIVE(),
+                    'decision' => Ubki\Dictionary\InsuranceDecisionStatus::POSITIVE(),
                     'decisionDate' => Carbon::make('2013-03-12'),
                 ],
             ],
             [
-                Ubki\Data\Elements\LegalPerson::class,
+                Ubki\Data\Element\LegalPerson::class,
                 [
                     'createdAt' => Carbon::make('2018-03-12'),
-                    'language' => Ubki\Dictionaries\Language::ENG(),
+                    'language' => Ubki\Dictionary\Language::ENG(),
                     'name' => 'testName',
                     'ergpou' => 'testErgpou',
                     'form' => 1,
@@ -226,51 +226,51 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Elements\LinkedPerson::class,
+                Ubki\Data\Element\LinkedPerson::class,
                 [
                     'name' => 'testName',
-                    'role' => Ubki\Dictionaries\LinkedIdentifierRole::FOUNDER(),
+                    'role' => Ubki\Dictionary\LinkedIdentifierRole::FOUNDER(),
                     'issueDate' => Carbon::make('2018-03-12'),
                     'ergpou' => 'testErgpou'
                 ]
             ],
             [
-                Ubki\Data\Elements\NaturalPerson::class,
+                Ubki\Data\Element\NaturalPerson::class,
                 [
                     'createdAt' => Carbon::make('2018-03-12'),
-                    'language' => Ubki\Dictionaries\Language::ENG(),
+                    'language' => Ubki\Dictionary\Language::ENG(),
                     'name' => 'testName',
                     'surname' => 'testName',
                     'birthDate' => Carbon::make('1984-03-12'),
-                    'gender' => Ubki\Dictionaries\Gender::MAN(),
+                    'gender' => Ubki\Dictionary\Gender::MAN(),
                     'inn' => static::INN,
                     'patronymic' => 'testPatronymic',
-                    'familyStatus' => Ubki\Dictionaries\FamilyStatus::CIVIL(),
-                    'education' => Ubki\Dictionaries\Education::ACADEMIC(),
-                    'nationality' => Ubki\Dictionaries\Nationality::ARMENIA(),
-                    'registrationSpd' => Ubki\Dictionaries\RegistrationSpd::BUSINESS(),
-                    'socialStatus' => Ubki\Dictionaries\SocialStatus::OTHER(),
+                    'familyStatus' => Ubki\Dictionary\FamilyStatus::CIVIL(),
+                    'education' => Ubki\Dictionary\Education::ACADEMIC(),
+                    'nationality' => Ubki\Dictionary\Nationality::ARMENIA(),
+                    'registrationSpd' => Ubki\Dictionary\RegistrationSpd::BUSINESS(),
+                    'socialStatus' => Ubki\Dictionary\SocialStatus::OTHER(),
                     'childrenCount' => 5,
                 ],
             ],
             [
-                Ubki\Data\Elements\NegativeRatingFactors::class,
+                Ubki\Data\Element\NegativeRatingFactors::class,
                 [
                     'count' => 1,
                     'description' => 'testDescription',
-                    'comments' => new Ubki\Data\Collections\Comments(),
+                    'comments' => new Ubki\Data\Collection\Comments(),
                 ],
             ],
             [
-                Ubki\Data\Elements\PositiveRatingFactors::class,
+                Ubki\Data\Element\PositiveRatingFactors::class,
                 [
                     'count' => 1,
                     'description' => 'testDescription',
-                    'comments' => new Ubki\Data\Collections\Comments(),
+                    'comments' => new Ubki\Data\Collection\Comments(),
                 ],
             ],
             [
-                Ubki\Data\Elements\Photo::class,
+                Ubki\Data\Element\Photo::class,
                 [
                     'createdAt' => Carbon::make('2018-03-12'),
                     'uri' => 'testUri',
@@ -278,7 +278,7 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Elements\RatingDescription::class,
+                Ubki\Data\Element\RatingDescription::class,
                 [
                     'creditsCount' => 10,
                     'openCreditsCount' => 10,
@@ -290,7 +290,7 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Elements\RatingScore::class,
+                Ubki\Data\Element\RatingScore::class,
                 [
                     'inn' => static::INN,
                     'surname' => 'testSurname',
@@ -304,7 +304,7 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Elements\RegistryTimes::class,
+                Ubki\Data\Element\RegistryTimes::class,
                 [
                     'byHour' => 1,
                     'byDay' => 2,
@@ -316,43 +316,43 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Elements\Work::class,
+                Ubki\Data\Element\Work::class,
                 [
                     'createdAt' => Carbon::make('2010-03-12'),
-                    'language' => Ubki\Dictionaries\Language::ENG(),
+                    'language' => Ubki\Dictionary\Language::ENG(),
                     'ergpou' => 'testErgpou',
                     'name' => 'testName',
-                    'rank' => Ubki\Dictionaries\IdentifierRank::DIRECTOR(),
+                    'rank' => Ubki\Dictionary\IdentifierRank::DIRECTOR(),
                     'experience' => 10,
                     'income' => 1234.56,
                 ],
             ],
             [
-                Ubki\Data\Elements\RequestData::class,
+                Ubki\Data\Element\RequestData::class,
                 [
-                    'type' => Ubki\Dictionaries\RequestType::DELETE(),
-                    'reason' => Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT(),
+                    'type' => Ubki\Dictionary\RequestType::DELETE(),
+                    'reason' => Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                     'date' => Carbon::make('2018-03-12'),
                     'id' => 'testId',
-                    'initiator' => Ubki\Dictionaries\RequestInitiator::SKI(),
+                    'initiator' => Ubki\Dictionary\RequestInitiator::SKI(),
                 ],
             ],
             [
-                Ubki\Data\Blocks\ContactsInformation::class,
+                Ubki\Data\Block\ContactsInformation::class,
                 [
-                    'contacts' => new Ubki\Data\Collections\Contacts()
+                    'contacts' => new Ubki\Data\Collection\Contacts()
                 ],
             ],
             [
-                Ubki\Data\Blocks\CourtDecisionsInformation::class,
+                Ubki\Data\Block\CourtDecisionsInformation::class,
                 [
-                    'decisions' => new Ubki\Data\Collections\CourtDecisions(),
+                    'decisions' => new Ubki\Data\Collection\CourtDecisions(),
                 ],
             ],
             [
-                Ubki\Data\Blocks\CreditRating::class,
+                Ubki\Data\Block\CreditRating::class,
                 [
-                    'score' => new Ubki\Data\Elements\RatingScore(
+                    'score' => new Ubki\Data\Element\RatingScore(
                         static::INN,
                         'testSurname',
                         'testName',
@@ -363,7 +363,7 @@ class ElementsTest extends TestCase
                         Carbon::make('2018-03-12'),
                         'testLevel'
                     ),
-                    'description' => new Ubki\Data\Elements\RatingDescription(
+                    'description' => new Ubki\Data\Element\RatingDescription(
                         10,
                         20,
                         'testDescription',
@@ -372,64 +372,64 @@ class ElementsTest extends TestCase
                         '200',
                         Carbon::make('2018-03-12')
                     ),
-                    'comments' => new Ubki\Data\Collections\Comments(),
-                    'positiveFactors' => new Ubki\Data\Elements\PositiveRatingFactors(
+                    'comments' => new Ubki\Data\Collection\Comments(),
+                    'positiveFactors' => new Ubki\Data\Element\PositiveRatingFactors(
                         10,
                         'description',
-                        new Ubki\Data\Collections\Comments()
+                        new Ubki\Data\Collection\Comments()
                     ),
-                    'negativeFactors' => new Ubki\Data\Elements\NegativeRatingFactors(
+                    'negativeFactors' => new Ubki\Data\Element\NegativeRatingFactors(
                         10,
                         'description',
-                        new Ubki\Data\Collections\Comments()
+                        new Ubki\Data\Collection\Comments()
                     ),
                 ],
             ],
             [
-                Ubki\Data\Blocks\CreditsInformation::class,
+                Ubki\Data\Block\CreditsInformation::class,
                 [
-                    'deals' => new Ubki\Data\Collections\CreditDeals(),
+                    'deals' => new Ubki\Data\Collection\CreditDeals(),
                 ],
             ],
             [
-                Ubki\Data\Blocks\CreditsRequestsInformation::class,
+                Ubki\Data\Block\CreditsRequestsInformation::class,
                 [
-                    'creditRequests' => new Ubki\Data\Collections\CreditRequests(),
-                    'registryTimes' => new Ubki\Data\Elements\RegistryTimes(1, 2, 3, 4, 5, 6, 7)
+                    'creditRequests' => new Ubki\Data\Collection\CreditRequests(),
+                    'registryTimes' => new Ubki\Data\Element\RegistryTimes(1, 2, 3, 4, 5, 6, 7)
                 ],
             ],
             [
-                Ubki\Data\Blocks\Identification::class,
+                Ubki\Data\Block\Identification::class,
                 [
-                    'credential' => new Ubki\Data\Elements\Credential(
-                        Ubki\Dictionaries\Language::ENG(),
+                    'credential' => new Ubki\Data\Element\Credential(
+                        Ubki\Dictionary\Language::ENG(),
                         'testName',
                         'testPatronymic',
                         'testSurname',
                         Carbon::make('2018-03-12'),
-                        new Ubki\Data\Collections\IdentifiedPersons(),
-                        new Ubki\Data\Collections\Documents(),
-                        new Ubki\Data\Collections\Addresses(),
+                        new Ubki\Data\Collection\IdentifiedPersons(),
+                        new Ubki\Data\Collection\Documents(),
+                        new Ubki\Data\Collection\Addresses(),
                         static::INN
                     ),
                 ],
             ],
             [
-                Ubki\Data\Blocks\InsurancesInformation::class,
+                Ubki\Data\Block\InsurancesInformation::class,
                 [
-                    'deals' => new Ubki\Data\Collections\InsuranceDeals(),
+                    'deals' => new Ubki\Data\Collection\InsuranceDeals(),
                 ],
             ],
             [
-                Ubki\Data\Elements\Tech::class,
+                Ubki\Data\Element\Tech::class,
                 [
-                    'trace' => new Ubki\Data\Collections\Trace(),
+                    'trace' => new Ubki\Data\Collection\Trace(),
                     'id' => 'testId',
-                    'balance' => new Ubki\Data\Elements\Balance(1123.45, Carbon::make('2018-03-12'), 'time'),
+                    'balance' => new Ubki\Data\Element\Balance(1123.45, Carbon::make('2018-03-12'), 'time'),
                 ],
             ],
             [
-                Ubki\Data\Elements\Step::class,
+                Ubki\Data\Element\Step::class,
                 [
                     'name' => 'testName',
                     'start' => Carbon::make('2018-03-12'),
@@ -443,21 +443,21 @@ class ElementsTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new Ubki\Data\Elements\DealLife(
+        new Ubki\Data\Element\DealLife(
             'testId',
             1,
             2018,
             Carbon::make('2015-03-12'),
             Carbon::make('2018-03-12'),
-            Ubki\Dictionaries\DealStatus::CLOSE(),
+            Ubki\Dictionary\DealStatus::CLOSE(),
             10000.00,
             123.45,
             123.56,
             123.45,
             12,
-            Ubki\Dictionaries\Flag::YES(),
-            Ubki\Dictionaries\Flag::NO(),
-            Ubki\Dictionaries\Flag::YES(),
+            Ubki\Dictionary\Flag::YES(),
+            Ubki\Dictionary\Flag::NO(),
+            Ubki\Dictionary\Flag::YES(),
             Carbon::make('2017-09-12')
         );
     }

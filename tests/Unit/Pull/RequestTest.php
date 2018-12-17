@@ -28,31 +28,31 @@ class RequestTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeRequest = new Ubki\Pull\Request(
-            new Ubki\Data\Elements\RequestData(
-                Ubki\Dictionaries\RequestType::CREDIT_REPORT(),
-                Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT(),
+            new Ubki\Data\Element\RequestData(
+                Ubki\Dictionary\RequestType::CREDIT_REPORT(),
+                Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
                 static::ID,
-                Ubki\Dictionaries\RequestInitiator::PARTNER()
+                Ubki\Dictionary\RequestInitiator::PARTNER()
             ),
-            new Ubki\Pull\Elements\RequestContent(
-                Ubki\Dictionaries\Language::RUS(),
-                new Ubki\Pull\Elements\Identification(
+            new Ubki\Pull\Element\RequestContent(
+                Ubki\Dictionary\Language::RUS(),
+                new Ubki\Pull\Element\Identification(
                     static::INN,
                     static::NAME,
                     static::PATRONYMIC,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE)
                 ),
-                new Ubki\Pull\Collections\Contacts([
-                    new Ubki\Pull\Elements\Contact(
-                        Ubki\Dictionaries\ContactType::MOBILE(),
+                new Ubki\Pull\Collection\Contacts([
+                    new Ubki\Pull\Element\Contact(
+                        Ubki\Dictionary\ContactType::MOBILE(),
                         static::VALUE
                     ),
                 ]),
-                new Ubki\Pull\Collections\Documents([
-                    new Ubki\Pull\Elements\Document(
-                        Ubki\Dictionaries\DocumentType::PASSPORT(),
+                new Ubki\Pull\Collection\Documents([
+                    new Ubki\Pull\Element\Document(
+                        Ubki\Dictionary\DocumentType::PASSPORT(),
                         static::SERIAL,
                         static::NUMBER
                     ),
@@ -64,24 +64,24 @@ class RequestTest extends TestCase
     public function testGetBody(): void
     {
         $this->assertEquals(
-            new Ubki\Pull\Elements\RequestContent(
-                Ubki\Dictionaries\Language::RUS(),
-                new Ubki\Pull\Elements\Identification(
+            new Ubki\Pull\Element\RequestContent(
+                Ubki\Dictionary\Language::RUS(),
+                new Ubki\Pull\Element\Identification(
                     static::INN,
                     static::NAME,
                     static::PATRONYMIC,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE)
                 ),
-                new Ubki\Pull\Collections\Contacts([
-                    new Ubki\Pull\Elements\Contact(
-                        Ubki\Dictionaries\ContactType::MOBILE(),
+                new Ubki\Pull\Collection\Contacts([
+                    new Ubki\Pull\Element\Contact(
+                        Ubki\Dictionary\ContactType::MOBILE(),
                         static::VALUE
                     ),
                 ]),
-                new Ubki\Pull\Collections\Documents([
-                    new Ubki\Pull\Elements\Document(
-                        Ubki\Dictionaries\DocumentType::PASSPORT(),
+                new Ubki\Pull\Collection\Documents([
+                    new Ubki\Pull\Element\Document(
+                        Ubki\Dictionary\DocumentType::PASSPORT(),
                         static::SERIAL,
                         static::NUMBER
                     ),
@@ -94,12 +94,12 @@ class RequestTest extends TestCase
     public function testGetHead(): void
     {
         $this->assertEquals(
-            new Ubki\Data\Elements\RequestData(
-                Ubki\Dictionaries\RequestType::CREDIT_REPORT(),
-                Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT(),
+            new Ubki\Data\Element\RequestData(
+                Ubki\Dictionary\RequestType::CREDIT_REPORT(),
+                Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
                 static::ID,
-                Ubki\Dictionaries\RequestInitiator::PARTNER()
+                Ubki\Dictionary\RequestInitiator::PARTNER()
             ),
             $this->fakeRequest->getHead()
         );
@@ -113,16 +113,16 @@ class RequestTest extends TestCase
     public function testCreditOnline(): void
     {
         new Ubki\Pull\Request(
-            new Ubki\Data\Elements\RequestData(
-                Ubki\Dictionaries\RequestType::CREDIT_REPORT(),
-                Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT(),
+            new Ubki\Data\Element\RequestData(
+                Ubki\Dictionary\RequestType::CREDIT_REPORT(),
+                Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
                 static::ID,
-                Ubki\Dictionaries\RequestInitiator::PARTNER()
+                Ubki\Dictionary\RequestInitiator::PARTNER()
             ),
-            new Ubki\Pull\Elements\RequestContent(
-                Ubki\Dictionaries\Language::RUS(),
-                new Ubki\Pull\Elements\Identification(static::INN)
+            new Ubki\Pull\Element\RequestContent(
+                Ubki\Dictionary\Language::RUS(),
+                new Ubki\Pull\Element\Identification(static::INN)
             )
         );
     }

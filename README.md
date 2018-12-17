@@ -189,31 +189,31 @@ use Wearesho\Bobra\Ubki;
 /** @var Ubki\Pull\ServiceInterface $service */
 
 $request = new Ubki\Pull\Request(
-    $headData = new Ubki\Data\Elements\RequestData(
-        $type = Ubki\Dictionaries\RequestType::CREDIT_REPORT(),
-        $reason = Ubki\Dictionaries\RequestReason::REQUEST_ONLINE_CREDIT(),
+    $headData = new Ubki\Data\Element\RequestData(
+        $type = Ubki\Dictionary\RequestType::CREDIT_REPORT(),
+        $reason = Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
         $date = new DateTime('now'),
         $id = 'id',
-        $initiator = Ubki\Dictionaries\RequestInitiator::PARTNER()
+        $initiator = Ubki\Dictionary\RequestInitiator::PARTNER()
     ),
-    $content = new Ubki\Pull\Elements\RequestContent(
-        $language = Ubki\Dictionaries\Language::RUS(),
-        $identificationData = new Ubki\Pull\Elements\Identification(
+    $content = new Ubki\Pull\Element\RequestContent(
+        $language = Ubki\Dictionary\Language::RUS(),
+        $identificationData = new Ubki\Pull\Element\Identification(
             $inn = '123456790', // Всегда обязательный
             $name = 'name',
             $patronymic = 'patronymic',
             $surname = 'surname',
             $birthDate = new \DateTime('1984-03-12')
         ),
-        $contacts = new Ubki\Pull\Collections\Contacts([
-            new Ubki\Pull\Elements\Contact(
-                Ubki\Dictionaries\ContactType::EMAIL(),
+        $contacts = new Ubki\Pull\Collection\Contacts([
+            new Ubki\Pull\Element\Contact(
+                Ubki\Dictionary\ContactType::EMAIL(),
                 $value = 'example@gmail.com'
             ),
         ]),
-        $documents = new Ubki\Pull\Collections\Documents([
-            new Ubki\Pull\Elements\Document(
-                Ubki\Dictionaries\DocumentType::PASSPORT(),
+        $documents = new Ubki\Pull\Collection\Documents([
+            new Ubki\Pull\Element\Document(
+                Ubki\Dictionary\DocumentType::PASSPORT(),
                 $serial = 'МТ',
                 $number = '123456'
             ),
@@ -272,47 +272,47 @@ use Wearesho\Bobra\Ubki;
 /** @var Ubki\Push\Export\ServiceInterface $service */
 
 // основные данные отчета
-$headData = new Ubki\Data\Elements\RequestData(
-    Ubki\Dictionaries\RequestType::EXPORT(),
-    Ubki\Dictionaries\RequestReason::EXPORT(),
+$headData = new Ubki\Data\Element\RequestData(
+    Ubki\Dictionary\RequestType::EXPORT(),
+    Ubki\Dictionary\RequestReason::EXPORT(),
     new DateTime('now'),
     'id',
-    Ubki\Dictionaries\RequestInitiator::PARTNER()
+    Ubki\Dictionary\RequestInitiator::PARTNER()
 );
 
 $report = new Ubki\Push\Export\DataDocument(
     // Блок идентификации
-    new Ubki\Data\Blocks\Identification(
+    new Ubki\Data\Block\Identification(
         // Композиция данных идентификации лица
-        new Ubki\Data\Elements\Credential(
-            Ubki\Dictionaries\Language::RUS(),
+        new Ubki\Data\Element\Credential(
+            Ubki\Dictionary\Language::RUS(),
             'name',
             'patronymic',
             'surname',
             $birthDate = new DateTime('1984-03-12'),
             // Коллекция стандартных данных идентификации лица
-            new Ubki\Data\Collections\IdentifiedPersons([
+            new Ubki\Data\Collection\IdentifiedPersons([
                 // Данные идентификация физического лица
-                new Ubki\Data\Elements\NaturalPerson(
+                new Ubki\Data\Element\NaturalPerson(
                     $createdAt = new DateTime('now'),
-                    Ubki\Dictionaries\Language::RUS(),
+                    Ubki\Dictionary\Language::RUS(),
                     'name',
                     'surname',
                     $birthDate = new DateTime('1984-03-12'),
-                    Ubki\Dictionaries\Gender::MAN(),
+                    Ubki\Dictionary\Gender::MAN(),
                     $inn = '1234567890',
                     'patronymic',
-                    Ubki\Dictionaries\FamilyStatus::MARRIED(),
-                    Ubki\Dictionaries\Education::HIGH(),
-                    Ubki\Dictionaries\Nationality::UKRAINE(),
-                    Ubki\Dictionaries\RegistrationSpd::PHYSICAL(),
-                    Ubki\Dictionaries\SocialStatus::PENSIONER(),
+                    Ubki\Dictionary\FamilyStatus::MARRIED(),
+                    Ubki\Dictionary\Education::HIGH(),
+                    Ubki\Dictionary\Nationality::UKRAINE(),
+                    Ubki\Dictionary\RegistrationSpd::PHYSICAL(),
+                    Ubki\Dictionary\SocialStatus::PENSIONER(),
                     $childrenCoun = 2
                 ),
                 // Данные идентификация юридического лица
-                new Ubki\Data\Elements\LegalPerson(
+                new Ubki\Data\Element\LegalPerson(
                     $createdAt = new DateTime('now'),
-                    Ubki\Dictionaries\Language::RUS(),
+                    Ubki\Dictionary\Language::RUS(),
                     'name',
                     'egrpou',
                     'form',
@@ -323,11 +323,11 @@ $report = new Ubki\Push\Export\DataDocument(
                 ),
             ]),
             // Различные документы лица
-            new Ubki\Data\Collections\Documents([
-                new Ubki\Data\Elements\Document(
+            new Ubki\Data\Collection\Documents([
+                new Ubki\Data\Element\Document(
                     $createdAt = new DateTime('now'),
-                    Ubki\Dictionaries\Language::RUS(),
-                    Ubki\Dictionaries\DocumentType::PASSPORT(),
+                    Ubki\Dictionary\Language::RUS(),
+                    Ubki\Dictionary\DocumentType::PASSPORT(),
                     $serial = 'МТ',
                     $number = '1234567890',
                     'issueBy',
@@ -336,11 +336,11 @@ $report = new Ubki\Push\Export\DataDocument(
                 ),
             ]),
             // Места проживания лица
-            new Ubki\Data\Collections\Addresses([
-                new Ubki\Data\Elements\Address(
+            new Ubki\Data\Collection\Addresses([
+                new Ubki\Data\Element\Address(
                     $createdAt = new DateTime('now'),
-                    Ubki\Dictionaries\Language::RUS(),
-                    Ubki\Dictionaries\AddressType::HOME(),
+                    Ubki\Dictionary\Language::RUS(),
+                    Ubki\Dictionary\AddressType::HOME(),
                     'country',
                     'city',
                     'street',
@@ -348,7 +348,7 @@ $report = new Ubki\Push\Export\DataDocument(
                     'index',
                     'state',
                     'area',
-                    Ubki\Dictionaries\CityType::TOWN(),
+                    Ubki\Dictionary\CityType::TOWN(),
                     'corpus',
                     'flat',
                     'fullAddress'
@@ -356,30 +356,30 @@ $report = new Ubki\Push\Export\DataDocument(
             ]),
             $inn = '123467890',
             // Места работы лица
-            new Ubki\Data\Collections\Works([
-                new Ubki\Data\Elements\Work(
+            new Ubki\Data\Collection\Works([
+                new Ubki\Data\Element\Work(
                     $createdAt = new DateTime('now'),
-                    Ubki\Dictionaries\Language::RUS(),
+                    Ubki\Dictionary\Language::RUS(),
                     'egrpou',
                     'name',
-                    Ubki\Dictionaries\IdentifierRank::DIRECTOR(),
+                    Ubki\Dictionary\IdentifierRank::DIRECTOR(),
                     $experience = 10, // стаж в полных годах
                     $income = 2500.00 // зарплата по документам
                 ),
             ]),
             // Фотографии заемщика
-            new Ubki\Data\Collections\Photos([
-                new Ubki\Data\Elements\Photo(
+            new Ubki\Data\Collection\Photos([
+                new Ubki\Data\Element\Photo(
                     $createdAt = new DateTime('now'),
                     'uri', // фото, закодированное в base64
                     $inn = '1234567890'
                 ),
             ]),
             // Поручители
-            new Ubki\Data\Collections\LinkedPersons([
-                new Ubki\Data\Elements\LinkedPerson(
+            new Ubki\Data\Collection\LinkedPersons([
+                new Ubki\Data\Element\LinkedPerson(
                     'name',
-                    Ubki\Dictionaries\LinkedIdentifierRole::DIRECTOR(),
+                    Ubki\Dictionary\LinkedIdentifierRole::DIRECTOR(),
                     $issueDate = new DateTime('now'),
                     'egrpou'
                 ),
@@ -387,39 +387,39 @@ $report = new Ubki\Push\Export\DataDocument(
         )
     ),
     // Блок информации о кредитах
-    new Ubki\Data\Blocks\CreditsInformation(
+    new Ubki\Data\Block\CreditsInformation(
         // Коллекция кредитных сделок
-        new Ubki\Data\Collections\CreditDeals([
-            new Ubki\Data\Elements\CreditDeal(
+        new Ubki\Data\Collection\CreditDeals([
+            new Ubki\Data\Element\CreditDeal(
                 'id',
-                Ubki\Dictionaries\Language::RUS(),
+                Ubki\Dictionary\Language::RUS(),
                 'name',
                 'surname',
                 $birthDate = new DateTime('1984-03-12'),
-                Ubki\Dictionaries\CreditDealType::COMMERCIAL_CREDIT(),
-                Ubki\Dictionaries\CollateralType::R_1(),
-                Ubki\Dictionaries\RepaymentProcedure::CREDIT_LIMIT(),
-                Ubki\Dictionaries\Currency::UAH(),
+                Ubki\Dictionary\CreditDealType::COMMERCIAL_CREDIT(),
+                Ubki\Dictionary\CollateralType::R_1(),
+                Ubki\Dictionary\RepaymentProcedure::CREDIT_LIMIT(),
+                Ubki\Dictionary\Currency::UAH(),
                 $initialAmount = 10000.00,
-                Ubki\Dictionaries\SubjectRole::BORROWER(),
+                Ubki\Dictionary\SubjectRole::BORROWER(),
                 $collateralCost = 10000.00,
                 // Жиненный цикл сделки
-                new Ubki\Data\Collections\DealLifes([
-                    new Ubki\Data\Elements\DealLife(
+                new Ubki\Data\Collection\DealLifes([
+                    new Ubki\Data\Element\DealLife(
                         'id', // должно быть идентичным id сделки
                         $periodMonth = 2,
                         $periodYear = 2018,
                         $issueDate = new DateTime('now'),
                         $endDate = new DateTime('2020-03-12'),
-                        Ubki\Dictionaries\DealStatus::OPEN(),
+                        Ubki\Dictionary\DealStatus::OPEN(),
                         $limit = 10000.00,
                         $mandatoryPayment = 200.00,
                         $currentDebt = 0,
                         $currentDebtOverdue = 0,
                         $overdueTime = 0,
-                        $paymentIndication = Ubki\Dictionaries\Flag::YES(),
-                        $delayIndication = Ubki\Dictionaries\Flag::YES(),
-                        $trancheIndication = Ubki\Dictionaries\Flag::YES(),
+                        $paymentIndication = Ubki\Dictionary\Flag::YES(),
+                        $delayIndication = Ubki\Dictionary\Flag::YES(),
+                        $trancheIndication = Ubki\Dictionary\Flag::YES(),
                         $paymentDate = new DateTime('now'),
                         // должно быть обязательно указано при статусе "закрыта"
                         $actualEndDate = new DateTime('2018-03-12')
@@ -432,27 +432,27 @@ $report = new Ubki\Push\Export\DataDocument(
         ])
     ),
     // Блок ифнормации о контактах
-    new Ubki\Data\Blocks\ContactsInformation(
+    new Ubki\Data\Block\ContactsInformation(
         // Коллекция контактов лица
-        new Ubki\Data\Collections\Contacts([
-            new Ubki\Data\Elements\Contact(
+        new Ubki\Data\Collection\Contacts([
+            new Ubki\Data\Element\Contact(
                 $createdAt = new DateTime('now'),
                 '+380000000000',
-                Ubki\Dictionaries\ContactType::MOBILE(),
+                Ubki\Dictionary\ContactType::MOBILE(),
                 $inn = '1234567890'
             ),
         ])
     ),
     // Блок информации о судебных решениях
-    new Ubki\Data\Blocks\CourtDecisionsInformation(
+    new Ubki\Data\Block\CourtDecisionsInformation(
         // Коллекция судебных решений
-        new Ubki\Data\Collections\CourtDecisions([
-            new Ubki\Data\Elements\CourtDecision(
+        new Ubki\Data\Collection\CourtDecisions([
+            new Ubki\Data\Element\CourtDecision(
                 'id',
                 $inn = '1234567890',
                 $date = new DateTime('now'),
-                Ubki\Dictionaries\CourtSubjectStatus::DEFENDANT(),
-                Ubki\Dictionaries\CourtDealType::CIVIL(),
+                Ubki\Dictionary\CourtSubjectStatus::DEFENDANT(),
+                Ubki\Dictionary\CourtDealType::CIVIL(),
                 'courtName',
                 'documentType',
                 'documentTypeReference',
@@ -473,7 +473,7 @@ $service->export($request);
 
 ## Справочники УБКИ
 - [Документация УБКИ](https://sites.google.com/ubki.ua/doc/справочники)
-- [Реализация библиотеки](./src/Dictionaries)
+- [Реализация библиотеки](src/Dictionary)
 
 **Библиотека находится в разработке**
 1. Авторизация (Authorization)
