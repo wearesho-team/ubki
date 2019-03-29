@@ -16,7 +16,7 @@ trait Document
     /** @var Ubki\Dictionary\Language */
     protected $language;
 
-    /** @var Ubki\Dictionary\DocumentType */
+    /** @var Ubki\Dictionary\Document */
     protected $type;
 
     /** @var string */
@@ -44,7 +44,7 @@ trait Document
         return $this->language;
     }
 
-    public function getType(): Ubki\Dictionary\DocumentType
+    public function getType(): Ubki\Dictionary\Document
     {
         return $this->type;
     }

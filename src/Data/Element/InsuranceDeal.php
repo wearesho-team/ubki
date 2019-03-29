@@ -40,7 +40,7 @@ class InsuranceDeal extends Ubki\Infrastructure\Element
     /** @var \DateTimeInterface|null */
     protected $actualEndDate;
 
-    /** @var Ubki\Dictionary\InsuranceDealType */
+    /** @var Ubki\Dictionary\InsuranceDeal */
     protected $type;
 
     /** @var Ubki\Dictionary\DealStatus */
@@ -55,7 +55,7 @@ class InsuranceDeal extends Ubki\Infrastructure\Element
         \DateTimeInterface $informationDate,
         \DateTimeInterface $startDate,
         \DateTimeInterface $endDate,
-        Ubki\Dictionary\InsuranceDealType $type,
+        Ubki\Dictionary\InsuranceDeal $type,
         Ubki\Dictionary\DealStatus $status,
         Ubki\Data\Collection\InsuranceEvents $events = null,
         \DateTimeInterface $actualEndDate = null
@@ -101,7 +101,7 @@ class InsuranceDeal extends Ubki\Infrastructure\Element
         return $this->actualEndDate;
     }
 
-    public function getType(): Ubki\Dictionary\InsuranceDealType
+    public function getType(): Ubki\Dictionary\InsuranceDeal
     {
         return $this->type;
     }

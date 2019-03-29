@@ -69,8 +69,8 @@ class FormerTest extends TestCase
     {
         $this->fakeFormer = new Ubki\Exception\Former(
             new Ubki\Push\Export\Request(
-                new Ubki\Data\Element\RequestData(
-                    Ubki\Dictionary\RequestType::EXPORT(),
+                new Ubki\Push\Export\Request\Data(
+                    Ubki\Push\Export\Request\Type::EXPORT(),
                     Ubki\Dictionary\RequestReason::EXPORT(),
                     Carbon::parse(static::DATE),
                     static::ID,
@@ -117,7 +117,7 @@ class FormerTest extends TestCase
                                 new Ubki\Data\Element\Document(
                                     Carbon::parse(static::CREATED_AT),
                                     Ubki\Dictionary\Language::RUS(),
-                                    Ubki\Dictionary\DocumentType::DIPLOMA(),
+                                    Ubki\Dictionary\Document::DIPLOMA(),
                                     static::SERIAL,
                                     static::NUMBER,
                                     static::ISSUE,
@@ -129,7 +129,7 @@ class FormerTest extends TestCase
                                 new Ubki\Data\Element\Address(
                                     Carbon::parse(static::CREATED_AT),
                                     Ubki\Dictionary\Language::RUS(),
-                                    Ubki\Dictionary\AddressType::REGISTRATION(),
+                                    Ubki\Dictionary\Address::REGISTRATION(),
                                     static::COUNTRY,
                                     static::CITY,
                                     static::STREET,
@@ -137,7 +137,7 @@ class FormerTest extends TestCase
                                     static::INDEX,
                                     static::STATE,
                                     static::AREA,
-                                    Ubki\Dictionary\CityType::SETTLEMENT(),
+                                    Ubki\Dictionary\City::SETTLEMENT(),
                                     static::CORPUS,
                                     static::FLAT,
                                     static::FULL_ADDRESS
@@ -180,8 +180,8 @@ class FormerTest extends TestCase
                                 static::NAME,
                                 static::SURNAME,
                                 Carbon::parse(static::BIRTH_DATE),
-                                Ubki\Dictionary\CreditDealType::COMMERCIAL_CREDIT(),
-                                Ubki\Dictionary\CollateralType::R_1(),
+                                Ubki\Dictionary\CreditDeal::COMMERCIAL_CREDIT(),
+                                Ubki\Dictionary\Collateral::LEGAL(),
                                 Ubki\Dictionary\RepaymentProcedure::PERIODIC_MONTH(),
                                 Ubki\Dictionary\Currency::UAH(),
                                 static::INITIAL_AMOUNT,
@@ -218,13 +218,13 @@ class FormerTest extends TestCase
                             new Ubki\Data\Element\Contact(
                                 Carbon::parse(static::CREATED_AT),
                                 static::VALUE,
-                                Ubki\Dictionary\ContactType::EMAIL(),
+                                Ubki\Dictionary\Contact::EMAIL(),
                                 static::INN
                             ),
                             new Ubki\Data\Element\Contact(
                                 Carbon::parse(static::CREATED_AT),
                                 static::VALUE,
-                                Ubki\Dictionary\ContactType::MOBILE(),
+                                Ubki\Dictionary\Contact::MOBILE(),
                                 static::INN
                             )
                         ])
@@ -244,8 +244,8 @@ class FormerTest extends TestCase
     {
         $this->assertEquals(
             new Ubki\Push\Export\Request(
-                new Ubki\Data\Element\RequestData(
-                    Ubki\Dictionary\RequestType::EXPORT(),
+                new Ubki\Push\Export\Request\Data(
+                    Ubki\Push\Export\Request\Type::EXPORT(),
                     Ubki\Dictionary\RequestReason::EXPORT(),
                     Carbon::parse(static::DATE),
                     static::ID,
@@ -292,7 +292,7 @@ class FormerTest extends TestCase
                                 new Ubki\Data\Element\Document(
                                     Carbon::parse(static::CREATED_AT),
                                     Ubki\Dictionary\Language::RUS(),
-                                    Ubki\Dictionary\DocumentType::DIPLOMA(),
+                                    Ubki\Dictionary\Document::DIPLOMA(),
                                     static::SERIAL,
                                     static::NUMBER,
                                     static::ISSUE,
@@ -304,7 +304,7 @@ class FormerTest extends TestCase
                                 new Ubki\Data\Element\Address(
                                     Carbon::parse(static::CREATED_AT),
                                     Ubki\Dictionary\Language::RUS(),
-                                    Ubki\Dictionary\AddressType::REGISTRATION(),
+                                    Ubki\Dictionary\Address::REGISTRATION(),
                                     static::COUNTRY,
                                     static::CITY,
                                     static::STREET,
@@ -312,7 +312,7 @@ class FormerTest extends TestCase
                                     static::INDEX,
                                     static::STATE,
                                     static::AREA,
-                                    Ubki\Dictionary\CityType::SETTLEMENT(),
+                                    Ubki\Dictionary\City::SETTLEMENT(),
                                     static::CORPUS,
                                     static::FLAT,
                                     static::FULL_ADDRESS
@@ -355,8 +355,8 @@ class FormerTest extends TestCase
                                 static::NAME,
                                 static::SURNAME,
                                 Carbon::parse(static::BIRTH_DATE),
-                                Ubki\Dictionary\CreditDealType::COMMERCIAL_CREDIT(),
-                                Ubki\Dictionary\CollateralType::R_1(),
+                                Ubki\Dictionary\CreditDeal::COMMERCIAL_CREDIT(),
+                                Ubki\Dictionary\Collateral::LEGAL(),
                                 Ubki\Dictionary\RepaymentProcedure::PERIODIC_MONTH(),
                                 Ubki\Dictionary\Currency::UAH(),
                                 static::INITIAL_AMOUNT,
@@ -393,13 +393,13 @@ class FormerTest extends TestCase
                             new Ubki\Data\Element\Contact(
                                 Carbon::parse(static::CREATED_AT),
                                 static::VALUE,
-                                Ubki\Dictionary\ContactType::EMAIL(),
+                                Ubki\Dictionary\Contact::EMAIL(),
                                 static::INN
                             ),
                             new Ubki\Data\Element\Contact(
                                 Carbon::parse(static::CREATED_AT),
                                 static::VALUE,
-                                Ubki\Dictionary\ContactType::MOBILE(),
+                                Ubki\Dictionary\Contact::MOBILE(),
                                 static::INN
                             )
                         ])

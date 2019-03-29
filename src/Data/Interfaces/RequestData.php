@@ -19,8 +19,6 @@ interface RequestData extends Ubki\Infrastructure\ElementInterface
 
     public function getVersion(): string;
 
-    public function getType(): Ubki\Dictionary\RequestType;
-
     public function getReason(): Ubki\Dictionary\RequestReason;
 
     public function getDate(): ?\DateTimeInterface;

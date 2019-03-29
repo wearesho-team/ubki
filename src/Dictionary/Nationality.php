@@ -2,28 +2,28 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class Nationality
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static static STATELESS(string $description = null)
- * @method static static ARMENIA(string $description = null)
- * @method static static AZERBAIJAN(string $description = null)
- * @method static static BELARUS(string $description = null)
- * @method static static GERMANY(string $description = null)
- * @method static static GEORGIA(string $description = null)
- * @method static static ISRAEL(string $description = null)
- * @method static static KAZAKHSTAN(string $description = null)
- * @method static static TURKEY(string $description = null)
- * @method static static UKRAINE(string $description = null)
- * @method static static USA(string $description = null)
- * @method static static UZBEKISTAN(string $description = null)
- * @method static static POLAND(string $description = null)
- * @method static static RUSSIAN_FEDERATION(string $description = null)
+ * @method static Nationality STATELESS(string $description = null)
+ * @method static Nationality ARMENIA(string $description = null)
+ * @method static Nationality AZERBAIJAN(string $description = null)
+ * @method static Nationality BELARUS(string $description = null)
+ * @method static Nationality GERMANY(string $description = null)
+ * @method static Nationality GEORGIA(string $description = null)
+ * @method static Nationality ISRAEL(string $description = null)
+ * @method static Nationality KAZAKHSTAN(string $description = null)
+ * @method static Nationality TURKEY(string $description = null)
+ * @method static Nationality UKRAINE(string $description = null)
+ * @method static Nationality USA(string $description = null)
+ * @method static Nationality UZBEKISTAN(string $description = null)
+ * @method static Nationality POLAND(string $description = null)
+ * @method static Nationality RUSSIAN_FEDERATION(string $description = null)
  */
-final class Nationality extends Infrastructure\Dictionary
+final class Nationality extends Dictionary
 {
     public const STATELESS = 1;
     public const AZERBAIJAN = 31;

@@ -2,17 +2,17 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class LinkedIdentifierRole
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static static FOUNDER(string $description = null)
- * @method static static DIRECTOR(string $description = null)
- * @method static static MANAGER(string $description = null)
+ * @method static LinkedIdentifierRole FOUNDER(string $description = null)
+ * @method static LinkedIdentifierRole DIRECTOR(string $description = null)
+ * @method static LinkedIdentifierRole MANAGER(string $description = null)
  */
-final class LinkedIdentifierRole extends Infrastructure\Dictionary
+final class LinkedIdentifierRole extends Dictionary
 {
     public const FOUNDER = 1;
     public const DIRECTOR = 2;

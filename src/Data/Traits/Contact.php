@@ -16,7 +16,7 @@ trait Contact
     /** @var string */
     protected $value;
 
-    /** @var Ubki\Dictionary\ContactType */
+    /** @var Ubki\Dictionary\Contact */
     protected $type;
 
     /** @var string|null */
@@ -32,7 +32,7 @@ trait Contact
         return $this->value;
     }
 
-    public function getType(): Ubki\Dictionary\ContactType
+    public function getType(): Ubki\Dictionary\Contact
     {
         return $this->type;
     }

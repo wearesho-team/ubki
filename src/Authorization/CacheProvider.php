@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Authorization;
 
 use Carbon\Carbon;
-
 use GuzzleHttp;
-
 use Psr;
 
 /**

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Trait ServiceTrait
  * @package Wearesho\Bobra\Ubki\Push\Export
  *
- * @method Ubki\Push\ConfigInterface config();
+ * @mixin Ubki\Infrastructure\Service;
  */
 trait ServiceTrait
 {
@@ -24,6 +24,6 @@ trait ServiceTrait
      */
     public function export(RequestInterface $request): Ubki\RequestResponsePair
     {
-        return $this->send($this->config()->getPushUrl(), $request);
+        return $this->send($this->config->getPushUrl(), $request);
     }
 }

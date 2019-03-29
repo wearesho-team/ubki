@@ -2,24 +2,24 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class DealStatus
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static static OPEN(string $description = null)
- * @method static static CLOSE(string $description = null)
- * @method static static SOLD(string $description = null)
- * @method static static RESTRUCTURED(string $description = null)
- * @method static static PROLONGED(string $description = null)
- * @method static static ANNULLED(string $description = null)
- * @method static static WRITE_OFF(string $description = null)
- * @method static static LIQUIDATION(string $description = null)
- * @method static static TERMINATION(string $description = null)
- * @method static static REPLACEMENT(string $description = null)
+ * @method static DealStatus OPEN(string $description = null)
+ * @method static DealStatus CLOSE(string $description = null)
+ * @method static DealStatus SOLD(string $description = null)
+ * @method static DealStatus RESTRUCTURED(string $description = null)
+ * @method static DealStatus PROLONGED(string $description = null)
+ * @method static DealStatus ANNULLED(string $description = null)
+ * @method static DealStatus WRITE_OFF(string $description = null)
+ * @method static DealStatus LIQUIDATION(string $description = null)
+ * @method static DealStatus TERMINATION(string $description = null)
+ * @method static DealStatus REPLACEMENT(string $description = null)
  */
-final class DealStatus extends Infrastructure\Dictionary
+final class DealStatus extends Dictionary
 {
     public const OPEN = 1;
     public const CLOSE = 2;

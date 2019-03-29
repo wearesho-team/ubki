@@ -14,7 +14,7 @@ class Document extends Ubki\Infrastructure\Element implements DocumentInterface
 
     public const TAG = 'doc';
 
-    public function __construct(Ubki\Dictionary\DocumentType $type, string $serial, string $number)
+    public function __construct(Ubki\Dictionary\Document $type, string $serial, string $number)
     {
         $this->type = $type;
         $this->serial = $serial;

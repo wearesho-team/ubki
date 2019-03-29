@@ -32,7 +32,7 @@ interface Address extends Ubki\Infrastructure\ElementInterface
 
     public function getLanguage(): Ubki\Dictionary\Language;
 
-    public function getAddressType(): Ubki\Dictionary\AddressType;
+    public function getAddressType(): Ubki\Dictionary\Address;
 
     public function getCountry(): string;
 
@@ -54,5 +54,5 @@ interface Address extends Ubki\Infrastructure\ElementInterface
 
     public function getFullAddress(): ?string;
 
-    public function getCityType(): ?Ubki\Dictionary\CityType;
+    public function getCityType(): ?Ubki\Dictionary\City;
 }

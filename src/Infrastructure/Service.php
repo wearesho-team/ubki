@@ -41,31 +41,6 @@ abstract class Service implements ServiceInterface
         $this->logger = $logger ?? new Log\NullLogger();
     }
 
-    public function config(): Ubki\Authorization\ConfigInterface
-    {
-        return $this->config;
-    }
-
-    public function authProvider(): Ubki\Authorization\ProviderInterface
-    {
-        return $this->authProvider;
-    }
-
-    public function client(): GuzzleHttp\ClientInterface
-    {
-        return $this->client;
-    }
-
-    public function logger(): Log\LoggerInterface
-    {
-        return $this->logger;
-    }
-
-    public function former(): FormerInterface
-    {
-        return $this->former;
-    }
-
     /**
      * @param string $url
      * @param RequestInterface $request
@@ -77,18 +52,15 @@ abstract class Service implements ServiceInterface
      */
     public function send(string $url, RequestInterface $request, array $headers = []): Ubki\RequestResponsePair
     {
-        $body = $this->former()
-            ->form(
-                $request,
-                $this->authProvider()
-                    ->provide($this->config())
-                    ->getSessionId()
-            );
+        $body = $this->former->form(
+            $request,
+            $this->authProvider->provide($this->config)->getSessionId()
+        );
 
         $this->log('UBKI service: Send request to {url}', ['url' => $url]);
 
         try {
-            $response = $this->client()
+            $response = $this->client
                 ->request('POST', $url, [
                     GuzzleHttp\RequestOptions::HEADERS => $headers,
                     GuzzleHttp\RequestOptions::BODY => $body,
@@ -102,6 +74,6 @@ abstract class Service implements ServiceInterface
 
     protected function log(string $message, array $args): void
     {
-        $this->logger()->info($message, $args);
+        $this->logger->info($message, $args);
     }
 }

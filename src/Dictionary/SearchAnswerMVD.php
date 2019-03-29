@@ -2,18 +2,18 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class SearchAnswerMVD
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static static ERROR(string $description = null)
- * @method static static NOT_FOUND(string $description = null)
- * @method static static FOUND(string $description = null)
- * @method static static WANTED(string $description = null)
+ * @method static SearchAnswerMVD ERROR(string $description = null)
+ * @method static SearchAnswerMVD NOT_FOUND(string $description = null)
+ * @method static SearchAnswerMVD FOUND(string $description = null)
+ * @method static SearchAnswerMVD WANTED(string $description = null)
  */
-final class SearchAnswerMVD extends Infrastructure\Dictionary
+final class SearchAnswerMVD extends Dictionary
 {
     public const ERROR = -1;
     public const NOT_FOUND = 0;

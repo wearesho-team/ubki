@@ -2,30 +2,30 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class RepaymentProcedure
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @see     https://docs.google.com/document/d/12yD1_bopAlZVAe-jFCKtGkOd15VJC4mPag_wH3gvChg/edit#heading=h.kn4jicy0622q
+ * @see https://docs.google.com/document/d/12yD1_bopAlZVAe-jFCKtGkOd15VJC4mPag_wH3gvChg/edit#heading=h.kn4jicy0622q
  *
- * @method static static PAYMENT_MATURITY(string $description = null)
- * @method static static NON_REVOLVING_CREDIT_LINE(string $description = null)
- * @method static static REVOLVING_CREDIT_LINE(string $description = null)
- * @method static static OVERDRAFT(string $description = null)
- * @method static static CREDIT_LIMIT(string $description = null)
- * @method static static PAYMENTS_MONTHLY(string $description = null)
- * @method static static PAYMENTS_INDIVIDUAL(string $description = null)
- * @method static static PERIODIC_TWO_WEEKS(string $description = null)
- * @method static static PERIODIC_MONTH(string $description = null)
- * @method static static PERIODIC_TWO_MONTH(string $description = null)
- * @method static static PERIODIC_QUARTERLY(string $description = null)
- * @method static static PERIODIC_FIVE_MONTH(string $description = null)
- * @method static static PERIODIC_YEARLY(string $description = null)
- * @method static static SHEET_COMMITMENTS(string $description = null)
+ * @method static RepaymentProcedure PAYMENT_MATURITY(string $description = null)
+ * @method static RepaymentProcedure NON_REVOLVING_CREDIT_LINE(string $description = null)
+ * @method static RepaymentProcedure REVOLVING_CREDIT_LINE(string $description = null)
+ * @method static RepaymentProcedure OVERDRAFT(string $description = null)
+ * @method static RepaymentProcedure CREDIT_LIMIT(string $description = null)
+ * @method static RepaymentProcedure PAYMENTS_MONTHLY(string $description = null)
+ * @method static RepaymentProcedure PAYMENTS_INDIVIDUAL(string $description = null)
+ * @method static RepaymentProcedure PERIODIC_TWO_WEEKS(string $description = null)
+ * @method static RepaymentProcedure PERIODIC_MONTH(string $description = null)
+ * @method static RepaymentProcedure PERIODIC_TWO_MONTH(string $description = null)
+ * @method static RepaymentProcedure PERIODIC_QUARTERLY(string $description = null)
+ * @method static RepaymentProcedure PERIODIC_FIVE_MONTH(string $description = null)
+ * @method static RepaymentProcedure PERIODIC_YEARLY(string $description = null)
+ * @method static RepaymentProcedure SHEET_COMMITMENTS(string $description = null)
  */
-final class RepaymentProcedure extends Infrastructure\Dictionary
+final class RepaymentProcedure extends Dictionary
 {
     public const PAYMENT_MATURITY = 1;
     public const NON_REVOLVING_CREDIT_LINE = 2;

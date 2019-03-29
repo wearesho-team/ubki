@@ -14,7 +14,7 @@ class Contact extends Ubki\Infrastructure\Element implements ContactInterface
 
     public const TAG = 'cont';
 
-    public function __construct(Ubki\Dictionary\ContactType $type, string $value)
+    public function __construct(Ubki\Dictionary\Contact $type, string $value)
     {
         $this->type = $type;
         $this->value = $value;

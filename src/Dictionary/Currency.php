@@ -2,27 +2,27 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class Currency
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @see     https://docs.google.com/document/d/12yD1_bopAlZVAe-jFCKtGkOd15VJC4mPag_wH3gvChg/edit#
+ * @see https://docs.google.com/document/d/12yD1_bopAlZVAe-jFCKtGkOd15VJC4mPag_wH3gvChg/edit#
  *
- * @method static static BYN(string $description = null)
- * @method static static CHF(string $description = null)
- * @method static static EUR(string $description = null)
- * @method static static GBP(string $description = null)
- * @method static static GEL(string $description = null)
- * @method static static PLN(string $description = null)
- * @method static static RUB(string $description = null)
- * @method static static UAH(string $description = null)
- * @method static static USD(string $description = null)
- * @method static static XAG(string $description = null)
- * @method static static XAU(string $description = null)
+ * @method static Currency BYN(string $description = null)
+ * @method static Currency CHF(string $description = null)
+ * @method static Currency EUR(string $description = null)
+ * @method static Currency GBP(string $description = null)
+ * @method static Currency GEL(string $description = null)
+ * @method static Currency PLN(string $description = null)
+ * @method static Currency RUB(string $description = null)
+ * @method static Currency UAH(string $description = null)
+ * @method static Currency USD(string $description = null)
+ * @method static Currency XAG(string $description = null)
+ * @method static Currency XAU(string $description = null)
  */
-final class Currency extends Infrastructure\Dictionary
+final class Currency extends Dictionary
 {
     /** @var int The Belarusian Ruble */
     public const BYN = 974;

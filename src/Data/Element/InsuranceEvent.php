@@ -19,7 +19,7 @@ class InsuranceEvent extends Ubki\Infrastructure\Element
     /** @var \DateTimeInterface */
     protected $requestDate;
 
-    /** @var Ubki\Dictionary\InsuranceDecisionStatus */
+    /** @var Ubki\Dictionary\InsuranceDecision */
     protected $decision;
 
     /** @var \DateTimeInterface */
@@ -27,7 +27,7 @@ class InsuranceEvent extends Ubki\Infrastructure\Element
 
     public function __construct(
         \DateTimeInterface $requestDate,
-        Ubki\Dictionary\InsuranceDecisionStatus $decision,
+        Ubki\Dictionary\InsuranceDecision $decision,
         \DateTimeInterface $decisionDate
     ) {
         $this->requestDate = $requestDate;
@@ -40,7 +40,7 @@ class InsuranceEvent extends Ubki\Infrastructure\Element
         return $this->requestDate;
     }
 
-    public function getDecision(): Ubki\Dictionary\InsuranceDecisionStatus
+    public function getDecision(): Ubki\Dictionary\InsuranceDecision
     {
         return $this->decision;
     }

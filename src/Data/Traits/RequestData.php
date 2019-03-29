@@ -13,9 +13,6 @@ trait RequestData
     /** @var string */
     protected $version = '1.0';
 
-    /** @var Ubki\Dictionary\RequestType */
-    protected $type;
-
     /** @var Ubki\Dictionary\RequestReason */
     protected $reason;
 
@@ -31,11 +28,6 @@ trait RequestData
     public function getVersion(): string
     {
         return $this->version;
-    }
-
-    public function getType(): Ubki\Dictionary\RequestType
-    {
-        return $this->type;
     }
 
     public function getReason(): Ubki\Dictionary\RequestReason

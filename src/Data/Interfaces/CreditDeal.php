@@ -42,9 +42,9 @@ interface CreditDeal extends Ubki\Infrastructure\ElementInterface
 
     public function getBirthDate(): \DateTimeInterface;
 
-    public function getType(): Ubki\Dictionary\CreditDealType;
+    public function getType(): Ubki\Dictionary\CreditDeal;
 
-    public function getCollateral(): Ubki\Dictionary\CollateralType;
+    public function getCollateral(): Ubki\Dictionary\Collateral;
 
     public function getRepaymentProcedure(): Ubki\Dictionary\RepaymentProcedure;
 

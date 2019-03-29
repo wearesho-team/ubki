@@ -14,7 +14,7 @@ interface DocumentInterface extends Ubki\Infrastructure\ElementInterface
     public const SERIAL = 'dser';
     public const NUMBER = 'dnom';
 
-    public function getType(): Ubki\Dictionary\DocumentType;
+    public function getType(): Ubki\Dictionary\Document;
 
     public function getSerial(): string;
 

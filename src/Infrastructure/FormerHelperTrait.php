@@ -22,7 +22,7 @@ trait FormerHelperTrait
     {
         foreach ($element->associativeAttributes() as $name => $parameter) {
             if (!is_null($parameter)) {
-                if ($parameter instanceof Ubki\Infrastructure\Dictionary) {
+                if ($parameter instanceof Ubki\Dictionary) {
                     $parameter = $parameter->getValue();
                 } elseif ($parameter instanceof \DateTimeInterface) {
                     $parameter = Carbon::instance($parameter)->toDateString();

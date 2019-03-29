@@ -17,7 +17,7 @@ class Contact extends Ubki\Infrastructure\Element implements Ubki\Data\Interface
     public function __construct(
         \DateTimeInterface $createdAt,
         string $value,
-        Ubki\Dictionary\ContactType $type,
+        Ubki\Dictionary\Contact $type,
         string $inn = null
     ) {
         $this->createdAt = $createdAt;

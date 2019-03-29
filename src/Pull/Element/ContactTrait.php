@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  */
 trait ContactTrait
 {
-    /** @var Ubki\Dictionary\ContactType */
+    /** @var Ubki\Dictionary\Contact */
     protected $type;
 
     /** @var string */
@@ -21,7 +21,7 @@ trait ContactTrait
         return $this->value;
     }
 
-    public function getType(): Ubki\Dictionary\ContactType
+    public function getType(): Ubki\Dictionary\Contact
     {
         return $this->type;
     }

@@ -17,7 +17,7 @@ class Address extends Ubki\Infrastructure\Element implements Ubki\Data\Interface
     public function __construct(
         \DateTimeInterface $createdAt,
         Ubki\Dictionary\Language $language,
-        Ubki\Dictionary\AddressType $addressType,
+        Ubki\Dictionary\Address $addressType,
         string $country,
         string $city,
         string $street,
@@ -25,7 +25,7 @@ class Address extends Ubki\Infrastructure\Element implements Ubki\Data\Interface
         string $index = null,
         string $state = null,
         string $area = null,
-        Ubki\Dictionary\CityType $cityType = null,
+        Ubki\Dictionary\City $cityType = null,
         string $corpus = null,
         string $flat = null,
         string $fullAddress = null

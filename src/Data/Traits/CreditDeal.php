@@ -25,10 +25,10 @@ trait CreditDeal
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Ubki\Dictionary\CreditDealType */
+    /** @var Ubki\Dictionary\CreditDeal */
     protected $type;
 
-    /** @var Ubki\Dictionary\CollateralType */
+    /** @var Ubki\Dictionary\Collateral */
     protected $collateral;
 
     /** @var Ubki\Dictionary\RepaymentProcedure */
@@ -83,12 +83,12 @@ trait CreditDeal
         return $this->birthDate;
     }
 
-    public function getType(): Ubki\Dictionary\CreditDealType
+    public function getType(): Ubki\Dictionary\CreditDeal
     {
         return $this->type;
     }
 
-    public function getCollateral(): Ubki\Dictionary\CollateralType
+    public function getCollateral(): Ubki\Dictionary\Collateral
     {
         return $this->collateral;
     }

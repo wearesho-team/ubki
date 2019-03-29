@@ -28,8 +28,8 @@ class RequestTest extends TestCase
     protected function setUp(): void
     {
         $this->fakeRequest = new Ubki\Pull\Request(
-            new Ubki\Data\Element\RequestData(
-                Ubki\Dictionary\RequestType::CREDIT_REPORT(),
+            new Ubki\Pull\Request\Data(
+                Ubki\Pull\Report\Type::CREDIT_REPORT(),
                 Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
                 static::ID,
@@ -46,13 +46,13 @@ class RequestTest extends TestCase
                 ),
                 new Ubki\Pull\Collection\Contacts([
                     new Ubki\Pull\Element\Contact(
-                        Ubki\Dictionary\ContactType::MOBILE(),
+                        Ubki\Dictionary\Contact::MOBILE(),
                         static::VALUE
                     ),
                 ]),
                 new Ubki\Pull\Collection\Documents([
                     new Ubki\Pull\Element\Document(
-                        Ubki\Dictionary\DocumentType::PASSPORT(),
+                        Ubki\Dictionary\Document::PASSPORT(),
                         static::SERIAL,
                         static::NUMBER
                     ),
@@ -75,13 +75,13 @@ class RequestTest extends TestCase
                 ),
                 new Ubki\Pull\Collection\Contacts([
                     new Ubki\Pull\Element\Contact(
-                        Ubki\Dictionary\ContactType::MOBILE(),
+                        Ubki\Dictionary\Contact::MOBILE(),
                         static::VALUE
                     ),
                 ]),
                 new Ubki\Pull\Collection\Documents([
                     new Ubki\Pull\Element\Document(
-                        Ubki\Dictionary\DocumentType::PASSPORT(),
+                        Ubki\Dictionary\Document::PASSPORT(),
                         static::SERIAL,
                         static::NUMBER
                     ),
@@ -94,8 +94,8 @@ class RequestTest extends TestCase
     public function testGetHead(): void
     {
         $this->assertEquals(
-            new Ubki\Data\Element\RequestData(
-                Ubki\Dictionary\RequestType::CREDIT_REPORT(),
+            new Ubki\Pull\Request\Data(
+                Ubki\Pull\Report\Type::CREDIT_REPORT(),
                 Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
                 static::ID,
@@ -113,8 +113,8 @@ class RequestTest extends TestCase
     public function testCreditOnline(): void
     {
         new Ubki\Pull\Request(
-            new Ubki\Data\Element\RequestData(
-                Ubki\Dictionary\RequestType::CREDIT_REPORT(),
+            new Ubki\Pull\Request\Data(
+                Ubki\Pull\Report\Type::CREDIT_REPORT(),
                 Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
                 static::ID,

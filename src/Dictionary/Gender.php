@@ -2,16 +2,16 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class Gender
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static static MAN(string $description = null)
- * @method static static WOMAN(string $description = null)
+ * @method static Gender MAN(string $description = null)
+ * @method static Gender WOMAN(string $description = null)
  */
-final class Gender extends Infrastructure\Dictionary
+final class Gender extends Dictionary
 {
     public const MAN = 1;
     public const WOMAN = 2;

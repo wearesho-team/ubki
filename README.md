@@ -340,7 +340,7 @@ $report = new Ubki\Push\Export\DataDocument(
                 new Ubki\Data\Element\Address(
                     $createdAt = new DateTime('now'),
                     Ubki\Dictionary\Language::RUS(),
-                    Ubki\Dictionary\AddressType::HOME(),
+                    Ubki\Dictionary\Address::HOME(),
                     'country',
                     'city',
                     'street',

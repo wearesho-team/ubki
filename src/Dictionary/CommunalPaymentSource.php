@@ -2,15 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class CommunalPaymentSource
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static static IRC(string $description = null)
+ * @method static CommunalPaymentSource IRC(string $description = null)
  */
-final class CommunalPaymentSource extends Infrastructure\Dictionary
+final class CommunalPaymentSource extends Dictionary
 {
     public const IRC = 1;
 }

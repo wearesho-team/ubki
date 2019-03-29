@@ -20,7 +20,7 @@ interface Contact extends Ubki\Infrastructure\ElementInterface
 
     public function getValue(): string;
 
-    public function getType(): Ubki\Dictionary\ContactType;
+    public function getType(): Ubki\Dictionary\Contact;
 
     public function getInn(): ?string;
 }

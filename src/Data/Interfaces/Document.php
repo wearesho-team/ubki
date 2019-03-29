@@ -25,7 +25,7 @@ interface Document extends Ubki\Infrastructure\ElementInterface
 
     public function getLanguage(): Ubki\Dictionary\Language;
 
-    public function getType(): Ubki\Dictionary\DocumentType;
+    public function getType(): Ubki\Dictionary\Document;
 
     public function getSerial(): string;
 

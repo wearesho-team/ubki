@@ -17,7 +17,7 @@ class Document extends Ubki\Infrastructure\Element implements Ubki\Data\Interfac
     public function __construct(
         \DateTimeInterface $createdAt,
         Ubki\Dictionary\Language $language,
-        Ubki\Dictionary\DocumentType $type,
+        Ubki\Dictionary\Document $type,
         string $serial,
         string $number,
         string $issue,

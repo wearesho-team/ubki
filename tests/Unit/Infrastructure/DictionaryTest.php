@@ -14,7 +14,6 @@ use Wearesho\Bobra\Ubki\Dictionary\Language;
  */
 class DictionaryTest extends TestCase
 {
-    protected const LANGUAGE_KEY = 'ENG';
     protected const LANGUAGE_DESCRIPTION = 'description';
 
     public function testInstance(): void
@@ -24,13 +23,13 @@ class DictionaryTest extends TestCase
         $this->assertEquals(Language::ENG, $language->getValue());
         $this->assertEquals(static::LANGUAGE_DESCRIPTION, $language->getDescription());
         $this->assertEquals(Language::ENG()->getKey(), $language->getKey());
-        $this->assertEquals(static::LANGUAGE_KEY, $language->getKey());
+        $this->assertEquals('ENG', $language->getKey());
     }
 
     public function testToString(): void
     {
         $language = Language::ENG();
-        $this->assertEquals(static::LANGUAGE_KEY, (string)$language);
+        $this->assertEquals(Language::ENG, (string)$language);
         $language = Language::ENG(static::LANGUAGE_DESCRIPTION);
         $this->assertEquals(static::LANGUAGE_DESCRIPTION, (string)$language);
     }

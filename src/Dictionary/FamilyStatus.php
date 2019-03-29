@@ -2,19 +2,19 @@
 
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class FamilyStatus
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static static SINGLE(string $description = null)
- * @method static static MARRIED(string $description = null)
- * @method static static DIVORCED(string $description = null)
- * @method static static WIDOW(string $description = null)
- * @method static static CIVIL(string $description = null)
+ * @method static FamilyStatus SINGLE(string $description = null)
+ * @method static FamilyStatus MARRIED(string $description = null)
+ * @method static FamilyStatus DIVORCED(string $description = null)
+ * @method static FamilyStatus WIDOW(string $description = null)
+ * @method static FamilyStatus CIVIL(string $description = null)
  */
-final class FamilyStatus extends Infrastructure\Dictionary
+final class FamilyStatus extends Dictionary
 {
     public const SINGLE = 1;
     public const MARRIED = 2;

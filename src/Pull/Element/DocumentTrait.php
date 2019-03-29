@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  */
 trait DocumentTrait
 {
-    /** @var Ubki\Dictionary\DocumentType */
+    /** @var Ubki\Dictionary\Document */
     protected $type;
 
     /** @var string */
@@ -19,7 +19,7 @@ trait DocumentTrait
     /** @var string */
     protected $number;
 
-    public function getType(): Ubki\Dictionary\DocumentType
+    public function getType(): Ubki\Dictionary\Document
     {
         return $this->type;
     }
