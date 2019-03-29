@@ -6,7 +6,7 @@ use Wearesho\BaseCollection;
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Contacts
+ * Class Contact
  * @package Wearesho\Bobra\Ubki\Pull\Collection
  */
 class Contacts extends BaseCollection implements Ubki\ElementInterface

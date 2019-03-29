@@ -26,22 +26,22 @@ class CollectionsTest extends TestCase
     public function providerCollections(): array
     {
         return [
-            [new Collection\Addresses()],
-            [new Collection\Comments()],
-            [new Collection\Contacts()],
-            [new Collection\CourtDecisions()],
-            [new Collection\CreditDeals()],
-            [new Collection\CreditDeals()],
-            [new Collection\CreditRequests()],
-            [new Collection\DealLifes()],
-            [new Collection\Documents()],
-            [new Collection\IdentifiedPersons()],
-            [new Collection\InsuranceDeals()],
-            [new Collection\InsuranceEvents()],
-            [new Collection\LinkedPersons()],
-            [new Collection\Photos()],
+            [new Collection\Address()],
+            [new Collection\Comment()],
+            [new Collection\Contact()],
+            [new Collection\CourtDecision()],
+            [new Collection\CreditDeal()],
+            [new Collection\CreditDeal()],
+            [new Collection\CreditRequest()],
+            [new Collection\DealLife()],
+            [new Collection\Document()],
+            [new Collection\IdentifiedPerson()],
+            [new Collection\InsuranceDeal()],
+            [new Collection\InsuranceEvent()],
+            [new Collection\LinkedPerson()],
+            [new Collection\Photo()],
             [new Collection\Trace()],
-            [new Collection\Works()],
+            [new Collection\Work()],
         ];
     }
 }

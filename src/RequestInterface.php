@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces\RequestData;
+use Wearesho\Bobra\Ubki\Data\RequestHead;
 
 /**
  * Interface RequestInterface
@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki\Data\Interfaces\RequestData;
  */
 interface RequestInterface extends ElementInterface
 {
-    public function getHead(): RequestData;
+    public function getHead(): RequestHead;
 
     public function getBody();
 }

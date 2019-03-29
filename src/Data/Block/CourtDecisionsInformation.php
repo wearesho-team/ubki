@@ -8,15 +8,20 @@ use Wearesho\Bobra\Ubki;
  * Class CourtDecisionsInformation
  * @package Wearesho\Bobra\Ubki\Data\BLocks
  */
-class CourtDecisionsInformation extends Ubki\Block implements
-    Ubki\Data\Interfaces\CourtDecisionsInformation
+class CourtDecisionsInformation extends Ubki\Block
 {
-    use Ubki\Data\Traits\CourtDecisionsInformation;
-
     public const ID = 3;
 
-    public function __construct(Ubki\Data\Collection\CourtDecisions $decisionCollection)
+    /** @var Ubki\Data\Collection\CourtDecision */
+    protected $decisions;
+
+    public function __construct(Ubki\Data\Collection\CourtDecision $decisionCollection)
     {
         $this->decisions = $decisionCollection;
+    }
+
+    public function getDecisions(): Ubki\Data\Collection\CourtDecision
+    {
+        return $this->decisions;
     }
 }

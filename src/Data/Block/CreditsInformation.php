@@ -8,14 +8,20 @@ use Wearesho\Bobra\Ubki;
  * Class CreditsInformation
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class CreditsInformation extends Ubki\Block implements Ubki\Data\Interfaces\CreditsInformation
+class CreditsInformation extends Ubki\Block
 {
-    use Ubki\Data\Traits\CreditsInformation;
-
     public const ID = 2;
 
-    public function __construct(Ubki\Data\Collection\CreditDeals $creditCollection)
+    /** @var Ubki\Data\Collection\CreditDeal */
+    protected $deals;
+
+    public function __construct(Ubki\Data\Collection\CreditDeal $creditCollection)
     {
         $this->deals = $creditCollection;
+    }
+
+    public function getDeals(): Ubki\Data\Collection\CreditDeal
+    {
+        return $this->deals;
     }
 }

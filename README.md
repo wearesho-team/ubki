@@ -189,7 +189,7 @@ use Wearesho\Bobra\Ubki;
 /** @var Ubki\Pull\ServiceInterface $service */
 
 $request = new Ubki\Pull\Request(
-    $headData = new Ubki\Data\Element\RequestData(
+    $headData = new Ubki\Data\Element\RequestHead(
         $type = Ubki\Dictionary\RequestType::CREDIT_REPORT(),
         $reason = Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
         $date = new DateTime('now'),
@@ -272,7 +272,7 @@ use Wearesho\Bobra\Ubki;
 /** @var Ubki\Push\Export\ServiceInterface $service */
 
 // основные данные отчета
-$headData = new Ubki\Data\Element\RequestData(
+$headData = new Ubki\Data\Element\RequestHead(
     Ubki\Dictionary\RequestType::EXPORT(),
     Ubki\Dictionary\RequestReason::EXPORT(),
     new DateTime('now'),

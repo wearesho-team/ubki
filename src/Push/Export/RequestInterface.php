@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
  */
 interface RequestInterface extends Ubki\RequestInterface
 {
-    public function getHead(): Ubki\Data\Interfaces\RequestData;
+    public function getHead(): Ubki\Data\RequestHead;
 
     public function getBody(): DataDocumentInterface;
 }

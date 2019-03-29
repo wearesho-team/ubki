@@ -8,14 +8,20 @@ use Wearesho\Bobra\Ubki;
  * Class ContactsInformation
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class ContactsInformation extends Ubki\Block implements Ubki\Data\Interfaces\ContactsInformation
+class ContactsInformation extends Ubki\Block
 {
-    use Ubki\Data\Traits\ContactsInformation;
-
     public const ID = 10;
 
-    public function __construct(Ubki\Data\Collection\Contacts $contacts)
+    /** @var Ubki\Data\Collection\Contact */
+    protected $contacts;
+
+    public function __construct(Ubki\Data\Collection\Contact $contacts)
     {
         $this->contacts = $contacts;
+    }
+
+    public function getContacts(): Ubki\Data\Collection\Contact
+    {
+        return $this->contacts;
     }
 }

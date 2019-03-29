@@ -14,7 +14,7 @@ interface RequestInterface extends Ubki\RequestInterface
     public const SESSION_ID = 'sessid';
     public const REQ_ENVELOPE_BLOCK = 'req_envelope';
 
-    public function getHead(): Ubki\Data\Interfaces\RequestData;
+    public function getHead(): Ubki\Data\RequestHead;
 
     public function getBody(): Element\RequestContentInterface;
 }

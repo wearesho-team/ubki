@@ -11,13 +11,13 @@ use Wearesho\Bobra\Ubki;
 trait RequestTrait
 {
 
-    /** @var Ubki\Data\Element\RequestData */
+    /** @var Ubki\Data\RequestHead */
     protected $head;
 
     /** @var Element\RequestContentInterface */
     protected $body;
 
-    public function getHead(): Ubki\Data\Interfaces\RequestData
+    public function getHead(): Ubki\Data\RequestHead
     {
         return $this->head;
     }

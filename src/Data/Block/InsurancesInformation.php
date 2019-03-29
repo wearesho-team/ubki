@@ -8,14 +8,20 @@ use Wearesho\Bobra\Ubki;
  * Class InsurancesInformation
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class InsurancesInformation extends Ubki\Block implements Ubki\Data\Interfaces\InsurancesInformation
+class InsurancesInformation extends Ubki\Block
 {
-    use Ubki\Data\Traits\InsurancesInformation;
-
     public const ID = 9;
 
-    public function __construct(Ubki\Data\Collection\InsuranceDeals $deals)
+    /** @var Ubki\Data\Collection\InsuranceDeal */
+    protected $deals;
+
+    public function __construct(Ubki\Data\Collection\InsuranceDeal $deals)
     {
         $this->deals = $deals;
+    }
+
+    public function getDeals(): Ubki\Data\Collection\InsuranceDeal
+    {
+        return $this->deals;
     }
 }

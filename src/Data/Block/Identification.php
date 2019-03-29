@@ -8,14 +8,19 @@ use Wearesho\Bobra\Ubki;
  * Class Identification
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class Identification extends Ubki\Block implements Ubki\Data\Interfaces\Identification
+class Identification extends Ubki\Block
 {
-    use Ubki\Data\Traits\Identification;
-
     public const ID = 1;
 
-    public function __construct(Ubki\Data\Interfaces\Credential $credential)
+    /** @var Ubki\Data\Credential */
+    protected $credential;
+
+    public function __construct(Ubki\Data\Credential $credential)
     {
         $this->credential = $credential;
+    }
+    public function getCredential(): Ubki\Data\Credential
+    {
+        return $this->credential;
     }
 }

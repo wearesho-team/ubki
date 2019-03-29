@@ -33,7 +33,7 @@ class FormerTest extends TestCase
                     throw new \RuntimeException();
                 }
 
-                public function getHead(): Ubki\Data\Interfaces\RequestData
+                public function getHead(): Ubki\Data\RequestHead
                 {
                     throw new \RuntimeException();
                 }

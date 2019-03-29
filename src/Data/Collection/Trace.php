@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Data\Collection;
 
 use Wearesho\BaseCollection;
-use Wearesho\Bobra\Ubki\Data\Element\Step;
+use Wearesho\Bobra\Ubki\Data\Step;
 
 /**
  * Class Trace

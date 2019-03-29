@@ -107,7 +107,7 @@ class RequestTest extends TestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Contacts, documents and identification attributes must be not null if reason is
+     * @expectedExceptionMessage Contact, documents and identification attributes must be not null if reason is
      *                           CreditOnline
      */
     public function testCreditOnline(): void

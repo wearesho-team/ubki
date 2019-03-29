@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Data
  * @package Wearesho\Bobra\Ubki\Push\Export\Request
  */
-class Data extends Ubki\Data\Element\RequestData
+class Data extends Ubki\Data\RequestHead
 {
     /** @var Type */
     protected $type;
@@ -29,5 +29,15 @@ class Data extends Ubki\Data\Element\RequestData
     public function getType(): Type
     {
         return $this->type;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function associativeAttributes(): array
+    {
+        return array_merge(parent::associativeAttributes(), [
+            Data::TYPE => $this->type
+        ]);
     }
 }

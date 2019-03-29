@@ -51,7 +51,7 @@ class Former extends Ubki\Former implements FormerInterface
                 if (!empty($creditDeals)) {
                     $creditsBlock = $this->createFilledElement($creditsInformation);
 
-                    /** @var Ubki\Data\Interfaces\CreditDeal $creditDeal */
+                    /** @var Ubki\Data\CreditDeal $creditDeal */
                     foreach ($creditDeals as $creditDeal) {
                         $creditsBlock->appendChild($this->formCreditDeal($creditDeal));
                     }
@@ -68,7 +68,7 @@ class Former extends Ubki\Former implements FormerInterface
                 if (!empty($decisions)) {
                     $courtDecisionsBlock = $this->createFilledElement($courtDecisionsInformation);
 
-                    /** @var Ubki\Data\Interfaces\CourtDecision $decision */
+                    /** @var Ubki\Data\CourtDecision $decision */
                     foreach ($decisions as $decision) {
                         $courtDecisionsBlock->appendChild($this->createFilledElement($decision));
                     }
@@ -85,7 +85,7 @@ class Former extends Ubki\Former implements FormerInterface
                 if (!empty($creditRequests)) {
                     $creditRequestsBlock = $this->createFilledElement($creditRequestInformation);
 
-                    /** @var Ubki\Data\Interfaces\CreditRequest $creditRequest */
+                    /** @var Ubki\Data\CreditRequest $creditRequest */
                     foreach ($creditRequests as $creditRequest) {
                         $creditRequestsBlock->appendChild($this->createFilledElement($creditRequest));
                     }
@@ -108,7 +108,7 @@ class Former extends Ubki\Former implements FormerInterface
                 if (!empty($contacts)) {
                     $contactsBlock = $this->createFilledElement($contactsInformation);
 
-                    /** @var Ubki\Data\Interfaces\Contact $contact */
+                    /** @var Ubki\Data\Contact $contact */
                     foreach ($contacts as $contact) {
                         $contactsBlock->appendChild($this->createFilledElement($contact));
                     }
@@ -148,7 +148,7 @@ class Former extends Ubki\Former implements FormerInterface
         return $wrapper;
     }
 
-    protected function formCredential(Ubki\Data\Interfaces\Credential $credential): \DOMElement
+    protected function formCredential(Ubki\Data\Credential $credential): \DOMElement
     {
         $credentialElement = $this->createDOMElement($credential);
 
@@ -164,7 +164,7 @@ class Former extends Ubki\Former implements FormerInterface
         return $credentialElement;
     }
 
-    protected function formCreditDeal(Ubki\Data\Interfaces\CreditDeal $deal): \DOMElement
+    protected function formCreditDeal(Ubki\Data\CreditDeal $deal): \DOMElement
     {
         return $this->appendCollectionTo($this->createFilledElement($deal), $deal->getDealLifes());
     }

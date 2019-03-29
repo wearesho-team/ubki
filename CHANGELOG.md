@@ -48,9 +48,9 @@ and [Pull\ConfigTrait](src/Pull/ConfigTrait.php) to trait
 [Authorization\ConfigTrait](src/Authorization/ConfigTrait.php) for eliminating implementation duplication in 
 [Pull\ConfigTrait](src/Pull/ConfigTrait.php);
 - All collections now extends from dependency [BaseCollection](https://github.com/wearesho-team/base-collection)
-- Downgrade typehint in [Element\RatingDescription](src/Data/Element/RatingDescription.php) of one property from 
+- Downgrade typehint in [Element\RatingDescription](src/Data/RatingDescription.php) of one property from 
 `Carbon` to `\DateTimeInterface`;
-- Downgrade typehint in [Element\RatingScore](src/Data/Element/RatingScore.php) of two properties from `Carbon` to
+- Downgrade typehint in [Element\RatingScore](src/Data/RatingScore.php) of two properties from `Carbon` to
 `\DateTimeInterface`;
 - class `Infrastructure\Block` at now implement `Infrastructure\BlockInterface`;
 ### Backward incompatible changes:
@@ -65,11 +65,11 @@ of [Infrastructure\Element](src/Element.php) to [Infrastructure\Element](src/Ele
 - Changed [Block\CreditRating](src/Data/Block/CreditRating.php) `jsonSerialize(): array` result;
 - Renamed `getCreditCollection()` to `getDeals()` in class [Block\CreditsInformation](src/Data/Block/CreditsInformation.php);
 - Renamed `Block\CreditRegistersInformation` to [Block\CreditsRequestsInformation](src/Data/Block/CreditsRequestsInformation.php);
-- Renamed `Element\CreditRegister` to [Element\CreditRequest](src/Data/Element/CreditRequest.php);
+- Renamed `Element\CreditRegister` to [Element\CreditRequest](src/Data/CreditRequest.php);
 - All constants `TAG` removed from interfaces to declared classes, that implement it interface. It was made to eliminate
 mass implementation duplications of method `tag(): string`. Implementation of this method removed to abstract
 [Infrastructure\Element](src/Element.php) class;
-- Removed property `$previousDate` from [Element\RatingScore](src/Data/Element/RatingScore.php);
+- Removed property `$previousDate` from [Element\RatingScore](src/Data/RatingScore.php);
 - Removed `Ubki\Element` to `Ubki\Infrastructure\Element`;
 - Removed `Ubki\Push\Export\RequestException` to `Ubki\Exception\Request`;
 - Removed `Infrastructure\BaseCollection` because of adding it as dependency;
@@ -111,7 +111,7 @@ mass implementation duplications of method `tag(): string`. Implementation of th
     - RatingDescription;
     - RatingScore;
     - RegistryTimes;
-    - RequestData;
+    - RequestHead;
     - Work.
 #### - Push
 - Error entity and collection;

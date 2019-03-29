@@ -15,7 +15,7 @@ class Request extends Ubki\Element implements RequestInterface
     public const TAG = 'doc';
 
     public function __construct(
-        Ubki\Data\Interfaces\RequestData $requestData,
+        Ubki\Data\RequestHead $requestData,
         Element\RequestContentInterface $content
     ) {
         // todo: wrap into validate() function
@@ -29,7 +29,7 @@ class Request extends Ubki\Element implements RequestInterface
                 || is_null($identification->getSurname())
                 || is_null($identification->getBirthDate())) {
                 throw new \InvalidArgumentException(
-                    "Contacts, documents and identification attributes must be not null if reason is CreditOnline"
+                    "Contact, documents and identification attributes must be not null if reason is CreditOnline"
                 );
             }
         }

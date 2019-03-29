@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Data
  * @package Wearesho\Bobra\Ubki\Pull\Request
  */
-class Data extends Ubki\Data\Element\RequestData
+class Data extends Ubki\Data\RequestHead
 {
     /** @var Ubki\Pull\Report\Type */
     protected $type;

@@ -103,14 +103,14 @@ class DataDocumentTest extends TestCase
     {
         $this->fakeDataDocument = new Ubki\Push\Export\DataDocument(
             new Ubki\Data\Block\Identification(
-                new Ubki\Data\Element\Credential(
+                new Ubki\Data\Credential(
                     Ubki\Dictionary\Language::RUS(),
                     static::NAME,
                     static::PATRONYMIC,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE),
-                    new Ubki\Data\Collection\IdentifiedPersons([
-                        new Ubki\Data\Element\NaturalPerson(
+                    new Ubki\Data\Collection\IdentifiedPerson([
+                        new Ubki\Data\NaturalPerson(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::KAZ(),
                             static::NAME,
@@ -126,20 +126,20 @@ class DataDocumentTest extends TestCase
                             Ubki\Dictionary\SocialStatus::STUDENT(),
                             static::CHILDREN_COUNT
                         ),
-                        new Ubki\Data\Element\LegalPerson(
+                        new Ubki\Data\LegalPerson(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::RUS(),
                             static::NAME,
                             static::ERGPOU,
-                            static::FORM,
-                            static::ECONOMY_BRANCH,
+                            Ubki\Dictionary\Ownership::BRANCH(),
+                            Ubki\Dictionary\EconomyBranch::BUILDING(),
                             static::ACTIVITY_TYPE,
                             Carbon::parse(static::EDR_REGISTRATION_DATE),
                             Carbon::parse(static::TAX_REGISTRATION_DATE)
                         ),
                     ]),
-                    new Ubki\Data\Collection\Documents([
-                        new Ubki\Data\Element\Document(
+                    new Ubki\Data\Collection\Document([
+                        new Ubki\Data\Document(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::RUS(),
                             Ubki\Dictionary\Document::DIPLOMA(),
@@ -150,8 +150,8 @@ class DataDocumentTest extends TestCase
                             Carbon::parse(static::TERMIN)
                         ),
                     ]),
-                    new Ubki\Data\Collection\Addresses([
-                        new Ubki\Data\Element\Address(
+                    new Ubki\Data\Collection\Address([
+                        new Ubki\Data\Address(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::RUS(),
                             Ubki\Dictionary\Address::REGISTRATION(),
@@ -169,8 +169,8 @@ class DataDocumentTest extends TestCase
                         ),
                     ]),
                     static::INN,
-                    new Ubki\Data\Collection\Works([
-                        new Ubki\Data\Element\Work(
+                    new Ubki\Data\Collection\Work([
+                        new Ubki\Data\Work(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::RUS(),
                             static::ERGPOU,
@@ -180,15 +180,15 @@ class DataDocumentTest extends TestCase
                             static::INCOME
                         ),
                     ]),
-                    new Ubki\Data\Collection\Photos([
-                        new Ubki\Data\Element\Photo(
+                    new Ubki\Data\Collection\Photo([
+                        new Ubki\Data\Photo(
                             Carbon::parse(static::CREATED_AT),
                             static::PHOTO,
                             static::INN
                         ),
                     ]),
-                    new Ubki\Data\Collection\LinkedPersons([
-                        new Ubki\Data\Element\LinkedPerson(
+                    new Ubki\Data\Collection\LinkedPerson([
+                        new Ubki\Data\LinkedPerson(
                             static::NAME,
                             Ubki\Dictionary\LinkedIdentifierRole::DIRECTOR(),
                             Carbon::parse(static::ISSUE_DATE),
@@ -198,8 +198,8 @@ class DataDocumentTest extends TestCase
                 )
             ),
             new Ubki\Data\Block\CreditsInformation(
-                new Ubki\Data\Collection\CreditDeals([
-                    new Ubki\Data\Element\CreditDeal(
+                new Ubki\Data\Collection\CreditDeal([
+                    new Ubki\Data\CreditDeal(
                         static::ID,
                         Ubki\Dictionary\Language::RUS(),
                         static::NAME,
@@ -212,8 +212,8 @@ class DataDocumentTest extends TestCase
                         static::INITIAL_AMOUNT,
                         Ubki\Dictionary\SubjectRole::BORROWER(),
                         static::COLLATERAL_COST,
-                        new Ubki\Data\Collection\DealLifes([
-                            new Ubki\Data\Element\DealLife(
+                        new Ubki\Data\Collection\DealLife([
+                            new Ubki\Data\DealLife(
                                 static::ID,
                                 static::PERIOD_MONTH,
                                 static::PERIOD_YEAR,
@@ -239,14 +239,14 @@ class DataDocumentTest extends TestCase
                 ])
             ),
             new Ubki\Data\Block\ContactsInformation(
-                new Ubki\Data\Collection\Contacts([
-                    new Ubki\Data\Element\Contact(
+                new Ubki\Data\Collection\Contact([
+                    new Ubki\Data\Contact(
                         Carbon::parse(static::CREATED_AT),
                         static::VALUE,
                         Ubki\Dictionary\Contact::EMAIL(),
                         static::INN
                     ),
-                    new Ubki\Data\Element\Contact(
+                    new Ubki\Data\Contact(
                         Carbon::parse(static::CREATED_AT),
                         static::VALUE,
                         Ubki\Dictionary\Contact::MOBILE(),
@@ -255,8 +255,8 @@ class DataDocumentTest extends TestCase
                 ])
             ),
             new Ubki\Data\Block\CourtDecisionsInformation(
-                new Ubki\Data\Collection\CourtDecisions([
-                    new Ubki\Data\Element\CourtDecision(
+                new Ubki\Data\Collection\CourtDecision([
+                    new Ubki\Data\CourtDecision(
                         static::ID,
                         static::INN,
                         Carbon::parse(static::DATE),
@@ -274,8 +274,8 @@ class DataDocumentTest extends TestCase
                 ])
             ),
             new Ubki\Data\Block\CreditsRequestsInformation(
-                new Ubki\Data\Collection\CreditRequests([
-                    new Ubki\Data\Element\CreditRequest(
+                new Ubki\Data\Collection\CreditRequest([
+                    new Ubki\Data\CreditRequest(
                         Carbon::parse(static::DATE),
                         static::INN,
                         static::ID,
@@ -284,7 +284,7 @@ class DataDocumentTest extends TestCase
                         static::ORGANIZATION
                     )
                 ]),
-                new Ubki\Data\Element\RegistryTimes(
+                new Ubki\Data\RegistryTimes(
                     static::BY_HOUR,
                     static::BY_DAY,
                     static::BY_WEEK,
@@ -302,14 +302,14 @@ class DataDocumentTest extends TestCase
         $this->assertArraySubset(
             [
                 'identification' => new Ubki\Data\Block\Identification(
-                    new Ubki\Data\Element\Credential(
+                    new Ubki\Data\Credential(
                         Ubki\Dictionary\Language::RUS(),
                         static::NAME,
                         static::PATRONYMIC,
                         static::SURNAME,
                         Carbon::parse(static::BIRTH_DATE),
-                        new Ubki\Data\Collection\IdentifiedPersons([
-                            new Ubki\Data\Element\NaturalPerson(
+                        new Ubki\Data\Collection\IdentifiedPerson([
+                            new Ubki\Data\NaturalPerson(
                                 Carbon::parse(static::CREATED_AT),
                                 Ubki\Dictionary\Language::KAZ(),
                                 static::NAME,
@@ -325,20 +325,20 @@ class DataDocumentTest extends TestCase
                                 Ubki\Dictionary\SocialStatus::STUDENT(),
                                 static::CHILDREN_COUNT
                             ),
-                            new Ubki\Data\Element\LegalPerson(
+                            new Ubki\Data\LegalPerson(
                                 Carbon::parse(static::CREATED_AT),
                                 Ubki\Dictionary\Language::RUS(),
                                 static::NAME,
                                 static::ERGPOU,
-                                static::FORM,
-                                static::ECONOMY_BRANCH,
+                                Ubki\Dictionary\Ownership::BRANCH(),
+                                Ubki\Dictionary\EconomyBranch::BUILDING(),
                                 static::ACTIVITY_TYPE,
                                 Carbon::parse(static::EDR_REGISTRATION_DATE),
                                 Carbon::parse(static::TAX_REGISTRATION_DATE)
                             ),
                         ]),
-                        new Ubki\Data\Collection\Documents([
-                            new Ubki\Data\Element\Document(
+                        new Ubki\Data\Collection\Document([
+                            new Ubki\Data\Document(
                                 Carbon::parse(static::CREATED_AT),
                                 Ubki\Dictionary\Language::RUS(),
                                 Ubki\Dictionary\Document::DIPLOMA(),
@@ -349,8 +349,8 @@ class DataDocumentTest extends TestCase
                                 Carbon::parse(static::TERMIN)
                             ),
                         ]),
-                        new Ubki\Data\Collection\Addresses([
-                            new Ubki\Data\Element\Address(
+                        new Ubki\Data\Collection\Address([
+                            new Ubki\Data\Address(
                                 Carbon::parse(static::CREATED_AT),
                                 Ubki\Dictionary\Language::RUS(),
                                 Ubki\Dictionary\Address::REGISTRATION(),
@@ -368,8 +368,8 @@ class DataDocumentTest extends TestCase
                             ),
                         ]),
                         static::INN,
-                        new Ubki\Data\Collection\Works([
-                            new Ubki\Data\Element\Work(
+                        new Ubki\Data\Collection\Work([
+                            new Ubki\Data\Work(
                                 Carbon::parse(static::CREATED_AT),
                                 Ubki\Dictionary\Language::RUS(),
                                 static::ERGPOU,
@@ -379,15 +379,15 @@ class DataDocumentTest extends TestCase
                                 static::INCOME
                             ),
                         ]),
-                        new Ubki\Data\Collection\Photos([
-                            new Ubki\Data\Element\Photo(
+                        new Ubki\Data\Collection\Photo([
+                            new Ubki\Data\Photo(
                                 Carbon::parse(static::CREATED_AT),
                                 static::PHOTO,
                                 static::INN
                             ),
                         ]),
-                        new Ubki\Data\Collection\LinkedPersons([
-                            new Ubki\Data\Element\LinkedPerson(
+                        new Ubki\Data\Collection\LinkedPerson([
+                            new Ubki\Data\LinkedPerson(
                                 static::NAME,
                                 Ubki\Dictionary\LinkedIdentifierRole::DIRECTOR(),
                                 Carbon::parse(static::ISSUE_DATE),
@@ -405,14 +405,14 @@ class DataDocumentTest extends TestCase
     {
         $this->assertEquals(
             new Ubki\Data\Block\ContactsInformation(
-                new Ubki\Data\Collection\Contacts([
-                    new Ubki\Data\Element\Contact(
+                new Ubki\Data\Collection\Contact([
+                    new Ubki\Data\Contact(
                         Carbon::parse(static::CREATED_AT),
                         static::VALUE,
                         Ubki\Dictionary\Contact::EMAIL(),
                         static::INN
                     ),
-                    new Ubki\Data\Element\Contact(
+                    new Ubki\Data\Contact(
                         Carbon::parse(static::CREATED_AT),
                         static::VALUE,
                         Ubki\Dictionary\Contact::MOBILE(),
@@ -428,14 +428,14 @@ class DataDocumentTest extends TestCase
     {
         $this->assertEquals(
             new Ubki\Data\Block\Identification(
-                new Ubki\Data\Element\Credential(
+                new Ubki\Data\Credential(
                     Ubki\Dictionary\Language::RUS(),
                     static::NAME,
                     static::PATRONYMIC,
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE),
-                    new Ubki\Data\Collection\IdentifiedPersons([
-                        new Ubki\Data\Element\NaturalPerson(
+                    new Ubki\Data\Collection\IdentifiedPerson([
+                        new Ubki\Data\NaturalPerson(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::KAZ(),
                             static::NAME,
@@ -451,20 +451,20 @@ class DataDocumentTest extends TestCase
                             Ubki\Dictionary\SocialStatus::STUDENT(),
                             static::CHILDREN_COUNT
                         ),
-                        new Ubki\Data\Element\LegalPerson(
+                        new Ubki\Data\LegalPerson(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::RUS(),
                             static::NAME,
                             static::ERGPOU,
-                            static::FORM,
-                            static::ECONOMY_BRANCH,
+                            Ubki\Dictionary\Ownership::BRANCH(),
+                            Ubki\Dictionary\EconomyBranch::BUILDING(),
                             static::ACTIVITY_TYPE,
                             Carbon::parse(static::EDR_REGISTRATION_DATE),
                             Carbon::parse(static::TAX_REGISTRATION_DATE)
                         ),
                     ]),
-                    new Ubki\Data\Collection\Documents([
-                        new Ubki\Data\Element\Document(
+                    new Ubki\Data\Collection\Document([
+                        new Ubki\Data\Document(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::RUS(),
                             Ubki\Dictionary\Document::DIPLOMA(),
@@ -475,8 +475,8 @@ class DataDocumentTest extends TestCase
                             Carbon::parse(static::TERMIN)
                         ),
                     ]),
-                    new Ubki\Data\Collection\Addresses([
-                        new Ubki\Data\Element\Address(
+                    new Ubki\Data\Collection\Address([
+                        new Ubki\Data\Address(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::RUS(),
                             Ubki\Dictionary\Address::REGISTRATION(),
@@ -494,8 +494,8 @@ class DataDocumentTest extends TestCase
                         ),
                     ]),
                     static::INN,
-                    new Ubki\Data\Collection\Works([
-                        new Ubki\Data\Element\Work(
+                    new Ubki\Data\Collection\Work([
+                        new Ubki\Data\Work(
                             Carbon::parse(static::CREATED_AT),
                             Ubki\Dictionary\Language::RUS(),
                             static::ERGPOU,
@@ -505,15 +505,15 @@ class DataDocumentTest extends TestCase
                             static::INCOME
                         ),
                     ]),
-                    new Ubki\Data\Collection\Photos([
-                        new Ubki\Data\Element\Photo(
+                    new Ubki\Data\Collection\Photo([
+                        new Ubki\Data\Photo(
                             Carbon::parse(static::CREATED_AT),
                             static::PHOTO,
                             static::INN
                         ),
                     ]),
-                    new Ubki\Data\Collection\LinkedPersons([
-                        new Ubki\Data\Element\LinkedPerson(
+                    new Ubki\Data\Collection\LinkedPerson([
+                        new Ubki\Data\LinkedPerson(
                             static::NAME,
                             Ubki\Dictionary\LinkedIdentifierRole::DIRECTOR(),
                             Carbon::parse(static::ISSUE_DATE),
@@ -530,8 +530,8 @@ class DataDocumentTest extends TestCase
     {
         $this->assertEquals(
             new Ubki\Data\Block\CreditsInformation(
-                new Ubki\Data\Collection\CreditDeals([
-                    new Ubki\Data\Element\CreditDeal(
+                new Ubki\Data\Collection\CreditDeal([
+                    new Ubki\Data\CreditDeal(
                         static::ID,
                         Ubki\Dictionary\Language::RUS(),
                         static::NAME,
@@ -544,8 +544,8 @@ class DataDocumentTest extends TestCase
                         static::INITIAL_AMOUNT,
                         Ubki\Dictionary\SubjectRole::BORROWER(),
                         static::COLLATERAL_COST,
-                        new Ubki\Data\Collection\DealLifes([
-                            new Ubki\Data\Element\DealLife(
+                        new Ubki\Data\Collection\DealLife([
+                            new Ubki\Data\DealLife(
                                 static::ID,
                                 static::PERIOD_MONTH,
                                 static::PERIOD_YEAR,
@@ -578,8 +578,8 @@ class DataDocumentTest extends TestCase
     {
         $this->assertEquals(
             new Ubki\Data\Block\CreditsRequestsInformation(
-                new Ubki\Data\Collection\CreditRequests([
-                    new Ubki\Data\Element\CreditRequest(
+                new Ubki\Data\Collection\CreditRequest([
+                    new Ubki\Data\CreditRequest(
                         Carbon::parse(static::DATE),
                         static::INN,
                         static::ID,
@@ -588,7 +588,7 @@ class DataDocumentTest extends TestCase
                         static::ORGANIZATION
                     )
                 ]),
-                new Ubki\Data\Element\RegistryTimes(
+                new Ubki\Data\RegistryTimes(
                     static::BY_HOUR,
                     static::BY_DAY,
                     static::BY_WEEK,
@@ -606,8 +606,8 @@ class DataDocumentTest extends TestCase
     {
         $this->assertEquals(
             new Ubki\Data\Block\CourtDecisionsInformation(
-                new Ubki\Data\Collection\CourtDecisions([
-                    new Ubki\Data\Element\CourtDecision(
+                new Ubki\Data\Collection\CourtDecision([
+                    new Ubki\Data\CourtDecision(
                         static::ID,
                         static::INN,
                         Carbon::parse(static::DATE),
