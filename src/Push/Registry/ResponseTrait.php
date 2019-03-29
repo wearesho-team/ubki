@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki\Push\Registry\Response;
 
 /**
  * Trait ResponseTrait
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 trait ResponseTrait

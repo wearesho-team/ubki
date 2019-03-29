@@ -2,10 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait DealLife
@@ -28,7 +25,7 @@ trait DealLife
     /** @var \DateTimeInterface */
     protected $endDate;
 
-    /** @var Dictionaries\DealStatus */
+    /** @var Ubki\Dictionary\DealStatus */
     protected $status;
 
     /** @var float */
@@ -46,13 +43,13 @@ trait DealLife
     /** @var int */
     protected $overdueTime;
 
-    /** @var Dictionaries\Flag */
+    /** @var Ubki\Dictionary\Flag */
     protected $paymentIndication;
 
-    /** @var Dictionaries\Flag */
+    /** @var Ubki\Dictionary\Flag */
     protected $delayIndication;
 
-    /** @var Dictionaries\Flag */
+    /** @var Ubki\Dictionary\Flag */
     protected $trancheIndication;
 
     /** @var \DateTimeInterface */
@@ -64,33 +61,6 @@ trait DealLife
      * @var \DateTimeInterface|null
      */
     protected $actualEndDate;
-
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\DealLife::ID => $this->id,
-            Interfaces\DealLife::PERIOD_MONTH => $this->periodMonth,
-            Interfaces\DealLife::PERIOD_YEAR => $this->periodYear,
-            Interfaces\DealLife::ISSUE_DATE => $this->issueDate,
-            Interfaces\DealLife::END_DATE => $this->endDate,
-            Interfaces\DealLife::STATUS => $this->status,
-            Interfaces\DealLife::LIMIT => $this->limit,
-            Interfaces\DealLife::MANDATORY_PAYMENT => $this->mandatoryPayment,
-            Interfaces\DealLife::CURRENT_DEBT => $this->currentDebt,
-            Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $this->currentOverdueDebt,
-            Interfaces\DealLife::OVERDUE_TIME => $this->overdueTime,
-            Interfaces\DealLife::PAYMENT_INDICATION => $this->paymentIndication,
-            Interfaces\DealLife::DELAY_INDICATION => $this->delayIndication,
-            Interfaces\DealLife::TRANCHE_INDICATION => $this->trancheIndication,
-            Interfaces\DealLife::PAYMENT_DATE => $this->paymentDate,
-            Interfaces\DealLife::ACTUAL_END_DATE => $this->actualEndDate,
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\DealLife::TAG;
-    }
 
     public function getId(): string
     {
@@ -117,7 +87,7 @@ trait DealLife
         return $this->endDate;
     }
 
-    public function getStatus(): Dictionaries\DealStatus
+    public function getStatus(): Ubki\Dictionary\DealStatus
     {
         return $this->status;
     }
@@ -147,17 +117,17 @@ trait DealLife
         return $this->overdueTime;
     }
 
-    public function getPaymentIndication(): Dictionaries\Flag
+    public function getPaymentIndication(): Ubki\Dictionary\Flag
     {
         return $this->paymentIndication;
     }
 
-    public function getDelayIndication(): Dictionaries\Flag
+    public function getDelayIndication(): Ubki\Dictionary\Flag
     {
         return $this->delayIndication;
     }
 
-    public function getCreditTrancheIndication(): Dictionaries\Flag
+    public function getTrancheIndication(): Ubki\Dictionary\Flag
     {
         return $this->trancheIndication;
     }
@@ -172,9 +142,31 @@ trait DealLife
         return $this->actualEndDate;
     }
 
-    protected function validateActualEndDate(?string $actualEndDate, Dictionaries\DealStatus $status): void
+    public function associativeAttributes(): array
     {
-        if (is_null($actualEndDate) && $status->equals(Dictionaries\DealStatus::CLOSE())) {
+        return [
+            Ubki\Data\Interfaces\DealLife::ID => $this->getId(),
+            Ubki\Data\Interfaces\DealLife::ISSUE_DATE => $this->getIssueDate(),
+            Ubki\Data\Interfaces\DealLife::STATUS => $this->getStatus(),
+            Ubki\Data\Interfaces\DealLife::ACTUAL_END_DATE => $this->getActualEndDate(),
+            Ubki\Data\Interfaces\DealLife::CURRENT_DEBT => $this->getCurrentDebt(),
+            Ubki\Data\Interfaces\DealLife::DELAY_INDICATION => $this->getDelayIndication(),
+            Ubki\Data\Interfaces\DealLife::END_DATE => $this->getEndDate(),
+            Ubki\Data\Interfaces\DealLife::LIMIT => $this->getLimit(),
+            Ubki\Data\Interfaces\DealLife::MANDATORY_PAYMENT => $this->getMandatoryPayment(),
+            Ubki\Data\Interfaces\DealLife::OVERDUE_TIME => $this->getOverdueTime(),
+            Ubki\Data\Interfaces\DealLife::CURRENT_OVERDUE_DEBT => $this->getCurrentOverdueDebt(),
+            Ubki\Data\Interfaces\DealLife::PAYMENT_DATE => $this->getPaymentDate(),
+            Ubki\Data\Interfaces\DealLife::PAYMENT_INDICATION => $this->getPaymentIndication(),
+            Ubki\Data\Interfaces\DealLife::PERIOD_MONTH => $this->getPeriodMonth(),
+            Ubki\Data\Interfaces\DealLife::PERIOD_YEAR => $this->getPeriodYear(),
+            Ubki\Data\Interfaces\DealLife::TRANCHE_INDICATION => $this->getTrancheIndication(),
+        ];
+    }
+
+    protected function validateActualEndDate(?string $actualEndDate, Ubki\Dictionary\DealStatus $status): void
+    {
+        if (is_null($actualEndDate) && $status->equals(Ubki\Dictionary\DealStatus::CLOSE())) {
             throw new \InvalidArgumentException("'Actual end date' must be set if deal status is CLOSE");
         }
     }

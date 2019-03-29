@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class InvalidResponseXmlFormatException
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class InvalidResponseXmlFormatException extends \Exception

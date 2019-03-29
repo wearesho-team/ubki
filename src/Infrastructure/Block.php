@@ -6,7 +6,7 @@ namespace Wearesho\Bobra\Ubki\Infrastructure;
  * Interface Block
  * @package Wearesho\Bobra\Ubki\Infrastructure
  */
-abstract class Block extends Element
+abstract class Block extends Element implements BlockInterface
 {
     public const TAG = 'comp';
     public const ATTR_ID = 'id';
@@ -18,8 +18,10 @@ abstract class Block extends Element
         return static::ID;
     }
 
-    public function tag(): string
+    public function associativeAttributes(): array
     {
-        return static::TAG;
+        return [
+            Block::ATTR_ID => $this->getId(),
+        ];
     }
 }

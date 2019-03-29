@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces;
-use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait CourtDecision
@@ -20,10 +19,10 @@ trait CourtDecision
     /** @var \DateTimeInterface */
     protected $date;
 
-    /** @var Dictionaries\CourtSubjectStatus */
+    /** @var Ubki\Dictionary\CourtSubjectStatus */
     protected $subjectStatus;
 
-    /** @var Dictionaries\CourtDealType */
+    /** @var Ubki\Dictionary\CourtDealType */
     protected $courtDealType;
 
     /** @var string */
@@ -50,30 +49,6 @@ trait CourtDecision
     /** @var string|null */
     protected $areaReference;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\CourtDecision::ID => $this->id,
-            Interfaces\CourtDecision::INN => $this->inn,
-            Interfaces\CourtDecision::DATE => $this->date,
-            Interfaces\CourtDecision::SUBJECT_STATUS => $this->subjectStatus,
-            Interfaces\CourtDecision::COURT_DEAL_TYPE => $this->courtDealType,
-            Interfaces\CourtDecision::COURT_NAME => $this->courtName,
-            Interfaces\CourtDecision::DOCUMENT_TYPE => $this->documentType,
-            Interfaces\CourtDecision::DOCUMENT_TYPE_REF => $this->documentTypeReference,
-            Interfaces\CourtDecision::LEGAL_FACT => $this->legalFact,
-            Interfaces\CourtDecision::LEGAL_FACT_REF => $this->legalFactReference,
-            Interfaces\CourtDecision::CREATED_AT => $this->createdAt,
-            Interfaces\CourtDecision::AREA => $this->area,
-            Interfaces\CourtDecision::AREA_REF => $this->areaReference,
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\CourtDecision::TAG;
-    }
-
     public function getId(): string
     {
         return $this->id;
@@ -89,12 +64,12 @@ trait CourtDecision
         return $this->date;
     }
 
-    public function getSubjectStatus(): Dictionaries\CourtSubjectStatus
+    public function getSubjectStatus(): Ubki\Dictionary\CourtSubjectStatus
     {
         return $this->subjectStatus;
     }
 
-    public function getCourtDealType(): Dictionaries\CourtDealType
+    public function getCourtDealType(): Ubki\Dictionary\CourtDealType
     {
         return $this->courtDealType;
     }
@@ -137,5 +112,21 @@ trait CourtDecision
     public function getAreaReference(): ?string
     {
         return $this->areaReference;
+    }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\CourtDecision::INN => $this->getInn(),
+            Ubki\Data\Interfaces\CourtDecision::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\CourtDecision::ID => $this->getId(),
+            Ubki\Data\Interfaces\CourtDecision::AREA => $this->getArea(),
+            Ubki\Data\Interfaces\CourtDecision::DATE => $this->getDate(),
+            Ubki\Data\Interfaces\CourtDecision::COURT_NAME => $this->getCourtName(),
+            Ubki\Data\Interfaces\CourtDecision::COURT_DEAL_TYPE => $this->getCourtDealType(),
+            Ubki\Data\Interfaces\CourtDecision::DOCUMENT_TYPE => $this->getDocumentType(),
+            Ubki\Data\Interfaces\CourtDecision::LEGAL_FACT => $this->getLegalFact(),
+            Ubki\Data\Interfaces\CourtDecision::SUBJECT_STATUS => $this->getSubjectStatus(),
+        ];
     }
 }

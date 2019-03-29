@@ -13,6 +13,8 @@ use MyCLabs\Enum\Enum;
  * @method static static DELETING()
  *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Response
+ *
+ * @deprecated
  */
 class OperationType extends Enum
 {

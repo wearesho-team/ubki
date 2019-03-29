@@ -3,6 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Push;
 
 use Wearesho\Bobra\Ubki\Push\Error;
+use Wearesho\Bobra\Ubki\SimpleXmlToArray;
 
 /**
  * Class Parser
@@ -12,6 +13,8 @@ use Wearesho\Bobra\Ubki\Push\Error;
  */
 class Parser
 {
+    use SimpleXmlToArray;
+
     public function parseErrors(string $responseXml): Error\Collection
     {
         return new Error\Collection(array_map(
@@ -43,16 +46,11 @@ class Parser
      */
     private function fetchItems(string $body): array
     {
-        $items = [];
-        $xml = simplexml_load_string($body);
-        $xmlItems = $xml->{Error\Entity::ROOT}
-            ->{Error\Entity::PARENT_TAG}
-            ->{Error\Entity::TAG};
-
-        foreach ($xmlItems as $xmlItem) {
-            $items[] = $xmlItem;
-        }
-
-        return $items;
+        return $this->simpleXmlToArray(
+            simplexml_load_string($body)
+                ->{Error\Entity::ROOT}
+                ->{Error\Entity::PARENT_TAG}
+                ->{Error\Entity::TAG}
+        );
     }
 }

@@ -8,10 +8,7 @@ namespace Wearesho\Bobra\Ubki\Infrastructure;
  */
 abstract class Element implements ElementInterface
 {
-    /**
-     * Name of tag
-     *
-     * @return string
-     */
-    abstract public function tag(): string;
+    use ElementTrait;
+
+    public const TAG = null;
 }

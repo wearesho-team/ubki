@@ -2,17 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Data;
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface CreditDeal
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditDeal extends ElementInterface
+interface CreditDeal extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'crdeal';
     public const ID = 'dlref';
     public const LANGUAGE = 'lng';
     public const LANGUAGE_REF = 'lngref';
@@ -37,7 +34,7 @@ interface CreditDeal extends ElementInterface
 
     public function getId(): string;
 
-    public function getLanguage(): Dictionaries\Language;
+    public function getLanguage(): Ubki\Dictionary\Language;
 
     public function getName(): string;
 
@@ -45,21 +42,21 @@ interface CreditDeal extends ElementInterface
 
     public function getBirthDate(): \DateTimeInterface;
 
-    public function getType(): Dictionaries\CreditDealType;
+    public function getType(): Ubki\Dictionary\CreditDealType;
 
-    public function getCollateral(): Dictionaries\CollateralType;
+    public function getCollateral(): Ubki\Dictionary\CollateralType;
 
-    public function getRepaymentProcedure(): Dictionaries\RepaymentProcedure;
+    public function getRepaymentProcedure(): Ubki\Dictionary\RepaymentProcedure;
 
-    public function getCurrency(): Dictionaries\Currency;
+    public function getCurrency(): Ubki\Dictionary\Currency;
 
     public function getInitialAmount(): float;
 
-    public function getSubjectRole(): Dictionaries\SubjectRole;
+    public function getSubjectRole(): Ubki\Dictionary\SubjectRole;
 
     public function getCollateralCost(): float;
 
-    public function getDealLifeCollection(): Data\Collections\DealLifes;
+    public function getDealLifes(): Ubki\Data\Collection\DealLifes;
 
     public function getInn(): ?string;
 

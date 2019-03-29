@@ -2,26 +2,21 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Data\BLocks;
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface DataDocumentInterface
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-interface DataDocumentInterface extends ElementInterface
+interface DataDocumentInterface extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'ubkidata';
+    public function getIdentification(): Ubki\Data\Block\Identification;
 
-    public function getTech(); // TODO: need implement
+    public function getCreditDeals(): ?Ubki\Data\Block\CreditsInformation;
 
-    public function getIdentification(): Blocks\Identification;
+    public function getCourtDecisions(): ?Ubki\Data\Block\CourtDecisionsInformation;
 
-    public function getCreditDeals(): ?Blocks\CreditsInformation;
+    public function getCreditRequests(): ?Ubki\Data\Block\CreditsRequestsInformation;
 
-    public function getCourtDecisions(): ?Blocks\CourtDecisionsInformation;
-
-    public function getCreditRequests(): ?Blocks\CreditsRegistersInformation;
-
-    public function getContacts(): ?Blocks\ContactsInformation;
+    public function getContacts(): ?Ubki\Data\Block\ContactsInformation;
 }

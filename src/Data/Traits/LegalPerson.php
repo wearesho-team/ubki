@@ -2,9 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait LegalPerson
@@ -35,26 +33,6 @@ trait LegalPerson
     /** @var \DateTimeInterface|null */
     protected $taxRegistrationDate;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\IdentifiedPerson::CREATED_AT => $this->createdAt,
-            Interfaces\IdentifiedPerson::LANGUAGE => $this->language,
-            Interfaces\LegalPerson::NAME => $this->name,
-            Interfaces\LegalPerson::ERGPOU => $this->ergpou,
-            Interfaces\LegalPerson::FORM => $this->form,
-            Interfaces\LegalPerson::ECONOMY_BRANCH => $this->economyBranch,
-            Interfaces\LegalPerson::ACTIVITY_TYPE => $this->activityType,
-            Interfaces\LegalPerson::EDR_REGISTRATION_DATE => $this->edrRegistrationDate,
-            Interfaces\LegalPerson::TAX_REGISTRATION_DATE => $this->taxRegistrationDate,
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\LegalPerson::LEGAL_PREFIX . Interfaces\Person::TAG;
-    }
-
     public function getActivityType(): ?string
     {
         return $this->activityType;
@@ -83,5 +61,20 @@ trait LegalPerson
     public function getTaxRegistrationDate(): ?\DateTimeInterface
     {
         return $this->taxRegistrationDate;
+    }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\LegalPerson::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\LegalPerson::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\LegalPerson::ERGPOU => $this->getErgpou(),
+            Ubki\Data\Interfaces\LegalPerson::NAME => $this->getName(),
+            Ubki\Data\Interfaces\LegalPerson::FORM => $this->getForm(),
+            Ubki\Data\Interfaces\LegalPerson::ECONOMY_BRANCH => $this->getEconomyBranch(),
+            Ubki\Data\Interfaces\LegalPerson::ACTIVITY_TYPE => $this->getActivityType(),
+            Ubki\Data\Interfaces\LegalPerson::EDR_REGISTRATION_DATE => $this->getEdrRegistrationDate(),
+            Ubki\Data\Interfaces\LegalPerson::TAX_REGISTRATION_DATE => $this->getTaxRegistrationDate()
+        ];
     }
 }

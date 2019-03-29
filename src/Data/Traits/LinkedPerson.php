@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Dictionaries\LinkedIdentifierRole;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait LinkedPerson
@@ -14,7 +13,7 @@ trait LinkedPerson
     /** @var string */
     protected $name;
 
-    /** @var LinkedIdentifierRole */
+    /** @var Ubki\Dictionary\LinkedIdentifierRole */
     protected $role;
 
     /** @var \DateTimeInterface */
@@ -22,21 +21,6 @@ trait LinkedPerson
 
     /** @var string|null */
     protected $ergpou;
-
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\LinkedPerson::NAME => $this->name,
-            Interfaces\LinkedPerson::ROLE => $this->role,
-            Interfaces\LinkedPerson::ISSUE_DATE => $this->issueDate,
-            Interfaces\LinkedPerson::ERGPOU => $this->ergpou
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\LinkedPerson::TAG;
-    }
 
     public function getErgpou(): ?string
     {
@@ -48,7 +32,7 @@ trait LinkedPerson
         return $this->name;
     }
 
-    public function getRole(): LinkedIdentifierRole
+    public function getRole(): Ubki\Dictionary\LinkedIdentifierRole
     {
         return $this->role;
     }
@@ -56,5 +40,18 @@ trait LinkedPerson
     public function getIssueDate(): \DateTimeInterface
     {
         return $this->issueDate;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\LinkedPerson::NAME => $this->getName(),
+            Ubki\Data\Interfaces\LinkedPerson::ERGPOU => $this->getErgpou(),
+            Ubki\Data\Interfaces\LinkedPerson::ISSUE_DATE => $this->getIssueDate(),
+            Ubki\Data\Interfaces\LinkedPerson::ROLE => $this->getRole(),
+        ];
     }
 }

@@ -2,16 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface Address
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Address extends ElementInterface
+interface Address extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'addr';
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';
     public const LANGUAGE_REF = 'lngref';
@@ -32,9 +30,9 @@ interface Address extends ElementInterface
 
     public function getCreatedAt(): \DateTimeInterface;
 
-    public function getLanguage(): Dictionaries\Language;
+    public function getLanguage(): Ubki\Dictionary\Language;
 
-    public function getAddressType(): Dictionaries\AddressType;
+    public function getAddressType(): Ubki\Dictionary\AddressType;
 
     public function getCountry(): string;
 
@@ -56,5 +54,5 @@ interface Address extends ElementInterface
 
     public function getFullAddress(): ?string;
 
-    public function getCityType(): ?Dictionaries\CityType;
+    public function getCityType(): ?Ubki\Dictionary\CityType;
 }

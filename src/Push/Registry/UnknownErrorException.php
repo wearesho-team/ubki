@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki;
 
 /**
  * Class UnknownErrorException
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class UnknownErrorException extends \Exception

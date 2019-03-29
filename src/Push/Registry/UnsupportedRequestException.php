@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class UnsupportedRequestException
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class UnsupportedRequestException extends \InvalidArgumentException

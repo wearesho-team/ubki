@@ -2,10 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait NaturalPerson
@@ -21,7 +18,7 @@ trait NaturalPerson
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Dictionaries\Gender */
+    /** @var Ubki\Dictionary\Gender */
     protected $gender;
 
     /** @var string|null */
@@ -30,48 +27,23 @@ trait NaturalPerson
     /** @var string|null */
     protected $patronymic;
 
-    /** @var Dictionaries\FamilyStatus|null */
+    /** @var Ubki\Dictionary\FamilyStatus|null */
     protected $familyStatus;
 
-    /** @var Dictionaries\Education|null */
+    /** @var Ubki\Dictionary\Education|null */
     protected $education;
 
-    /** @var Dictionaries\Nationality|null */
+    /** @var Ubki\Dictionary\Nationality|null */
     protected $nationality;
 
-    /** @var Dictionaries\RegistrationSpd|null */
+    /** @var Ubki\Dictionary\RegistrationSpd|null */
     protected $registrationSpd;
 
-    /** @var Dictionaries\SocialStatus|null */
+    /** @var Ubki\Dictionary\SocialStatus|null */
     protected $socialStatus;
 
     /** @var int|null */
     protected $childrenCount;
-
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\IdentifiedPerson::CREATED_AT => $this->createdAt,
-            Interfaces\IdentifiedPerson::LANGUAGE => $this->language,
-            Interfaces\NaturalPerson::NAME => $this->name,
-            Interfaces\NaturalPerson::PATRONYMIC => $this->patronymic,
-            Interfaces\NaturalPerson::SURNAME => $this->surname,
-            Interfaces\NaturalPerson::BIRTH_DATE => $this->birthDate,
-            Interfaces\NaturalPerson::GENDER => $this->gender,
-            Interfaces\NaturalPerson::INN => $this->inn,
-            Interfaces\NaturalPerson::FAMILY_STATUS => $this->familyStatus,
-            Interfaces\NaturalPerson::EDUCATION => $this->education,
-            Interfaces\NaturalPerson::NATIONALITY => $this->nationality,
-            Interfaces\NaturalPerson::REGISTRATION_SPD => $this->registrationSpd,
-            Interfaces\NaturalPerson::SOCIAL_STATUS => $this->socialStatus,
-            Interfaces\NaturalPerson::CHILDREN_COUNT => $this->childrenCount,
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\NaturalPerson::TAG;
-    }
 
     public function getInn(): ?string
     {
@@ -98,33 +70,53 @@ trait NaturalPerson
         return $this->childrenCount;
     }
 
-    public function getGender(): Dictionaries\Gender
+    public function getGender(): Ubki\Dictionary\Gender
     {
         return $this->gender;
     }
 
-    public function getFamilyStatus(): ?Dictionaries\FamilyStatus
+    public function getFamilyStatus(): ?Ubki\Dictionary\FamilyStatus
     {
         return $this->familyStatus;
     }
 
-    public function getEducation(): Dictionaries\Education
+    public function getEducation(): ?Ubki\Dictionary\Education
     {
         return $this->education;
     }
 
-    public function getNationality(): ?Dictionaries\Nationality
+    public function getNationality(): ?Ubki\Dictionary\Nationality
     {
         return $this->nationality;
     }
 
-    public function getRegistrationSpd(): ?Dictionaries\RegistrationSpd
+    public function getRegistrationSpd(): ?Ubki\Dictionary\RegistrationSpd
     {
         return $this->registrationSpd;
     }
 
-    public function getSocialStatus(): ?Dictionaries\SocialStatus
+    public function getSocialStatus(): ?Ubki\Dictionary\SocialStatus
     {
         return $this->socialStatus;
+    }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\NaturalPerson::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\NaturalPerson::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\NaturalPerson::INN => $this->getInn(),
+            Ubki\Data\Interfaces\NaturalPerson::NAME => $this->getName(),
+            Ubki\Data\Interfaces\NaturalPerson::PATRONYMIC => $this->getPatronymic(),
+            Ubki\Data\Interfaces\NaturalPerson::SURNAME => $this->getSurname(),
+            Ubki\Data\Interfaces\NaturalPerson::BIRTH_DATE => $this->getBirthDate(),
+            Ubki\Data\Interfaces\NaturalPerson::GENDER => $this->getGender(),
+            Ubki\Data\Interfaces\NaturalPerson::FAMILY_STATUS => $this->getFamilyStatus(),
+            Ubki\Data\Interfaces\NaturalPerson::EDUCATION => $this->getEducation(),
+            Ubki\Data\Interfaces\NaturalPerson::NATIONALITY => $this->getNationality(),
+            Ubki\Data\Interfaces\NaturalPerson::REGISTRATION_SPD => $this->getRegistrationSpd(),
+            Ubki\Data\Interfaces\NaturalPerson::SOCIAL_STATUS => $this->getSocialStatus(),
+            Ubki\Data\Interfaces\NaturalPerson::CHILDREN_COUNT => $this->getChildrenCount(),
+        ];
     }
 }

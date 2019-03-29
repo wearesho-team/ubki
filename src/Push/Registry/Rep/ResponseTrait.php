@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry\Rep;
 
 /**
  * Trait ResponseTrait
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
 trait ResponseTrait

@@ -2,16 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface Contact
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Contact extends ElementInterface
+interface Contact extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'cont';
     public const VALUE = 'cval';
     public const TYPE = 'ctype';
     public const TYPE_REF = 'typeref';
@@ -22,7 +20,7 @@ interface Contact extends ElementInterface
 
     public function getValue(): string;
 
-    public function getType(): Dictionaries\ContactType;
+    public function getType(): Ubki\Dictionary\ContactType;
 
     public function getInn(): ?string;
 }

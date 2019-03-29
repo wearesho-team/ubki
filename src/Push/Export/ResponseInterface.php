@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
+use Wearesho\Bobra\Ubki\Push\Error\Collection;
+
 /**
  * Interface ResponseInterface
  * @package Wearesho\Bobra\Ubki\Push\Export
@@ -24,5 +26,5 @@ interface ResponseInterface
 
     public function getStatus(): string;
 
-    public function getErrors(): ?ErrorCollection;
+    public function getErrors(): ?Collection;
 }

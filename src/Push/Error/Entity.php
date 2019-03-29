@@ -2,15 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Error;
 
-use Wearesho\Bobra\Ubki\Element;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Push\Error
- *
- * @deprecated
  */
-class Entity extends Element implements \JsonSerializable
+class Entity extends Ubki\Infrastructure\Element implements \JsonSerializable
 {
     public const ROOT = 'tech';
     public const PARENT_TAG = 'sentdatainfo';
@@ -61,6 +59,11 @@ class Entity extends Element implements \JsonSerializable
         $this->message = $message;
         $this->passedStringsCount = $passedStrings;
         $this->errorStringsCount = $errorStrings;
+    }
+
+    public function tag(): string
+    {
+        return static::TAG;
     }
 
     public function getBlockId(): int

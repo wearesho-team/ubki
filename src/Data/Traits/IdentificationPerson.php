@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces;
-
 /**
  * Trait IdentificationPerson
  * @package Wearesho\Bobra\Ubki\Data\Traits
@@ -26,18 +24,6 @@ trait IdentificationPerson
 
     /** @var string|null */
     protected $organization;
-
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\IdentificationPerson::INN => $this->inn,
-            Interfaces\IdentificationPerson::BIRTH_DATE => $this->birthDate,
-            Interfaces\IdentificationPerson::SURNAME => $this->surname,
-            Interfaces\IdentificationPerson::PATRONYMIC => $this->patronymic,
-            Interfaces\IdentificationPerson::NAME => $this->name,
-            Interfaces\IdentificationPerson::ORGANIZATION => $this->organization
-        ];
-    }
 
     public function getInn(): ?string
     {

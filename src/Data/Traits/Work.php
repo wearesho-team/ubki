@@ -2,10 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
-use Wearesho\Bobra\Ubki\Data\Interfaces;
-use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait Work
@@ -16,7 +13,7 @@ trait Work
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
     /** @var string */
@@ -25,7 +22,7 @@ trait Work
     /** @var string */
     protected $name;
 
-    /** @var Dictionaries\IdentifierRank|null */
+    /** @var Ubki\Dictionary\IdentifierRank|null */
     protected $rank;
 
     /** @var int|null */
@@ -34,30 +31,12 @@ trait Work
     /** @var float|null */
     protected $income;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\Work::CREATED_AT => $this->createdAt,
-            Interfaces\Work::LANGUAGE => $this->language,
-            Interfaces\Work::ERGPOU => $this->ergpou,
-            Interfaces\Work::NAME => $this->name,
-            Interfaces\Work::RANK => $this->rank,
-            Interfaces\Work::EXPERIENCE => $this->experience,
-            Interfaces\Work::INCOME => $this->income
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\Work::TAG;
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function getLanguage(): Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
@@ -72,7 +51,7 @@ trait Work
         return $this->name;
     }
 
-    public function getRank(): ?Dictionaries\IdentifierRank
+    public function getRank(): ?Ubki\Dictionary\IdentifierRank
     {
         return $this->rank;
     }
@@ -85,5 +64,21 @@ trait Work
     public function getIncome(): ?float
     {
         return $this->income;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\Work::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\Work::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\Work::RANK => $this->getRank(),
+            Ubki\Data\Interfaces\Work::ERGPOU => $this->getErgpou(),
+            Ubki\Data\Interfaces\Work::NAME => $this->getName(),
+            Ubki\Data\Interfaces\Work::EXPERIENCE => $this->getExperience(),
+            Ubki\Data\Interfaces\Work::INCOME => $this->getIncome(),
+        ];
     }
 }

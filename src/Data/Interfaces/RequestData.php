@@ -2,17 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface RequestData
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface RequestData extends ElementInterface
+interface RequestData extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'request';
     public const VERSION = 'version';
     public const TYPE = 'reqtype';
     public const REASON = 'reqreason';
@@ -22,13 +19,13 @@ interface RequestData extends ElementInterface
 
     public function getVersion(): string;
 
-    public function getType(): Dictionaries\RequestType;
+    public function getType(): Ubki\Dictionary\RequestType;
 
-    public function getReason(): Dictionaries\RequestReason;
+    public function getReason(): Ubki\Dictionary\RequestReason;
 
     public function getDate(): ?\DateTimeInterface;
 
     public function getId(): ?string;
 
-    public function getInitiator(): ?Dictionaries\RequestInitiator;
+    public function getInitiator(): ?Ubki\Dictionary\RequestInitiator;
 }

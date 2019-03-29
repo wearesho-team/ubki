@@ -8,11 +8,8 @@ use MyCLabs\Enum\Enum;
  * Class Dictionary
  * @package Wearesho\Bobra\Ubki\Infrastructure
  */
-abstract class Dictionary extends Enum
+abstract class Dictionary extends Enum implements \JsonSerializable
 {
-    /** @var string|int */
-    protected $value;
-
     /** @var string|null */
     protected $description;
 
@@ -26,6 +23,15 @@ abstract class Dictionary extends Enum
     final public function __toString(): string
     {
         return (string)($this->description ?? $this->getKey());
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'value' => $this->getValue(),
+            'key' => $this->getKey(),
+            'description' => $this->getDescription(),
+        ];
     }
 
     public function getDescription(): ?string

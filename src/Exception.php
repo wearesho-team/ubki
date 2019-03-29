@@ -2,24 +2,19 @@
 
 namespace Wearesho\Bobra\Ubki;
 
-use Throwable;
-
 /**
  * Class Exception
  * @package Wearesho\Bobra\Ubki
  */
-class Exception extends \Exception
+class Exception extends \Exception implements Infrastructure\ExceptionInterface
 {
-    public const CODE_UNKNOWN_ERROR = -1;
-    public const CODE_INVALID_ANSWER = -2;
-
     /** @var string|null */
     protected $publicMessage;
 
     public function __construct(
         string $message = "",
         int $code = 0,
-        Throwable $previous = null,
+        \Throwable $previous = null,
         string $publicMessage = null
     ) {
         parent::__construct($message, $code, $previous);

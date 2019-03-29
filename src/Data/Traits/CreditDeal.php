@@ -2,10 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait CreditDeal
@@ -16,7 +13,7 @@ trait CreditDeal
     /** @var string */
     protected $id;
 
-    /** @var Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
     /** @var string */
@@ -28,29 +25,29 @@ trait CreditDeal
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Dictionaries\CreditDealType */
+    /** @var Ubki\Dictionary\CreditDealType */
     protected $type;
 
-    /** @var Dictionaries\CollateralType */
+    /** @var Ubki\Dictionary\CollateralType */
     protected $collateral;
 
-    /** @var Dictionaries\RepaymentProcedure */
+    /** @var Ubki\Dictionary\RepaymentProcedure */
     protected $repaymentProcedure;
 
-    /** @var Dictionaries\Currency */
+    /** @var Ubki\Dictionary\Currency */
     protected $currency;
 
     /** @var float */
     protected $initialAmount;
 
-    /** @var Dictionaries\SubjectRole */
+    /** @var Ubki\Dictionary\SubjectRole */
     protected $subjectRole;
 
     /** @var float */
     protected $collateralCost;
 
-    /** @var Data\Collections\DealLifes */
-    protected $dealLifeCollection;
+    /** @var Ubki\Data\Collection\DealLifes */
+    protected $dealLifes;
 
     /** @var string|null */
     protected $inn;
@@ -61,39 +58,12 @@ trait CreditDeal
     /** @var string|null */
     protected $source;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Data\Interfaces\CreditDeal::ID => $this->id,
-            Data\Interfaces\CreditDeal::INN => $this->inn,
-            Data\Interfaces\CreditDeal::LANGUAGE => $this->language,
-            Data\Interfaces\CreditDeal::NAME => $this->name,
-            Data\Interfaces\CreditDeal::SURNAME => $this->surname,
-            Data\Interfaces\CreditDeal::PATRONYMIC => $this->patronymic,
-            Data\Interfaces\CreditDeal::BIRTH_DATE => $this->birthDate,
-            Data\Interfaces\CreditDeal::TYPE => $this->type,
-            Data\Interfaces\CreditDeal::COLLATERAL => $this->collateral,
-            Data\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $this->repaymentProcedure,
-            Data\Interfaces\CreditDeal::CURRENCY => $this->currency,
-            Data\Interfaces\CreditDeal::INITIAL_AMOUNT => $this->initialAmount,
-            Data\Interfaces\CreditDeal::SUBJECT_ROLE => $this->subjectRole,
-            Data\Interfaces\CreditDeal::COLLATERAL_COST => $this->collateralCost,
-            Data\Interfaces\CreditDeal::SOURCE => $this->source,
-            'dealLifes' => $this->dealLifeCollection->jsonSerialize(),
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Data\Interfaces\CreditDeal::TAG;
-    }
-
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function getLanguage(): Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
@@ -113,22 +83,22 @@ trait CreditDeal
         return $this->birthDate;
     }
 
-    public function getType(): Dictionaries\CreditDealType
+    public function getType(): Ubki\Dictionary\CreditDealType
     {
         return $this->type;
     }
 
-    public function getCollateral(): Dictionaries\CollateralType
+    public function getCollateral(): Ubki\Dictionary\CollateralType
     {
         return $this->collateral;
     }
 
-    public function getRepaymentProcedure(): Dictionaries\RepaymentProcedure
+    public function getRepaymentProcedure(): Ubki\Dictionary\RepaymentProcedure
     {
         return $this->repaymentProcedure;
     }
 
-    public function getCurrency(): Dictionaries\Currency
+    public function getCurrency(): Ubki\Dictionary\Currency
     {
         return $this->currency;
     }
@@ -138,7 +108,7 @@ trait CreditDeal
         return $this->initialAmount;
     }
 
-    public function getSubjectRole(): Dictionaries\SubjectRole
+    public function getSubjectRole(): Ubki\Dictionary\SubjectRole
     {
         return $this->subjectRole;
     }
@@ -148,9 +118,9 @@ trait CreditDeal
         return $this->collateralCost;
     }
 
-    public function getDealLifeCollection(): Data\Collections\DealLifes
+    public function getDealLifes(): Ubki\Data\Collection\DealLifes
     {
-        return $this->dealLifeCollection;
+        return $this->dealLifes;
     }
 
     public function getInn(): ?string
@@ -166,5 +136,26 @@ trait CreditDeal
     public function getSource(): ?string
     {
         return $this->source;
+    }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\CreditDeal::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\CreditDeal::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\CreditDeal::SURNAME => $this->getSurname(),
+            Ubki\Data\Interfaces\CreditDeal::BIRTH_DATE => $this->getBirthDate(),
+            Ubki\Data\Interfaces\CreditDeal::NAME => $this->getName(),
+            Ubki\Data\Interfaces\CreditDeal::INN => $this->getInn(),
+            Ubki\Data\Interfaces\CreditDeal::PATRONYMIC => $this->getPatronymic(),
+            Ubki\Data\Interfaces\CreditDeal::ID => $this->getId(),
+            Ubki\Data\Interfaces\CreditDeal::CURRENCY => $this->getCurrency(),
+            Ubki\Data\Interfaces\CreditDeal::COLLATERAL => $this->getCollateral(),
+            Ubki\Data\Interfaces\CreditDeal::COLLATERAL_COST => $this->getCollateralCost(),
+            Ubki\Data\Interfaces\CreditDeal::INITIAL_AMOUNT => $this->getInitialAmount(),
+            Ubki\Data\Interfaces\CreditDeal::REPAYMENT_PROCEDURE => $this->getRepaymentProcedure(),
+            Ubki\Data\Interfaces\CreditDeal::SOURCE => $this->getSource(),
+            Ubki\Data\Interfaces\CreditDeal::SUBJECT_ROLE => $this->getSubjectRole(),
+        ];
     }
 }

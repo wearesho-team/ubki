@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Dictionaries\ContactType;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait Contact
@@ -17,26 +16,11 @@ trait Contact
     /** @var string */
     protected $value;
 
-    /** @var ContactType */
+    /** @var Ubki\Dictionary\ContactType */
     protected $type;
 
     /** @var string|null */
     protected $inn;
-
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\Contact::CREATED_AT => $this->createdAt,
-            Interfaces\Contact::VALUE => $this->value,
-            Interfaces\Contact::TYPE => $this->type,
-            Interfaces\Contact::INN => $this->inn
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\Contact::TAG;
-    }
 
     public function getCreatedAt(): \DateTimeInterface
     {
@@ -48,7 +32,7 @@ trait Contact
         return $this->value;
     }
 
-    public function getType(): ContactType
+    public function getType(): Ubki\Dictionary\ContactType
     {
         return $this->type;
     }
@@ -56,5 +40,15 @@ trait Contact
     public function getInn(): ?string
     {
         return $this->inn;
+    }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\Contact::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\Contact::INN => $this->getInn(),
+            Ubki\Data\Interfaces\Contact::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\Contact::VALUE => $this->getValue(),
+        ];
     }
 }

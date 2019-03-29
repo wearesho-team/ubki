@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces;
-use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait Address
@@ -14,10 +13,10 @@ trait Address
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
-    /** @var Dictionaries\AddressType */
+    /** @var Ubki\Dictionary\AddressType */
     protected $addressType;
 
     /** @var string */
@@ -41,7 +40,7 @@ trait Address
     /** @var string|null */
     protected $area;
 
-    /** @var Dictionaries\CityType */
+    /** @var Ubki\Dictionary\CityType */
     protected $cityType;
 
     /** @var string|null */
@@ -53,42 +52,17 @@ trait Address
     /** @var string|null */
     protected $fullAddress;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\Address::TYPE => $this->addressType,
-            Interfaces\Address::LANGUAGE => $this->language,
-            Interfaces\Address::CREATED_AT => $this->createdAt,
-            Interfaces\Address::AREA => $this->area,
-            Interfaces\Address::FULL_ADDRESS => $this->fullAddress,
-            Interfaces\Address::COUNTRY => $this->country,
-            Interfaces\Address::STREET => $this->street,
-            Interfaces\Address::HOUSE => $this->house,
-            Interfaces\Address::CORPUS => $this->corpus,
-            Interfaces\Address::INDEX => $this->index,
-            Interfaces\Address::STATE => $this->state,
-            Interfaces\Address::FLAT => $this->flat,
-            Interfaces\Address::CITY => $this->city,
-            Interfaces\Address::CITY_TYPE => $this->cityType,
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\Address::TAG;
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function getLanguage(): Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
 
-    public function getAddressType(): Dictionaries\AddressType
+    public function getAddressType(): Ubki\Dictionary\AddressType
     {
         return $this->addressType;
     }
@@ -143,8 +117,31 @@ trait Address
         return $this->fullAddress;
     }
 
-    public function getCityType(): ?Dictionaries\CityType
+    public function getCityType(): ?Ubki\Dictionary\CityType
     {
         return $this->cityType;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\Address::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\Address::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\Address::TYPE => $this->getAddressType(),
+            Ubki\Data\Interfaces\Address::INDEX => $this->getIndex(),
+            Ubki\Data\Interfaces\Address::HOUSE => $this->getHouse(),
+            Ubki\Data\Interfaces\Address::AREA => $this->getArea(),
+            Ubki\Data\Interfaces\Address::STATE => $this->getState(),
+            Ubki\Data\Interfaces\Address::CITY => $this->getCity(),
+            Ubki\Data\Interfaces\Address::FLAT => $this->getFlat(),
+            Ubki\Data\Interfaces\Address::FULL_ADDRESS => $this->getFullAddress(),
+            Ubki\Data\Interfaces\Address::CORPUS => $this->getCorpus(),
+            Ubki\Data\Interfaces\Address::CITY_TYPE => $this->getCityType(),
+            Ubki\Data\Interfaces\Address::STREET => $this->getStreet(),
+            Ubki\Data\Interfaces\Address::COUNTRY => $this->getCountry(),
+        ];
     }
 }

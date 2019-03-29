@@ -2,18 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Data\Collections;
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface Credential
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Credential extends ElementInterface
+interface Credential extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'cki';
     public const INN = 'inn';
     public const SURNAME = 'lname';
     public const NAME = 'fname';
@@ -22,7 +18,7 @@ interface Credential extends ElementInterface
     public const LANGUAGE_REF = 'reqlngref';
     public const BIRTH_DATE = 'bdate';
 
-    public function getLanguage(): Dictionaries\Language;
+    public function getLanguage(): Ubki\Dictionary\Language;
 
     public function getName(): string;
 
@@ -32,17 +28,17 @@ interface Credential extends ElementInterface
 
     public function getBirthDate(): \DateTimeInterface;
 
-    public function getIdentifiers(): Collections\IdentifiedPersons;
+    public function getIdentifiers(): Ubki\Data\Collection\IdentifiedPersons;
 
-    public function getDocuments(): Collections\Documents;
+    public function getDocuments(): Ubki\Data\Collection\Documents;
 
-    public function getAddresses(): Collections\Addresses;
+    public function getAddresses(): Ubki\Data\Collection\Addresses;
 
     public function getInn(): ?string;
 
-    public function getWorks(): ?Collections\Works;
+    public function getWorks(): ?Ubki\Data\Collection\Works;
 
-    public function getPhotos(): ?Collections\Photos;
+    public function getPhotos(): ?Ubki\Data\Collection\Photos;
 
-    public function getLinkedPersons(): ?Collections\LinkedPersons;
+    public function getLinkedPersons(): ?Ubki\Data\Collection\LinkedPersons;
 }

@@ -2,16 +2,14 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface DealLife
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface DealLife extends ElementInterface
+interface DealLife extends Ubki\Infrastructure\ElementInterface
 {
-    public const TAG = 'deallife';
     public const ID = 'dlref';
     public const PERIOD_MONTH = 'dlmonth';
     public const PERIOD_YEAR = 'dlyear';
@@ -43,7 +41,7 @@ interface DealLife extends ElementInterface
 
     public function getEndDate(): \DateTimeInterface;
 
-    public function getStatus(): Dictionaries\DealStatus;
+    public function getStatus(): Ubki\Dictionary\DealStatus;
 
     public function getLimit(): float;
 
@@ -55,11 +53,11 @@ interface DealLife extends ElementInterface
 
     public function getOverdueTime(): int;
 
-    public function getPaymentIndication(): Dictionaries\Flag;
+    public function getPaymentIndication(): Ubki\Dictionary\Flag;
 
-    public function getDelayIndication(): Dictionaries\Flag;
+    public function getDelayIndication(): Ubki\Dictionary\Flag;
 
-    public function getCreditTrancheIndication(): Dictionaries\Flag;
+    public function getTrancheIndication(): Ubki\Dictionary\Flag;
 
     public function getPaymentDate(): \DateTimeInterface;
 

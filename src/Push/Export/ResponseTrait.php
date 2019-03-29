@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
+use Wearesho\Bobra\Ubki\Push\Error\Collection;
+
 /**
  * Trait ResponseTrait
  * @package Wearesho\Bobra\Ubki\Push\Export
@@ -20,7 +22,7 @@ trait ResponseTrait
     /** @var string|null */
     protected $internalMessage;
 
-    /** @var ErrorCollection|null */
+    /** @var Collection|null */
     protected $errors;
 
     public function getInternalError(): ?string
@@ -43,7 +45,7 @@ trait ResponseTrait
         return $this->status;
     }
 
-    public function getErrors(): ?ErrorCollection
+    public function getErrors(): ?Collection
     {
         return $this->errors;
     }

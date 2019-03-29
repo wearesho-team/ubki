@@ -3,14 +3,11 @@
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 use GuzzleHttp;
-
 use Psr\Log;
-
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Service
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class Service implements ServiceInterface

@@ -2,9 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
-use Wearesho\Bobra\Ubki\Data\Collections;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait Credential
@@ -12,7 +10,7 @@ use Wearesho\Bobra\Ubki\Data\Collections;
  */
 trait Credential
 {
-    /** @var Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
     /** @var string */
@@ -27,51 +25,28 @@ trait Credential
     /** @var \DateTimeInterface */
     protected $birthDate;
 
-    /** @var Collections\IdentifiedPersons */
+    /** @var Ubki\Data\Collection\IdentifiedPersons */
     protected $identifiers;
 
-    /** @var Collections\Documents */
+    /** @var Ubki\Data\Collection\Documents */
     protected $documents;
 
-    /** @var Collections\Addresses */
+    /** @var Ubki\Data\Collection\Addresses */
     protected $addresses;
 
     /** @var string|null */
     protected $inn;
 
-    /** @var Collections\Works|null */
+    /** @var Ubki\Data\Collection\Works|null */
     protected $works;
 
-    /** @var Collections\Photos|null */
+    /** @var Ubki\Data\Collection\Photos|null */
     protected $photos;
 
-    /** @var Collections\LinkedPersons|null */
+    /** @var Ubki\Data\Collection\LinkedPersons|null */
     protected $linkedPersons;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\Credential::LANGUAGE => $this->language,
-            Interfaces\Credential::NAME => $this->name,
-            Interfaces\Credential::PATRONYMIC => $this->patronymic,
-            Interfaces\Credential::SURNAME => $this->surname,
-            Interfaces\Credential::BIRTH_DATE => $this->birthDate,
-            Interfaces\Credential::INN => $this->inn,
-            'identifiers' =>  $this->identifiers->jsonSerialize(),
-            'linkedPersons' => $this->linkedPersons ? $this->linkedPersons->jsonSerialize() : null,
-            'works' => $this->works ? $this->works->jsonSerialize() : null,
-            'documents' => $this->documents->jsonSerialize(),
-            'addresses' => $this->addresses->jsonSerialize(),
-            'photos' => $this->photos ? $this->photos->jsonSerialize() : null,
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\Credential::TAG;
-    }
-
-    public function getLanguage(): Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
@@ -96,17 +71,17 @@ trait Credential
         return $this->birthDate;
     }
 
-    public function getIdentifiers(): Collections\IdentifiedPersons
+    public function getIdentifiers(): Ubki\Data\Collection\IdentifiedPersons
     {
         return $this->identifiers;
     }
 
-    public function getDocuments(): Collections\Documents
+    public function getDocuments(): Ubki\Data\Collection\Documents
     {
         return $this->documents;
     }
 
-    public function getAddresses(): Collections\Addresses
+    public function getAddresses(): Ubki\Data\Collection\Addresses
     {
         return $this->addresses;
     }
@@ -116,18 +91,30 @@ trait Credential
         return $this->inn;
     }
 
-    public function getWorks(): ?Collections\Works
+    public function getWorks(): ?Ubki\Data\Collection\Works
     {
         return $this->works;
     }
 
-    public function getPhotos(): ?Collections\Photos
+    public function getPhotos(): ?Ubki\Data\Collection\Photos
     {
         return $this->photos;
     }
 
-    public function getLinkedPersons(): ?Collections\LinkedPersons
+    public function getLinkedPersons(): ?Ubki\Data\Collection\LinkedPersons
     {
         return $this->linkedPersons;
+    }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\Credential::PATRONYMIC => $this->getPatronymic(),
+            Ubki\Data\Interfaces\Credential::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\Credential::INN => $this->getInn(),
+            Ubki\Data\Interfaces\Credential::NAME => $this->getName(),
+            Ubki\Data\Interfaces\Credential::BIRTH_DATE => $this->getBirthDate(),
+            Ubki\Data\Interfaces\Credential::SURNAME => $this->getSurname(),
+        ];
     }
 }

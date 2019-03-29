@@ -2,10 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
-use Wearesho\Bobra\Ubki\Data\Interfaces;
-use Wearesho\Bobra\Ubki\Dictionaries;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait RequestData
@@ -16,10 +13,10 @@ trait RequestData
     /** @var string */
     protected $version = '1.0';
 
-    /** @var Dictionaries\RequestType */
+    /** @var Ubki\Dictionary\RequestType */
     protected $type;
 
-    /** @var Dictionaries\RequestReason */
+    /** @var Ubki\Dictionary\RequestReason */
     protected $reason;
 
     /** @var \DateTimeInterface|null */
@@ -28,37 +25,20 @@ trait RequestData
     /** @var string|null */
     protected $id;
 
-    /** @var Dictionaries\RequestInitiator|null */
+    /** @var Ubki\Dictionary\RequestInitiator|null */
     protected $initiator;
-
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\RequestData::VERSION => $this->version,
-            Interfaces\RequestData::TYPE => $this->type,
-            Interfaces\RequestData::REASON => $this->reason,
-            Interfaces\RequestData::DATE => $this->date,
-            Interfaces\RequestData::ID => $this->id,
-            Interfaces\RequestData::INITIATOR => $this->initiator,
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\RequestData::TAG;
-    }
 
     public function getVersion(): string
     {
         return $this->version;
     }
 
-    public function getType(): Dictionaries\RequestType
+    public function getType(): Ubki\Dictionary\RequestType
     {
         return $this->type;
     }
 
-    public function getReason(): Dictionaries\RequestReason
+    public function getReason(): Ubki\Dictionary\RequestReason
     {
         return $this->reason;
     }
@@ -73,8 +53,23 @@ trait RequestData
         return $this->id;
     }
 
-    public function getInitiator(): ?Dictionaries\RequestInitiator
+    public function getInitiator(): ?Ubki\Dictionary\RequestInitiator
     {
         return $this->initiator;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\RequestData::ID => $this->getId(),
+            Ubki\Data\Interfaces\RequestData::DATE => $this->getDate(),
+            Ubki\Data\Interfaces\RequestData::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\RequestData::INITIATOR => $this->getInitiator(),
+            Ubki\Data\Interfaces\RequestData::REASON => $this->getReason(),
+            Ubki\Data\Interfaces\RequestData::VERSION => $this->getVersion(),
+        ];
     }
 }

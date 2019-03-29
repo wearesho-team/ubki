@@ -2,10 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
-use Carbon\Carbon;
-
-use Wearesho\Bobra\Ubki\Dictionaries;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait Document
@@ -16,10 +13,10 @@ trait Document
     /** @var \DateTimeInterface */
     protected $createdAt;
 
-    /** @var Dictionaries\Language */
+    /** @var Ubki\Dictionary\Language */
     protected $language;
 
-    /** @var Dictionaries\DocumentType */
+    /** @var Ubki\Dictionary\DocumentType */
     protected $type;
 
     /** @var string */
@@ -37,36 +34,17 @@ trait Document
     /** @var \DateTimeInterface|null */
     protected $termin;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            Interfaces\Document::CREATED_AT => $this->createdAt,
-            Interfaces\Document::LANGUAGE => $this->language,
-            Interfaces\Document::TYPE => $this->type,
-            Interfaces\Document::SERIAL => $this->serial,
-            Interfaces\Document::NUMBER => $this->number,
-            Interfaces\Document::ISSUE => $this->issue,
-            Interfaces\Document::ISSUE_DATE => $this->issueDate,
-            Interfaces\Document::TERMIN => $this->termin,
-        ];
-    }
-
-    public function tag(): string
-    {
-        return Interfaces\Document::TAG;
-    }
-
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function getLanguage(): Dictionaries\Language
+    public function getLanguage(): Ubki\Dictionary\Language
     {
         return $this->language;
     }
 
-    public function getType(): Dictionaries\DocumentType
+    public function getType(): Ubki\Dictionary\DocumentType
     {
         return $this->type;
     }
@@ -94,5 +72,19 @@ trait Document
     public function getTermin(): ?\DateTimeInterface
     {
         return $this->termin;
+    }
+
+    public function associativeAttributes(): array
+    {
+        return [
+            Ubki\Data\Interfaces\Document::TYPE => $this->getType(),
+            Ubki\Data\Interfaces\Document::CREATED_AT => $this->getCreatedAt(),
+            Ubki\Data\Interfaces\Document::ISSUE_DATE => $this->getIssueDate(),
+            Ubki\Data\Interfaces\Document::LANGUAGE => $this->getLanguage(),
+            Ubki\Data\Interfaces\Document::NUMBER => $this->getNumber(),
+            Ubki\Data\Interfaces\Document::SERIAL => $this->getSerial(),
+            Ubki\Data\Interfaces\Document::TERMIN => $this->getTermin(),
+            Ubki\Data\Interfaces\Document::ISSUE => $this->getIssue(),
+        ];
     }
 }

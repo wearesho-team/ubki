@@ -7,7 +7,6 @@ use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class Response
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
 class Response implements ResponseInterface, \JsonSerializable

@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Data\Blocks;
+use Wearesho\Bobra\Ubki\Data\Block;
 
 /**
  * Trait DataDocumentTrait
@@ -10,65 +10,42 @@ use Wearesho\Bobra\Ubki\Data\Blocks;
  */
 trait DataDocumentTrait
 {
-    protected $tech;
-
-    /** @var Blocks\Identification */
+    /** @var Block\Identification */
     protected $identification;
 
-    /** @var Blocks\CreditsInformation */
+    /** @var Block\CreditsInformation */
     protected $creditDeals;
 
-    /** @var Blocks\CourtDecisionsInformation|null */
+    /** @var Block\CourtDecisionsInformation|null */
     protected $courtDecisions;
 
-    /** @var Blocks\CreditsRegistersInformation|null */
+    /** @var Block\CreditsRequestsInformation|null */
     protected $creditRequests;
 
-    /** @var Blocks\ContactsInformation */
+    /** @var Block\ContactsInformation */
     protected $contacts;
 
-    public function jsonSerialize(): array
-    {
-        return [
-            'identification' => $this->identification->jsonSerialize(),
-            'creditsInformation' => $this->creditDeals->jsonSerialize(),
-            'courtDecisionsInformation' => $this->courtDecisions->jsonSerialize(),
-            'creditRequestsInformation' => $this->creditRequests->jsonSerialize(),
-            'contactsInformation' => $this->contacts->jsonSerialize(),
-        ];
-    }
-
-    public function tag(): string
-    {
-        return DataDocumentInterface::TAG;
-    }
-
-    public function getTech()
-    {
-        return $this->tech;
-    }
-
-    public function getIdentification(): Blocks\Identification
+    public function getIdentification(): Block\Identification
     {
         return $this->identification;
     }
 
-    public function getCreditDeals(): Blocks\CreditsInformation
+    public function getCreditDeals(): Block\CreditsInformation
     {
         return $this->creditDeals;
     }
 
-    public function getCourtDecisions(): ?Blocks\CourtDecisionsInformation
+    public function getCourtDecisions(): ?Block\CourtDecisionsInformation
     {
         return $this->courtDecisions;
     }
 
-    public function getCreditRequests(): ?Blocks\CreditsRegistersInformation
+    public function getCreditRequests(): ?Block\CreditsRequestsInformation
     {
         return $this->creditRequests;
     }
 
-    public function getContacts(): Blocks\ContactsInformation
+    public function getContacts(): Block\ContactsInformation
     {
         return $this->contacts;
     }
