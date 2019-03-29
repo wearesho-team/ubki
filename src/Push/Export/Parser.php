@@ -14,7 +14,7 @@ class Parser
 
     public function parseResponse(string $response): ResponseInterface
     {
-        $xml = simplexml_load_string($response)->{ResponseInterface::ROOT};
+        $xml = \simplexml_load_string($response)->{ResponseInterface::ROOT};
         $stateAttributes = $xml->{ResponseInterface::ERROR_COLLECTION}->attributes();
         $internalErrorAttributes = $xml->{ResponseInterface::INTERNAL_TAG}->attributes();
 
@@ -23,7 +23,7 @@ class Parser
             (string)$stateAttributes[ResponseInterface::STATUS],
             (string)$internalErrorAttributes[ResponseInterface::INTERNAL_ERROR],
             (string)$internalErrorAttributes[ResponseInterface::INTERNAL_MESSAGE],
-            new Ubki\Push\Error\Collection(array_map(function (\SimpleXMLElement $error) {
+            new Ubki\Push\Error\Collection(\array_map(function (\SimpleXMLElement $error) {
                 $attributes = $error->attributes();
 
                 return new Ubki\Push\Error\Entity(

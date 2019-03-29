@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class CreditDeal
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class CreditDeal extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\CreditDeal
+class CreditDeal extends Ubki\Element implements Ubki\Data\Interfaces\CreditDeal
 {
     use Ubki\Data\Traits\CreditDeal;
 

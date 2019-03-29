@@ -1,10 +1,10 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Infrastructure;
+namespace Wearesho\Bobra\Ubki;
 
 /**
  * Class Former
- * @package Wearesho\Bobra\Ubki\Infrastructure
+ * @package Wearesho\Bobra\Ubki
  */
 abstract class Former implements FormerInterface
 {

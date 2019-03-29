@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class RequestData
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-abstract class RequestData extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\RequestData
+abstract class RequestData extends Ubki\Element implements Ubki\Data\Interfaces\RequestData
 {
     use Ubki\Data\Traits\RequestData;
 

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class InsuranceDeal
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class InsuranceDeal extends Ubki\Infrastructure\Element
+class InsuranceDeal extends Ubki\Element
 {
     public const TAG = 'insur';
     public const INN = 'inn';

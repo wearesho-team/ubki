@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface RequestInterface
  * @package Wearesho\Bobra\Ubki\Pull
  */
-interface RequestInterface extends Ubki\Infrastructure\RequestInterface
+interface RequestInterface extends Ubki\RequestInterface
 {
     public const UBKI_BLOCK = 'ubki';
     public const SESSION_ID = 'sessid';

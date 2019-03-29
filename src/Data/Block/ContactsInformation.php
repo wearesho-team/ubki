@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class ContactsInformation
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class ContactsInformation extends Ubki\Infrastructure\Block implements Ubki\Data\Interfaces\ContactsInformation
+class ContactsInformation extends Ubki\Block implements Ubki\Data\Interfaces\ContactsInformation
 {
     use Ubki\Data\Traits\ContactsInformation;
 

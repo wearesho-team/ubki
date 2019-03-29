@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface Credential
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Credential extends Ubki\Infrastructure\ElementInterface
+interface Credential extends Ubki\ElementInterface
 {
     public const INN = 'inn';
     public const SURNAME = 'lname';

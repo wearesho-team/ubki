@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface Document
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Document extends Ubki\Infrastructure\ElementInterface
+interface Document extends Ubki\ElementInterface
 {
     public const CREATED_AT = 'vdate';
     public const LANGUAGE = 'lng';

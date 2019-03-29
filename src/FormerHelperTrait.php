@@ -1,19 +1,19 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Infrastructure;
+namespace Wearesho\Bobra\Ubki;
 
 use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Trait FormerHelperTrait
- * @package Wearesho\Bobra\Ubki\Infrastructure
+ * @package Wearesho\Bobra\Ubki
  *
  * @property \DOMDocument $document
  */
 trait FormerHelperTrait
 {
-    protected function createFilledElement(Ubki\Infrastructure\ElementInterface $element): \DOMElement
+    protected function createFilledElement(Ubki\ElementInterface $element): \DOMElement
     {
         return $this->setAttributes($this->document->createElement($element->tag()), $element);
     }

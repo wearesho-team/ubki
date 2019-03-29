@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Credential
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class Credential extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\Credential
+class Credential extends Ubki\Element implements Ubki\Data\Interfaces\Credential
 {
     use Ubki\Data\Traits\Credential;
 

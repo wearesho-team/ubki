@@ -30,7 +30,7 @@ trait DataDocumentTrait
         return $this->identification;
     }
 
-    public function getCreditDeals(): Block\CreditsInformation
+    public function getCreditDeals(): ?Block\CreditsInformation
     {
         return $this->creditDeals;
     }

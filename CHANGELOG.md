@@ -61,14 +61,14 @@ and [Pull\ConfigTrait](src/Pull/ConfigTrait.php) to trait
 - `UnsupportedModeException` renamed to `UnsupportedMode` and replaced to [Exception](src/Exception) folder.
 To fix BC you need replace `Ubki\UnsupportedModeException` to `Ubki\Exception\UnsupportedMode`;
 - Removed unnecessary implementation of `jsonSerialize(): array` method in every class that instance
-of [Infrastructure\Element](src/Infrastructure/Element.php) to [Infrastructure\Element](src/Infrastructure/Element.php);
+of [Infrastructure\Element](src/Element.php) to [Infrastructure\Element](src/Element.php);
 - Changed [Block\CreditRating](src/Data/Block/CreditRating.php) `jsonSerialize(): array` result;
 - Renamed `getCreditCollection()` to `getDeals()` in class [Block\CreditsInformation](src/Data/Block/CreditsInformation.php);
 - Renamed `Block\CreditRegistersInformation` to [Block\CreditsRequestsInformation](src/Data/Block/CreditsRequestsInformation.php);
 - Renamed `Element\CreditRegister` to [Element\CreditRequest](src/Data/Element/CreditRequest.php);
 - All constants `TAG` removed from interfaces to declared classes, that implement it interface. It was made to eliminate
 mass implementation duplications of method `tag(): string`. Implementation of this method removed to abstract
-[Infrastructure\Element](src/Infrastructure/Element.php) class;
+[Infrastructure\Element](src/Element.php) class;
 - Removed property `$previousDate` from [Element\RatingScore](src/Data/Element/RatingScore.php);
 - Removed `Ubki\Element` to `Ubki\Infrastructure\Element`;
 - Removed `Ubki\Push\Export\RequestException` to `Ubki\Exception\Request`;

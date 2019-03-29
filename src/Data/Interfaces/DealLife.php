@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface DealLife
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface DealLife extends Ubki\Infrastructure\ElementInterface
+interface DealLife extends Ubki\ElementInterface
 {
     public const ID = 'dlref';
     public const PERIOD_MONTH = 'dlmonth';

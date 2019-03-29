@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class LinkedPerson
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class LinkedPerson extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\LinkedPerson
+class LinkedPerson extends Ubki\Element implements Ubki\Data\Interfaces\LinkedPerson
 {
     use Ubki\Data\Traits\LinkedPerson;
 

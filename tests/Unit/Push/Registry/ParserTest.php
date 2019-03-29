@@ -38,7 +38,7 @@ class ParserTest extends TestCase
                     'X000000000001',
                     'A1F593950A8F4562AE5A5DB1914D658A',
                     Ubki\Push\Registry\Response\State::PROCESSED(),
-                    Ubki\Push\Registry\Response\OperationType::TRANSFERRING(),
+                    Ubki\Push\Export\Request\Type::EXPORT(),
                     1,
                     'IDENT',
                     'NW',

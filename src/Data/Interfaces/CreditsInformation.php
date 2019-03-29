@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface CreditsInformation
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditsInformation extends Ubki\Infrastructure\ElementInterface
+interface CreditsInformation extends Ubki\ElementInterface
 {
     public function getDeals(): Ubki\Data\Collection\CreditDeals;
 }

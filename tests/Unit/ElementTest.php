@@ -1,26 +1,26 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Infrastructure;
+namespace Wearesho\Bobra\Ubki\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class ElementTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Infrastructure
+ * @package Wearesho\Bobra\Ubki\Tests\Unit
  */
 class ElementTest extends TestCase
 {
     public const TAG = 'tag';
 
-    /** @var Ubki\Infrastructure\Element */
+    /** @var Ubki\Element */
     protected $fakeElement;
 
     protected function setUp(): void
     {
         $this->fakeElement = new class
-            extends Ubki\Infrastructure\Element
-            implements Ubki\Infrastructure\ElementInterface
+            extends Ubki\Element
+            implements Ubki\ElementInterface
         {
             /** @var string */
             public $value = 'value';

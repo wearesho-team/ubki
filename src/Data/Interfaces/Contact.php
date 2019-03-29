@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface Contact
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface Contact extends Ubki\Infrastructure\ElementInterface
+interface Contact extends Ubki\ElementInterface
 {
     public const VALUE = 'cval';
     public const TYPE = 'ctype';

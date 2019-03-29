@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Document
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class Document extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\Document
+class Document extends Ubki\Element implements Ubki\Data\Interfaces\Document
 {
     use Ubki\Data\Traits\Document;
 

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Work
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class Work extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\Work
+class Work extends Ubki\Element implements Ubki\Data\Interfaces\Work
 {
     use Ubki\Data\Traits\Work;
 

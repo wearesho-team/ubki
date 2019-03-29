@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class InsurancesInformation
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class InsurancesInformation extends Ubki\Infrastructure\Block implements Ubki\Data\Interfaces\InsurancesInformation
+class InsurancesInformation extends Ubki\Block implements Ubki\Data\Interfaces\InsurancesInformation
 {
     use Ubki\Data\Traits\InsurancesInformation;
 

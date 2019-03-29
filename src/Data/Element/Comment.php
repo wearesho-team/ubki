@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Element;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Comment
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class Comment extends Infrastructure\Element
+class Comment extends Ubki\Element
 {
     public const TAG = 'comment';
     public const ID = 'id';

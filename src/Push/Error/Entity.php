@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Entity
  * @package Wearesho\Bobra\Ubki\Push\Error
  */
-class Entity extends Ubki\Infrastructure\Element implements \JsonSerializable
+class Entity extends Ubki\Element implements \JsonSerializable
 {
     public const ROOT = 'tech';
     public const PARENT_TAG = 'sentdatainfo';

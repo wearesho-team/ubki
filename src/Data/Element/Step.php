@@ -2,13 +2,13 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Element;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Step
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class Step extends Infrastructure\Element
+class Step extends Ubki\Element
 {
     public const TAG = 'step';
 

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Identification
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class Identification extends Ubki\Infrastructure\Block implements Ubki\Data\Interfaces\Identification
+class Identification extends Ubki\Block implements Ubki\Data\Interfaces\Identification
 {
     use Ubki\Data\Traits\Identification;
 

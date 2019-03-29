@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Photo
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class Photo extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\Photo
+class Photo extends Ubki\Element implements Ubki\Data\Interfaces\Photo
 {
     use Ubki\Data\Traits\Photo;
 

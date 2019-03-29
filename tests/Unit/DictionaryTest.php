@@ -1,14 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Infrastructure;
+namespace Wearesho\Bobra\Ubki\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-
 use Wearesho\Bobra\Ubki\Dictionary\Language;
 
 /**
  * Class DictionaryTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Infrastructure
+ * @package Wearesho\Bobra\Ubki\Tests\Unit
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Dictionary
  * @internal
  */

@@ -22,7 +22,7 @@ class ElementsTest extends TestCase
      */
     public function testElementValues(string $element, array $data)
     {
-        /** @var Ubki\Infrastructure\Element $element */
+        /** @var Ubki\Element $element */
         $element = new $element(...array_values($data));
 
         foreach ($data as $attributeName => $expectValue) {

@@ -12,7 +12,7 @@ use Wearesho\Bobra\Ubki;
  *
  * @method ConfigInterface config();
  */
-class Service extends Ubki\Infrastructure\Service implements ServiceInterface
+class Service extends Ubki\Service implements ServiceInterface
 {
     use ServiceTrait;
 

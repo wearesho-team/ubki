@@ -6,7 +6,7 @@ namespace Wearesho\Bobra\Ubki;
  * Class Exception
  * @package Wearesho\Bobra\Ubki
  */
-class Exception extends \Exception implements Infrastructure\ExceptionInterface
+class Exception extends \Exception implements ExceptionInterface
 {
     /** @var string|null */
     protected $publicMessage;

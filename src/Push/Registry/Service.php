@@ -4,6 +4,7 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 use GuzzleHttp;
 use Psr\Log;
+use Spatie\ArrayToXml\ArrayToXml;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -23,9 +24,6 @@ class Service implements ServiceInterface
 
     /** @var Log\LoggerInterface */
     protected $logger;
-
-    /** @var RequestInterface */
-    private $request;
 
     public function __construct(
         Ubki\Push\ConfigInterface $config,
@@ -49,30 +47,24 @@ class Service implements ServiceInterface
      */
     public function send(RequestInterface $request): Ubki\RequestResponsePair
     {
-        $this->request = $request;
-        $guzzleRequest = $this->convertToGuzzleRequest($this->request);
+        $guzzleRequest = $this->convertToGuzzleRequest($request);
 
         $this->logger->debug("UBKI registry request {url}", [
-            'url' => $guzzleRequest->getUri()->__toString(),
+            'url' => (string)$guzzleRequest->getUri(),
         ]);
 
-        $this->validateRequestType($this->request);
+        $this->validateRequestType($request);
 
         /** @var GuzzleHttp\Psr7\Response $httpResponse */
         $response = $this->client->send($guzzleRequest);
-        $urlFile = $response->getBody()->__toString();
+        $urlFile = (string)$response->getBody();
 
         $this->validateUrl($urlFile);
 
         return new Ubki\RequestResponsePair(
-            $guzzleRequest->getBody()->__toString(),
+            (string)$guzzleRequest->getBody(),
             $fileContent = $this->getFileContent($urlFile)
         );
-    }
-
-    public function config(): Ubki\Push\ConfigInterface
-    {
-        return $this->config;
     }
 
     protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
@@ -81,18 +73,20 @@ class Service implements ServiceInterface
             'post',
             $this->config->getRegistryUrl(),
             [],
-            base64_encode($this->getBody($request))
+            \base64_encode($this->getBody($request))
         );
     }
 
     protected function validateRequestType(RequestInterface $request): void
     {
-        switch ($request->getRegistryType()) {
+        $type = $request->getRegistryType();
+
+        switch ($type) {
             case Type::REP:
             case Type::BIL:
                 break;
             default:
-                throw new UnsupportedRequestException($request, 'Invalid request type: ' . $request->getRegistryType());
+                throw new UnsupportedRequestException($request, 'Invalid request type: ' . $type);
         }
     }
 
@@ -105,46 +99,25 @@ class Service implements ServiceInterface
      */
     private function getBody(RequestInterface $request): string
     {
-        $document = new \DOMDocument('1.0', 'utf-8');
-
-        $root = $document->createElement(Tag::ROOT);
-        $root = $document->appendChild($root);
-
-        $prot = $document->createElement(Tag::REPORT);
-        $prot = $root->appendChild($prot);
-
-        $todoAttr = $document->createAttribute(Attribute::TYPE);
-        $todoAttr->value = $request->getRegistryType();
-        $indateAttr = $document->createAttribute(Attribute::EXPORT_DATE);
-        $indateAttr->value = $request->getOperationDate()->format('Ymd');
-        $sessidAttr = $document->createAttribute(Attribute::SESSION_ID);
-        $sessidAttr->value = $this->authProvider->provide($this->config)->getSessionId();
-
-        $prot->appendChild($todoAttr);
-        $prot->appendChild($indateAttr);
-        $prot->appendChild($sessidAttr);
-
         $idout = $request->getUbkiId();
-
-        if (!empty($idout)) {
-            $idoutAttr = $document->createAttribute(Attribute::UBKI_ID);
-            $idoutAttr->value = $idout;
-
-            $prot->appendChild($idoutAttr);
-        }
-
         $idalien = $request->getPartnerId();
-
-        if (!empty($idalien)) {
-            $idalienAttr = $document->createAttribute(Attribute::PARTNER_ID);
-            $idalienAttr->value = $idalien;
-
-            $prot->appendChild($idalienAttr);
-        }
+        $params = [
+            Tag::REPORT => [
+                '_attributes' => \array_merge(
+                    [
+                        Attribute::TYPE => $request->getRegistryType(),
+                        Attribute::EXPORT_DATE => $request->getOperationDate()->format('Ymd'),
+                        Attribute::SESSION_ID => $this->authProvider->provide($this->config)->getSessionId(),
+                    ],
+                    !empty($idout) ? [Attribute::UBKI_ID => $idout] : [],
+                    !empty($idalien) ? [Attribute::PARTNER_ID => $idalien] : []
+                ),
+            ],
+        ];
 
         // TODO: implement adding grp attribute for Bil Request
 
-        return $document->saveXML();
+        return  ArrayToXml::convert($params, Tag::ROOT, true, 'utf-8');
     }
 
     /**
@@ -154,7 +127,7 @@ class Service implements ServiceInterface
      */
     private function validateUrl(string $requestUrl): void
     {
-        if (!preg_match('/https:\/\//', $requestUrl)) {
+        if (!\preg_match('/https:\/\//', $requestUrl)) {
             throw new RequestException($requestUrl);
         }
     }
@@ -169,24 +142,18 @@ class Service implements ServiceInterface
     private function getFileContent(string $url): string
     {
         try {
-            $response = $this->client->send(
-                new GuzzleHttp\Psr7\Request(
-                    $method = 'get',
-                    $url,
-                    []
-                )
-            );
+            $response = $this->client->request('get', $url);
         } catch (GuzzleHttp\Exception\RequestException $exception) {
-            if (is_null($exception->getResponse())) {
+            if (\is_null($exception->getResponse())) {
                 throw $exception;
             }
 
             throw new UnknownErrorException(
-                (string)(simplexml_load_string($exception->getResponse()->getBody()->__toString())),
+                (string)(simplexml_load_string((string)$exception->getResponse()->getBody())),
                 $exception
             );
         }
 
-        return $response->getBody()->__toString();
+        return (string)$response->getBody();
     }
 }

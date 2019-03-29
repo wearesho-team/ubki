@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Trait ServiceTrait
  * @package Wearesho\Bobra\Ubki\Push\Export
  *
- * @mixin Ubki\Infrastructure\Service;
+ * @mixin Ubki\Service;
  */
 trait ServiceTrait
 {

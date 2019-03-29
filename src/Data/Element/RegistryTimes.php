@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class RegistryTimes
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class RegistryTimes extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\RegistryTimes
+class RegistryTimes extends Ubki\Element implements Ubki\Data\Interfaces\RegistryTimes
 {
     use Ubki\Data\Traits\RegistryTimes;
 

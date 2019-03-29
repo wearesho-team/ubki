@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface CreditRating
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditRating extends Ubki\Infrastructure\ElementInterface
+interface CreditRating extends Ubki\ElementInterface
 {
     public function getScore(): Ubki\Data\Element\RatingScore;
 

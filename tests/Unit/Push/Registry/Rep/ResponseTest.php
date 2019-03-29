@@ -24,7 +24,7 @@ class ResponseTest extends TestCase
             'X000000000001',
             'A1F593950A8F4562AE5A5DB1914D658A',
             Ubki\Push\Registry\Response\State::CREATED(),
-            Ubki\Push\Registry\Response\OperationType::TRANSFERRING(),
+            Ubki\Push\Export\Request\Type::EXPORT(),
             Ubki\Data\Block\Identification::ID,
             'IDENT',
             'NW',
@@ -69,7 +69,7 @@ class ResponseTest extends TestCase
     public function testGetOperationType(): void
     {
         $this->assertTrue(
-            Ubki\Push\Registry\Response\OperationType::TRANSFERRING()
+            Ubki\Push\Export\Request\Type::EXPORT()
                 ->equals($this->response->getOperationType())
         );
     }
@@ -113,7 +113,7 @@ class ResponseTest extends TestCase
                 'partnerId' => 'X000000000001',
                 'sessionId' => 'A1F593950A8F4562AE5A5DB1914D658A',
                 'state' => 'CREATED',
-                'operation' => 'TRANSFERRING',
+                'operation' => 'EXPORT',
                 'blockId' => 1,
                 'item' => 'IDENT',
                 'registry' => 'NW',

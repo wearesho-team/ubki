@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Document
  * @package Wearesho\Bobra\Ubki\Pull\Element
  */
-class Document extends Ubki\Infrastructure\Element implements DocumentInterface
+class Document extends Ubki\Element implements DocumentInterface
 {
     use DocumentTrait;
 

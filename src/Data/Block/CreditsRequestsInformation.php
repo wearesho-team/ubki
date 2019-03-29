@@ -8,8 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class CreditsRequestsInformation
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class CreditsRequestsInformation extends Ubki\Infrastructure\Block implements
-    Ubki\Data\Interfaces\CreditsRequestsInformation
+class CreditsRequestsInformation extends Ubki\Block implements Ubki\Data\Interfaces\CreditsRequestsInformation
 {
     use Ubki\Data\Traits\CreditsRequestsInformation;
 

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class CreditRating
  * @package Wearesho\Bobra\Ubki\Data\Block
  */
-class CreditRating extends Ubki\Infrastructure\Block implements Ubki\Data\Interfaces\CreditRating
+class CreditRating extends Ubki\Block implements Ubki\Data\Interfaces\CreditRating
 {
     use Ubki\Data\Traits\CreditRating;
 

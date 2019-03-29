@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Tests\Unit\Pull;
 
 use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
-use Wearesho\Bobra\Ubki\Data\Interfaces\RequestData;
 
 /**
  * Class FormerTest
@@ -25,16 +24,16 @@ class FormerTest extends TestCase
         $this->expectException(Ubki\Exception\Former::class);
 
         $this->fakeFormer->form(
-            new class implements Ubki\Infrastructure\RequestInterface
+            new class implements Ubki\RequestInterface
             {
-                use Ubki\Infrastructure\ElementTrait;
+                use Ubki\ElementTrait;
 
                 public function getBody()
                 {
                     throw new \RuntimeException();
                 }
 
-                public function getHead(): RequestData
+                public function getHead(): Ubki\Data\Interfaces\RequestData
                 {
                     throw new \RuntimeException();
                 }

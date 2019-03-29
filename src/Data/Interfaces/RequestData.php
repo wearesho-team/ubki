@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface RequestData
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface RequestData extends Ubki\Infrastructure\ElementInterface
+interface RequestData extends Ubki\ElementInterface
 {
     public const VERSION = 'version';
     public const TYPE = 'reqtype';

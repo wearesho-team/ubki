@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Push\Registry\Rep;
 
 use Carbon\Carbon;
-use Wearesho\Bobra\Ubki\Push\Registry;
+use Wearesho\Bobra\Ubki\Push;
 
 /**
  * Class Response
@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki\Push\Registry;
  */
 class Response implements ResponseInterface, \JsonSerializable
 {
-    use Registry\ResponseTrait;
+    use Push\Registry\ResponseTrait;
     use ResponseTrait;
 
     public function __construct(
@@ -19,8 +19,8 @@ class Response implements ResponseInterface, \JsonSerializable
         string $ubkiId,
         string $partnerId,
         string $sessionId,
-        Registry\Response\State $state,
-        Registry\Response\OperationType $operationType,
+        Push\Registry\Response\State $state,
+        Push\Export\Request\Type $operationType,
         int $blockId,
         string $item,
         string $registryType,
@@ -28,7 +28,7 @@ class Response implements ResponseInterface, \JsonSerializable
         string $inn,
         string $remark
     ) {
-        $this->type = Registry\Type::REP;
+        $this->type = Push\Registry\Type::REP;
         $this->registryType = $registryType;
         $this->errorType = $errorType;
         $this->inn = $inn;

@@ -2,15 +2,15 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Data\Interfaces;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface RequestInterface
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-interface RequestInterface extends \Wearesho\Bobra\Ubki\Infrastructure\RequestInterface
+interface RequestInterface extends Ubki\RequestInterface
 {
-    public function getHead(): Interfaces\RequestData;
+    public function getHead(): Ubki\Data\Interfaces\RequestData;
 
     public function getBody(): DataDocumentInterface;
 }

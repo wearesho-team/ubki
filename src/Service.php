@@ -1,6 +1,6 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Infrastructure;
+namespace Wearesho\Bobra\Ubki;
 
 use GuzzleHttp;
 use Psr\Log;
@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
 
 /**
  * Class Service
- * @package Wearesho\Bobra\Ubki\Infrastructure
+ * @package Wearesho\Bobra\Ubki
  */
 abstract class Service implements ServiceInterface
 {

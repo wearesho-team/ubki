@@ -125,12 +125,14 @@ class Provider implements ProviderInterface
     private function getBody(ConfigInterface $config): string
     {
         $params = [
-            '_attributes' => [
-                'login' => $config->getUsername(),
-                'pass' => $config->getPassword()
-            ],
+            'auth' => [
+                '_attributes' => [
+                    'login' => $config->getUsername(),
+                    'pass' => $config->getPassword()
+                ],
+            ]
         ];
 
-        return ArrayToXml::convert(['auth' => $params], 'doc', true, 'utf-8');
+        return ArrayToXml::convert($params, 'doc', true, 'utf-8');
     }
 }

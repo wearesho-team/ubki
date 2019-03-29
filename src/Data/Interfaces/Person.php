@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Interfaces;
 
-use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
+use Wearesho\Bobra\Ubki\ElementInterface;
 
 /**
  * Interface Person

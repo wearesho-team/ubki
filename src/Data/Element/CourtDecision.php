@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class CourtDecision
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class CourtDecision extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\CourtDecision
+class CourtDecision extends Ubki\Element implements Ubki\Data\Interfaces\CourtDecision
 {
     use Ubki\Data\Traits\CourtDecision;
 

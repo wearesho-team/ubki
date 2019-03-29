@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki;
 use Wearesho\Bobra\Ubki\Data\Interfaces\RequestData;
-use Wearesho\Bobra\Ubki\Infrastructure\RequestInterface;
+use Wearesho\Bobra\Ubki\RequestInterface;
 
 /**
  * Class ConverterTest
@@ -673,7 +673,7 @@ class FormerTest extends TestCase
         $this->expectException(Ubki\Exception\Former::class);
 
         $this->fakeFormer->form(
-            new class extends Ubki\Infrastructure\Element implements RequestInterface
+            new class extends Ubki\Element implements RequestInterface
             {
                 public function getBody()
                 {

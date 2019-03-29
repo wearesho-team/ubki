@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class UnsupportedMode
  * @package Wearesho\Bobra\Ubki\Exception
  */
-class UnsupportedMode extends \InvalidArgumentException implements Ubki\Infrastructure\ExceptionInterface
+class UnsupportedMode extends \InvalidArgumentException implements Ubki\ExceptionInterface
 {
     /** @var int */
     public $mode;

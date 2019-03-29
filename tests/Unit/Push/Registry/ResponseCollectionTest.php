@@ -4,6 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Push\Registry;
 
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Push\Export\Request\Type;
 use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
@@ -30,7 +31,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED(),
-                Registry\Response\OperationType::TRANSFERRING(),
+                Type::EXPORT(),
                 1,
                 'ADDR',
                 'NW',
@@ -44,7 +45,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED(),
-                Registry\Response\OperationType::TRANSFERRING(),
+                Type::EXPORT(),
                 1,
                 'DOC',
                 'NW',
@@ -58,7 +59,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED(),
-                Registry\Response\OperationType::TRANSFERRING(),
+                Type::EXPORT(),
                 1,
                 'IDENT',
                 'NW',
@@ -72,7 +73,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED(),
-                Registry\Response\OperationType::TRANSFERRING(),
+                Type::EXPORT(),
                 2,
                 'CRDEAL',
                 'NW',
@@ -86,7 +87,7 @@ class ResponseCollectionTest extends TestCase
                 'X000000000001',
                 'A1F593950A8F4562AE5A5DB1914D658A',
                 Registry\Response\State::PROCESSED(),
-                Registry\Response\OperationType::TRANSFERRING(),
+                Type::EXPORT(),
                 10,
                 'CONT',
                 'NW',
@@ -105,7 +106,7 @@ class ResponseCollectionTest extends TestCase
             'X000000000001',
             'A1F593950A8F4562AE5A5DB1914D658A',
             Registry\Response\State::PROCESSED(),
-            Registry\Response\OperationType::TRANSFERRING(),
+            Type::EXPORT(),
             10,
             'CONT',
             'NW',

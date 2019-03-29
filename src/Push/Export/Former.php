@@ -9,16 +9,16 @@ use Wearesho\Bobra\Ubki;
  * Class Former
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-class Former extends Ubki\Infrastructure\Former implements FormerInterface
+class Former extends Ubki\Former implements FormerInterface
 {
     /**
-     * @param RequestInterface|Ubki\Infrastructure\RequestInterface $request
+     * @param RequestInterface|Ubki\RequestInterface $request
      * @param string $sessionId
      *
      * @return string
      * @throws Ubki\Exception\Former
      */
-    public function form(Ubki\Infrastructure\RequestInterface $request, string $sessionId): string
+    public function form(Ubki\RequestInterface $request, string $sessionId): string
     {
         try {
             $this->init();
@@ -169,7 +169,7 @@ class Former extends Ubki\Infrastructure\Former implements FormerInterface
         return $this->appendCollectionTo($this->createFilledElement($deal), $deal->getDealLifes());
     }
 
-    protected function createDOMElement(Ubki\Infrastructure\ElementInterface $element): \DOMElement
+    protected function createDOMElement(Ubki\ElementInterface $element): \DOMElement
     {
         return $this->document->createElement($element->tag());
     }

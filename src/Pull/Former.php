@@ -9,15 +9,15 @@ use Wearesho\Bobra\Ubki;
  * Class Former
  * @package Wearesho\Bobra\Ubki\Pull
  */
-class Former extends Ubki\Infrastructure\Former implements FormerInterface
+class Former extends Ubki\Former implements FormerInterface
 {
     /**
-     * @param RequestInterface|Ubki\Infrastructure\RequestInterface $request
+     * @param RequestInterface|Ubki\RequestInterface $request
      * @param string $sessionId
      *
      * @return string
      */
-    public function form(Ubki\Infrastructure\RequestInterface $request, string $sessionId): string
+    public function form(Ubki\RequestInterface $request, string $sessionId): string
     {
         try {
             $this->init();

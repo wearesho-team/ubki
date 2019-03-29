@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface IdentificationInterface
  * @package Wearesho\Bobra\Ubki\Pull\Element
  */
-interface IdentificationInterface extends Ubki\Infrastructure\ElementInterface
+interface IdentificationInterface extends Ubki\ElementInterface
 {
     public const INN = 'okpo';
     public const NAME = 'fname';

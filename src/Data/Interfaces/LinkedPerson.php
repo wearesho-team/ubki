@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface LinkedPerson
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface LinkedPerson extends Ubki\Infrastructure\ElementInterface
+interface LinkedPerson extends Ubki\ElementInterface
 {
     public const ERGPOU = 'okpo2';
     public const NAME = 'okpo2_name';

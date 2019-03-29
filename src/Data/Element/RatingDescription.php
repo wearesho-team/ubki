@@ -2,8 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Data\Element;
 
-use Carbon\Carbon;
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
+use Wearesho\Bobra\Ubki\Element;
 
 /**
  * Class RatingDescription

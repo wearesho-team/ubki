@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface DataDocumentInterface
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-interface DataDocumentInterface extends Ubki\Infrastructure\ElementInterface
+interface DataDocumentInterface extends Ubki\ElementInterface
 {
     public function getIdentification(): Ubki\Data\Block\Identification;
 

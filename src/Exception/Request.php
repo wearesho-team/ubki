@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Exception;
 
-use Wearesho\Bobra\Ubki\Infrastructure\RequestInterface;
+use Wearesho\Bobra\Ubki\RequestInterface;
 
 /**
  * Class Request

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class RatingFactors
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-abstract class RatingFactors extends Ubki\Infrastructure\Element
+abstract class RatingFactors extends Ubki\Element
 {
     public const COUNT = 'count';
     public const TEXT = 'text';

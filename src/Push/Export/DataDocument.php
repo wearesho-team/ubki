@@ -2,25 +2,24 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Data\Block;
-use Wearesho\Bobra\Ubki\Infrastructure\Element;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class DataDocument
  * @package Wearesho\Bobra\Ubki\Push\Export
  */
-class DataDocument extends Element implements DataDocumentInterface
+class DataDocument extends Ubki\Element implements DataDocumentInterface
 {
     public const TAG = 'ubkidata';
 
     use DataDocumentTrait;
 
     public function __construct(
-        Block\Identification $identification,
-        Block\CreditsInformation $creditsInformation,
-        Block\ContactsInformation $contacts,
-        Block\CourtDecisionsInformation $courtDecisions = null,
-        Block\CreditsRequestsInformation $creditRequests = null
+        Ubki\Data\Block\Identification $identification,
+        Ubki\Data\Block\CreditsInformation $creditsInformation,
+        Ubki\Data\Block\ContactsInformation $contacts,
+        Ubki\Data\Block\CourtDecisionsInformation $courtDecisions = null,
+        Ubki\Data\Block\CreditsRequestsInformation $creditRequests = null
     ) {
         $this->identification = $identification;
         $this->creditDeals = $creditsInformation;

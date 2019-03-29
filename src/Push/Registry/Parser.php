@@ -31,7 +31,7 @@ class Parser
 
         switch ($responseType) {
             case Type::REP:
-                return new ResponseCollection(array_map(function (\SimpleXMLElement $report): Rep\Response {
+                return new ResponseCollection(\array_map(function (\SimpleXMLElement $report): Rep\Response {
                     $attributes = $report->attributes();
 
                     return new Rep\Response(
@@ -40,7 +40,7 @@ class Parser
                         (string)$attributes[Rep\Attribute::PARTNER_ID],
                         (string)$attributes[Rep\Attribute::SESSION_ID],
                         new Response\State((string)$attributes[Rep\Attribute::STATE]),
-                        new Response\OperationType(
+                        new \Wearesho\Bobra\Ubki\Push\Export\Request\Type(
                             (string)$attributes[Rep\Attribute::OPERATION_TYPE]
                         ),
                         (int)$attributes[Rep\Attribute::BLOCK_ID],

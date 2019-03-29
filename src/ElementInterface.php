@@ -1,10 +1,10 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Infrastructure;
+namespace Wearesho\Bobra\Ubki;
 
 /**
  * Interface ElementInterface
- * @package Wearesho\Bobra\Ubki\Infrastructure
+ * @package Wearesho\Bobra\Ubki
  */
 interface ElementInterface extends \JsonSerializable
 {

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Request
  * @package Wearesho\Bobra\Ubki\Pull
  */
-class Request extends Ubki\Infrastructure\Element implements RequestInterface
+class Request extends Ubki\Element implements RequestInterface
 {
     use RequestTrait;
 

@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface CourtDectision
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CourtDecision extends Ubki\Infrastructure\ElementInterface
+interface CourtDecision extends Ubki\ElementInterface
 {
     public const ID = 'voteid';
     public const INN = 'inn';

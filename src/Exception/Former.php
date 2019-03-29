@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Exception;
 
-use Wearesho\Bobra\Ubki\Infrastructure;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Former
@@ -10,15 +10,15 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  */
 class Former extends \RuntimeException
 {
-    /** @var Infrastructure\RequestInterface */
+    /** @var Ubki\RequestInterface */
     protected $request;
 
-    /** @var Infrastructure\FormerInterface */
+    /** @var Ubki\FormerInterface */
     protected $former;
 
     public function __construct(
-        Infrastructure\RequestInterface $request,
-        Infrastructure\FormerInterface $former,
+        Ubki\RequestInterface $request,
+        Ubki\FormerInterface $former,
         string $message = "",
         int $code = 0,
         \Throwable $previous = null
@@ -29,12 +29,12 @@ class Former extends \RuntimeException
         parent::__construct($message, $code, $previous);
     }
 
-    public function getRequest(): Infrastructure\RequestInterface
+    public function getRequest(): Ubki\RequestInterface
     {
         return $this->request;
     }
 
-    public function getFormer(): Infrastructure\FormerInterface
+    public function getFormer(): Ubki\FormerInterface
     {
         return $this->former;
     }

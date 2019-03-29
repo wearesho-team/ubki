@@ -1,13 +1,13 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Unit\Infrastructure;
+namespace Wearesho\Bobra\Ubki\Tests\Unit;
 
-use Wearesho\Bobra\Ubki\Infrastructure\Block;
+use Wearesho\Bobra\Ubki\Block;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class BlockTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Infrastructure
+ * @package Wearesho\Bobra\Ubki\Tests\Unit
  * @coversDefaultClass Block
  * @internal
  */

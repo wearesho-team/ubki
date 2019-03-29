@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Address
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class Address extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\Address
+class Address extends Ubki\Element implements Ubki\Data\Interfaces\Address
 {
     use Ubki\Data\Traits\Address;
 

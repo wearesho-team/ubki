@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class DealLife
  * @package Wearesho\Bobra\Ubki\Data\Element
  */
-class DealLife extends Ubki\Infrastructure\Element implements Ubki\Data\Interfaces\DealLife
+class DealLife extends Ubki\Element implements Ubki\Data\Interfaces\DealLife
 {
     use Ubki\Data\Traits\DealLife;
 

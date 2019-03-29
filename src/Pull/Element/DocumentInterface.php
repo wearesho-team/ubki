@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface DocumentInterface
  * @package Wearesho\Bobra\Ubki\Pull\Element
  */
-interface DocumentInterface extends Ubki\Infrastructure\ElementInterface
+interface DocumentInterface extends Ubki\ElementInterface
 {
     public const TYPE = 'dtype';
     public const SERIAL = 'dser';

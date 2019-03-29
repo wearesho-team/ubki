@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface CreditDeal
  * @package Wearesho\Bobra\Ubki\Data\Interfaces
  */
-interface CreditDeal extends Ubki\Infrastructure\ElementInterface
+interface CreditDeal extends Ubki\ElementInterface
 {
     public const ID = 'dlref';
     public const LANGUAGE = 'lng';

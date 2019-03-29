@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki\Data\Interfaces;
  */
 trait RequestTrait
 {
-    /** @var Interfaces\RequestData */
+    /** @var Request\Data */
     protected $head;
 
     /** @var DataDocumentInterface */
