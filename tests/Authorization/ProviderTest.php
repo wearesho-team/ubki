@@ -293,4 +293,45 @@ class ProviderTest extends TestCase
             (string)$request->getUri()
         );
     }
+
+    /**
+     * @expectedException GuzzleHttp\Exception\RequestException
+     */
+    public function testNullResponse(): void
+    {
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Exception\RequestException(
+                'Null response',
+                new GuzzleHttp\Psr7\Request('post', 'some uri')
+            )
+        ]);
+        $stack = GuzzleHttp\HandlerStack::create($mock);
+
+        $client = new GuzzleHttp\Client(['handler' => $stack,]);
+
+        $provider = new Ubki\Authorization\Provider(
+            $client,
+            $this->logger
+        );
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $provider->provide(new class(
+            'test-provider-username',
+            'test-provide-password'
+        ) implements Ubki\Authorization\ConfigInterface
+        {
+            use Ubki\Authorization\ConfigTrait;
+
+            public function __construct(string $username, string $password)
+            {
+                $this->username = $username;
+                $this->password = $password;
+            }
+
+            public function isProductionMode(): bool
+            {
+                return true;
+            }
+        });
+    }
 }
