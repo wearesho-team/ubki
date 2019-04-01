@@ -2,7 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Carbon\Carbon;
 use GuzzleHttp;
 use Psr\Log;
 use Spatie\ArrayToXml\ArrayToXml;
@@ -114,7 +113,9 @@ class Service extends Ubki\Service implements ServiceInterface
                             Ubki\Data\NaturalPerson::FAMILY_STATUS => $this->fetchEnum($person->getFamilyStatus()),
                             Ubki\Data\NaturalPerson::EDUCATION => $this->fetchEnum($person->getEducation()),
                             Ubki\Data\NaturalPerson::NATIONALITY => $this->fetchEnum($person->getNationality()),
-                            Ubki\Data\NaturalPerson::REGISTRATION_SPD => $this->fetchEnum($person->getRegistrationSpd()),
+                            Ubki\Data\NaturalPerson::REGISTRATION_SPD => $this->fetchEnum(
+                                $person->getRegistrationSpd()
+                            ),
                             Ubki\Data\NaturalPerson::SOCIAL_STATUS => $this->fetchEnum($person->getSocialStatus()),
                             Ubki\Data\NaturalPerson::CHILDREN_COUNT => $person->getChildrenCount(),
                         ]
