@@ -2,13 +2,11 @@
 
 namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki\Element;
-
 /**
  * Class RatingScore
  * @package Wearesho\Bobra\Ubki\Data
  */
-class RatingScore extends Element
+class RatingScore
 {
     public const TAG = 'urating';
 

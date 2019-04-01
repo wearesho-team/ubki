@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class InsuranceEvent
  * @package Wearesho\Bobra\Ubki\Data
  */
-class InsuranceEvent extends Ubki\Element
+class InsuranceEvent
 {
     public const TAG = 'events';
     public const REQUEST_DATE = 'evdate';

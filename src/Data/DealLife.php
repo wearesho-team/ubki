@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class DealLife
  * @package Wearesho\Bobra\Ubki\Data
  */
-class DealLife extends Ubki\Element
+class DealLife
 {
     public const TAG = 'deallife';
 

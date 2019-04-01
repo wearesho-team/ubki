@@ -2,13 +2,11 @@
 
 namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki;
-
 /**
  * Class Balance
  * @package Wearesho\Bobra\Ubki\Data
  */
-class Balance extends Ubki\Element
+class Balance
 {
     public const TAG = 'balance';
 

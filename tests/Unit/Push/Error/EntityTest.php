@@ -30,11 +30,6 @@ class EntityTest extends TestCase
         );
     }
 
-    public function testTag(): void
-    {
-        $this->assertEquals(Ubki\Push\Error\Entity::TAG, $this->block->tag());
-    }
-
     public function testGetPassedStrings(): void
     {
         $this->assertEquals(

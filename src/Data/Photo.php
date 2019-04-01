@@ -2,13 +2,11 @@
 
 namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki;
-
 /**
  * Class Photo
  * @package Wearesho\Bobra\Ubki\Data
  */
-class Photo extends Ubki\Element
+class Photo
 {
     public const TAG = 'foto';
 

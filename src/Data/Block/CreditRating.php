@@ -65,15 +65,4 @@ class CreditRating extends Ubki\Block
     {
         return $this->negativeFactors;
     }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'score' => $this->getScore(),
-            'description' => $this->getDescription(),
-            'comments' => $this->getComments(),
-            'positiveFactors' => $this->getPositiveFactors(),
-            'negativeFactors' => $this->getNegativeFactors(),
-        ];
-    }
 }

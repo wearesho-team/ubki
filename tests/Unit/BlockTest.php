@@ -31,14 +31,6 @@ class BlockTest extends TestCase
         };
     }
 
-    public function testTag(): void
-    {
-        $this->assertEquals(
-            Block::TAG,
-            $this->fakeBlock->tag()
-        );
-    }
-
     public function testGetId(): void
     {
         $this->assertEquals(

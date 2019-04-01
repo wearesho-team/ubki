@@ -22,13 +22,11 @@ class ElementsTest extends TestCase
      */
     public function testElementValues(string $element, array $data)
     {
-        /** @var Ubki\Element $element */
         $element = new $element(...array_values($data));
 
         foreach ($data as $attributeName => $expectValue) {
             $this->assertEquals($expectValue, $element->{'get' . $attributeName}());
         }
-        $this->assertArraySubset($data, $element->jsonSerialize());
     }
 
     public function providerData(): array

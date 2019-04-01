@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class CreditRequest
  * @package Wearesho\Bobra\Ubki\Data
  */
-class CreditRequest extends Ubki\Element
+class CreditRequest
 {
     public const TAG = 'credres';
 

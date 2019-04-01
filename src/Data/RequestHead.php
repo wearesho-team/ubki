@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class RequestHead
  * @package Wearesho\Bobra\Ubki\Data
  */
-abstract class RequestHead extends Ubki\Element
+abstract class RequestHead
 {
     public const TAG = 'request';
 

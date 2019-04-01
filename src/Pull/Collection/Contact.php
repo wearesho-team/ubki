@@ -9,10 +9,8 @@ use Wearesho\Bobra\Ubki;
  * Class Contact
  * @package Wearesho\Bobra\Ubki\Pull\Collection
  */
-class Contact extends BaseCollection implements Ubki\ElementInterface
+class Contact extends BaseCollection
 {
-    use Ubki\ElementTrait;
-
     public const TAG = 'contacts';
 
     public function type(): string

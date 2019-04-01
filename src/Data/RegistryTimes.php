@@ -2,13 +2,11 @@
 
 namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki;
-
 /**
  * Class RegistryTimes
  * @package Wearesho\Bobra\Ubki\Data
  */
-class RegistryTimes extends Ubki\Element
+class RegistryTimes
 {
     public const TAG = 'reestrtime';
 

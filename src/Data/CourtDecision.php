@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class CourtDecision
  * @package Wearesho\Bobra\Ubki\Data
  */
-class CourtDecision extends Ubki\Element
+class CourtDecision
 {
     public const TAG = 'susd';
 

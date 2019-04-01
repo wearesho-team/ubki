@@ -6,7 +6,7 @@ namespace Wearesho\Bobra\Ubki;
  * Interface Block
  * @package Wearesho\Bobra\Ubki
  */
-abstract class Block extends Element implements BlockInterface
+abstract class Block implements BlockInterface
 {
     public const IDENTIFICATION = 1;
     public const CREDITS = 2;

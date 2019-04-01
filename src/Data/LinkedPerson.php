@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class LinkedPerson
  * @package Wearesho\Bobra\Ubki\Data
  */
-class LinkedPerson extends Ubki\Element
+class LinkedPerson
 {
     public const TAG = 'linked';
 

@@ -9,10 +9,8 @@ use Wearesho\Bobra\Ubki;
  * Class Document
  * @package Wearesho\Bobra\Ubki\Pull\Collection
  */
-class Document extends BaseCollection implements Ubki\ElementInterface
+class Document extends BaseCollection
 {
-    use Ubki\ElementTrait;
-
     public const TAG = 'docs';
 
     public function type(): string

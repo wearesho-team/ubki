@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Contact
  * @package Wearesho\Bobra\Ubki\Pull\Element
  */
-class Contact extends Ubki\Element
+class Contact
 {
     public const TAG = 'cont';
 

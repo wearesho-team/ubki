@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki;
  * @method Ubki\Push\Export\Request\Head getHead()
  * @method Ubki\Push\Export\Request\Body getBody()
  */
-class Request extends Ubki\Element implements RequestInterface
+class Request implements RequestInterface
 {
     use RequestTrait;
 

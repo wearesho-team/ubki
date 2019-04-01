@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Interface RequestContentInterface
  * @package Wearesho\Bobra\Ubki\Pull\Element
  */
-interface RequestContentInterface extends Ubki\ElementInterface
+interface RequestContentInterface
 {
     public const LANGUAGE = 'reqlng';
 

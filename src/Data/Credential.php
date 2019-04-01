@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Credential
  * @package Wearesho\Bobra\Ubki\Data
  */
-class Credential extends Ubki\Element
+class Credential
 {
     public const TAG = 'cki';
 

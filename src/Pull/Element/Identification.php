@@ -2,13 +2,11 @@
 
 namespace Wearesho\Bobra\Ubki\Pull\Element;
 
-use Wearesho\Bobra\Ubki;
-
 /**
  * Class Identification
  * @package Wearesho\Bobra\Ubki\Pull\Element
  */
-class Identification extends Ubki\Element
+class Identification
 {
     public const TAG = 'ident';
 

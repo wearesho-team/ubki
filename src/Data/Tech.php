@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Tech
  * @package Wearesho\Bobra\Ubki\Data
  */
-class Tech extends Ubki\Element
+class Tech
 {
     public const TAG = 'tech';
 

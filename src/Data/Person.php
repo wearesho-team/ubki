@@ -2,13 +2,11 @@
 
 namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki;
-
 /**
  * Class Person
  * @package Wearesho\Bobra\Ubki\Data
  */
-abstract class Person extends Ubki\Element
+abstract class Person
 {
     public const TAG = 'ident';
 

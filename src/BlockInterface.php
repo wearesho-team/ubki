@@ -6,7 +6,7 @@ namespace Wearesho\Bobra\Ubki;
  * Interface BlockInterface
  * @package Wearesho\Bobra\Ubki
  */
-interface BlockInterface extends ElementInterface
+interface BlockInterface
 {
     public function getId(): int;
 }

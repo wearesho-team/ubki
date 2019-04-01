@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
  * Class Address
  * @package Wearesho\Bobra\Ubki\Data
  */
-class Address extends Ubki\Element
+class Address
 {
     public const TAG = 'addr';
 

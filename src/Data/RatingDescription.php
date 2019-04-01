@@ -2,13 +2,11 @@
 
 namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki\Element;
-
 /**
  * Class RatingDescription
  * @package Wearesho\Bobra\Ubki\Data
  */
-class RatingDescription extends Element
+class RatingDescription
 {
     public const TAG = 'dinfo';
 
