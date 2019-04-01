@@ -9,7 +9,6 @@ use Wearesho\Bobra\Ubki\Push\Registry\InvalidOperationDateFormatException;
 /**
  * Class InvalidOperationDateFormatExceptionTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Registry
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Push\Registry\InvalidResponseXmlFormatException
  * @internal
  */
 class InvalidOperationDateFormatExceptionTest extends TestCase

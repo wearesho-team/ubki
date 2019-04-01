@@ -9,7 +9,7 @@ use Wearesho\Bobra\Ubki;
  * Class Document
  * @package Wearesho\Bobra\Ubki\Pull\Collection
  */
-class Documents extends BaseCollection implements Ubki\ElementInterface
+class Document extends BaseCollection implements Ubki\ElementInterface
 {
     use Ubki\ElementTrait;
 
@@ -17,6 +17,6 @@ class Documents extends BaseCollection implements Ubki\ElementInterface
 
     public function type(): string
     {
-        return Ubki\Pull\Element\DocumentInterface::class;
+        return Ubki\Pull\Element\Document::class;
     }
 }

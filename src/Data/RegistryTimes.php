@@ -93,17 +93,4 @@ class RegistryTimes extends Ubki\Element
     {
         return $this->byMoreYear;
     }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            RegistryTimes::BY_DAY => $this->getByDay(),
-            RegistryTimes::BY_HOUR => $this->getByHour(),
-            RegistryTimes::BY_MONTH => $this->getByMonth(),
-            RegistryTimes::BY_MORE_YEAR => $this->getByMoreYear(),
-            RegistryTimes::BY_QUARTER => $this->getByQuarter(),
-            RegistryTimes::BY_WEEK => $this->getByWeek(),
-            RegistryTimes::BY_YEAR => $this->getByYear(),
-        ];
-    }
 }

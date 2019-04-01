@@ -7,32 +7,18 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Request
  * @package Wearesho\Bobra\Ubki\Pull
+ *
+ * @method Ubki\Pull\Request\Head getHead()
  */
-class Request extends Ubki\Element implements RequestInterface
+class Request implements Ubki\RequestInterface
 {
     use RequestTrait;
 
-    public const TAG = 'doc';
-
     public function __construct(
-        Ubki\Data\RequestHead $requestData,
+        Request\Head $requestData,
         Element\RequestContentInterface $content
     ) {
-        // todo: wrap into validate() function
-        if ($requestData->getReason()->equals(Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT())) {
-            $identification = $content->getIdentification();
-
-            if (is_null($content->getContacts())
-                || is_null($content->getDocuments())
-                || is_null($identification->getName())
-                || is_null($identification->getPatronymic())
-                || is_null($identification->getSurname())
-                || is_null($identification->getBirthDate())) {
-                throw new \InvalidArgumentException(
-                    "Contact, documents and identification attributes must be not null if reason is CreditOnline"
-                );
-            }
-        }
+        $this->validateReason($requestData, $content);
 
         $this->head = $requestData;
         $this->body = $content;

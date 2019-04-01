@@ -197,25 +197,4 @@ class CreditDeal extends Ubki\Element
     {
         return $this->source;
     }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            CreditDeal::LANGUAGE => $this->getLanguage(),
-            CreditDeal::TYPE => $this->getType(),
-            CreditDeal::SURNAME => $this->getSurname(),
-            CreditDeal::BIRTH_DATE => $this->getBirthDate(),
-            CreditDeal::NAME => $this->getName(),
-            CreditDeal::INN => $this->getInn(),
-            CreditDeal::PATRONYMIC => $this->getPatronymic(),
-            CreditDeal::ID => $this->getId(),
-            CreditDeal::CURRENCY => $this->getCurrency(),
-            CreditDeal::COLLATERAL => $this->getCollateral(),
-            CreditDeal::COLLATERAL_COST => $this->getCollateralCost(),
-            CreditDeal::INITIAL_AMOUNT => $this->getInitialAmount(),
-            CreditDeal::REPAYMENT_PROCEDURE => $this->getRepaymentProcedure(),
-            CreditDeal::SOURCE => $this->getSource(),
-            CreditDeal::SUBJECT_ROLE => $this->getSubjectRole(),
-        ];
-    }
 }

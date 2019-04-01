@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Trait RequestTrait
@@ -10,18 +10,18 @@ use Wearesho\Bobra\Ubki\Data;
  */
 trait RequestTrait
 {
-    /** @var Request\Data */
+    /** @var Request\Head */
     protected $head;
 
-    /** @var DataDocumentInterface */
+    /** @var Request\Body */
     protected $body;
 
-    public function getHead(): Data\RequestHead
+    public function getHead(): Ubki\Data\RequestHead
     {
         return $this->head;
     }
 
-    public function getBody(): DataDocumentInterface
+    public function getBody(): Request\Body
     {
         return $this->body;
     }

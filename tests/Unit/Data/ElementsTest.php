@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki;
 
 /**
  * Class ElementsTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Data
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Head
  */
 class ElementsTest extends TestCase
 {
@@ -328,25 +328,13 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Push\Export\Request\Data::class,
+                Ubki\Push\Export\Request\Head::class,
                 [
                     'type' => Ubki\Push\Export\Request\Type::DELETE(),
                     'reason' => Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                     'date' => Carbon::make('2018-03-12'),
                     'id' => 'testId',
                     'initiator' => Ubki\Dictionary\RequestInitiator::SKI(),
-                ],
-            ],
-            [
-                Ubki\Data\Block\ContactsInformation::class,
-                [
-                    'contacts' => new Ubki\Data\Collection\Contact()
-                ],
-            ],
-            [
-                Ubki\Data\Block\CourtDecisionsInformation::class,
-                [
-                    'decisions' => new Ubki\Data\Collection\CourtDecision(),
                 ],
             ],
             [
@@ -383,41 +371,6 @@ class ElementsTest extends TestCase
                         'description',
                         new Ubki\Data\Collection\Comment()
                     ),
-                ],
-            ],
-            [
-                Ubki\Data\Block\CreditsInformation::class,
-                [
-                    'deals' => new Ubki\Data\Collection\CreditDeal(),
-                ],
-            ],
-            [
-                Ubki\Data\Block\CreditsRequestsInformation::class,
-                [
-                    'creditRequests' => new Ubki\Data\Collection\CreditRequest(),
-                    'registryTimes' => new Ubki\Data\RegistryTimes(1, 2, 3, 4, 5, 6, 7)
-                ],
-            ],
-            [
-                Ubki\Data\Block\Identification::class,
-                [
-                    'credential' => new Ubki\Data\Credential(
-                        Ubki\Dictionary\Language::ENG(),
-                        'testName',
-                        'testPatronymic',
-                        'testSurname',
-                        Carbon::make('2018-03-12'),
-                        new Ubki\Data\Collection\IdentifiedPerson(),
-                        new Ubki\Data\Collection\Document(),
-                        new Ubki\Data\Collection\Address(),
-                        static::INN
-                    ),
-                ],
-            ],
-            [
-                Ubki\Data\Block\InsurancesInformation::class,
-                [
-                    'deals' => new Ubki\Data\Collection\InsuranceDeal(),
                 ],
             ],
             [

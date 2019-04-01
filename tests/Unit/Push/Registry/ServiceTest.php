@@ -97,7 +97,7 @@ class ServiceTest extends TestCase
 
         /** @noinspection PhpUnhandledExceptionInspection */
         /** @var Ubki\RequestResponsePair $response */
-        $response = $this->service->send($request);
+        $response = $this->service->registry($request);
         $parser = new Ubki\Push\Registry\Parser();
 
         /** @noinspection PhpUnhandledExceptionInspection */
@@ -144,7 +144,7 @@ class ServiceTest extends TestCase
 
         /** @noinspection PhpUnhandledExceptionInspection */
         /** @var Ubki\RequestResponsePair $response */
-        $response = $this->service->send($request);
+        $response = $this->service->registry($request);
         $parser = new Ubki\Push\Registry\Parser();
 
         /** @noinspection PhpUnhandledExceptionInspection */
@@ -156,7 +156,7 @@ class ServiceTest extends TestCase
 
     public function testInvalidXmlTestMode(): void
     {
-        $this->expectException(GuzzleHttp\Exception\RequestException::class);
+        $this->expectException(Ubki\Exception\Request::class);
 
         $responseRegistry = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><doc></doc>';
 
@@ -193,7 +193,7 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->service->send($request);
+        $this->service->registry($request);
     }
 
     public function testInvalidXmlContentProductionMode(): void
@@ -236,7 +236,7 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->service->send($request);
+        $this->service->registry($request);
     }
 
     public function testInvalidResponse(): void
@@ -296,65 +296,7 @@ class ServiceTest extends TestCase
             };
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->service->send($request);
-    }
-
-    public function testBodyRepXml(): void
-    {
-        $registryXmlBody = simplexml_load_string(
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?>
-            <doc>
-                <prot todo=\"REP\" indate=\"{$this->now->format('Ymd')}\"
-                      sessid=\"A1F593950A8F4562AE5A5DB1914D658A\"
-                      idout=\"IN#0000018427\" idalien=\"X000000000001\"/>
-            </doc>"
-        );
-
-        $request = new Ubki\Push\Registry\Rep\Request(
-            $this->now,
-            'IN#0000018427',
-            'X000000000001'
-        );
-
-        $container = [];
-        $history = GuzzleHttp\Middleware::history($container);
-        $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(200, [], $this->responseAuth),
-            new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryXml)
-        ]);
-        $stack = GuzzleHttp\HandlerStack::create($mock);
-        $stack->push($history);
-        $client = new GuzzleHttp\Client(['handler' => $stack,]);
-        $config = new Ubki\Push\Config(
-            'test-provider-username',
-            'test-provide-password',
-            Ubki\Push\Config::MODE_TEST
-        );
-        $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
-            $client,
-            $this->logger
-        );
-
-        $service =
-            new class(
-                $config,
-                $authProvider,
-                $client,
-                $this->logger
-            ) extends Ubki\Push\Registry\Service
-            {
-                public function runConvert(Ubki\Push\Registry\Rep\Request $request): GuzzleHttp\Psr7\Request
-                {
-                    return $this->convertToGuzzleRequest($request);
-                }
-            };
-
-        /** @var GuzzleHttp\Psr7\Request $guzzleRequest */
-        $guzzleRequest = $service->runConvert($request);
-        $guzzleXmlBody = simplexml_load_string(base64_decode($guzzleRequest->getBody()->__toString()));
-
-        $this->assertEquals($registryXmlBody, $guzzleXmlBody);
+        $this->service->registry($request);
     }
 
     public function testRealRequestSimulation(): void
@@ -420,7 +362,7 @@ class ServiceTest extends TestCase
 
         /** @noinspection PhpUnhandledExceptionInspection */
         /** @var Ubki\RequestResponsePair $response */
-        $response = $this->service->send($request);
+        $response = $this->service->registry($request);
         $parser = new Ubki\Push\Registry\Parser();
         /** @noinspection PhpUnhandledExceptionInspection */
         $reportCollection = $parser->parseResponses($response->getResponse());
@@ -526,7 +468,7 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->service->send($request);
+        $this->service->registry($request);
     }
 
     public function testNullResponse(): void
@@ -570,6 +512,6 @@ class ServiceTest extends TestCase
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->service->send($request);
+        $this->service->registry($request);
     }
 }

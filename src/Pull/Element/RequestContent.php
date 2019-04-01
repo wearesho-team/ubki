@@ -17,8 +17,8 @@ class RequestContent extends Ubki\Element implements RequestContentInterface
     public function __construct(
         Ubki\Dictionary\Language $language,
         Identification $identification,
-        Ubki\Pull\Collection\Contacts $contacts = null,
-        Ubki\Pull\Collection\Documents $documents = null
+        Ubki\Pull\Collection\Contact $contacts,
+        Ubki\Pull\Collection\Document $documents
     ) {
         $this->language = $language;
         $this->identification = $identification;

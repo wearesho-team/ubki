@@ -83,16 +83,4 @@ class CreditRequest extends Ubki\Element
     {
         return $this->organization;
     }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            CreditRequest::DATE => $this->getDate(),
-            CreditRequest::ID => $this->getId(),
-            CreditRequest::INN => $this->getInn(),
-            CreditRequest::REASON => $this->getReason(),
-            CreditRequest::DECISION => $this->getDecision(),
-            CreditRequest::ORGANIZATION => $this->getOrganization(),
-        ];
-    }
 }

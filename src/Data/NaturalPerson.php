@@ -146,24 +146,4 @@ class NaturalPerson extends IdentifiedPerson
     {
         return $this->socialStatus;
     }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            NaturalPerson::CREATED_AT => $this->getCreatedAt(),
-            NaturalPerson::LANGUAGE => $this->getLanguage(),
-            NaturalPerson::INN => $this->getInn(),
-            NaturalPerson::NAME => $this->getName(),
-            NaturalPerson::PATRONYMIC => $this->getPatronymic(),
-            NaturalPerson::SURNAME => $this->getSurname(),
-            NaturalPerson::BIRTH_DATE => $this->getBirthDate(),
-            NaturalPerson::GENDER => $this->getGender(),
-            NaturalPerson::FAMILY_STATUS => $this->getFamilyStatus(),
-            NaturalPerson::EDUCATION => $this->getEducation(),
-            NaturalPerson::NATIONALITY => $this->getNationality(),
-            NaturalPerson::REGISTRATION_SPD => $this->getRegistrationSpd(),
-            NaturalPerson::SOCIAL_STATUS => $this->getSocialStatus(),
-            NaturalPerson::CHILDREN_COUNT => $this->getChildrenCount(),
-        ];
-    }
 }

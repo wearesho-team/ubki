@@ -8,7 +8,7 @@ use Wearesho\Bobra\Ubki\Data\Collection;
 
 /**
  * Class CollectionsTest
- * @package Wearesho\Bobra\Ubki\Tests\Unit\Data
+ * @package Wearesho\Bobra\Ubki\Tests\Unit\Head
  */
 class CollectionsTest extends TestCase
 {

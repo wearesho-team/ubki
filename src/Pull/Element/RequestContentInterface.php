@@ -14,9 +14,9 @@ interface RequestContentInterface extends Ubki\ElementInterface
 
     public function getIdentification(): Identification;
 
-    public function getContacts(): ?Ubki\Pull\Collection\Contacts;
+    public function getContacts(): Ubki\Pull\Collection\Contact;
 
-    public function getDocuments(): ?Ubki\Pull\Collection\Documents;
+    public function getDocuments(): Ubki\Pull\Collection\Document;
 
     public function getLanguage(): Ubki\Dictionary\Language;
 }

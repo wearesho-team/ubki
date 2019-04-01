@@ -22,20 +22,16 @@ abstract class Dictionary extends Enum implements \JsonSerializable, Dictionary\
 
     final public function __toString(): string
     {
-        return (string)($this->description ?? $this->getValue());
+        return (string)($this->description ?? $this->getKey());
     }
 
     public function jsonSerialize(): array
     {
-        return \array_merge(
-            [
-                'value' => $this->getValue(),
-                'key' => $this->getKey(),
-            ],
-            $this->description
-                ? ['description' => $this->description]
-                : []
-        );
+        return [
+            'value' => $this->getValue(),
+            'key' => $this->getKey(),
+            'description' => $this->description
+        ];
     }
 
     public function getDescription(): ?string

@@ -11,7 +11,7 @@ use Wearesho\Bobra\Ubki;
 
 /**
  * Class ServiceTest
- * Data for tests taken from specification
+ * Head for tests taken from specification
  * @package Wearesho\Bobra\Ubki\Tests\Pull
  * @coversDefaultClass \Wearesho\Bobra\Ubki\Pull\Service
  * @internal
@@ -288,7 +288,7 @@ class ServiceTest extends TestCase
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $requestResponsePair = $this->fakeService->import(new Ubki\Pull\Request(
-            new Ubki\Pull\Request\Data(
+            new Ubki\Pull\Request\Head(
                 Ubki\Pull\Report\Type::CREDIT_REPORT(),
                 Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
@@ -304,13 +304,13 @@ class ServiceTest extends TestCase
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE)
                 ),
-                new Ubki\Pull\Collection\Contacts([
+                new Ubki\Pull\Collection\Contact([
                     new Ubki\Pull\Element\Contact(
                         Ubki\Dictionary\Contact::MOBILE(),
                         static::VALUE
                     ),
                 ]),
-                new Ubki\Pull\Collection\Documents([
+                new Ubki\Pull\Collection\Document([
                     new Ubki\Pull\Element\Document(
                         Ubki\Dictionary\Document::PASSPORT(),
                         static::SERIAL,
@@ -324,7 +324,7 @@ class ServiceTest extends TestCase
 <doc>
 <ubki sessid="A1F593950A8F4562AE5A5DB1914D658A">
 <req_envelope>
-<req_xml>PHJlcXVlc3QgcmVxdHlwZT0iMDkiIHJlcXJlYXNvbj0iNCIgcmVxZGF0ZT0iMjAxOC0wMy0xMiI+CiAgPGkgcmVxbG5nPSIxIj4KICAgIDxpZGVudCBva3BvPSJ0ZXN0SW5uIiBmbmFtZT0idGVzdE5hbWUiIG1uYW1lPSJ0ZXN0UGF0cm9ueW1pYyIgbG5hbWU9InRlc3RTdXJuYW1lIiBiZGF0ZT0iMjAxOC0wMy0xMiIvPgogICAgPGNvbnRhY3RzPgogICAgICA8Y29udCBjdHlwZT0iMyIgY3ZhbD0idGVzdFZhbHVlIi8+CiAgICA8L2NvbnRhY3RzPgogICAgPGRvY3M+CiAgICAgIDxkb2MgZHR5cGU9IjEiIGRzZXI9InRlc3RTZXJpYWwiIGRub209InRlc3ROdW1iZXIiLz4KICAgIDwvZG9jcz4KICAgIDxtdmQvPgogICAgPGJwaG9uZSBwaG9uZT0iIi8+CiAgPC9pPgo8L3JlcXVlc3Q+</req_xml></req_envelope></ubki></doc>'; // phpcs:ignore
+<req_xml>PHJlcXVlc3QgcmVxdHlwZT0iMDkiIHJlcXJlYXNvbj0iNCIgcmVxZGF0ZT0iMjAxOC0wMy0xMiI+PGkgcmVxbG5nPSIxIj48aWRlbnQgb2twbz0idGVzdElubiIgZm5hbWU9InRlc3ROYW1lIiBtbmFtZT0idGVzdFBhdHJvbnltaWMiIGxuYW1lPSJ0ZXN0U3VybmFtZSIgYmRhdGU9IjIwMTgtMDMtMTIgMDA6MDA6MDAiLz48Y29udGFjdHM+PGNvbnQgY3R5cGU9IjMiIGN2YWw9InRlc3RWYWx1ZSIvPjwvY29udGFjdHM+PGRvY3M+PGRvYyBkdHlwZT0iMSIgZHNlcj0idGVzdFNlcmlhbCIgZG5vbT0idGVzdE51bWJlciIvPjwvZG9jcz48bXZkPjwvbXZkPjxicGhvbmUgcGhvbmU9IiIvPjwvaT48L3JlcXVlc3Q+</req_xml></req_envelope></ubki></doc>'; // phpcs:ignore
         $this->assertXmlStringEqualsXmlString(
             $expectRequest,
             $requestResponsePair->getRequest()

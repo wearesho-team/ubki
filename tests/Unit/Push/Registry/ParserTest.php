@@ -31,7 +31,7 @@ class ParserTest extends TestCase
         $responses = $parser->parseResponses($registryXmlBody);
 
         $this->assertEquals(
-            new Ubki\Push\Registry\ResponseCollection([
+            new Ubki\Push\Registry\Response\Collection([
                 new Ubki\Push\Registry\Rep\Response(
                     Carbon::create(2010, 10, 10, 0, 0, 0),
                     'IN#0000018427',

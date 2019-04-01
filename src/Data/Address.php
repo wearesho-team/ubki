@@ -173,27 +173,4 @@ class Address extends Ubki\Element
     {
         return $this->cityType;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function associativeAttributes(): array
-    {
-        return [
-            Address::LANGUAGE => $this->language,
-            Address::CREATED_AT => $this->createdAt,
-            Address::TYPE => $this->addressType,
-            Address::INDEX => $this->index,
-            Address::HOUSE => $this->house,
-            Address::AREA => $this->area,
-            Address::STATE => $this->state,
-            Address::CITY => $this->city,
-            Address::FLAT => $this->flat,
-            Address::FULL_ADDRESS => $this->fullAddress,
-            Address::CORPUS => $this->corpus,
-            Address::CITY_TYPE => $this->cityType,
-            Address::STREET => $this->street,
-            Address::COUNTRY => $this->country,
-        ];
-    }
 }

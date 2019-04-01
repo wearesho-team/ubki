@@ -10,21 +10,21 @@ use Wearesho\Bobra\Ubki\Push\Registry;
 /**
  * Class ResponseCollectionTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Registry
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Push\Registry\ResponseCollection
+ * @coversDefaultClass \Wearesho\Bobra\Ubki\Push\Registry\Response\Collection
  */
 class ResponseCollectionTest extends TestCase
 {
     /** @var array */
     protected $responses;
 
-    /** @var Registry\ResponseCollection */
+    /** @var Registry\Response\Collection */
     protected $testResponseCollection;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->testResponseCollection = new Registry\ResponseCollection([
+        $this->testResponseCollection = new Registry\Response\Collection([
             new Registry\Rep\Response(
                 Carbon::createFromFormat('Ymd', '20101010'),
                 'IN#0000018427',

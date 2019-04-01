@@ -45,16 +45,4 @@ class Photo extends Ubki\Element
     {
         return $this->inn;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function associativeAttributes(): array
-    {
-        return [
-            Photo::CREATED_AT => $this->getCreatedAt(),
-            Photo::INN => $this->getInn(),
-            Photo::PHOTO => $this->getUri(),
-        ];
-    }
 }

@@ -44,7 +44,7 @@ class Credential extends Ubki\Element
     /** @var Ubki\Data\Collection\Address */
     protected $addresses;
 
-    /** @var string|null */
+    /** @var string */
     protected $inn;
 
     /** @var Ubki\Data\Collection\Work|null */
@@ -65,7 +65,7 @@ class Credential extends Ubki\Element
         Ubki\Data\Collection\IdentifiedPerson $identifiers,
         Ubki\Data\Collection\Document $documents,
         Ubki\Data\Collection\Address $addresses,
-        string $inn = null,
+        string $inn,
         Ubki\Data\Collection\Work $works = null,
         Ubki\Data\Collection\Photo $photos = null,
         Ubki\Data\Collection\LinkedPerson $linkedPersons = null
@@ -124,7 +124,7 @@ class Credential extends Ubki\Element
         return $this->addresses;
     }
 
-    public function getInn(): ?string
+    public function getInn(): string
     {
         return $this->inn;
     }
@@ -142,17 +142,5 @@ class Credential extends Ubki\Element
     public function getLinkedPersons(): ?Ubki\Data\Collection\LinkedPerson
     {
         return $this->linkedPersons;
-    }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            Credential::PATRONYMIC => $this->getPatronymic(),
-            Credential::LANGUAGE => $this->getLanguage(),
-            Credential::INN => $this->getInn(),
-            Credential::NAME => $this->getName(),
-            Credential::BIRTH_DATE => $this->getBirthDate(),
-            Credential::SURNAME => $this->getSurname(),
-        ];
     }
 }

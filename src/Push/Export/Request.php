@@ -7,6 +7,9 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Request
  * @package Wearesho\Bobra\Ubki\Push\Export
+ *
+ * @method Ubki\Push\Export\Request\Head getHead()
+ * @method Ubki\Push\Export\Request\Body getBody()
  */
 class Request extends Ubki\Element implements RequestInterface
 {
@@ -14,7 +17,7 @@ class Request extends Ubki\Element implements RequestInterface
 
     public const TAG = 'doc';
 
-    public function __construct(Request\Data $head, DataDocumentInterface $body)
+    public function __construct(Request\Head $head, Request\Body $body)
     {
         $this->head = $head;
         $this->body = $body;

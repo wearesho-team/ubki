@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Pull;
 
-use Wearesho\Bobra\Ubki\RequestResponsePair;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Interface ServiceInterface
@@ -10,5 +10,12 @@ use Wearesho\Bobra\Ubki\RequestResponsePair;
  */
 interface ServiceInterface
 {
-    public function import(RequestInterface $request): RequestResponsePair;
+    /**
+     * @param Request $request
+     *
+     * @return Ubki\RequestResponsePair
+     * @throws Ubki\Exception\Request
+     * @throws Ubki\Exception\Former
+     */
+    public function import(Request $request): Ubki\RequestResponsePair;
 }

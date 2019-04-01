@@ -72,18 +72,4 @@ abstract class RequestHead extends Ubki\Element
     {
         return $this->initiator;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function associativeAttributes(): array
-    {
-        return [
-            RequestHead::ID => $this->getId(),
-            RequestHead::DATE => $this->getDate(),
-            RequestHead::INITIATOR => $this->getInitiator(),
-            RequestHead::REASON => $this->getReason(),
-            RequestHead::VERSION => $this->getVersion(),
-        ];
-    }
 }

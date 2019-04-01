@@ -10,31 +10,18 @@ use Wearesho\Bobra\Ubki;
 /**
  * Class Service
  * @package Wearesho\Bobra\Ubki\Push\Registry
+ *
+ * @property  Ubki\Push\ConfigInterface $config
  */
-class Service implements ServiceInterface
+class Service extends Ubki\Service implements ServiceInterface
 {
-    /** @var Ubki\Push\ConfigInterface */
-    protected $config;
-
-    /** @var GuzzleHttp\ClientInterface */
-    protected $client;
-
-    /** @var Ubki\Authorization\ProviderInterface */
-    protected $authProvider;
-
-    /** @var Log\LoggerInterface */
-    protected $logger;
-
     public function __construct(
         Ubki\Push\ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
         Log\LoggerInterface $logger = null
     ) {
-        $this->config = $config;
-        $this->authProvider = $authProvider;
-        $this->client = $client;
-        $this->logger = $logger ?? new Log\NullLogger();
+        parent::__construct($config, $authProvider, $client, $logger ?? new Log\NullLogger());
     }
 
     /**
@@ -43,37 +30,22 @@ class Service implements ServiceInterface
      * @return Ubki\RequestResponsePair
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws RequestException
+     * @throws Ubki\Exception\Request
      * @throws UnknownErrorException
      */
-    public function send(RequestInterface $request): Ubki\RequestResponsePair
+    public function registry(RequestInterface $request): Ubki\RequestResponsePair
     {
-        $guzzleRequest = $this->convertToGuzzleRequest($request);
-
-        $this->logger->debug("UBKI registry request {url}", [
-            'url' => (string)$guzzleRequest->getUri(),
-        ]);
-
         $this->validateRequestType($request);
 
         /** @var GuzzleHttp\Psr7\Response $httpResponse */
-        $response = $this->client->send($guzzleRequest);
-        $urlFile = (string)$response->getBody();
+        $pair = $this->send($this->config->getRegistryUrl(), $request);
+        $fileUrl = $pair->getResponse();
 
-        $this->validateUrl($urlFile);
+        $this->validateUrl($fileUrl);
 
         return new Ubki\RequestResponsePair(
-            (string)$guzzleRequest->getBody(),
-            $fileContent = $this->getFileContent($urlFile)
-        );
-    }
-
-    protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
-    {
-        return new GuzzleHttp\Psr7\Request(
-            'post',
-            $this->config->getRegistryUrl(),
-            [],
-            \base64_encode($this->getBody($request))
+            (string)$pair->getRequest(),
+            $fileContent = $this->getFileContent($fileUrl)
         );
     }
 
@@ -88,36 +60,6 @@ class Service implements ServiceInterface
             default:
                 throw new UnsupportedRequestException($request, 'Invalid request type: ' . $type);
         }
-    }
-
-    /**
-     * Xml body for Guzzle request
-     *
-     * @param RequestInterface $request
-     *
-     * @return string
-     */
-    private function getBody(RequestInterface $request): string
-    {
-        $idout = $request->getUbkiId();
-        $idalien = $request->getPartnerId();
-        $params = [
-            Tag::REPORT => [
-                '_attributes' => \array_merge(
-                    [
-                        Attribute::TYPE => $request->getRegistryType(),
-                        Attribute::EXPORT_DATE => $request->getOperationDate()->format('Ymd'),
-                        Attribute::SESSION_ID => $this->authProvider->provide($this->config)->getSessionId(),
-                    ],
-                    !empty($idout) ? [Attribute::UBKI_ID => $idout] : [],
-                    !empty($idalien) ? [Attribute::PARTNER_ID => $idalien] : []
-                ),
-            ],
-        ];
-
-        // TODO: implement adding grp attribute for Bil Request
-
-        return  ArrayToXml::convert($params, Tag::ROOT, true, 'utf-8');
     }
 
     /**
@@ -142,9 +84,9 @@ class Service implements ServiceInterface
     private function getFileContent(string $url): string
     {
         try {
-            $response = $this->client->request('get', $url);
+            $response = $this->client->request('GET', $url);
         } catch (GuzzleHttp\Exception\RequestException $exception) {
-            if (\is_null($exception->getResponse())) {
+            if (!$exception->hasResponse()) {
                 throw $exception;
             }
 
@@ -155,5 +97,34 @@ class Service implements ServiceInterface
         }
 
         return (string)$response->getBody();
+    }
+
+    /**
+     * @param RequestInterface|Ubki\RequestInterface $request
+     * @param string $sessionId
+     *
+     * @return string
+     */
+    protected function formBody(Ubki\RequestInterface $request, string $sessionId): string
+    {
+        $idout = $request->getUbkiId();
+        $idalien = $request->getPartnerId();
+        $params = [
+            Tag::REPORT => [
+                static::ATTRIBUTES => \array_merge(
+                    [
+                        Attribute::TYPE => $request->getRegistryType(),
+                        Attribute::EXPORT_DATE => $request->getOperationDate()->format('Ymd'),
+                        Attribute::SESSION_ID => $sessionId,
+                    ],
+                    !empty($idout) ? [Attribute::UBKI_ID => $idout] : [],
+                    !empty($idalien) ? [Attribute::PARTNER_ID => $idalien] : []
+                ),
+            ],
+        ];
+
+        // TODO: implement adding grp attribute for Bil Request
+
+        return ArrayToXml::convert($params, Tag::ROOT, true, 'utf-8');
     }
 }

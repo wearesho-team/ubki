@@ -203,28 +203,6 @@ class DealLife extends Ubki\Element
         return $this->actualEndDate;
     }
 
-    public function associativeAttributes(): array
-    {
-        return [
-            DealLife::ID => $this->getId(),
-            DealLife::ISSUE_DATE => $this->getIssueDate(),
-            DealLife::STATUS => $this->getStatus(),
-            DealLife::ACTUAL_END_DATE => $this->getActualEndDate(),
-            DealLife::CURRENT_DEBT => $this->getCurrentDebt(),
-            DealLife::DELAY_INDICATION => $this->getDelayIndication(),
-            DealLife::END_DATE => $this->getEndDate(),
-            DealLife::LIMIT => $this->getLimit(),
-            DealLife::MANDATORY_PAYMENT => $this->getMandatoryPayment(),
-            DealLife::OVERDUE_TIME => $this->getOverdueTime(),
-            DealLife::CURRENT_OVERDUE_DEBT => $this->getCurrentOverdueDebt(),
-            DealLife::PAYMENT_DATE => $this->getPaymentDate(),
-            DealLife::PAYMENT_INDICATION => $this->getPaymentIndication(),
-            DealLife::PERIOD_MONTH => $this->getPeriodMonth(),
-            DealLife::PERIOD_YEAR => $this->getPeriodYear(),
-            DealLife::TRANCHE_INDICATION => $this->getTrancheIndication(),
-        ];
-    }
-
     protected function validateActualEndDate(?string $actualEndDate, Ubki\Dictionary\DealStatus $status): void
     {
         if (is_null($actualEndDate) && $status->equals(Ubki\Dictionary\DealStatus::CLOSE())) {

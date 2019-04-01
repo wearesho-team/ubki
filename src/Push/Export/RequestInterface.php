@@ -12,5 +12,5 @@ interface RequestInterface extends Ubki\RequestInterface
 {
     public function getHead(): Ubki\Data\RequestHead;
 
-    public function getBody(): DataDocumentInterface;
+    public function getBody(): Request\Body;
 }

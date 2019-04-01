@@ -61,17 +61,4 @@ class LinkedPerson extends Ubki\Element
     {
         return $this->issueDate;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function associativeAttributes(): array
-    {
-        return [
-            LinkedPerson::NAME => $this->getName(),
-            LinkedPerson::ERGPOU => $this->getErgpou(),
-            LinkedPerson::ISSUE_DATE => $this->getIssueDate(),
-            LinkedPerson::ROLE => $this->getRole(),
-        ];
-    }
 }

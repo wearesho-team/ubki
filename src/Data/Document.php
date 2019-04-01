@@ -106,18 +106,4 @@ class Document extends Ubki\Element
     {
         return $this->termin;
     }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            Document::TYPE => $this->getType(),
-            Document::CREATED_AT => $this->getCreatedAt(),
-            Document::ISSUE_DATE => $this->getIssueDate(),
-            Document::LANGUAGE => $this->getLanguage(),
-            Document::NUMBER => $this->getNumber(),
-            Document::SERIAL => $this->getSerial(),
-            Document::TERMIN => $this->getTermin(),
-            Document::ISSUE => $this->getIssue(),
-        ];
-    }
 }

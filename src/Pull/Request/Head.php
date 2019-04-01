@@ -1,20 +1,20 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Push\Export\Request;
+namespace Wearesho\Bobra\Ubki\Pull\Request;
 
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class Data
- * @package Wearesho\Bobra\Ubki\Push\Export\Request
+ * Class Head
+ * @package Wearesho\Bobra\Ubki\Pull\Request
  */
-class Data extends Ubki\Data\RequestHead
+class Head extends Ubki\Data\RequestHead
 {
-    /** @var Type */
+    /** @var Ubki\Pull\Report\Type */
     protected $type;
 
     public function __construct(
-        Type $type,
+        Ubki\Pull\Report\Type $type,
         Ubki\Dictionary\RequestReason $reason,
         \DateTimeInterface $date = null,
         string $id = null,
@@ -26,18 +26,8 @@ class Data extends Ubki\Data\RequestHead
         parent::__construct($reason, $date, $id, $initiator, $version);
     }
 
-    public function getType(): Type
+    public function getType(): Ubki\Pull\Report\Type
     {
         return $this->type;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function associativeAttributes(): array
-    {
-        return array_merge(parent::associativeAttributes(), [
-            Data::TYPE => $this->type
-        ]);
     }
 }

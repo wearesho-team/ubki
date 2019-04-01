@@ -16,10 +16,10 @@ trait RequestContentTrait
     /** @var Identification */
     protected $identification;
 
-    /** @var Ubki\Pull\Collection\Contacts|null */
+    /** @var Ubki\Pull\Collection\Contact */
     protected $contacts;
 
-    /** @var Ubki\Pull\Collection\Documents|null */
+    /** @var Ubki\Pull\Collection\Document */
     protected $documents;
 
     public function getIdentification(): Identification
@@ -27,12 +27,12 @@ trait RequestContentTrait
         return $this->identification;
     }
 
-    public function getContacts(): ?Ubki\Pull\Collection\Contacts
+    public function getContacts(): Ubki\Pull\Collection\Contact
     {
         return $this->contacts;
     }
 
-    public function getDocuments(): ?Ubki\Pull\Collection\Documents
+    public function getDocuments(): Ubki\Pull\Collection\Document
     {
         return $this->documents;
     }

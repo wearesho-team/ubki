@@ -22,13 +22,14 @@ class RequestTest extends TestCase
     protected const VALUE = 'testValue';
     protected const SERIAL = 'testSerial';
     protected const NUMBER = 'testNumber';
+
     /** @var Ubki\Pull\Request */
     protected $fakeRequest;
 
     protected function setUp(): void
     {
         $this->fakeRequest = new Ubki\Pull\Request(
-            new Ubki\Pull\Request\Data(
+            new Ubki\Pull\Request\Head(
                 Ubki\Pull\Report\Type::CREDIT_REPORT(),
                 Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
@@ -44,13 +45,13 @@ class RequestTest extends TestCase
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE)
                 ),
-                new Ubki\Pull\Collection\Contacts([
+                new Ubki\Pull\Collection\Contact([
                     new Ubki\Pull\Element\Contact(
                         Ubki\Dictionary\Contact::MOBILE(),
                         static::VALUE
                     ),
                 ]),
-                new Ubki\Pull\Collection\Documents([
+                new Ubki\Pull\Collection\Document([
                     new Ubki\Pull\Element\Document(
                         Ubki\Dictionary\Document::PASSPORT(),
                         static::SERIAL,
@@ -73,13 +74,13 @@ class RequestTest extends TestCase
                     static::SURNAME,
                     Carbon::parse(static::BIRTH_DATE)
                 ),
-                new Ubki\Pull\Collection\Contacts([
+                new Ubki\Pull\Collection\Contact([
                     new Ubki\Pull\Element\Contact(
                         Ubki\Dictionary\Contact::MOBILE(),
                         static::VALUE
                     ),
                 ]),
-                new Ubki\Pull\Collection\Documents([
+                new Ubki\Pull\Collection\Document([
                     new Ubki\Pull\Element\Document(
                         Ubki\Dictionary\Document::PASSPORT(),
                         static::SERIAL,
@@ -94,7 +95,7 @@ class RequestTest extends TestCase
     public function testGetHead(): void
     {
         $this->assertEquals(
-            new Ubki\Pull\Request\Data(
+            new Ubki\Pull\Request\Head(
                 Ubki\Pull\Report\Type::CREDIT_REPORT(),
                 Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
@@ -107,13 +108,13 @@ class RequestTest extends TestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Contact, documents and identification attributes must be not null if reason is
-     *                           CreditOnline
+     * @expectedExceptionMessage Contact, documents and identification attributes required if reason is
+     *     REQUEST_ONLINE_CREDIT
      */
     public function testCreditOnline(): void
     {
         new Ubki\Pull\Request(
-            new Ubki\Pull\Request\Data(
+            new Ubki\Pull\Request\Head(
                 Ubki\Pull\Report\Type::CREDIT_REPORT(),
                 Ubki\Dictionary\RequestReason::REQUEST_ONLINE_CREDIT(),
                 Carbon::parse(static::DATE),
@@ -122,7 +123,9 @@ class RequestTest extends TestCase
             ),
             new Ubki\Pull\Element\RequestContent(
                 Ubki\Dictionary\Language::RUS(),
-                new Ubki\Pull\Element\Identification(static::INN)
+                new Ubki\Pull\Element\Identification(static::INN),
+                new Ubki\Pull\Collection\Contact(),
+                new Ubki\Pull\Collection\Document()
             )
         );
     }

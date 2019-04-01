@@ -9,7 +9,7 @@ use Wearesho\Bobra\Ubki;
  * Class Contact
  * @package Wearesho\Bobra\Ubki\Pull\Collection
  */
-class Contacts extends BaseCollection implements Ubki\ElementInterface
+class Contact extends BaseCollection implements Ubki\ElementInterface
 {
     use Ubki\ElementTrait;
 
@@ -17,6 +17,6 @@ class Contacts extends BaseCollection implements Ubki\ElementInterface
 
     public function type(): string
     {
-        return Ubki\Pull\Element\ContactInterface::class;
+        return Ubki\Pull\Element\Contact::class;
     }
 }

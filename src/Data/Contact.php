@@ -61,14 +61,4 @@ class Contact extends Ubki\Element
     {
         return $this->inn;
     }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            Contact::CREATED_AT => $this->getCreatedAt(),
-            Contact::INN => $this->getInn(),
-            Contact::TYPE => $this->getType(),
-            Contact::VALUE => $this->getValue(),
-        ];
-    }
 }

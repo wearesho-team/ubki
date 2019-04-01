@@ -161,20 +161,4 @@ class CourtDecision extends Ubki\Element
     {
         return $this->areaReference;
     }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            CourtDecision::INN => $this->getInn(),
-            CourtDecision::CREATED_AT => $this->getCreatedAt(),
-            CourtDecision::ID => $this->getId(),
-            CourtDecision::AREA => $this->getArea(),
-            CourtDecision::DATE => $this->getDate(),
-            CourtDecision::COURT_NAME => $this->getCourtName(),
-            CourtDecision::COURT_DEAL_TYPE => $this->getCourtDealType(),
-            CourtDecision::DOCUMENT_TYPE => $this->getDocumentType(),
-            CourtDecision::LEGAL_FACT => $this->getLegalFact(),
-            CourtDecision::SUBJECT_STATUS => $this->getSubjectStatus(),
-        ];
-    }
 }

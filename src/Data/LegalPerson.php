@@ -91,19 +91,4 @@ class LegalPerson extends IdentifiedPerson
     {
         return $this->taxRegistrationDate;
     }
-
-    public function associativeAttributes(): array
-    {
-        return [
-            LegalPerson::CREATED_AT => $this->getCreatedAt(),
-            LegalPerson::LANGUAGE => $this->getLanguage(),
-            LegalPerson::ERGPOU => $this->getErgpou(),
-            LegalPerson::NAME => $this->getName(),
-            LegalPerson::FORM => $this->getOwnership(),
-            LegalPerson::ECONOMY_BRANCH => $this->getEconomyBranch(),
-            LegalPerson::ACTIVITY_TYPE => $this->getActivityType(),
-            LegalPerson::EDR_REGISTRATION_DATE => $this->getEdrRegistrationDate(),
-            LegalPerson::TAX_REGISTRATION_DATE => $this->getTaxRegistrationDate()
-        ];
-    }
 }

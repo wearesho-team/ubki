@@ -95,20 +95,4 @@ class Work extends Ubki\Element
     {
         return $this->income;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function associativeAttributes(): array
-    {
-        return [
-            Work::CREATED_AT => $this->getCreatedAt(),
-            Work::LANGUAGE => $this->getLanguage(),
-            Work::RANK => $this->getRank(),
-            Work::ERGPOU => $this->getErgpou(),
-            Work::NAME => $this->getName(),
-            Work::EXPERIENCE => $this->getExperience(),
-            Work::INCOME => $this->getIncome(),
-        ];
-    }
 }

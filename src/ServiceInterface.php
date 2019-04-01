@@ -10,5 +10,5 @@ use Wearesho\Bobra\Ubki;
  */
 interface ServiceInterface
 {
-    public function send(string $url, RequestInterface $request, array $options = []): Ubki\RequestResponsePair;
+    public function send(string $url, RequestInterface $request, array $headers = []): Ubki\RequestResponsePair;
 }

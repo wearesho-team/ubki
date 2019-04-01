@@ -25,7 +25,7 @@ class ResponseTest extends TestCase
             'A1F593950A8F4562AE5A5DB1914D658A',
             Ubki\Push\Registry\Response\State::CREATED(),
             Ubki\Push\Export\Request\Type::EXPORT(),
-            Ubki\Data\Block\Identification::ID,
+            Ubki\Block::IDENTIFICATION,
             'IDENT',
             'NW',
             '',
@@ -76,7 +76,7 @@ class ResponseTest extends TestCase
 
     public function testGetBlockId(): void
     {
-        $this->assertEquals(Ubki\Data\Block\Identification::ID, $this->response->getBlockId());
+        $this->assertEquals(Ubki\Block::IDENTIFICATION, $this->response->getBlockId());
     }
 
     public function testGetItem(): void

@@ -20,7 +20,7 @@ class EntityTest extends TestCase
     protected function setUp(): void
     {
         $this->block = new Ubki\Push\Error\Entity(
-            Ubki\Data\Block\Identification::ID,
+            Ubki\Block::IDENTIFICATION,
             'ADDR',
             'lng',
             'CRITICAL',
@@ -46,7 +46,7 @@ class EntityTest extends TestCase
     public function testGetBlockId(): void
     {
         $this->assertEquals(
-            Ubki\Data\Block\Identification::ID,
+            Ubki\Block::IDENTIFICATION,
             $this->block->getBlockId()
         );
     }
@@ -71,7 +71,7 @@ class EntityTest extends TestCase
     {
         $this->assertEquals(
             [
-                'blockId' => Ubki\Data\Block\Identification::ID,
+                'blockId' => Ubki\Block::IDENTIFICATION,
                 'tag' => 'ADDR',
                 'attribute' => 'lng',
                 'type' => 'CRITICAL',

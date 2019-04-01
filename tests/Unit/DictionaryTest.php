@@ -28,7 +28,7 @@ class DictionaryTest extends TestCase
     public function testToString(): void
     {
         $language = Language::ENG();
-        $this->assertEquals(Language::ENG, (string)$language);
+        $this->assertEquals('ENG', (string)$language);
         $language = Language::ENG(static::LANGUAGE_DESCRIPTION);
         $this->assertEquals(static::LANGUAGE_DESCRIPTION, (string)$language);
     }
