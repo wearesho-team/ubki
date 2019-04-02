@@ -36,6 +36,8 @@ class Contact
         Ubki\Dictionary\Contact $type,
         string $inn = null
     ) {
+        Ubki\Validator::INN()->validate($inn, true);
+
         $this->createdAt = $createdAt;
         $this->value = $value;
         $this->type = $type;

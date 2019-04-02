@@ -78,6 +78,11 @@ class NaturalPerson extends IdentifiedPerson
         Ubki\Dictionary\SocialStatus $socialStatus = null,
         int $childrenCount = null
     ) {
+        Ubki\Validator::INN()->validate($inn, true);
+        Ubki\Validator::NAME()->validate($patronymic, true);
+        Ubki\Validator::NAME()->validate($name);
+        Ubki\Validator::NAME()->validate($surname);
+
         $this->surname = $surname;
         $this->birthDate = $birthDate;
         $this->gender = $gender;

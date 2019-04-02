@@ -17,7 +17,7 @@ class Work
     public const LANGUAGE_REF = 'lngref';
     public const RANK = 'cdolgn';
     public const RANK_REF = 'cdolgnref';
-    public const ERGPOU = 'wokpo';
+    public const EGRPOU = 'wokpo';
     public const NAME = 'wname';
     public const EXPERIENCE = 'wstag';
     public const INCOME = 'wdohod';
@@ -29,7 +29,7 @@ class Work
     protected $language;
 
     /** @var string */
-    protected $ergpou;
+    protected $egrpou;
 
     /** @var string */
     protected $name;
@@ -46,15 +46,20 @@ class Work
     public function __construct(
         \DateTimeInterface $createdAt,
         Ubki\Dictionary\Language $language,
-        string $ergpou,
+        string $egrpou,
         string $name,
         Ubki\Dictionary\IdentifierRank $rank = null,
         int $experience = null,
         float $income = null
     ) {
+        Ubki\Validator::TWO_NUMBER()->validate($experience, true);
+        Ubki\Validator::BIG_FLOAT()->validate($income, true);
+        Ubki\Validator::WORK_NAME()->validate($name);
+        Ubki\Validator::OKPO_UNICODE()->validate($egrpou);
+
         $this->createdAt = $createdAt;
         $this->language = $language;
-        $this->ergpou = $ergpou;
+        $this->egrpou = $egrpou;
         $this->name = $name;
         $this->rank = $rank;
         $this->experience = $experience;
@@ -71,9 +76,9 @@ class Work
         return $this->language;
     }
 
-    public function getErgpou(): string
+    public function getEgrpou(): string
     {
-        return $this->ergpou;
+        return $this->egrpou;
     }
 
     public function getName(): string

@@ -42,7 +42,7 @@ class ElementsTest extends TestCase
                     'city' => 'testCity',
                     'street' => 'testStreet',
                     'house' => 'testHouse',
-                    'index' => 'testIndex',
+                    'index' => '61166',
                     'state' => 'testState',
                     'area' => 'testArea',
                     'cityType' => Ubki\Dictionary\City::TOWN(),
@@ -215,7 +215,7 @@ class ElementsTest extends TestCase
                     'createdAt' => Carbon::make('2018-03-12'),
                     'language' => Ubki\Dictionary\Language::ENG(),
                     'name' => 'testName',
-                    'ergpou' => 'testErgpou',
+                    'egrpou' => '12345678',
                     'ownership' => Ubki\Dictionary\Ownership::BRANCH(),
                     'economyBranch' => Ubki\Dictionary\EconomyBranch::BUILDING(),
                     'activityType' => 'testActivityType',
@@ -229,7 +229,7 @@ class ElementsTest extends TestCase
                     'name' => 'testName',
                     'role' => Ubki\Dictionary\LinkedIdentifierRole::FOUNDER(),
                     'issueDate' => Carbon::make('2018-03-12'),
-                    'ergpou' => 'testErgpou'
+                    'egrpou' => '12345678'
                 ]
             ],
             [
@@ -318,7 +318,7 @@ class ElementsTest extends TestCase
                 [
                     'createdAt' => Carbon::make('2010-03-12'),
                     'language' => Ubki\Dictionary\Language::ENG(),
-                    'ergpou' => 'testErgpou',
+                    'egrpou' => '12345678',
                     'name' => 'testName',
                     'rank' => Ubki\Dictionary\IdentifierRank::DIRECTOR(),
                     'experience' => 10,

@@ -103,6 +103,14 @@ class DealLife
         \DateTimeInterface $paymentDate,
         \DateTimeInterface $actualEndDate = null
     ) {
+        Ubki\Validator::MONTH()->validate($periodMonth);
+        Ubki\Validator::YEAR()->validate($periodYear);
+        Ubki\Validator::BIG_FLOAT()->validate((string)$limit);
+        Ubki\Validator::BIG_FLOAT()->validate((string)$mandatoryPayment);
+        Ubki\Validator::BIG_FLOAT()->validate((string)$currentDebt);
+        Ubki\Validator::BIG_FLOAT()->validate((string)$currentOverdueDebt);
+        Ubki\Validator::SHORT_NUMBER()->validate((string)$overdueTime);
+
         $this->id = $id;
         $this->periodMonth = $periodMonth;
         $this->periodYear = $periodYear;

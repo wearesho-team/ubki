@@ -12,7 +12,7 @@ class LinkedPerson
 {
     public const TAG = 'linked';
 
-    public const ERGPOU = 'okpo2';
+    public const EGRPOU = 'okpo2';
     public const NAME = 'okpo2_name';
     public const ROLE = 'linkrole';
     public const ROLE_REF = 'linkroleref';
@@ -28,23 +28,26 @@ class LinkedPerson
     protected $issueDate;
 
     /** @var string|null */
-    protected $ergpou;
+    protected $egrpou;
 
     public function __construct(
         string $name,
         Ubki\Dictionary\LinkedIdentifierRole $role,
         \DateTimeInterface $issueDate,
-        string $ergpou = null
+        string $egrpou = null
     ) {
+        Ubki\Validator::OKPO_UNICODE()->validate($egrpou, true);
+        Ubki\Validator::JUST_TEXT_250()->validate($name);
+
         $this->name = $name;
         $this->role = $role;
         $this->issueDate = $issueDate;
-        $this->ergpou = $ergpou;
+        $this->egrpou = $egrpou;
     }
 
-    public function getErgpou(): ?string
+    public function getEgrpou(): ?string
     {
-        return $this->ergpou;
+        return $this->egrpou;
     }
 
     public function getName(): string

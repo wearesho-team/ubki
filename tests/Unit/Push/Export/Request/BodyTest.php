@@ -14,7 +14,7 @@ class BodyTest extends TestCase
 {
     protected const NAME = 'testName';
     protected const CREATED_AT = '2018-03-12';
-    protected const INN = 'testInn';
+    protected const INN = '1234567890';
     protected const PATRONYMIC = 'testPatronymic';
     protected const SURNAME = 'testSurname';
     protected const BIRTH_DATE = '1998-03-12';
@@ -28,13 +28,13 @@ class BodyTest extends TestCase
     protected const CITY = 'testCity';
     protected const STREET = 'testStreet';
     protected const HOUSE = 'testHouse';
-    protected const INDEX = 'testIndex';
+    protected const INDEX = '61166';
     protected const STATE = 'testState';
     protected const AREA = 'testArea';
     protected const CORPUS = 'testCorpus';
     protected const FLAT = 'testFlat';
     protected const FULL_ADDRESS = 'testFullAddress';
-    protected const ERGPOU = 'testErgpou';
+    protected const ERGPOU = '12345678';
     protected const EXPERIENCE = 10;
     protected const INCOME = 1234.56;
     protected const PHOTO = 'testPhoto';

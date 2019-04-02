@@ -21,7 +21,7 @@ class ServiceTest extends TestCase
     protected const PASSWORD = 'testPassword';
     protected const NAME = 'testName';
     protected const CREATED_AT = '2018-03-12';
-    protected const INN = 'testInn';
+    protected const INN = '1234567890';
     protected const PATRONYMIC = 'testPatronymic';
     protected const SURNAME = 'testSurname';
     protected const BIRTH_DATE = '1998-03-12';
@@ -35,13 +35,13 @@ class ServiceTest extends TestCase
     protected const CITY = 'testCity';
     protected const STREET = 'testStreet';
     protected const HOUSE = 'testHouse';
-    protected const INDEX = 'testIndex';
+    protected const INDEX = '61166';
     protected const STATE = 'testState';
     protected const AREA = 'testArea';
     protected const CORPUS = 'testCorpus';
     protected const FLAT = 'testFlat';
     protected const FULL_ADDRESS = 'testFullAddress';
-    protected const ERGPOU = 'testErgpou';
+    protected const ERGPOU = '12345678';
     protected const EXPERIENCE = 10;
     protected const INCOME = 1234.56;
     protected const PHOTO = 'testPhoto';
@@ -339,30 +339,30 @@ class ServiceTest extends TestCase
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
                     <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" inn="testInn" mname="testPatronymic" lname="testSurname" 
+                        <cki reqlng="1" fname="testName" inn="1234567890" mname="testPatronymic" lname="testSurname" 
                         bdate="1998-03-12">
-                            <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
+                            <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="1234567890"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
                                    csex="1" cgrag="643" spd="2" sstate="5"/>
                             <urident lng="1" vdate="2018-03-12" urname="testName" urdatregnal="2016-03-12"
                                      urdatreg="2017-03-12" ureconom="F" urvide="testActivityType"
-                                     okpo="testErgpou" urfrms="610"/>
-                            <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
-                            <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
+                                     okpo="12345678" urfrms="610"/>
+                            <linked okpo2_name="testName" okpo2="12345678" rdate="2018-03-14" linkrole="2"/>
+                            <work wname="testName" wokpo="12345678" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
                             <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testIssue" dnom="testNumber"
                              dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
                                   adcitytype="2" adcorp="testCorpus" adcountry="testCountry" adflat="testFlat"
-                                  addrdirt="testFullAddress" adhome="testHouse" adindex="testIndex" adstate="testState"
+                                  addrdirt="testFullAddress" adhome="testHouse" adindex="61166" adstate="testState"
                                   adstreet="testStreet"/>
-                            <foto vdate="2018-03-12" inn="testInn" foto="testPhoto"/>
+                            <foto vdate="2018-03-12" inn="1234567890" foto="testPhoto"/>
                         </cki>
                     </comp>
                     <comp id="2">
                         <crdeal dlcelcred="9" lng="1" dlref="testId" bdate="1998-03-12" dlvidobes="1" dlamtobes="5000"
-                                dlcurr="980" fname="testName" dlamt="5000" inn="testInn" lname="testSurname"
+                                dlcurr="980" fname="testName" dlamt="5000" inn="1234567890" lname="testSurname"
                                 mname="testPatronymic" dlporpog="9" dldonor="testSource" dlrolesub="1">
                             <deallife dlref="testId" dlds="2018-03-14" dldff="2019-02-01" dlfluse="0" dlamtcur="2400.45"
                                       dlamtexp="2200" dlflbrk="1" dldpf="2019-03-12" dlamtlim="10000" dlamtpaym="2000"
@@ -371,19 +371,19 @@ class ServiceTest extends TestCase
                         </crdeal>
                     </comp>
                     <comp id="3">
-                        <susd voteid="testId" inn="testInn" votesudregion="testArea" vdate="2018-03-12" 
+                        <susd voteid="testId" inn="1234567890" votesudregion="testArea" vdate="2018-03-12" 
                               votesudname="testCourtName"
                               votetype="5" votedate="2018-03-12" votedoctype="testDocumentType"
                               voteurfact="testLegalFact" voteusrst="1"/>
                     </comp>
                     <comp id="4">
-                        <credres redate="2018-03-12" inn="testInn" reqid="testId" result="1" org="testOrganization"
+                        <credres redate="2018-03-12" inn="1234567890" reqid="testId" result="1" org="testOrganization"
                                  reqreason="0"/>
                         <reestrtime hr="1" da="2" wk="3" mn="4" qw="5" ye="10" yu="200"/>
                     </comp>
                     <comp id="10">
-                        <cont ctype="4" cval="testValue" inn="testInn" vdate="2018-03-12"/>
-                        <cont ctype="3" cval="testValue" inn="testInn" vdate="2018-03-12"/>
+                        <cont ctype="4" cval="testValue" inn="1234567890" vdate="2018-03-12"/>
+                        <cont ctype="3" cval="testValue" inn="1234567890" vdate="2018-03-12"/>
                     </comp>
                     </ubkidata>
                 </request>

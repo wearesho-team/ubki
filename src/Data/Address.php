@@ -88,6 +88,16 @@ class Address
         string $flat = null,
         string $fullAddress = null
     ) {
+        Ubki\Validator::COUNTRY()->validate($country);
+        Ubki\Validator::INDEX()->validate($index, true);
+        Ubki\Validator::ADDRESS_STATE()->validate($state, true);
+        Ubki\Validator::ADDRESS_AREA()->validate($area, true);
+        Ubki\Validator::CITY()->validate($city);
+        Ubki\Validator::STREET()->validate($street);
+        Ubki\Validator::COUNTRY()->validate($house);
+        Ubki\Validator::TEXT_40()->validate($flat, true);
+        Ubki\Validator::FULL_ADDRESS()->validate($fullAddress, true);
+
         $this->createdAt = $createdAt;
         $this->language = $language;
         $this->addressType = $addressType;

@@ -126,7 +126,7 @@ class Service extends Ubki\Service implements ServiceInterface
                         Service::ATTRIBUTES => [
                             Ubki\Data\LegalPerson::CREATED_AT => $this->convertDate($person->getCreatedAt()),
                             Ubki\Data\LegalPerson::LANGUAGE => $this->fetchEnum($person->getLanguage()),
-                            Ubki\Data\LegalPerson::ERGPOU => $person->getErgpou(),
+                            Ubki\Data\LegalPerson::ERGPOU => $person->getEgrpou(),
                             Ubki\Data\LegalPerson::NAME => $person->getName(),
                             Ubki\Data\LegalPerson::FORM => $this->fetchEnum($person->getOwnership()),
                             Ubki\Data\LegalPerson::ECONOMY_BRANCH => $this->fetchEnum($person->getEconomyBranch()),
@@ -144,7 +144,7 @@ class Service extends Ubki\Service implements ServiceInterface
                     return [
                         Service::ATTRIBUTES => [
                             Ubki\Data\LinkedPerson::NAME => $person->getName(),
-                            Ubki\Data\LinkedPerson::ERGPOU => $person->getErgpou(),
+                            Ubki\Data\LinkedPerson::EGRPOU => $person->getEgrpou(),
                             Ubki\Data\LinkedPerson::ISSUE_DATE => $this->convertDate($person->getIssueDate()),
                             Ubki\Data\LinkedPerson::ROLE => $this->fetchEnum($person->getRole()),
                         ]
@@ -156,7 +156,7 @@ class Service extends Ubki\Service implements ServiceInterface
                             Ubki\Data\Work::CREATED_AT => $this->convertDate($work->getCreatedAt()),
                             Ubki\Data\Work::LANGUAGE => $this->fetchEnum($work->getLanguage()),
                             Ubki\Data\Work::RANK => $this->fetchEnum($work->getRank()),
-                            Ubki\Data\Work::ERGPOU => $work->getErgpou(),
+                            Ubki\Data\Work::EGRPOU => $work->getEgrpou(),
                             Ubki\Data\Work::NAME => $work->getName(),
                             Ubki\Data\Work::EXPERIENCE => $work->getExperience(),
                             Ubki\Data\Work::INCOME => $work->getIncome(),

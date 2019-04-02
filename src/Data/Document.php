@@ -57,6 +57,10 @@ class Document
         \DateTimeInterface $issueDate,
         \DateTimeInterface $termin = null
     ) {
+        Ubki\Validator::PASSPORT_SERIES()->validate($serial);
+        Ubki\Validator::DOCUMENT_NUMBER()->validate($number);
+        Ubki\Validator::DOCUMENT_ISSUE()->validate($issue);
+
         $this->createdAt = $createdAt;
         $this->language = $language;
         $this->type = $type;

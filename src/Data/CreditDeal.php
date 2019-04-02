@@ -100,6 +100,9 @@ class CreditDeal
         string $patronymic = null,
         string $source = null
     ) {
+        Ubki\Validator::INN()->validate($inn, true);
+        Ubki\Validator::BIG_FLOAT()->validate((string)$initialAmount);
+
         $this->id = $id;
         $this->language = $language;
         $this->name = $name;

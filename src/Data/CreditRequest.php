@@ -46,6 +46,9 @@ class CreditRequest
         Ubki\Dictionary\RequestReason $reason,
         string $organization = null
     ) {
+        Ubki\Validator::INN()->validate($inn);
+        Ubki\Validator::TEXT_40()->validate($id);
+
         $this->date = $date;
         $this->inn = $inn;
         $this->id = $id;

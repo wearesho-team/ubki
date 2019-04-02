@@ -82,6 +82,9 @@ class CourtDecision
         string $area = null,
         string $areaReference = null
     ) {
+        Ubki\Validator::INN()->validate($inn);
+        Ubki\Validator::JUST_TEXT_100()->validate($courtName);
+
         $this->id = $id;
         $this->inn = $inn;
         $this->date = $date;

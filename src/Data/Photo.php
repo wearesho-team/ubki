@@ -2,6 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Wearesho\Bobra\Ubki\Validator;
+
 /**
  * Class Photo
  * @package Wearesho\Bobra\Ubki\Data
@@ -25,6 +27,8 @@ class Photo
 
     public function __construct(\DateTimeInterface $createdAt, string $uri, string $inn = null)
     {
+        Validator::INN()->validate($inn, true);
+
         $this->createdAt = $createdAt;
         $this->uri = $uri;
         $this->inn = $inn;

@@ -24,7 +24,7 @@ class LegalPerson extends IdentifiedPerson
     public const TAX_REGISTRATION_DATE = 'urdatregnal';
 
     /** @var string|null */
-    protected $ergpou;
+    protected $egrpou;
 
     /** @var Ubki\Dictionary\Ownership|null */
     protected $ownership;
@@ -45,14 +45,18 @@ class LegalPerson extends IdentifiedPerson
         \DateTimeInterface $createdAt,
         Ubki\Dictionary\Language $language,
         string $name,
-        string $ergpou = null,
+        string $egrpou = null,
         Ubki\Dictionary\Ownership $ownership = null,
         Ubki\Dictionary\EconomyBranch $economyBranch = null,
         string $activityType = null,
         \DateTimeInterface $edrRegistrationDate = null,
         \DateTimeInterface $taxRegistrationDate = null
     ) {
-        $this->ergpou = $ergpou;
+        Ubki\Validator::OKPO()->validate($egrpou);
+        Ubki\Validator::JUST_TEXT_250()->validate($name);
+        Ubki\Validator::TEXT_100()->validate($activityType);
+
+        $this->egrpou = $egrpou;
         $this->ownership = $ownership;
         $this->economyBranch = $economyBranch;
         $this->activityType = $activityType;
@@ -67,9 +71,9 @@ class LegalPerson extends IdentifiedPerson
         return $this->activityType;
     }
 
-    public function getErgpou(): ?string
+    public function getEgrpou(): ?string
     {
-        return $this->ergpou;
+        return $this->egrpou;
     }
 
     public function getOwnership(): ?Ubki\Dictionary\Ownership

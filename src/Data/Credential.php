@@ -70,6 +70,11 @@ class Credential
         Ubki\Data\Collection\Photo $photos = null,
         Ubki\Data\Collection\LinkedPerson $linkedPersons = null
     ) {
+        Ubki\Validator::OKPO()->validate($inn);
+        Ubki\Validator::NAME()->validate($name);
+        Ubki\Validator::NAME()->validate($patronymic);
+        Ubki\Validator::NAME()->validate($surname);
+
         $this->language = $language;
         $this->name = $name;
         $this->patronymic = $patronymic;
