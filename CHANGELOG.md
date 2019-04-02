@@ -1,86 +1,8 @@
 # UBKI Integration Changelog
 
-## 0.3.0 Dev
-### Added:
-#### Exceptions
-- `Exception\Former`;
-- `Exception\Request`.
-#### - Dependencies
-- [wearesho-team/base-collection:^1.0](https://github.com/wearesho-team/base-collection)
-#### - Data
-- [Elements](src/Data/Element), [Interfaces](src/Data/Interfaces) and [Traits](src/Data/Traits):
-    - Trace;
-    - Balance;
-    - Step;
-    - Tech.
-#### - Authorization
-- Implementation of method `public getMode(): int` to [EnvironmentConfigTrait](src/Authorization/EnvironmentConfigTrait.php);
-- [ValidateModeTrait](src/Authorization/ValidateModeTrait.php) for eliminating implementation duplication of 
- `protected validateMode(): void` method;
-#### - Pull
-- Service class, interface and trait;
-- Request class, interface and trait;
-- Former class and interface;
-- Elements and collections for requests;
-#### - Infrastructure
-- Abstract Service to sending requests to UBKI;
-- RequestInterface;
-- BlockInterface;
-- ElementTrait;
-- ExceptionInterface;
-- Former;
-- FormerHelperTrait;
-- FormerInterface;
-- NullableEnum;
-### Backward compatible changes:
-- [Carbon\Carbon](https://github.com/briannesbitt/Carbon) updated required version from `^1.26` to `1.36`
-- [MyCLabs\Enum](https://github.com/myclabs/php-enum) updated required version from `^1.5` to `1.6.4`
-- Method `public getMode(): int` removed from [Push\ConfigInterface](src/Push/ConfigInterface.php)
-and [Pull\ConfigInterface](src/Pull/ConfigInterface.php) to base interface
-[Authorization\ConfigInterface](src/Authorization/ConfigInterface.php) for eliminating declaration duplication;
-- Constants `public MODE_PRODUCTION` and `public MODE_TEST` removed from [Push\ConfigInterface](src/Push/ConfigInterface.php)
-and [Pull\ConfigInterface](src/Pull/ConfigInterface.php) to trait
-[Authorization\ConfigInterface](src/Authorization/ConfigInterface.php) for eliminating declaration duplication;
-- Property `int $mode` and getter method `public getMode(): int` removed from [Push\ConfigTrait](src/Push/ConfigTrait.php)
-and [Pull\ConfigTrait](src/Pull/ConfigTrait.php) to trait
-[Authorization\ConfigTrait](src/Authorization/ConfigTrait.php) for eliminating implementation duplication;
-- Method `public isProductionMode()` removed from [Push\ConfigTrait](src/Push/ConfigTrait.php) to
-[Authorization\ConfigTrait](src/Authorization/ConfigTrait.php) for eliminating implementation duplication in 
-[Pull\ConfigTrait](src/Pull/ConfigTrait.php);
-- All collections now extends from dependency [BaseCollection](https://github.com/wearesho-team/base-collection)
-- Downgrade typehint in [Element\RatingDescription](src/Data/RatingDescription.php) of one property from 
-`Carbon` to `\DateTimeInterface`;
-- Downgrade typehint in [Element\RatingScore](src/Data/RatingScore.php) of two properties from `Carbon` to
-`\DateTimeInterface`;
-- class `Infrastructure\Block` at now implement `Infrastructure\BlockInterface`;
-### Backward incompatible changes:
-- Renamed folder `Data\Elements` to `Data\Element`;
-- Renamed folder `Data\Collections` to `Data\Collection`;
-- Renamed folder `Data\Blocks` to `Data\Block`;
-- Renamed folder `Dictionaries` to `Dictionary`;
-- `UnsupportedModeException` renamed to `UnsupportedMode` and replaced to [Exception](src/Exception) folder.
-To fix BC you need replace `Ubki\UnsupportedModeException` to `Ubki\Exception\UnsupportedMode`;
-- Removed unnecessary implementation of `jsonSerialize(): array` method in every class that instance
-of [Infrastructure\Element](src/Element.php) to [Infrastructure\Element](src/Element.php);
-- Changed [Block\CreditRating](src/Data/Block/CreditRating.php) `jsonSerialize(): array` result;
-- Renamed `getCreditCollection()` to `getDeals()` in class [Block\CreditsInformation](src/Data/Block/CreditsInformation.php);
-- Renamed `Block\CreditRegistersInformation` to [Block\CreditsRequestsInformation](src/Data/Block/CreditsRequestsInformation.php);
-- Renamed `Element\CreditRegister` to [Element\CreditRequest](src/Data/CreditRequest.php);
-- All constants `TAG` removed from interfaces to declared classes, that implement it interface. It was made to eliminate
-mass implementation duplications of method `tag(): string`. Implementation of this method removed to abstract
-[Infrastructure\Element](src/Element.php) class;
-- Removed property `$previousDate` from [Element\RatingScore](src/Data/RatingScore.php);
-- Removed `Ubki\Element` to `Ubki\Infrastructure\Element`;
-- Removed `Ubki\Push\Export\RequestException` to `Ubki\Exception\Request`;
-- Removed `Infrastructure\BaseCollection` because of adding it as dependency;
-- Removed `Push\Export\Converter`;
-- Removed `$tech` property and getter from `Export\DataDocument`;
-- Removed `Push\Export\Error` to `Push\Error\Entity`;
-- Removed `Push\Export\ErrorCollection` to `Push\Error\Collection`;
-- IMPORTANT! `Push\Export\Service::send(...)` method renamed to `Push\Export\Service::export(...)`;
-- Removed `RequestInterface` from core folder;
-- Removed `SendService` from core folder;
-- Removed `SendServiceInterface` from core folder;
+## Dev
+
+TODO
 
 ## 0.2.1 Unstable
 ### Fixed:
