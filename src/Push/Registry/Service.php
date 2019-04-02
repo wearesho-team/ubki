@@ -31,7 +31,7 @@ class Service extends Ubki\Service implements ServiceInterface
      * @throws GuzzleHttp\Exception\GuzzleException
      * @throws RequestException
      * @throws Ubki\Exception\Request
-     * @throws UnknownErrorException
+     * @throws Ubki\Exception\UnknownError
      */
     public function registry(RequestInterface $request): Ubki\RequestResponsePair
     {
@@ -79,7 +79,7 @@ class Service extends Ubki\Service implements ServiceInterface
      *
      * @return string
      * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws UnknownErrorException
+     * @throws Ubki\Exception\UnknownError
      */
     private function getFileContent(string $url): string
     {
@@ -90,7 +90,7 @@ class Service extends Ubki\Service implements ServiceInterface
                 throw $exception;
             }
 
-            throw new UnknownErrorException(
+            throw new Ubki\Exception\UnknownError(
                 (string)(simplexml_load_string((string)$exception->getResponse()->getBody())),
                 $exception
             );
