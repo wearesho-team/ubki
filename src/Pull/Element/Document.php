@@ -19,13 +19,13 @@ class Document
     /** @var Ubki\Dictionary\Document */
     protected $type;
 
-    /** @var string */
+    /** @var string|null */
     protected $serial;
 
     /** @var string */
     protected $number;
 
-    public function __construct(Ubki\Dictionary\Document $type, string $serial, string $number)
+    public function __construct(Ubki\Dictionary\Document $type, ?string $serial, string $number)
     {
         $this->type = $type;
         $this->serial = $serial;
@@ -37,7 +37,7 @@ class Document
         return $this->type;
     }
 
-    public function getSerial(): string
+    public function getSerial(): ?string
     {
         return $this->serial;
     }
