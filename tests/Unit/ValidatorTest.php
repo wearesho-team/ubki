@@ -17,7 +17,9 @@ class ValidatorTest extends TestCase
         $validator = Ubki\Validator::TEXT_40();
 
         $this->expectException(Ubki\Exception\Validator::class);
-        $this->expectExceptionMessage("Validation exception with value: [$value] on regular [{$validator->getKey()}]");
+        $this->expectExceptionMessage(
+            "Validation exception with value: [" . \var_export($value, true) . "] on regular [{$validator->getKey()}]"
+        );
 
         $validator->validate($value);
     }
