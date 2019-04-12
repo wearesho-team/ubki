@@ -2,19 +2,19 @@
 
 namespace Wearesho\Bobra\Ubki\Exception;
 
-use Wearesho\Bobra\Ubki\RequestInterface;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Request
  * @package Wearesho\Bobra\Ubki\Exception
  */
-class Request extends \Exception
+class Request extends \Exception implements Ubki\ExceptionInterface
 {
-    /** @var RequestInterface */
+    /** @var Ubki\RequestInterface */
     protected $request;
 
     public function __construct(
-        RequestInterface $request,
+        Ubki\RequestInterface $request,
         string $message = "",
         int $code = 0,
         \Throwable $previous = null
@@ -24,7 +24,7 @@ class Request extends \Exception
         parent::__construct($message, $code, $previous);
     }
 
-    public function getRequest(): RequestInterface
+    public function getRequest(): Ubki\RequestInterface
     {
         return $this->request;
     }
