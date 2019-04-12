@@ -111,6 +111,12 @@ class DealLife
         Ubki\Validator::BIG_FLOAT()->validate((string)$currentOverdueDebt);
         Ubki\Validator::SHORT_NUMBER()->validate((string)$overdueTime);
 
+        if ($currentOverdueDebt == 0 && $overdueTime != 0
+            || $currentOverdueDebt != 0 && $overdueTime == 0
+        ) {
+            throw new Ubki\Exception\Overdue($id);
+        }
+
         $this->id = $id;
         $this->periodMonth = $periodMonth;
         $this->periodYear = $periodYear;
@@ -131,6 +137,7 @@ class DealLife
 
         $this->actualEndDate = $actualEndDate;
     }
+
     public function getId(): string
     {
         return $this->id;

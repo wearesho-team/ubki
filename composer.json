@@ -8,6 +8,7 @@
     "ext-dom": "*",
     "guzzlehttp/guzzle": "^6.3",
     "horat1us/environment-config": "^1.2",
+    "horat1us/simple-xml": "^1.0",
     "myclabs/php-enum": "^1.6",
     "nesbot/carbon": "^1.36",
     "psr/log": "^1.0",

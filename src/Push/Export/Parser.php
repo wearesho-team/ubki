@@ -2,6 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
+use Horat1us\SimpleXML\Parse;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -14,15 +15,15 @@ class Parser
 
     public function parseResponse(string $response): ResponseInterface
     {
-        $xml = \simplexml_load_string($response)->{ResponseInterface::ROOT};
-        $stateAttributes = $xml->{ResponseInterface::ERROR_COLLECTION}->attributes();
-        $internalErrorAttributes = $xml->{ResponseInterface::INTERNAL_TAG}->attributes();
+        $xml = Parse::string($response)->{ResponseInterface::ROOT};
+        $state = $xml->{ResponseInterface::ERROR_COLLECTION};
+        $internalErrors = $xml->{ResponseInterface::INTERNAL_TAG};
 
         return new Response(
-            (string)$stateAttributes[ResponseInterface::ID],
-            (string)$stateAttributes[ResponseInterface::STATUS],
-            (string)$internalErrorAttributes[ResponseInterface::INTERNAL_ERROR],
-            (string)$internalErrorAttributes[ResponseInterface::INTERNAL_MESSAGE],
+            (string)$state[ResponseInterface::ID],
+            (string)$state[ResponseInterface::STATUS],
+            (string)$internalErrors[ResponseInterface::INTERNAL_ERROR],
+            (string)$internalErrors[ResponseInterface::INTERNAL_MESSAGE],
             new Ubki\Push\Error\Collection(\array_map(function (\SimpleXMLElement $error) {
                 $attributes = $error->attributes();
 
