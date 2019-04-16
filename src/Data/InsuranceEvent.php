@@ -1,20 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class InsuranceEvent
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static InsuranceEvent make(...$arguments)
  */
-class InsuranceEvent
+class InsuranceEvent implements Ubki\Contract\Data\InsuranceEvent, \JsonSerializable
 {
-    public const TAG = 'events';
-    public const REQUEST_DATE = 'evdate';
-    public const DECISION = 'evstate';
-    public const DECISION_REF = 'evstateref';
-    public const DECISION_DATE = 'evstatedate';
+    use Makeable, Tagable;
 
     /** @var \DateTimeInterface */
     protected $requestDate;
@@ -33,6 +34,20 @@ class InsuranceEvent
         $this->requestDate = $requestDate;
         $this->decision = $decision;
         $this->decisionDate = $decisionDate;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'returnDate' => Carbon::make($this->requestDate),
+            'decision' => $this->decision,
+            'decisionDate' => Carbon::make($this->decisionDate),
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'events';
     }
 
     public function getRequestDate(): \DateTimeInterface

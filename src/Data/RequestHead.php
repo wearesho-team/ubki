@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
 use Wearesho\Bobra\Ubki;
@@ -8,16 +10,9 @@ use Wearesho\Bobra\Ubki;
  * Class RequestHead
  * @package Wearesho\Bobra\Ubki\Data
  */
-abstract class RequestHead
+abstract class RequestHead implements Ubki\Contract\Data\RequestHead
 {
-    public const TAG = 'request';
-
-    public const VERSION = 'version';
-    public const TYPE = 'reqtype';
-    public const REASON = 'reqreason';
-    public const DATE = 'reqdate';
-    public const ID = 'reqidout';
-    public const INITIATOR = 'reqsource';
+    use Tagable;
 
     /** @var string */
     protected $version;
@@ -36,9 +31,9 @@ abstract class RequestHead
 
     public function __construct(
         Ubki\Dictionary\RequestReason $reason,
-        \DateTimeInterface $date = null,
-        string $id = null,
-        Ubki\Dictionary\RequestInitiator $initiator = null,
+        \DateTimeInterface $date = \null,
+        string $id = \null,
+        Ubki\Dictionary\RequestInitiator $initiator = \null,
         string $version = '1.0'
     ) {
         $this->reason = $reason;
@@ -46,6 +41,11 @@ abstract class RequestHead
         $this->id = $id;
         $this->initiator = $initiator;
         $this->version = $version;
+    }
+
+    public static function tag(): string
+    {
+        return 'request';
     }
 
     public function getVersion(): string

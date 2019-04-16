@@ -44,9 +44,9 @@ trait EnvironmentConfigTrait
 
         switch ($environmentMode) {
             case ConfigInterface::MODE_PRODUCTION:
-                return true;
+                return \true;
             case ConfigInterface::MODE_TEST:
-                return false;
+                return \false;
             default:
                 throw new Ubki\Exception\UnsupportedMode($environmentMode);
         }

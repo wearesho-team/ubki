@@ -1,24 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class CreditRequest
  * @package Wearesho\Bobra\Ubki\Data
  */
-class CreditRequest
+class CreditRequest implements Ubki\Contract\Data\CreditRequest, \JsonSerializable
 {
-    public const TAG = 'credres';
-
-    public const DATE = 'redate';
-    public const INN = 'inn';
-    public const ID = 'reqid';
-    public const DECISION = 'result';
-    public const DECISION_REF = 'resultref';
-    public const REASON = 'reqreason';
-    public const ORGANIZATION = 'org';
+    use Makeable, Tagable;
 
     /** @var \DateTimeInterface */
     protected $date;
@@ -44,7 +39,7 @@ class CreditRequest
         string $id,
         Ubki\Dictionary\Decision $decision,
         Ubki\Dictionary\RequestReason $reason,
-        string $organization = null
+        string $organization = \null
     ) {
         Ubki\Validator::INN()->validate($inn);
         Ubki\Validator::TEXT_40()->validate($id);
@@ -55,6 +50,23 @@ class CreditRequest
         $this->decision = $decision;
         $this->reason = $reason;
         $this->organization = $organization;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'date' => Carbon::make($this->date),
+            'inn' => $this->inn,
+            'id' => $this->id,
+            'decision' => $this->decision,
+            'reason' => $this->reason,
+            'organization' => $this->organization,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'credres';
     }
 
     public function getDate(): \DateTimeInterface

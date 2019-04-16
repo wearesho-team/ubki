@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -10,17 +12,17 @@ use Wearesho\Bobra\Ubki\Dictionary;
  *
  * @see https://docs.google.com/document/d/12yD1_bopAlZVAe-jFCKtGkOd15VJC4mPag_wH3gvChg/edit#
  *
- * @method static Currency BYN(string $description = null)
- * @method static Currency CHF(string $description = null)
- * @method static Currency EUR(string $description = null)
- * @method static Currency GBP(string $description = null)
- * @method static Currency GEL(string $description = null)
- * @method static Currency PLN(string $description = null)
- * @method static Currency RUB(string $description = null)
- * @method static Currency UAH(string $description = null)
- * @method static Currency USD(string $description = null)
- * @method static Currency XAG(string $description = null)
- * @method static Currency XAU(string $description = null)
+ * @method static Currency BYN(string $description = \null)
+ * @method static Currency CHF(string $description = \null)
+ * @method static Currency EUR(string $description = \null)
+ * @method static Currency GBP(string $description = \null)
+ * @method static Currency GEL(string $description = \null)
+ * @method static Currency PLN(string $description = \null)
+ * @method static Currency RUB(string $description = \null)
+ * @method static Currency UAH(string $description = \null)
+ * @method static Currency USD(string $description = \null)
+ * @method static Currency XAG(string $description = \null)
+ * @method static Currency XAU(string $description = \null)
  */
 final class Currency extends Dictionary
 {

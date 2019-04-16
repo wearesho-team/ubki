@@ -47,8 +47,8 @@ class Entity implements \JsonSerializable
         string $attribute,
         string $type,
         string $message,
-        ?int $passedStrings = null,
-        ?int $errorStrings = null
+        ?int $passedStrings = \null,
+        ?int $errorStrings = \null
     ) {
         $this->blockId = $blockId;
         $this->tag = $tag;

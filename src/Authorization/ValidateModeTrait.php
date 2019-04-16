@@ -12,7 +12,7 @@ trait ValidateModeTrait
 {
     protected function validateMode(int $mode): void
     {
-        if (!in_array($mode, [ConfigInterface::MODE_PRODUCTION, ConfigInterface::MODE_TEST])) {
+        if (!\in_array($mode, [ConfigInterface::MODE_PRODUCTION, ConfigInterface::MODE_TEST])) {
             throw new Ubki\Exception\UnsupportedMode($mode);
         }
     }

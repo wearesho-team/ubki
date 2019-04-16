@@ -1,27 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Document
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Document make(...$arguments)
  */
-class Document
+class Document implements Ubki\Contract\Data\Document, \JsonSerializable
 {
-    public const TAG = 'doc';
-
-    public const CREATED_AT = 'vdate';
-    public const LANGUAGE = 'lng';
-    public const LANGUAGE_REF = 'lngref';
-    public const TYPE = 'dtype';
-    public const TYPE_REF = 'dtyperef';
-    public const SERIAL = 'dser';
-    public const NUMBER = 'dnom';
-    public const TERMIN = 'dterm';
-    public const ISSUE = 'dwho';
-    public const ISSUE_DATE = 'dwdt';
+    use Makeable, Tagable;
 
     /** @var \DateTimeInterface */
     protected $createdAt;
@@ -55,7 +49,7 @@ class Document
         string $number,
         string $issue,
         \DateTimeInterface $issueDate,
-        \DateTimeInterface $termin = null
+        \DateTimeInterface $termin = \null
     ) {
         Ubki\Validator::PASSPORT_SERIES()->validate($serial);
         Ubki\Validator::DOCUMENT_NUMBER()->validate($number);
@@ -69,6 +63,22 @@ class Document
         $this->issue = $issue;
         $this->issueDate = $issueDate;
         $this->termin = $termin;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::make($this->createdAt),
+            'language' => $this->language,
+            'type' => $this->type,
+            'serial' => $this->serial,
+            'number' => $this->number
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'doc';
     }
 
     public function getCreatedAt(): \DateTimeInterface

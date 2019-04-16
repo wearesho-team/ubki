@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Pull\Collection;
 
 use Wearesho\BaseCollection;
@@ -13,7 +15,7 @@ class Contact extends BaseCollection
 {
     public const TAG = 'contacts';
 
-    public function type(): string
+    final public function type(): string
     {
         return Ubki\Pull\Element\Contact::class;
     }

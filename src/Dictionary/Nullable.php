@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 /**
@@ -8,5 +10,5 @@ namespace Wearesho\Bobra\Ubki\Dictionary;
  */
 interface Nullable
 {
-    public const UNDEFINED = null;
+    public const UNDEFINED = \null;
 }

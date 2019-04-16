@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data\Collection;
 
 use Wearesho\BaseCollection;
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Contract;
 
 /**
  * Class InsuranceDeal
@@ -11,8 +13,8 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class InsuranceDeal extends BaseCollection
 {
-    public function type(): string
+    final public function type(): string
     {
-        return Data\InsuranceDeal::class;
+        return Contract\Data\InsuranceDeal::class;
     }
 }

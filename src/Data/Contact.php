@@ -1,22 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Contact
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Contact make(...$arguments)
  */
-class Contact
+class Contact implements Ubki\Contract\Data\Contact, \JsonSerializable
 {
-    public const TAG = 'cont';
-    
-    public const VALUE = 'cval';
-    public const TYPE = 'ctype';
-    public const TYPE_REF = 'typeref';
-    public const CREATED_AT = 'vdate';
-    public const INN = 'inn';
+    use Makeable, Tagable;
 
     /** @var \DateTimeInterface */
     protected $createdAt;
@@ -34,14 +33,29 @@ class Contact
         \DateTimeInterface $createdAt,
         string $value,
         Ubki\Dictionary\Contact $type,
-        string $inn = null
+        string $inn = \null
     ) {
-        Ubki\Validator::INN()->validate($inn, true);
+        Ubki\Validator::INN()->validate($inn, \true);
 
         $this->createdAt = $createdAt;
         $this->value = $value;
         $this->type = $type;
         $this->inn = $inn;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::make($this->createdAt),
+            'value' => $this->value,
+            'type' => $this->type,
+            'inn' => $this->inn,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'cont';
     }
 
     public function getCreatedAt(): \DateTimeInterface

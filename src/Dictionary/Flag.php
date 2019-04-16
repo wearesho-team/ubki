@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,10 +10,10 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class Flag
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static Flag NO(string $description = null)
- * @method static Flag YES(string $description = null)
- * @method static Flag CONSUMER(string $description = null)
- * @method static Flag GUARANTOR(string $description = null)
+ * @method static Flag NO(string $description = \null)
+ * @method static Flag YES(string $description = \null)
+ * @method static Flag CONSUMER(string $description = \null)
+ * @method static Flag GUARANTOR(string $description = \null)
  */
 final class Flag extends Dictionary
 {

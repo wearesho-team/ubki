@@ -27,10 +27,10 @@ class Parser
                     (string)$item[Error\Entity::ATTR_TYPE],
                     (string)$item[Error\Entity::ATTR_MESSAGE],
                     empty((string)$item[Error\Entity::PASSED_STRINGS])
-                        ? null
+                        ? \null
                         : (int)$item[Error\Entity::PASSED_STRINGS],
                     empty((string)$item[Error\Entity::ERROR_STRINGS])
-                        ? null
+                        ? \null
                         : (int)$item[Error\Entity::ERROR_STRINGS]
                 );
             },

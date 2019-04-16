@@ -33,33 +33,6 @@ class ElementsTest extends TestCase
     {
         return [
             [
-                Ubki\Data\Address::class,
-                [
-                    'createdAt' => Carbon::make('2018-03-12'),
-                    'language' => Ubki\Dictionary\Language::ENG(),
-                    'addressType' => Ubki\Dictionary\Address::HOME(),
-                    'country' => 'testCountry',
-                    'city' => 'testCity',
-                    'street' => 'testStreet',
-                    'house' => 'testHouse',
-                    'index' => '61166',
-                    'state' => 'testState',
-                    'area' => 'testArea',
-                    'cityType' => Ubki\Dictionary\City::TOWN(),
-                    'corpus' => 'testCorpus',
-                    'flat' => 'testFlat',
-                    'fullAddress' => 'testFullAddress',
-                ],
-            ],
-            [
-                Ubki\Data\Balance::class,
-                [
-                    'value' => 1234.56,
-                    'date' => Carbon::make('2018-03-12'),
-                    'time' => 'time',
-                ]
-            ],
-            [
                 Ubki\Data\Comment::class,
                 [
                     'text' => 'testText',
@@ -252,53 +225,11 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\NegativeRatingFactors::class,
-                [
-                    'count' => 1,
-                    'description' => 'testDescription',
-                    'comments' => new Ubki\Data\Collection\Comment(),
-                ],
-            ],
-            [
-                Ubki\Data\PositiveRatingFactors::class,
-                [
-                    'count' => 1,
-                    'description' => 'testDescription',
-                    'comments' => new Ubki\Data\Collection\Comment(),
-                ],
-            ],
-            [
                 Ubki\Data\Photo::class,
                 [
                     'createdAt' => Carbon::make('2018-03-12'),
                     'uri' => 'testUri',
                     'inn' => static::INN,
-                ],
-            ],
-            [
-                Ubki\Data\RatingDescription::class,
-                [
-                    'creditsCount' => 10,
-                    'openCreditsCount' => 10,
-                    'openCreditsDescription' => 'testDescription',
-                    'closedCreditsCount' => 10,
-                    'expires' => 'testExpires',
-                    'maxOverdue' => 10,
-                    'updatedAt' => Carbon::make('2018-03-12'),
-                ],
-            ],
-            [
-                Ubki\Data\RatingScore::class,
-                [
-                    'inn' => static::INN,
-                    'surname' => 'testSurname',
-                    'name' => 'testName',
-                    'patronymic' => 'testPatronymic',
-                    'birthDate' => Carbon::make('1983-03-12'),
-                    'score' => '100',
-                    'previousScore' => '100',
-                    'date' => Carbon::make('2018-03-12'),
-                    'level' => 'testLevel',
                 ],
             ],
             [
@@ -336,47 +267,11 @@ class ElementsTest extends TestCase
                 ],
             ],
             [
-                Ubki\Data\Block\CreditRating::class,
-                [
-                    'score' => new Ubki\Data\RatingScore(
-                        static::INN,
-                        'testSurname',
-                        'testName',
-                        'testPatronymic',
-                        Carbon::make('2018-03-12'),
-                        '100',
-                        '100',
-                        Carbon::make('2018-03-12'),
-                        'testLevel'
-                    ),
-                    'description' => new Ubki\Data\RatingDescription(
-                        10,
-                        20,
-                        'testDescription',
-                        10,
-                        'testExpires',
-                        '200',
-                        Carbon::make('2018-03-12')
-                    ),
-                    'comments' => new Ubki\Data\Collection\Comment(),
-                    'positiveFactors' => new Ubki\Data\PositiveRatingFactors(
-                        10,
-                        'description',
-                        new Ubki\Data\Collection\Comment()
-                    ),
-                    'negativeFactors' => new Ubki\Data\NegativeRatingFactors(
-                        10,
-                        'description',
-                        new Ubki\Data\Collection\Comment()
-                    ),
-                ],
-            ],
-            [
                 Ubki\Data\Tech::class,
                 [
                     'trace' => new Ubki\Data\Collection\Trace(),
                     'id' => 'testId',
-                    'balance' => new Ubki\Data\Balance(1123.45, Carbon::make('2018-03-12'), 'time'),
+                    'balance' => new Ubki\Data\Balance(1123.45, Carbon::make('2018-03-12')),
                 ],
             ],
             [

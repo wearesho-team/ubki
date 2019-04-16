@@ -25,7 +25,7 @@ class Service extends Ubki\Service implements ServiceInterface
         Ubki\Push\ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        Log\LoggerInterface $logger = \null
     ) {
         parent::__construct($config, $authProvider, $client, $logger);
     }
@@ -84,13 +84,13 @@ class Service extends Ubki\Service implements ServiceInterface
             ],
         ];
 
-        return ArrayToXml::convert($params, Service::DOC, true, 'utf-8');
+        return ArrayToXml::convert($params, Service::DOC, \true, 'utf-8');
     }
 
     protected function formCredential(Ubki\Data\Credential $credential): array
     {
         return $this->formComponent(Ubki\Block::IDENTIFICATION, [
-            Ubki\Data\Credential::TAG => \array_filter([
+            Ubki\Data\Credential::tag() => \array_filter([
                 Service::ATTRIBUTES => [
                     Ubki\Data\Credential::LANGUAGE => $this->fetchEnum($credential->getLanguage()),
                     Ubki\Data\Credential::INN => $credential->getInn(),
@@ -99,7 +99,7 @@ class Service extends Ubki\Service implements ServiceInterface
                     Ubki\Data\Credential::PATRONYMIC => $credential->getPatronymic(),
                     Ubki\Data\Credential::BIRTH_DATE => $this->convertDate($credential->getBirthDate()),
                 ],
-                Ubki\Data\NaturalPerson::TAG => $this->collect(function (Ubki\Data\NaturalPerson $person): array {
+                Ubki\Data\NaturalPerson::tag() => $this->collect(function (Ubki\Data\NaturalPerson $person): array {
                     return [
                         Service::ATTRIBUTES => [
                             Ubki\Data\NaturalPerson::CREATED_AT => $this->convertDate($person->getCreatedAt()),
@@ -121,7 +121,7 @@ class Service extends Ubki\Service implements ServiceInterface
                         ]
                     ];
                 }, $credential->getIdentifiers()->getNaturals()),
-                Ubki\Data\LegalPerson::TAG => $this->collect(function (Ubki\Data\LegalPerson $person): array {
+                Ubki\Data\LegalPerson::tag() => $this->collect(function (Ubki\Data\LegalPerson $person): array {
                     return [
                         Service::ATTRIBUTES => [
                             Ubki\Data\LegalPerson::CREATED_AT => $this->convertDate($person->getCreatedAt()),
@@ -140,7 +140,7 @@ class Service extends Ubki\Service implements ServiceInterface
                         ]
                     ];
                 }, $credential->getIdentifiers()->getLegals()),
-                Ubki\Data\LinkedPerson::TAG => $this->collect(function (Ubki\Data\LinkedPerson $person): array {
+                Ubki\Data\LinkedPerson::tag() => $this->collect(function (Ubki\Data\LinkedPerson $person): array {
                     return [
                         Service::ATTRIBUTES => [
                             Ubki\Data\LinkedPerson::NAME => $person->getName(),
@@ -150,7 +150,7 @@ class Service extends Ubki\Service implements ServiceInterface
                         ]
                     ];
                 }, $credential->getLinkedPersons()),
-                Ubki\Data\Work::TAG => $this->collect(function (Ubki\Data\Work $work): array {
+                Ubki\Data\Work::tag() => $this->collect(function (Ubki\Data\Work $work): array {
                     return [
                         Service::ATTRIBUTES => [
                             Ubki\Data\Work::CREATED_AT => $this->convertDate($work->getCreatedAt()),
@@ -163,7 +163,7 @@ class Service extends Ubki\Service implements ServiceInterface
                         ]
                     ];
                 }, $credential->getWorks()),
-                Ubki\Data\Document::TAG => $this->collect(function (Ubki\Data\Document $document): array {
+                Ubki\Data\Document::tag() => $this->collect(function (Ubki\Data\Document $document): array {
                     return [
                         Service::ATTRIBUTES => [
                             Ubki\Data\Document::CREATED_AT => $this->convertDate($document->getCreatedAt()),
@@ -177,7 +177,7 @@ class Service extends Ubki\Service implements ServiceInterface
                         ]
                     ];
                 }, $credential->getDocuments()),
-                Ubki\Data\Address::TAG => $this->collect(function (Ubki\Data\Address $address): array {
+                Ubki\Data\Address::tag() => $this->collect(function (Ubki\Data\Address $address): array {
                     return [
                         Service::ATTRIBUTES => [
                             Ubki\Data\Address::CREATED_AT => $this->convertDate($address->getCreatedAt()),
@@ -197,7 +197,7 @@ class Service extends Ubki\Service implements ServiceInterface
                         ]
                     ];
                 }, $credential->getAddresses()),
-                Ubki\Data\Photo::TAG => $this->collect(function (Ubki\Data\Photo $photo): array {
+                Ubki\Data\Photo::tag() => $this->collect(function (Ubki\Data\Photo $photo): array {
                     return [
                         Service::ATTRIBUTES => [
                             Ubki\Data\Photo::CREATED_AT => $this->convertDate($photo->getCreatedAt()),
@@ -213,7 +213,7 @@ class Service extends Ubki\Service implements ServiceInterface
     protected function formCredits(Ubki\Data\Collection\CreditDeal $deals): array
     {
         return $this->formComponent(Ubki\Block::CREDITS, [
-            Ubki\Data\CreditDeal::TAG => $this->collect(function (Ubki\Data\CreditDeal $deal): array {
+            Ubki\Data\CreditDeal::tag() => $this->collect(function (Ubki\Data\CreditDeal $deal): array {
                 return [
                     Service::ATTRIBUTES => [
                         Ubki\Data\CreditDeal::LANGUAGE => $this->fetchEnum($deal->getLanguage()),
@@ -232,7 +232,7 @@ class Service extends Ubki\Service implements ServiceInterface
                         Ubki\Data\CreditDeal::SOURCE => $deal->getSource(),
                         Ubki\Data\CreditDeal::SUBJECT_ROLE => $this->fetchEnum($deal->getSubjectRole()),
                     ],
-                    Ubki\Data\DealLife::TAG => $this->collect(function (Ubki\Data\DealLife $period): array {
+                    Ubki\Data\DealLife::tag() => $this->collect(function (Ubki\Data\DealLife $period): array {
                         return [
                             Service::ATTRIBUTES => [
                                 Ubki\Data\DealLife::ID => $period->getId(),
@@ -266,7 +266,7 @@ class Service extends Ubki\Service implements ServiceInterface
     protected function formCourtDecisions(Ubki\Data\Collection\CourtDecision $decisions): array
     {
         return $this->formComponent(Ubki\Block::COURT_DECISIONS, [
-            Ubki\Data\CourtDecision::TAG => $this->collect(function (Ubki\Data\CourtDecision $decision): array {
+            Ubki\Data\CourtDecision::tag() => $this->collect(function (Ubki\Data\CourtDecision $decision): array {
                 return [
                     Service::ATTRIBUTES => [
                         Ubki\Data\CourtDecision::INN => $decision->getInn(),
@@ -301,7 +301,7 @@ class Service extends Ubki\Service implements ServiceInterface
         }
 
         return $this->formComponent(Ubki\Block::CREDIT_REQUESTS, [
-            Ubki\Data\CreditRequest::TAG => $this->collect(function (Ubki\Data\CreditRequest $request): array {
+            Ubki\Data\CreditRequest::tag() => $this->collect(function (Ubki\Data\CreditRequest $request): array {
                 return [
                     Service::ATTRIBUTES => [
                         Ubki\Data\CreditRequest::DATE => $this->convertDate($request->getDate()),
@@ -313,7 +313,7 @@ class Service extends Ubki\Service implements ServiceInterface
                     ]
                 ];
             }, $requests),
-            Ubki\Data\RegistryTimes::TAG => [
+            Ubki\Data\RegistryTimes::tag() => [
                 Service::ATTRIBUTES => [
                     Ubki\Data\RegistryTimes::BY_DAY => $registryTimes->getByDay(),
                     Ubki\Data\RegistryTimes::BY_HOUR => $registryTimes->getByHour(),
@@ -330,7 +330,7 @@ class Service extends Ubki\Service implements ServiceInterface
     protected function formContacts(Ubki\Data\Collection\Contact $contacts): array
     {
         return $this->formComponent(Ubki\Block::CONTACTS, [
-            Ubki\Data\Contact::TAG => $this->collect(function (Ubki\Data\Contact $contact): array {
+            Ubki\Data\Contact::tag() => $this->collect(function (Ubki\Data\Contact $contact): array {
                 return [
                     Service::ATTRIBUTES => [
                         Ubki\Data\Contact::CREATED_AT => $this->convertDate($contact->getCreatedAt()),

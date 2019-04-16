@@ -1,20 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki\Validator;
+use Carbon\Carbon;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Photo
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Photo make(...$arguments)
  */
-class Photo
+class Photo implements Ubki\Contract\Data\Photo, \JsonSerializable
 {
-    public const TAG = 'foto';
-
-    public const CREATED_AT = 'vdate';
-    public const INN = 'inn';
-    public const PHOTO = 'foto';
+    use Makeable, Tagable;
 
     /** @var \DateTimeInterface */
     protected $createdAt;
@@ -25,14 +26,29 @@ class Photo
     /** @var string|null */
     protected $inn;
 
-    public function __construct(\DateTimeInterface $createdAt, string $uri, string $inn = null)
+    public function __construct(\DateTimeInterface $createdAt, string $uri, string $inn = \null)
     {
-        Validator::INN()->validate($inn, true);
+        Ubki\Validator::INN()->validate($inn, \true);
 
         $this->createdAt = $createdAt;
         $this->uri = $uri;
         $this->inn = $inn;
     }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::make($this->createdAt),
+            'uri' => $this->uri,
+            'inn' => $this->inn,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'foto';
+    }
+
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;

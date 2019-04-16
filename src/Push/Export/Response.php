@@ -15,9 +15,9 @@ class Response implements ResponseInterface
     public function __construct(
         string $ubkiId,
         string $status,
-        string $internalError = null,
-        string $internalMessage = null,
-        Collection $errors = null
+        string $internalError = \null,
+        string $internalMessage = \null,
+        Collection $errors = \null
     ) {
         $this->ubkiId = $ubkiId;
         $this->status = $status;

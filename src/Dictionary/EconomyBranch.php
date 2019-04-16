@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,27 +10,27 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class EconomyBranch
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static EconomyBranch AGRICULTURE(string $description = null)
- * @method static EconomyBranch MINING_INDUSTRY(string $description = null)
- * @method static EconomyBranch PROCESSING_INDUSTRY(string $description = null)
- * @method static EconomyBranch SUPPLY_ELECTRICITY_GAS_AIR(string $description = null)
- * @method static EconomyBranch WATER_SUPPLY_SEWAGE(string $description = null)
- * @method static EconomyBranch BUILDING(string $description = null)
- * @method static EconomyBranch WHOLESALE_AND_RETAIL_TRADE_IN(string $description = null)
- * @method static EconomyBranch TRANSPORT_OR_STORAGE_FACILITIES_OR_COURIER_ACTIVITIES(string $description = null)
- * @method static EconomyBranch TEMPORARY_ACCOMMODATION_OR_CATERING(string $description = null)
- * @method static EconomyBranch INFORMATION_OR_TELECOMMUNICATIONS(string $description = null)
- * @method static EconomyBranch FINANCIAL_OR_INSURANCE_ACTIVITIES(string $description = null)
- * @method static EconomyBranch REAL_ESTATE_OPERATIONS(string $description = null)
- * @method static EconomyBranch PROFESSIONAL_OR_SCIENTIFIC_OR_TECHNICAL_ACTIVITIES(string $description = null)
- * @method static EconomyBranch ADMINISTRATIVE_OR_SUPPORT_SERVICES_1(string $description = null)
- * @method static EconomyBranch ADMINISTRATIVE_OR_SUPPORT_SERVICES_2(string $description = null)
- * @method static EconomyBranch EDUCATION(string $description = null)
- * @method static EconomyBranch HEALTH_OR_SOCIAL_CARE(string $description = null)
- * @method static EconomyBranch ARTS_OR_SPORTS_OR_ENTERTAINMENT_OR_RECREATION(string $description = null)
- * @method static EconomyBranch PROVIDING_OTHER_TYPES_OF_SERVICES(string $description = null)
- * @method static EconomyBranch HOUSEHOLD_ACTIVITIES(string $description = null)
- * @method static EconomyBranch ACTIVITIES_OF_EXTRATERRITORIAL_ORGANIZATIONS_AND_BODIES(string $description = null)
+ * @method static EconomyBranch AGRICULTURE(string $description = \null)
+ * @method static EconomyBranch MINING_INDUSTRY(string $description = \null)
+ * @method static EconomyBranch PROCESSING_INDUSTRY(string $description = \null)
+ * @method static EconomyBranch SUPPLY_ELECTRICITY_GAS_AIR(string $description = \null)
+ * @method static EconomyBranch WATER_SUPPLY_SEWAGE(string $description = \null)
+ * @method static EconomyBranch BUILDING(string $description = \null)
+ * @method static EconomyBranch WHOLESALE_AND_RETAIL_TRADE_IN(string $description = \null)
+ * @method static EconomyBranch TRANSPORT_OR_STORAGE_FACILITIES_OR_COURIER_ACTIVITIES(string $description = \null)
+ * @method static EconomyBranch TEMPORARY_ACCOMMODATION_OR_CATERING(string $description = \null)
+ * @method static EconomyBranch INFORMATION_OR_TELECOMMUNICATIONS(string $description = \null)
+ * @method static EconomyBranch FINANCIAL_OR_INSURANCE_ACTIVITIES(string $description = \null)
+ * @method static EconomyBranch REAL_ESTATE_OPERATIONS(string $description = \null)
+ * @method static EconomyBranch PROFESSIONAL_OR_SCIENTIFIC_OR_TECHNICAL_ACTIVITIES(string $description = \null)
+ * @method static EconomyBranch ADMINISTRATIVE_OR_SUPPORT_SERVICES_1(string $description = \null)
+ * @method static EconomyBranch ADMINISTRATIVE_OR_SUPPORT_SERVICES_2(string $description = \null)
+ * @method static EconomyBranch EDUCATION(string $description = \null)
+ * @method static EconomyBranch HEALTH_OR_SOCIAL_CARE(string $description = \null)
+ * @method static EconomyBranch ARTS_OR_SPORTS_OR_ENTERTAINMENT_OR_RECREATION(string $description = \null)
+ * @method static EconomyBranch PROVIDING_OTHER_TYPES_OF_SERVICES(string $description = \null)
+ * @method static EconomyBranch HOUSEHOLD_ACTIVITIES(string $description = \null)
+ * @method static EconomyBranch ACTIVITIES_OF_EXTRATERRITORIAL_ORGANIZATIONS_AND_BODIES(string $description = \null)
  */
 final class EconomyBranch extends Dictionary
 {

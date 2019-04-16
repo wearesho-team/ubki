@@ -1,24 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Credential
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Credential make(...$arguments)
  */
-class Credential
+class Credential implements Ubki\Contract\Data\Credential, \JsonSerializable
 {
-    public const TAG = 'cki';
-
-    public const INN = 'inn';
-    public const SURNAME = 'lname';
-    public const NAME = 'fname';
-    public const PATRONYMIC = 'mname';
-    public const LANGUAGE = 'reqlng';
-    public const LANGUAGE_REF = 'reqlngref';
-    public const BIRTH_DATE = 'bdate';
+    use Makeable, Tagable;
 
     /** @var Ubki\Dictionary\Language */
     protected $language;
@@ -66,9 +63,9 @@ class Credential
         Ubki\Data\Collection\Document $documents,
         Ubki\Data\Collection\Address $addresses,
         string $inn,
-        Ubki\Data\Collection\Work $works = null,
-        Ubki\Data\Collection\Photo $photos = null,
-        Ubki\Data\Collection\LinkedPerson $linkedPersons = null
+        Ubki\Data\Collection\Work $works = \null,
+        Ubki\Data\Collection\Photo $photos = \null,
+        Ubki\Data\Collection\LinkedPerson $linkedPersons = \null
     ) {
         Ubki\Validator::OKPO()->validate($inn);
         Ubki\Validator::NAME()->validate($name);
@@ -87,6 +84,29 @@ class Credential
         $this->works = $works;
         $this->photos = $photos;
         $this->linkedPersons = $linkedPersons;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'language' => $this->language,
+            'name' => $this->name,
+            'patronymic' => $this->patronymic,
+            'surname' => $this->surname,
+            'birthDate' => Carbon::make($this->birthDate),
+            'identifiers' => $this->identifiers,
+            'documents' => $this->documents,
+            'addresses' => $this->addresses,
+            'inn' => $this->inn,
+            'works' => $this->works,
+            'photos' => $this->photos,
+            'linkedPersons' => $this->linkedPersons,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'cki';
     }
 
     public function getLanguage(): Ubki\Dictionary\Language

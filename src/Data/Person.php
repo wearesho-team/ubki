@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
+
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Person
  * @package Wearesho\Bobra\Ubki\Data
  */
-abstract class Person
+abstract class Person implements Ubki\Contract\Data\Person
 {
-    public const TAG = 'ident';
+    use Tagable;
 
     /** @var string */
     protected $name;
@@ -21,5 +25,10 @@ abstract class Person
     public function __construct(string $name)
     {
         $this->name = $name;
+    }
+
+    public static function tag(): string
+    {
+        return 'ident';
     }
 }

@@ -291,11 +291,10 @@ class ProviderTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException GuzzleHttp\Exception\RequestException
-     */
     public function testNullResponse(): void
     {
+        $this->expectException(GuzzleHttp\Exception\RequestException::class);
+
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Exception\RequestException(
                 'Null response',

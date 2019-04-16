@@ -1,26 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class InsuranceDeal
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static InsuranceDeal make(...$arguments)
  */
-class InsuranceDeal
+class InsuranceDeal implements Ubki\Contract\Data\InsuranceDeal, \JsonSerializable
 {
-    public const TAG = 'insur';
-    public const INN = 'inn';
-    public const ID = 'dlref';
-    public const INFORMATION_DATE = 'dldate';
-    public const START_DATE = 'dlds';
-    public const END_DATE = 'dldpf';
-    public const ACTUAL_END_DATE = 'dldff';
-    public const TYPE = 'dltype';
-    public const TYPE_REF = 'dltyperef';
-    public const STATUS = 'dlstate';
-    public const STATUS_REF = 'dlstateref';
+    use Makeable, Tagable;
 
     /** @var string */
     protected $inn;
@@ -57,8 +52,8 @@ class InsuranceDeal
         \DateTimeInterface $endDate,
         Ubki\Dictionary\InsuranceDeal $type,
         Ubki\Dictionary\DealStatus $status,
-        Ubki\Data\Collection\InsuranceEvent $events = null,
-        \DateTimeInterface $actualEndDate = null
+        Ubki\Data\Collection\InsuranceEvent $events = \null,
+        \DateTimeInterface $actualEndDate = \null
     ) {
         $this->inn = $inn;
         $this->id = $id;
@@ -69,6 +64,26 @@ class InsuranceDeal
         $this->type = $type;
         $this->status = $status;
         $this->events = $events;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'inn' => $this->inn,
+            'id' => $this->id,
+            'informationDate' => Carbon::make($this->informationDate),
+            'startDate' => Carbon::make($this->startDate),
+            'endDate' => Carbon::make($this->endDate),
+            'actualEndDate' => Carbon::make($this->actualEndDate),
+            'type' => $this->type,
+            'status' => $this->status,
+            'events' => $this->events,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'insur';
     }
 
     public function getInn(): string

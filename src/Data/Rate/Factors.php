@@ -1,19 +1,17 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+declare(strict_types=1);
+
+namespace Wearesho\Bobra\Ubki\Data\Rate;
 
 use Wearesho\Bobra\Ubki;
 
 /**
- * Class RatingFactors
- * @package Wearesho\Bobra\Ubki\Data
+ * Class Factors
+ * @package Wearesho\Bobra\Ubki\Data\Rate
  */
-abstract class RatingFactors
+abstract class Factors implements Ubki\Contract\Data\Rate\Factors
 {
-    public const COUNT = 'count';
-    public const TEXT = 'text';
-    public const COMMENTS = 'comments';
-
     /** @var int */
     protected $count;
 

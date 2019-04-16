@@ -17,7 +17,7 @@ abstract class Block implements BlockInterface
     public const TAG = 'comp';
     public const ATTR_ID = 'id';
 
-    public const ID = null;
+    public const ID = \null;
 
     public function getId(): int
     {

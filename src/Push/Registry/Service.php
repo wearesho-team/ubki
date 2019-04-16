@@ -19,7 +19,7 @@ class Service extends Ubki\Service implements ServiceInterface
         Ubki\Push\ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        Log\LoggerInterface $logger = \null
     ) {
         parent::__construct($config, $authProvider, $client, $logger ?? new Log\NullLogger());
     }
@@ -125,6 +125,6 @@ class Service extends Ubki\Service implements ServiceInterface
 
         // TODO: implement adding grp attribute for Bil Request
 
-        return ArrayToXml::convert($params, Tag::ROOT, true, 'utf-8');
+        return ArrayToXml::convert($params, Tag::ROOT, \true, 'utf-8');
     }
 }

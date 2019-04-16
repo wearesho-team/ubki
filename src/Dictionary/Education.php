@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,13 +10,13 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class Education
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static Education SECONDARY_UNFINISHED(string $description = null)
- * @method static Education SECONDARY(string $description = null)
- * @method static Education SECONDARY_TECH(string $description = null)
- * @method static Education HIGH_UNFINISHED(string $description = null)
- * @method static Education HIGH(string $description = null)
- * @method static Education ACADEMIC(string $description = null)
- * @method static Education BY_SELF(string $description = null)
+ * @method static Education SECONDARY_UNFINISHED(string $description = \null)
+ * @method static Education SECONDARY(string $description = \null)
+ * @method static Education SECONDARY_TECH(string $description = \null)
+ * @method static Education HIGH_UNFINISHED(string $description = \null)
+ * @method static Education HIGH(string $description = \null)
+ * @method static Education ACADEMIC(string $description = \null)
+ * @method static Education BY_SELF(string $description = \null)
  */
 final class Education extends Dictionary
 {

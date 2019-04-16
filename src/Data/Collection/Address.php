@@ -1,18 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data\Collection;
 
 use Wearesho\BaseCollection;
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Contract;
 
 /**
  * Class Address
  * @package Wearesho\Bobra\Ubki\Data\Collection
+ *
+ * @method Contract\Data\Address offsetGet($index)
  */
 class Address extends BaseCollection
 {
-    public function type(): string
+    final public function type(): string
     {
-        return Data\Address::class;
+        return Contract\Data\Address::class;
     }
 }

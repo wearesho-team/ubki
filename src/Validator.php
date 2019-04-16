@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki;
 
 use MyCLabs\Enum\Enum;
@@ -131,9 +133,12 @@ final class Validator extends Enum
     
     // phpcs:enable
 
-    public function validate(?string $value, bool $nullable = false): void
+    public function validate(?string $value, bool $nullable = \false): void
     {
-        if (!$nullable && is_null($value) || !\preg_match($this->getValue(), $value)) {
+        if ($nullable && $value === \null) {
+            return;
+        }
+        if (!$nullable && $value === \null || !\preg_match($this->getValue(), $value)) {
             throw new Exception\Validator($this, $value);
         }
     }

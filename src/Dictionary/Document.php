@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,23 +10,23 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class Document
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static Document PASSPORT(string $description = null)
- * @method static Document DRIVER(string $description = null)
- * @method static Document INTERNATIONAL(string $description = null)
- * @method static Document BIRTH(string $description = null)
- * @method static Document SEAMAN(string $description = null)
- * @method static Document MILITARY(string $description = null)
- * @method static Document TEMP_CARD(string $description = null)
- * @method static Document DIPLOMA(string $description = null)
- * @method static Document ATTESTAT(string $description = null)
- * @method static Document CITIZEN(string $description = null)
- * @method static Document STATE_REGISTRATION(string $description = null)
- * @method static Document EXTRACT_FROM_EGR(string $description = null)
- * @method static Document ORDERING_FROM_EGR(string $description = null)
- * @method static Document CERTIFICATE_TAXPAYERS(string $description = null)
- * @method static Document INFORMATION_TAXPAYER(string $description = null)
- * @method static Document RESIDENCE(string $description = null)
- * @method static Document UKRAINE_CARD(string $description = null)
+ * @method static Document PASSPORT(string $description = \null)
+ * @method static Document DRIVER(string $description = \null)
+ * @method static Document INTERNATIONAL(string $description = \null)
+ * @method static Document BIRTH(string $description = \null)
+ * @method static Document SEAMAN(string $description = \null)
+ * @method static Document MILITARY(string $description = \null)
+ * @method static Document TEMP_CARD(string $description = \null)
+ * @method static Document DIPLOMA(string $description = \null)
+ * @method static Document ATTESTAT(string $description = \null)
+ * @method static Document CITIZEN(string $description = \null)
+ * @method static Document STATE_REGISTRATION(string $description = \null)
+ * @method static Document EXTRACT_FROM_EGR(string $description = \null)
+ * @method static Document ORDERING_FROM_EGR(string $description = \null)
+ * @method static Document CERTIFICATE_TAXPAYERS(string $description = \null)
+ * @method static Document INFORMATION_TAXPAYER(string $description = \null)
+ * @method static Document RESIDENCE(string $description = \null)
+ * @method static Document UKRAINE_CARD(string $description = \null)
  */
 final class Document extends Dictionary
 {

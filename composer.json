@@ -14,12 +14,12 @@
     "psr/log": "^1.0",
     "psr/simple-cache": "^1.0",
     "spatie/array-to-xml": "^2.8",
-    "wearesho-team/base-collection": "^1.0"
+    "wearesho-team/base-collection": "^1.0.1"
   },
   "require-dev": {
     "chillerlan/php-cache": "^1.0",
     "gamez/psr-testlogger": "^2.0",
-    "phpunit/phpunit": "^7.1",
+    "phpunit/phpunit": "^8.1",
     "squizlabs/php_codesniffer": "^3.4"
   },
   "keywords": [

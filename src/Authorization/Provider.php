@@ -23,7 +23,7 @@ class Provider implements ProviderInterface
 
     public function __construct(
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        Log\LoggerInterface $logger = \null
     ) {
         $this->client = $client;
         $this->logger = $logger ?? new Log\NullLogger();
@@ -93,7 +93,7 @@ class Provider implements ProviderInterface
         }
 
         $xml = \simplexml_load_string((string)$exception->getResponse()->getBody());
-        if ($xml === false || !isset($xml->auth)) {
+        if ($xml === \false || !isset($xml->auth)) {
             // Not XML or invalid format XML
             throw $exception;
         }
@@ -108,7 +108,7 @@ class Provider implements ProviderInterface
             (string)$attributes->errtext,
             (int)$attributes->errcode,
             $exception,
-            isset($attributes->errtextclient) ? (string)$attributes->errtextclient : null
+            isset($attributes->errtextclient) ? (string)$attributes->errtextclient : \null
         );
     }
 
@@ -133,6 +133,6 @@ class Provider implements ProviderInterface
             ]
         ];
 
-        return ArrayToXml::convert($params, 'doc', true, 'utf-8');
+        return ArrayToXml::convert($params, 'doc', \true, 'utf-8');
     }
 }

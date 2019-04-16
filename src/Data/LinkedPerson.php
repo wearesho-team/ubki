@@ -1,22 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class LinkedPerson
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static LinkedPerson make(...$arguments)
  */
-class LinkedPerson
+class LinkedPerson implements Ubki\Contract\Data\LinkedPerson, \JsonSerializable
 {
-    public const TAG = 'linked';
-
-    public const EGRPOU = 'okpo2';
-    public const NAME = 'okpo2_name';
-    public const ROLE = 'linkrole';
-    public const ROLE_REF = 'linkroleref';
-    public const ISSUE_DATE = 'rdate';
+    use Makeable, Tagable;
 
     /** @var string */
     protected $name;
@@ -34,15 +33,30 @@ class LinkedPerson
         string $name,
         Ubki\Dictionary\LinkedIdentifierRole $role,
         \DateTimeInterface $issueDate,
-        string $egrpou = null
+        string $egrpou = \null
     ) {
-        Ubki\Validator::OKPO_UNICODE()->validate($egrpou, true);
+        Ubki\Validator::OKPO_UNICODE()->validate($egrpou, \true);
         Ubki\Validator::JUST_TEXT_250()->validate($name);
 
         $this->name = $name;
         $this->role = $role;
         $this->issueDate = $issueDate;
         $this->egrpou = $egrpou;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'role' => $this->role,
+            'issueDate' => Carbon::make($this->issueDate),
+            'egrpou' => $this->egrpou,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'linked';
     }
 
     public function getEgrpou(): ?string

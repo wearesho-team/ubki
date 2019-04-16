@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,10 +10,10 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class City
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static City VILLAGE(string $description = null)
- * @method static City SETTLEMENT(string $description = null)
- * @method static City URBAN_VILLAGE(string $description = null)
- * @method static City TOWN(string $description = null)
+ * @method static City VILLAGE(string $description = \null)
+ * @method static City SETTLEMENT(string $description = \null)
+ * @method static City URBAN_VILLAGE(string $description = \null)
+ * @method static City TOWN(string $description = \null)
  */
 final class City extends Dictionary
 {

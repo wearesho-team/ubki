@@ -1,29 +1,17 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+declare(strict_types=1);
+
+namespace Wearesho\Bobra\Ubki\Data\Rate;
+
+use Wearesho\Bobra\Ubki;
 
 /**
- * Class RatingScore
- * @package Wearesho\Bobra\Ubki\Data
+ * Class Score
+ * @package Wearesho\Bobra\Ubki\Data\Rate
  */
-class RatingScore
+class Score implements Ubki\Contract\Data\Rate\Score
 {
-    public const TAG = 'urating';
-
-    public const INN = 'inn';
-    public const NAME = 'fname';
-    public const SURNAME = 'lname';
-    public const PATRONYMIC = 'mname';
-    public const BIRTH_DATE = 'bdate';
-    public const SCORE = 'score';
-    public const PREVIOUS_SCORE = 'scorelast';
-    public const DATE = 'scoredate';
-    public const PREVIOUS_DATE = 'scoredatelast';
-    public const LEVEL = 'scorelevel';
-    public const CURRENT = 'current';
-    public const PREVIOUS = 'previous';
-    public const VALUE = 'value';
-
     /** @var string */
     protected $inn;
 

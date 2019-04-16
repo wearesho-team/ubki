@@ -1,22 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
+
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class RegistryTimes
  * @package Wearesho\Bobra\Ubki\Data
  */
-class RegistryTimes
+class RegistryTimes implements Ubki\Contract\Data\RegistryTimes, \JsonSerializable
 {
-    public const TAG = 'reestrtime';
-
-    public const BY_HOUR = 'hr';
-    public const BY_DAY = 'da';
-    public const BY_WEEK = 'wk';
-    public const BY_MONTH = 'mn';
-    public const BY_QUARTER = 'qw';
-    public const BY_YEAR = 'ye';
-    public const BY_MORE_YEAR = 'yu';
+    use Makeable, Tagable;
 
     /** @var int */
     protected $byHour;
@@ -55,6 +51,24 @@ class RegistryTimes
         $this->byQuarter = $byQuarter;
         $this->byYear = $byYear;
         $this->byMoreYear = $byMoreYear;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'byHour' => $this->byHour,
+            'byDay' => $this->byDay,
+            'byWeek' => $this->byWeek,
+            'byMonth' => $this->byMonth,
+            'byQuarter' => $this->byQuarter,
+            'byYear' => $this->byYear,
+            'byMoreYear' => $this->byMoreYear,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'reestrtime';
     }
 
     public function getByHour(): int

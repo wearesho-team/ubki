@@ -44,7 +44,7 @@ abstract class Service implements ServiceInterface
         Ubki\Authorization\ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        Log\LoggerInterface $logger = \null
     ) {
         $this->config = $config;
         $this->authProvider = $authProvider;
@@ -114,14 +114,14 @@ abstract class Service implements ServiceInterface
     {
         return $dictionary
             ? $dictionary->getValue()
-            : null;
+            : \null;
     }
 
     protected function convertDate(?\DateTimeInterface $date): ?string
     {
         return $date
             ? Carbon::make($date)->toDateString()
-            : null;
+            : \null;
     }
 
     abstract protected function formBody(RequestInterface $request, string $sessionId): string;

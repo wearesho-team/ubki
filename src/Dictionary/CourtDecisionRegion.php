@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,37 +10,37 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class CourtDecisionRegion
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static CourtDecisionRegion AUTONOMOUS_REPUBLIC_OF_CRIMEA(string $description = null)
- * @method static CourtDecisionRegion VINNYTSIA(string $description = null)
- * @method static CourtDecisionRegion VOLYN(string $description = null)
- * @method static CourtDecisionRegion DNIPROPETROVSK(string $description = null)
- * @method static CourtDecisionRegion DONETSK(string $description = null)
- * @method static CourtDecisionRegion ZHYTOMYR(string $description = null)
- * @method static CourtDecisionRegion ZAKARPATTIA(string $description = null)
- * @method static CourtDecisionRegion ZAPORIZHZHIA(string $description = null)
- * @method static CourtDecisionRegion IVANO_FRANKIVSK(string $description = null)
- * @method static CourtDecisionRegion KIEV(string $description = null)
- * @method static CourtDecisionRegion KIROVOHRAD(string $description = null)
- * @method static CourtDecisionRegion LUHANSK(string $description = null)
- * @method static CourtDecisionRegion LVIV(string $description = null)
- * @method static CourtDecisionRegion MYKOLAIV(string $description = null)
- * @method static CourtDecisionRegion ODESA(string $description = null)
- * @method static CourtDecisionRegion POLTAVA(string $description = null)
- * @method static CourtDecisionRegion RIVNE(string $description = null)
- * @method static CourtDecisionRegion SUMY(string $description = null)
- * @method static CourtDecisionRegion TERNOPIL(string $description = null)
- * @method static CourtDecisionRegion KHARKIV(string $description = null)
- * @method static CourtDecisionRegion KHERSON(string $description = null)
- * @method static CourtDecisionRegion KHMELNYTSKYI(string $description = null)
- * @method static CourtDecisionRegion CHERKASY(string $description = null)
- * @method static CourtDecisionRegion CHERNIVTSI(string $description = null)
- * @method static CourtDecisionRegion CHERNIHIV(string $description = null)
- * @method static CourtDecisionRegion KIEV_CITY(string $description = null)
- * @method static CourtDecisionRegion SEVASTOPOL_CITY(string $description = null)
- * @method static CourtDecisionRegion ARMED_FORCES_CENTRAL(string $description = null)
- * @method static CourtDecisionRegion ARMED_FORCES_WESTERN(string $description = null)
- * @method static CourtDecisionRegion ARMED_FORCES_SOUTH(string $description = null)
- * @method static CourtDecisionRegion UKRAINIAN_NAVY(string $description = null)
+ * @method static CourtDecisionRegion AUTONOMOUS_REPUBLIC_OF_CRIMEA(string $description = \null)
+ * @method static CourtDecisionRegion VINNYTSIA(string $description = \null)
+ * @method static CourtDecisionRegion VOLYN(string $description = \null)
+ * @method static CourtDecisionRegion DNIPROPETROVSK(string $description = \null)
+ * @method static CourtDecisionRegion DONETSK(string $description = \null)
+ * @method static CourtDecisionRegion ZHYTOMYR(string $description = \null)
+ * @method static CourtDecisionRegion ZAKARPATTIA(string $description = \null)
+ * @method static CourtDecisionRegion ZAPORIZHZHIA(string $description = \null)
+ * @method static CourtDecisionRegion IVANO_FRANKIVSK(string $description = \null)
+ * @method static CourtDecisionRegion KIEV(string $description = \null)
+ * @method static CourtDecisionRegion KIROVOHRAD(string $description = \null)
+ * @method static CourtDecisionRegion LUHANSK(string $description = \null)
+ * @method static CourtDecisionRegion LVIV(string $description = \null)
+ * @method static CourtDecisionRegion MYKOLAIV(string $description = \null)
+ * @method static CourtDecisionRegion ODESA(string $description = \null)
+ * @method static CourtDecisionRegion POLTAVA(string $description = \null)
+ * @method static CourtDecisionRegion RIVNE(string $description = \null)
+ * @method static CourtDecisionRegion SUMY(string $description = \null)
+ * @method static CourtDecisionRegion TERNOPIL(string $description = \null)
+ * @method static CourtDecisionRegion KHARKIV(string $description = \null)
+ * @method static CourtDecisionRegion KHERSON(string $description = \null)
+ * @method static CourtDecisionRegion KHMELNYTSKYI(string $description = \null)
+ * @method static CourtDecisionRegion CHERKASY(string $description = \null)
+ * @method static CourtDecisionRegion CHERNIVTSI(string $description = \null)
+ * @method static CourtDecisionRegion CHERNIHIV(string $description = \null)
+ * @method static CourtDecisionRegion KIEV_CITY(string $description = \null)
+ * @method static CourtDecisionRegion SEVASTOPOL_CITY(string $description = \null)
+ * @method static CourtDecisionRegion ARMED_FORCES_CENTRAL(string $description = \null)
+ * @method static CourtDecisionRegion ARMED_FORCES_WESTERN(string $description = \null)
+ * @method static CourtDecisionRegion ARMED_FORCES_SOUTH(string $description = \null)
+ * @method static CourtDecisionRegion UKRAINIAN_NAVY(string $description = \null)
  */
 final class CourtDecisionRegion extends Dictionary
 {

@@ -1,23 +1,17 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Data;
+declare(strict_types=1);
+
+namespace Wearesho\Bobra\Ubki\Data\Rate;
+
+use Wearesho\Bobra\Ubki;
 
 /**
- * Class RatingDescription
- * @package Wearesho\Bobra\Ubki\Data
+ * Class Description
+ * @package Wearesho\Bobra\Ubki\Data\Rate
  */
-class RatingDescription
+class Description implements Ubki\Contract\Data\Rate\Description
 {
-    public const TAG = 'dinfo';
-
-    public const CREDITS_COUNT = 'all';
-    public const OPEN_CREDITS_COUNT = 'open';
-    public const DESCRIPTION = 'opentext';
-    public const CLOSED_CREDITS_COUNT = 'close';
-    public const EXPIRES = 'expyear';
-    public const MAX_OVERDUE = 'maxnowexp';
-    public const UPDATED_AT = 'datelastupdate';
-
     /** @var int */
     protected $creditsCount;
 

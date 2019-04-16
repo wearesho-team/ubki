@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Exception;
 
-use Throwable;
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -11,7 +12,7 @@ use Wearesho\Bobra\Ubki;
  */
 class Overdue extends \InvalidArgumentException implements Ubki\ExceptionInterface
 {
-    public function __construct(string $id, $code = 0, Throwable $previous = null)
+    public function __construct(string $id, $code = 0, \Throwable $previous = \null)
     {
         parent::__construct(
             "Deal id: {$id}. The field number with overdue days can not be = 0 if the current delayed debt field is not equal to 0. (and vice versa)",//phpcs:ignore

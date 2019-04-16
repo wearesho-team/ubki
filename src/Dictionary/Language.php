@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -11,14 +13,14 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Use iso 639-3 standard
  * @see https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4%D1%8B_%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2
  *
- * @method static Language RUS(string $description = null)
- * @method static Language UKR(string $description = null)
- * @method static Language KAT(string $description = null)
- * @method static Language ENG(string $description = null)
- * @method static Language LAV(string $description = null)
- * @method static Language ELL(string $description = null)
- * @method static Language ZHO(string $description = null)
- * @method static Language KAZ(string $description = null)
+ * @method static Language RUS(string $description = \null)
+ * @method static Language UKR(string $description = \null)
+ * @method static Language KAT(string $description = \null)
+ * @method static Language ENG(string $description = \null)
+ * @method static Language LAV(string $description = \null)
+ * @method static Language ELL(string $description = \null)
+ * @method static Language ZHO(string $description = \null)
+ * @method static Language KAZ(string $description = \null)
  */
 final class Language extends Dictionary
 {

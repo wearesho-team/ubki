@@ -1,37 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class DealLife
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static DealLife make(...$arguments)
  */
-class DealLife
+class DealLife implements Ubki\Contract\Data\DealLife, \JsonSerializable
 {
-    public const TAG = 'deallife';
-
-    public const ID = 'dlref';
-    public const PERIOD_MONTH = 'dlmonth';
-    public const PERIOD_YEAR = 'dlyear';
-    public const ISSUE_DATE = 'dlds';
-    public const END_DATE = 'dldpf';
-    public const ACTUAL_END_DATE = 'dldff';
-    public const STATUS = 'dlflstat';
-    public const STATUS_REF = 'dlflstatref';
-    public const LIMIT = 'dlamtlim';
-    public const MANDATORY_PAYMENT = 'dlamtpaym';
-    public const CURRENT_DEBT = 'dlamtcur';
-    public const CURRENT_OVERDUE_DEBT = 'dlamtexp';
-    public const OVERDUE_TIME = 'dldayexp';
-    public const PAYMENT_INDICATION = 'dlflpay';
-    public const PAYMENT_INDICATION_REF = 'dlflpayref';
-    public const DELAY_INDICATION = 'dlflbrk';
-    public const DELAY_INDICATION_REF = 'dlflbrkref';
-    public const TRANCHE_INDICATION = 'dlfluse';
-    public const CREDIT_TRANCHE_INDICATION_REF = 'dlfluseref';
-    public const PAYMENT_DATE = 'dldateclc';
+    use Makeable, Tagable;
 
     /** @var string */
     protected $id;
@@ -101,10 +85,10 @@ class DealLife
         Ubki\Dictionary\Flag $delayIndication,
         Ubki\Dictionary\Flag $trancheIndication,
         \DateTimeInterface $paymentDate,
-        \DateTimeInterface $actualEndDate = null
+        \DateTimeInterface $actualEndDate = \null
     ) {
-        Ubki\Validator::MONTH()->validate($periodMonth);
-        Ubki\Validator::YEAR()->validate($periodYear);
+        Ubki\Validator::MONTH()->validate((string)$periodMonth);
+        Ubki\Validator::YEAR()->validate((string)$periodYear);
         Ubki\Validator::BIG_FLOAT()->validate((string)$limit);
         Ubki\Validator::BIG_FLOAT()->validate((string)$mandatoryPayment);
         Ubki\Validator::BIG_FLOAT()->validate((string)$currentDebt);
@@ -136,6 +120,35 @@ class DealLife
         $this->validateActualEndDate($actualEndDate, $status);
 
         $this->actualEndDate = $actualEndDate;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'period' => [
+                'month' => $this->periodMonth,
+                'year' => $this->periodYear,
+            ],
+            'issueDate' => Carbon::make($this->issueDate),
+            'endDate' => Carbon::make($this->endDate),
+            'status' => $this->status,
+            'limit' => $this->limit,
+            'mandatoryPayment' => $this->mandatoryPayment,
+            'currentDebt' => $this->currentDebt,
+            'currentOverdueDebt' => $this->currentOverdueDebt,
+            'overdueTime' => $this->overdueTime,
+            'paymentIndication' => $this->paymentIndication,
+            'delayIndication' => $this->delayIndication,
+            'trancheIndication' => $this->trancheIndication,
+            'paymentDate' => Carbon::make($this->paymentDate),
+            'actualEndDate' => Carbon::make($this->actualEndDate),
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'deallife';
     }
 
     public function getId(): string
@@ -218,9 +231,11 @@ class DealLife
         return $this->actualEndDate;
     }
 
-    protected function validateActualEndDate(?string $actualEndDate, Ubki\Dictionary\DealStatus $status): void
-    {
-        if (is_null($actualEndDate) && $status->equals(Ubki\Dictionary\DealStatus::CLOSE())) {
+    protected function validateActualEndDate(
+        ?\DateTimeInterface $actualEndDate,
+        Ubki\Dictionary\DealStatus $status
+    ): void {
+        if ($actualEndDate === \null && $status->equals(Ubki\Dictionary\DealStatus::CLOSE())) {
             throw new \InvalidArgumentException("'Actual end date' must be set if deal status is CLOSE");
         }
     }

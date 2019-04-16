@@ -1,27 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class LegalPerson
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static LegalPerson make(...$arguments)
  */
-class LegalPerson extends IdentifiedPerson
+class LegalPerson extends IdentifiedPerson implements Ubki\Contract\Data\LegalPerson, \JsonSerializable
 {
-    public const TAG = 'urident';
-
-    public const ERGPOU = 'okpo';
-    public const NAME = 'urname';
-    public const FORM = 'urfrms';
-    public const FORM_REF = 'urfrmsref';
-    public const ECONOMY_BRANCH = 'ureconom';
-    public const ECONOMY_BRANCH_REF = 'ureconomref';
-    public const ACTIVITY_TYPE = 'urvide';
-    public const ACTIVITY_TYPE_REF = 'urvideref';
-    public const EDR_REGISTRATION_DATE = 'urdatreg';
-    public const TAX_REGISTRATION_DATE = 'urdatregnal';
+    use Makeable, Tagable;
 
     /** @var string|null */
     protected $egrpou;
@@ -45,12 +39,12 @@ class LegalPerson extends IdentifiedPerson
         \DateTimeInterface $createdAt,
         Ubki\Dictionary\Language $language,
         string $name,
-        string $egrpou = null,
-        Ubki\Dictionary\Ownership $ownership = null,
-        Ubki\Dictionary\EconomyBranch $economyBranch = null,
-        string $activityType = null,
-        \DateTimeInterface $edrRegistrationDate = null,
-        \DateTimeInterface $taxRegistrationDate = null
+        string $egrpou = \null,
+        Ubki\Dictionary\Ownership $ownership = \null,
+        Ubki\Dictionary\EconomyBranch $economyBranch = \null,
+        string $activityType = \null,
+        \DateTimeInterface $edrRegistrationDate = \null,
+        \DateTimeInterface $taxRegistrationDate = \null
     ) {
         Ubki\Validator::OKPO()->validate($egrpou);
         Ubki\Validator::JUST_TEXT_250()->validate($name);
@@ -64,6 +58,23 @@ class LegalPerson extends IdentifiedPerson
         $this->taxRegistrationDate = $taxRegistrationDate;
 
         parent::__construct($createdAt, $language, $name);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return \array_merge(parent::jsonSerialize(), [
+            'egrpou' => $this->egrpou,
+            'ownership' => $this->ownership,
+            'economyBranch' => $this->economyBranch,
+            'activityType' => $this->activityType,
+            'edrRegistrationDate' => Carbon::make($this->edrRegistrationDate),
+            'taxRegistrationDate' => Carbon::make($this->taxRegistrationDate),
+        ]);
+    }
+
+    public static function tag(): string
+    {
+        return 'ur' . parent::tag();
     }
 
     public function getActivityType(): ?string

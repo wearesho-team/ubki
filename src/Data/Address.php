@@ -1,34 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Address
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Address make(...$arguments)
  */
-class Address
+class Address implements Ubki\Contract\Data\Address, \JsonSerializable
 {
-    public const TAG = 'addr';
-
-    public const CREATED_AT = 'vdate';
-    public const LANGUAGE = 'lng';
-    public const LANGUAGE_REF = 'lngref';
-    public const TYPE = 'adtype';
-    public const TYPE_REF = 'adtyperef';
-    public const COUNTRY = 'adcountry';
-    public const INDEX = 'adindex';
-    public const STATE = 'adstate';
-    public const AREA = 'adarea';
-    public const CITY = 'adcity';
-    public const CITY_TYPE = 'adcitytype';
-    public const CITY_TYPE_REF = 'adcitytyperef';
-    public const STREET = 'adstreet';
-    public const HOUSE = 'adhome';
-    public const CORPUS = 'adcorp';
-    public const FLAT = 'adflat';
-    public const FULL_ADDRESS = 'addrdirt';
+    use Makeable, Tagable;
 
     /** @var \DateTimeInterface */
     protected $createdAt;
@@ -51,25 +38,25 @@ class Address
     /** @var string */
     protected $house;
 
-    /** @var string|null */
+    /** @var string|\null */
     protected $index;
 
-    /** @var string|null */
+    /** @var string|\null */
     protected $state;
 
-    /** @var string|null */
+    /** @var string|\null */
     protected $area;
 
     /** @var Ubki\Dictionary\City */
     protected $cityType;
 
-    /** @var string|null */
+    /** @var string|\null */
     protected $corpus;
 
-    /** @var string|null */
+    /** @var string|\null */
     protected $flat;
 
-    /** @var string|null */
+    /** @var string|\null */
     protected $fullAddress;
 
     public function __construct(
@@ -80,23 +67,23 @@ class Address
         string $city,
         string $street,
         string $house,
-        string $index = null,
-        string $state = null,
-        string $area = null,
-        Ubki\Dictionary\City $cityType = null,
-        string $corpus = null,
-        string $flat = null,
-        string $fullAddress = null
+        string $index = \null,
+        string $state = \null,
+        string $area = \null,
+        Ubki\Dictionary\City $cityType = \null,
+        string $corpus = \null,
+        string $flat = \null,
+        string $fullAddress = \null
     ) {
         Ubki\Validator::COUNTRY()->validate($country);
-        Ubki\Validator::INDEX()->validate($index, true);
-        Ubki\Validator::ADDRESS_STATE()->validate($state, true);
-        Ubki\Validator::ADDRESS_AREA()->validate($area, true);
+        Ubki\Validator::INDEX()->validate($index, \true);
+        Ubki\Validator::ADDRESS_STATE()->validate($state, \true);
+        Ubki\Validator::ADDRESS_AREA()->validate($area, \true);
         Ubki\Validator::CITY()->validate($city);
         Ubki\Validator::STREET()->validate($street);
         Ubki\Validator::COUNTRY()->validate($house);
-        Ubki\Validator::TEXT_40()->validate($flat, true);
-        Ubki\Validator::FULL_ADDRESS()->validate($fullAddress, true);
+        Ubki\Validator::TEXT_40()->validate($flat, \true);
+        Ubki\Validator::FULL_ADDRESS()->validate($fullAddress, \true);
 
         $this->createdAt = $createdAt;
         $this->language = $language;
@@ -112,6 +99,31 @@ class Address
         $this->corpus = $corpus;
         $this->flat = $flat;
         $this->fullAddress = $fullAddress;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::make($this->createdAt),
+            'language' => $this->language,
+            'addressType' => $this->addressType,
+            'country' => $this->country,
+            'city' => $this->city,
+            'street' => $this->street,
+            'house' => $this->house,
+            'index' => $this->index,
+            'state' => $this->state,
+            'area' => $this->area,
+            'cityType' => $this->cityType,
+            'corpus' => $this->corpus,
+            'flat' => $this->flat,
+            'fullAddress' => $this->fullAddress,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'addr';
     }
 
     public function getCreatedAt(): \DateTimeInterface

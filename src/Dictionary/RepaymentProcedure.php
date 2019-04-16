@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -10,20 +12,20 @@ use Wearesho\Bobra\Ubki\Dictionary;
  *
  * @see https://docs.google.com/document/d/12yD1_bopAlZVAe-jFCKtGkOd15VJC4mPag_wH3gvChg/edit#heading=h.kn4jicy0622q
  *
- * @method static RepaymentProcedure PAYMENT_MATURITY(string $description = null)
- * @method static RepaymentProcedure NON_REVOLVING_CREDIT_LINE(string $description = null)
- * @method static RepaymentProcedure REVOLVING_CREDIT_LINE(string $description = null)
- * @method static RepaymentProcedure OVERDRAFT(string $description = null)
- * @method static RepaymentProcedure CREDIT_LIMIT(string $description = null)
- * @method static RepaymentProcedure PAYMENTS_MONTHLY(string $description = null)
- * @method static RepaymentProcedure PAYMENTS_INDIVIDUAL(string $description = null)
- * @method static RepaymentProcedure PERIODIC_TWO_WEEKS(string $description = null)
- * @method static RepaymentProcedure PERIODIC_MONTH(string $description = null)
- * @method static RepaymentProcedure PERIODIC_TWO_MONTH(string $description = null)
- * @method static RepaymentProcedure PERIODIC_QUARTERLY(string $description = null)
- * @method static RepaymentProcedure PERIODIC_FIVE_MONTH(string $description = null)
- * @method static RepaymentProcedure PERIODIC_YEARLY(string $description = null)
- * @method static RepaymentProcedure SHEET_COMMITMENTS(string $description = null)
+ * @method static RepaymentProcedure PAYMENT_MATURITY(string $description = \null)
+ * @method static RepaymentProcedure NON_REVOLVING_CREDIT_LINE(string $description = \null)
+ * @method static RepaymentProcedure REVOLVING_CREDIT_LINE(string $description = \null)
+ * @method static RepaymentProcedure OVERDRAFT(string $description = \null)
+ * @method static RepaymentProcedure CREDIT_LIMIT(string $description = \null)
+ * @method static RepaymentProcedure PAYMENTS_MONTHLY(string $description = \null)
+ * @method static RepaymentProcedure PAYMENTS_INDIVIDUAL(string $description = \null)
+ * @method static RepaymentProcedure PERIODIC_TWO_WEEKS(string $description = \null)
+ * @method static RepaymentProcedure PERIODIC_MONTH(string $description = \null)
+ * @method static RepaymentProcedure PERIODIC_TWO_MONTH(string $description = \null)
+ * @method static RepaymentProcedure PERIODIC_QUARTERLY(string $description = \null)
+ * @method static RepaymentProcedure PERIODIC_FIVE_MONTH(string $description = \null)
+ * @method static RepaymentProcedure PERIODIC_YEARLY(string $description = \null)
+ * @method static RepaymentProcedure SHEET_COMMITMENTS(string $description = \null)
  */
 final class RepaymentProcedure extends Dictionary
 {

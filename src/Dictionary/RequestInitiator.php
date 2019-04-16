@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,10 +10,10 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class RequestInitiator
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static RequestInitiator PARTNER(string $description = null)
- * @method static RequestInitiator SKI(string $description = null)
- * @method static RequestInitiator CERTIFICATED_SKI(string $description = null)
- * @method static RequestInitiator COURT(string $description = null)
+ * @method static RequestInitiator PARTNER(string $description = \null)
+ * @method static RequestInitiator SKI(string $description = \null)
+ * @method static RequestInitiator CERTIFICATED_SKI(string $description = \null)
+ * @method static RequestInitiator COURT(string $description = \null)
  */
 final class RequestInitiator extends Dictionary
 {

@@ -26,7 +26,7 @@ class Service extends Ubki\Service implements ServiceInterface
         ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        Log\LoggerInterface $logger = \null
     ) {
         parent::__construct($config, $authProvider, $client, $logger);
     }
@@ -86,10 +86,10 @@ class Service extends Ubki\Service implements ServiceInterface
                                 $this->fetchContacts($requestContent),
                                 $this->fetchDocuments($requestContent),
                                 [
-                                    static::MVD => null,
+                                    static::MVD => \null,
                                     static::BLACK_PHONES => [
                                         static::ATTRIBUTES => [
-                                            static::PHONE => null,
+                                            static::PHONE => \null,
                                         ],
                                     ],
                                 ]
@@ -100,7 +100,7 @@ class Service extends Ubki\Service implements ServiceInterface
             ],
         ];
 
-        $parser = new ArrayToXml($params, static::ROOT, true, 'utf-8');
+        $parser = new ArrayToXml($params, static::ROOT, \true, 'utf-8');
         $document = $parser->toDom();
 
         $requestElm = $document->getElementsByTagName(static::REQUEST)[0];

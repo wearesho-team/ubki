@@ -1,32 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class CourtDecision
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static CourtDecision make(...$arguments)
  */
-class CourtDecision
+class CourtDecision implements Ubki\Contract\Data\CourtDecision, \JsonSerializable
 {
-    public const TAG = 'susd';
-
-    public const ID = 'voteid';
-    public const INN = 'inn';
-    public const DATE = 'votedate';
-    public const SUBJECT_STATUS = 'voteusrst';
-    public const SUBJECT_STATUS_REF = 'voteusrstref';
-    public const COURT_DEAL_TYPE = 'votetype';
-    public const COURT_DEAL_TYPE_REF = 'votetyperef';
-    public const COURT_NAME = 'votesudname';
-    public const LEGAL_FACT = 'voteurfact';
-    public const LEGAL_FACT_REF = 'voteurfactref';
-    public const CREATED_AT = 'vdate';
-    public const DOCUMENT_TYPE = 'votedoctype';
-    public const DOCUMENT_TYPE_REF = 'votedoctyperef';
-    public const AREA = 'votesudregion';
-    public const AREA_REF = 'votesudregionref';
+    use Makeable, Tagable;
 
     /** @var string */
     protected $id;
@@ -75,12 +64,12 @@ class CourtDecision
         Ubki\Dictionary\CourtDeal $courtDealType,
         string $courtName,
         string $documentType,
-        string $documentTypeReference = null,
-        string $legalFact = null,
-        string $legalFactReference = null,
-        \DateTimeInterface $createdAt = null,
-        string $area = null,
-        string $areaReference = null
+        string $documentTypeReference = \null,
+        string $legalFact = \null,
+        string $legalFactReference = \null,
+        \DateTimeInterface $createdAt = \null,
+        string $area = \null,
+        string $areaReference = \null
     ) {
         Ubki\Validator::INN()->validate($inn);
         Ubki\Validator::JUST_TEXT_100()->validate($courtName);
@@ -98,6 +87,36 @@ class CourtDecision
         $this->createdAt = $createdAt;
         $this->area = $area;
         $this->areaReference = $areaReference;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'inn' => $this->inn,
+            'date' => Carbon::make($this->date),
+            'subjectStatus' => $this->subjectStatus,
+            'dealType' => $this->courtDealType,
+            'courtName' => $this->courtName,
+            'document' => [
+                'type' => $this->documentType,
+                'reference' => $this->documentTypeReference,
+            ],
+            'legalFact' => [
+                'type' => $this->legalFact,
+                'reference' => $this->legalFactReference,
+            ],
+            'createdAt' => Carbon::make($this->createdAt),
+            'area' => [
+                'type' => $this->area,
+                'reference' => $this->areaReference,
+            ]
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'susd';
     }
 
     public function getId(): string

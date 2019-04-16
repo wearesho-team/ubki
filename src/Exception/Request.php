@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Exception;
 
 use Wearesho\Bobra\Ubki;
@@ -17,7 +19,7 @@ class Request extends \Exception implements Ubki\ExceptionInterface
         Ubki\RequestInterface $request,
         string $message = "",
         int $code = 0,
-        \Throwable $previous = null
+        \Throwable $previous = \null
     ) {
         $this->request = $request;
 

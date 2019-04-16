@@ -106,13 +106,11 @@ class RequestTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Contact, documents and identification attributes required if reason is
-     *     REQUEST_ONLINE_CREDIT
-     */
     public function testCreditOnline(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Contact, documents and identification attributes required if reason is REQUEST_ONLINE_CREDIT"); //phpcs:ignore
+
         new Ubki\Pull\Request(
             new Ubki\Pull\Request\Head(
                 Ubki\Pull\Report\Type::CREDIT_REPORT(),

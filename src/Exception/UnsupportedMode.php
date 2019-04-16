@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Exception;
 
 use Wearesho\Bobra\Ubki;
@@ -16,7 +18,7 @@ class UnsupportedMode extends \InvalidArgumentException implements Ubki\Exceptio
     public function __construct(
         int $mode,
         int $code = 0,
-        \Throwable $previous = null
+        \Throwable $previous = \null
     ) {
         $this->mode = $mode;
 

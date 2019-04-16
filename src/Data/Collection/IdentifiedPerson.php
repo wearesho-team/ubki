@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data\Collection;
 
 use Wearesho\BaseCollection;
-use Wearesho\Bobra\Ubki\Data;
+use Wearesho\Bobra\Ubki\Contract;
 
 /**
  * Class IdentifiedPerson
@@ -11,9 +13,9 @@ use Wearesho\Bobra\Ubki\Data;
  */
 class IdentifiedPerson extends BaseCollection
 {
-    public function type(): string
+    final public function type(): string
     {
-        return Data\IdentifiedPerson::class;
+        return Contract\Data\IdentifiedPerson::class;
     }
 
     /**
@@ -21,8 +23,8 @@ class IdentifiedPerson extends BaseCollection
      */
     public function getNaturals(): IdentifiedPerson
     {
-        return $this->map(function (Data\IdentifiedPerson $person): ?Data\IdentifiedPerson {
-            return $person instanceof Data\NaturalPerson ? $person : null;
+        return $this->map(function (Contract\Data\IdentifiedPerson $person): ?Contract\Data\IdentifiedPerson {
+            return $person instanceof Contract\Data\NaturalPerson ? $person : \null;
         });
     }
 
@@ -31,8 +33,8 @@ class IdentifiedPerson extends BaseCollection
      */
     public function getLegals(): IdentifiedPerson
     {
-        return $this->map(function (Data\IdentifiedPerson $person): ?Data\IdentifiedPerson {
-            return $person instanceof Data\LegalPerson ? $person : null;
+        return $this->map(function (Contract\Data\IdentifiedPerson $person): ?Contract\Data\IdentifiedPerson {
+            return $person instanceof Contract\Data\LegalPerson ? $person : \null;
         });
     }
 

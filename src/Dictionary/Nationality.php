@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,20 +10,20 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class Nationality
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static Nationality STATELESS(string $description = null)
- * @method static Nationality ARMENIA(string $description = null)
- * @method static Nationality AZERBAIJAN(string $description = null)
- * @method static Nationality BELARUS(string $description = null)
- * @method static Nationality GERMANY(string $description = null)
- * @method static Nationality GEORGIA(string $description = null)
- * @method static Nationality ISRAEL(string $description = null)
- * @method static Nationality KAZAKHSTAN(string $description = null)
- * @method static Nationality TURKEY(string $description = null)
- * @method static Nationality UKRAINE(string $description = null)
- * @method static Nationality USA(string $description = null)
- * @method static Nationality UZBEKISTAN(string $description = null)
- * @method static Nationality POLAND(string $description = null)
- * @method static Nationality RUSSIAN_FEDERATION(string $description = null)
+ * @method static Nationality STATELESS(string $description = \null)
+ * @method static Nationality ARMENIA(string $description = \null)
+ * @method static Nationality AZERBAIJAN(string $description = \null)
+ * @method static Nationality BELARUS(string $description = \null)
+ * @method static Nationality GERMANY(string $description = \null)
+ * @method static Nationality GEORGIA(string $description = \null)
+ * @method static Nationality ISRAEL(string $description = \null)
+ * @method static Nationality KAZAKHSTAN(string $description = \null)
+ * @method static Nationality TURKEY(string $description = \null)
+ * @method static Nationality UKRAINE(string $description = \null)
+ * @method static Nationality USA(string $description = \null)
+ * @method static Nationality UZBEKISTAN(string $description = \null)
+ * @method static Nationality POLAND(string $description = \null)
+ * @method static Nationality RUSSIAN_FEDERATION(string $description = \null)
  */
 final class Nationality extends Dictionary
 {

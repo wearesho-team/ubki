@@ -1,38 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class CreditDeal
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static CreditDeal make(...$arguments)
  */
-class CreditDeal
+class CreditDeal implements Ubki\Contract\Data\CreditDeal, \JsonSerializable
 {
-    public const TAG = 'crdeal';
-
-    public const ID = 'dlref';
-    public const LANGUAGE = 'lng';
-    public const LANGUAGE_REF = 'lngref';
-    public const INN = 'inn';
-    public const SURNAME = 'lname';
-    public const NAME = 'fname';
-    public const PATRONYMIC = 'mname';
-    public const BIRTH_DATE = 'bdate';
-    public const TYPE = 'dlcelcred';
-    public const TYPE_REF = 'dlcelcredref';
-    public const COLLATERAL = 'dlvidobes';
-    public const COLLATERAL_REF = 'dlvidobesref';
-    public const REPAYMENT_PROCEDURE = 'dlporpog';
-    public const REPAYMENT_PROCEDURE_REF = 'dlporpogref';
-    public const CURRENCY = 'dlcurr';
-    public const CURRENCY_REF = 'dlcurrref';
-    public const INITIAL_AMOUNT = 'dlamt';
-    public const SOURCE = 'dldonor';
-    public const SUBJECT_ROLE = 'dlrolesub';
-    public const SUBJECT_ROLE_REF = 'dlrolesubref';
-    public const COLLATERAL_COST = 'dlamtobes';
+    use Makeable, Tagable;
 
     /** @var string */
     protected $id;
@@ -96,11 +79,11 @@ class CreditDeal
         Ubki\Dictionary\SubjectRole $subjectRole,
         float $collateralCost,
         Ubki\Data\Collection\DealLife $dealLifes,
-        string $inn = null,
-        string $patronymic = null,
-        string $source = null
+        string $inn = \null,
+        string $patronymic = \null,
+        string $source = \null
     ) {
-        Ubki\Validator::INN()->validate($inn, true);
+        Ubki\Validator::INN()->validate($inn, \true);
         Ubki\Validator::BIG_FLOAT()->validate((string)$initialAmount);
 
         $this->id = $id;
@@ -119,6 +102,33 @@ class CreditDeal
         $this->inn = $inn;
         $this->patronymic = $patronymic;
         $this->source = $source;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'language' => $this->language,
+            'name' => $this->name,
+            'surname' => $this->surname,
+            'birthDate' => Carbon::make($this->birthDate),
+            'type' => $this->type,
+            'collateral' => $this->collateral,
+            'repaymentProcedure' => $this->repaymentProcedure,
+            'currency' => $this->currency,
+            'initialAmount' => $this->initialAmount,
+            'subjectRole' => $this->subjectRole,
+            'collateralCost' => $this->collateralCost,
+            'dealLives' => $this->dealLifes,
+            'inn' => $this->inn,
+            'patronymic' => $this->patronymic,
+            'source' => $this->source
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'crdeal';
     }
 
     public function getId(): string

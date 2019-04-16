@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Exception;
 
 use Wearesho\Bobra\Ubki\ExceptionInterface;
@@ -10,7 +12,7 @@ use Wearesho\Bobra\Ubki\ExceptionInterface;
  */
 class UnknownError extends \RuntimeException implements ExceptionInterface
 {
-    public function __construct($message = "", \Throwable $previous = null)
+    public function __construct($message = "", \Throwable $previous = \null)
     {
         parent::__construct($message, UnknownError::CODE_UNKNOWN_ERROR, $previous);
     }

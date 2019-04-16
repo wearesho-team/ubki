@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
-use Wearesho\Bobra\Ubki\Data;
+use Carbon\Carbon;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class IdentificationPerson
  * @package Wearesho\Bobra\Ubki\Data\Element
+ *
+ * @method static IdentificationPerson make(...$arguments)
  */
-class IdentificationPerson extends Data\Person
+class IdentificationPerson extends Ubki\Data\Person implements
+    Ubki\Contract\Data\IdentificationPerson,
+    \JsonSerializable
 {
-    public const NAME = 'fname';
-    public const INN = 'okpo';
-    public const SURNAME = 'lname';
-    public const PATRONYMIC = 'mname';
-    public const BIRTH_DATE = 'bdate';
-    public const ORGANIZATION = 'orgname';
+    use Makeable, Tagable;
 
     /** @var string|null */
     protected $inn;
@@ -33,12 +35,12 @@ class IdentificationPerson extends Data\Person
     protected $organization;
 
     public function __construct(
-        string $name = null,
-        string $inn = null,
-        string $surname = null,
-        string $patronymic = null,
-        \DateTimeInterface $birthDate = null,
-        string $organization = null
+        string $name = \null,
+        string $inn = \null,
+        string $surname = \null,
+        string $patronymic = \null,
+        \DateTimeInterface $birthDate = \null,
+        string $organization = \null
     ) {
         $this->inn = $inn;
         $this->surname = $surname;
@@ -47,6 +49,17 @@ class IdentificationPerson extends Data\Person
         $this->organization = $organization;
 
         parent::__construct($name);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'surname' => $this->surname,
+            'patronymic' => $this->patronymic,
+            'birthDate' => Carbon::make($this->birthDate),
+            'organization' => $this->organization,
+        ];
     }
 
     public function getInn(): ?string

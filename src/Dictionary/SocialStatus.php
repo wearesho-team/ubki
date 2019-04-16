@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,15 +10,15 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class SocialStatus
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static SocialStatus FULL_TIME(string $description = null)
- * @method static SocialStatus TERM_TIME(string $description = null)
- * @method static SocialStatus TEMP_UNEMPLOYED(string $description = null)
- * @method static SocialStatus PART_TIME(string $description = null)
- * @method static SocialStatus STUDENT(string $description = null)
- * @method static SocialStatus PENSIONER(string $description = null)
- * @method static SocialStatus PENSIONER_WORK(string $description = null)
- * @method static SocialStatus MATERNITY_LEAVE(string $description = null)
- * @method static SocialStatus OTHER(string $description = null)
+ * @method static SocialStatus FULL_TIME(string $description = \null)
+ * @method static SocialStatus TERM_TIME(string $description = \null)
+ * @method static SocialStatus TEMP_UNEMPLOYED(string $description = \null)
+ * @method static SocialStatus PART_TIME(string $description = \null)
+ * @method static SocialStatus STUDENT(string $description = \null)
+ * @method static SocialStatus PENSIONER(string $description = \null)
+ * @method static SocialStatus PENSIONER_WORK(string $description = \null)
+ * @method static SocialStatus MATERNITY_LEAVE(string $description = \null)
+ * @method static SocialStatus OTHER(string $description = \null)
  */
 final class SocialStatus extends Dictionary
 {

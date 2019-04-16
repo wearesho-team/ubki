@@ -1,26 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class Work
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Work make(...$arguments)
  */
-class Work
+class Work implements Ubki\Contract\Data\Work, \JsonSerializable
 {
-    public const TAG = 'work';
-
-    public const CREATED_AT = 'vdate';
-    public const LANGUAGE = 'lng';
-    public const LANGUAGE_REF = 'lngref';
-    public const RANK = 'cdolgn';
-    public const RANK_REF = 'cdolgnref';
-    public const EGRPOU = 'wokpo';
-    public const NAME = 'wname';
-    public const EXPERIENCE = 'wstag';
-    public const INCOME = 'wdohod';
+    use Makeable, Tagable;
 
     /** @var \DateTimeInterface */
     protected $createdAt;
@@ -48,12 +43,12 @@ class Work
         Ubki\Dictionary\Language $language,
         string $egrpou,
         string $name,
-        Ubki\Dictionary\IdentifierRank $rank = null,
-        int $experience = null,
-        float $income = null
+        Ubki\Dictionary\IdentifierRank $rank = \null,
+        int $experience = \null,
+        float $income = \null
     ) {
-        Ubki\Validator::TWO_NUMBER()->validate($experience, true);
-        Ubki\Validator::BIG_FLOAT()->validate($income, true);
+        Ubki\Validator::TWO_NUMBER()->validate((string)$experience, \true);
+        Ubki\Validator::BIG_FLOAT()->validate((string)$income, \true);
         Ubki\Validator::WORK_NAME()->validate($name);
         Ubki\Validator::OKPO_UNICODE()->validate($egrpou);
 
@@ -64,6 +59,24 @@ class Work
         $this->rank = $rank;
         $this->experience = $experience;
         $this->income = $income;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::make($this->createdAt),
+            'language' => $this->language,
+            'egrpou' => $this->egrpou,
+            'name' => $this->name,
+            'rank' => $this->rank,
+            'experience' => $this->experience,
+            'income' => $this->income,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'work';
     }
 
     public function getCreatedAt(): \DateTimeInterface

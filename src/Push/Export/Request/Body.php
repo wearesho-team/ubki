@@ -32,9 +32,9 @@ class Body
         Data\Credential $credential,
         Data\Collection\CreditDeal $creditDeals,
         Data\Collection\Contact $contacts,
-        Data\Collection\CourtDecision $courtDecisions = null,
-        Data\Collection\CreditRequest $creditRequests = null,
-        Data\RegistryTimes $registryTimes = null
+        Data\Collection\CourtDecision $courtDecisions = \null,
+        Data\Collection\CreditRequest $creditRequests = \null,
+        Data\RegistryTimes $registryTimes = \null
     ) {
         $this->credential = $credential;
         $this->creditDeals = $creditDeals;

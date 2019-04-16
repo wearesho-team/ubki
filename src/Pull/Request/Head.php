@@ -16,9 +16,9 @@ class Head extends Ubki\Data\RequestHead
     public function __construct(
         Ubki\Pull\Report\Type $type,
         Ubki\Dictionary\RequestReason $reason,
-        \DateTimeInterface $date = null,
-        string $id = null,
-        Ubki\Dictionary\RequestInitiator $initiator = null,
+        \DateTimeInterface $date = \null,
+        string $id = \null,
+        Ubki\Dictionary\RequestInitiator $initiator = \null,
         string $version = '1.0'
     ) {
         $this->type = $type;

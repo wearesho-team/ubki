@@ -33,13 +33,10 @@ class DictionaryTest extends TestCase
         $this->assertEquals(static::LANGUAGE_DESCRIPTION, (string)$language);
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage No static method or enum constant 'BDA' in class
-     *                           Wearesho\Bobra\Ubki\Dictionary\Language
-     */
     public function testInvalidConst(): void
     {
+        $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage("No static method or enum constant 'BDA' in class Wearesho\Bobra\Ubki\Dictionary\Language"); //phpcs:ignore
         Language::BDA();
     }
 

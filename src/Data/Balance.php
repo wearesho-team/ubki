@@ -1,14 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
+
+use Carbon\Carbon;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Balance
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Balance make(...$arguments)
  */
-class Balance
+class Balance implements Ubki\Contract\Data\Balance, \JsonSerializable
 {
-    public const TAG = 'balance';
+    use Makeable, Tagable;
 
     /** @var float */
     protected $value;
@@ -16,14 +23,23 @@ class Balance
     /** @var \DateTimeInterface|null */
     protected $date;
 
-    /** @var string|null */
-    protected $time;
-
-    public function __construct(float $value, ?\DateTimeInterface $date, ?string $time)
+    public function __construct(float $value, ?\DateTimeInterface $date)
     {
         $this->value = $value;
         $this->date = $date;
-        $this->time = $time;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'value' => $this->value,
+            'date' => Carbon::make($this->date),
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'balance';
     }
 
     public function getValue(): float
@@ -34,10 +50,5 @@ class Balance
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
-    }
-
-    public function getTime(): ?string
-    {
-        return $this->time;
     }
 }

@@ -1,19 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
 
+use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
 
 /**
  * Class IdentifiedPerson
  * @package Wearesho\Bobra\Ubki\Data
  */
-abstract class IdentifiedPerson extends Person
+abstract class IdentifiedPerson extends Person implements Ubki\Contract\Data\IdentifiedPerson, \JsonSerializable
 {
-    public const CREATED_AT = 'vdate';
-    public const LANGUAGE = 'lng';
-    public const LANGUAGE_REF = 'lngref';
-
     /** @var \DateTimeInterface */
     protected $createdAt;
 
@@ -29,6 +28,15 @@ abstract class IdentifiedPerson extends Person
         $this->language = $language;
 
         parent::__construct($name);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'createdAt' => Carbon::make($this->createdAt),
+            'language' => $this->language,
+            'name' => $this->name,
+        ];
     }
 
     public function getCreatedAt(): \DateTimeInterface

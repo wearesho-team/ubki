@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data\Collection;
 
 use Wearesho\BaseCollection;
-use Wearesho\Bobra\Ubki\Data\Step;
+use Wearesho\Bobra\Ubki\Contract;
 
 /**
  * Class Trace
@@ -11,8 +13,8 @@ use Wearesho\Bobra\Ubki\Data\Step;
  */
 class Trace extends BaseCollection
 {
-    public function type(): string
+    final public function type(): string
     {
-        return Step::class;
+        return Contract\Data\Step::class;
     }
 }

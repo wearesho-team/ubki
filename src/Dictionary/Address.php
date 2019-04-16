@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Dictionary;
 
 use Wearesho\Bobra\Ubki\Dictionary;
@@ -8,12 +10,12 @@ use Wearesho\Bobra\Ubki\Dictionary;
  * Class Address
  * @package Wearesho\Bobra\Ubki\Dictionary
  *
- * @method static Address HOME(string $description = null)
- * @method static Address REGISTRATION(string $description = null)
- * @method static Address ACTUAL(string $description = null)
- * @method static Address LEGAL(string $description = null)
- * @method static Address MAILING(string $description = null)
- * @method static Address WORK(string $description = null)
+ * @method static Address HOME(string $description = \null)
+ * @method static Address REGISTRATION(string $description = \null)
+ * @method static Address ACTUAL(string $description = \null)
+ * @method static Address LEGAL(string $description = \null)
+ * @method static Address MAILING(string $description = \null)
+ * @method static Address WORK(string $description = \null)
  */
 final class Address extends Dictionary
 {

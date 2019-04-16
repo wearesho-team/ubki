@@ -1,14 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
+
+use Carbon\Carbon;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Step
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Step make(...$arguments)
  */
-class Step
+class Step implements Ubki\Contract\Data\Step, \JsonSerializable
 {
-    public const TAG = 'step';
+    use Makeable, Tagable;
 
     /** @var string|null */
     protected $name;
@@ -24,6 +31,20 @@ class Step
         $this->name = $name;
         $this->start = $start;
         $this->end = $end;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'name' => $this->name,
+            'start' => Carbon::make($this->start),
+            'end' => Carbon::make($this->end),
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'step';
     }
 
     public function getName(): ?string

@@ -1,16 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Data;
+
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Comment
  * @package Wearesho\Bobra\Ubki\Data
+ *
+ * @method static Comment make(...$arguments)
  */
-class Comment
+class Comment implements Ubki\Contract\Data\Comment, \JsonSerializable
 {
-    public const TAG = 'comment';
-    public const ID = 'id';
-    public const TEXT = 'text';
+    use Makeable, Tagable;
 
     /** @var string|null */
     protected $id;
@@ -18,10 +22,23 @@ class Comment
     /** @var string */
     protected $text;
 
-    public function __construct(string $text, string $id = null)
+    public function __construct(string $text, string $id = \null)
     {
         $this->id = $id;
         $this->text = $text;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'text' => $this->text,
+        ];
+    }
+
+    public static function tag(): string
+    {
+        return 'comment';
     }
 
     public function getId(): ?string
