@@ -27,6 +27,22 @@ class CommentTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals('comment', $this->comment::tag());
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'text' => static::TEXT,
+                'id' => static::ID,
+            ],
+            $this->comment->jsonSerialize()
+        );
+    }
+
     public function testGetText(): void
     {
         $this->assertEquals(static::TEXT, $this->comment->getText());

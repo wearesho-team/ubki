@@ -72,7 +72,10 @@ class Document implements Ubki\Contract\Data\Document, \JsonSerializable
             'language' => $this->language,
             'type' => $this->type,
             'serial' => $this->serial,
-            'number' => $this->number
+            'number' => $this->number,
+            'issue' => $this->issue,
+            'issueDate' => Carbon::make($this->issueDate),
+            'termin' => Carbon::make($this->termin),
         ];
     }
 

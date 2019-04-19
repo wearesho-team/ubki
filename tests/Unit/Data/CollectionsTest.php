@@ -20,7 +20,7 @@ class CollectionsTest extends TestCase
     public function testType(BaseCollection $collection): void
     {
         $type = $collection->type();
-        $this->assertTrue(interface_exists($type) || class_exists($type));
+        $this->assertTrue(\interface_exists($type) || \class_exists($type));
     }
 
     public function providerCollections(): array

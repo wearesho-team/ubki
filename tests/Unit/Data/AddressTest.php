@@ -46,6 +46,34 @@ class AddressTest extends Ubki\Tests\Unit\TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals('addr', $this->address::tag());
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => Carbon::parse(static::CREATED_AT),
+                'language' => Ubki\Dictionary\Language::ENG(),
+                'addressType' => Ubki\Dictionary\Address::HOME(),
+                'country' => static::COUNTRY,
+                'city' => static::CITY,
+                'street' => static::STREET,
+                'house' => static::HOUSE,
+                'index' => static::INDEX,
+                'state' => static::STATE,
+                'area' => static::AREA,
+                'cityType' => Ubki\Dictionary\City::TOWN(),
+                'corpus' => static::CORPUS,
+                'flat' => static::FLAT,
+                'fullAddress' => static::FULL_ADDRESS,
+            ],
+            $this->address->jsonSerialize()
+        );
+    }
+
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(Carbon::parse(static::CREATED_AT), $this->address->getCreatedAt());

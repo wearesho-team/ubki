@@ -30,6 +30,24 @@ class ContactTest extends Ubki\Tests\Unit\TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals('cont', $this->contact::tag());
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => Carbon::parse(static::CREATED_AT),
+                'value' => static::VALUE,
+                'type' => Ubki\Dictionary\Contact::HOME(),
+                'inn' => static::INN
+            ],
+            $this->contact->jsonSerialize()
+        );
+    }
+
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(Carbon::parse(static::CREATED_AT), $this->contact->getCreatedAt());

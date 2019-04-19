@@ -47,6 +47,39 @@ class CourtDecisionTest extends Ubki\Tests\Unit\TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals('susd', $this->courtDecision::tag());
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'id' => static::ID,
+                'inn' => static::INN,
+                'date' => Carbon::parse(static::DATE),
+                'subjectStatus' => Ubki\Dictionary\CourtSubject::PLAINTIFF(),
+                'dealType' => Ubki\Dictionary\CourtDeal::CIVIL(),
+                'courtName' => static::COURT_NAME,
+                'document' => [
+                    'type' => static::DOCUMENT_TYPE,
+                    'reference' => static::DOCUMENT_TYPE_REFERENCE,
+                ],
+                'legalFact' => [
+                    'type' => static::LEGAL_FACT,
+                    'reference' => static::LEGAL_FACT_REFERENCE,
+                ],
+                'createdAt' => Carbon::make(static::CREATED_AT),
+                'area' => [
+                    'type' => static::AREA,
+                    'reference' => static::AREA_REFERENCE,
+                ]
+            ],
+            $this->courtDecision->jsonSerialize()
+        );
+    }
+
     public function testGetId(): void
     {
         $this->assertEquals(static::ID, $this->courtDecision->getId());

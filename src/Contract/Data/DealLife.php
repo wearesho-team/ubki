@@ -61,7 +61,7 @@ interface DealLife
 
     public function getTrancheIndication(): Ubki\Dictionary\Flag;
 
-    public function getPaymentDate(): \DateTimeInterface;
+    public function getPaymentDate(): ?\DateTimeInterface;
 
     public function getActualEndDate(): ?\DateTimeInterface;
 }

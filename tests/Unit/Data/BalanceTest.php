@@ -26,6 +26,22 @@ class BalanceTest extends TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals('balance', $this->balance::tag());
+    }
+
+    public function testJsonSerialize():void
+    {
+        $this->assertEquals(
+            [
+                'value' => static::VALUE,
+                'date' => Carbon::parse(static::DATE),
+            ],
+            $this->balance->jsonSerialize()
+        );
+    }
+
     public function testGetValue(): void
     {
         $this->assertEquals(static::VALUE, $this->balance->getValue());

@@ -37,6 +37,28 @@ class DocumentTest extends Ubki\Tests\Unit\TestCase
         );
     }
 
+    public function testTag(): void
+    {
+        $this->assertEquals('doc', $this->document::tag());
+    }
+
+    public function testJsonSerialize(): void
+    {
+        $this->assertEquals(
+            [
+                'createdAt' => Carbon::parse(static::CREATED_AT),
+                'language' => Ubki\Dictionary\Language::ENG(),
+                'type' => Ubki\Dictionary\Document::PASSPORT(),
+                'serial' => static::SERIAL,
+                'number' => static::NUMBER,
+                'issue' => static::ISSUE,
+                'issueDate' => Carbon::make(static::ISSUE_DATE),
+                'termin' => Carbon::make(static::TERMIN),
+            ],
+            $this->document->jsonSerialize()
+        );
+    }
+
     public function testGetCreatedAt(): void
     {
         $this->assertEquals(Carbon::parse(static::CREATED_AT), $this->document->getCreatedAt());
