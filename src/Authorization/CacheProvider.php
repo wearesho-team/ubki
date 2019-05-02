@@ -42,7 +42,7 @@ class CacheProvider extends Provider implements ProviderInterface
         $isCacheSet = $this->cache->set(
             $cacheKey,
             $response,
-            $response->getUpdatedAt()->diff(Carbon::now())
+            $response->getCreatedAt()->endOfDay()->diff(Carbon::now(), true)
         );
 
         if (!$isCacheSet) {
