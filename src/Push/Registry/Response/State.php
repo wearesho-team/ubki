@@ -2,21 +2,21 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry\Response;
 
-use MyCLabs\Enum\Enum;
+use Wearesho\Bobra\Ubki\Dictionary;
 
 /**
  * Class State
  * Transmission Packet Status
  *
- * @method static static PROCESSED()
- * @method static static TRANSMITTED()
- * @method static static CREATED()
- * @method static static BLOCKED()
- * @method static static SQL_ERROR()
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Response
+ *
+ * @method static State PROCESSED()
+ * @method static State TRANSMITTED()
+ * @method static State CREATED()
+ * @method static State BLOCKED()
+ * @method static State SQL_ERROR()
  */
-class State extends Enum
+final class State extends Dictionary
 {
     public const PROCESSED = 'r';
     public const TRANSMITTED = 'n';

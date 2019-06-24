@@ -2,11 +2,10 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
-use Wearesho\Bobra\Ubki\Push\Registry\Response;
+use Wearesho\Bobra\Ubki\Push;
 
 /**
  * Trait ResponseTrait
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 trait ResponseTrait
@@ -29,7 +28,7 @@ trait ResponseTrait
     /** @var Response\State */
     protected $state;
 
-    /** @var Response\OperationType */
+    /** @var \Wearesho\Bobra\Ubki\Push\Export\Request\Type */
     protected $operationType;
 
     /** @var int */
@@ -89,7 +88,7 @@ trait ResponseTrait
     /**
      * @inheritdoc
      */
-    public function getOperationType(): Response\OperationType
+    public function getOperationType(): Push\Export\Request\Type
     {
         return $this->operationType;
     }

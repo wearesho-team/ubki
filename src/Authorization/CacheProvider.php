@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Authorization;
 
 use Carbon\Carbon;
-
 use GuzzleHttp;
-
 use Psr;
 
 /**
@@ -20,7 +20,7 @@ class CacheProvider extends Provider implements ProviderInterface
     public function __construct(
         Psr\SimpleCache\CacheInterface $cache,
         GuzzleHttp\ClientInterface $client,
-        Psr\Log\LoggerInterface $logger = null
+        Psr\Log\LoggerInterface $logger = \null
     ) {
         $this->cache = $cache;
         parent::__construct($client, $logger);

@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Trait RequestTrait
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 trait RequestTrait

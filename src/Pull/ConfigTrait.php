@@ -17,9 +17,4 @@ trait ConfigTrait
             ? ConfigInterface::PRODUCTION_PULL_URL
             : ConfigInterface::TEST_PULL_URL;
     }
-
-    public function isProductionMode(): bool
-    {
-        return $this->mode === ConfigInterface::MODE_PRODUCTION;
-    }
 }

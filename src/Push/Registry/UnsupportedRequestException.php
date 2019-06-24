@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class UnsupportedRequestException
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class UnsupportedRequestException extends \InvalidArgumentException
@@ -16,7 +15,7 @@ class UnsupportedRequestException extends \InvalidArgumentException
         RequestInterface $request,
         string $message = "",
         int $code = 0,
-        \Throwable $previous = null
+        \Throwable $previous = \null
     ) {
         $this->request = $request;
 

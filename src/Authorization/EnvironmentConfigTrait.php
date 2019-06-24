@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Authorization;
 
 use Wearesho\Bobra\Ubki;
@@ -31,17 +33,22 @@ trait EnvironmentConfigTrait
         return $url;
     }
 
+    public function getMode(): int
+    {
+        return (int)$this->getEnv('MODE');
+    }
+
     protected function isProductionMode(): bool
     {
-        $environmentMode = (int)$this->getEnv('MODE');
+        $environmentMode = $this->getMode();
 
         switch ($environmentMode) {
             case ConfigInterface::MODE_PRODUCTION:
-                return true;
+                return \true;
             case ConfigInterface::MODE_TEST:
-                return false;
+                return \false;
             default:
-                throw new Ubki\UnsupportedModeException($environmentMode);
+                throw new Ubki\Exception\UnsupportedMode($environmentMode);
         }
     }
 }

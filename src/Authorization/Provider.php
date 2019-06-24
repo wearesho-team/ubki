@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Authorization;
 
 use Carbon\Carbon;
-
 use GuzzleHttp;
-
 use Psr\Log;
+use Spatie\ArrayToXml\ArrayToXml;
 
 /**
  * Class Client
@@ -22,7 +23,7 @@ class Provider implements ProviderInterface
 
     public function __construct(
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        Log\LoggerInterface $logger = \null
     ) {
         $this->client = $client;
         $this->logger = $logger ?? new Log\NullLogger();
@@ -50,7 +51,7 @@ class Provider implements ProviderInterface
         }
         /** @var GuzzleHttp\Psr7\Response $httpResponse */
 
-        $xml = simplexml_load_string($httpResponse->getBody()->__toString());
+        $xml = simplexml_load_string((string)$httpResponse->getBody());
         $attributes = $xml->auth->attributes();
 
         $context = ((array)$attributes)["@attributes"];
@@ -74,7 +75,7 @@ class Provider implements ProviderInterface
             (int)$attributes->rolegroupid,
             (string)$attributes->rolegroupname,
             (int)$attributes->agrid,
-            $attributes->agrname
+            (string)$attributes->agrname
         );
 
         return $response;
@@ -87,8 +88,12 @@ class Provider implements ProviderInterface
      */
     protected function catchException(GuzzleHttp\Exception\RequestException $exception): void
     {
-        $xml = simplexml_load_string($exception->getResponse()->getBody()->__toString());
-        if ($xml === false || !isset($xml->auth)) {
+        if (\is_null($exception->getResponse())) {
+            throw $exception;
+        }
+
+        $xml = \simplexml_load_string((string)$exception->getResponse()->getBody());
+        if ($xml === \false || !isset($xml->auth)) {
             // Not XML or invalid format XML
             throw $exception;
         }
@@ -103,39 +108,31 @@ class Provider implements ProviderInterface
             (string)$attributes->errtext,
             (int)$attributes->errcode,
             $exception,
-            isset($attributes->errtextclient) ? (string)$attributes->errtextclient : null
+            isset($attributes->errtextclient) ? (string)$attributes->errtextclient : \null
         );
     }
 
     private function getRequest(ConfigInterface $config): GuzzleHttp\Psr7\Request
     {
         return new GuzzleHttp\Psr7\Request(
-            $method = 'post',
+            'post',
             $config->getAuthUrl(),
             [],
-            base64_encode($this->getBody($config))
+            \base64_encode($this->getBody($config))
         );
     }
 
     private function getBody(ConfigInterface $config): string
     {
-        $xml = new \DOMDocument('1.0', 'utf-8');
+        $params = [
+            'auth' => [
+                '_attributes' => [
+                    'login' => $config->getUsername(),
+                    'pass' => $config->getPassword()
+                ],
+            ]
+        ];
 
-        $xmlRoot = $xml->createElement('doc');
-        $xmlRoot = $xml->appendChild($xmlRoot);
-
-        $authElm = $xml->createElement('auth');
-        $authElm = $xmlRoot->appendChild($authElm);
-
-        $loginAttr = $xml->createAttribute('login');
-        $loginAttr->value = $config->getUsername();
-
-        $passwordAttr = $xml->createAttribute('pass');
-        $passwordAttr->value = $config->getPassword();
-
-        $authElm->appendChild($loginAttr);
-        $authElm->appendChild($passwordAttr);
-
-        return $xml->saveXML();
+        return ArrayToXml::convert($params, 'doc', \true, 'utf-8');
     }
 }

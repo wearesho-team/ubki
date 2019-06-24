@@ -6,7 +6,6 @@ use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class Request
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry\Rep
  */
 class Request implements Registry\RequestInterface

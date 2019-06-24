@@ -2,9 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Export;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\Steps;
-use Wearesho\Bobra\Ubki\Blocks\Entities;
-use Wearesho\Bobra\Ubki\SimpleXmlToArray;
+use Horat1us\SimpleXML\Parse;
+use Wearesho\Bobra\Ubki;
 
 /**
  * Class Parser
@@ -12,32 +11,32 @@ use Wearesho\Bobra\Ubki\SimpleXmlToArray;
  */
 class Parser
 {
-    use SimpleXmlToArray;
+    use Ubki\SimpleXmlToArray;
 
     public function parseResponse(string $response): ResponseInterface
     {
-        $xml = simplexml_load_string($response)->{ResponseInterface::ROOT};
-        $stateAttributes = $xml->{ResponseInterface::ERROR_COLLECTION}->attributes();
-        $internalErrorAttributes = $xml->{ResponseInterface::INTERNAL_TAG}->attributes();
+        $xml = Parse::string($response)->{ResponseInterface::ROOT};
+        $state = $xml->{ResponseInterface::ERROR_COLLECTION};
+        $internalErrors = $xml->{ResponseInterface::INTERNAL_TAG};
 
         return new Response(
-            (string)$stateAttributes[ResponseInterface::ID],
-            (string)$stateAttributes[ResponseInterface::STATUS],
-            (string)$internalErrorAttributes[ResponseInterface::INTERNAL_ERROR],
-            (string)$internalErrorAttributes[ResponseInterface::INTERNAL_MESSAGE],
-            new ErrorCollection(array_map(function (\SimpleXMLElement $error) {
+            (string)$state[ResponseInterface::ID],
+            (string)$state[ResponseInterface::STATUS],
+            (string)$internalErrors[ResponseInterface::INTERNAL_ERROR],
+            (string)$internalErrors[ResponseInterface::INTERNAL_MESSAGE],
+            new Ubki\Push\Error\Collection(\array_map(function (\SimpleXMLElement $error) {
                 $attributes = $error->attributes();
 
-                return new Error(
-                    (int)$attributes[Error::BLOCK_ID],
-                    (string)$attributes[Error::ERRORED_TAG],
-                    (string)$attributes[Error::ATTRIBUTE],
-                    (string)$attributes[Error::TYPE],
-                    (string)$attributes[Error::MESSAGE],
-                    (int)$attributes[Error::PASSED_STRINGS],
-                    (int)$attributes[Error::ERROR_STRINGS]
+                return new Ubki\Push\Error\Entity(
+                    (int)$attributes[Ubki\Push\Error\Entity::ATTR_BLOCK_ID],
+                    (string)$attributes[Ubki\Push\Error\Entity::ATTR_TAG],
+                    (string)$attributes[Ubki\Push\Error\Entity::ATTR_ATTRIBUTE],
+                    (string)$attributes[Ubki\Push\Error\Entity::ATTR_TYPE],
+                    (string)$attributes[Ubki\Push\Error\Entity::ATTR_MESSAGE],
+                    (int)$attributes[Ubki\Push\Error\Entity::PASSED_STRINGS],
+                    (int)$attributes[Ubki\Push\Error\Entity::ERROR_STRINGS]
                 );
-            }, $this->simpleXmlToArray($xml->{ResponseInterface::ERROR_COLLECTION}->{Error::TAG})))
+            }, $this->simpleXmlToArray($xml->{ResponseInterface::ERROR_COLLECTION}->{Ubki\Push\Error\Entity::TAG})))
         );
     }
 }

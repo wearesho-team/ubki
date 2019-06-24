@@ -4,7 +4,6 @@ namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 /**
  * Class RequestException
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 class RequestException extends \Exception
@@ -15,7 +14,7 @@ class RequestException extends \Exception
     public function __construct(
         string $errors,
         int $code = 0,
-        \Throwable $previous = null
+        \Throwable $previous = \null
     ) {
         $this->errors = $errors;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Wearesho\Bobra\Ubki\Authorization;
 
 /**
@@ -13,6 +15,9 @@ trait ConfigTrait
 
     /** @var string */
     protected $password;
+
+    /** @var int */
+    protected $mode;
 
     public function getUsername(): string
     {
@@ -31,5 +36,13 @@ trait ConfigTrait
             : ConfigInterface::TEST_AUTH_URL;
     }
 
-    public abstract function isProductionMode(): bool;
+    public function getMode(): int
+    {
+        return $this->mode;
+    }
+
+    public function isProductionMode(): bool
+    {
+        return $this->mode === ConfigInterface::MODE_PRODUCTION;
+    }
 }

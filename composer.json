@@ -3,19 +3,24 @@
   "description": "UBKI Integration for PHP",
   "type": "library",
   "require": {
+    "php": ">=7.2",
     "ext-SimpleXML": "*",
+    "ext-dom": "*",
     "guzzlehttp/guzzle": "^6.3",
     "horat1us/environment-config": "^1.2",
-    "myclabs/php-enum": "^1.5",
-    "nesbot/carbon": "^1.26",
+    "horat1us/simple-xml": "^1.0",
+    "myclabs/php-enum": "^1.6",
+    "nesbot/carbon": "^1.36",
     "psr/log": "^1.0",
-    "psr/simple-cache": "^1.0"
+    "psr/simple-cache": "^1.0",
+    "spatie/array-to-xml": "^2.8",
+    "wearesho-team/base-collection": "^1.0.1"
   },
   "require-dev": {
     "chillerlan/php-cache": "^1.0",
     "gamez/psr-testlogger": "^2.0",
-    "phpunit/phpunit": "^7.1",
-    "squizlabs/php_codesniffer": "^3.2"
+    "phpunit/phpunit": "^8.1",
+    "squizlabs/php_codesniffer": "^3.4"
   },
   "keywords": [
     "ubki",
@@ -30,11 +35,13 @@
   "authors": [
     {
       "name": "Alexander Letnikow",
-      "email": "reclamme@gmail.com"
+      "email": "reclamme@gmail.com",
+      "role": "Lead"
     },
     {
       "name": "Roman Varkuta",
-      "email": "roman.varkuta@gmail.com"
+      "email": "roman.varkuta@gmail.com",
+      "role": "Developer"
     }
   ],
   "minimum-stability": "stable",
@@ -52,12 +59,13 @@
     "process-timeout": 1800,
     "sort-packages": true,
     "platform": {
-      "php": "7.1"
+      "php": "7.2"
     }
   },
   "scripts": {
-    "lint": "./vendor/bin/phpcs --standard=PSR2 ./src ./tests",
-    "phpcbf": "./vendor/bin/phpcbf --standard=PSR2 ./src ./tests",
-    "test": "./vendor/bin/phpunit"
+    "lint": "phpcs --standard=PSR2 ./src ./tests",
+    "phpcbf": "phpcbf --standard=PSR2 ./src ./tests",
+    "cover": "phpunit --coverage-clover=coverage.xml",
+    "test": "phpunit"
   }
 }

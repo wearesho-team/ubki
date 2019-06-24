@@ -2,11 +2,10 @@
 
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
-use Wearesho\Bobra\Ubki\Push\Registry\Response;
+use Wearesho\Bobra\Ubki\Push;
 
 /**
  * Interface ResponseInterface
- *
  * @package Wearesho\Bobra\Ubki\Push\Registry
  */
 interface ResponseInterface
@@ -58,9 +57,9 @@ interface ResponseInterface
      * Transmission operation type
      * Is specified when the request tag is passed in the reqtype attribute of the request
      *
-     * @return Response\OperationType
+     * @return Push\Export\Request\Type
      */
-    public function getOperationType(): Response\OperationType;
+    public function getOperationType(): Push\Export\Request\Type;
 
     /**
      * Id of component
