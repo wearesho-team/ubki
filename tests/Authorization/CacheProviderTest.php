@@ -54,8 +54,7 @@ class CacheProviderTest extends TestCase
             new class(
                 'username',
                 'password'
-            ) implements Ubki\Authorization\ConfigInterface
-            {
+            ) implements Ubki\Authorization\ConfigInterface {
                 use Ubki\Authorization\ConfigTrait;
 
                 public function __construct(string $username, string $password)
@@ -76,15 +75,16 @@ class CacheProviderTest extends TestCase
         putenv('UBKI_AUTH_URL=' . Ubki\Authorization\ConfigInterface::TEST_AUTH_URL);
 
         $this->environmentConfig =
-            new class('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface
-            {
+            new class('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface {
                 use Ubki\Authorization\EnvironmentConfigTrait;
             };
     }
 
     public function testProvide(): void
     {
-        $cache = new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver());
+        $cache = $this->createMock(SimpleCache\Cache::class);
+        $cache->expects($this->once())->method('set')->willReturn(true);
+        $expects = $cache->expects($this->exactly(1))->method('get');
         $provider = new Ubki\Authorization\CacheProvider(
             $cache,
             $this->client,
@@ -93,24 +93,47 @@ class CacheProviderTest extends TestCase
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $response = $provider->provide($this->config);
-        /** @noinspection PhpUnhandledExceptionInspection */
-        $duplicatedResponse = $provider->provide($this->config);
-
-        $this->assertTrue(
-            $response === $duplicatedResponse,
+        $expects->willReturn($response);
+        $this->assertEquals(
+            $response,
+            $provider->provide($this->config),
             'Second Response have to be pulled from cache'
+        );
+        $this->assertEquals(
+            $response,
+            $provider->provide($this->config),
+            'Third Response have to be pulled from cache'
         );
 
         $this->assertCount(1, $this->container, 'One HTTP request should be done');
         $this->assertFalse($this->logger->log->hasRecordsWithMessage(
-            "UBKI Authorization Cache Failed for key ubki.authorization.80900aeb4b6d97eeed3ee5afe434f2ddc7aa8435"
+            "UBKI Authorization Cache Failed for key ubki.authorization.da43c441f2d427818314ea61227240bf942eaa76"
         ));
+    }
+
+    public function testCacheHas(): void
+    {
+        $cache = $this->createMock(SimpleCache\Cache::class);
+        $cache
+            ->expects(
+                $this->once()
+            )
+            ->method('get')
+            ->willReturn(
+                $this->createMock(Ubki\Authorization\Response::class)
+            );
+        $cache->expects($this->never())->method('set');
+        $provider = new Ubki\Authorization\CacheProvider(
+            $cache,
+            $this->client,
+            $this->logger
+        );
+        $provider->provide($this->config);
     }
 
     public function testWriteLogFailed(): void
     {
-        $cache = new SimpleCache\Cache(new class extends SimpleCache\Drivers\MemoryCacheDriver
-        {
+        $cache = new SimpleCache\Cache(new class extends SimpleCache\Drivers\MemoryCacheDriver {
             public function set(string $key, $value, int $ttl = null): bool
             {
                 return false;
@@ -127,7 +150,7 @@ class CacheProviderTest extends TestCase
         $provider->provide($this->config);
 
         $this->assertTrue($this->logger->log->hasRecordsWithMessage(
-            "UBKI Authorization Cache Failed for key ubki.authorization.80900aeb4b6d97eeed3ee5afe434f2ddc7aa8435"
+            "UBKI Authorization Cache Failed for key ubki.authorization.da43c441f2d427818314ea61227240bf942eaa76"
         ));
     }
 

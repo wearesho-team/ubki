@@ -15,9 +15,6 @@ class CollectionTest extends Tests\Extend\CollectionTestCase
 {
     protected const TYPE = Push\Error\Entity::class;
 
-    /** @var Push\Error\Collection */
-    protected $collection;
-
     protected function setUp(): void
     {
         $this->collection = new Push\Error\Collection([

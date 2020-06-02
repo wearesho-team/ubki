@@ -14,8 +14,9 @@ use Psr;
  */
 class CacheProvider extends Provider implements ProviderInterface
 {
-    /** @var Psr\SimpleCache\CacheInterface */
-    protected $cache;
+    protected Psr\SimpleCache\CacheInterface $cache;
+
+    protected array $responses = [];
 
     public function __construct(
         Psr\SimpleCache\CacheInterface $cache,
@@ -29,14 +30,14 @@ class CacheProvider extends Provider implements ProviderInterface
     public function provide(ConfigInterface $config): Response
     {
         $cacheKey = $this->getCacheKey($config);
-
-        /** @noinspection PhpUnhandledExceptionInspection */
-        $cached = $this->cache->get($cacheKey);
-        if ($cached instanceof Response) {
-            return $cached;
+        if (array_key_exists($cacheKey, $this->responses)) {
+            return $this->responses[$cacheKey];
+        }
+        if (($cache = $this->cache->get($cacheKey)) instanceof Response) {
+            return $this->responses[$cacheKey] = $cache;
         }
 
-        $response = parent::provide($config);
+        $this->responses[$cacheKey] = $response = parent::provide($config);
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $isCacheSet = $this->cache->set(
@@ -56,6 +57,7 @@ class CacheProvider extends Provider implements ProviderInterface
 
     protected function getCacheKey(ConfigInterface $config): string
     {
-        return "ubki.authorization." . sha1($config->getAuthUrl() . $config->getUsername());
+        return "ubki.authorization."
+            . sha1($config->getAuthUrl() . $config->getUsername() . $config->getPassword());
     }
 }
