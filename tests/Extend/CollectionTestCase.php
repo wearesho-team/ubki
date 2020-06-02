@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Extend;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki;
 
@@ -14,8 +14,7 @@ abstract class CollectionTestCase extends TestCase
 {
     protected const TYPE = null;
 
-    /** @var Ubki\BaseCollection */
-    protected $collection;
+    protected Ubki\Infrastructure\BaseCollection $collection;
 
     public function testType(): void
     {

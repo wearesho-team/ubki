@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Infrastructure;
 
 use Wearesho\Bobra\Ubki\Infrastructure\Block;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class BlockTest

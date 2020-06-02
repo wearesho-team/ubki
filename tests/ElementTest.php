@@ -2,7 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Wearesho\Bobra\Ubki\Infrastructure\Element;
 use Wearesho\Bobra\Ubki\Infrastructure\ElementInterface;
 

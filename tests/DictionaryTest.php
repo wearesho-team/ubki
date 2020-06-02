@@ -2,16 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Tests;
 
-use PHPUnit\Framework\TestCase;
-
 use Wearesho\Bobra\Ubki\Dictionaries\Language;
 
-/**
- * Class DictionaryTest
- * @package Wearesho\Bobra\Ubki\Tests
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Dictionary
- * @internal
- */
 class DictionaryTest extends TestCase
 {
     protected const LANGUAGE_KEY = 'ENG';
@@ -35,13 +27,13 @@ class DictionaryTest extends TestCase
         $this->assertEquals(static::LANGUAGE_DESCRIPTION, (string)$language);
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage No static method or enum constant 'BDA' in class
-     *                           Wearesho\Bobra\Ubki\Dictionaries\Language
-     */
     public function testInvalidConst(): void
     {
+        $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage(
+            "No static method or enum constant 'BDA' in class Wearesho\Bobra\Ubki\Dictionaries\Language"
+        );
+        /** @noinspection PhpUndefinedMethodInspection */
         Language::BDA();
     }
 }

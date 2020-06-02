@@ -4,12 +4,11 @@ namespace Wearesho\Bobra\Ubki\Tests\Data\Blocks;
 
 use Carbon\Carbon;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Blocks\ContactsInformation;
 use Wearesho\Bobra\Ubki\Data\Collections\Contacts;
 use Wearesho\Bobra\Ubki\Data\Elements;
-use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries\ContactType;
 
 /**

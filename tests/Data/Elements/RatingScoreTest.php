@@ -1,10 +1,10 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
 use Carbon\Carbon;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\RatingScore;
 

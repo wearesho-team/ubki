@@ -10,7 +10,7 @@ use Gamez\Psr\Log\TestLogger;
 
 use GuzzleHttp;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki;
 

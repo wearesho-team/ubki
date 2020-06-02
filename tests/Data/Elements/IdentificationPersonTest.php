@@ -5,7 +5,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 use Carbon\Carbon;
 use Wearesho\Bobra\Ubki\Data\Elements\IdentificationPerson;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 use Wearesho\Bobra\Ubki\Data\Interfaces\IdentifiedPerson;
 
 /**

@@ -3,19 +3,20 @@
   "description": "UBKI Integration for PHP",
   "type": "library",
   "require": {
+    "php": ">=7.4",
     "ext-SimpleXML": "*",
     "guzzlehttp/guzzle": "^6.3",
     "horat1us/environment-config": "^1.2",
     "myclabs/php-enum": "^1.5",
-    "nesbot/carbon": "^1.26",
+    "nesbot/carbon": "^2.24 || ^1.33",
     "psr/log": "^1.0",
     "psr/simple-cache": "^1.0"
   },
   "require-dev": {
     "chillerlan/php-cache": "^1.0",
     "gamez/psr-testlogger": "^2.0",
-    "phpunit/phpunit": "^7.1",
-    "squizlabs/php_codesniffer": "^3.2"
+    "phpunit/phpunit": "^9.1",
+    "squizlabs/php_codesniffer": "^3.5"
   },
   "keywords": [
     "ubki",
@@ -52,7 +53,7 @@
     "process-timeout": 1800,
     "sort-packages": true,
     "platform": {
-      "php": "7.1"
+      "php": "7.4"
     }
   },
   "scripts": {

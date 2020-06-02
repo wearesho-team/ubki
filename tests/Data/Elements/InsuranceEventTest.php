@@ -1,10 +1,10 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Elements\Insurance;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
 use Carbon\Carbon;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\InsuranceEvent;
 use Wearesho\Bobra\Ubki\Dictionaries\InsuranceDecisionStatus;

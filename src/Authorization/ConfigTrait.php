@@ -31,5 +31,5 @@ trait ConfigTrait
             : ConfigInterface::TEST_AUTH_URL;
     }
 
-    public abstract function isProductionMode(): bool;
+    abstract public function isProductionMode(): bool;
 }

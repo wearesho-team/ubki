@@ -2,11 +2,9 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Push\Export;
 
-use Wearesho\Bobra\Ubki\Blocks\Collections\Steps;
-use Wearesho\Bobra\Ubki\Blocks\Entities;
 use Wearesho\Bobra\Ubki\Push\Export;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class ParserTest

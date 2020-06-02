@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Push;
 
 use Wearesho\Bobra\Ubki\Push;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class ParserTest

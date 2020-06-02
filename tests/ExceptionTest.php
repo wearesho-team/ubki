@@ -2,10 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests;
 
-use Carbon\Carbon;
 use Wearesho\Bobra\Ubki;
-
-use PHPUnit\Framework\TestCase;
 
 /**
  * Class ExceptionTest

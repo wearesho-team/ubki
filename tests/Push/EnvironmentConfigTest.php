@@ -2,7 +2,7 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Push;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki;
 

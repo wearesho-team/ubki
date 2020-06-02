@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Carbon\Carbon;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki;
 

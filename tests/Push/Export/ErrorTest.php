@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Push\Export;
 
 use Wearesho\Bobra\Ubki\Push\Export\Error;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class ErrorTest

@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Pull;
 
 use Wearesho\Bobra\Ubki;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class EnvironmentConfigTest

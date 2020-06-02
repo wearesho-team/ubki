@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 use Wearesho\Bobra\Ubki;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class ParserTest
@@ -85,7 +85,6 @@ class ParserTest extends TestCase
 
         $parser = new Ubki\Push\Registry\Parser();
 
-        /** @noinspection PhpUnhandledExceptionInspection */
         $parser->parseResponses($registryXmlBody);
     }
 }

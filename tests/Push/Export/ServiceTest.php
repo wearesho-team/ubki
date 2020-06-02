@@ -10,7 +10,7 @@ use Gamez\Psr\Log\TestLogger;
 
 use GuzzleHttp;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki\Authorization;
 use Wearesho\Bobra\Ubki\Data\Blocks;
@@ -352,7 +352,7 @@ class ServiceTest extends TestCase
                 )
             )
         );
-        $this->exportXml = '<?xml version="1.0" encoding="utf-8"?>
+        $this->exportXml = /** @lang XML */'<?xml version="1.0" encoding="utf-8"?>
 <doc>
     <ubki sessid="testSessionId">
         <req_envelope>
@@ -360,7 +360,7 @@ class ServiceTest extends TestCase
                 <request reqidout="testId" reqdate="2018-03-12" reqtype="i" reqreason="0" reqsource="1" version="1.0">
                     <ubkidata>
                     <comp id="1">
-                        <cki reqlng="1" fname="testName" inn="testinn" mname="testPatronymic" lname="testSurname" 
+                        <cki reqlng="1" fname="testName" inn="testInn" mname="testPatronymic" lname="testSurname" 
                         bdate="1998-03-12">
                             <ident fname="testName" mname="testPatronymic" lname="testSurname" inn="testInn"
                                    bdate="1998-03-12" vdate="2018-03-12" cchild="2" lng="8" ceduc="2" family="1"
@@ -371,7 +371,7 @@ class ServiceTest extends TestCase
                             <linked okpo2_name="testName" okpo2="testErgpou" rdate="2018-03-14" linkrole="2"/>
                             <work wname="testName" wokpo="testErgpou" vdate="2018-03-12" wstag="10" wdohod="1234.56"
                                   lng="1" cdolgn="1"/>
-                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testissue" dnom="testNumber"
+                            <doc vdate="2018-03-12" lng="1" dtype="8" dwho="testIssue" dnom="testNumber"
                              dser="testSerial"
                                  dwdt="2018-03-14" dterm="2020-01-01"/>
                             <addr lng="1" vdate="2018-03-12" adtype="2" adarea="testArea" adcity="testCity"
@@ -403,8 +403,8 @@ class ServiceTest extends TestCase
                         <reestrtime hr="1" da="2" wk="3" mn="4" qw="5" ye="10" yu="200"/>
                     </comp>
                     <comp id="10">
-                        <cont ctype="4" cval="testvalue" inn="testinn" vdate="2018-03-12"/>
-                        <cont ctype="3" cval="testvalue" inn="testinn" vdate="2018-03-12"/>
+                        <cont ctype="4" cval="testValue" inn="testInn" vdate="2018-03-12"/>
+                        <cont ctype="3" cval="testValue" inn="testInn" vdate="2018-03-12"/>
                     </comp>
                     </ubkidata>
                 </request>
@@ -416,8 +416,7 @@ class ServiceTest extends TestCase
 
     public function testSuccessExport(): void
     {
-        $authResponse =
-            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        $authResponse = /** @lang XML */'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <doc>
                 <auth sessid="testSessionId" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" 
                       userlogin="testUsername" userid="1"
@@ -425,8 +424,7 @@ class ServiceTest extends TestCase
                       rolegroupid="2" rolegroupname="GroupName"
                       agrid="3" agrname="OrganizationName" role="1"/>
             </doc>';
-        $exportResponse =
-            '<?xml version="1.0" encoding="utf-8"?><doc>
+        $exportResponse = /** @lang XML */'<?xml version="1.0" encoding="utf-8"?><doc>
             <tech>
                 <trace>
                     <step name="INPROC" stm="1530780931.0051" ftm="1530780931.1068"/>
@@ -490,8 +488,7 @@ class ServiceTest extends TestCase
 
     public function testErrorExport(): void
     {
-        $authResponse =
-            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        $authResponse = /** @lang XML */'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <doc>
                 <auth sessid="testSessionId" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" 
                       userlogin="testUsername" userid="1"
@@ -499,8 +496,7 @@ class ServiceTest extends TestCase
                       rolegroupid="2" rolegroupname="GroupName"
                       agrid="3" agrname="OrganizationName" role="1"/>
             </doc>';
-        $exportResponse =
-            '<?xml version="1.0" encoding="utf-8"?><doc>
+        $exportResponse =/** @lang XML */'<?xml version="1.0" encoding="utf-8"?><doc>
 <tech>
     <trace>
         <step name="INPROC" stm="1530780931.0051" ftm="1530780931.1068"/>
@@ -608,8 +604,7 @@ class ServiceTest extends TestCase
 
     public function testRequestException(): void
     {
-        $authResponse =
-            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        $authResponse =/** @lang XML */'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <doc>
                 <auth sessid="testSessionId" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" 
                       userlogin="testUsername" userid="1"

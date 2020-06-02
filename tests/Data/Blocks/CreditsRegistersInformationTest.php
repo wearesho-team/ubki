@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Data\Blocks;
 
 use Carbon\Carbon;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Collections\CreditRegisters;
 use Wearesho\Bobra\Ubki\Data\Blocks\CreditsRegistersInformation;

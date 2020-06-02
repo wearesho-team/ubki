@@ -10,7 +10,7 @@ use Wearesho\Bobra\Ubki;
 
 use GuzzleHttp;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class ProviderTest

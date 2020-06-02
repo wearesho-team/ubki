@@ -10,7 +10,7 @@ use GuzzleHttp;
 
 use Horat1us\Environment;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki;
 

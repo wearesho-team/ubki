@@ -2,9 +2,8 @@
 
 namespace Wearesho\Bobra\Ubki\Tests\Push\Export;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
-use Wearesho\Bobra\Ubki\Blocks;
 use Wearesho\Bobra\Ubki\Push\Export;
 
 /**

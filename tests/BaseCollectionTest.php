@@ -2,8 +2,6 @@
 
 namespace Wearesho\Bobra\Ubki\Tests;
 
-use PHPUnit\Framework\TestCase;
-
 use Wearesho\Bobra\Ubki\Infrastructure;
 
 /**
@@ -33,12 +31,10 @@ class BaseCollectionTest extends TestCase
         parent::setUp();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Element Exception must be instance of Wearesho\Bobra\Ubki\Tests\Mocks\Element
-     */
     public function testInstanceWithInvalidArgument(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Element Exception must be instance of Wearesho\Bobra\Ubki\Tests\Mocks\Element');
         new $this->collection([new \Exception()]);
     }
 
@@ -53,12 +49,10 @@ class BaseCollectionTest extends TestCase
         $this->assertEquals($this->collection->offsetGet(2)->getValue(), static::THIRD_VALUE);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Element Exception must be instance of Wearesho\Bobra\Ubki\Tests\Mocks\Element
-     */
     public function testInvalidElement(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Element Exception must be instance of Wearesho\Bobra\Ubki\Tests\Mocks\Element');
         $this->collection->append(new \Exception());
     }
 

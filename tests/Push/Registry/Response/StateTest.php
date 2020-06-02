@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Push\Registry\Response;
 
 use Wearesho\Bobra\Ubki\Push\Registry\Response\State;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class StateTest

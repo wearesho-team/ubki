@@ -1,8 +1,8 @@
 <?php
 
-namespace Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating;
+namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Collections\Comments;
 use Wearesho\Bobra\Ubki\Data\Elements\Comment;

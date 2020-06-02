@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
 use Carbon\Carbon;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Elements\DealLife;
 use Wearesho\Bobra\Ubki\Data\Interfaces;
@@ -217,12 +217,10 @@ class DealLifeTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage 'Actual end date' must be set if deal status is CLOSE
-     */
     public function testInvalidActualEndDate(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("'Actual end date' must be set if deal status is CLOSE");
         $this->fakeDealLife = new DealLife(
             static::ID,
             static::PERIOD_MONTH,

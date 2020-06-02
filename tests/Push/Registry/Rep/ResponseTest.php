@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Push\Registry\Rep;
 
 use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 use Wearesho\Bobra\Ubki\Data\Blocks\Identification;
 use Wearesho\Bobra\Ubki\Push\Registry;

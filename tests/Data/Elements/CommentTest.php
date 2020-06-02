@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Data\Elements\Comment;
 
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class CommentTest

@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Push\Registry\Response;
 
 use Wearesho\Bobra\Ubki\Push\Registry\Response\OperationType;
-use PHPUnit\Framework\TestCase;
+use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
  * Class OperationTypeTest
