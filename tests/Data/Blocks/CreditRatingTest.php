@@ -3,9 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Data\Blocks;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki\Data\Collections\Comments;
 use Wearesho\Bobra\Ubki\Data\Blocks\CreditRating;
 use Wearesho\Bobra\Ubki\Data\Elements;

@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki\Data\Elements\RegistryTimes;
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 

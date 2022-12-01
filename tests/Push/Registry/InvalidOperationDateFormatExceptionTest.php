@@ -3,9 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Push\Registry;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki\Push\Registry\InvalidOperationDateFormatException;
 
 /**

@@ -3,11 +3,8 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Gamez\Psr\Log\TestLogger;
-
 use Horat1us\Environment;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -27,7 +24,7 @@ class EnvironmentConfigTest extends TestCase
     {
         $this->logger = new TestLogger();
         $this->config =
-            new class('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface
+            new class ('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface
             {
                 use Ubki\Authorization\EnvironmentConfigTrait;
             };

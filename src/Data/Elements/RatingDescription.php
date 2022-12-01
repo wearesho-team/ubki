@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Infrastructure\Element;
 
 /**

@@ -3,9 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki\Data;
 use Wearesho\Bobra\Ubki\Dictionaries;
 
@@ -17,7 +15,7 @@ use Wearesho\Bobra\Ubki\Dictionaries;
  */
 class CredentialTest extends TestCase
 {
-    protected const NAME= 'testName';
+    protected const NAME = 'testName';
     protected const CREATED_AT = '2018-03-12';
     protected const INN = 'testInn';
     protected const PATRONYMIC = 'testPatronymic';

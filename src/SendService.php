@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki;
 
 use GuzzleHttp;
-
 use Psr\Log;
 
 /**

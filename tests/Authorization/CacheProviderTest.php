@@ -3,15 +3,10 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use chillerlan\SimpleCache;
-
 use Gamez\Psr\Log\TestLogger;
-
 use GuzzleHttp;
-
 use Horat1us\Environment;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -51,7 +46,7 @@ class CacheProviderTest extends TestCase
         $this->client = new GuzzleHttp\Client(['handler' => $stack,]);
         $this->logger = new TestLogger();
         $this->config =
-            new class(
+            new class (
                 'username',
                 'password'
             ) implements Ubki\Authorization\ConfigInterface {
@@ -75,7 +70,7 @@ class CacheProviderTest extends TestCase
         putenv('UBKI_AUTH_URL=' . Ubki\Authorization\ConfigInterface::TEST_AUTH_URL);
 
         $this->environmentConfig =
-            new class('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface {
+            new class ('UBKI_') extends Environment\Config implements Ubki\Authorization\ConfigInterface {
                 use Ubki\Authorization\EnvironmentConfigTrait;
             };
     }

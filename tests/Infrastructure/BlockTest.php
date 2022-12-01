@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Tests\Infrastructure;
 
 use Wearesho\Bobra\Ubki\Infrastructure\Block;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**

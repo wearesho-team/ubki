@@ -3,9 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki\Data\Elements\LegalPerson;
 use Wearesho\Bobra\Ubki\Dictionaries\Language;
 use Wearesho\Bobra\Ubki\Data\Interfaces;

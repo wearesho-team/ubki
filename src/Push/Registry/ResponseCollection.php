@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Push\Registry;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Push\Registry;
 
 /**

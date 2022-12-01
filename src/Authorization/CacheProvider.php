@@ -3,9 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Authorization;
 
 use Carbon\Carbon;
-
 use GuzzleHttp;
-
 use Psr;
 
 /**

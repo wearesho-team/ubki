@@ -3,9 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki;
 
 /**

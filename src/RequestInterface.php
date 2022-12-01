@@ -9,5 +9,4 @@ namespace Wearesho\Bobra\Ubki;
  */
 interface RequestInterface
 {
-
 }

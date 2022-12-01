@@ -3,15 +3,10 @@
 namespace Wearesho\Bobra\Ubki\Tests\Push\Registry;
 
 use Carbon\Carbon;
-
 use chillerlan\SimpleCache;
-
 use Gamez\Psr\Log\TestLogger;
-
 use GuzzleHttp;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki;
 
 /**
@@ -278,7 +273,7 @@ class ServiceTest extends TestCase
         $now = $this->now;
 
         $request =
-            new class(
+            new class (
                 'InvalidType',
                 $now,
                 'IN#0000018427',
@@ -342,7 +337,7 @@ class ServiceTest extends TestCase
         );
 
         $service =
-            new class(
+            new class (
                 $config,
                 $authProvider,
                 $client,

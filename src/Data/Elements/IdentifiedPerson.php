@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Data\Elements;
 
 use Wearesho\Bobra\Ubki\Dictionaries;
-
 use Wearesho\Bobra\Ubki\Data;
 
 /**

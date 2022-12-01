@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Tests\Push;
 
 use Wearesho\Bobra\Ubki\Push;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**

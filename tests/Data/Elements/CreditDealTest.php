@@ -3,9 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Data\Elements;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki\Data\Collections\DealLifes;
 use Wearesho\Bobra\Ubki\Data\Elements;
 use Wearesho\Bobra\Ubki\Data\Interfaces\CreditDeal;
@@ -90,7 +88,7 @@ class CreditDealTest extends TestCase
             [
                 CreditDeal::ID => static::ID,
                 CreditDeal::INN => static::INN,
-                CreditDeal::LANGUAGE=> Dictionaries\Language::RUS(),
+                CreditDeal::LANGUAGE => Dictionaries\Language::RUS(),
                 CreditDeal::NAME => static::NAME,
                 CreditDeal::SURNAME => static::SURNAME,
                 CreditDeal::PATRONYMIC => static::PATRONYMIC,

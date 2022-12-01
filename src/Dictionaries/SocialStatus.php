@@ -20,13 +20,13 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  */
 final class SocialStatus extends Infrastructure\Dictionary
 {
-    const FULL_TIME = 1;
-    const TERM_TIME = 2;
-    const TEMP_UNEMPLOYED = 3;
-    const PART_TIME = 4;
-    const STUDENT = 5;
-    const PENSIONER = 6;
-    const PENSIONER_WORK = 7;
-    const MATERNITY_LEAVE = 8;
-    const OTHER = 9;
+    public const FULL_TIME = 1;
+    public const TERM_TIME = 2;
+    public const TEMP_UNEMPLOYED = 3;
+    public const PART_TIME = 4;
+    public const STUDENT = 5;
+    public const PENSIONER = 6;
+    public const PENSIONER_WORK = 7;
+    public const MATERNITY_LEAVE = 8;
+    public const OTHER = 9;
 }

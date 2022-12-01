@@ -3,13 +3,9 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Carbon\Carbon;
-
 use Gamez\Psr\Log\TestLogger;
-
 use Wearesho\Bobra\Ubki;
-
 use GuzzleHttp;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
 
 /**
@@ -30,7 +26,7 @@ class ProviderTest extends TestCase
         parent::setUp();
         $this->logger = new TestLogger();
         $this->config =
-            new class(
+            new class (
                 'test-provider-username',
                 'test-provide-password'
             ) implements Ubki\Authorization\ConfigInterface
@@ -200,7 +196,7 @@ class ProviderTest extends TestCase
         );
 
         $config =
-            new class(
+            new class (
                 'test-provider-username',
                 'test-provide-password'
             ) implements Ubki\Authorization\ConfigInterface
@@ -243,7 +239,7 @@ class ProviderTest extends TestCase
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $response = $provider->provide(
-            new class(
+            new class (
                 'test-provider-username',
                 'test-provide-password'
             ) implements Ubki\Authorization\ConfigInterface

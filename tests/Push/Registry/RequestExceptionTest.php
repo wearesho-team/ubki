@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Tests\Push\Registry;
 
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki\Push\Registry\RequestException;
 
 /**

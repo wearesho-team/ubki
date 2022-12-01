@@ -3,7 +3,6 @@
 namespace Wearesho\Bobra\Ubki\Data\Traits;
 
 use Carbon\Carbon;
-
 use Wearesho\Bobra\Ubki\Data\Interfaces;
 use Wearesho\Bobra\Ubki\Dictionaries;
 

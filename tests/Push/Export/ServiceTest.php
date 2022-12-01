@@ -3,15 +3,10 @@
 namespace Wearesho\Bobra\Ubki\Tests\Push\Export;
 
 use Carbon\Carbon;
-
 use chillerlan\SimpleCache;
-
 use Gamez\Psr\Log\TestLogger;
-
 use GuzzleHttp;
-
 use Wearesho\Bobra\Ubki\Tests\TestCase;
-
 use Wearesho\Bobra\Ubki\Authorization;
 use Wearesho\Bobra\Ubki\Data\Blocks;
 use Wearesho\Bobra\Ubki\Data\Collections;
@@ -496,7 +491,7 @@ class ServiceTest extends TestCase
                       rolegroupid="2" rolegroupname="GroupName"
                       agrid="3" agrname="OrganizationName" role="1"/>
             </doc>';
-        $exportResponse =/** @lang XML */'<?xml version="1.0" encoding="utf-8"?><doc>
+        $exportResponse = /** @lang XML */'<?xml version="1.0" encoding="utf-8"?><doc>
 <tech>
     <trace>
         <step name="INPROC" stm="1530780931.0051" ftm="1530780931.1068"/>
@@ -604,7 +599,7 @@ class ServiceTest extends TestCase
 
     public function testRequestException(): void
     {
-        $authResponse =/** @lang XML */'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        $authResponse = /** @lang XML */'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <doc>
                 <auth sessid="testSessionId" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" 
                       userlogin="testUsername" userid="1"
