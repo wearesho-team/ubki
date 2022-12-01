@@ -1,7 +1,7 @@
 # УБКИ Интеграция PHP
+[![Test & Lint](https://github.com/wearesho-team/ubki/actions/workflows/php.yml/badge.svg?branch=master)](https://github.com/wearesho-team/ubki/actions/workflows/php.yml)
 [![Latest Stable Version](https://poser.pugx.org/wearesho-team/ubki/v/stable.png)](https://packagist.org/packages/wearesho-team/ubki)
 [![Total Downloads](https://poser.pugx.org/wearesho-team/ubki/downloads.png)](https://packagist.org/packages/wearesho-team/ubki)
-[![Build Status](https://travis-ci.org/wearesho-team/ubki.svg?branch=master)](https://travis-ci.org/wearesho-team/ubki)
 [![codecov](https://codecov.io/gh/wearesho-team/ubki/branch/master/graph/badge.svg)](https://codecov.io/gh/wearesho-team/ubki)
 
 [УБКИ](https://ubki.ua)  
