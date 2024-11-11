@@ -465,7 +465,7 @@ class ConverterTest extends TestCase
         );
 
         $this->assertXmlStringEqualsXmlString(
-        /** @lang XML */            '<?xml version="1.0" encoding="utf-8"?>
+        /** @lang XML */ '<?xml version="1.0" encoding="utf-8"?>
 <doc>
     <ubki sessid="testSessionId">
         <req_envelope>
@@ -504,7 +504,10 @@ class ConverterTest extends TestCase
     </ubki>
 </doc>
 ',
-            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+            $this->fakeConverter->dataDocumentToXml(
+                $this->fakeRequestDataBlock,
+                $document, static::SESSION_ID
+            )->saveXML()
         );
     }
 
@@ -518,7 +521,7 @@ class ConverterTest extends TestCase
         );
 
         $this->assertXmlStringEqualsXmlString(
-        /** @lang XML */            '<?xml version="1.0" encoding="utf-8"?>
+        /** @lang XML */ '<?xml version="1.0" encoding="utf-8"?>
 <doc>
     <ubki sessid="testSessionId">
         <req_envelope>
@@ -567,7 +570,11 @@ class ConverterTest extends TestCase
         </req_envelope>
     </ubki>
 </doc>',
-            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+            $this->fakeConverter->dataDocumentToXml(
+                $this->fakeRequestDataBlock,
+                $document,
+                static::SESSION_ID
+            )->saveXML()
         );
     }
 
@@ -583,7 +590,7 @@ class ConverterTest extends TestCase
         );
 
         $this->assertXmlStringEqualsXmlString(
-        /** @lang XML */            '<?xml version="1.0" encoding="utf-8"?>
+        /** @lang XML */ '<?xml version="1.0" encoding="utf-8"?>
 <doc>
     <ubki sessid="testSessionId">
         <req_envelope>
@@ -643,7 +650,11 @@ class ConverterTest extends TestCase
         </req_envelope>
     </ubki>
 </doc>',
-            $this->fakeConverter->dataDocumentToXml($this->fakeRequestDataBlock, $document, static::SESSION_ID)
+            $this->fakeConverter->dataDocumentToXml(
+                $this->fakeRequestDataBlock,
+                $document,
+                static::SESSION_ID
+            )->saveXML()
         );
     }
 }
