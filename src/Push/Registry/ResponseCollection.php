@@ -28,7 +28,7 @@ class ResponseCollection extends \ArrayObject implements \JsonSerializable
     /**
      * @param ResponseInterface $value
      */
-    public function append($value)
+    public function append($value): void
     {
         $this->checkItem($value);
         parent::append($value);
@@ -38,7 +38,7 @@ class ResponseCollection extends \ArrayObject implements \JsonSerializable
      * @param mixed             $index
      * @param ResponseInterface $newval
      */
-    public function offsetSet($index, $newval)
+    public function offsetSet($index, $newval): void
     {
         $this->checkItem($newval);
         parent::offsetSet($index, $newval);
@@ -47,7 +47,7 @@ class ResponseCollection extends \ArrayObject implements \JsonSerializable
     /**
      * @inheritdoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return (array)$this;
     }

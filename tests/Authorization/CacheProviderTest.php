@@ -101,7 +101,7 @@ class CacheProviderTest extends TestCase
         );
 
         $this->assertCount(1, $this->container, 'One HTTP request should be done');
-        $this->assertFalse($this->logger->log->hasRecordsWithMessage(
+        $this->assertFalse($this->logger->hasRecord(
             "UBKI Authorization Cache Failed for key ubki.authorization.da43c441f2d427818314ea61227240bf942eaa76"
         ));
     }
@@ -144,7 +144,7 @@ class CacheProviderTest extends TestCase
         /** @noinspection PhpUnhandledExceptionInspection */
         $provider->provide($this->config);
 
-        $this->assertTrue($this->logger->log->hasRecordsWithMessage(
+        $this->assertTrue($this->logger->hasRecord(
             "UBKI Authorization Cache Failed for key ubki.authorization.da43c441f2d427818314ea61227240bf942eaa76"
         ));
     }
@@ -169,7 +169,7 @@ class CacheProviderTest extends TestCase
         );
 
         $this->assertCount(1, $this->container, 'One HTTP request should be done');
-        $this->assertFalse($this->logger->log->hasRecordsWithMessage(
+        $this->assertFalse($this->logger->hasRecord(
             "UBKI Authorization Cache Failed for key ubki.authorization.80900aeb4b6d97eeed3ee5afe434f2ddc7aa8435"
         ));
     }

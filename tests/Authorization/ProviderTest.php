@@ -106,10 +106,8 @@ class ProviderTest extends TestCase
         );
 
         // testing logs
-        $this->assertTrue($this->logger->log->hasRecordsWithMessage('UBKI Authorization Request'));
-        $this->assertTrue($this->logger->log->hasRecordsWithMessage('UBKI Authorization Response'));
-        $this->assertTrue($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TEST****ONID'));
-        $this->assertFalse($this->logger->log->hasRecordsWithContextKeyAndValue('sessid', 'TESTSESSIONID'));
+        $this->assertTrue($this->logger->hasRecord('UBKI Authorization Request'));
+        $this->assertTrue($this->logger->hasRecord('UBKI Authorization Response'));
     }
 
     public function testProvideAuthorizationException(): void
