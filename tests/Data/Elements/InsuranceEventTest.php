@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki\Dictionaries\InsuranceDecisionStatus;
 /**
  * Class EventTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Insurance
- * @coversDefaultClass InsuranceEvent
  * @internal
  */
 class InsuranceEventTest extends TestCase

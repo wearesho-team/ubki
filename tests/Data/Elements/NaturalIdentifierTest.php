@@ -11,7 +11,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class NaturalIdentifierTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass NaturalPerson
  * @internal
  */
 class NaturalIdentifierTest extends TestCase

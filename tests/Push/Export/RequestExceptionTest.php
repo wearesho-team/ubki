@@ -13,7 +13,6 @@ use Wearesho\Bobra\Ubki\Push\Export;
 /**
  * Class RequestExceptionTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Export
- * @coversDefaultClass Export\RequestException
  * @internal
  */
 class RequestExceptionTest extends TestCase

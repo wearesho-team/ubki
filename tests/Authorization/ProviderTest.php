@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use Carbon\Carbon;
-use Gamez\Psr\Log\TestLogger;
+use Beste\Psr\Log\TestLogger;
 use Wearesho\Bobra\Ubki;
 use GuzzleHttp;
 use Wearesho\Bobra\Ubki\Tests\TestCase;
@@ -24,7 +24,7 @@ class ProviderTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->logger = new TestLogger();
+        $this->logger = TestLogger::create();
         $this->config =
             new class (
                 'test-provider-username',
@@ -106,8 +106,8 @@ class ProviderTest extends TestCase
         );
 
         // testing logs
-        $this->assertTrue($this->logger->hasRecord('UBKI Authorization Request'));
-        $this->assertTrue($this->logger->hasRecord('UBKI Authorization Response'));
+        $this->assertTrue($this->logger->records->includeMessagesContaining('UBKI Authorization Request'));
+        $this->assertTrue($this->logger->records->includeMessagesContaining('UBKI Authorization Response'));
     }
 
     public function testProvideAuthorizationException(): void

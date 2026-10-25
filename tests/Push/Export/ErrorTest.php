@@ -8,7 +8,6 @@ use Wearesho\Bobra\Ubki\Tests\TestCase;
 /**
  * Class ErrorTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Export
- * @coversDefaultClass Error
  * @internal
  */
 class ErrorTest extends TestCase

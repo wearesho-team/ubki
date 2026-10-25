@@ -9,7 +9,6 @@ use Wearesho\Bobra\Ubki\Data\Interfaces;
 /**
  * Class RegistryTimesTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass RegistryTimes
  * @internal
  */
 class RegistryTimesTest extends TestCase

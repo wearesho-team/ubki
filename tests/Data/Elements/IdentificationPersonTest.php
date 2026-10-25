@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki\Data\Interfaces\IdentifiedPerson;
 /**
  * Class IdentificationPersonTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass IdentificationPerson
  * @internal
  */
 class IdentificationPersonTest extends TestCase

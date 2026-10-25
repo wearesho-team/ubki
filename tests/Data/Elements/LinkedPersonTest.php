@@ -11,7 +11,6 @@ use Wearesho\Bobra\Ubki\Dictionaries\LinkedIdentifierRole;
 /**
  * Class LinkedPersonTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass LinkedPerson
  * @internal
  */
 class LinkedPersonTest extends TestCase

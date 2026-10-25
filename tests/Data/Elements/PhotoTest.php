@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki\Data\Interfaces;
 /**
  * Class PhotoTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass Photo
  * @internal
  */
 class PhotoTest extends TestCase

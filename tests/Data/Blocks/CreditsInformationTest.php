@@ -12,7 +12,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class CreditsInformationTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Blocks
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\Blocks\CreditsInformation
  * @internal
  */
 class CreditsInformationTest extends TestCase

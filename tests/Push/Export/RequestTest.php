@@ -13,7 +13,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class RequestTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Export
- * @coversDefaultClass Export\Request
  * @internal
  */
 class RequestTest extends TestCase

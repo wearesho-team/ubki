@@ -8,7 +8,6 @@ use Wearesho\Bobra\Ubki\Tests\TestCase;
 /**
  * Class ParserTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Export
- * @coversDefaultClass Export\Parser
  * @internal
  */
 class ParserTest extends TestCase

@@ -11,7 +11,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class CourtDecisionTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass CourtDecision
  * @internal
  */
 class CourtDecisionTest extends TestCase

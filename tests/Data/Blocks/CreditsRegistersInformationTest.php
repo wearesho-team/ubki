@@ -13,7 +13,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class CreditsRegistersInformationTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Blocks
- * @coversDefaultClass CreditsRegistersInformation
  * @internal
  */
 class CreditsRegistersInformationTest extends TestCase

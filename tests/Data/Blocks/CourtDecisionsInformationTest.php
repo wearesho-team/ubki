@@ -13,7 +13,6 @@ use Wearesho\Bobra\Ubki\Dictionaries\CourtSubjectStatus;
 /**
  * Class CourtDecisionsInformationTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Blocks
- * @coversDefaultClass CourtDecisionsInformation
  * @internal
  */
 class CourtDecisionsInformationTest extends TestCase
