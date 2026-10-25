@@ -32,7 +32,7 @@ class Service implements ServiceInterface
         Ubki\Push\ConfigInterface $config,
         Ubki\Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        ?Log\LoggerInterface $logger = null
     ) {
         $this->config = $config;
         $this->authProvider = $authProvider;

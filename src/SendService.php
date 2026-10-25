@@ -27,7 +27,7 @@ abstract class SendService implements SendServiceInterface
         Push\ConfigInterface $config,
         Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        ?Log\LoggerInterface $logger = null
     ) {
         $this->config = $config;
         $this->authProvider = $authProvider;

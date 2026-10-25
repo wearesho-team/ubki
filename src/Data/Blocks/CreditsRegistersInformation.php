@@ -22,7 +22,7 @@ class CreditsRegistersInformation extends Block
 
     public function __construct(
         Collections\CreditRegisters $creditRequests,
-        Elements\RegistryTimes $registryTimes = null
+        ?Elements\RegistryTimes $registryTimes = null
     ) {
         $this->creditRequests = $creditRequests;
         $this->registryTimes = $registryTimes;

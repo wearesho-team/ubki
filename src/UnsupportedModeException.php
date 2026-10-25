@@ -17,7 +17,7 @@ class UnsupportedModeException extends \InvalidArgumentException
     public function __construct(
         int $mode,
         int $code = 0,
-        Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         $this->mode = $mode;
 

@@ -22,12 +22,12 @@ class CourtDecision extends Infrastructure\Element implements Data\Interfaces\Co
         Dictionaries\CourtDealType $courtDealType,
         string $courtName,
         string $documentType,
-        string $documentTypeReference = null,
-        string $legalFact = null,
-        string $legalFactReference = null,
-        \DateTimeInterface $createdAt = null,
-        string $area = null,
-        string $areaReference = null
+        ?string $documentTypeReference = null,
+        ?string $legalFact = null,
+        ?string $legalFactReference = null,
+        ?\DateTimeInterface $createdAt = null,
+        ?string $area = null,
+        ?string $areaReference = null
     ) {
         $this->id = $id;
         $this->inn = $inn;

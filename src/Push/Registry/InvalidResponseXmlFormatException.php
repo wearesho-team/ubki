@@ -15,7 +15,7 @@ class InvalidResponseXmlFormatException extends \Exception
     public function __construct(
         string $response,
         int $code = 0,
-        \Throwable $previous = null
+        ?\Throwable $previous = null
     ) {
         $this->response = $response;
 
