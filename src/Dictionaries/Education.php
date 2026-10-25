@@ -8,13 +8,13 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class Education
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static SECONDARY_UNFINISHED(string $description = null)
- * @method static static SECONDARY(string $description = null)
- * @method static static SECONDARY_TECH(string $description = null)
- * @method static static HIGH_UNFINISHED(string $description = null)
- * @method static static HIGH(string $description = null)
- * @method static static ACADEMIC(string $description = null)
- * @method static static BY_SELF(string $description = null)
+ * @method static static SECONDARY_UNFINISHED(?string $description = null)
+ * @method static static SECONDARY(?string $description = null)
+ * @method static static SECONDARY_TECH(?string $description = null)
+ * @method static static HIGH_UNFINISHED(?string $description = null)
+ * @method static static HIGH(?string $description = null)
+ * @method static static ACADEMIC(?string $description = null)
+ * @method static static BY_SELF(?string $description = null)
  */
 final class Education extends Infrastructure\Dictionary
 {

@@ -8,15 +8,15 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class SocialStatus
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static FULL_TIME(string $description = null)
- * @method static static TERM_TIME(string $description = null)
- * @method static static TEMP_UNEMPLOYED(string $description = null)
- * @method static static PART_TIME(string $description = null)
- * @method static static STUDENT(string $description = null)
- * @method static static PENSIONER(string $description = null)
- * @method static static PENSIONER_WORK(string $description = null)
- * @method static static MATERNITY_LEAVE(string $description = null)
- * @method static static OTHER(string $description = null)
+ * @method static static FULL_TIME(?string $description = null)
+ * @method static static TERM_TIME(?string $description = null)
+ * @method static static TEMP_UNEMPLOYED(?string $description = null)
+ * @method static static PART_TIME(?string $description = null)
+ * @method static static STUDENT(?string $description = null)
+ * @method static static PENSIONER(?string $description = null)
+ * @method static static PENSIONER_WORK(?string $description = null)
+ * @method static static MATERNITY_LEAVE(?string $description = null)
+ * @method static static OTHER(?string $description = null)
  */
 final class SocialStatus extends Infrastructure\Dictionary
 {

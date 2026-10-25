@@ -8,10 +8,10 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class IdentifierRank
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static DIRECTOR(string $description = null)
- * @method static static MANAGER(string $description = null)
- * @method static static SPECIALIST(string $description = null)
- * @method static static FREELANCER(string $description = null)
+ * @method static static DIRECTOR(?string $description = null)
+ * @method static static MANAGER(?string $description = null)
+ * @method static static SPECIALIST(?string $description = null)
+ * @method static static FREELANCER(?string $description = null)
  */
 final class IdentifierRank extends Infrastructure\Dictionary
 {

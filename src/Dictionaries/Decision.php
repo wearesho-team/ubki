@@ -8,8 +8,8 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class Decision
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static POSITIVE(string $description = null)
- * @method static static NEGATIVE(string $description = null)
+ * @method static static POSITIVE(?string $description = null)
+ * @method static static NEGATIVE(?string $description = null)
  */
 final class Decision extends Infrastructure\Dictionary
 {

@@ -8,10 +8,10 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class RequestInitiator
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static PARTNER(string $description = null)
- * @method static static SKI(string $description = null)
- * @method static static CERTIFICATED_SKI(string $description = null)
- * @method static static COURT(string $description = null)
+ * @method static static PARTNER(?string $description = null)
+ * @method static static SKI(?string $description = null)
+ * @method static static CERTIFICATED_SKI(?string $description = null)
+ * @method static static COURT(?string $description = null)
  */
 final class RequestInitiator extends Infrastructure\Dictionary
 {

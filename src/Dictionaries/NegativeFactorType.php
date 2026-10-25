@@ -8,12 +8,12 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class NegativeFactorType
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static PERSONS_WITH_FRAUDULENT_SIGNS(string $description = null)
- * @method static static DEAD(string $description = null)
- * @method static static FOUNDERS_OF_LEGAL_ENTITIES_WITH_ARREARS(string $description = null)
- * @method static static LIQUIDATION_PROCEDURE(string $description = null)
- * @method static static BANKRUPTCY_PROCEDURE(string $description = null)
- * @method static static BANK_DEBTORS(string $description = null)
+ * @method static static PERSONS_WITH_FRAUDULENT_SIGNS(?string $description = null)
+ * @method static static DEAD(?string $description = null)
+ * @method static static FOUNDERS_OF_LEGAL_ENTITIES_WITH_ARREARS(?string $description = null)
+ * @method static static LIQUIDATION_PROCEDURE(?string $description = null)
+ * @method static static BANKRUPTCY_PROCEDURE(?string $description = null)
+ * @method static static BANK_DEBTORS(?string $description = null)
  */
 final class NegativeFactorType extends Infrastructure\Dictionary
 {

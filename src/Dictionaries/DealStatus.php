@@ -8,16 +8,16 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class DealStatus
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static OPEN(string $description = null)
- * @method static static CLOSE(string $description = null)
- * @method static static SOLD(string $description = null)
- * @method static static RESTRUCTURED(string $description = null)
- * @method static static PROLONGED(string $description = null)
- * @method static static ANNULLED(string $description = null)
- * @method static static WRITE_OFF(string $description = null)
- * @method static static LIQUIDATION(string $description = null)
- * @method static static TERMINATION(string $description = null)
- * @method static static REPLACEMENT(string $description = null)
+ * @method static static OPEN(?string $description = null)
+ * @method static static CLOSE(?string $description = null)
+ * @method static static SOLD(?string $description = null)
+ * @method static static RESTRUCTURED(?string $description = null)
+ * @method static static PROLONGED(?string $description = null)
+ * @method static static ANNULLED(?string $description = null)
+ * @method static static WRITE_OFF(?string $description = null)
+ * @method static static LIQUIDATION(?string $description = null)
+ * @method static static TERMINATION(?string $description = null)
+ * @method static static REPLACEMENT(?string $description = null)
  */
 final class DealStatus extends Infrastructure\Dictionary
 {

@@ -8,10 +8,10 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class SearchAnswerMVD
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static ERROR(string $description = null)
- * @method static static NOT_FOUND(string $description = null)
- * @method static static FOUND(string $description = null)
- * @method static static WANTED(string $description = null)
+ * @method static static ERROR(?string $description = null)
+ * @method static static NOT_FOUND(?string $description = null)
+ * @method static static FOUND(?string $description = null)
+ * @method static static WANTED(?string $description = null)
  */
 final class SearchAnswerMVD extends Infrastructure\Dictionary
 {

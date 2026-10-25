@@ -8,8 +8,8 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class RegistrationSpd
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static PHYSICAL(string $description = null)
- * @method static static BUSINESS(string $description = null)
+ * @method static static PHYSICAL(?string $description = null)
+ * @method static static BUSINESS(?string $description = null)
  */
 final class RegistrationSpd extends Infrastructure\Dictionary
 {
