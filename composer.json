@@ -6,7 +6,7 @@
     "php": ">=8.4",
     "ext-SimpleXML": "*",
     "guzzlehttp/guzzle": "^6.5.8 || ^7.4.5",
-    "horat1us/environment-config": "^1.5",
+    "horat1us/environment-config": "^1.6",
     "myclabs/php-enum": "^1.5",
     "nesbot/carbon": "^2.24 || ^3",
     "psr/log": "^1.0 || ^2.0 || ^3.0",
