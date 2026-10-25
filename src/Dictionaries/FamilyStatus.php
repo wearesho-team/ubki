@@ -8,11 +8,11 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class FamilyStatus
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static SINGLE(string $description = null)
- * @method static static MARRIED(string $description = null)
- * @method static static DIVORCED(string $description = null)
- * @method static static WIDOW(string $description = null)
- * @method static static CIVIL(string $description = null)
+ * @method static static SINGLE(?string $description = null)
+ * @method static static MARRIED(?string $description = null)
+ * @method static static DIVORCED(?string $description = null)
+ * @method static static WIDOW(?string $description = null)
+ * @method static static CIVIL(?string $description = null)
  */
 final class FamilyStatus extends Infrastructure\Dictionary
 {

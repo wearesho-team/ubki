@@ -8,10 +8,10 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class Flag
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static NO(string $description = null)
- * @method static static YES(string $description = null)
- * @method static static CONSUMER(string $description = null)
- * @method static static GUARANTOR(string $description = null)
+ * @method static static NO(?string $description = null)
+ * @method static static YES(?string $description = null)
+ * @method static static CONSUMER(?string $description = null)
+ * @method static static GUARANTOR(?string $description = null)
  */
 final class Flag extends Infrastructure\Dictionary
 {

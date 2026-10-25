@@ -8,10 +8,10 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Class CityType
  * @package Wearesho\Bobra\Ubki\Dictionaries
  *
- * @method static static VILLAGE(string $description = null)
- * @method static static SETTLEMENT(string $description = null)
- * @method static static URBAN_VILLAGE(string $description = null)
- * @method static static TOWN(string $description = null)
+ * @method static static VILLAGE(?string $description = null)
+ * @method static static SETTLEMENT(?string $description = null)
+ * @method static static URBAN_VILLAGE(?string $description = null)
+ * @method static static TOWN(?string $description = null)
  */
 final class CityType extends Infrastructure\Dictionary
 {

@@ -11,14 +11,14 @@ use Wearesho\Bobra\Ubki\Infrastructure;
  * Use iso 639-3 standard
  * @see     https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%B4%D1%8B_%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2
  *
- * @method static static RUS(string $description = null)
- * @method static static UKR(string $description = null)
- * @method static static KAT(string $description = null)
- * @method static static ENG(string $description = null)
- * @method static static LAV(string $description = null)
- * @method static static ELL(string $description = null)
- * @method static static ZHO(string $description = null)
- * @method static static KAZ(string $description = null)
+ * @method static static RUS(?string $description = null)
+ * @method static static UKR(?string $description = null)
+ * @method static static KAT(?string $description = null)
+ * @method static static ENG(?string $description = null)
+ * @method static static LAV(?string $description = null)
+ * @method static static ELL(?string $description = null)
+ * @method static static ZHO(?string $description = null)
+ * @method static static KAZ(?string $description = null)
  */
 final class Language extends Infrastructure\Dictionary
 {
