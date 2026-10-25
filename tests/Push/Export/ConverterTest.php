@@ -465,7 +465,8 @@ class ConverterTest extends TestCase
         );
 
         $this->assertXmlStringEqualsXmlString(
-        /** @lang XML */ '<?xml version="1.0" encoding="utf-8"?>
+            /** @lang XML */
+            '<?xml version="1.0" encoding="utf-8"?>
 <doc>
     <ubki sessid="testSessionId">
         <req_envelope>
@@ -506,7 +507,8 @@ class ConverterTest extends TestCase
 ',
             $this->fakeConverter->dataDocumentToXml(
                 $this->fakeRequestDataBlock,
-                $document, static::SESSION_ID
+                $document,
+                static::SESSION_ID
             )->saveXML()
         );
     }
@@ -521,7 +523,8 @@ class ConverterTest extends TestCase
         );
 
         $this->assertXmlStringEqualsXmlString(
-        /** @lang XML */ '<?xml version="1.0" encoding="utf-8"?>
+            /** @lang XML */
+            '<?xml version="1.0" encoding="utf-8"?>
 <doc>
     <ubki sessid="testSessionId">
         <req_envelope>
@@ -590,7 +593,8 @@ class ConverterTest extends TestCase
         );
 
         $this->assertXmlStringEqualsXmlString(
-        /** @lang XML */ '<?xml version="1.0" encoding="utf-8"?>
+            /** @lang XML */
+            '<?xml version="1.0" encoding="utf-8"?>
 <doc>
     <ubki sessid="testSessionId">
         <req_envelope>
