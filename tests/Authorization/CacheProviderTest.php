@@ -77,7 +77,7 @@ class CacheProviderTest extends TestCase
 
     public function testProvide(): void
     {
-        $cache = $this->createMock(SimpleCache\Cache::class);
+        $cache = $this->createMock(SimpleCache\MemoryCache::class);
         $cache->expects($this->once())->method('set')->willReturn(true);
         $expects = $cache->expects($this->exactly(1))->method('get');
         $provider = new Ubki\Authorization\CacheProvider(
@@ -108,7 +108,7 @@ class CacheProviderTest extends TestCase
 
     public function testCacheHas(): void
     {
-        $cache = $this->createMock(SimpleCache\Cache::class);
+        $cache = $this->createMock(SimpleCache\MemoryCache::class);
         $cache
             ->expects(
                 $this->once()
@@ -128,12 +128,12 @@ class CacheProviderTest extends TestCase
 
     public function testWriteLogFailed(): void
     {
-        $cache = new SimpleCache\Cache(new class extends SimpleCache\Drivers\MemoryCacheDriver {
-            public function set(string $key, $value, ?int $ttl = null): bool
+        $cache = new class extends SimpleCache\MemoryCache {
+            public function set(string $key, mixed $value, int|\DateInterval|null $ttl = null): bool
             {
                 return false;
             }
-        });
+        };
 
         $provider = new Ubki\Authorization\CacheProvider(
             $cache,
@@ -151,7 +151,7 @@ class CacheProviderTest extends TestCase
 
     public function testProviderWithEnvironmentConfig()
     {
-        $cache = new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver());
+        $cache = new SimpleCache\MemoryCache();
         $provider = new Ubki\Authorization\CacheProvider(
             $cache,
             $this->client,

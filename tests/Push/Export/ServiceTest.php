@@ -443,7 +443,7 @@ class ServiceTest extends TestCase
         $client = new GuzzleHttp\Client(['handler' => $stack,]);
         $this->config = new Push\EnvironmentConfig();
         $this->authProvider = new Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -525,7 +525,7 @@ class ServiceTest extends TestCase
         $client = new GuzzleHttp\Client(['handler' => $stack,]);
         $this->config = new Push\EnvironmentConfig();
         $this->authProvider = new Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -621,7 +621,7 @@ class ServiceTest extends TestCase
         $client = new GuzzleHttp\Client(['handler' => $stack,]);
         $this->config = new Push\EnvironmentConfig();
         $this->authProvider = new Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );

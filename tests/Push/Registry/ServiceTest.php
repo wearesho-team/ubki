@@ -78,7 +78,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_TEST
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -125,7 +125,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_PRODUCTION
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -175,7 +175,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_TEST
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -218,7 +218,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_PRODUCTION
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -259,7 +259,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_TEST
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -331,7 +331,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_TEST
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -401,7 +401,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_PRODUCTION
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -508,7 +508,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_PRODUCTION
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -534,7 +534,7 @@ class ServiceTest extends TestCase
         $config = new Ubki\Push\EnvironmentConfig();
         $client = new GuzzleHttp\Client();
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
@@ -571,7 +571,7 @@ class ServiceTest extends TestCase
             Ubki\Push\Config::MODE_PRODUCTION
         );
         $authProvider = new Ubki\Authorization\CacheProvider(
-            new SimpleCache\Cache(new SimpleCache\Drivers\MemoryCacheDriver()),
+            new SimpleCache\MemoryCache(),
             $client,
             $this->logger
         );
