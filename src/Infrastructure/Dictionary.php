@@ -16,7 +16,7 @@ abstract class Dictionary extends Enum
     /** @var string|null */
     protected $description;
 
-    public function __construct($value, string $description = null)
+    public function __construct($value, ?string $description = null)
     {
         $this->description = $description;
 

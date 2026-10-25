@@ -24,8 +24,8 @@ class Service extends SendService
         Push\ConfigInterface $config,
         Authorization\ProviderInterface $authProvider,
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null,
-        ConverterInterface $converter = null
+        ?Log\LoggerInterface $logger = null,
+        ?ConverterInterface $converter = null
     ) {
         $this->converter = $converter ?? new Converter();
 

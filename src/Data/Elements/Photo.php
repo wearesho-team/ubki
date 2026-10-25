@@ -13,7 +13,7 @@ class Photo extends Element implements Data\Interfaces\Photo
 {
     use Data\Traits\Photo;
 
-    public function __construct(\DateTimeInterface $createdAt, string $uri, string $inn = null)
+    public function __construct(\DateTimeInterface $createdAt, string $uri, ?string $inn = null)
     {
         $this->createdAt = $createdAt;
         $this->uri = $uri;

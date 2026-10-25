@@ -13,7 +13,7 @@ class UnknownErrorException extends \Exception
 {
     public function __construct(
         string $message = "",
-        \Throwable $previous = null
+        ?\Throwable $previous = null
     ) {
         parent::__construct(
             $message,

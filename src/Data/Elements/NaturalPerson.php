@@ -20,14 +20,14 @@ class NaturalPerson extends IdentifiedPerson implements Data\Interfaces\NaturalP
         string $surname,
         \DateTimeInterface $birthDate,
         Dictionaries\Gender $gender,
-        string $inn = null,
-        string $patronymic = null,
-        Dictionaries\FamilyStatus $familyStatus = null,
-        Dictionaries\Education $education = null,
-        Dictionaries\Nationality $nationality = null,
-        Dictionaries\RegistrationSpd $registrationSpd = null,
-        Dictionaries\SocialStatus $socialStatus = null,
-        int $childrenCount = null
+        ?string $inn = null,
+        ?string $patronymic = null,
+        ?Dictionaries\FamilyStatus $familyStatus = null,
+        ?Dictionaries\Education $education = null,
+        ?Dictionaries\Nationality $nationality = null,
+        ?Dictionaries\RegistrationSpd $registrationSpd = null,
+        ?Dictionaries\SocialStatus $socialStatus = null,
+        ?int $childrenCount = null
     ) {
         $this->surname = $surname;
         $this->birthDate = $birthDate;

@@ -60,8 +60,8 @@ class InsuranceDeal extends Infrastructure\Element
         \DateTimeInterface $endDate,
         Dictionaries\InsuranceDealType $type,
         Dictionaries\DealStatus $status,
-        Collections\InsuranceEvents $events = null,
-        \DateTimeInterface $actualEndDate = null
+        ?Collections\InsuranceEvents $events = null,
+        ?\DateTimeInterface $actualEndDate = null
     ) {
         $this->inn = $inn;
         $this->id = $id;

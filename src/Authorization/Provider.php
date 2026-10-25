@@ -20,7 +20,7 @@ class Provider implements ProviderInterface
 
     public function __construct(
         GuzzleHttp\ClientInterface $client,
-        Log\LoggerInterface $logger = null
+        ?Log\LoggerInterface $logger = null
     ) {
         $this->client = $client;
         $this->logger = $logger ?? new Log\NullLogger();

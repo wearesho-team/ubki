@@ -129,7 +129,7 @@ class CacheProviderTest extends TestCase
     public function testWriteLogFailed(): void
     {
         $cache = new SimpleCache\Cache(new class extends SimpleCache\Drivers\MemoryCacheDriver {
-            public function set(string $key, $value, int $ttl = null): bool
+            public function set(string $key, $value, ?int $ttl = null): bool
             {
                 return false;
             }

@@ -17,7 +17,7 @@ class InvalidOperationDateFormatException extends \InvalidArgumentException
     public function __construct(
         \DateTimeInterface $date,
         int $code = 0,
-        \Throwable $previous = null
+        ?\Throwable $previous = null
     ) {
         $this->date = $date;
         $format = new Carbon($date);
