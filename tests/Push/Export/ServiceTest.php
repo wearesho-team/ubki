@@ -612,7 +612,7 @@ class ServiceTest extends TestCase
             new GuzzleHttp\Psr7\Response(200, [], $authResponse),
             new GuzzleHttp\Exception\RequestException(
                 'Some client error',
-                new GuzzleHttp\Psr7\Request('post', '')
+                new GuzzleHttp\Psr7\Request('POST', '')
             ),
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);

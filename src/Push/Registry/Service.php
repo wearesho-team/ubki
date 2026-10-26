@@ -79,7 +79,7 @@ class Service implements ServiceInterface
     protected function convertToGuzzleRequest(RequestInterface $request): GuzzleHttp\Psr7\Request
     {
         return new GuzzleHttp\Psr7\Request(
-            'post',
+            'POST',
             $this->config->getRegistryUrl(),
             [],
             base64_encode($this->getBody($request))
@@ -172,7 +172,7 @@ class Service implements ServiceInterface
         try {
             $response = $this->client->send(
                 new GuzzleHttp\Psr7\Request(
-                    $method = 'get',
+                    $method = 'GET',
                     $url,
                     []
                 )

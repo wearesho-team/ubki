@@ -108,7 +108,7 @@ class Provider implements ProviderInterface
     private function getRequest(ConfigInterface $config): GuzzleHttp\Psr7\Request
     {
         return new GuzzleHttp\Psr7\Request(
-            $method = 'post',
+            $method = 'POST',
             $config->getAuthUrl(),
             [],
             base64_encode($this->getBody($config))
