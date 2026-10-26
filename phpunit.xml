@@ -2,9 +2,11 @@
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         colors="true"
+        displayDetailsOnTestsThatTriggerDeprecations="true"
+        failOnDeprecation="true"
         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
 >
-    <source>
+    <source ignoreSuppressionOfDeprecations="true">
         <include>
             <directory suffix=".php">src</directory>
         </include>

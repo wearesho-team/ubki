@@ -105,6 +105,12 @@ class ServiceTest extends TestCase
             $parser->parseResponses($this->responseRegistryXml)->offsetGet(0),
             $parser->parseResponses($response->getResponse())->offsetGet(0)
         );
+
+        // authorization, registry and registry file requests
+        $this->assertCount(3, $container);
+        $this->assertEquals('POST', $container[0]['request']->getMethod());
+        $this->assertEquals('POST', $container[1]['request']->getMethod());
+        $this->assertEquals('GET', $container[2]['request']->getMethod());
     }
 
     public function testSendProductionRegistry(): void
@@ -559,7 +565,7 @@ class ServiceTest extends TestCase
             new GuzzleHttp\Psr7\Response(200, [], $this->responseRegistryUrl),
             new GuzzleHttp\Exception\RequestException(
                 'Some client error error',
-                new GuzzleHttp\Psr7\Request('get', '')
+                new GuzzleHttp\Psr7\Request('GET', '')
             )
         ]);
         $stack = GuzzleHttp\HandlerStack::create($mock);
