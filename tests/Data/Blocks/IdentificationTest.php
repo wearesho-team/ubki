@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class IdentificationTest
  * @package Wearesho\Bobra\Ubki\Tests\Data
- * @coversDefaultClass \Wearesho\Bobra\Ubki\Data\BLocks\Identification
  * @internal
  */
 class IdentificationTest extends TestCase

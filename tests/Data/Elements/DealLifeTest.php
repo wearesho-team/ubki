@@ -11,7 +11,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class DealLifeTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass DealLife
  * @internal
  */
 class DealLifeTest extends TestCase

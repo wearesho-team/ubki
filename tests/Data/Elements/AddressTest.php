@@ -11,7 +11,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class AddressTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass Elements\Address
  * @internal
  */
 class AddressTest extends TestCase

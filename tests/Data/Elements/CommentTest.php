@@ -8,7 +8,6 @@ use Wearesho\Bobra\Ubki\Tests\TestCase;
 /**
  * Class CommentTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass Comment
  * @internal
  */
 class CommentTest extends TestCase

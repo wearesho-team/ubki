@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Push\Registry;
 
 use Carbon\Carbon;
 use chillerlan\SimpleCache;
-use Gamez\Psr\Log\TestLogger;
+use Beste\Psr\Log\TestLogger;
 use GuzzleHttp;
 use Wearesho\Bobra\Ubki\Tests\TestCase;
 use Wearesho\Bobra\Ubki;
@@ -40,7 +40,7 @@ class ServiceTest extends TestCase
 
         $this->now = Carbon::createFromFormat('Y-m-d', Carbon::now()->toDateString());
         $date = Carbon::create($this->now->year, $this->now->month, $this->now->day, 0, 0, 0)->format('Ymd');
-        $this->logger = new TestLogger();
+        $this->logger = TestLogger::create();
         $this->responseAuth = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             <doc>
                 <auth sessid="A1F593950A8F4562AE5A5DB1914D658A" datecr="25.05.2017 15:20" dateed="26.05.2017 0:00" 

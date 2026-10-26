@@ -12,7 +12,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class InsurancesInformationTest
  * @package Wearesho\Bobra\Ubki\Tests\Data
- * @coversDefaultClass InsurancesInformation
  * @internal
  */
 class InsurancesInformationTest extends TestCase

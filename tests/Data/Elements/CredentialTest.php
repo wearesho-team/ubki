@@ -10,7 +10,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class CredentialTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass Data\Elements\Credential
  * @internal
  */
 class CredentialTest extends TestCase

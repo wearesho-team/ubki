@@ -9,7 +9,6 @@ use Wearesho\Bobra\Ubki\Data\Elements\RatingScore;
 /**
  * Class RatingScoreTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating
- * @coversDefaultClass RatingScore
  * @internal
  */
 class RatingScoreTest extends TestCase

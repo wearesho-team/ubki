@@ -11,7 +11,6 @@ use Wearesho\Bobra\Ubki\Data\Elements;
 /**
  * Class CreditRatingTest
  * @package Wearesho\Bobra\Ubki\Tests\Data
- * @coversDefaultClass CreditRating
  * @internal
  */
 class CreditRatingTest extends TestCase

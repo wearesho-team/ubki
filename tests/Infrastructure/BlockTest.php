@@ -8,7 +8,6 @@ use Wearesho\Bobra\Ubki\Tests\TestCase;
 /**
  * Class BlockTest
  * @package Wearesho\Bobra\Ubki\Tests\Infrastructure
- * @coversDefaultClass Block
  * @internal
  */
 class BlockTest extends TestCase

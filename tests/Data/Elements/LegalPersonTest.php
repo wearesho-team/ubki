@@ -11,7 +11,6 @@ use Wearesho\Bobra\Ubki\Data\Interfaces;
 /**
  * Class LegalPersonTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass LegalPerson
  * @internal
  */
 class LegalPersonTest extends TestCase

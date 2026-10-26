@@ -11,7 +11,6 @@ use Wearesho\Bobra\Ubki\Dictionaries\ContactType;
 /**
  * Class ContactTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass Contact
  * @internal
  */
 class ContactTest extends TestCase

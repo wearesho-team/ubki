@@ -4,7 +4,7 @@ namespace Wearesho\Bobra\Ubki\Tests\Push\Export;
 
 use Carbon\Carbon;
 use chillerlan\SimpleCache;
-use Gamez\Psr\Log\TestLogger;
+use Beste\Psr\Log\TestLogger;
 use GuzzleHttp;
 use Wearesho\Bobra\Ubki\Tests\TestCase;
 use Wearesho\Bobra\Ubki\Authorization;
@@ -17,7 +17,6 @@ use Wearesho\Bobra\Ubki\Push;
 /**
  * Class ServiceTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Export
- * @coversDefaultClass Push\Export\Service
  * @internal
  */
 class ServiceTest extends TestCase
@@ -141,7 +140,7 @@ class ServiceTest extends TestCase
         putenv('UBKI_PUSH_PASSWORD=' . static::PASSWORD);
         putenv('UBKI_PUSH_MODE=' . Authorization\ConfigInterface::MODE_TEST);
         putenv('UBKI_AUTH_URL=' . Authorization\ConfigInterface::TEST_AUTH_URL);
-        $this->logger = new TestLogger();
+        $this->logger = TestLogger::create();
         $this->config = new Push\EnvironmentConfig();
         $this->exportRequest = new Push\Export\Request(
             new Elements\RequestData(

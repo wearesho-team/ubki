@@ -13,7 +13,6 @@ use Wearesho\Bobra\Ubki\Push\Export;
 /**
  * Class ConverterTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Export
- * @coversDefaultClass Export\Converter
  * @internal
  */
 class ConverterTest extends TestCase

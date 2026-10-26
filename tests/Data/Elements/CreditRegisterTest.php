@@ -12,7 +12,6 @@ use Wearesho\Bobra\Ubki\Dictionaries\RequestReason;
 /**
  * Class CreditRegisterTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass CreditRequest
  * @internal
  */
 class CreditRegisterTest extends TestCase

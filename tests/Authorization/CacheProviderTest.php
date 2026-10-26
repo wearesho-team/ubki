@@ -3,7 +3,7 @@
 namespace Wearesho\Bobra\Ubki\Tests\Authorization;
 
 use chillerlan\SimpleCache;
-use Gamez\Psr\Log\TestLogger;
+use Beste\Psr\Log\TestLogger;
 use GuzzleHttp;
 use Horat1us\Environment;
 use Wearesho\Bobra\Ubki\Tests\TestCase;
@@ -44,7 +44,7 @@ class CacheProviderTest extends TestCase
         $stack->push($history);
 
         $this->client = new GuzzleHttp\Client(['handler' => $stack,]);
-        $this->logger = new TestLogger();
+        $this->logger = TestLogger::create();
         $this->config =
             new class (
                 'username',
@@ -101,7 +101,7 @@ class CacheProviderTest extends TestCase
         );
 
         $this->assertCount(1, $this->container, 'One HTTP request should be done');
-        $this->assertFalse($this->logger->hasRecord(
+        $this->assertFalse($this->logger->records->includeMessagesContaining(
             "UBKI Authorization Cache Failed for key ubki.authorization.da43c441f2d427818314ea61227240bf942eaa76"
         ));
     }
@@ -115,7 +115,7 @@ class CacheProviderTest extends TestCase
             )
             ->method('get')
             ->willReturn(
-                $this->createMock(Ubki\Authorization\Response::class)
+                $this->createStub(Ubki\Authorization\Response::class)
             );
         $cache->expects($this->never())->method('set');
         $provider = new Ubki\Authorization\CacheProvider(
@@ -144,7 +144,7 @@ class CacheProviderTest extends TestCase
         /** @noinspection PhpUnhandledExceptionInspection */
         $provider->provide($this->config);
 
-        $this->assertTrue($this->logger->hasRecord(
+        $this->assertTrue($this->logger->records->includeMessagesContaining(
             "UBKI Authorization Cache Failed for key ubki.authorization.da43c441f2d427818314ea61227240bf942eaa76"
         ));
     }
@@ -169,7 +169,7 @@ class CacheProviderTest extends TestCase
         );
 
         $this->assertCount(1, $this->container, 'One HTTP request should be done');
-        $this->assertFalse($this->logger->hasRecord(
+        $this->assertFalse($this->logger->records->includeMessagesContaining(
             "UBKI Authorization Cache Failed for key ubki.authorization.80900aeb4b6d97eeed3ee5afe434f2ddc7aa8435"
         ));
     }

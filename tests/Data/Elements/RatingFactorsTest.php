@@ -12,7 +12,6 @@ use Wearesho\Bobra\Ubki\Data\Elements\PositiveRatingFactors;
 /**
  * Class RatingFactorsTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements\Rating
- * @coversDefaultClass RatingFactors
  * @internal
  */
 class RatingFactorsTest extends TestCase

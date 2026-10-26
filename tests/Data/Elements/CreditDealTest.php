@@ -12,7 +12,6 @@ use Wearesho\Bobra\Ubki\Dictionaries;
 /**
  * Class CreditDealTest
  * @package Wearesho\Bobra\Ubki\Tests\Data\Elements
- * @coversDefaultClass Elements\CreditDeal
  * @internal
  */
 class CreditDealTest extends TestCase

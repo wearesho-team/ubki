@@ -8,7 +8,6 @@ use Wearesho\Bobra\Ubki\Push\Export;
 /**
  * Class ResponseTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Export
- * @coversDefaultClass Export\Response
  * @internal
  */
 class ResponseTest extends TestCase

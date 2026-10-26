@@ -14,7 +14,6 @@ use Wearesho\Bobra\Ubki\Push\Export\DataDocument;
 /**
  * Class DataDocumentTest
  * @package Wearesho\Bobra\Ubki\Tests\Push\Export
- * @coversDefaultClass DataDocument
  * @internal
  */
 class DataDocumentTest extends TestCase
